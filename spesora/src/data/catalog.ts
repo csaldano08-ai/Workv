@@ -14,12 +14,16 @@ import { COLAZIONI_DOLCI_3 } from './recipes/b3_colazioni_dolci';
 import { COLAZIONI_SALATE_3 } from './recipes/b3_colazioni_salate';
 import { PASTA_3 } from './recipes/b3_pasta';
 import { RISO_ZUPPE_3 } from './recipes/b3_riso_zuppe';
+import { CARNE_3 } from './recipes/b3_carne';
+import { PESCE_UOVA_3 } from './recipes/b3_pesce_uova';
+import { LEGUMI_3 } from './recipes/b3_legumi_bowl';
+import { VERDURE_3 } from './recipes/b3_verdure_unici';
 import { SPUNTINI_3 } from './recipes/b3_spuntini';
 
 /** Catalogo incluso nell'app: ingredienti canonici e ricette originali. */
 export const CATALOG: Catalog = {
   ingredients: [...INGREDIENTS, ...INGREDIENTS_2, ...INGREDIENTS_3],
   recipes: [...PRANZI_CENE, ...SECONDI, ...COLAZIONI, ...SPUNTINI, ...PRIMI_2, ...SECONDI_2, ...VEGETALI_2, ...COLAZIONI_SPUNTINI_2,
-    ...COLAZIONI_DOLCI_3, ...COLAZIONI_SALATE_3, ...PASTA_3, ...RISO_ZUPPE_3, ...SPUNTINI_3,
+    ...COLAZIONI_DOLCI_3, ...COLAZIONI_SALATE_3, ...PASTA_3, ...RISO_ZUPPE_3, ...CARNE_3, ...PESCE_UOVA_3, ...LEGUMI_3, ...VERDURE_3, ...SPUNTINI_3,
   ],
 };
