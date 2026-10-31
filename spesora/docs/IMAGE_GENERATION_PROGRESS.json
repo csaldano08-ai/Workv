@@ -2041,11 +2041,21 @@
       "filename": "peperoni_ripieni_carne.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "peperone, carne macinata di manzo, uova, pangrattato, parmigiano reggiano",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/peperoni_ripieni_carne.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Peperoni ripieni di carne al forno; main ingredients checked against catalog (peperone, carne macinata di manzo, uova, pangrattato, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 795043,
+      "sha256": "ab8180b95dfaf442e58fa4c82128a93e0f892e0228bef36d0f782953fedbeb13",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:48:03.495606+00:00"
     },
     {
       "id": "pesce_spada_siciliana",
@@ -2053,11 +2063,21 @@
       "filename": "pesce_spada_siciliana.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "pesce spada a fette, pomodorini, capperi",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/pesce_spada_siciliana.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Pesce spada alla siciliana; main ingredients checked against catalog (pesce spada a fette, pomodorini, capperi). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 859223,
+      "sha256": "529b6e9483d016d883285ff3092222cef79272be194c55a351fbf90fb6d8614a",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:50:04.468685+00:00"
     },
     {
       "id": "pollo_al_limone",
@@ -2065,11 +2085,21 @@
       "filename": "pollo_al_limone.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "petto di pollo, insalata verde, limone, farina di grano tenero",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/pollo_al_limone.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Petto di pollo al limone; main ingredients checked against catalog (petto di pollo, insalata verde, limone, farina di grano tenero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 712427,
+      "sha256": "30614abd6f9d3111e49471dca419704cb4cdcc52cda5daccf26051a283e02f08",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:47:10.348829+00:00"
     },
     {
       "id": "pollo_friggitrice_verdure",
@@ -2077,11 +2107,21 @@
       "filename": "pollo_friggitrice_verdure.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "petto di pollo, zucchina, peperone",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/pollo_friggitrice_verdure.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Petto di pollo in friggitrice ad aria con peperoni e zucchine; main ingredients checked against catalog (petto di pollo, zucchina, peperone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 814222,
+      "sha256": "abe3304d38d3025a21288706d3501cfd293f23da3896e068cd8ffee93cfeb527",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:50:04.940070+00:00"
     },
     {
       "id": "piadina_salmone_affumicato",
@@ -2089,11 +2129,21 @@
       "filename": "piadina_salmone_affumicato.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "piadina, salmone affumicato, formaggio fresco spalmabile, rucola, limone",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/piadina_salmone_affumicato.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Piadina con salmone affumicato e formaggio fresco; main ingredients checked against catalog (piadina, salmone affumicato, formaggio fresco spalmabile, rucola, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 873940,
+      "sha256": "26bb6636d1035f55f717896832a2febd1780b803671c2f93318acaa5f2fa989d",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:48:59.006876+00:00"
     },
     {
       "id": "pollo_cacciatora",
@@ -2101,11 +2151,21 @@
       "filename": "pollo_cacciatora.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "cosce di pollo, pomodori pelati, cipolla",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/pollo_cacciatora.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Pollo alla cacciatora in padella; main ingredients checked against catalog (cosce di pollo, pomodori pelati, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 776472,
+      "sha256": "5ef9e37f38e04b2bc6f5bfd7ad42a9351a580e214d395c438830356532455b9f",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:48:57.364865+00:00"
     },
     {
       "id": "polpette_al_sugo",
@@ -2113,11 +2173,21 @@
       "filename": "polpette_al_sugo.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "passata di pomodoro, carne macinata di manzo, uova, pane, pangrattato",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/polpette_al_sugo.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Polpette al sugo; main ingredients checked against catalog (passata di pomodoro, carne macinata di manzo, uova, pane, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 787370,
+      "sha256": "756928a559be15cb3ed2ded17f1675e4c606a4f546a6575ab383ba24d459306f",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:47:09.564381+00:00"
     },
     {
       "id": "polpette_tacchino_carote",
@@ -2125,11 +2195,21 @@
       "filename": "polpette_tacchino_carote.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "fesa di tacchino a cubetti, carota, uova, pangrattato, parmigiano reggiano",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/polpette_tacchino_carote.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Polpette di tacchino al forno con carote; main ingredients checked against catalog (fesa di tacchino a cubetti, carota, uova, pangrattato, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 722242,
+      "sha256": "e2922029b6f639cb66b57d7f054d7437dde892d831887198f2a850e3f3739371",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:48:58.421106+00:00"
     },
     {
       "id": "salmone_forno_broccoli",
@@ -2159,11 +2239,21 @@
       "filename": "salmone_padella_zucchine.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "filetto di salmone, zucchina, limone",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/salmone_padella_zucchine.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Salmone in padella con zucchine; main ingredients checked against catalog (filetto di salmone, zucchina, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 726791,
+      "sha256": "31db3354f6cfa2fa7ebfd810f8dcca00dc5297b4610924cccd9a4eee327687dd",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:50:03.919334+00:00"
     },
     {
       "id": "saltimbocca_tacchino_speck",
@@ -2171,11 +2261,21 @@
       "filename": "saltimbocca_tacchino_speck.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "fettine di tacchino, insalata verde, speck, farina di grano tenero",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/saltimbocca_tacchino_speck.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Saltimbocca di tacchino allo speck; main ingredients checked against catalog (fettine di tacchino, insalata verde, speck, farina di grano tenero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 742271,
+      "sha256": "e31fa0a0580ae631bccfdc251bacbb98724d2dca3e4a77fcac4ab2abe2d7639f",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:50:05.822638+00:00"
     },
     {
       "id": "scaloppine_limone",
@@ -2183,11 +2283,21 @@
       "filename": "scaloppine_limone.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "fettine di vitello, limone, farina di grano tenero, burro, prezzemolo",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/scaloppine_limone.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Scaloppine di vitello al limone; main ingredients checked against catalog (fettine di vitello, limone, farina di grano tenero, burro, prezzemolo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 703559,
+      "sha256": "b902d783b55d7e163a89823890275e3a97e64441ed870bf9315555d812e687a9",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:47:09.962642+00:00"
     },
     {
       "id": "spezzatino_piselli",
@@ -2195,11 +2305,21 @@
       "filename": "spezzatino_piselli.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "manzo a cubetti, passata di pomodoro, piselli surgelati, cipolla, carota",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/spezzatino_piselli.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Spezzatino di manzo con piselli; main ingredients checked against catalog (manzo a cubetti, passata di pomodoro, piselli surgelati, cipolla, carota). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 769434,
+      "sha256": "c4a78716b67e209a3f2b006212962bb64fe1887ac0533bb923aeef949bdb471d",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:48:03.100936+00:00"
     },
     {
       "id": "straccetti_pollo_friggitrice",
@@ -2207,11 +2327,21 @@
       "filename": "straccetti_pollo_friggitrice.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "petto di pollo, carota, cetriolo, pangrattato",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/straccetti_pollo_friggitrice.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Straccetti di pollo croccanti in friggitrice ad aria; main ingredients checked against catalog (petto di pollo, carota, cetriolo, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 867309,
+      "sha256": "8f4367897b16687ad81a6378ec173eacca23943ffc3c6445cb99aceaa6aaa0e8",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:48:02.720984+00:00"
     },
     {
       "id": "tacchino_curry_cocco",
@@ -2219,11 +2349,21 @@
       "filename": "tacchino_curry_cocco.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "fesa di tacchino a cubetti, latte di cocco, riso basmati, cipolla",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/tacchino_curry_cocco.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Tacchino al curry con latte di cocco e riso; main ingredients checked against catalog (fesa di tacchino a cubetti, latte di cocco, riso basmati, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 799985,
+      "sha256": "0432500d146a5a482a8b3651f667b9a9a77084f62b1ad0a341bc1402a3223dbc",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:47:10.933831+00:00"
     },
     {
       "id": "tonno_sesamo_zucchine",
@@ -2231,11 +2371,21 @@
       "filename": "tonno_sesamo_zucchine.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "tonno fresco, zucchina, lime, semi di sesamo",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/tonno_sesamo_zucchine.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Tonno scottato al sesamo con zucchine allo zenzero; main ingredients checked against catalog (tonno fresco, zucchina, lime, semi di sesamo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 774254,
+      "sha256": "3303701ef435c264e29093df6930614ad388466d2d57ec7e51e7b1ba61f3e293",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:50:05.335584+00:00"
     },
     {
       "id": "uova_al_pomodoro",
@@ -2243,11 +2393,21 @@
       "filename": "uova_al_pomodoro.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "uova, passata di pomodoro, pane, basilico fresco",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/uova_al_pomodoro.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Uova al pomodoro; main ingredients checked against catalog (uova, passata di pomodoro, pane, basilico fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 800299,
+      "sha256": "10b78e817650349e102346141033a272ad235ae7d3675fd1cb6ca418de947718",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:48:58.059591+00:00"
     },
     {
       "id": "uova_purgatorio_peperoni",
@@ -2255,11 +2415,21 @@
       "filename": "uova_purgatorio_peperoni.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "uova, pomodori pelati, peperone, cipolla",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/uova_purgatorio_peperoni.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Uova in purgatorio con peperoni e paprika; main ingredients checked against catalog (uova, pomodori pelati, peperone, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 771845,
+      "sha256": "c00120fed32dbea3c6e6edc198a9afce85d149c53f58a6f04bb4f12d077270c5",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:48:03.995085+00:00"
     },
     {
       "id": "hummus_bowl_tahina",
@@ -2267,8 +2437,8 @@
       "filename": "hummus_bowl_tahina.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "zucchina, ceci cotti, pomodorini, quinoa, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/hummus_bowl_tahina.png",
       "review": null,
       "issues": []
@@ -2279,8 +2449,8 @@
       "filename": "bowl_edamame_riso.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "edamame surgelati, cetriolo, riso basmati, carota, avocado",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/bowl_edamame_riso.png",
       "review": null,
       "issues": []
@@ -2291,8 +2461,8 @@
       "filename": "caprese_pane.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "pomodoro, mozzarella, pane, basilico fresco",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/caprese_pane.png",
       "review": null,
       "issues": []
@@ -2303,8 +2473,8 @@
       "filename": "carciofi_patate_padella.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "carciofi, patata, limone, prezzemolo",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/carciofi_patate_padella.png",
       "review": null,
       "issues": []
@@ -2315,8 +2485,8 @@
       "filename": "cavoletti_ceci_friggitrice.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "cavoletti di bruxelles, ceci cotti, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/cavoletti_ceci_friggitrice.png",
       "review": null,
       "issues": []
@@ -2327,8 +2497,8 @@
       "filename": "cavolfiore_ceci_forno.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "cavolfiore, ceci cotti, yogurt di soia",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/cavolfiore_ceci_forno.png",
       "review": null,
       "issues": []
@@ -2339,8 +2509,8 @@
       "filename": "ceci_spinaci_padella.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "ceci cotti, spinaci freschi, pomodori pelati",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/ceci_spinaci_padella.png",
       "review": null,
       "issues": []
@@ -2351,8 +2521,8 @@
       "filename": "chili_fagioli_neri.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "fagioli neri cotti, pomodori pelati, peperone, riso, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/chili_fagioli_neri.png",
       "review": null,
       "issues": []
@@ -2363,8 +2533,8 @@
       "filename": "dal_lenticchie_rosse.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "pomodori pelati, lenticchie rosse decorticate, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/dal_lenticchie_rosse.png",
       "review": null,
       "issues": []
@@ -2375,8 +2545,8 @@
       "filename": "crostoni_cavolo_nero_cannellini.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "fagioli cannellini cotti, pane, cavolo nero",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/crostoni_cavolo_nero_cannellini.png",
       "review": null,
       "issues": []
@@ -2387,8 +2557,8 @@
       "filename": "curry_ceci_cocco.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "ceci cotti, latte di cocco, pomodori pelati, riso basmati, spinaci freschi",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/curry_ceci_cocco.png",
       "review": null,
       "issues": []
@@ -2399,8 +2569,8 @@
       "filename": "fagioli_uccelletto.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "fagioli cannellini cotti, pomodori pelati",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/fagioli_uccelletto.png",
       "review": null,
       "issues": []
@@ -2411,8 +2581,8 @@
       "filename": "borlotti_mais_piccanti.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "fagioli borlotti cotti, passata di pomodoro, peperone, mais in scatola, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/borlotti_mais_piccanti.png",
       "review": null,
       "issues": []
@@ -2423,8 +2593,8 @@
       "filename": "farinata_ceci_forno.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "pomodorini, farina di ceci, insalata verde",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/farinata_ceci_forno.png",
       "review": null,
       "issues": []
@@ -2435,8 +2605,8 @@
       "filename": "frittelle_verdure_ceci.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "zucchina, farina di ceci, carota, insalata verde",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/frittelle_verdure_ceci.png",
       "review": null,
       "issues": []
@@ -2447,8 +2617,8 @@
       "filename": "insalata_ceci_tonno.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "ceci cotti, pomodorini, tonno in scatola, rucola, cipolla rossa",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/insalata_ceci_tonno.png",
       "review": null,
       "issues": []
