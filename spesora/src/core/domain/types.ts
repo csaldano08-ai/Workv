@@ -128,6 +128,8 @@ export interface Ingredient {
 
 export interface RecipeIngredient {
   ingredientId: string;
+  /** Base del peso indicato: crudo (predefinito), cotto o sgocciolato. */
+  basis?: 'crudo' | 'cotto' | 'sgocciolato';
   /** Quantità per le porzioni base, in unità canonica (NON milli). Omessa se `toTaste`. */
   qty?: number;
   /** Quanto basta: si richiede solo la presenza in dispensa. */
@@ -150,6 +152,46 @@ export interface RecipeSubstitution {
   note: string;
 }
 
+/* ---------------------------------------------------------------------- */
+/* Metadati editoriali delle ricette (separati dai fatti derivabili)         */
+/* ---------------------------------------------------------------------- */
+
+export const CUISINES = ['italiana_tradizionale', 'italiana_regionale', 'italiana_quotidiana', 'internazionale'] as const;
+export type Cuisine = (typeof CUISINES)[number];
+export const SEASONS = ['primavera', 'estate', 'autunno', 'inverno'] as const;
+export type Season = (typeof SEASONS)[number];
+export const COOKING_METHODS = ['nessuna_cottura', 'padella', 'bollitura', 'forno', 'friggitrice_aria', 'vapore', 'stufato', 'microonde', 'griglia', 'tostatura'] as const;
+export type CookingMethod = (typeof COOKING_METHODS)[number];
+/** Stato editoriale: nessuna ricetta è "approvata" senza una revisione umana. */
+export const REVIEW_STATUSES = ['candidate', 'structurally_validated', 'needs_culinary_review', 'needs_allergen_review', 'approved_for_release'] as const;
+export type ReviewStatus = (typeof REVIEW_STATUSES)[number];
+
+export interface RecipeMeta {
+  cuisine: Cuisine;
+  /** Regione di riferimento per i piatti regionali (es. "Sicilia"). */
+  region?: string;
+  difficulty: 1 | 2 | 3;
+  taste: 'dolce' | 'salato';
+  /** Tecnica di cottura principale: usata per alternare le preparazioni. */
+  method: CookingMethod;
+  /** Gruppo di varianti molto simili (es. "pasta_pomodoro"): il motore evita di ripeterle vicine. */
+  family?: string;
+  /** Stagioni ideali; assente = tutto l'anno. */
+  seasons?: Season[];
+  makeAhead?: boolean;
+  batchFriendly?: boolean;
+  /** Indicazione di conservazione generale, prudente. */
+  storage?: string;
+  /** Fonti consultate per la verifica editoriale (uso interno, non ripubblicate). */
+  references?: string[];
+  review: {
+    status: ReviewStatus;
+    culinary: 'pending' | 'checked';
+    allergens: 'derived' | 'checked';
+    rights: 'original_text';
+  };
+}
+
 export interface Recipe {
   /** ID persistente, mai riutilizzato. */
   id: string;
@@ -169,6 +211,8 @@ export interface Recipe {
   image?: null;
   /** Riferimento futuro a video o sequenze visive. */
   videoRef?: string | null;
+  /** Metadati editoriali (facoltativi per compatibilità con le prime 156 ricette). */
+  meta?: RecipeMeta;
 }
 
 /** Informazioni derivate (mai scritte a mano) per evitare incoerenze. */
@@ -226,10 +270,24 @@ export interface PortionProfile {
   proteinSize: ProteinSize;
 }
 
-export const LIKES = ['pesce', 'proteiche', 'primi', 'secondi', 'piatti_unici', 'bowl', 'cene_veloci', 'colazioni_salate', 'colazioni_dolci'] as const;
+export const LIKES = ['pesce', 'legumi', 'vegetali', 'proteiche', 'primi', 'secondi', 'piatti_unici', 'bowl', 'cene_veloci', 'colazioni_salate', 'colazioni_dolci'] as const;
 export type Like = (typeof LIKES)[number];
 export const WEEK_STYLES = ['pratica', 'varia', 'economica', 'proteica', 'vegetariana', 'veloce'] as const;
 export type WeekStyle = (typeof WEEK_STYLES)[number];
+
+export const BUDGET_MODES = ['off', 'minimo', 'equilibrato', 'limite'] as const;
+export type BudgetMode = (typeof BUDGET_MODES)[number];
+
+export interface BudgetProfile {
+  /** off = solo gusti; minimo = spendere il meno possibile; equilibrato; limite = importo preciso. */
+  mode: BudgetMode;
+  /** Importo indicato dall'utente in centesimi (per il periodo scelto). */
+  amountCents: number | null;
+  period: 'settimana' | 'mese';
+  /** Se il budget copre tutti i pasti pianificati in Spesora o solo una parte della spesa. */
+  scope: 'pasti_spesora' | 'parte_spesa';
+  store: 'discount' | 'supermercato' | 'mercato' | 'ovunque' | 'non_indicato';
+}
 
 export interface TastePreferences {
   likes: Like[];
@@ -253,6 +311,7 @@ export interface UserProfile {
   equipment: Equipment[];
   portions: PortionProfile;
   tastes: TastePreferences;
+  budget: BudgetProfile;
 }
 
 /* ---------------------------------------------------------------------- */

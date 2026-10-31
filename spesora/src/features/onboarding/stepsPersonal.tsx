@@ -14,7 +14,7 @@ export const PORTIONS_NOTE = 'Le porzioni sono indicative e si basano sulle tue 
 
 const APPETITE_LABELS = { poco: 'Mangio poco', normale: 'Mangio normale', tanto: 'Mangio tanto' } as const;
 const LIFESTYLE_LABELS = { sedentario: 'Sedentario', attivo: 'Attivo', mi_alleno: 'Mi alleno' } as const;
-const GOAL_LABELS = { leggeri: 'Pasti leggeri', equilibrati: 'Pasti equilibrati', sostanziosi: 'Pasti più sostanziosi', proteici: 'Ricette più proteiche' } as const;
+const GOAL_LABELS = { leggeri: 'Pasti leggeri', equilibrati: 'Pasti equilibrati', sostanziosi: 'Pasti più sostanziosi', proteici: 'Più carne, pesce, uova o legumi' } as const;
 const GENDER_LABELS = { non_indicato: 'Preferisco non dirlo', donna: 'Donna', uomo: 'Uomo', altro: 'Altro' } as const;
 export const PROTEIN_LABELS = { piccola: 'Porzione piccola', media: 'Porzione media', abbondante: 'Porzione abbondante' } as const;
 

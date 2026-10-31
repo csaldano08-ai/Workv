@@ -12,8 +12,19 @@ export function isFishDish(recipe: Recipe, catalog: CatalogIndex): boolean {
   return recipe.dishCategory === 'pesce' || catalog.factsOf(recipe).allergens.some((a) => a === 'pesce' || a === 'crostacei' || a === 'molluschi');
 }
 
+/**
+ * Segnale interno di preferenza: la ricetta contiene ingredienti comunemente usati come fonti
+ * proteiche (carne, pesce, uova, legumi, tofu…). NON è una verifica nutrizionale e non autorizza
+ * diciture come "fonte di proteine" (Reg. CE 1924/2006): vedi nutrition.ts.
+ */
 export function isProteinDish(recipe: Recipe): boolean {
   return PROTEIN_CATEGORIES.has(recipe.dishCategory) || recipe.ingredients.some((i) => PROTEIN_INGREDIENTS.has(i.ingredientId));
+}
+
+const LEGUME_INGREDIENTS = /^(ceci|fagioli|lenticchie|piselli|fave|lupini|edamame|hummus|farina_ceci)/;
+
+export function isLegumeDish(recipe: Recipe): boolean {
+  return recipe.dishCategory === 'legumi' || recipe.ingredients.some((i) => !i.toTaste && LEGUME_INGREDIENTS.test(i.ingredientId) && (i.qty ?? 0) / recipe.baseServings >= 40);
 }
 
 export function isBowl(recipe: Recipe): boolean {
@@ -28,6 +39,10 @@ export function matchesLike(like: Like, recipe: Recipe, catalog: CatalogIndex, m
   switch (like) {
     case 'pesce':
       return isFishDish(recipe, catalog);
+    case 'legumi':
+      return isLegumeDish(recipe);
+    case 'vegetali':
+      return catalog.factsOf(recipe).vegan;
     case 'proteiche':
       return isProteinDish(recipe);
     case 'primi':
@@ -49,7 +64,9 @@ export function matchesLike(like: Like, recipe: Recipe, catalog: CatalogIndex, m
 
 export const LIKE_LABELS: Record<Like, string> = {
   pesce: 'Piatti di pesce',
-  proteiche: 'Ricette più proteiche',
+  legumi: 'Legumi',
+  vegetali: 'Preparazioni vegetali',
+  proteiche: 'Con carne, pesce, uova, legumi o tofu',
   primi: 'Primi piatti',
   secondi: 'Secondi piatti',
   piatti_unici: 'Piatti unici',
@@ -62,8 +79,8 @@ export const LIKE_LABELS: Record<Like, string> = {
 export const WEEK_STYLE_LABELS: Record<WeekStyle, string> = {
   pratica: 'Molto pratica',
   varia: 'Varia',
-  economica: 'Ingredienti semplici e riutilizzati',
-  proteica: 'Più proteica',
+  economica: 'Ingredienti economici e riutilizzabili',
+  proteica: 'Più carne, pesce, uova o legumi',
   vegetariana: 'Più vegetariana',
   veloce: 'Più veloce',
 };

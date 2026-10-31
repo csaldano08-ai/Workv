@@ -10,7 +10,8 @@ import type { Appetite, Ingredient, MilliQty, PortionProfile, ProteinSize, Recip
  *    Se è un ingrediente secondario (es. pastina nel minestrone) si scala in proporzione a 80 g.
  * 2. Riso e cereali in chicco: stessa regola, soglia 50 g, riferimento 70 g.
  * 3. Carne, pesce, tofu, tempeh (e uova nei piatti a base di uova): piccola ×0,8 · media ×1 · abbondante ×1,25.
- * 4. Tutto il resto (verdure, legumi, condimenti quantificati…): mangio poco ×0,9 · normale ×1 · tanto ×1,15.
+ * 4. Tutto il resto in peso o volume (verdure, legumi, condimenti quantificati…): mangio poco ×0,9 · normale ×1 · tanto ×1,15.
+ *    Gli ingredienti a pezzo (limoni, cipolle…) non seguono l'appetito; le uova si arrotondano a mezzo uovo.
  * Sesso, stile di vita e obiettivo NON entrano nei calcoli.
  */
 
@@ -69,9 +70,11 @@ export function ingredientNeed(recipe: Recipe, ri: RecipeIngredient, ing: Ingred
     case 'riso':
       return perPerson >= RICE_MAIN_THRESHOLD_G ? toMilli(portions.riceGrams) * servings : Math.round((base * portions.riceGrams) / RICE_REFERENCE_G);
     case 'proteina':
-      return Math.round(base * PROTEIN_FACTOR[portions.proteinSize]);
+      // Uova e altri pezzi: al mezzo pezzo più vicino (mai sotto mezzo pezzo).
+      return ing.unit === 'pz' ? roundToHalf(base * PROTEIN_FACTOR[portions.proteinSize]) : Math.round(base * PROTEIN_FACTOR[portions.proteinSize]);
     default:
-      return Math.round(base * APPETITE_FACTOR[portions.appetite]);
+      // L'appetito non scala gli ingredienti a pezzo (1 lime, 1 cipolla): non sono lineari.
+      return ing.unit === 'pz' ? base : Math.round(base * APPETITE_FACTOR[portions.appetite]);
   }
 }
 
@@ -79,4 +82,8 @@ export function ingredientNeed(recipe: Recipe, ri: RecipeIngredient, ing: Ingred
 export function isPersonalized(recipe: Recipe, ri: RecipeIngredient, ing: Ingredient, servings: number, portions?: PortionProfile): boolean {
   if (!portions || ri.qty === undefined) return false;
   return ingredientNeed(recipe, ri, ing, servings, portions) !== scaleQty(toMilli(ri.qty), servings, recipe.baseServings);
+}
+
+function roundToHalf(milli: number): MilliQty {
+  return Math.max(500, Math.round(milli / 500) * 500);
 }

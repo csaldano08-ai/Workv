@@ -19,9 +19,12 @@ import {
   type PlannerInput,
   type ScoredCandidate,
 } from '../../core/domain/planner';
-import { parseProfile } from '../../core/domain/profile';
+import { parseProfile, weeklyBudgetCents } from '../../core/domain/profile';
 import { hashString } from '../../core/domain/random';
 import { futureNeeds, planShopping, type ShoppingPlan } from '../../core/domain/shopping';
+import { IngredientPriceEngine, REFERENCE_PRICES, type PriceEntry } from '../../core/domain/prices';
+import { shoppingCost, type ShoppingCost } from '../../core/domain/cost';
+import { evaluateBudget, proposeCheaperWeek, type BudgetEvaluation, type CheaperWeekProposal, type MealChange } from '../../core/domain/budget';
 import type { HistoryEntry, IsoDate, MealStatus, MilliQty, PlanIssue, PlannedMeal, UserProfile } from '../../core/domain/types';
 import type { NotificationSettings } from '../../core/notifications/schedule';
 import type { Db } from '../../core/storage/db';
@@ -53,7 +56,11 @@ export interface AppSnapshot {
   shopping: ShoppingPlan;
   checks: Map<string, boolean>;
   purchased: Map<string, number>;
-  confirmedTrips: { tripDate: IsoDate; confirmedAt: string; partial: boolean }[];
+  confirmedTrips: { tripDate: IsoDate; confirmedAt: string; partial: boolean; actualCents: number | null }[];
+  /** Prezzi disponibili (riferimento + personali) e stime economiche. */
+  prices: IngredientPriceEngine;
+  userPrices: PriceEntry[];
+  economics: { shopping: ShoppingCost; budget: BudgetEvaluation } | null;
 }
 
 export const checkKey = (tripDate: IsoDate, ingredientId: string) => `${tripDate}|${ingredientId}`;
@@ -94,6 +101,8 @@ export class SpesoraService {
     const staples = new Set(items.filter((i) => i.staplePresent).map((i) => i.ingredientId));
     const expiries = new Map(items.filter((i) => i.expiryDate).map((i) => [i.ingredientId, i.expiryDate] as const));
     const stock = toStock(pantry);
+    const userPrices = await this.repo.getUserPrices();
+    const prices = new IngredientPriceEngine(REFERENCE_PRICES, userPrices, today);
     const shopping =
       profile && plan
         ? planShopping({
@@ -132,6 +141,15 @@ export class SpesoraService {
       checks,
       purchased,
       confirmedTrips: await this.repo.getTrips(),
+      prices,
+      userPrices,
+      economics:
+        profile && plan
+          ? {
+              shopping: shoppingCost(shopping, this.catalog, prices),
+              budget: evaluateBudget(meals, { catalog: this.catalog, prices, pantry: stock, presentStaples: staples, profile, today, horizonEnd: plan.endDate }),
+            }
+          : null,
     };
   }
 
@@ -160,6 +178,7 @@ export class SpesoraService {
       history: await this.repo.getHistory(),
       favorites: await this.repo.getFavorites(),
       seed,
+      prices: new IngredientPriceEngine(REFERENCE_PRICES, await this.repo.getUserPrices(), startDate),
     };
   }
 
@@ -360,7 +379,9 @@ export class SpesoraService {
     tripDate: IsoDate,
     purchases: { ingredientId: string; qty: MilliQty; toTaste: boolean }[],
     partial: boolean,
+    actualCents: number | null = null,
   ): Promise<void> {
+    if (actualCents !== null && (!Number.isInteger(actualCents) || actualCents < 0 || actualCents > 10_000_000)) throw new Error('Importo speso non valido');
     for (const p of purchases) {
       this.catalog.ingredient(p.ingredientId);
       if (!p.toTaste && (!Number.isInteger(p.qty) || p.qty <= 0)) throw new Error('Quantità acquistata non valida');
@@ -371,8 +392,56 @@ export class SpesoraService {
         else await this.repo.insertMovement({ ingredientId: p.ingredientId, delta: p.qty, kind: 'purchase', mealId: null, note: `spesa ${tripDate}` }, tx);
         await this.repo.markPurchased(tripDate, p.ingredientId, p.toTaste ? 0 : p.qty, tx);
       }
-      await this.repo.upsertTrip(tripDate, partial, tx);
+      await this.repo.upsertTrip(tripDate, partial, tx, actualCents);
     });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Budget e prezzi                                                     */
+  /* ------------------------------------------------------------------ */
+
+  /** Proposta "Rendi questa settimana più economica": nulla viene salvato finché non si conferma. */
+  async previewCheaperWeek(today: IsoDate): Promise<CheaperWeekProposal | null> {
+    const profile = await this.repo.getProfile();
+    const plan = await this.repo.getPlanCovering(today);
+    if (!profile || !plan) return null;
+    const meals = await this.repo.getMealsBetween(plan.startDate, plan.endDate);
+    const input = await this.plannerInput(profile, today, diffDays(today, plan.endDate) + 1, plan.seed);
+    const items = await this.repo.getPantryItems();
+    const ctx = {
+      catalog: this.catalog,
+      prices: input.prices!,
+      pantry: input.pantry,
+      presentStaples: new Set(items.filter((i) => i.staplePresent).map((i) => i.ingredientId)),
+      profile,
+      today,
+      horizonEnd: plan.endDate,
+    };
+    return proposeCheaperWeek(meals, input, ctx, { limitCents: weeklyBudgetCents(profile.budget) });
+  }
+
+  /** Applica le sostituzioni approvate. I pasti cucinati e gli acquisti confermati non cambiano. */
+  async applyMealChanges(changes: MealChange[]): Promise<number> {
+    let applied = 0;
+    await this.db.transaction(async (tx) => {
+      for (const c of changes) {
+        if (!this.catalog.recipe(c.toRecipeId)) continue;
+        applied += await this.repo.updateMealFields(c.mealId, { recipeId: c.toRecipeId, source: 'auto', reasons: ['Scelta per contenere la spesa'] }, tx);
+      }
+    });
+    return applied;
+  }
+
+  /** Prezzo personale: importo pagato (centesimi) per una quantità (unità canonica dell'ingrediente). */
+  async setUserPrice(ingredientId: string, priceCents: number, quantity: number, today: IsoDate, storeType: string | null = null): Promise<void> {
+    const ing = this.catalog.ingredient(ingredientId);
+    if (!Number.isInteger(priceCents) || priceCents <= 0 || priceCents > 100_000) throw new Error('Prezzo non valido');
+    if (!Number.isFinite(quantity) || quantity <= 0 || quantity > 100_000) throw new Error('Quantità non valida');
+    await this.repo.setUserPrice(ingredientId, priceCents, Math.round(quantity * 1000), ing.unit, today, storeType);
+  }
+
+  async deleteUserPrice(ingredientId: string): Promise<void> {
+    await this.repo.deleteUserPrice(ingredientId);
   }
 
   /* ------------------------------------------------------------------ */

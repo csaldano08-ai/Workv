@@ -1,10 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { Alert } from '../../src/ui/dialog';
 import { capitalize, formatLongDate, formatShortDate, weekdayOf, weekdayShort } from '../../src/core/domain/dates';
-import { formatQtyWithUnit, toMilli } from '../../src/core/domain/quantity';
+import { formatQtyWithUnit, parseUserQty, toMilli } from '../../src/core/domain/quantity';
+import { tripCost } from '../../src/core/domain/cost';
+import { formatCents } from '../../src/core/domain/prices';
 import type { ShoppingLine, ShoppingTripPlan } from '../../src/core/domain/shopping';
 import { SHOPPING_CATEGORIES } from '../../src/core/domain/types';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
@@ -97,7 +99,10 @@ export default function Shopping() {
       ) : null}
       {snapshot.confirmedTrips.length > 0 ? (
         <Text variant="small" color={colors.inkSoft}>
-          {`Ultima spesa confermata: ${formatLongDate(snapshot.confirmedTrips[snapshot.confirmedTrips.length - 1].tripDate)}.`}
+          {(() => {
+            const last = snapshot.confirmedTrips[snapshot.confirmedTrips.length - 1];
+            return `Ultima spesa confermata: ${formatLongDate(last.tripDate)}${last.actualCents !== null ? ` · pagato ${formatCents(last.actualCents)} (importo inserito da te)` : ''}.`;
+          })()}
         </Text>
       ) : null}
       <Button kind="ghost" label="Aggiorna la lista" icon="refresh-outline" onPress={() => void run(async () => undefined)} />
@@ -116,6 +121,7 @@ function TripView({ trip }: { trip: ShoppingTripPlan }) {
       <Text variant="heading">
         {trip.isInitial ? `Spesa iniziale · ${formatLongDate(trip.date)}` : capitalize(formatLongDate(trip.date))}
       </Text>
+      <TripCostLine trip={trip} />
       {trip.isInitial ? (
         <Notice tone="peach" text="Questi prodotti servono prima del tuo primo giorno di spesa programmato. Se preferisci non uscire, cambia le ricette interessate." />
       ) : null}
@@ -181,8 +187,32 @@ function LineRow({ line, trip, checked }: { line: ShoppingLine; trip: ShoppingTr
   );
 }
 
+/** Costo previsto di un'uscita (confezioni intere) e, per la settimana, totale e budget residuo. */
+function TripCostLine({ trip }: { trip: ShoppingTripPlan }) {
+  const { snapshot } = useApp();
+  if (!snapshot?.economics) return null;
+  const tc = tripCost(trip, catalogIndex, snapshot.prices);
+  const week = snapshot.economics.shopping;
+  const budget = snapshot.economics.budget;
+  const parts: string[] = [];
+  if (tc.completeness === 'completa') parts.push(`Spesa prevista: circa ${formatCents(tc.knownCents)}`);
+  else if (tc.completeness === 'parziale') parts.push(`Prezzo noto per ${tc.knownCount} prodotti su ${tc.totalCount}: almeno ${formatCents(tc.knownCents)}`);
+  else parts.push('Costo non stimato: nessun prezzo noto per questi prodotti');
+  if (week.completeness === 'completa' && snapshot.shopping.trips.length > 1) parts.push(`settimana: circa ${formatCents(week.knownCents)}`);
+  if (budget.weeklyLimitCents !== null && week.completeness === 'completa') {
+    const left = budget.weeklyLimitCents - week.knownCents;
+    parts.push(left >= 0 ? `restano circa ${formatCents(left)} del budget` : `oltre il budget di circa ${formatCents(-left)}`);
+  }
+  return (
+    <Text variant="small" color={colors.inkSoft}>
+      {`${parts.join(' · ')}. ${budget.scopeNote}`}
+    </Text>
+  );
+}
+
 function ConfirmBar({ trip }: { trip: ShoppingTripPlan }) {
   const { snapshot, run } = useApp();
+  const [paid, setPaid] = useState('');
   const checked = trip.lines.filter((l) => snapshot?.checks.get(checkKey(trip.date, l.ingredientId)));
   const confirm = () => {
     if (checked.length === 0) {
@@ -190,6 +220,12 @@ function ConfirmBar({ trip }: { trip: ShoppingTripPlan }) {
       return;
     }
     const partial = checked.length < trip.lines.length;
+    const parsedPaid = paid.trim() === '' ? null : parseUserQty(paid);
+    if (paid.trim() !== '' && parsedPaid === null) {
+      Alert.alert('Importo non valido', 'Scrivi l’importo pagato, ad esempio 23,40, oppure lascia vuoto.');
+      return;
+    }
+    const paidCents = parsedPaid === null ? null : Math.round(parsedPaid * 100);
     Alert.alert(
       partial ? 'Confermare una spesa parziale?' : 'Confermare la spesa?',
       `${checked.length} prodotti entreranno in dispensa con le quantità indicate. Potrai correggerle dalla Dispensa.${partial ? ' I prodotti non spuntati restano in lista.' : ''}`,
@@ -203,6 +239,7 @@ function ConfirmBar({ trip }: { trip: ShoppingTripPlan }) {
                 trip.date,
                 checked.map((l) => ({ ingredientId: l.ingredientId, qty: l.suggestedQty, toTaste: l.toTaste })),
                 partial,
+                paidCents,
               ),
             ),
         },
@@ -210,16 +247,31 @@ function ConfirmBar({ trip }: { trip: ShoppingTripPlan }) {
     );
   };
   return (
-    <View style={styles.confirm}>
-      <Text variant="small" color={colors.inkSoft} style={styles.flex}>
-        {`${checked.length} di ${trip.lines.length} nel carrello`}
-      </Text>
-      <Button label="Conferma acquisti" icon="checkmark-done" onPress={confirm} disabled={checked.length === 0} compact />
+    <View style={styles.confirmWrap}>
+      {checked.length > 0 ? (
+        <TextInput
+          value={paid}
+          onChangeText={setPaid}
+          placeholder="Importo pagato (facoltativo), es. 23,40"
+          placeholderTextColor={colors.inkSoft}
+          keyboardType="decimal-pad"
+          style={styles.paid}
+          accessibilityLabel="Importo realmente pagato in euro, facoltativo"
+        />
+      ) : null}
+      <View style={styles.confirm}>
+        <Text variant="small" color={colors.inkSoft} style={styles.flex}>
+          {`${checked.length} di ${trip.lines.length} nel carrello`}
+        </Text>
+        <Button label="Conferma acquisti" icon="checkmark-done" onPress={confirm} disabled={checked.length === 0} compact />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  confirmWrap: { gap: space.sm },
+  paid: { minHeight: TOUCH, borderWidth: 1.5, borderColor: colors.line, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, color: colors.ink, backgroundColor: colors.paper },
   gap: { gap: space.sm },
   flex: { flex: 1 },
   list: { gap: 0, paddingVertical: space.xs },

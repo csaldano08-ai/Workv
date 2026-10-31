@@ -92,6 +92,8 @@ function Shell() {
         <Stack.Screen name="notifiche" options={{ title: 'Notifiche' }} />
         <Stack.Screen name="plus" options={{ title: 'Spesora Plus' }} />
         <Stack.Screen name="storico" options={{ title: 'Storico dei pasti' }} />
+        <Stack.Screen name="prezzi" options={{ title: 'Prezzi' }} />
+        <Stack.Screen name="economica" options={{ title: 'Settimana più economica', presentation: 'modal' }} />
       </Stack>
     </>
   );

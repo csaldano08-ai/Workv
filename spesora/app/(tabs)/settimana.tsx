@@ -78,6 +78,7 @@ export default function Week() {
         );
       })}
       <Button kind="secondary" icon="refresh-outline" label={t('action.regenerate')} onPress={regenerate} />
+      <Button kind="ghost" icon="wallet-outline" label="Rendi questa settimana più economica" onPress={() => router.push('/economica')} />
       {actions.sheet}
     </Screen>
   );

@@ -116,7 +116,7 @@ export const COLAZIONI_SPUNTINI_2: Recipe[] = [
   {
     id: 'crema_polenta_mele',
     name: 'Crema di polenta dolce con mele',
-    description: 'Polenta istantanea cotta morbida e dolce, con mele alla cannella: calda e senza glutine.',
+    description: 'Polenta istantanea cotta morbida e dolce, con mele alla cannella: una colazione calda e avvolgente.',
     mealTypes: ['colazione'],
     dishCategory: 'colazione_dolce',
     baseServings: 2,
@@ -384,7 +384,7 @@ export const COLAZIONI_SPUNTINI_2: Recipe[] = [
   {
     id: 'ananas_menta_lime',
     name: 'Ananas fresco con menta e lime',
-    description: 'Cubetti di ananas profumati con lime e menta: uno spuntino fresco e senza zuccheri aggiunti.',
+    description: 'Cubetti di ananas profumati con lime e menta: uno spuntino fresco e dissetante.',
     mealTypes: ['spuntino'],
     dishCategory: 'frutta',
     baseServings: 2,

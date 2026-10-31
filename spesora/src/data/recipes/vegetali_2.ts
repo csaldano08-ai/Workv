@@ -490,7 +490,7 @@ export const VEGETALI_2: Recipe[] = [
       {
         ingredientId: 'couscous',
         substituteId: 'quinoa',
-        note: 'Senza glutine: usa la stessa quantità di quinoa, cotta 15 minuti in acqua bollente salata e scolata.',
+        note: 'Per chi evita il glutine: usa la stessa quantità di quinoa (controlla l’etichetta), cotta 15 minuti in acqua bollente salata e scolata.',
       },
     ],
     image: null,
@@ -553,7 +553,7 @@ export const VEGETALI_2: Recipe[] = [
     equipment: ['forno'],
     steps: [
       step('In una ciotola versa la farina di ceci e aggiungi poco alla volta 480 ml di acqua, mescolando con una frusta o una forchetta per non fare grumi.'),
-      step('Aggiungi un cucchiaino raso di sale, copri e lascia riposare la pastella. Se si forma schiuma in superficie, toglila con un cucchiaio.', 30),
+      step('Aggiungi un cucchiaino raso di sale, copri e lascia riposare la pastella almeno 30 minuti (meglio qualche ora, anche dal mattino per la sera). Se si forma schiuma in superficie, toglila con un cucchiaio.', 30),
       step('Accendi il forno a 250 °C. Ungi bene una teglia rotonda di circa 28 cm con 3 cucchiai d\'olio.'),
       step('Mescola la pastella, versala nella teglia (deve essere alta meno di 1 cm), aggiungi gli aghi di rosmarino e mescola appena per distribuire l\'olio.'),
       step('Cuoci nella parte alta del forno finché la superficie è dorata e i bordi sono scuri e croccanti.', 25),

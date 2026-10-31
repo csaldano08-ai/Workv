@@ -52,7 +52,7 @@ export function writeMap(m: Manifest): number {
   const entries = Object.values(m.recipes)
     .filter((e) => SHOWN_IN_APP.includes(e.status) && e.file && existsSync(join(PATHS.root, e.file)) && catalog.recipes.has(e.id))
     .sort((a, b) => a.id.localeCompare(b.id));
-  const body = entries.map((e) => `  ${e.id}: require('../../${e.file}'),`).join('\n');
+  const body = entries.map((e) => `  ${e.id}: require('../../${e.card && existsSync(join(PATHS.root, e.card)) ? e.card : e.file}'),`).join('\n');
   const content = `/* File GENERATO da scripts/images/pipeline.ts (comando "map"). Non modificare a mano. */
 import type { ImageSourcePropType } from 'react-native';
 
@@ -293,6 +293,26 @@ async function main() {
     case 'reject':
       setStatus(args.slice(1), 'pending');
       break;
+    case 'cards': {
+      // Versioni leggere per l'app dai sorgenti esistenti (es. PNG da Google Flow): i sorgenti non vengono toccati.
+      ensureDirs();
+      const m = loadManifest();
+      mkdirSync(join(PATHS.recipesDir, 'card'), { recursive: true });
+      let made = 0;
+      for (const e of Object.values(m.recipes)) {
+        if (!SHOWN_IN_APP.includes(e.status) || !e.file || !existsSync(join(PATHS.root, e.file))) continue;
+        const rel = `assets/recipes/card/${e.id}.jpg`;
+        if (e.card === rel && existsSync(join(PATHS.root, rel)) && !flag('force')) continue;
+        const card = await toCardJpeg(readFileSync(join(PATHS.root, e.file)));
+        writeFileSync(join(PATHS.root, rel), card);
+        e.card = rel;
+        e.phash = e.phash ?? (await perceptualHash(card));
+        made++;
+      }
+      saveManifest(m);
+      log(`Card generate: ${made}. Immagini nell'app: ${writeMap(m)}`);
+      break;
+    }
     case 'map':
       ensureDirs();
       log(`Immagini nell'app: ${writeMap(loadManifest())}`);

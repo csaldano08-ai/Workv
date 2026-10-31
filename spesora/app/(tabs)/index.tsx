@@ -8,6 +8,7 @@ import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import type { AppSnapshot } from '../../src/features/app/SpesoraService';
 import { useMealActions } from '../../src/features/meals/useMealActions';
 import { MEAL_LABELS } from '../../src/i18n/labels';
+import { formatCents } from '../../src/core/domain/prices';
 import { t } from '../../src/i18n/it';
 import { cookSoon, EMPTY, greeting, missingIngredients, shoppingDay, tipOfTheDay } from '../../src/i18n/assistant';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
@@ -69,6 +70,11 @@ export default function Today() {
       {todayTrip ? null : nextTrip ? (
         <Text variant="small" color={colors.inkSoft}>
           {`Prossima spesa: ${formatLongDate(nextTrip.date)} · ${nextTrip.lines.length} prodotti`}
+        </Text>
+      ) : null}
+      {snap.economics && snap.economics.shopping.completeness === 'completa' && snap.economics.shopping.knownCents > 0 ? (
+        <Text variant="small" color={colors.inkSoft}>
+          {`Spesa prevista questa settimana: circa ${formatCents(snap.economics.shopping.knownCents)}${snap.economics.budget.weeklyLimitCents ? ` (budget ${formatCents(snap.economics.budget.weeklyLimitCents)})` : ''}.`}
         </Text>
       ) : null}
 

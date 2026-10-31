@@ -22,8 +22,10 @@ export interface RecipeImageEntry {
   mealTypes: string[];
   mainIngredients: string[];
   status: ImageStatus;
-  /** Percorso relativo alla cartella del progetto (es. assets/recipes/pasta_al_tonno.jpg). */
+  /** Percorso relativo alla cartella del progetto (es. assets/recipes/pasta_al_tonno.jpg). Mai rinominato. */
   file: string | null;
+  /** Versione ottimizzata per le card dell'app (800×600 JPEG), generata dal file sorgente. */
+  card?: string | null;
   promptHash: string;
   attempts: number;
   model: string | null;

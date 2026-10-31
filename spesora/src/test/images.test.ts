@@ -1,9 +1,8 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
 import { CATALOG } from '../data/catalog';
-import { RECIPE_IMAGES } from '../data/recipe-images';
 import { emptyManifest, loadManifest, syncWithCatalog } from '../../scripts/images/manifest';
 import { buildRecipePrompt, mainIngredients } from '../../scripts/images/prompts';
 import { hammingDistance, perceptualHash, technicalCheck, toCardJpeg } from '../../scripts/images/quality';
@@ -37,13 +36,16 @@ describe('Immagini delle ricette', () => {
     for (const r of CATALOG.recipes) expect(m.recipes[r.id].name).toBe(r.name);
   });
 
-  it('la mappatura punta solo a ricette esistenti con file presenti', () => {
-    const m = loadManifest();
-    for (const id of Object.keys(RECIPE_IMAGES)) {
-      expect(catalog.recipes.has(id)).toBe(true);
-      expect(m.recipes[id].file).toBeTruthy();
-      expect(existsSync(join(ROOT, m.recipes[id].file!))).toBe(true);
+  it('la mappatura punta solo a ricette esistenti con file presenti, senza immagini condivise', () => {
+    // Il file usa require() per Metro: qui lo leggiamo come testo.
+    const src = readFileSync(join(ROOT, 'src', 'data', 'recipe-images.ts'), 'utf8');
+    const entries = [...src.matchAll(/^\s*'?([a-z0-9_]+)'?: require\('\.\.\/\.\.\/([^']+)'\)/gm)].map((m) => ({ id: m[1], file: m[2] }));
+    for (const e of entries) {
+      expect(catalog.recipes.has(e.id), e.id).toBe(true);
+      expect(existsSync(join(ROOT, e.file)), e.file).toBe(true);
+      expect(e.file).toContain(e.id);
     }
+    expect(new Set(entries.map((e) => e.file)).size).toBe(entries.length);
   });
 
   it('i prompt usano gli ingredienti reali e distinguono ricette simili', () => {

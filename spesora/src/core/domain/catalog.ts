@@ -1,6 +1,10 @@
 import { z } from 'zod';
 import {
   ALLERGENS,
+  COOKING_METHODS,
+  CUISINES,
+  REVIEW_STATUSES,
+  SEASONS,
   DISH_CATEGORIES,
   EQUIPMENT,
   MEAL_TYPES,
@@ -56,6 +60,7 @@ export const recipeSchema = z
         z
           .object({
             ingredientId: idSchema,
+            basis: z.enum(['crudo', 'cotto', 'sgocciolato']).optional(),
             qty: z.number().positive().optional(),
             toTaste: z.boolean().optional(),
             hint: z.string().optional(),
@@ -83,11 +88,65 @@ export const recipeSchema = z
       .optional(),
     image: z.null().optional(),
     videoRef: z.string().nullable().optional(),
+    meta: z
+      .object({
+        cuisine: z.enum(CUISINES),
+        region: z.string().min(3).optional(),
+        difficulty: z.union([z.literal(1), z.literal(2), z.literal(3)]),
+        taste: z.enum(['dolce', 'salato']),
+        method: z.enum(COOKING_METHODS),
+        family: idSchema.optional(),
+        seasons: z.array(z.enum(SEASONS)).min(1).max(3).optional(),
+        makeAhead: z.boolean().optional(),
+        batchFriendly: z.boolean().optional(),
+        storage: z.string().min(5).optional(),
+        references: z.array(z.string().min(5)).optional(),
+        review: z
+          .object({
+            status: z.enum(REVIEW_STATUSES),
+            culinary: z.enum(['pending', 'checked']),
+            allergens: z.enum(['derived', 'checked']),
+            rights: z.literal('original_text'),
+          })
+          .strict(),
+      })
+      .strict()
+      .optional(),
   })
   .strict()
   .refine((r) => r.totalMinutes >= r.prepMinutes + r.cookMinutes, {
     message: 'totalMinutes deve essere almeno prep + cottura',
   });
+
+/**
+ * Diciture che costituiscono indicazioni nutrizionali, sulla salute o di certificazione
+ * (Reg. CE 1924/2006, Reg. UE 828/2014, Reg. UE 2018/848): vietate nei testi delle ricette
+ * finché non sono supportate da dati verificati.
+ */
+export const FORBIDDEN_CLAIMS: { re: RegExp; label: string }[] = [
+  { re: /senza\s+glutine|gluten[\s-]?free/i, label: '"senza glutine"' },
+  { re: /senza\s+zuccher|zero\s+zuccher|sugar[\s-]?free/i, label: '"senza zuccheri"' },
+  { re: /ricc[oa]\s+di\s+proteine|fonte\s+di\s+proteine|alto\s+contenuto\s+proteico|proteic[oa]/i, label: 'claim proteico' },
+  { re: /\bbio\b|biologic/i, label: '"bio"' },
+  { re: /\blight\b|ipocaloric|dimagr|brucia\s*grassi|detox|salutar|fa\s+bene|\bsan[oa]\b|\bsani\b|\bsane\b/i, label: 'claim salutistico' },
+  { re: /\bceliac|diabet/i, label: 'riferimento a patologie' },
+];
+
+export function claimViolations(recipe: Recipe): string[] {
+  const texts = [recipe.name, recipe.description, ...recipe.steps.map((s) => s.text)];
+  const out: string[] = [];
+  for (const c of FORBIDDEN_CLAIMS) if (texts.some((t) => c.re.test(t))) out.push(c.label);
+  return out;
+}
+
+/** Firma degli ingredienti principali (non "q.b."), per riconoscere ricette praticamente identiche. */
+export function ingredientSignature(recipe: Recipe): string {
+  return recipe.ingredients
+    .filter((i) => !i.toTaste)
+    .map((i) => i.ingredientId)
+    .sort()
+    .join('+');
+}
 
 export interface CatalogValidationResult {
   ok: boolean;
@@ -116,7 +175,16 @@ export function validateCatalog(catalog: Catalog): CatalogValidationResult {
   }
 
   const recipeIds = new Set<string>();
+  const names = new Map<string, string>();
+  const signatures = new Map<string, string>();
   for (const recipe of catalog.recipes) {
+    const nameKey = normalizeText(recipe.name);
+    if (names.has(nameKey)) errors.push(`Ricetta ${recipe.id}: titolo già usato da ${names.get(nameKey)}`);
+    names.set(nameKey, recipe.id);
+    const sig = `${recipe.dishCategory}|${ingredientSignature(recipe)}`;
+    if (signatures.has(sig)) errors.push(`Ricetta ${recipe.id}: stessi ingredienti principali di ${signatures.get(sig)} (duplicato sostanziale)`);
+    signatures.set(sig, recipe.id);
+    for (const v of claimViolations(recipe)) errors.push(`Ricetta ${recipe.id}: dicitura non consentita ${v}`);
     const parsed = recipeSchema.safeParse(recipe);
     if (!parsed.success) {
       errors.push(`Ricetta ${recipe?.id ?? '?'}: ${parsed.error.issues.map((i) => `${i.path.join('.')} ${i.message}`).join('; ')}`);

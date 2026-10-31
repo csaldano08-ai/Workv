@@ -3,6 +3,7 @@ import type { MovementKind, PantryMovement } from '../domain/pantry';
 import type { HistoryEntry, IsoDate, MealStatus, MealType, PlannedMeal, UserProfile } from '../domain/types';
 import { parseNotificationSettings, parseProfile } from '../domain/profile';
 import type { NotificationSettings } from '../notifications/schedule';
+import type { PriceEntry } from '../domain/prices';
 
 /** Accesso ai dati: solo SQL parametrizzato, nessuna logica di pianificazione. */
 
@@ -294,19 +295,55 @@ export class Repository {
     );
   }
 
-  async upsertTrip(tripDate: IsoDate, partial: boolean, db: Db): Promise<void> {
+  /** Registra la spesa confermata; l'importo reale si somma a eventuali conferme precedenti dello stesso giorno. */
+  async upsertTrip(tripDate: IsoDate, partial: boolean, db: Db, actualCents: number | null = null): Promise<void> {
     await db.run(
-      `INSERT INTO shopping_trips (trip_date, confirmed_at, partial) VALUES (?, ?, ?)
-       ON CONFLICT(trip_date) DO UPDATE SET confirmed_at = excluded.confirmed_at, partial = excluded.partial`,
-      [tripDate, nowIso(), partial ? 1 : 0],
+      `INSERT INTO shopping_trips (trip_date, confirmed_at, partial, actual_cents) VALUES (?, ?, ?, ?)
+       ON CONFLICT(trip_date) DO UPDATE SET confirmed_at = excluded.confirmed_at, partial = excluded.partial,
+       actual_cents = CASE WHEN excluded.actual_cents IS NULL THEN shopping_trips.actual_cents
+                           ELSE COALESCE(shopping_trips.actual_cents, 0) + excluded.actual_cents END`,
+      [tripDate, nowIso(), partial ? 1 : 0, actualCents],
     );
   }
 
-  async getTrips(): Promise<{ tripDate: IsoDate; confirmedAt: string; partial: boolean }[]> {
-    const rows = await this.db.all<{ trip_date: string; confirmed_at: string; partial: number }>(
-      'SELECT trip_date, confirmed_at, partial FROM shopping_trips ORDER BY trip_date',
+  async getTrips(): Promise<{ tripDate: IsoDate; confirmedAt: string; partial: boolean; actualCents: number | null }[]> {
+    const rows = await this.db.all<{ trip_date: string; confirmed_at: string; partial: number; actual_cents: number | null }>(
+      'SELECT trip_date, confirmed_at, partial, actual_cents FROM shopping_trips ORDER BY trip_date',
     );
-    return rows.map((r) => ({ tripDate: r.trip_date, confirmedAt: r.confirmed_at, partial: r.partial === 1 }));
+    return rows.map((r) => ({ tripDate: r.trip_date, confirmedAt: r.confirmed_at, partial: r.partial === 1, actualCents: r.actual_cents }));
+  }
+
+  /* --- Prezzi personali ---------------------------------------------- */
+
+  async getUserPrices(): Promise<PriceEntry[]> {
+    const rows = await this.db.all<{ ingredient_id: string; price_cents: number; quantity_milli: number; unit: 'g' | 'ml' | 'pz'; observed_at: string; store_type: string | null }>(
+      'SELECT ingredient_id, price_cents, quantity_milli, unit, observed_at, store_type FROM ingredient_prices',
+    );
+    return rows.map((r) => ({
+      ingredientId: r.ingredient_id,
+      priceCents: r.price_cents,
+      currency: 'EUR',
+      quantity: r.quantity_milli / 1000,
+      unit: r.unit,
+      source: 'utente',
+      sourceName: 'Inserito da te',
+      observedAt: r.observed_at,
+      storeType: (r.store_type ?? undefined) as PriceEntry['storeType'],
+      reliability: 'alta',
+    }));
+  }
+
+  async setUserPrice(ingredientId: string, priceCents: number, quantityMilli: number, unit: 'g' | 'ml' | 'pz', observedAt: IsoDate, storeType: string | null): Promise<void> {
+    await this.db.run(
+      `INSERT INTO ingredient_prices (ingredient_id, price_cents, quantity_milli, unit, observed_at, store_type, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)
+       ON CONFLICT(ingredient_id) DO UPDATE SET price_cents = excluded.price_cents, quantity_milli = excluded.quantity_milli,
+       unit = excluded.unit, observed_at = excluded.observed_at, store_type = excluded.store_type, updated_at = excluded.updated_at`,
+      [ingredientId, priceCents, quantityMilli, unit, observedAt, storeType, nowIso()],
+    );
+  }
+
+  async deleteUserPrice(ingredientId: string): Promise<void> {
+    await this.db.run('DELETE FROM ingredient_prices WHERE ingredient_id = ?', [ingredientId]);
   }
 
   /* --- Preferiti ------------------------------------------------------ */
@@ -338,6 +375,7 @@ export class Repository {
       'shopping_trips',
       'shopping_items',
       'favorite_recipes',
+      'ingredient_prices',
     ];
     const out: Record<string, unknown[]> = {};
     for (const t of tables) out[t] = await this.db.all(`SELECT * FROM ${t}`);
@@ -355,6 +393,7 @@ export class Repository {
         'shopping_items',
         'shopping_trips',
         'favorite_recipes',
+        'ingredient_prices',
         'notification_settings',
         'user_preferences',
       ]) {

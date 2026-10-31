@@ -1,6 +1,8 @@
 import { CatalogIndex } from './catalog';
 import { addDays, diffDays, rangeDays, weekdayOf } from './dates';
 import { ingredientNeed } from './portions';
+import { mainIngredientOf, metaOf, seasonOfMonth } from './meta';
+import type { IngredientPriceEngine } from './prices';
 import { isProteinDish, LIKE_LABELS, matchesLike } from './classify';
 import { createRng } from './random';
 import {
@@ -36,6 +38,8 @@ export interface PlannerInput {
   keep?: PlannedMeal[];
   /** Nel primo giorno, non pianificare i pasti il cui orario è già passato (minuti dalla mezzanotte). */
   skipFirstDayBefore?: number;
+  /** Prezzi indicativi (facoltativi): usati solo se il budget è attivo. */
+  prices?: IngredientPriceEngine;
 }
 
 export interface PlannerOutput {
@@ -133,6 +137,11 @@ interface PlanState {
   neededIngredients: Set<string>;
   projectedPantry: PantryStock;
   lastCategoryByDate: Map<IsoDate, string[]>;
+  /** Famiglie di varianti, ingredienti principali e tecniche per data (varietà). */
+  familyCount: Map<string, number>;
+  mainByDate: Map<IsoDate, string[]>;
+  mainCount: Map<string, number>;
+  methodByDate: Map<IsoDate, string[]>;
 }
 
 export interface ScoredCandidate {
@@ -192,11 +201,34 @@ function scoreCandidate(
     else if (catCount === 0) reasons.push('Aggiunge varietà alla settimana');
   }
 
+  // Varietà con un catalogo grande: famiglie di varianti, ingrediente principale, tecnica.
+  const meta = metaOf(recipe);
+  if (meta.family) score -= (state.familyCount.get(meta.family) ?? 0) * (isBreakfastLike ? 15 : 35);
+  if (!isBreakfastLike) {
+    const main = mainIngredientOf(recipe, catalog);
+    if (main) {
+      const near = [...(state.mainByDate.get(slot.date) ?? []), ...(state.mainByDate.get(addDays(slot.date, -1)) ?? [])];
+      if (near.includes(main)) score -= 15;
+      score -= Math.max(0, (state.mainCount.get(main) ?? 0) - 1) * 8;
+    }
+    if ((state.methodByDate.get(slot.date) ?? []).includes(meta.method) && meta.method !== 'nessuna_cottura') score -= 5;
+  }
+  if (meta.seasons) {
+    const season = seasonOfMonth(Number(slot.date.slice(5, 7)));
+    if (meta.seasons.includes(season)) {
+      score += 5;
+      reasons.push('Di stagione');
+    } else score -= 10;
+  }
+
   const taste = tasteScore(recipe, slot, profile, catalog);
   score += taste.score;
   reasons.push(...taste.reasons);
 
   let shared = 0;
+  let newItems = 0;
+  let marginalCents = 0;
+  let unknownPrices = 0;
   let fromPantry: string[] = [];
   let perishablePenalty = 0;
   const shop = lastShopDate(slot.date, slot.mealType, profile, startDate);
@@ -211,6 +243,12 @@ function scoreCandidate(
       continue;
     }
     if (state.neededIngredients.has(ing.id)) shared++;
+    else newItems++;
+    if (input.prices) {
+      const c = input.prices.costForQty(ing.id, Math.max(0, need - available));
+      if (c === null) unknownPrices++;
+      else marginalCents += c;
+    }
     if (heldDays > PERISHABILITY_MAX_DAYS[ing.perishability]) perishablePenalty += 25;
   }
   fromPantry = fromPantry.slice(0, 3);
@@ -221,11 +259,30 @@ function scoreCandidate(
   if (shared > 0) reasons.push('Condivide ingredienti con altri pasti della settimana');
   if (perishablePenalty > 0) reasons.push('Contiene ingredienti freschi lontani dal giorno di spesa');
 
+  // Budget (BudgetMealPlanner): mai prima dei vincoli rigidi, già applicati a monte.
+  const budget = profile.budget?.mode ?? 'off';
+  if (budget !== 'off') {
+    const w = BUDGET_WEIGHTS[budget];
+    score -= newItems * w.perNewItem;
+    if (input.prices && unknownPrices === 0) {
+      const perServing = marginalCents / Math.max(1, profile.servings);
+      score -= (perServing / 100) * w.perEuro;
+    }
+    if (newItems === 0 && !isBreakfastLike) reasons.push('Non richiede nuovi acquisti');
+  }
+
   const maxMinutes = maxMinutesFor(profile, slot.date);
   reasons.unshift(`Pronta in ${recipe.totalMinutes} min (ne hai ${maxMinutes})`);
   score += jitter * 8;
   return { recipe, score, reasons };
 }
+
+/** Pesi del budget: "minimo" privilegia il risparmio, ma la varietà resta attiva. */
+export const BUDGET_WEIGHTS = {
+  minimo: { perNewItem: 6, perEuro: 8 },
+  equilibrato: { perNewItem: 3, perEuro: 3 },
+  limite: { perNewItem: 4, perEuro: 5 },
+} as const;
 
 /**
  * Gusti e stile della settimana: spostano il punteggio, non escludono mai ricette
@@ -266,11 +323,23 @@ function emptyState(pantry: PantryStock): PlanState {
     neededIngredients: new Set(),
     projectedPantry: new Map(pantry),
     lastCategoryByDate: new Map(),
+    familyCount: new Map(),
+    mainByDate: new Map(),
+    mainCount: new Map(),
+    methodByDate: new Map(),
   };
 }
 
 function applyToState(state: PlanState, recipe: Recipe, meal: { date: IsoDate; servings: number; mealType: MealType }, catalog: CatalogIndex, profile: UserProfile) {
   state.usedThisPlan.set(recipe.id, (state.usedThisPlan.get(recipe.id) ?? 0) + 1);
+  const meta = metaOf(recipe);
+  if (meta.family) state.familyCount.set(meta.family, (state.familyCount.get(meta.family) ?? 0) + 1);
+  const main = mainIngredientOf(recipe, catalog);
+  if (main && (meal.mealType === 'pranzo' || meal.mealType === 'cena')) {
+    state.mainByDate.set(meal.date, [...(state.mainByDate.get(meal.date) ?? []), main]);
+    state.mainCount.set(main, (state.mainCount.get(main) ?? 0) + 1);
+    state.methodByDate.set(meal.date, [...(state.methodByDate.get(meal.date) ?? []), meta.method]);
+  }
   if (meal.mealType === 'pranzo' || meal.mealType === 'cena') {
     state.categoryCount.set(recipe.dishCategory, (state.categoryCount.get(recipe.dishCategory) ?? 0) + 1);
     const list = state.lastCategoryByDate.get(meal.date) ?? [];

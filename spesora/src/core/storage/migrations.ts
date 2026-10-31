@@ -95,6 +95,22 @@ CREATE TABLE favorite_recipes (
 );
 `,
   },
+  {
+    version: 2,
+    description: 'Prezzi personali degli ingredienti e importi realmente spesi',
+    sql: `
+CREATE TABLE ingredient_prices (
+  ingredient_id TEXT PRIMARY KEY,
+  price_cents INTEGER NOT NULL CHECK (price_cents > 0 AND price_cents <= 100000),
+  quantity_milli INTEGER NOT NULL CHECK (quantity_milli > 0),
+  unit TEXT NOT NULL CHECK (unit IN ('g','ml','pz')),
+  observed_at TEXT NOT NULL,
+  store_type TEXT,
+  updated_at TEXT NOT NULL
+);
+ALTER TABLE shopping_trips ADD COLUMN actual_cents INTEGER CHECK (actual_cents IS NULL OR actual_cents >= 0);
+`,
+  },
 ];
 
 export const LATEST_VERSION = MIGRATIONS[MIGRATIONS.length - 1].version;

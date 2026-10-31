@@ -2,6 +2,7 @@ import { z } from 'zod';
 import {
   ALLERGENS,
   APPETITES,
+  BUDGET_MODES,
   DIETS,
   EQUIPMENT,
   GENDERS,
@@ -54,6 +55,15 @@ export const profileSchema = z.object({
       weekStyles: z.array(z.enum(WEEK_STYLES)).default([]),
     })
     .default({ likes: [], weekStyles: [] }),
+  budget: z
+    .object({
+      mode: z.enum(BUDGET_MODES).default('off'),
+      amountCents: z.number().int().min(100).max(10_000_000).nullable().default(null),
+      period: z.enum(['settimana', 'mese']).default('settimana'),
+      scope: z.enum(['pasti_spesora', 'parte_spesa']).default('pasti_spesora'),
+      store: z.enum(['discount', 'supermercato', 'mercato', 'ovunque', 'non_indicato']).default('non_indicato'),
+    })
+    .optional(),
 });
 
 export const notificationSettingsSchema = z.object({
@@ -96,12 +106,24 @@ export function draftProfile(): UserProfile {
     equipment: ['fornelli', 'forno', 'microonde'],
     portions: { ...DEFAULT_PORTIONS },
     tastes: { likes: [], weekStyles: [] },
+    budget: { ...DEFAULT_BUDGET },
   };
+}
+
+export const DEFAULT_BUDGET: UserProfile['budget'] = { mode: 'off', amountCents: null, period: 'settimana', scope: 'pasti_spesora', store: 'non_indicato' };
+
+/** Budget settimanale di riferimento (centesimi): un budget mensile vale 12/52 per settimana. */
+export function weeklyBudgetCents(budget: UserProfile['budget']): number | null {
+  if (budget.mode === 'off' || budget.amountCents === null) return null;
+  return budget.period === 'mese' ? Math.round((budget.amountCents * 12) / 52) : budget.amountCents;
 }
 
 export function parseProfile(raw: unknown): UserProfile {
   const p = profileSchema.parse(raw);
-  return { ...p, shoppingDays: [...new Set(p.shoppingDays)].sort() as Weekday[] };
+  // Profili precedenti: il vecchio budget "promemoria" diventa un limite settimanale esplicito.
+  const budget = p.budget ?? (p.weeklyBudgetCents !== null ? { ...DEFAULT_BUDGET, mode: 'limite' as const, amountCents: p.weeklyBudgetCents } : { ...DEFAULT_BUDGET });
+  const profile = { ...p, budget, shoppingDays: [...new Set(p.shoppingDays)].sort() as Weekday[] };
+  return { ...profile, weeklyBudgetCents: weeklyBudgetCents(budget) };
 }
 
 export function parseNotificationSettings(raw: unknown): NotificationSettings {

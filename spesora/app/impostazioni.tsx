@@ -115,6 +115,8 @@ export default function Settings() {
         <Divider />
         <Row icon="time-outline" title="Storico dei pasti" onPress={() => router.push('/storico')} />
         <Divider />
+        <Row icon="pricetag-outline" title="Prezzi" subtitle="I prezzi che paghi di solito, per stimare la spesa" onPress={() => router.push('/prezzi')} />
+        <Divider />
         <Row icon="star-outline" title="Spesora Plus" onPress={() => router.push('/plus')} />
         <Divider />
         <Row icon="shield-checkmark-outline" title="Privacy e dati" onPress={() => router.push('/privacy')} />

@@ -98,7 +98,7 @@ export const STEPS: StepDef[] = [
     editable: true,
     validate: (d) => (d.profile.shoppingDays.length === 0 ? 'Scegli almeno un giorno.' : null),
   },
-  { id: 'budget', title: 'Vuoi indicare un budget settimanale?', Component: BudgetStep, optional: true, editable: true },
+  { id: 'budget', title: 'Quanto vuoi spendere per la tua spesa?', subtitle: 'Facoltativo: aiuta a scegliere ricette che riutilizzano gli ingredienti.', Component: BudgetStep, editable: true, premium: true, pose: 'spesa', tip: 'Mangiare bene secondo i tuoi gusti, senza comprare più del necessario.' },
   {
     id: 'strumenti',
     title: 'Cosa hai in cucina?',

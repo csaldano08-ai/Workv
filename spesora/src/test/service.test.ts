@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { toMilli } from '../core/domain/quantity';
-import { migrate } from '../core/storage/migrations';
+import { LATEST_VERSION, migrate } from '../core/storage/migrations';
 import { SpesoraService } from '../features/app/SpesoraService';
 import { DEFAULT_NOTIFICATION_SETTINGS } from '../core/notifications/schedule';
 import { openNodeDb } from './nodeDb';
@@ -158,7 +158,7 @@ describe('Test J — persistenza', () => {
       db.close();
 
       db = openNodeDb(file);
-      expect(await migrate(db)).toBe(1);
+      expect(await migrate(db)).toBe(LATEST_VERSION);
       service = new SpesoraService(db, catalog);
       const after = await service.snapshot(MONDAY);
       expect(after.profile).toEqual(before.profile);
@@ -242,8 +242,8 @@ describe('Test L — errori e input non validi', () => {
 
   it('migrazioni idempotenti e rifiuto di uno schema più recente', async () => {
     const db = openNodeDb();
-    expect(await migrate(db)).toBe(1);
-    expect(await migrate(db)).toBe(1);
+    expect(await migrate(db)).toBe(LATEST_VERSION);
+    expect(await migrate(db)).toBe(LATEST_VERSION);
     await db.exec('PRAGMA user_version = 99');
     await expect(migrate(db)).rejects.toThrow(/più recente/);
   });

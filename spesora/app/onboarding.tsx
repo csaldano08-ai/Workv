@@ -121,7 +121,6 @@ function isEmptyOptional(id: string, d: OnboardingDraft): boolean {
   if (id === 'esclusioni') return d.profile.excludedAllergens.length === 0 && d.profile.excludedIngredientIds.length === 0;
   if (id === 'non-graditi') return d.profile.dislikedIngredientIds.length === 0;
   if (id === 'gusti') return d.profile.tastes.likes.length === 0 && d.profile.tastes.weekStyles.length === 0;
-  if (id === 'budget') return d.profile.weeklyBudgetCents === null;
   if (id === 'dispensa') return Object.keys(d.pantry).length === 0;
   return false;
 }

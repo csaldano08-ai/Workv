@@ -7,6 +7,10 @@ import { mealIngredientStatus, toStock, type IngredientAvailability } from '../.
 import { formatQtyWithUnit } from '../../src/core/domain/quantity';
 import { ingredientNeed, isPersonalized } from '../../src/core/domain/portions';
 import { PORTIONS_NOTE } from '../../src/features/onboarding/stepsPersonal';
+import { foodInfo } from '../../src/core/domain/nutrition';
+import { metaOf } from '../../src/core/domain/meta';
+import { recipeCost } from '../../src/core/domain/cost';
+import { formatCents } from '../../src/core/domain/prices';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { useMealActions } from '../../src/features/meals/useMealActions';
 import { ALLERGEN_LABELS, EQUIPMENT_LABELS, MEAL_LABELS } from '../../src/i18n/labels';
@@ -183,6 +187,8 @@ export default function RecipeScreen() {
         </Text>
       </Card>
 
+      <FoodInfoCard recipeId={recipe.id} servings={servings} />
+
       <SectionTitle>Preparazione</SectionTitle>
       {recipe.steps.map((s, i) => (
         <View key={i} style={styles.step}>
@@ -240,3 +246,42 @@ const styles = StyleSheet.create({
   stepNum: { width: 32, height: 32, borderRadius: 16, backgroundColor: colors.green, alignItems: 'center', justifyContent: 'center' },
   stepBody: { flex: 1, gap: space.sm, paddingTop: 4 },
 });
+
+/** Costo indicativo e informazioni alimentari con stato esplicito: nessun claim non verificato. */
+function FoodInfoCard({ recipeId, servings }: { recipeId: string; servings: number }) {
+  const { snapshot } = useApp();
+  const recipe = catalogIndex.recipe(recipeId);
+  if (!recipe || !snapshot) return null;
+  const info = foodInfo(recipe, catalogIndex);
+  const meta = metaOf(recipe);
+  const cost = recipeCost(recipe, catalogIndex, snapshot.prices, servings, snapshot.profile?.portions, toStock(snapshot.pantry));
+  const costText =
+    cost.completeness === 'completa'
+      ? `Costo indicativo: circa ${formatCents(cost.perServingCents ?? 0)} a porzione (${formatCents(cost.knownCents)} in tutto), dai prezzi che conosci.`
+      : cost.completeness === 'parziale'
+        ? `Costo noto solo in parte: almeno ${formatCents(cost.knownCents)} (${cost.knownCount} di ${cost.totalCount} ingredienti con prezzo).`
+        : 'Costo non stimato: mancano i prezzi degli ingredienti. Puoi inserirli in Impostazioni → Prezzi.';
+  return (
+    <Card>
+      <Text variant="heading">Da sapere</Text>
+      <Text variant="small">{costText}</Text>
+      {info.formulatedWithoutGluten.value ? <Text variant="small">{info.formulatedWithoutGluten.note}</Text> : null}
+      <Text variant="small">{info.noAddedSweeteners.note}</Text>
+      <Text variant="small" color={colors.inkSoft}>
+        {[
+          meta.cuisine === 'internazionale' ? 'Cucina internazionale' : meta.region ? `Tradizione: ${meta.region}` : 'Cucina italiana',
+          `difficoltà ${'●'.repeat(meta.difficulty)}${'○'.repeat(3 - meta.difficulty)}`,
+          meta.makeAhead ? 'si può preparare in anticipo' : null,
+          meta.storage ?? null,
+        ]
+          .filter(Boolean)
+          .join(' · ')}
+      </Text>
+      {meta.review.status !== 'approved_for_release' ? (
+        <Text variant="small" color={colors.inkSoft}>
+          Ricetta in revisione editoriale: segnalaci tempi o passaggi che non tornano.
+        </Text>
+      ) : null}
+    </Card>
+  );
+}

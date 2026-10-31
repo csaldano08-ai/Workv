@@ -1,6 +1,7 @@
 import type { Catalog } from '../core/domain/types';
 import { INGREDIENTS } from './ingredients';
 import { INGREDIENTS_2 } from './ingredients_2';
+import { INGREDIENTS_3 } from './ingredients_3';
 import { COLAZIONI } from './recipes/colazioni';
 import { PRANZI_CENE } from './recipes/pranzi_cene';
 import { SECONDI } from './recipes/secondi';
@@ -12,6 +13,7 @@ import { VEGETALI_2 } from './recipes/vegetali_2';
 
 /** Catalogo incluso nell'app: ingredienti canonici e ricette originali. */
 export const CATALOG: Catalog = {
-  ingredients: [...INGREDIENTS, ...INGREDIENTS_2],
-  recipes: [...PRANZI_CENE, ...SECONDI, ...COLAZIONI, ...SPUNTINI, ...PRIMI_2, ...SECONDI_2, ...VEGETALI_2, ...COLAZIONI_SPUNTINI_2],
+  ingredients: [...INGREDIENTS, ...INGREDIENTS_2, ...INGREDIENTS_3],
+  recipes: [...PRANZI_CENE, ...SECONDI, ...COLAZIONI, ...SPUNTINI, ...PRIMI_2, ...SECONDI_2, ...VEGETALI_2, ...COLAZIONI_SPUNTINI_2,
+      ],
 };

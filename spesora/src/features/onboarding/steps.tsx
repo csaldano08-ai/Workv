@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Switch, TextInput, View } from 'react-native';
 import { normalizeText } from '../../core/domain/catalog';
 import { formatQtyWithUnit, parseUserQty, toMilli } from '../../core/domain/quantity';
-import { suggestShoppingDays } from '../../core/domain/profile';
+import { suggestShoppingDays, weeklyBudgetCents } from '../../core/domain/profile';
 import { ALLERGENS, DIETS, EQUIPMENT, MEAL_TYPES, type MealType, type UserProfile, type Weekday } from '../../core/domain/types';
 import { weekdayName } from '../../core/domain/dates';
 import { ALLERGEN_LABELS, DIET_LABELS, EQUIPMENT_LABELS, MEAL_LABELS } from '../../i18n/labels';
@@ -291,31 +291,90 @@ export function ShoppingDaysStep({ draft, setDraft }: StepProps) {
   );
 }
 
+const BUDGET_MODE_LABELS = {
+  minimo: 'Sì, voglio spendere il meno possibile',
+  equilibrato: 'Sì, voglio un budget equilibrato',
+  limite: 'Sì, ho un limite preciso',
+  off: 'No, scelgo solo in base ai gusti',
+} as const;
+const STORE_LABELS = { discount: 'Discount', supermercato: 'Supermercato', mercato: 'Mercato o negozi locali', ovunque: 'Un po’ ovunque', non_indicato: 'Preferisco non dirlo' } as const;
+const QUICK_AMOUNTS = [30, 50, 70, 100, 150];
+
 export function BudgetStep({ draft, setDraft }: StepProps) {
-  const cents = draft.profile.weeklyBudgetCents;
-  const [text, setText] = useState(cents === null ? '' : String(cents / 100).replace('.', ','));
-  const invalid = text.trim() !== '' && parseUserQty(text) === null;
+  const b = draft.profile.budget;
+  const [text, setText] = useState(b.amountCents === null ? '' : String(b.amountCents / 100).replace('.', ','));
+  const invalid = text.trim() !== '' && (parseUserQty(text) === null || (parseUserQty(text) ?? 0) < 1);
+  const setBudget = (patch: Partial<UserProfile['budget']>) =>
+    setProfile(setDraft, (p) => {
+      const budget = { ...p.budget, ...patch };
+      return { ...p, budget, weeklyBudgetCents: weeklyBudgetCents(budget) };
+    });
   return (
     <View style={styles.gap}>
-      <TextInput
-        value={text}
-        onChangeText={(v) => {
-          setText(v);
-          const parsed = parseUserQty(v);
-          setProfile(setDraft, (p) => ({ ...p, weeklyBudgetCents: v.trim() === '' || parsed === null ? null : Math.round(parsed * 100) }));
-        }}
-        placeholder="Es. 60"
-        placeholderTextColor={colors.inkSoft}
-        keyboardType="decimal-pad"
-        style={styles.input}
-        accessibilityLabel="Budget settimanale in euro"
-      />
-      {invalid ? (
-        <Text variant="small" color={colors.danger}>
-          Inserisci un importo valido, ad esempio 60 oppure 60,50.
-        </Text>
+      <SectionTitle>Vuoi che Spesora tenga conto del budget?</SectionTitle>
+      <ChipGroup>
+        {(['minimo', 'equilibrato', 'limite', 'off'] as const).map((m) => (
+          <Chip key={m} label={BUDGET_MODE_LABELS[m]} selected={b.mode === m} onPress={() => setBudget({ mode: m })} />
+        ))}
+      </ChipGroup>
+      {b.mode !== 'off' ? (
+        <>
+          <SectionTitle>Quanto vorresti spendere?</SectionTitle>
+          <ChipGroup>
+            <Chip label="A settimana" selected={b.period === 'settimana'} onPress={() => setBudget({ period: 'settimana' })} />
+            <Chip label="Al mese" selected={b.period === 'mese'} onPress={() => setBudget({ period: 'mese' })} />
+          </ChipGroup>
+          <ChipGroup>
+            {QUICK_AMOUNTS.map((v) => (
+              <Chip
+                key={v}
+                tone="peach"
+                label={`${v} €`}
+                selected={b.amountCents === v * 100}
+                onPress={() => {
+                  setText(String(v));
+                  setBudget({ amountCents: v * 100 });
+                }}
+              />
+            ))}
+          </ChipGroup>
+          <TextInput
+            value={text}
+            onChangeText={(v) => {
+              setText(v);
+              const parsed = parseUserQty(v);
+              setBudget({ amountCents: v.trim() === '' || parsed === null || parsed < 1 ? null : Math.round(parsed * 100) });
+            }}
+            placeholder="Importo libero in euro"
+            placeholderTextColor={colors.inkSoft}
+            keyboardType="decimal-pad"
+            style={styles.input}
+            accessibilityLabel="Importo del budget in euro"
+          />
+          {invalid ? (
+            <Text variant="small" color={colors.danger}>
+              Inserisci un importo valido, ad esempio 60 oppure 60,50.
+            </Text>
+          ) : null}
+          {b.period === 'mese' && b.amountCents ? (
+            <Text variant="small" color={colors.inkSoft}>
+              {`Equivale a circa ${((weeklyBudgetCents(b) ?? 0) / 100).toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })} a settimana.`}
+            </Text>
+          ) : null}
+          <SectionTitle>Il budget riguarda</SectionTitle>
+          <ChipGroup>
+            <Chip label={`I pasti che organizzo qui (${draft.profile.servings} ${draft.profile.servings === 1 ? 'persona' : 'persone'})`} selected={b.scope === 'pasti_spesora'} onPress={() => setBudget({ scope: 'pasti_spesora' })} />
+            <Chip label="Solo una parte della mia spesa" selected={b.scope === 'parte_spesa'} onPress={() => setBudget({ scope: 'parte_spesa' })} />
+          </ChipGroup>
+          <SectionTitle>Dove fai generalmente la spesa? (facoltativo)</SectionTitle>
+          <ChipGroup>
+            {(Object.keys(STORE_LABELS) as (keyof typeof STORE_LABELS)[]).map((k) => (
+              <Chip key={k} label={STORE_LABELS[k]} selected={b.store === k} onPress={() => setBudget({ store: k })} />
+            ))}
+          </ChipGroup>
+        </>
       ) : null}
-      <Notice text="Facoltativo. Spesora non dispone di prezzi verificati dei supermercati: il budget viene salvato come promemoria, ma l’app non stima il costo del menù e non afferma che lo rispetti." />
+      <Notice text="Gli importi rapidi sono solo scorciatoie, non somme consigliate. Spesora non riduce mai pasti o porzioni per stare nel budget: sceglie ricette che riutilizzano gli ingredienti e richiedono meno acquisti. I costi in euro compaiono solo per i prodotti di cui conosci il prezzo (puoi inserirli in Impostazioni → Prezzi)." />
     </View>
   );
 }

@@ -5,7 +5,7 @@ export const SPUNTINI: Recipe[] = [
   {
     id: 'mela_cotta_cannella',
     name: 'Mela cotta alla cannella',
-    description: 'Mela a spicchi cotta in padella con un goccio d\'acqua e cannella: dolce senza zuccheri aggiunti.',
+    description: 'Mela a spicchi cotta in padella con un goccio d\'acqua e cannella: dolce e profumata.',
     mealTypes: ['spuntino', 'colazione'],
     dishCategory: 'frutta',
     baseServings: 1,
