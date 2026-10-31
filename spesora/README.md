@@ -59,7 +59,7 @@ src/core/domain/     motori puri: pianificazione, spesa, dispensa, date, quantit
 src/core/storage/    SQLite, migrazioni, repository
 src/core/notifications/  calcolo e programmazione degli avvisi locali
 src/core/purchases/  interfaccia abbonamenti (disabilitata / mock solo sviluppo)
-src/data/            catalogo: 297 ingredienti canonici, 500 ricette originali (metadati, copertura in docs/COVERAGE.md)
+src/data/            catalogo: 296 ingredienti canonici, 500 ricette originali (metadati, copertura in docs/COVERAGE.md)
 src/features/        servizio applicativo, onboarding, azioni sui pasti
 src/ui/ src/theme/ src/i18n/   componenti, design token, stringhe
 src/test/            test automatici

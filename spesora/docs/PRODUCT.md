@@ -38,7 +38,7 @@ Spesora resta un organizzatore di cucina e spesa: nessuna caloria, nessun piano 
 
 ## Catalogo da 500 ricette e budget (terza iterazione)
 
-- **500 ricette** (156 + 344 nuove), 297 ingredienti canonici, metadati editoriali (cucina italiana o internazionale, regione, difficoltà, tecnica, famiglia di varianti, stagioni, conservazione, stato di revisione). Copertura per profili in `COVERAGE.md`.
+- **500 ricette** (156 + 344 nuove), 296 ingredienti canonici, metadati editoriali (cucina italiana o internazionale, regione, difficoltà, tecnica, famiglia di varianti, stagioni, conservazione, stato di revisione). Copertura per profili in `COVERAGE.md`.
 - **Ricettario**: ricerca per titolo, ingrediente o regione; filtri per portata, pasto, dieta, tempo, preferite ed esclusioni; sezioni "Idee per questa settimana", "Con ciò che hai in dispensa", "Pronto in 15 minuti", "Pochi ingredienti", "Piatti italiani", "Piatti unici", "Colazioni salate".
 - **Nuove preferenze**: legumi, preparazioni vegetali; etichette senza claim nutrizionali.
 - **Budget**: questionario (meno possibile, equilibrato, limite preciso, solo gusti; settimanale o mensile; ambito; tipo di negozio facoltativo), prezzi personali, costo indicativo di ricette e uscite, budget residuo, importo pagato, "Rendi questa settimana più economica". Vedi `PRICES.md`.
