@@ -18,7 +18,7 @@ Spesora è un calendario che decide cosa cucinare, quando fare la spesa e cosa c
 
 ## Confini della prima versione
 
-- Catalogo incluso nell'app (74 ricette). Obiettivo per la pubblicazione: circa 150.
+- Catalogo incluso nell'app: 156 ricette originali (30 colazioni, 113 pranzi/cene, 25 spuntini; alcune valgono per più pasti), 117 pronte in 25 minuti o meno, 48 piatti principali vegani.
 - Nessun prezzo dei supermercati: il budget è solo memorizzato, non viene mai dichiarato rispettato.
 - Nessuna foto: ogni ricetta usa un'illustrazione vettoriale originale generata dall'app.
 - Nessun backend, account, sincronizzazione, importazione file, widget, scansione, video, AI.

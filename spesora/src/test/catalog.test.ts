@@ -10,10 +10,10 @@ describe('Catalogo ricette', () => {
     expect(result.ok).toBe(true);
   });
 
-  it('contiene almeno 50 ricette e copre colazione, pranzo e cena', () => {
-    expect(CATALOG.recipes.length).toBeGreaterThanOrEqual(50);
+  it('contiene almeno 150 ricette e copre colazione, pranzo e cena', () => {
+    expect(CATALOG.recipes.length).toBeGreaterThanOrEqual(150);
     for (const meal of ['colazione', 'pranzo', 'cena', 'spuntino'] as const) {
-      expect(CATALOG.recipes.filter((r) => r.mealTypes.includes(meal)).length).toBeGreaterThanOrEqual(meal === 'spuntino' ? 4 : 10);
+      expect(CATALOG.recipes.filter((r) => r.mealTypes.includes(meal)).length).toBeGreaterThanOrEqual(meal === 'spuntino' ? 15 : meal === 'colazione' ? 25 : 90);
     }
   });
 

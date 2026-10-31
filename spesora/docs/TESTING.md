@@ -17,7 +17,7 @@ Esegue typecheck (TypeScript strict), ESLint (0 avvisi), Vitest e controllo di c
 | I — notifiche | `notifications.test.ts` | Orario = pasto − durata − anticipo; cambio orario annulla la vecchia e crea la nuova con destinazione valida; nessun duplicato, nulla nel passato o in fascia di silenzio; limite iOS; destinazioni non valide rifiutate |
 | J — persistenza | `service.test.ts` | File SQLite chiuso e riaperto: profilo, calendario, dispensa, basi, preferiti, storico identici; onboarding progressivo; nuovo calendario automatico; esportazione e cancellazione |
 | L — errori | `service.test.ts` | DB vuoto, quantità nulle/negative/NaN/non intere, ingrediente inesistente, profilo malformato, JSON corrotto (nessuna perdita di dati), migrazioni idempotenti e schema futuro |
-| Catalogo | `catalog.test.ts` | Schema Zod, riferimenti, duplicati, alias ambigui, minimo 50 ricette; errori introdotti intenzionalmente vengono rilevati |
+| Catalogo | `catalog.test.ts` | Schema Zod, riferimenti, duplicati, alias ambigui, minimo 150 ricette (25 colazioni, 90 pranzi/cene, 15 spuntini); errori introdotti intenzionalmente vengono rilevati |
 | Qualità | `checks.test.ts` | Chiavi di traduzione, assenza di `console.log`/TODO/segnaposto/mock fuori posto/SDK vietati; i controlli rilevano errori introdotti di proposito |
 
 ## Verifiche eseguite durante lo sviluppo

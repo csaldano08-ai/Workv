@@ -24,7 +24,7 @@ Widget iOS, riconoscimento foto, scansione scontrini, sincronizzazione familiare
 
 ## Limiti aperti
 
-- Catalogo di 74 ricette (obiettivo 150 per il lancio); 18 ingredienti del dizionario non ancora usati.
+- Catalogo di 156 ricette scritte apposta e validate dagli schemi; una revisione umana (gusto, tempi reali, allergeni) è consigliata prima del lancio. 23 ingredienti del dizionario non ancora usati.
 - Dispensa iniziale da onboarding con quantità indicative scelte dall'utente.
 - Confezioni "formato comune" generiche: da verificare in negozio.
 - Notifiche e tocco ad app chiusa verificati solo nei test unitari e nel codice: **da provare sul dispositivo** (vedi TESTING).

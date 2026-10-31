@@ -40,7 +40,8 @@
 
 ## 5. Contenuti (prima della pubblicazione)
 
-- [ ] Ampliare il catalogo a ~150 ricette verificate (`src/data/recipes`), con `npm run verify`
+- [x] Catalogo a 156 ricette (`src/data/recipes`), validato da `npm run verify`
+- [ ] Revisione umana delle ricette: provarne un campione in cucina, controllare tempi, quantità e allergeni dei prodotti confezionati
 - [ ] Revisione GDPR e condizioni di vendita
 - [ ] Rilascio graduale (phased release) e canale per feedback volontari (email di supporto)
 
