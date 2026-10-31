@@ -2437,11 +2437,21 @@
       "filename": "hummus_bowl_tahina.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "zucchina, ceci cotti, pomodorini, quinoa, limone",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/hummus_bowl_tahina.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Bowl di hummus fatto in casa con quinoa; main ingredients checked against catalog (zucchina, ceci cotti, pomodorini, quinoa, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 835853,
+      "sha256": "31ddf67e60aa4e6c4118d7ea410ecf3f71aaaf8af1034299dc66d8907977e4bf",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:55:53.275264+00:00"
     },
     {
       "id": "bowl_edamame_riso",
@@ -2449,11 +2459,21 @@
       "filename": "bowl_edamame_riso.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "edamame surgelati, cetriolo, riso basmati, carota, avocado",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/bowl_edamame_riso.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Bowl di riso con edamame e avocado; main ingredients checked against catalog (edamame surgelati, cetriolo, riso basmati, carota, avocado). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 657745,
+      "sha256": "7b4a2e24b90b8a3915612bd2d82968e2df4bb8f53e4bc0d3c239344c53aa4b0d",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:54:39.801640+00:00"
     },
     {
       "id": "caprese_pane",
@@ -2461,11 +2481,21 @@
       "filename": "caprese_pane.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "pomodoro, mozzarella, pane, basilico fresco",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/caprese_pane.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Caprese con pane; main ingredients checked against catalog (pomodoro, mozzarella, pane, basilico fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 938592,
+      "sha256": "86cc0bf31738ccd28de447155ea7877e95817e08fea4f38f15c4e2843cc069ea",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:53:52.231160+00:00"
     },
     {
       "id": "carciofi_patate_padella",
@@ -2473,11 +2503,21 @@
       "filename": "carciofi_patate_padella.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "carciofi, patata, limone, prezzemolo",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/carciofi_patate_padella.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Carciofi e patate in padella; main ingredients checked against catalog (carciofi, patata, limone, prezzemolo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 894341,
+      "sha256": "dfb0116a8db80379effba55d3813fca1532cb728f0fcd478131e6edc041fd0b5",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:53:02.455973+00:00"
     },
     {
       "id": "cavoletti_ceci_friggitrice",
@@ -2485,11 +2525,21 @@
       "filename": "cavoletti_ceci_friggitrice.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "cavoletti di bruxelles, ceci cotti, limone",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/cavoletti_ceci_friggitrice.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Cavoletti di Bruxelles e ceci in friggitrice; main ingredients checked against catalog (cavoletti di bruxelles, ceci cotti, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 788369,
+      "sha256": "18c0dee6c62239b0b0030d8aa987132eb60f77a03d19007f40e3d21ef2c065f3",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:53:51.691493+00:00"
     },
     {
       "id": "cavolfiore_ceci_forno",
@@ -2497,11 +2547,21 @@
       "filename": "cavolfiore_ceci_forno.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "cavolfiore, ceci cotti, yogurt di soia",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/cavolfiore_ceci_forno.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Cavolfiore e ceci al forno con curry; main ingredients checked against catalog (cavolfiore, ceci cotti, yogurt di soia). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 770553,
+      "sha256": "ad95628fea4facd116c474495690be497b36d1e46cb1efff4b39eacfc634afd4",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:55:52.364629+00:00"
     },
     {
       "id": "ceci_spinaci_padella",
@@ -2509,11 +2569,21 @@
       "filename": "ceci_spinaci_padella.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "ceci cotti, spinaci freschi, pomodori pelati",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/ceci_spinaci_padella.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Ceci e spinaci in padella; main ingredients checked against catalog (ceci cotti, spinaci freschi, pomodori pelati). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 931840,
+      "sha256": "c1cbf5fe5a006b2e4915f7eea9a8f289c1311915aa236bf0feebd169d0c315ac",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:54:41.195336+00:00"
     },
     {
       "id": "chili_fagioli_neri",
@@ -2521,11 +2591,21 @@
       "filename": "chili_fagioli_neri.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "fagioli neri cotti, pomodori pelati, peperone, riso, cipolla",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/chili_fagioli_neri.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Chili di fagioli neri con riso; main ingredients checked against catalog (fagioli neri cotti, pomodori pelati, peperone, riso, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 688381,
+      "sha256": "1a00defc7c4bac5529686f3b40504c75a33cefef0fea05a979d8fb7c5fa9f740",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:54:40.678187+00:00"
     },
     {
       "id": "dal_lenticchie_rosse",
@@ -2533,11 +2613,21 @@
       "filename": "dal_lenticchie_rosse.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "pomodori pelati, lenticchie rosse decorticate, cipolla",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/dal_lenticchie_rosse.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Crema di lenticchie rosse speziata; main ingredients checked against catalog (pomodori pelati, lenticchie rosse decorticate, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 717054,
+      "sha256": "6e05c505b109d9a036e4328092c3ea8d3356b70243524800b6c9381ed35407f6",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:53:02.060269+00:00"
     },
     {
       "id": "crostoni_cavolo_nero_cannellini",
@@ -2545,11 +2635,21 @@
       "filename": "crostoni_cavolo_nero_cannellini.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "fagioli cannellini cotti, pane, cavolo nero",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/crostoni_cavolo_nero_cannellini.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Crostoni con cavolo nero e cannellini; main ingredients checked against catalog (fagioli cannellini cotti, pane, cavolo nero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 806213,
+      "sha256": "2e1590cc25b85575108bd8c5af059905a771520559ce78ff0f6f0e40e6ab24a4",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:54:40.286523+00:00"
     },
     {
       "id": "curry_ceci_cocco",
@@ -2557,11 +2657,21 @@
       "filename": "curry_ceci_cocco.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "ceci cotti, latte di cocco, pomodori pelati, riso basmati, spinaci freschi",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/curry_ceci_cocco.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Curry di ceci al latte di cocco; main ingredients checked against catalog (ceci cotti, latte di cocco, pomodori pelati, riso basmati, spinaci freschi). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 829099,
+      "sha256": "186a01fd6fe668eef2224fd454772642d5b41c65047435def4bbf4e336b682ba",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:53:02.967006+00:00"
     },
     {
       "id": "fagioli_uccelletto",
@@ -2569,11 +2679,21 @@
       "filename": "fagioli_uccelletto.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "fagioli cannellini cotti, pomodori pelati",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/fagioli_uccelletto.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Fagioli all'uccelletto; main ingredients checked against catalog (fagioli cannellini cotti, pomodori pelati). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 810877,
+      "sha256": "ac0d41d63363d09a22cb93592b08b6d89471231eaef3c058dd8591d474135d70",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:53:50.715252+00:00"
     },
     {
       "id": "borlotti_mais_piccanti",
@@ -2581,11 +2701,21 @@
       "filename": "borlotti_mais_piccanti.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "fagioli borlotti cotti, passata di pomodoro, peperone, mais in scatola, cipolla",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/borlotti_mais_piccanti.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Fagioli borlotti piccanti con mais; main ingredients checked against catalog (fagioli borlotti cotti, passata di pomodoro, peperone, mais in scatola, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 794410,
+      "sha256": "a57e5ef7fddba93bae6d65bd39c39692a8ed8c8df94c4a6041bb6b612c2613c1",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:53:51.191984+00:00"
     },
     {
       "id": "farinata_ceci_forno",
@@ -2593,11 +2723,21 @@
       "filename": "farinata_ceci_forno.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "pomodorini, farina di ceci, insalata verde",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/farinata_ceci_forno.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Farinata di ceci al forno con insalata; main ingredients checked against catalog (pomodorini, farina di ceci, insalata verde). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 866111,
+      "sha256": "f20314b228a27f56a077e8c03801f2734b4284dd7f67bbb048a5aca5e0a9725a",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:55:53.780075+00:00"
     },
     {
       "id": "frittelle_verdure_ceci",
@@ -2605,11 +2745,21 @@
       "filename": "frittelle_verdure_ceci.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "zucchina, farina di ceci, carota, insalata verde",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/frittelle_verdure_ceci.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Frittelle di verdure senza uova; main ingredients checked against catalog (zucchina, farina di ceci, carota, insalata verde). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 828856,
+      "sha256": "139be73d47e8f3a6a5f1c05892792fb21083e1489fedfb741017cd061e1a6f3a",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:53:03.473392+00:00"
     },
     {
       "id": "insalata_ceci_tonno",
@@ -2617,11 +2767,21 @@
       "filename": "insalata_ceci_tonno.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "ceci cotti, pomodorini, tonno in scatola, rucola, cipolla rossa",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/insalata_ceci_tonno.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Insalata di ceci, tonno e pomodorini; main ingredients checked against catalog (ceci cotti, pomodorini, tonno in scatola, rucola, cipolla rossa). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 947030,
+      "sha256": "076a62562aeb400ebbb2296cba451d159693f762dc55181b4ab9111f07e49672",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T19:55:52.777435+00:00"
     },
     {
       "id": "insalata_greca",
@@ -2651,8 +2811,8 @@
       "filename": "insalatone_cannellini_mais.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "fagioli cannellini cotti, pomodorini, cetriolo, insalata verde, mais in scatola",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/insalatone_cannellini_mais.png",
       "review": null,
       "issues": []
@@ -2663,8 +2823,8 @@
       "filename": "lenticchie_umido.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "lenticchie cotte, passata di pomodoro, carota, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/lenticchie_umido.png",
       "review": null,
       "issues": []
@@ -2675,8 +2835,8 @@
       "filename": "parmigiana_leggera.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "melanzana, passata di pomodoro, mozzarella, parmigiano reggiano, basilico fresco",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/parmigiana_leggera.png",
       "review": null,
       "issues": []
@@ -2687,8 +2847,8 @@
       "filename": "pasta_e_ceci.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "ceci cotti, pasta di semola, pomodori pelati",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_e_ceci.png",
       "review": null,
       "issues": []
@@ -2699,8 +2859,8 @@
       "filename": "patate_dolci_ripiene.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "patata dolce, spinaci freschi, pomodorini, feta",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/patate_dolci_ripiene.png",
       "review": null,
       "issues": []
@@ -2711,8 +2871,8 @@
       "filename": "patate_fagiolini_uova.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "patata, uova, fagiolini",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/patate_fagiolini_uova.png",
       "review": null,
       "issues": []
@@ -2723,8 +2883,8 @@
       "filename": "piadina_crudo_rucola.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "piadina, pomodoro, prosciutto crudo, formaggio fresco spalmabile, rucola",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/piadina_crudo_rucola.png",
       "review": null,
       "issues": []
@@ -2735,8 +2895,8 @@
       "filename": "polpette_ceci_friggitrice.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "ceci cotti, insalata verde, pangrattato, prezzemolo",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/polpette_ceci_friggitrice.png",
       "review": null,
       "issues": []
@@ -2747,8 +2907,8 @@
       "filename": "noodles_tempeh_peperoni.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "peperone, tempeh, spaghetti di riso, cipolla, salsa di soia",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/noodles_tempeh_peperoni.png",
       "review": null,
       "issues": []
@@ -2781,8 +2941,8 @@
       "filename": "tofu_croccante_broccoli.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "broccolo, tofu, limone, farina di ceci",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/tofu_croccante_broccoli.png",
       "review": null,
       "issues": []
@@ -2793,8 +2953,8 @@
       "filename": "tofu_saltato_verdure.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "tofu, zucchina, peperone, salsa di soia",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/tofu_saltato_verdure.png",
       "review": null,
       "issues": []
@@ -2805,8 +2965,8 @@
       "filename": "torta_salata_zucchine.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "zucchina, ricotta, pasta sfoglia, scamorza affumicata, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/torta_salata_zucchine.png",
       "review": null,
       "issues": []
@@ -2817,8 +2977,8 @@
       "filename": "verza_stufata_fagioli.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "verza, fagioli cannellini cotti, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/verza_stufata_fagioli.png",
       "review": null,
       "issues": []
@@ -2829,8 +2989,8 @@
       "filename": "zucchine_ripiene_couscous.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "zucchina, pomodorini, couscous, olive nere",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/zucchine_ripiene_couscous.png",
       "review": null,
       "issues": []
@@ -2841,8 +3001,8 @@
       "filename": "zuppa_piselli_spezzati.png",
       "category": "Legumi, verdure e piatti unici",
       "ingredients": "piselli secchi spezzati, patata, carota, cipolla, sedano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/zuppa_piselli_spezzati.png",
       "review": null,
       "issues": []
