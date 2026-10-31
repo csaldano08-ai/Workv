@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Alert, Linking } from 'react-native';
+import { Linking } from 'react-native';
+import { Alert } from '../src/ui/dialog';
 import { countScheduled, getPermission, requestPermission, sendTestNotification, type PermissionState } from '../src/core/notifications/NotificationScheduler';
 import type { NotificationSettings } from '../src/core/notifications/schedule';
 import { useApp } from '../src/features/app/AppProvider';

@@ -1,4 +1,4 @@
-import { router } from 'expo-router';
+import { goBack } from '../src/features/navigation';
 import { useMemo, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { normalizeText } from '../src/core/domain/catalog';
@@ -29,13 +29,13 @@ export default function AddPantry() {
     if (!ing) return;
     if (ing.staple) {
       await run((s) => s.setStaplePresent(ing.id, true));
-      router.back();
+      goBack('/dispensa');
       return;
     }
     const v = parseUserQty(qty);
     if (v === null || v === 0) return setError('Inserisci una quantità maggiore di zero.');
     await run((s) => s.addPantry(ing.id, toMilli(v)));
-    router.back();
+    goBack('/dispensa');
   };
 
   return (

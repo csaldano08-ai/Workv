@@ -1,4 +1,5 @@
-import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
+import { goBack } from '../../src/features/navigation';
 import { useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { addDays, isIsoDate } from '../../src/core/domain/dates';
@@ -37,13 +38,13 @@ export default function PantryItem() {
     const v = parseUserQty(qtyText);
     if (v === null) return setError(`Inserisci una quantità valida in ${UNIT_LABEL[ing.unit]}.`);
     await run((s) => s.setPantryQty(ing.id, toMilli(v)));
-    router.back();
+    goBack('/dispensa');
   };
   const consume = async () => {
     const v = parseUserQty(useText);
     if (v === null || v === 0) return setError('Inserisci quanto hai usato, ad esempio 100.');
     await run((s) => s.removePantry(ing.id, toMilli(v)));
-    router.back();
+    goBack('/dispensa');
   };
   const saveExpiry = async (value: string | null) => {
     if (value !== null && !isIsoDate(value)) return setError('Data non valida: usa il formato AAAA-MM-GG, ad esempio 2026-11-20.');

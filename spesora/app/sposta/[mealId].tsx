@@ -1,4 +1,5 @@
-import { router, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
+import { goBack } from '../../src/features/navigation';
 import { View } from 'react-native';
 import { formatLongDate } from '../../src/core/domain/dates';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
@@ -38,7 +39,7 @@ export default function MoveMeal() {
               subtitle={catalogIndex.recipe(m.recipeId)?.name}
               onPress={async () => {
                 await run((s) => s.swapMeals(meal.id, m.id));
-                router.back();
+                goBack('/settimana');
               }}
             />
           </View>

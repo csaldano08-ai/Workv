@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useMemo, useState } from 'react';
-import { Alert, Linking, StyleSheet, View } from 'react-native';
+import { Linking, StyleSheet, View } from 'react-native';
+import { Alert } from '../src/ui/dialog';
 import { appConfig } from '../src/core/config';
 import { createPurchaseService } from '../src/core/purchases/services';
 import type { EntitlementStatus, PlusPackage, PurchaseOutcome } from '../src/core/purchases/types';

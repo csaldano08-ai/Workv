@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
-import { Alert, Linking, Share, View } from 'react-native';
+import { Linking, Share, View } from 'react-native';
+import { Alert } from '../src/ui/dialog';
 import { cancelAllOurs } from '../src/core/notifications/NotificationScheduler';
 import { appConfig } from '../src/core/config';
 import { useApp } from '../src/features/app/AppProvider';

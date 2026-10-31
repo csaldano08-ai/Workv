@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
-import { Alert, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { Alert } from '../../src/ui/dialog';
 import { diffDays, formatLongDate, minutesToHHMM, rangeDays, weekdayOf, weekdayShort } from '../../src/core/domain/dates';
 import type { PlannedMeal } from '../../src/core/domain/types';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';

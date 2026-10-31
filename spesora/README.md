@@ -26,6 +26,16 @@ Se il telefono non raggiunge il PC (rete aziendale, firewall di Windows):
 npm run start:tunnel
 ```
 
+## Demo nel browser (localhost)
+
+```bash
+cd spesora
+npm install
+npm run web
+```
+
+Si apre http://localhost:8081 (se non si apre da solo, incollalo in Chrome o Edge). Per l'aspetto da telefono: F12 → icona dispositivi (Ctrl+Shift+M) → iPhone 12/13. I dati restano nel browser; per ripartire da zero usa Impostazioni → Cancella tutti i dati, oppure una finestra in incognito. Le notifiche non sono disponibili sul web: vanno provate su iPhone.
+
 ## Comandi
 
 | Comando | Cosa fa |
@@ -35,7 +45,7 @@ npm run start:tunnel
 | `npm test` | Solo i test automatici (Vitest) |
 | `npm run typecheck` / `npm run lint` | Controlli singoli |
 | `npm run check:release` | Controllo di produzione: fallisce finché mancano URL legali, bundle id, progetto EAS |
-| `npm run web` | Anteprima nel browser (solo sviluppo; alcune finestre di conferma native non compaiono sul web) |
+| `npm run web` | Demo nel browser su http://localhost:8081 (vedi sotto) |
 
 ## Struttura
 

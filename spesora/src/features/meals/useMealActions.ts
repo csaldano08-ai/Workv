@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Alert } from 'react-native';
+import { Alert } from '../../ui/dialog';
 import { formatQtyWithUnit } from '../../core/domain/quantity';
 import type { MealStatus, PlannedMeal } from '../../core/domain/types';
 import { catalogIndex, useApp } from '../app/AppProvider';

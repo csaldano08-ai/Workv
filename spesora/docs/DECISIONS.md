@@ -29,5 +29,5 @@ Widget iOS, riconoscimento foto, scansione scontrini, sincronizzazione familiare
 - Confezioni "formato comune" generiche: da verificare in negozio.
 - Notifiche e tocco ad app chiusa verificati solo nei test unitari e nel codice: **da provare sul dispositivo** (vedi TESTING).
 - Il menù azioni su Android usa un foglio personalizzato; Android non è stato provato su dispositivo.
-- Sul web (solo sviluppo) le finestre `Alert` di conferma non compaiono: conferma spesa, rigenera e cancella dati vanno provati su iPhone.
+- Sul web (solo demo) le conferme usano le finestre del browser (`src/ui/dialog.ts`) e le notifiche non sono disponibili.
 - Backup: il file `spesora.db` sta nella cartella documenti dell'app ed è incluso nei backup iCloud/computer secondo le impostazioni iOS dell'utente (comportamento standard, non escluso dall'app).

@@ -1,5 +1,7 @@
-import { router, useLocalSearchParams } from 'expo-router';
-import { Alert, View } from 'react-native';
+import { useLocalSearchParams } from 'expo-router';
+import { goBack } from '../../src/features/navigation';
+import { View } from 'react-native';
+import { Alert } from '../../src/ui/dialog';
 import { formatLongDate } from '../../src/core/domain/dates';
 import { checkHardConstraints } from '../../src/core/domain/planner';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
@@ -39,7 +41,7 @@ export default function RepeatRecipe() {
                   onPress={async () => {
                     await run((s) => s.replaceRecipe(m.id, recipe.id, 'repeat'));
                     Alert.alert('Fatto', `${recipe.name} aggiunta a ${formatLongDate(m.date)}.`);
-                    router.back();
+                    goBack('/settimana');
                   }}
                 />
               </View>

@@ -1,7 +1,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { Alert, Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { Alert } from '../../src/ui/dialog';
 import { capitalize, formatLongDate, formatShortDate, weekdayOf, weekdayShort } from '../../src/core/domain/dates';
 import { formatQtyWithUnit, toMilli } from '../../src/core/domain/quantity';
 import type { ShoppingLine, ShoppingTripPlan } from '../../src/core/domain/shopping';

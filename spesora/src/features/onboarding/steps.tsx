@@ -456,7 +456,7 @@ export function ToggleRow({ label, value, onChange }: { label: string; value: bo
       <Text variant="body" style={styles.dayName}>
         {label}
       </Text>
-      <Switch value={value} onValueChange={onChange} trackColor={{ true: colors.green, false: colors.line }} thumbColor={colors.white} importantForAccessibility="no" />
+      <Switch value={value} onValueChange={onChange} trackColor={{ true: colors.green, false: colors.line }} thumbColor={colors.white} accessible={false} />
     </Pressable>
   );
 }

@@ -1,4 +1,5 @@
-import { router, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
+import { goBack } from '../../src/features/navigation';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import { formatLongDate } from '../../src/core/domain/dates';
@@ -51,7 +52,7 @@ export default function ReplaceMeal() {
           accessibilityLabel={`Scegli ${a.recipe.name}, ${a.recipe.totalMinutes} minuti`}
           onPress={async () => {
             await run((s) => s.replaceRecipe(meal.id, a.recipe.id));
-            router.back();
+            goBack('/settimana');
           }}
         >
           {({ pressed }) => (

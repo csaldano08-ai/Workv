@@ -31,7 +31,7 @@ function Topping({ category, seed }: { category: DishCategory; seed: number }) {
   switch (category) {
     case 'pasta':
       return (
-        <G rotation={rot} origin="100, 100" fill="none" stroke="#E2B860" strokeWidth={5} strokeLinecap="round">
+        <G transform={`rotate(${rot} 100 100)`} fill="none" stroke="#E2B860" strokeWidth={5} strokeLinecap="round">
           <Path d="M70 90 q10 -12 20 0 t20 0 t20 0" />
           <Path d="M66 104 q10 -12 20 0 t20 0 t20 0 t10 0" />
           <Path d="M72 118 q10 -12 20 0 t20 0 t20 0" />
@@ -43,11 +43,11 @@ function Topping({ category, seed }: { category: DishCategory; seed: number }) {
     case 'riso':
     case 'cereali':
       return (
-        <G rotation={rot} origin="100, 100">
+        <G transform={`rotate(${rot} 100 100)`}>
           {Array.from({ length: 22 }, (_, i) => {
             const a = (i * 137.5 * Math.PI) / 180;
             const r = 6 + (i % 7) * 4.5;
-            return <Ellipse key={i} cx={100 + Math.cos(a) * r} cy={100 + Math.sin(a) * r} rx={4} ry={2} fill={category === 'riso' ? '#F7F2E4' : '#D7B77A'} rotation={i * 31} origin={`${100 + Math.cos(a) * r}, ${100 + Math.sin(a) * r}`} />;
+            return <Ellipse key={i} cx={100 + Math.cos(a) * r} cy={100 + Math.sin(a) * r} rx={4} ry={2} fill={category === 'riso' ? '#F7F2E4' : '#D7B77A'} transform={`rotate(${i * 31} ${100 + Math.cos(a) * r} ${100 + Math.sin(a) * r})`} />;
           })}
           <Circle cx="112" cy="92" r="5" fill={colors.green} />
           <Circle cx="90" cy="110" r="4" fill={colors.peach} />
@@ -66,7 +66,7 @@ function Topping({ category, seed }: { category: DishCategory; seed: number }) {
       );
     case 'carne':
       return (
-        <G rotation={rot} origin="100, 100">
+        <G transform={`rotate(${rot} 100 100)`}>
           <Ellipse cx="96" cy="100" rx="30" ry="20" fill="#B5674A" />
           <Path d="M76 96 q20 -10 40 0" stroke="#E7B49A" strokeWidth={3} fill="none" />
           <Circle cx="124" cy="116" r="6" fill={colors.green} />
@@ -75,7 +75,7 @@ function Topping({ category, seed }: { category: DishCategory; seed: number }) {
       );
     case 'pesce':
       return (
-        <G rotation={rot} origin="100, 100">
+        <G transform={`rotate(${rot} 100 100)`}>
           <Path d="M66 100 q34 -26 64 0 q-30 26 -64 0 z" fill="#E59A7A" />
           <Path d="M130 100 l14 -10 v20 z" fill="#E59A7A" />
           <Path d="M84 92 q6 8 0 16 M98 90 q6 10 0 20" stroke="#F6C9B5" strokeWidth={3} fill="none" />
@@ -103,7 +103,7 @@ function Topping({ category, seed }: { category: DishCategory; seed: number }) {
       );
     case 'pane':
       return (
-        <G rotation={rot} origin="100, 100">
+        <G transform={`rotate(${rot} 100 100)`}>
           <Rect x="70" y="80" width="60" height="40" rx="18" fill="#D9A15D" />
           <Path d="M84 86 l-6 28 M100 84 l-6 32 M116 86 l-6 28" stroke="#F1D4A0" strokeWidth={3} />
           <Circle cx="132" cy="122" r="6" fill="#C8553D" />
@@ -121,7 +121,7 @@ function Topping({ category, seed }: { category: DishCategory; seed: number }) {
       );
     case 'colazione_salata':
       return (
-        <G rotation={rot} origin="100, 100">
+        <G transform={`rotate(${rot} 100 100)`}>
           <Rect x="72" y="80" width="56" height="40" rx="8" fill="#D9A15D" />
           <Rect x="78" y="86" width="44" height="28" rx="6" fill="#8DB580" />
           <Circle cx="92" cy="100" r="6" fill="#E59A7A" />
@@ -140,7 +140,7 @@ function Topping({ category, seed }: { category: DishCategory; seed: number }) {
     case 'verdure':
     default:
       return (
-        <G rotation={rot} origin="100, 100">
+        <G transform={`rotate(${rot} 100 100)`}>
           <Path d="M80 108 q-6 -28 20 -34 q4 26 -20 34 z" fill="#6E9F62" />
           <Path d="M104 112 q2 -30 28 -28 q-2 26 -28 28 z" fill="#8DB580" />
           <Circle cx="96" cy="118" r="8" fill="#E0614F" />

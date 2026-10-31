@@ -1,4 +1,5 @@
-import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams } from 'expo-router';
+import { goBack } from '../../src/features/navigation';
 import { useState } from 'react';
 import { DEFAULT_NOTIFICATION_SETTINGS } from '../../src/core/notifications/schedule';
 import { useApp } from '../../src/features/app/AppProvider';
@@ -32,7 +33,7 @@ export default function EditPreference() {
       return true;
     });
     setBusy(false);
-    if (ok) router.back();
+    if (ok) goBack('/impostazioni');
   };
 
   return (

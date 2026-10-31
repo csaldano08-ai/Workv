@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, AppState } from 'react-native';
+import { AppState } from 'react-native';
+import { Alert } from '../../ui/dialog';
 import { CatalogIndex } from '../../core/domain/catalog';
 import { toIsoLocal } from '../../core/domain/dates';
 import { configureNotifications, syncNotifications } from '../../core/notifications/NotificationScheduler';
