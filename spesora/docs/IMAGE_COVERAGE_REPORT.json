@@ -1,25 +1,7 @@
 {
   "catalog_count": 156,
-  "validated_count": 78,
+  "validated_count": 96,
   "missing": [
-    "calamari_friggitrice.png",
-    "pollo_peperoni.png",
-    "bresaola_rucola_parmigiano.png",
-    "cosce_pollo_patate_forno.png",
-    "cozze_marinara.png",
-    "tacchino_rosmarino_insalata.png",
-    "merluzzo_impanato_friggitrice.png",
-    "orata_forno_patate.png",
-    "frittata_forno_patate_cipolle.png",
-    "frittata_zucchine.png",
-    "gamberi_zucchine_curcuma.png",
-    "hamburger_insalata.png",
-    "insalata_sgombro_fagioli.png",
-    "involtini_pollo_cotto_scamorza.png",
-    "lonza_mele.png",
-    "merluzzo_pomodorini_capperi.png",
-    "omelette_spinaci_scamorza.png",
-    "pasta_gamberetti_pomodorini.png",
     "peperoni_ripieni_carne.png",
     "pesce_spada_siciliana.png",
     "pollo_al_limone.png",
@@ -83,7 +65,7 @@
   ],
   "errors": [],
   "unexpected_pngs": [],
-  "total_bytes": 62967168,
+  "total_bytes": 77140328,
   "complete": false
 }
 
