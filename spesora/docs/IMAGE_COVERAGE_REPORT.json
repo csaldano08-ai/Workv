@@ -1,22 +1,7 @@
 {
   "catalog_count": 156,
-  "validated_count": 129,
+  "validated_count": 144,
   "missing": [
-    "insalatone_cannellini_mais.png",
-    "lenticchie_umido.png",
-    "parmigiana_leggera.png",
-    "pasta_e_ceci.png",
-    "patate_dolci_ripiene.png",
-    "patate_fagiolini_uova.png",
-    "piadina_crudo_rucola.png",
-    "polpette_ceci_friggitrice.png",
-    "noodles_tempeh_peperoni.png",
-    "tofu_croccante_broccoli.png",
-    "tofu_saltato_verdure.png",
-    "torta_salata_zucchine.png",
-    "verza_stufata_fagioli.png",
-    "zucchine_ripiene_couscous.png",
-    "zuppa_piselli_spezzati.png",
     "ananas_menta_lime.png",
     "bruschetta_pomodoro.png",
     "ceci_croccanti_friggitrice.png",
@@ -32,7 +17,7 @@
   ],
   "errors": [],
   "unexpected_pngs": [],
-  "total_bytes": 103542338,
+  "total_bytes": 116035838,
   "complete": false
 }
 
