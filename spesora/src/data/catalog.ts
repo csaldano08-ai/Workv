@@ -12,12 +12,14 @@ import { SECONDI_2 } from './recipes/secondi_2';
 import { VEGETALI_2 } from './recipes/vegetali_2';
 import { COLAZIONI_DOLCI_3 } from './recipes/b3_colazioni_dolci';
 import { COLAZIONI_SALATE_3 } from './recipes/b3_colazioni_salate';
+import { PASTA_3 } from './recipes/b3_pasta';
+import { RISO_ZUPPE_3 } from './recipes/b3_riso_zuppe';
 import { SPUNTINI_3 } from './recipes/b3_spuntini';
 
 /** Catalogo incluso nell'app: ingredienti canonici e ricette originali. */
 export const CATALOG: Catalog = {
   ingredients: [...INGREDIENTS, ...INGREDIENTS_2, ...INGREDIENTS_3],
   recipes: [...PRANZI_CENE, ...SECONDI, ...COLAZIONI, ...SPUNTINI, ...PRIMI_2, ...SECONDI_2, ...VEGETALI_2, ...COLAZIONI_SPUNTINI_2,
-    ...COLAZIONI_DOLCI_3, ...COLAZIONI_SALATE_3, ...SPUNTINI_3,
+    ...COLAZIONI_DOLCI_3, ...COLAZIONI_SALATE_3, ...PASTA_3, ...RISO_ZUPPE_3, ...SPUNTINI_3,
   ],
 };
