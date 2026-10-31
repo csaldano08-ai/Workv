@@ -1,0 +1,26 @@
+# Prodotto — prima versione (MVP)
+
+Spesora è un calendario che decide cosa cucinare, quando fare la spesa e cosa comprare. Non è un ricettario, un conta-calorie o un chatbot.
+
+## Funzioni realizzate
+
+- **Onboarding in 13 passi brevi** con salvataggio progressivo, ritorno indietro e ripresa dopo il riavvio: persone, pasti, dieta (onnivoro, pescetariano, vegetariano, vegano), esclusioni per i 14 allergeni UE e ingredienti specifici, non graditi, tempo (feriali/weekend/per giorno), orari (feriali/weekend/per giorno), frequenza e giorni di spesa (con proposta da confermare), budget facoltativo, strumenti, dispensa iniziale, promemoria. Termina con l'**anteprima reale** del calendario generato.
+- **Calendario di 7 giorni** generato dal `MealPlannerEngine` deterministico; rigenerato automaticamente all'apertura quando il precedente è finito. Nel giorno di creazione non vengono proposti pasti il cui orario è già passato.
+- **Oggi**: prossimo pasto con illustrazione, tempo, persone, stato stimato degli ingredienti, apertura della preparazione, avviso del giorno di spesa, conferma dei pasti passati.
+- **Settimana**: vista a 7 giorni con oggi evidenziato e giorni di spesa riconoscibili; per ogni pasto: ricetta, cambia, sposta (scambio con un altro giorno), cucinato / non cucinato / mangio fuori / cucinato altro. Rigenerazione del menù.
+- **Ricetta**: porzioni modificabili per il singolo pasto, ingredienti scalati con disponibilità, allergeni con stato "non verificato", passaggi numerati con timer, sostituzioni, preferiti, "aggiungi a un altro giorno".
+- **Spesa**: liste per ciascun giorno di spesa (più eventuale spesa iniziale), raggruppate per reparto, con quantità nette, formati comuni indicativi, ricette di destinazione, avvisi di conservazione, voci già coperte dalla dispensa. Spunta = "nel carrello"; solo la **conferma** (anche parziale) porta i prodotti in dispensa.
+- **Dispensa**: quantità confermate e stimate distinte, quantità previste dai prossimi pasti, avviso "potrebbe non bastare", correzione, consumo fuori app, scadenze inserite dall'utente, basi "quanto basta".
+- **Ricettario**: ricerca per nome/ingrediente/strumento, filtri per pasto, durata, preferite, compatibilità.
+- **Notifiche locali**: inizio preparazione (orario pasto − durata ricetta − anticipo), giorno di spesa, fine calendario; fasce di silenzio; scelta dei pasti; notifica di prova; apertura diretta della ricetta o della lista anche ad app chiusa.
+- **Impostazioni**: modifica di ogni preferenza (ricalcola i pasti futuri), notifiche, storico, Plus, privacy, esportazione JSON, cancellazione totale con doppia conferma.
+- **Spesora Plus**: schermata trasparente; acquisti disabilitati finché lo store non è configurato, nessun prezzo inventato.
+
+## Confini della prima versione
+
+- Catalogo incluso nell'app (74 ricette). Obiettivo per la pubblicazione: circa 150.
+- Nessun prezzo dei supermercati: il budget è solo memorizzato, non viene mai dichiarato rispettato.
+- Nessuna foto: ogni ricetta usa un'illustrazione vettoriale originale generata dall'app.
+- Nessun backend, account, sincronizzazione, importazione file, widget, scansione, video, AI.
+- Gli abbonamenti non bloccano alcuna funzione (`paywallMode: off`).
+- Spesora non è un dispositivo medico e non certifica l'assenza di allergeni.

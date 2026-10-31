@@ -7,7 +7,7 @@ import { migrate } from '../core/storage/migrations';
 import { SpesoraService } from '../features/app/SpesoraService';
 import { DEFAULT_NOTIFICATION_SETTINGS } from '../core/notifications/schedule';
 import { openNodeDb } from './nodeDb';
-import { catalog, onboardedService, profile, profileA } from './helpers';
+import { catalog, makeService, onboardedService, profile, profileA } from './helpers';
 
 const MONDAY = '2026-11-02';
 
@@ -190,6 +190,14 @@ describe('Test J — persistenza', () => {
     const snap = await service.snapshot('2026-11-09');
     expect(snap.plan?.startDate).toBe('2026-11-09');
     expect(snap.meals[0].date).toBe('2026-11-09');
+  });
+
+  it('un calendario creato nel pomeriggio non segnala il pranzo già passato come problema', async () => {
+    const { service } = await makeService();
+    await service.completeOnboarding(profileA(), [], DEFAULT_NOTIFICATION_SETTINGS, MONDAY, 16 * 60);
+    const snap = await service.snapshot(MONDAY);
+    expect(snap.meals.filter((m) => m.date === MONDAY).map((m) => m.mealType)).toEqual(['cena']);
+    expect(snap.issues).toEqual([]);
   });
 
   it('esporta in JSON e cancella tutti i dati', async () => {

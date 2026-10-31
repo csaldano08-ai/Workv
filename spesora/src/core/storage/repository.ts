@@ -179,11 +179,15 @@ export class Repository {
   ): Promise<number> {
     const sets: string[] = [];
     const params: SqlValue[] = [];
-    if (fields.recipeId !== undefined) (sets.push('recipe_id = ?'), params.push(fields.recipeId));
-    if (fields.servings !== undefined) (sets.push('servings = ?'), params.push(fields.servings));
-    if (fields.timeMinutes !== undefined) (sets.push('time_minutes = ?'), params.push(fields.timeMinutes));
-    if (fields.source !== undefined) (sets.push('source = ?'), params.push(fields.source));
-    if (fields.reasons !== undefined) (sets.push('reasons = ?'), params.push(JSON.stringify(fields.reasons)));
+    const add = (column: string, value: SqlValue) => {
+      sets.push(`${column} = ?`);
+      params.push(value);
+    };
+    if (fields.recipeId !== undefined) add('recipe_id', fields.recipeId);
+    if (fields.servings !== undefined) add('servings', fields.servings);
+    if (fields.timeMinutes !== undefined) add('time_minutes', fields.timeMinutes);
+    if (fields.source !== undefined) add('source', fields.source);
+    if (fields.reasons !== undefined) add('reasons', JSON.stringify(fields.reasons));
     if (sets.length === 0) return 0;
     params.push(id);
     const res = await db.run(`UPDATE planned_meals SET ${sets.join(', ')} WHERE id = ? AND status = 'planned'`, params);

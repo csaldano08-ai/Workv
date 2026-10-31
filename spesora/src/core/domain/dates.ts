@@ -98,3 +98,8 @@ export function formatShortDate(date: IsoDate): string {
   const [, m, d] = parts(date);
   return `${d} ${MONTHS[m - 1].slice(0, 3)}`;
 }
+
+/** Prima lettera maiuscola (solo la prima: "Sabato 31 ottobre"). */
+export function capitalize(text: string): string {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}

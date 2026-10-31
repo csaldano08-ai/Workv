@@ -33,6 +33,8 @@ export interface PlannerInput {
   seed: number;
   /** Pasti già fissati nel periodo (cucinati, saltati, scelti a mano): non vengono rigenerati. */
   keep?: PlannedMeal[];
+  /** Nel primo giorno, non pianificare i pasti il cui orario è già passato (minuti dalla mezzanotte). */
+  skipFirstDayBefore?: number;
 }
 
 export interface PlannerOutput {
@@ -280,6 +282,9 @@ export function generatePlan(input: PlannerInput): PlannerOutput {
       const r = catalog.recipe(kept.recipeId);
       if (r && kept.status === 'planned') applyToState(state, r, kept, catalog);
       else if (r) state.usedThisPlan.set(r.id, (state.usedThisPlan.get(r.id) ?? 0) + 1);
+      continue;
+    }
+    if (input.skipFirstDayBefore !== undefined && slot.date === input.startDate && mealTimeFor(profile, slot.date, slot.mealType) < input.skipFirstDayBefore) {
       continue;
     }
     const maxMinutes = maxMinutesFor(profile, slot.date);

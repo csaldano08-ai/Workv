@@ -19,6 +19,7 @@ export function configureNotifications(): void {
   if (Platform.OS === 'android') {
     void Notifications.setNotificationChannelAsync('promemoria', {
       name: 'Promemoria pasti e spesa',
+      // eslint-disable-next-line import/namespace -- enum esportato dai tipi, falso positivo
       importance: Notifications.AndroidImportance.DEFAULT,
     });
   }

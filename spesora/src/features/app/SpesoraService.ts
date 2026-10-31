@@ -10,6 +10,7 @@ import {
   type PantryOutlookItem,
 } from '../../core/domain/pantry';
 import {
+  compatibleRecipes,
   explainNoCandidates,
   generatePlan,
   maxMinutesFor,
@@ -140,6 +141,7 @@ export class SpesoraService {
       for (const mealType of profile.mealTypes) {
         if (have.has(`${date}|${mealType}`)) continue;
         const { code, message } = explainNoCandidates(profile, this.catalog, mealType, maxMinutesFor(profile, date));
+        if (code === 'no_recipes_in_time' && hasCandidates(profile, this.catalog, mealType, maxMinutesFor(profile, date))) continue; // slot saltato perché già passato
         issues.push({ date, mealType, code, message });
       }
     }
@@ -173,6 +175,7 @@ export class SpesoraService {
     initialPantry: InitialPantryItem[],
     notificationSettings: NotificationSettings,
     today: IsoDate,
+    nowMinutes?: number,
   ): Promise<void> {
     const profile = parseProfile(profileRaw);
     await this.db.transaction(async (tx) => {
@@ -186,12 +189,13 @@ export class SpesoraService {
         }
       }
     });
-    await this.createPlan(profile, today);
+    await this.createPlan(profile, today, undefined, nowMinutes);
   }
 
   /** Crea un nuovo calendario di 7 giorni a partire da `start`. */
-  async createPlan(profile: UserProfile, start: IsoDate, seed = hashString(`spesora|${start}`)): Promise<PlanRow> {
+  async createPlan(profile: UserProfile, start: IsoDate, seed = hashString(`spesora|${start}`), nowMinutes?: number): Promise<PlanRow> {
     const input = await this.plannerInput(profile, start, PLAN_DAYS, seed);
+    input.skipFirstDayBefore = nowMinutes;
     // Pasti già esistenti nel periodo (es. piano precedente sovrapposto) vengono conservati se non più `planned`.
     const existing = await this.repo.getMealsBetween(start, addDays(start, PLAN_DAYS - 1));
     input.keep = existing.filter((m) => m.status !== 'planned');
@@ -209,11 +213,11 @@ export class SpesoraService {
   }
 
   /** All'apertura: se nessun calendario copre oggi, ne genera uno nuovo automaticamente. */
-  async ensureCurrentPlan(today: IsoDate): Promise<boolean> {
+  async ensureCurrentPlan(today: IsoDate, nowMinutes?: number): Promise<boolean> {
     const profile = await this.repo.getProfile();
     if (!profile) return false;
     if (await this.repo.getPlanCovering(today)) return false;
-    await this.createPlan(profile, today);
+    await this.createPlan(profile, today, undefined, nowMinutes);
     return true;
   }
 
@@ -431,4 +435,8 @@ export class SpesoraService {
 export function compareMeals(a: PlannedMeal, b: PlannedMeal): number {
   if (a.date !== b.date) return a.date < b.date ? -1 : 1;
   return MEAL_ORDER[a.mealType] - MEAL_ORDER[b.mealType];
+}
+
+function hasCandidates(profile: UserProfile, catalog: CatalogIndex, mealType: PlannedMeal['mealType'], maxMinutes: number): boolean {
+  return compatibleRecipes(profile, catalog).some((r) => r.mealTypes.includes(mealType) && r.totalMinutes <= maxMinutes);
 }

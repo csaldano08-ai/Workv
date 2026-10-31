@@ -100,14 +100,14 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
 
     for (const ri of recipe.ingredients) {
       const ing = catalog.ingredient(ri.ingredientId);
-      const use = (qty: MilliQty): MealUse => ({ mealId: meal.id, recipeId: recipe.id, date: meal.date, mealType: meal.mealType, qty });
+      const makeUse = (qty: MilliQty): MealUse => ({ mealId: meal.id, recipeId: recipe.id, date: meal.date, mealType: meal.mealType, qty });
 
       if (ri.toTaste || ing.staple || ri.qty === undefined) {
         const present = input.presentStaples.has(ing.id) || (pantryLeft.get(ing.id) ?? 0) > 0;
         if (present || stapleAssigned.has(ing.id)) continue;
         stapleAssigned.add(ing.id);
         const trip = latestTrip ? ensureTrip(latestTrip, false) : ensureTrip(today, true);
-        trip.lines.push({ ingredientId: ing.id, qty: 0, suggestedQty: 0, packs: null, toTaste: true, uses: [use(0)], warnings: [] });
+        trip.lines.push({ ingredientId: ing.id, qty: 0, suggestedQty: 0, packs: null, toTaste: true, uses: [makeUse(0)], warnings: [] });
         continue;
       }
 
@@ -122,7 +122,7 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
         need -= fromPantry;
         const item = covered.get(ing.id) ?? { ingredientId: ing.id, qty: 0, uses: [] };
         item.qty += fromPantry;
-        item.uses.push(use(fromPantry));
+        item.uses.push(makeUse(fromPantry));
         covered.set(ing.id, item);
       }
       if (need === 0) continue;
@@ -140,7 +140,7 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
         if (spare <= 0) continue;
         const take = Math.min(spare, need);
         line.qty += take;
-        line.uses.push(use(take));
+        line.uses.push(makeUse(take));
         need -= take;
       }
       if (need === 0) continue;
@@ -162,7 +162,7 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
         trip.lines.push(line);
       }
       line.qty += need;
-      line.uses.push(use(need));
+      line.uses.push(makeUse(need));
       line.packs = suggestPacks(line.qty, ing.commonPackSizes);
       line.suggestedQty = line.packs ? line.packs.total : roundUpForShopping(line.qty, ing.unit);
 

@@ -55,6 +55,15 @@ describe('Test A — pianificazione ordinaria', () => {
   });
 });
 
+describe('Primo giorno', () => {
+  it('non pianifica i pasti già passati nel giorno di creazione', () => {
+    const { meals, issues } = generatePlan(input(profileA(), { skipFirstDayBefore: 15 * 60 }));
+    expect(meals.filter((m) => m.date === MONDAY).map((m) => m.mealType)).toEqual(['cena']);
+    expect(meals).toHaveLength(13);
+    expect(issues).toEqual([]);
+  });
+});
+
 describe('Test B — ingredienti esclusi', () => {
   it('non seleziona ricette con latte, uova, frutta a guscio o allergeni non verificati', () => {
     const p = profile({ excludedAllergens: ['latte', 'uova', 'frutta_guscio'], mealTypes: ['colazione', 'pranzo', 'cena'] });
