@@ -1,24 +1,7 @@
 {
   "catalog_count": 156,
-  "validated_count": 96,
+  "validated_count": 113,
   "missing": [
-    "peperoni_ripieni_carne.png",
-    "pesce_spada_siciliana.png",
-    "pollo_al_limone.png",
-    "pollo_friggitrice_verdure.png",
-    "piadina_salmone_affumicato.png",
-    "pollo_cacciatora.png",
-    "polpette_al_sugo.png",
-    "polpette_tacchino_carote.png",
-    "salmone_padella_zucchine.png",
-    "saltimbocca_tacchino_speck.png",
-    "scaloppine_limone.png",
-    "spezzatino_piselli.png",
-    "straccetti_pollo_friggitrice.png",
-    "tacchino_curry_cocco.png",
-    "tonno_sesamo_zucchine.png",
-    "uova_al_pomodoro.png",
-    "uova_purgatorio_peperoni.png",
     "hummus_bowl_tahina.png",
     "bowl_edamame_riso.png",
     "caprese_pane.png",
@@ -65,7 +48,7 @@
   ],
   "errors": [],
   "unexpected_pngs": [],
-  "total_bytes": 77140328,
+  "total_bytes": 90437014,
   "complete": false
 }
 
