@@ -58,3 +58,12 @@ Catalogo ricette e ingredienti **non** è nel database: è codice versionato con
 - `src/ui/mascot/`: Timo (sorgente SVG unica), `src/ui/AssistantBubble.tsx`.
 - `src/ui/RecipeImage.tsx` + `src/data/recipe-images.ts` (generato): immagine reale o illustrazione di fallback, proporzioni fisse.
 - `scripts/images/` + `.github/workflows/recipe-images.yml`: pipeline immagini (vedi IMAGES.md).
+
+## Catalogo, budget, abbonamenti (terza iterazione)
+
+- `src/core/domain/meta.ts` (metadati, ingrediente principale, stagione), `nutrition.ts` (stati delle informazioni alimentari), `prices.ts` (IngredientPriceEngine), `cost.ts` (RecipeCostEngine), `budget.ts` (BudgetMealPlanner e proposta di settimana più economica).
+- Validatore del catalogo: diciture vietate, titoli duplicati, duplicati sostanziali (stessa categoria e stessi ingredienti principali).
+- `src/features/recipes/search.ts` (indice di ricerca, filtri, sezioni) e `coverage.ts` (matrice di copertura); `scripts/catalog/report.ts`.
+- SQLite v2: `ingredient_prices` (prezzi personali), `shopping_trips.actual_cents` (importo pagato).
+- `src/core/purchases/revenuecat.ts`: SDK caricato solo se configurato.
+- Immagini: `recipe-image-cards.ts` (app) e `recipe-images.ts` (sorgenti PNG, script di Codex).

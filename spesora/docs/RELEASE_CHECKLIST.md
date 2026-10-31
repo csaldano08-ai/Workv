@@ -29,6 +29,19 @@
 6. Test in **sandbox**: acquisto mensile/annuale, annullamento, ripristino, scadenza, periodo di tolleranza, rinnovo, utente non idoneo alla prova.
 7. Prima di attivare il paywall: decidere `paywallMode` (`soft` consigliato) e quali funzioni Plus bloccare; verificare che l'abbonamento offra valore continuativo (aggiornamenti del catalogo, pianificazione avanzata) come richiesto dalle linee guida Apple 3.1.2.
 
+## 3b. RevenueCat — configurazione nel progetto (fatto / da fare)
+
+- [x] `react-native-purchases` installato; `RevenueCatPurchaseService` (offerte, idoneità alla prova, acquisto, ripristino, gestione, scadenza, tolleranza, errori di rete e annullamento)
+- [ ] `app.json → extra.revenuecat.iosApiKey` con la chiave **pubblica** iOS (`appl_…`), `entitlementId` (`plus`) e `offeringId` (`default`)
+- [ ] `extra.purchasesMode = "revenuecat"` solo nelle build native (development/TestFlight): non funziona in Expo Go
+- [ ] `paywallMode`: resta `off` finché non si decide quali funzioni Plus bloccare (`src/core/purchases/features.ts`)
+
+## 3c. Catalogo e contenuti
+
+- [ ] Revisione culinaria a campione (docs/REVIEW.md) e stato `approved_for_release`
+- [ ] Revisione legale (docs/COMPLIANCE.md)
+- [ ] Immagini: 422 ancora da creare (docs/RICETTE_IMMAGINI_DA_CREARE.md); le mancanti usano l'illustrazione di fallback
+
 ## 4. Scheda App Store
 
 - [ ] Categoria: Cibi e bevande (o Stile di vita)

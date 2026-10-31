@@ -1,3 +1,4 @@
+import { RevenueCatPurchaseService, type RevenueCatConfig } from './revenuecat';
 import type { EntitlementStatus, PlusPackage, PurchaseMode, PurchaseOutcome, PurchaseService } from './types';
 
 /** Modalità predefinita: acquisti non configurati. Nessun prezzo e nessuna attivazione simulata. */
@@ -74,8 +75,9 @@ export class MockPurchaseService implements PurchaseService {
  * (non funziona in Expo Go) e chiavi API: finché non sono configurate si usa la modalità disabilitata.
  * Vedi docs/RELEASE_CHECKLIST.md.
  */
-export function createPurchaseService(mode: PurchaseMode, isDev: boolean): PurchaseService {
+export function createPurchaseService(mode: PurchaseMode, isDev: boolean, revenuecat?: RevenueCatConfig | null): PurchaseService {
   if (mode === 'mock' && isDev) return new MockPurchaseService();
-  // 'revenuecat': implementazione da aggiungere quando chiavi e prodotti saranno disponibili.
+  if (mode === 'revenuecat' && revenuecat?.iosApiKey) return new RevenueCatPurchaseService(revenuecat);
+  // Configurazione mancante: nessun prezzo e nessuna attivazione simulata.
   return new DisabledPurchaseService();
 }

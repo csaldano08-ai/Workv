@@ -44,6 +44,8 @@ Si apre http://localhost:8081 (se non si apre da solo, incollalo in Chrome o Edg
 | `npm run verify` | Typecheck, lint, tutti i test, controlli di catalogo, stringhe, sorgenti e configurazione |
 | `npm test` | Solo i test automatici (Vitest) |
 | `npm run typecheck` / `npm run lint` | Controlli singoli |
+| `npm run catalog:report` | Rapporto di copertura del catalogo per profili alimentari (docs/COVERAGE.md) |
+| `npm run catalog:export-images` | Elenco immagini fatte e da creare per Google Flow |
 | `npm run images -- status` | Stato della produzione delle immagini delle ricette (vedi docs/IMAGES.md) |
 | `npm run mascot:export` | Esporta le pose di Timo in PNG trasparenti |
 | `npm run check:release` | Controllo di produzione: fallisce finché mancano URL legali, bundle id, progetto EAS |
@@ -57,11 +59,11 @@ src/core/domain/     motori puri: pianificazione, spesa, dispensa, date, quantit
 src/core/storage/    SQLite, migrazioni, repository
 src/core/notifications/  calcolo e programmazione degli avvisi locali
 src/core/purchases/  interfaccia abbonamenti (disabilitata / mock solo sviluppo)
-src/data/            catalogo: 191 ingredienti canonici, 156 ricette originali
+src/data/            catalogo: 297 ingredienti canonici, 500 ricette originali (metadati, copertura in docs/COVERAGE.md)
 src/features/        servizio applicativo, onboarding, azioni sui pasti
 src/ui/ src/theme/ src/i18n/   componenti, design token, stringhe
 src/test/            test automatici
 docs/                prodotto, architettura, test, decisioni, checklist di rilascio
 ```
 
-Documentazione: [PRODUCT](docs/PRODUCT.md) · [ARCHITECTURE](docs/ARCHITECTURE.md) · [TESTING](docs/TESTING.md) · [DECISIONS](docs/DECISIONS.md) · [RELEASE_CHECKLIST](docs/RELEASE_CHECKLIST.md) · [LEGAL](docs/LEGAL.md) · [IMAGES](docs/IMAGES.md) · [MASCOT](docs/MASCOT.md)
+Documentazione: [PRODUCT](docs/PRODUCT.md) · [ARCHITECTURE](docs/ARCHITECTURE.md) · [TESTING](docs/TESTING.md) · [DECISIONS](docs/DECISIONS.md) · [RELEASE_CHECKLIST](docs/RELEASE_CHECKLIST.md) · [LEGAL](docs/LEGAL.md) · [IMAGES](docs/IMAGES.md) · [MASCOT](docs/MASCOT.md) · [CATALOG_GUIDE](docs/CATALOG_GUIDE.md) · [COVERAGE](docs/COVERAGE.md) · [REVIEW](docs/REVIEW.md) · [PRICES](docs/PRICES.md) · [COMPLIANCE](docs/COMPLIANCE.md)

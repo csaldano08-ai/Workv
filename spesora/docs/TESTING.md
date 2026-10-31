@@ -38,3 +38,14 @@ Esegue typecheck (TypeScript strict), ESLint (0 avvisi), Vitest e controllo di c
 6. Chiudi completamente l'app e riaprila: dati invariati.
 7. Testo grande (Impostazioni iOS → Schermo e luminosità → Dimensioni testo) e VoiceOver sulle schermate principali.
 8. Doppio tocco rapido su "Ho cucinato": la quantità in dispensa diminuisce una sola volta.
+
+## Terza iterazione
+
+| Area | Dove | Cosa verifica |
+| --- | --- | --- |
+| Catalogo a scala | `catalog-scale.test.ts` | ≥ 500 ricette, ID unici, metadati per tutte, nessuna approvata senza revisione, timer ≤ tempo totale, nessun claim, informazioni alimentari mai "verified", pescetariano, copertura per 20 profili ≥ 7 ricette per pasto, varietà vegetariana a 20 minuti, settimane successive diverse, ricerca e filtri, sezioni del ricettario, prestazioni con 500/1.000/1.500 ricette |
+| Budget e prezzi | `budget.test.ts` | g↔kg, ml↔l, prezzo per quantità e per confezione, aggregazione, avanzi, prezzi mancanti e obsoleti, centesimi, porzioni, più persone, pasti selezionati, distribuzione per giorni, spesa stimata vs reale, nessun doppio conteggio, esclusioni mai superate, migrazione profili, budget impossibile |
+| Abbonamenti | `purchases.test.ts` | Entitlement attivo, tolleranza, scaduto; errori (annullato, rete, pagamento in attesa); pacchetti dallo store; nessun mock in produzione |
+| Migrazioni | `service.test.ts` | Schema v2 (prezzi personali, importo speso), idempotenza |
+
+Nota: i commit intermedi dell'espansione (263 e 359 ricette) hanno un solo test in ritardo, la corrispondenza tra manifest immagini e catalogo, risincronizzato dopo l'integrazione dei commit di Codex.

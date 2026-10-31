@@ -48,3 +48,10 @@ npm run images -- map                        # rigenera la mappatura
 ```
 
 Se in futuro userai Google Flow dal tuo browser, basta scaricare le immagini nominandole con l'ID della ricetta (vedi `manifest.json`) e usare `import`: controlli, ottimizzazione e integrazione restano automatici.
+
+## Coordinamento con la produzione Google Flow (Codex)
+
+- Codex genera le illustrazioni con Google Flow e le salva come PNG (1200×900) in `assets/recipes/<id>.png`, aggiornando `IMAGE_GENERATION_PROGRESS.json`, il manifest e `src/data/recipe-images.ts` con il suo script `flow_assets.py`.
+- **L'app non importa i PNG**: usa `src/data/recipe-image-cards.ts`, con card 800×600 JPEG (~40 KB) in `assets/recipes/card/`, generate da `npm run images -- cards` senza toccare i sorgenti. Il bundle iOS passa così da decine di MB a pochi MB.
+- La GitHub Action **"Spesora · card immagini ricette"** rigenera le card automaticamente quando arrivano nuovi PNG (nessuna API, nessun costo).
+- Elenco completo con stato: `docs/RICETTE_IMMAGINI.md` / `.csv`; solo le mancanti: `docs/RICETTE_IMMAGINI_DA_CREARE.md` (`npm run catalog:export-images`). Le 344 nuove ricette sono già nel registro di avanzamento di Codex come `pending`.

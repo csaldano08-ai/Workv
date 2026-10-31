@@ -35,3 +35,12 @@ Spesora è un calendario che decide cosa cucinare, quando fare la spesa e cosa c
 - **Plus**: registro delle funzioni premium (`src/core/purchases/features.ts`), etichette PLUS nelle impostazioni, nessun blocco attivo (`paywallMode: off`).
 
 Spesora resta un organizzatore di cucina e spesa: nessuna caloria, nessun piano dietetico, nessuna indicazione medica.
+
+## Catalogo da 500 ricette e budget (terza iterazione)
+
+- **500 ricette** (156 + 344 nuove), 297 ingredienti canonici, metadati editoriali (cucina italiana o internazionale, regione, difficoltà, tecnica, famiglia di varianti, stagioni, conservazione, stato di revisione). Copertura per profili in `COVERAGE.md`.
+- **Ricettario**: ricerca per titolo, ingrediente o regione; filtri per portata, pasto, dieta, tempo, preferite ed esclusioni; sezioni "Idee per questa settimana", "Con ciò che hai in dispensa", "Pronto in 15 minuti", "Pochi ingredienti", "Piatti italiani", "Piatti unici", "Colazioni salate".
+- **Nuove preferenze**: legumi, preparazioni vegetali; etichette senza claim nutrizionali.
+- **Budget**: questionario (meno possibile, equilibrato, limite preciso, solo gusti; settimanale o mensile; ambito; tipo di negozio facoltativo), prezzi personali, costo indicativo di ricette e uscite, budget residuo, importo pagato, "Rendi questa settimana più economica". Vedi `PRICES.md`.
+- **Informazioni alimentari** con stati espliciti: nessun claim "senza glutine", "senza zuccheri", "proteico" o "bio".
+- **Abbonamenti**: integrazione RevenueCat pronta, attiva solo con chiave e prodotti reali.

@@ -41,6 +41,9 @@ export function checkConfig(appJson, packageJson, { release }) {
   if (extra.purchasesMode === 'revenuecat' && !packageJson?.dependencies?.['react-native-purchases']) {
     errors.push('purchasesMode "revenuecat" senza dipendenza react-native-purchases');
   }
+  if (extra.purchasesMode === 'revenuecat' && !extra.revenuecat?.iosApiKey) errors.push('purchasesMode "revenuecat" senza extra.revenuecat.iosApiKey');
+  if (extra.purchasesMode !== 'revenuecat') releaseIssue('Abbonamenti non attivi: impostare extra.purchasesMode = "revenuecat" con la chiave pubblica iOS di RevenueCat');
+  if (extra.revenuecat?.iosApiKey && !/^appl_[A-Za-z0-9]{10,}$/.test(extra.revenuecat.iosApiKey)) errors.push('extra.revenuecat.iosApiKey non ha il formato di una chiave pubblica iOS RevenueCat (appl_…)');
   const legal = extra.legal ?? {};
   for (const key of ['privacyPolicyUrl', 'termsUrl', 'supportUrl']) {
     const value = legal[key];

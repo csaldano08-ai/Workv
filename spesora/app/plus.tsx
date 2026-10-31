@@ -33,7 +33,7 @@ function outcomeMessage(o: PurchaseOutcome): string {
 }
 
 export default function Plus() {
-  const service = useMemo(() => createPurchaseService(appConfig.purchasesMode, __DEV__), []);
+  const service = useMemo(() => createPurchaseService(appConfig.purchasesMode, __DEV__, appConfig.revenuecat), []);
   const [packages, setPackages] = useState<PlusPackage[] | null>(null);
   const [unavailable, setUnavailable] = useState<string | null>(null);
   const [entitlement, setEntitlement] = useState<EntitlementStatus>({ state: 'none' });

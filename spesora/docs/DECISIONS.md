@@ -40,3 +40,12 @@ Widget iOS, riconoscimento foto, scansione scontrini, sincronizzazione familiare
 19. **Mascotte vettoriale**: una sola sorgente SVG per app e PNG, nessun peso aggiuntivo nell'app.
 20. **Immagini ricette con API ufficiale**: niente automazione di Google Flow senza un browser autorizzato dall'utente, niente API non ufficiali o cookie. Immagini incerte escluse dall'app finché non approvate.
 21. Il formulario ha 16 passi: una bozza salvata con la versione precedente può riprendere da un passo diverso (accettabile prima del rilascio).
+
+## Terza iterazione
+
+22. **Metadati separati dai fatti derivabili**: allergeni e diete restano calcolati dagli ingredienti; i metadati editoriali (`meta`) sono inline per le nuove ricette e in `recipeMeta_legacy.ts` per le prime 156, per non toccare i file originali.
+23. **Catalogo in TypeScript anche a 1.500 ricette**: test di scala mostrano calendario e ricerca nell'ordine dei millisecondi; il bundle JS cresce di circa 2,4 MB per 344 ricette. Una base dati locale non è necessaria ora.
+24. **Nessun prezzo di riferimento** finché una fonte con licenza e copertura verificate non è disponibile; il motore funziona con i prezzi personali e misura comunque il numero di prodotti da comprare.
+25. **Budget come preferenza forte, non vincolo alimentare**: mai sopra allergie ed esclusioni, mai riduzione di pasti o porzioni.
+26. **Immagini dell'app = card ottimizzate**: i PNG di Google Flow restano la fonte, l'app usa JPEG 800×600; due mappature separate per non interferire con il flusso di Codex.
+27. **RevenueCat caricato in modo pigro** (solo con `purchasesMode = "revenuecat"` e chiave): Expo Go e la demo web restano invariati.
