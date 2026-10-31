@@ -126,7 +126,22 @@
   "frittelle_verdure_ceci": "assets/recipes/frittelle_verdure_ceci.png",
   "insalata_ceci_tonno": "assets/recipes/insalata_ceci_tonno.png",
   "insalata_greca": "assets/recipes/insalata_greca.png",
+  "insalatone_cannellini_mais": "assets/recipes/insalatone_cannellini_mais.png",
+  "lenticchie_umido": "assets/recipes/lenticchie_umido.png",
+  "parmigiana_leggera": "assets/recipes/parmigiana_leggera.png",
+  "pasta_e_ceci": "assets/recipes/pasta_e_ceci.png",
+  "patate_dolci_ripiene": "assets/recipes/patate_dolci_ripiene.png",
+  "patate_fagiolini_uova": "assets/recipes/patate_fagiolini_uova.png",
+  "piadina_crudo_rucola": "assets/recipes/piadina_crudo_rucola.png",
+  "polpette_ceci_friggitrice": "assets/recipes/polpette_ceci_friggitrice.png",
+  "noodles_tempeh_peperoni": "assets/recipes/noodles_tempeh_peperoni.png",
   "tacos_lenticchie": "assets/recipes/tacos_lenticchie.png",
+  "tofu_croccante_broccoli": "assets/recipes/tofu_croccante_broccoli.png",
+  "tofu_saltato_verdure": "assets/recipes/tofu_saltato_verdure.png",
+  "torta_salata_zucchine": "assets/recipes/torta_salata_zucchine.png",
+  "verza_stufata_fagioli": "assets/recipes/verza_stufata_fagioli.png",
+  "zucchine_ripiene_couscous": "assets/recipes/zucchine_ripiene_couscous.png",
+  "zuppa_piselli_spezzati": "assets/recipes/zuppa_piselli_spezzati.png",
   "yogurt_banana_cacao": "assets/recipes/yogurt_banana_cacao.png"
 }
 
