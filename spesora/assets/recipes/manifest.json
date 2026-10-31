@@ -430,16 +430,23 @@
         "limone",
         "lievito_dolci"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/ciambellone_friggitrice.png",
       "promptHash": "65484b192a7db4ed",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 630289,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor and checked downloaded file mapping. Golden ring cake with central hole and cut wedge exposing pale lemon crumb; no icing. Consistent 2D gouache, simple ivory setting, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:11:22.729311+00:00"
     },
     "cosce_pollo_patate_forno": {
       "id": "cosce_pollo_patate_forno",
@@ -574,16 +581,23 @@
         "polenta_istantanea",
         "sciroppo_acero"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/crema_polenta_mele.png",
       "promptHash": "03ba326cd472205d",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 614290,
+        "semantic": null,
+        "notes": [
+          "Viewed individually: creamy pale yellow polenta with tender apple slices and amber maple syrup in a bowl, no props; coherent 2D gouache, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:08:11.076606+00:00"
     },
     "crepes_marmellata": {
       "id": "crepes_marmellata",
@@ -599,16 +613,23 @@
         "marmellata",
         "burro"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/crepes_marmellata.png",
       "promptHash": "5e57fc449c34eb82",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 744509,
+        "semantic": null,
+        "notes": [
+          "Viewed individually: thin golden quarter-folded crepes with visible red jam, ivory plate only; coherent 2D gouache, no added fruit, text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:07:56.875801+00:00"
     },
     "crostoni_cavolo_nero_cannellini": {
       "id": "crostoni_cavolo_nero_cannellini",
@@ -769,16 +790,23 @@
         "fette_biscottate",
         "marmellata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/fette_biscottate_ricotta_marmellata.png",
       "promptHash": "508819ea41533d04",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 747960,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor and checked downloaded file mapping. Crisp rusks with white ricotta and red jam. Consistent 2D gouache, simple ivory setting, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:11:24.157182+00:00"
     },
     "french_toast_fragole": {
       "id": "french_toast_fragole",
@@ -795,16 +823,23 @@
         "sciroppo_acero",
         "burro"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/french_toast_fragole.png",
       "promptHash": "2b2fce3393022b3c",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 749290,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor and checked downloaded file mapping. Golden egg-soaked bread with red strawberries and light maple drizzle. Consistent 2D gouache, simple ivory setting, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:11:23.665392+00:00"
     },
     "frittata_forno_patate_cipolle": {
       "id": "frittata_forno_patate_cipolle",
@@ -894,16 +929,23 @@
         "fragole",
         "banana"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/frullato_fragole_banana.png",
       "promptHash": "c229a2a693a9278e",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 423271,
+        "semantic": null,
+        "notes": [
+          "Viewed individually: single glass of creamy pink strawberry banana smoothie, no loose fruit or straw; coherent 2D gouache, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:09:30.352995+00:00"
     },
     "frullato_kefir_pesca": {
       "id": "frullato_kefir_pesca",
@@ -918,16 +960,23 @@
         "pesca",
         "miele"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/frullato_kefir_pesca.png",
       "promptHash": "25f964fe1b2439c2",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 443670,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor and checked downloaded file mapping. Creamy pale peach kefir smoothie in single glass, no loose fruit. Consistent 2D gouache, simple ivory setting, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:12:43.052341+00:00"
     },
     "gallette_ricotta_miele": {
       "id": "gallette_ricotta_miele",
@@ -1230,16 +1279,23 @@
         "banana",
         "cereali_colazione"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/latte_cereali_banana.png",
       "promptHash": "3cc7c935775e73b2",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 674300,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor and checked downloaded file mapping. White milk, cornflakes and banana rounds in bowl; no extra toppings. Consistent 2D gouache, simple ivory setting, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:11:23.234448+00:00"
     },
     "lenticchie_umido": {
       "id": "lenticchie_umido",
@@ -1305,16 +1361,23 @@
         "kiwi",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/macedonia_mattino.png",
       "promptHash": "b54637e0ed8531be",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 673077,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor and checked downloaded file mapping. Cut orange, apple, banana and kiwi fruit salad, no extra fruit. Consistent 2D gouache, simple ivory setting, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:12:43.442628+00:00"
     },
     "mela_cotta_cannella": {
       "id": "mela_cotta_cannella",
@@ -1328,16 +1391,23 @@
         "mela",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/mela_cotta_cannella.png",
       "promptHash": "cef8f104c49047b0",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 608502,
+        "semantic": null,
+        "notes": [
+          "Viewed individually: soft wrinkled baked apple with tender exposed flesh, cooking juice and cinnamon on plate; no props, coherent 2D gouache.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:09:29.867822+00:00"
     },
     "mela_mandorle": {
       "id": "mela_mandorle",
@@ -1602,16 +1672,23 @@
         "fiocchi_avena",
         "miele"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/overnight_oats_mirtilli.png",
       "promptHash": "f39bbba2e9dda54a",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 673317,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor and checked downloaded file mapping. Soaked oats in yogurt and milk with dark blueberries and honey. Consistent 2D gouache, simple ivory setting, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:12:42.581588+00:00"
     },
     "palline_datteri_cacao": {
       "id": "palline_datteri_cacao",
@@ -1683,16 +1760,23 @@
         "banana",
         "sciroppo_acero"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pancake_ceci_banana.png",
       "promptHash": "7a1c9aa6b27bc86b",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 820527,
+        "semantic": null,
+        "notes": [
+          "Viewed individually: rustic chickpea banana pancake stack with dense yellow cut crumb, banana and maple syrup; distinct from regular pancakes, no raw props, coherent 2D gouache.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:09:29.405121+00:00"
     },
     "pane_burro_arachidi_banana": {
       "id": "pane_burro_arachidi_banana",
@@ -2308,16 +2392,23 @@
         "lime",
         "semi_zucca"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/patata_dolce_avocado.png",
       "promptHash": "60386a1f92ed53d9",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 806213,
+        "semantic": null,
+        "notes": [
+          "Viewed individually: roasted orange sweet potato slices with mashed avocado, pumpkin seeds and lime, no bread or props; coherent 2D gouache, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:07:42.042140+00:00"
     },
     "patate_dolci_ripiene": {
       "id": "patate_dolci_ripiene",
@@ -3804,16 +3895,23 @@
         "muesli",
         "miele"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/yogurt_kiwi_granola.png",
       "promptHash": "5acafd243b136861",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 745501,
+        "semantic": null,
+        "notes": [
+          "Viewed individually: thick white yogurt with green kiwi slices, oat muesli and honey, bowl only. No extra fruit, coherent 2D gouache, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:09:50.738002+00:00"
     },
     "yogurt_soia_avena_fragole": {
       "id": "yogurt_soia_avena_fragole",
