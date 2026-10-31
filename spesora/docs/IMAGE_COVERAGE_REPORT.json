@@ -1,23 +1,7 @@
 {
   "catalog_count": 156,
-  "validated_count": 113,
+  "validated_count": 129,
   "missing": [
-    "hummus_bowl_tahina.png",
-    "bowl_edamame_riso.png",
-    "caprese_pane.png",
-    "carciofi_patate_padella.png",
-    "cavoletti_ceci_friggitrice.png",
-    "cavolfiore_ceci_forno.png",
-    "ceci_spinaci_padella.png",
-    "chili_fagioli_neri.png",
-    "dal_lenticchie_rosse.png",
-    "crostoni_cavolo_nero_cannellini.png",
-    "curry_ceci_cocco.png",
-    "fagioli_uccelletto.png",
-    "borlotti_mais_piccanti.png",
-    "farinata_ceci_forno.png",
-    "frittelle_verdure_ceci.png",
-    "insalata_ceci_tonno.png",
     "insalatone_cannellini_mais.png",
     "lenticchie_umido.png",
     "parmigiana_leggera.png",
@@ -48,7 +32,7 @@
   ],
   "errors": [],
   "unexpected_pngs": [],
-  "total_bytes": 90437014,
+  "total_bytes": 103542338,
   "complete": false
 }
 
