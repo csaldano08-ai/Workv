@@ -10,6 +10,7 @@ import { MEAL_LABELS } from '../../src/i18n/labels';
 import { t } from '../../src/i18n/it';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
+import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
@@ -49,7 +50,7 @@ export default function Week() {
         const meals = snap.meals.filter((m) => m.date === date);
         const shopping = tripDates.has(date);
         return (
-          <View key={date} style={[styles.day, isToday && styles.dayToday, isPast && styles.dayPast]}>
+          <View key={date} style={[styles.day, shopping && styles.dayShopping, isToday && styles.dayToday, isPast && styles.dayPast]}>
             <View style={[styles.dateTab, isToday && { backgroundColor: colors.green }]}>
               <Text variant="caption" color={isToday ? colors.white : colors.inkSoft}>
                 {weekdayShort(weekdayOf(date)).toUpperCase()}
@@ -96,17 +97,17 @@ function MealLine({ meal, onMenu }: { meal: PlannedMeal; onMenu: () => void }) {
         onLongPress={done ? undefined : onMenu}
         style={({ pressed }) => [styles.mealMain, pressed && { opacity: 0.7 }]}
       >
+        {recipe ? <RecipeImage recipe={recipe} style={styles.thumb} rounded={8} /> : null}
+        <View style={styles.mealText}>
         <Text variant="caption" color={colors.inkSoft}>
-          {`${MEAL_LABELS[meal.mealType].toUpperCase()} · ${minutesToHHMM(meal.timeMinutes)}${meal.servings > 1 ? ` · ${meal.servings} pers.` : ''}`}
+          {`${MEAL_LABELS[meal.mealType].toUpperCase()} · ${minutesToHHMM(meal.timeMinutes)}${recipe ? ` · ${recipe.totalMinutes} MIN` : ''}`}
         </Text>
         <View style={styles.nameRow}>
           {statusIcon ? <Ionicons name={statusIcon} size={16} color={meal.status === 'cooked' ? colors.green : colors.inkSoft} /> : null}
           <Text variant="body" color={done ? colors.inkSoft : colors.ink} style={[styles.flex, done && styles.strike]}>
             {recipe?.name ?? 'Ricetta non trovata'}
           </Text>
-          <Text variant="small" color={colors.inkSoft}>
-            {recipe ? `${recipe.totalMinutes}′` : ''}
-          </Text>
+        </View>
         </View>
       </Pressable>
       {!done ? (
@@ -144,7 +145,10 @@ const styles = StyleSheet.create({
   badges: { flexDirection: 'row', gap: space.xs, flexWrap: 'wrap' },
   badge: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: space.sm, paddingVertical: 4, borderRadius: radius.pill },
   mealRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
-  mealMain: { flex: 1, minHeight: TOUCH, justifyContent: 'center', gap: 2 },
+  mealMain: { flex: 1, minHeight: TOUCH, flexDirection: 'row', alignItems: 'center', gap: space.sm },
+  mealText: { flex: 1, gap: 2 },
+  thumb: { width: 52, aspectRatio: 4 / 3 },
+  dayShopping: { borderLeftWidth: 5, borderLeftColor: colors.peach },
   nameRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   more: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center' },
   flex: { flex: 1 },

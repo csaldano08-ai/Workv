@@ -1,0 +1,42 @@
+import { memo, useState } from 'react';
+import { Image, StyleSheet, View, type ViewStyle } from 'react-native';
+import type { Recipe } from '../core/domain/types';
+import { RECIPE_IMAGES } from '../data/recipe-images';
+import { colors } from '../theme/tokens';
+import { DishArt } from './DishArt';
+
+/**
+ * Immagine della ricetta: foto/illustrazione generata se disponibile per quell'ID,
+ * altrimenti l'illustrazione vettoriale originale. Proporzioni fisse: il layout non si rompe mai.
+ */
+export const RecipeImage = memo(function RecipeImage({
+  recipe,
+  aspectRatio = 4 / 3,
+  rounded = 18,
+  style,
+}: {
+  recipe: Pick<Recipe, 'id' | 'dishCategory'>;
+  aspectRatio?: number;
+  rounded?: number;
+  style?: ViewStyle;
+}) {
+  const source = RECIPE_IMAGES[recipe.id];
+  const [failed, setFailed] = useState(false);
+  if (!source || failed) {
+    return <DishArt category={recipe.dishCategory} recipeId={recipe.id} rounded={rounded} style={{ aspectRatio, ...style }} />;
+  }
+  return (
+    <View style={[styles.frame, { aspectRatio, borderRadius: rounded }, style]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+      <Image source={source} style={styles.image} resizeMode="cover" onError={() => setFailed(true)} fadeDuration={0} />
+    </View>
+  );
+});
+
+export function hasRecipeImage(id: string): boolean {
+  return id in RECIPE_IMAGES;
+}
+
+const styles = StyleSheet.create({
+  frame: { overflow: 'hidden', backgroundColor: colors.peachSoft, width: '100%' },
+  image: { width: '100%', height: '100%' },
+});

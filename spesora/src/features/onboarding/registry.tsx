@@ -16,6 +16,8 @@ import {
   TimesStep,
   type StepProps,
 } from './steps';
+import { PortionProfileStep, QuantitiesStep, TastesStep } from './stepsPersonal';
+import type { TimoPose } from '../../ui/mascot/timoSvg';
 
 export interface StepDef {
   id: string;
@@ -27,10 +29,15 @@ export interface StepDef {
   validate?: (d: OnboardingDraft) => string | null;
   /** Modificabile dalle Impostazioni. */
   editable?: boolean;
+  /** Frase di Timo mostrata nel passo. */
+  tip?: string;
+  pose?: TimoPose;
+  /** Funzione di personalizzazione avanzata (Spesora Plus in futuro; oggi disponibile a tutti). */
+  premium?: boolean;
 }
 
 export const STEPS: StepDef[] = [
-  { id: 'persone', title: 'Quante persone mangeranno abitualmente?', Component: PeopleStep, editable: true },
+  { id: 'persone', title: 'Quante persone mangeranno abitualmente?', Component: PeopleStep, editable: true, pose: 'saluto', tip: 'Ciao, sono Timo! Bastano due minuti e organizzo io la tua settimana.' },
   {
     id: 'pasti',
     title: 'Quali pasti vuoi organizzare?',
@@ -49,12 +56,44 @@ export const STEPS: StepDef[] = [
     editable: true,
   },
   { id: 'non-graditi', title: 'C’è qualcosa che non ti piace?', subtitle: 'Non lo vedrai nelle ricette proposte.', Component: DislikeStep, optional: true, editable: true },
+  {
+    id: 'porzioni',
+    title: 'Come mangi di solito?',
+    subtitle: 'Serve solo a proporti quantità vicine alle tue abitudini.',
+    Component: PortionProfileStep,
+    editable: true,
+    premium: true,
+    tip: 'Niente diete: uso queste risposte solo per non farti cucinare troppo o troppo poco.',
+  },
+  {
+    id: 'quantita',
+    title: 'Le tue quantità abituali',
+    subtitle: 'Le ricette e la spesa useranno questi valori come base.',
+    Component: QuantitiesStep,
+    editable: true,
+    premium: true,
+    pose: 'cucinare',
+    tip: 'Se di solito cuoci 70 g di pasta, userò 70 g. Semplice.',
+  },
+  {
+    id: 'gusti',
+    title: 'I tuoi gusti',
+    subtitle: 'Scegli liberamente: puoi combinare più preferenze.',
+    Component: TastesStep,
+    optional: true,
+    editable: true,
+    premium: true,
+    pose: 'suggerimento',
+    tip: 'Dimmi cosa ti piace e lo proporrò più spesso, senza rinunciare alla varietà.',
+  },
   { id: 'tempo', title: 'Quanto tempo hai per cucinare?', subtitle: 'Per ogni pasto principale.', Component: TimeStep, editable: true },
   { id: 'orari', title: 'A che ora mangi di solito?', subtitle: 'Servono per i promemoria. Bastano orari indicativi.', Component: TimesStep, editable: true },
   { id: 'frequenza', title: 'Quante volte fai la spesa a settimana?', Component: FrequencyStep },
   {
     id: 'giorni-spesa',
     title: 'In quali giorni fai la spesa?',
+    pose: 'spesa',
+    tip: 'Dividerò la spesa tra questi giorni, così i prodotti freschi restano freschi.',
     Component: ShoppingDaysStep,
     editable: true,
     validate: (d) => (d.profile.shoppingDays.length === 0 ? 'Scegli almeno un giorno.' : null),
@@ -73,6 +112,8 @@ export const STEPS: StepDef[] = [
     title: 'Vuoi dei promemoria?',
     subtitle: 'Un avviso quando è ora di iniziare a cucinare e nei giorni di spesa. Nessuno spam: solo ciò che scegli qui.',
     Component: NotificationsStep,
+    pose: 'suggerimento',
+    tip: 'Ti scrivo solo quando serve: niente spam, promesso.',
   },
 ];
 

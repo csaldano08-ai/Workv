@@ -44,6 +44,8 @@ Si apre http://localhost:8081 (se non si apre da solo, incollalo in Chrome o Edg
 | `npm run verify` | Typecheck, lint, tutti i test, controlli di catalogo, stringhe, sorgenti e configurazione |
 | `npm test` | Solo i test automatici (Vitest) |
 | `npm run typecheck` / `npm run lint` | Controlli singoli |
+| `npm run images -- status` | Stato della produzione delle immagini delle ricette (vedi docs/IMAGES.md) |
+| `npm run mascot:export` | Esporta le pose di Timo in PNG trasparenti |
 | `npm run check:release` | Controllo di produzione: fallisce finché mancano URL legali, bundle id, progetto EAS |
 | `npm run web` | Demo nel browser su http://localhost:8081 (vedi sotto) |
 
@@ -62,4 +64,4 @@ src/test/            test automatici
 docs/                prodotto, architettura, test, decisioni, checklist di rilascio
 ```
 
-Documentazione: [PRODUCT](docs/PRODUCT.md) · [ARCHITECTURE](docs/ARCHITECTURE.md) · [TESTING](docs/TESTING.md) · [DECISIONS](docs/DECISIONS.md) · [RELEASE_CHECKLIST](docs/RELEASE_CHECKLIST.md) · [LEGAL](docs/LEGAL.md)
+Documentazione: [PRODUCT](docs/PRODUCT.md) · [ARCHITECTURE](docs/ARCHITECTURE.md) · [TESTING](docs/TESTING.md) · [DECISIONS](docs/DECISIONS.md) · [RELEASE_CHECKLIST](docs/RELEASE_CHECKLIST.md) · [LEGAL](docs/LEGAL.md) · [IMAGES](docs/IMAGES.md) · [MASCOT](docs/MASCOT.md)

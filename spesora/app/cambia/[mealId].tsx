@@ -8,7 +8,7 @@ import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { MEAL_LABELS } from '../../src/i18n/labels';
 import { colors, space } from '../../src/theme/tokens';
 import { Card } from '../../src/ui/Card';
-import { DishArt } from '../../src/ui/DishArt';
+import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
@@ -58,7 +58,7 @@ export default function ReplaceMeal() {
           {({ pressed }) => (
             <Card style={[styles.card, pressed && { borderColor: colors.green }]}>
               <View style={styles.row}>
-                <DishArt category={a.recipe.dishCategory} recipeId={a.recipe.id} style={styles.thumb} rounded={10} />
+                <RecipeImage recipe={a.recipe} style={styles.thumb} rounded={10} />
                 <View style={styles.flex}>
                   <Text variant="heading">{a.recipe.name}</Text>
                   <Text variant="small" color={colors.inkSoft}>

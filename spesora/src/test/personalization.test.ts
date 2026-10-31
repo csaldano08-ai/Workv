@@ -116,3 +116,16 @@ describe('Compatibilità dei profili salvati', () => {
     await expect(service.updateProfile({ ...p, portions: { ...p.portions, pastaGrams: 10 } }, MONDAY)).rejects.toThrow();
   });
 });
+
+describe('Struttura premium', () => {
+  it('con paywall off o soft nessuna funzione è bloccata; con hard serve un abbonamento attivo', async () => {
+    const { canUse, PLUS_FEATURES } = await import('../core/purchases/features');
+    for (const f of Object.keys(PLUS_FEATURES) as (keyof typeof PLUS_FEATURES)[]) {
+      expect(canUse(f, 'off', { state: 'none' })).toBe(true);
+      expect(canUse(f, 'soft', { state: 'none' })).toBe(true);
+      expect(canUse(f, 'hard', { state: 'none' })).toBe(false);
+      expect(canUse(f, 'hard', { state: 'expired', expiredAt: 'x' })).toBe(false);
+      expect(canUse(f, 'hard', { state: 'active', expiresAt: null, willRenew: true, inGracePeriod: true })).toBe(true);
+    }
+  });
+});

@@ -3,11 +3,11 @@ import { formatLongDate } from '../src/core/domain/dates';
 import { catalogIndex, useApp } from '../src/features/app/AppProvider';
 import { MEAL_LABELS } from '../src/i18n/labels';
 import { t } from '../src/i18n/it';
-import { colors } from '../src/theme/tokens';
+import { AssistantBubble } from '../src/ui/AssistantBubble';
 import { Card } from '../src/ui/Card';
+import { EMPTY } from '../src/i18n/assistant';
 import { Divider, Row } from '../src/ui/Row';
 import { Screen } from '../src/ui/Screen';
-import { Text } from '../src/ui/Text';
 
 export default function History() {
   const { snapshot } = useApp();
@@ -15,9 +15,7 @@ export default function History() {
   return (
     <Screen edges={['bottom']}>
       {history.length === 0 ? (
-        <Text variant="body" color={colors.inkSoft}>
-          Lo storico si riempie quando confermi i pasti come cucinati o non seguiti.
-        </Text>
+        <AssistantBubble pose="neutra" text={EMPTY.noHistory} />
       ) : (
         <Card style={{ gap: 0 }}>
           {history.map((h, i) => (

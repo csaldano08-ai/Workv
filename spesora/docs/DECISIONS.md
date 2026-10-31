@@ -31,3 +31,12 @@ Widget iOS, riconoscimento foto, scansione scontrini, sincronizzazione familiare
 - Il menù azioni su Android usa un foglio personalizzato; Android non è stato provato su dispositivo.
 - Sul web (solo demo) le conferme usano le finestre del browser (`src/ui/dialog.ts`) e le notifiche non sono disponibili.
 - Backup: il file `spesora.db` sta nella cartella documenti dell'app ed è incluso nei backup iCloud/computer secondo le impostazioni iOS dell'utente (comportamento standard, non escluso dall'app).
+
+## Seconda iterazione
+
+16. **Porzioni come abitudine, non come dieta**: sesso, stile di vita e obiettivo non entrano nei calcoli; contano solo le quantità scelte dall'utente (regole in `portions.ts`). Pasta/riso principali usano la grammatura assoluta indicata; quando sono secondari si scalano in proporzione.
+17. **I gusti non escludono**: aumentano il punteggio delle ricette, le esclusioni alimentari restano gli unici vincoli rigidi.
+18. **"Economica" senza prezzi**: favorisce ingredienti condivisi e semplici; l'app non afferma risparmi.
+19. **Mascotte vettoriale**: una sola sorgente SVG per app e PNG, nessun peso aggiuntivo nell'app.
+20. **Immagini ricette con API ufficiale**: niente automazione di Google Flow senza un browser autorizzato dall'utente, niente API non ufficiali o cookie. Immagini incerte escluse dall'app finché non approvate.
+21. Il formulario ha 16 passi: una bozza salvata con la versione precedente può riprendere da un passo diverso (accettabile prima del rilascio).

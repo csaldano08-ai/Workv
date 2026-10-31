@@ -9,10 +9,12 @@ import type { AppSnapshot } from '../../src/features/app/SpesoraService';
 import { useMealActions } from '../../src/features/meals/useMealActions';
 import { MEAL_LABELS } from '../../src/i18n/labels';
 import { t } from '../../src/i18n/it';
+import { cookSoon, EMPTY, greeting, missingIngredients, shoppingDay, tipOfTheDay } from '../../src/i18n/assistant';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
+import { AssistantBubble } from '../../src/ui/AssistantBubble';
 import { Button } from '../../src/ui/Button';
 import { Card } from '../../src/ui/Card';
-import { DishArt } from '../../src/ui/DishArt';
+import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
 import { Divider, Row, SectionTitle } from '../../src/ui/Row';
 import { Screen } from '../../src/ui/Screen';
@@ -60,16 +62,11 @@ export default function Today() {
         </Pressable>
       </View>
 
+      <TimoMessage snap={snap} next={next} todayTripItems={todayTrip?.lines.length ?? 0} todayTripDate={todayTrip?.date ?? null} initial={!!todayTrip?.isInitial} />
+
       {next ? <NextMealCard meal={next} snap={snap} onMore={() => actions.openMenu(next)} /> : <NoMealCard snap={snap} />}
 
-      {todayTrip ? (
-        <Notice tone="peach" title={todayTrip.isInitial ? 'Serve una piccola spesa oggi' : 'Oggi è giorno di spesa'}>
-          <Text variant="small">
-            {`${todayTrip.lines.length} ${todayTrip.lines.length === 1 ? 'prodotto' : 'prodotti'} per le prossime ricette.`}
-          </Text>
-          <Button kind="peach" compact label="Apri la lista" icon="basket-outline" onPress={() => router.push(`/spesa?trip=${todayTrip.date}`)} />
-        </Notice>
-      ) : nextTrip ? (
+      {todayTrip ? null : nextTrip ? (
         <Text variant="small" color={colors.inkSoft}>
           {`Prossima spesa: ${formatLongDate(nextTrip.date)} · ${nextTrip.lines.length} prodotti`}
         </Text>
@@ -117,6 +114,27 @@ export default function Today() {
   );
 }
 
+/** Messaggio contestuale di Timo: spesa, cucina imminente, saluto o giornata conclusa. */
+function TimoMessage({ snap, next, todayTripItems, todayTripDate, initial }: { snap: AppSnapshot; next: PlannedMeal | null; todayTripItems: number; todayTripDate: string | null; initial: boolean }) {
+  const hour = new Date().getHours();
+  const key = `${snap.today}-${hour < 12 ? 'm' : hour < 18 ? 'p' : 's'}`;
+  if (todayTripDate) {
+    const msg = shoppingDay(todayTripItems, key);
+    return (
+      <AssistantBubble pose="spesa" title={initial ? 'Serve una piccola spesa oggi' : msg.title} text={msg.body}>
+        <Button kind="peach" compact label="Apri la lista" icon="basket-outline" onPress={() => router.push(`/spesa?trip=${todayTripDate}`)} style={styles.bubbleBtn} />
+      </AssistantBubble>
+    );
+  }
+  const recipe = next ? catalogIndex.recipe(next.recipeId) : null;
+  if (next && recipe && next.date === snap.today) {
+    const startsIn = next.timeMinutes - recipe.totalMinutes - nowMinutes();
+    if (startsIn <= 90) return <AssistantBubble pose="cucinare" text={cookSoon(recipe.name, recipe.totalMinutes, key)} />;
+  }
+  if (!next) return <AssistantBubble pose={snap.issues.length > 0 ? 'vuoto' : 'completata'} text={snap.issues.length > 0 ? EMPTY.noRecipes : EMPTY.dayDone} />;
+  return <AssistantBubble pose="saluto" text={`${greeting(hour, key)} ${tipOfTheDay(snap.today)}`} />;
+}
+
 function statusLabel(m: PlannedMeal): string {
   const map = { planned: 'status.planned', cooked: 'status.cooked', skipped: 'status.skipped', ate_out: 'status.ate_out', other: 'status.other' } as const;
   return t(map[m.status]);
@@ -125,7 +143,7 @@ function statusLabel(m: PlannedMeal): string {
 function NextMealCard({ meal, snap, onMore }: { meal: PlannedMeal; snap: AppSnapshot; onMore: () => void }) {
   const recipe = catalogIndex.recipe(meal.recipeId);
   if (!recipe) return null;
-  const statuses = mealIngredientStatus(meal, catalogIndex, toStock(snap.pantry), snap.staples);
+  const statuses = mealIngredientStatus(meal, catalogIndex, toStock(snap.pantry), snap.staples, snap.profile?.portions);
   const quantified = statuses.filter((s) => s.status !== 'qb_presente' && s.status !== 'qb_mancante');
   const have = quantified.filter((s) => s.status === 'in_dispensa').length;
   const toBuy = quantified.filter((s) => s.status !== 'in_dispensa').length;
@@ -140,7 +158,13 @@ function NextMealCard({ meal, snap, onMore }: { meal: PlannedMeal; snap: AppSnap
         accessibilityLabel={`Apri la ricetta ${recipe.name}`}
         onPress={() => router.push(`/ricetta/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`)}
       >
-        <DishArt category={recipe.dishCategory} recipeId={recipe.id} />
+        <RecipeImage recipe={recipe} />
+        <View style={styles.heroBadge}>
+          <Ionicons name="time-outline" size={14} color={colors.white} />
+          <Text variant="caption" color={colors.white}>
+            {`${recipe.totalMinutes} MIN`}
+          </Text>
+        </View>
       </Pressable>
       <Text variant="caption" color={colors.green}>
         {`${when.toUpperCase()} · ${MEAL_LABELS[meal.mealType].toUpperCase()} ALLE ${minutesToHHMM(meal.timeMinutes)}`}
@@ -154,13 +178,18 @@ function NextMealCard({ meal, snap, onMore }: { meal: PlannedMeal; snap: AppSnap
           text={
             missing === 0
               ? 'Ingredienti in dispensa (stima)'
-              : [`${have} di ${quantified.length} in dispensa`, toBuy ? `${toBuy} da comprare` : null, toCheck ? `${toCheck} q.b. da verificare` : null]
+              : [`${have} di ${quantified.length} in dispensa`, toCheck ? `${toCheck} q.b. da verificare` : null]
                   .filter(Boolean)
                   .join(' · ')
           }
           tone={missing === 0 ? colors.green : colors.peachInk}
         />
       </View>
+      {toBuy > 0 ? (
+        <Text variant="small" color={colors.peachInk}>
+          {missingIngredients(toBuy)}
+        </Text>
+      ) : null}
       <Button label={t('action.openRecipe')} icon="restaurant-outline" onPress={() => router.push(`/ricetta/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`)} />
       <View style={styles.row}>
         <Button kind="secondary" compact label={t('action.replace')} onPress={() => router.push(`/cambia/${encodeURIComponent(meal.id)}`)} style={styles.flex} />
@@ -201,10 +230,12 @@ const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   flex: { flex: 1 },
   iconBtn: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center', borderRadius: radius.pill },
-  nextCard: { gap: space.md, padding: space.md },
+  nextCard: { gap: space.md, padding: space.md, borderColor: colors.green, borderWidth: 1.5 },
+  heroBadge: { position: 'absolute', top: space.sm, left: space.sm, flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: 'rgba(36,51,44,0.72)', paddingHorizontal: space.sm, paddingVertical: 4, borderRadius: radius.pill },
   facts: { gap: space.xs },
   fact: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
   row: { flexDirection: 'row', gap: space.sm },
   pendingRow: { gap: space.sm, paddingVertical: space.xs },
   pendingActions: { flexDirection: 'row', gap: space.sm },
+  bubbleBtn: { alignSelf: 'flex-start', marginTop: space.xs },
 });

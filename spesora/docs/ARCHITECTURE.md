@@ -48,3 +48,13 @@ Catalogo ricette e ingredienti **non** è nel database: è codice versionato con
 - **Cambio ricetta**: aggiorna solo il pasto `planned`; spesa e dispensa prevista sono ricalcolate dallo snapshot; acquisti e consumi passati restano.
 - **Notifiche**: `computeNotifications` produce ID deterministici `spesora:<tipo>:<chiave>:<hash del contenuto>`; `diffNotifications` annulla gli ID non più desiderati e programma i nuovi. Il tocco viene gestito da `useLastNotificationResponse` (anche avvio a freddo) e la destinazione è validata da `routing.ts`.
 - **Acquisti**: `PurchaseService` con implementazione disabilitata (predefinita) e mock (solo `__DEV__`, in memoria). Nessun entitlement salvato in SQLite.
+
+## Porzioni, gusti, mascotte, immagini
+
+- `src/core/domain/portions.ts`: `ingredientNeed(recipe, ingrediente, persone, porzioni)` è l'unico punto in cui si calcolano le quantità; lo usano pianificatore, spesa, dispensa, stato ingredienti e schermata ricetta.
+- `src/core/domain/classify.ts`: classificazione delle ricette (pesce, proteiche, primi, secondi, piatti unici, bowl) e `tasteScore` nel pianificatore.
+- Profilo: `portions` e `tastes` dentro `user_preferences` (JSON Zod con valori predefiniti: i profili salvati prima restano validi, nessuna migrazione SQL).
+- `src/i18n/assistant.ts`: micro-copy dell'assistente, scelte deterministiche per chiave.
+- `src/ui/mascot/`: Timo (sorgente SVG unica), `src/ui/AssistantBubble.tsx`.
+- `src/ui/RecipeImage.tsx` + `src/data/recipe-images.ts` (generato): immagine reale o illustrazione di fallback, proporzioni fisse.
+- `scripts/images/` + `.github/workflows/recipe-images.yml`: pipeline immagini (vedi IMAGES.md).

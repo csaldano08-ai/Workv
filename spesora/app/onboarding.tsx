@@ -13,6 +13,7 @@ import { newDraft, pantryItems, restoreDraft, type OnboardingDraft } from '../sr
 import { PREVIEW_STEP, STEPS } from '../src/features/onboarding/registry';
 import { MEAL_LABELS } from '../src/i18n/labels';
 import { colors, radius, space } from '../src/theme/tokens';
+import { AssistantBubble } from '../src/ui/AssistantBubble';
 import { Button } from '../src/ui/Button';
 import { Card } from '../src/ui/Card';
 import { Notice } from '../src/ui/Notice';
@@ -96,6 +97,7 @@ export default function Onboarding() {
       <Text variant="caption" color={colors.inkSoft}>
         {`PASSO ${step + 1} DI ${STEPS.length}`}
       </Text>
+      {def.tip ? <AssistantBubble pose={def.pose ?? 'neutra'} text={def.tip} size={56} /> : null}
       <Text variant="title" accessibilityRole="header">
         {def.title}
       </Text>
@@ -118,6 +120,7 @@ function minutesNow(): number {
 function isEmptyOptional(id: string, d: OnboardingDraft): boolean {
   if (id === 'esclusioni') return d.profile.excludedAllergens.length === 0 && d.profile.excludedIngredientIds.length === 0;
   if (id === 'non-graditi') return d.profile.dislikedIngredientIds.length === 0;
+  if (id === 'gusti') return d.profile.tastes.likes.length === 0 && d.profile.tastes.weekStyles.length === 0;
   if (id === 'budget') return d.profile.weeklyBudgetCents === null;
   if (id === 'dispensa') return Object.keys(d.pantry).length === 0;
   return false;
@@ -149,6 +152,7 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
       <Text variant="title" accessibilityRole="header">
         La tua prima settimana
       </Text>
+      <AssistantBubble pose="completata" text="È pronta! L’ho preparata con le tue risposte. Puoi cambiare ogni pasto quando vuoi." />
       <Text variant="body" color={colors.inkSoft}>
         {`Dal ${formatLongDate(today)} al ${formatLongDate(addDays(today, PLAN_DAYS - 1))}. Potrai cambiare ogni pasto in qualsiasi momento.`}
       </Text>

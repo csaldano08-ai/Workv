@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { formatLongDate, minutesToHHMM } from '../../src/core/domain/dates';
 import { mealIngredientStatus, toStock, type IngredientAvailability } from '../../src/core/domain/pantry';
-import { formatQtyWithUnit, scaleQty, toMilli } from '../../src/core/domain/quantity';
+import { formatQtyWithUnit } from '../../src/core/domain/quantity';
+import { ingredientNeed, isPersonalized } from '../../src/core/domain/portions';
+import { PORTIONS_NOTE } from '../../src/features/onboarding/stepsPersonal';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { useMealActions } from '../../src/features/meals/useMealActions';
 import { ALLERGEN_LABELS, EQUIPMENT_LABELS, MEAL_LABELS } from '../../src/i18n/labels';
@@ -12,7 +14,7 @@ import { t } from '../../src/i18n/it';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
 import { Card } from '../../src/ui/Card';
-import { DishArt } from '../../src/ui/DishArt';
+import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
 import { SectionTitle } from '../../src/ui/Row';
 import { Screen } from '../../src/ui/Screen';
@@ -48,7 +50,7 @@ export default function RecipeScreen() {
   const favorite = snapshot.favorites.has(recipe.id);
   const servings = meal?.servings ?? localServings;
   const planned = meal?.status === 'planned';
-  const statuses = meal ? new Map(mealIngredientStatus(meal, catalogIndex, toStock(snapshot.pantry), snapshot.staples).map((s) => [s.ingredientId, s.status])) : null;
+  const statuses = meal ? new Map(mealIngredientStatus(meal, catalogIndex, toStock(snapshot.pantry), snapshot.staples, snapshot.profile?.portions).map((s) => [s.ingredientId, s.status])) : null;
 
   const setServings = (v: number) => {
     if (meal && planned) void run((s) => s.setServings(meal.id, v));
@@ -86,7 +88,7 @@ export default function RecipeScreen() {
           ),
         }}
       />
-      <DishArt category={recipe.dishCategory} recipeId={recipe.id} />
+      <RecipeImage recipe={recipe} />
       {meal ? (
         <Text variant="caption" color={colors.green}>
           {`${MEAL_LABELS[meal.mealType].toUpperCase()} · ${formatLongDate(meal.date).toUpperCase()} · ${minutesToHHMM(meal.timeMinutes)}`}
@@ -131,7 +133,9 @@ export default function RecipeScreen() {
       <Card>
         {recipe.ingredients.map((ri) => {
           const ing = catalogIndex.ingredient(ri.ingredientId);
-          const qty = ri.qty === undefined ? null : scaleQty(toMilli(ri.qty), servings, recipe.baseServings);
+          const portions = snapshot.profile?.portions;
+          const qty = ri.qty === undefined ? null : ingredientNeed(recipe, ri, ing, servings, portions);
+          const mine = isPersonalized(recipe, ri, ing, servings, portions);
           const st = statuses?.get(ri.ingredientId);
           const a = st && planned ? AVAILABILITY[st] : null;
           return (
@@ -140,6 +144,13 @@ export default function RecipeScreen() {
                 {ing.name}
                 {ri.hint ? <Text variant="small" color={colors.inkSoft}>{` (${ri.hint})`}</Text> : null}
               </Text>
+              {mine ? (
+                <View style={styles.mine} accessibilityLabel="porzione personalizzata">
+                  <Text variant="caption" color={colors.greenDark}>
+                    TUA
+                  </Text>
+                </View>
+              ) : null}
               <Text variant="body" style={styles.qty}>
                 {qty === null ? 'q.b.' : formatQtyWithUnit(qty, ing.unit)}
               </Text>
@@ -152,6 +163,9 @@ export default function RecipeScreen() {
             Disponibilità stimata dalla dispensa confermata.
           </Text>
         ) : null}
+        <Text variant="small" color={colors.inkSoft}>
+          {`${PORTIONS_NOTE} “TUA” indica le quantità adattate alle tue abitudini.`}
+        </Text>
       </Card>
 
       <Card tone="peach">
@@ -221,6 +235,7 @@ const styles = StyleSheet.create({
   servingsRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, flexWrap: 'wrap' },
   ingRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: 32 },
   qty: { fontVariant: ['tabular-nums'] },
+  mine: { backgroundColor: colors.greenSoft, borderRadius: radius.pill, paddingHorizontal: 6, paddingVertical: 1 },
   step: { flexDirection: 'row', gap: space.md },
   stepNum: { width: 32, height: 32, borderRadius: 16, backgroundColor: colors.green, alignItems: 'center', justifyContent: 'center' },
   stepBody: { flex: 1, gap: space.sm, paddingTop: 4 },

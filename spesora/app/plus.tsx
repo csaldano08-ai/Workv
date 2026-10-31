@@ -3,6 +3,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { Linking, StyleSheet, View } from 'react-native';
 import { Alert } from '../src/ui/dialog';
 import { appConfig } from '../src/core/config';
+import { PLUS_FEATURES } from '../src/core/purchases/features';
+import { Timo } from '../src/ui/mascot/Timo';
 import { createPurchaseService } from '../src/core/purchases/services';
 import type { EntitlementStatus, PlusPackage, PurchaseOutcome } from '../src/core/purchases/types';
 import { colors, space } from '../src/theme/tokens';
@@ -14,14 +16,7 @@ import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
 
 const FREE = ['Calendario settimanale', 'Ricette di base', 'Lista della spesa', 'Promemoria giornaliero', 'Modifica delle preferenze'];
-const PLUS = [
-  'Pianificazione con più giorni di spesa',
-  'Dispensa avanzata con scadenze',
-  'Rigenerazione e sostituzione dei pasti',
-  'Più personalizzazione e notifiche avanzate',
-  'Storico esteso',
-  'Nuove ricette con gli aggiornamenti del catalogo',
-];
+const PLUS = Object.values(PLUS_FEATURES).map((f) => `${f.label}: ${f.description}`);
 
 function outcomeMessage(o: PurchaseOutcome): string {
   switch (o.kind) {
@@ -62,7 +57,12 @@ export default function Plus() {
       {service.mode === 'mock' ? (
         <Notice tone="warning" title="Modalità sviluppo" text="Acquisti simulati: nessun pagamento reale, nulla viene salvato. Prezzi indicati come ESEMPIO." />
       ) : null}
-      <Text variant="title">Più tempo per te, meno decisioni</Text>
+      <View style={styles.hero}>
+        <Timo pose="suggerimento" size={84} />
+        <Text variant="title" style={styles.flex}>
+          Più tempo per te, meno decisioni
+        </Text>
+      </View>
       <Text variant="body" color={colors.inkSoft}>
         Durante questa fase di prova tutte le funzioni sono disponibili gratuitamente. Spesora Plus servirà a sostenere lo sviluppo e l’ampliamento del catalogo.
       </Text>
@@ -136,6 +136,7 @@ function Benefit({ text }: { text: string }) {
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
+  hero: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   row: { flexDirection: 'row', gap: space.sm },
   pkg: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   benefit: { flexDirection: 'row', gap: space.sm, alignItems: 'center' },

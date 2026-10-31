@@ -6,9 +6,10 @@ import { formatQtyWithUnit } from '../../src/core/domain/quantity';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { t } from '../../src/i18n/it';
 import { colors, radius, space } from '../../src/theme/tokens';
+import { AssistantBubble } from '../../src/ui/AssistantBubble';
 import { Button } from '../../src/ui/Button';
+import { EMPTY } from '../../src/i18n/assistant';
 import { Card } from '../../src/ui/Card';
-import { Notice } from '../../src/ui/Notice';
 import { Divider, Row, SectionTitle } from '../../src/ui/Row';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
@@ -36,20 +37,11 @@ export default function Pantry() {
       </Text>
 
       {warnings.length > 0 ? (
-        <Notice
-          tone="peach"
-          title="Potrebbe non bastare"
-          text={warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name).join(', ') + ': la quantità mancante è già nella lista della spesa.'}
-        />
+        <AssistantBubble pose="mancanti" size={60} title="Potrebbe non bastare" text={warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name).join(', ') + ': la quantità mancante è già nella lista della spesa.'} />
       ) : null}
 
       {quantified.length === 0 ? (
-        <Card>
-          <Text variant="heading">Dispensa vuota</Text>
-          <Text variant="small" color={colors.inkSoft}>
-            Gli acquisti confermati dalla lista della spesa compariranno qui. Puoi anche aggiungere ciò che hai già.
-          </Text>
-        </Card>
+        <AssistantBubble pose="vuoto" text={`${EMPTY.noPantry} Puoi anche aggiungere ciò che hai già.`} />
       ) : (
         <Card style={styles.list}>
           {quantified.map((i, idx) => {

@@ -11,7 +11,9 @@ import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { checkKey } from '../../src/features/app/SpesoraService';
 import { CATEGORY_LABELS } from '../../src/i18n/labels';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
+import { AssistantBubble } from '../../src/ui/AssistantBubble';
 import { Button } from '../../src/ui/Button';
+import { EMPTY, shoppingDay } from '../../src/i18n/assistant';
 import { Card } from '../../src/ui/Card';
 import { Chip, ChipGroup } from '../../src/ui/Chip';
 import { Notice } from '../../src/ui/Notice';
@@ -42,14 +44,8 @@ export default function Shopping() {
         Spesa
       </Text>
       {trips.length === 0 ? (
-        <Card>
-          <Text variant="heading">Non serve comprare nulla</Text>
-          <Text variant="small" color={colors.inkSoft}>
-            Secondo la dispensa confermata hai tutto il necessario per i pasti in programma.
-          </Text>
-        </Card>
-      ) : (
-        <>
+        <AssistantBubble pose="completata" text={EMPTY.noShopping} />
+      ) : (        <>
           <ChipGroup>
             {trips.map((tr) => (
               <Chip
@@ -61,6 +57,13 @@ export default function Shopping() {
               />
             ))}
           </ChipGroup>
+          {current ? (
+            current.date === snapshot.today ? (
+              <AssistantBubble pose="spesa" size={60} title={shoppingDay(current.lines.length, current.date).title} text="Spunta i prodotti mentre li metti nel carrello, poi conferma: solo allora entrano in dispensa." />
+            ) : (
+              <AssistantBubble pose="neutra" size={60} text={`Questa lista è per ${formatLongDate(current.date)}: ogni prodotto arriva prima della ricetta che lo usa.`} />
+            )
+          ) : null}
           {current ? <TripView trip={current} /> : null}
         </>
       )}

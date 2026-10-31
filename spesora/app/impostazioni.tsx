@@ -1,18 +1,21 @@
 import { router } from 'expo-router';
-import { Linking, Share, View } from 'react-native';
+import { Linking, Share, StyleSheet, View } from 'react-native';
 import { Alert } from '../src/ui/dialog';
 import { cancelAllOurs } from '../src/core/notifications/NotificationScheduler';
 import { appConfig } from '../src/core/config';
 import { useApp } from '../src/features/app/AppProvider';
 import { STEPS } from '../src/features/onboarding/registry';
-import { colors } from '../src/theme/tokens';
+import { colors, radius, space } from '../src/theme/tokens';
 import { Card } from '../src/ui/Card';
+import { TimoBadge } from '../src/ui/mascot/Timo';
+import { LIKE_LABELS } from '../src/core/domain/classify';
+import { PROTEIN_LABELS } from '../src/features/onboarding/stepsPersonal';
 import { Divider, Row, SectionTitle } from '../src/ui/Row';
 import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
 
 export default function Settings() {
-  const { run, service, refresh } = useApp();
+  const { run, service, refresh, snapshot } = useApp();
   const editable = STEPS.filter((s) => s.editable);
 
   const exportData = async () => {
@@ -54,17 +57,54 @@ export default function Settings() {
     { label: 'Supporto', url: appConfig.legal.supportUrl },
   ].filter((l) => l.url);
 
+  const p = snapshot?.profile;
+  const summary = p
+    ? [
+        `${p.servings} ${p.servings === 1 ? 'persona' : 'persone'}`,
+        `pasta ${p.portions.pastaGrams} g`,
+        `riso ${p.portions.riceGrams} g`,
+        PROTEIN_LABELS[p.portions.proteinSize].toLowerCase(),
+        ...p.tastes.likes.slice(0, 2).map((l) => LIKE_LABELS[l].toLowerCase()),
+      ].join(' · ')
+    : '';
+
   return (
     <Screen edges={['bottom']}>
+      {p ? (
+        <Card tone="green" style={styles.profile}>
+          <TimoBadge size={52} />
+          <View style={styles.flex}>
+            <Text variant="heading">Il tuo profilo cucina</Text>
+            <Text variant="small" color={colors.inkSoft}>
+              {summary}
+            </Text>
+          </View>
+        </Card>
+      ) : null}
       <SectionTitle>Le tue preferenze</SectionTitle>
       <Card style={{ gap: 0 }}>
         {editable.map((s, i) => (
           <View key={s.id}>
             {i > 0 ? <Divider /> : null}
-            <Row title={s.title} onPress={() => router.push(`/preferenze/${s.id}`)} />
+            <Row
+              title={s.title}
+              onPress={() => router.push(`/preferenze/${s.id}`)}
+              right={
+                s.premium ? (
+                  <View style={styles.plus} accessibilityLabel="Funzione Plus, oggi inclusa">
+                    <Text variant="caption" color={colors.peachInk}>
+                      PLUS
+                    </Text>
+                  </View>
+                ) : undefined
+              }
+            />
           </View>
         ))}
       </Card>
+      <Text variant="small" color={colors.inkSoft}>
+        Le funzioni contrassegnate PLUS fanno parte della personalizzazione avanzata: durante questa fase sono incluse per tutti.
+      </Text>
       <Text variant="small" color={colors.inkSoft}>
         Quando cambi le preferenze, i pasti futuri non ancora cucinati vengono ricalcolati. Pasti completati, acquisti e dispensa restano.
       </Text>
@@ -99,3 +139,9 @@ export default function Settings() {
     </Screen>
   );
 }
+
+const styles = StyleSheet.create({
+  flex: { flex: 1, gap: 2 },
+  profile: { flexDirection: 'row', alignItems: 'center', gap: space.md },
+  plus: { backgroundColor: colors.peachSoft, borderRadius: radius.pill, paddingHorizontal: 8, paddingVertical: 2 },
+});

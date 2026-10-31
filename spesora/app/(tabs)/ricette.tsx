@@ -9,8 +9,9 @@ import { MEAL_TYPES, type MealType, type Recipe } from '../../src/core/domain/ty
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { DISH_LABELS, EQUIPMENT_LABELS, MEAL_LABELS } from '../../src/i18n/labels';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
+import { AssistantBubble } from '../../src/ui/AssistantBubble';
 import { Chip } from '../../src/ui/Chip';
-import { DishArt } from '../../src/ui/DishArt';
+import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Text } from '../../src/ui/Text';
 
 export default function Recipes() {
@@ -80,9 +81,7 @@ export default function Recipes() {
           </View>
         }
         ListEmptyComponent={
-          <Text variant="body" color={colors.inkSoft}>
-            Nessuna ricetta con questi filtri.
-          </Text>
+          <AssistantBubble pose="vuoto" text="Nessuna ricetta con questi filtri. Prova a toglierne uno." />
         }
         renderItem={({ item }) => <RecipeRow recipe={item} favorite={snapshot?.favorites.has(item.id) ?? false} />}
         ItemSeparatorComponent={() => <View style={styles.sep} />}
@@ -99,7 +98,7 @@ function RecipeRow({ recipe, favorite }: { recipe: Recipe; favorite: boolean }) 
       onPress={() => router.push(`/ricetta/${recipe.id}`)}
       style={({ pressed }) => [styles.row, pressed && { opacity: 0.7 }]}
     >
-      <DishArt category={recipe.dishCategory} recipeId={recipe.id} style={styles.thumb} rounded={12} />
+      <RecipeImage recipe={recipe} style={styles.thumb} rounded={12} />
       <View style={styles.flex}>
         <Text variant="heading" numberOfLines={2}>
           {recipe.name}

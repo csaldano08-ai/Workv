@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 import { useApp } from '../src/features/app/AppProvider';
 import { colors, space } from '../src/theme/tokens';
+import { AssistantBubble } from '../src/ui/AssistantBubble';
 import { Button } from '../src/ui/Button';
 import { Logo } from '../src/ui/Logo';
 import { Screen } from '../src/ui/Screen';
@@ -29,6 +30,7 @@ export default function Welcome() {
     >
       <View style={styles.hero}>
         <Logo size={60} />
+        <AssistantBubble pose="saluto" size={84} text="Ciao, sono Timo! Ti aiuto a decidere cosa cucinare, cosa comprare e quando. Tu pensi solo a goderti il pasto." />
         <Text variant="title" color={colors.ink}>
           {t('app.slogan')}
         </Text>
