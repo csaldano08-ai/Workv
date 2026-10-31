@@ -1,23 +1,10 @@
 {
   "catalog_count": 156,
-  "validated_count": 144,
-  "missing": [
-    "ananas_menta_lime.png",
-    "bruschetta_pomodoro.png",
-    "ceci_croccanti_friggitrice.png",
-    "chips_mela_cannella.png",
-    "chips_tortilla_pomodorini.png",
-    "crema_ceci_bastoncini.png",
-    "gallette_ricotta_miele.png",
-    "mela_mandorle.png",
-    "palline_datteri_cacao.png",
-    "carasau_rosmarino.png",
-    "pera_gorgonzola_noci.png",
-    "spiedini_frutta_cioccolato.png"
-  ],
+  "validated_count": 156,
+  "missing": [],
   "errors": [],
   "unexpected_pngs": [],
-  "total_bytes": 116035838,
-  "complete": false
+  "total_bytes": 125086120,
+  "complete": true
 }
 
