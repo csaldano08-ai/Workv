@@ -1,0 +1,96 @@
+# Generazione delle immagini delle ricette Spesora con l'API ufficiale Google Gemini.
+# Solo avvio manuale (Actions → "Spesora · immagini ricette" → Run workflow): nessuna esecuzione
+# ricorrente che consumi crediti. La chiave va in Settings → Secrets → Actions → GEMINI_API_KEY.
+name: Spesora · immagini ricette
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: 'style = crea il riferimento di stile (prima volta) · run = genera le immagini mancanti'
+        type: choice
+        options: [run, style, status]
+        default: run
+      limit:
+        description: 'Numero massimo di immagini in questa esecuzione (tetto rigido 200)'
+        default: '20'
+      pilot:
+        description: 'Lotto pilota: 5 ricette di tipologie diverse'
+        type: boolean
+        default: false
+      semantic_check:
+        description: 'Controllo automatico di coerenza immagine/ricetta (una chiamata in più per immagine)'
+        type: boolean
+        default: true
+      model:
+        description: 'Modello immagine (vuoto = predefinito o primo disponibile per la chiave)'
+        default: ''
+  # In futuro, per generare solo le immagini delle ricette nuove a ogni modifica del catalogo,
+  # si può aggiungere (dopo aver approvato un budget):
+  # push:
+  #   paths: ['spesora/src/data/recipes/**']
+
+concurrency:
+  group: recipe-images-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: spesora
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: spesora/package-lock.json
+      - run: npm ci
+      - name: Verifica chiave
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::Secret GEMINI_API_KEY mancante: Settings → Secrets and variables → Actions → New repository secret."
+            exit 1
+          fi
+      - name: Generazione
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_IMAGE_MODEL: ${{ inputs.model }}
+        run: |
+          ARGS="${{ inputs.command }}"
+          if [ "${{ inputs.command }}" = "run" ]; then
+            ARGS="$ARGS --limit ${{ inputs.limit }}"
+            if [ "${{ inputs.pilot }}" = "true" ]; then ARGS="$ARGS --pilot"; fi
+            if [ "${{ inputs.semantic_check }}" != "true" ]; then ARGS="$ARGS --no-check"; fi
+          fi
+          npx tsx scripts/images/pipeline.ts $ARGS
+      - name: Controlli dell'app
+        run: npm run verify
+      - name: Sorgenti a piena risoluzione (artifact, non nel repository)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recipe-image-sources-${{ github.run_id }}
+          path: spesora/.image-sources/
+          if-no-files-found: ignore
+          retention-days: 30
+      - name: Commit dei risultati
+        if: always()
+        run: |
+          git config user.name "spesora-images-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/recipes src/data/recipe-images.ts
+          if git diff --cached --quiet; then echo "Nessuna modifica"; exit 0; fi
+          git commit -m "Immagini ricette: esecuzione ${{ github.run_id }} (${{ inputs.command }})"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

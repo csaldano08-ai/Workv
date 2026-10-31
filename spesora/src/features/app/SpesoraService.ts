@@ -104,6 +104,7 @@ export class SpesoraService {
             shoppingDays: profile.shoppingDays,
             today,
             horizonEnd: plan.endDate,
+            portions: profile.portions,
           })
         : { trips: [], covered: [] };
     const shoppingItems = await this.repo.getShoppingItems();
@@ -124,7 +125,7 @@ export class SpesoraService {
       pantry,
       staples,
       expiries,
-      outlook: pantryOutlook(pantry, futureNeeds(meals, this.catalog, today), expiries),
+      outlook: pantryOutlook(pantry, futureNeeds(meals, this.catalog, today, profile?.portions), expiries),
       favorites: await this.repo.getFavorites(),
       history: await this.repo.getHistory(),
       shopping,
@@ -303,13 +304,15 @@ export class SpesoraService {
 
   /** "Ho cucinato": sottrae gli ingredienti una sola volta, in modo atomico. */
   async markCooked(mealId: string): Promise<CookResult> {
+    // Profilo letto fuori dalla transazione: le porzioni abituali determinano le quantità consumate.
+    const portions = (await this.repo.getProfile().catch(() => null))?.portions;
     return this.db.transaction(async (tx): Promise<CookResult> => {
       const meal = await this.repo.getMeal(mealId, tx);
       if (!meal) return { ok: false, reason: 'not_found' };
       const moved = await this.repo.transitionMeal(mealId, 'cooked', tx);
       if (!moved) return { ok: false, reason: 'already_done' };
       const stock = toStock(stockFromMovements(await this.repo.getMovements(tx)));
-      const { movements, shortfalls } = computeMealConsumption(meal, this.catalog, stock);
+      const { movements, shortfalls } = computeMealConsumption(meal, this.catalog, stock, portions);
       for (const mv of movements) await this.repo.insertMovement(mv, tx);
       await this.repo.insertHistory(meal, 'cooked', tx);
       return { ok: true, shortfalls };

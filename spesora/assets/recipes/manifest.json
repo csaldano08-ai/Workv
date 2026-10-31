@@ -1,0 +1,3865 @@
+{
+  "version": 1,
+  "style": {
+    "reference": null,
+    "promptHash": null
+  },
+  "recipes": {
+    "ananas_menta_lime": {
+      "id": "ananas_menta_lime",
+      "name": "Ananas fresco con menta e lime",
+      "dishCategory": "frutta",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "ananas",
+        "lime"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "df8df93443fa84d8",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "borlotti_mais_piccanti": {
+      "id": "borlotti_mais_piccanti",
+      "name": "Fagioli borlotti piccanti con mais",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fagioli_borlotti",
+        "passata_pomodoro",
+        "peperone",
+        "mais_scatola",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "63ebca95b6dfbff6",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "bowl_edamame_riso": {
+      "id": "bowl_edamame_riso",
+      "name": "Bowl di riso con edamame e avocado",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "edamame",
+        "cetriolo",
+        "riso_basmati",
+        "carota",
+        "avocado",
+        "lime"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "de5f3226cecd2827",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "bresaola_rucola_parmigiano": {
+      "id": "bresaola_rucola_parmigiano",
+      "name": "Bresaola con rucola e scaglie di parmigiano",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "bresaola",
+        "rucola",
+        "limone",
+        "parmigiano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "44b1b7e3f83e1556",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "bruschetta_pomodoro": {
+      "id": "bruschetta_pomodoro",
+      "name": "Bruschetta al pomodoro",
+      "dishCategory": "pane",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "pomodoro",
+        "pane"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "f2c84d89c91413b6",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "bulgur_peperoni_olive": {
+      "id": "bulgur_peperoni_olive",
+      "name": "Bulgur con peperoni, olive e capperi",
+      "dishCategory": "cereali",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "peperone",
+        "bulgur",
+        "cipolla",
+        "olive_nere",
+        "capperi",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "13a3c9a30dfc54cd",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "calamari_friggitrice": {
+      "id": "calamari_friggitrice",
+      "name": "Anelli di calamaro croccanti in friggitrice ad aria",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "calamari_surgelati",
+        "insalata",
+        "limone",
+        "farina_ceci"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "52c09217c92a7b27",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "caprese_pane": {
+      "id": "caprese_pane",
+      "name": "Caprese con pane",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pomodoro",
+        "mozzarella",
+        "pane",
+        "basilico_fresco"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "d5eb0e1e4a9df8b1",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "carasau_rosmarino": {
+      "id": "carasau_rosmarino",
+      "name": "Pane carasau croccante al rosmarino",
+      "dishCategory": "pane",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "pane_carasau"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "4515831a005b4a76",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "carciofi_patate_padella": {
+      "id": "carciofi_patate_padella",
+      "name": "Carciofi e patate in padella",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "carciofi",
+        "patata",
+        "limone",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "eb94c33913fc5386",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "cavoletti_ceci_friggitrice": {
+      "id": "cavoletti_ceci_friggitrice",
+      "name": "Cavoletti di Bruxelles e ceci in friggitrice",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "cavoletti_bruxelles",
+        "ceci_cotti",
+        "limone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "b9a5363d4e563440",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "cavolfiore_ceci_forno": {
+      "id": "cavolfiore_ceci_forno",
+      "name": "Cavolfiore e ceci al forno con curry",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "cavolfiore",
+        "ceci_cotti",
+        "yogurt_soia"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "f52a802bcf9b9b6a",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "ceci_croccanti_friggitrice": {
+      "id": "ceci_croccanti_friggitrice",
+      "name": "Ceci croccanti in friggitrice ad aria",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "ceci_cotti"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "2337efc3f2e36460",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "ceci_spinaci_padella": {
+      "id": "ceci_spinaci_padella",
+      "name": "Ceci e spinaci in padella",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "ceci_cotti",
+        "spinaci_freschi",
+        "pomodori_pelati"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "087626416d7b980e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "chili_fagioli_neri": {
+      "id": "chili_fagioli_neri",
+      "name": "Chili di fagioli neri con riso",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fagioli_neri",
+        "pomodori_pelati",
+        "peperone",
+        "riso",
+        "cipolla",
+        "mais_scatola"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "f3b39ad4f8cbe948",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "chips_mela_cannella": {
+      "id": "chips_mela_cannella",
+      "name": "Chips di mela alla cannella",
+      "dishCategory": "frutta",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "mela"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "fd685c555c1a83e6",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "chips_tortilla_pomodorini": {
+      "id": "chips_tortilla_pomodorini",
+      "name": "Chips di tortilla con salsa di pomodorini",
+      "dishCategory": "pane",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "tortilla",
+        "pomodorini",
+        "lime",
+        "cipolla_rossa"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "9269d8561b54920e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "ciambellone_friggitrice": {
+      "id": "ciambellone_friggitrice",
+      "name": "Ciambellone al limone in friggitrice ad aria",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "farina",
+        "uova",
+        "zucchero",
+        "latte",
+        "limone",
+        "lievito_dolci"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "65484b192a7db4ed",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "cosce_pollo_patate_forno": {
+      "id": "cosce_pollo_patate_forno",
+      "name": "Cosce di pollo con patate al forno",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "cosce_pollo",
+        "patata"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "f66bfe66ec9210a2",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "couscous_verdure_ceci": {
+      "id": "couscous_verdure_ceci",
+      "name": "Couscous con verdure e ceci",
+      "dishCategory": "cereali",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "ceci_cotti",
+        "zucchina",
+        "pomodorini",
+        "couscous"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "41f7143a02b2dc4f",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "cozze_marinara": {
+      "id": "cozze_marinara",
+      "name": "Cozze alla marinara",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "cozze",
+        "pomodorini",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "75139516c592efda",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "crema_ceci_bastoncini": {
+      "id": "crema_ceci_bastoncini",
+      "name": "Crema di ceci al limone con verdure crude",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "ceci_cotti",
+        "carota",
+        "cetriolo",
+        "limone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "ce797b6177ea2fa9",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "crema_piselli_spezzati": {
+      "id": "crema_piselli_spezzati",
+      "name": "Crema di piselli spezzati",
+      "dishCategory": "zuppa",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "piselli_secchi_spezzati",
+        "patata",
+        "carota",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "3686855ce420b9c8",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "crema_polenta_mele": {
+      "id": "crema_polenta_mele",
+      "name": "Crema di polenta dolce con mele",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "mela",
+        "polenta_istantanea",
+        "sciroppo_acero"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "03ba326cd472205d",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "crepes_marmellata": {
+      "id": "crepes_marmellata",
+      "name": "Crêpes con marmellata",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "latte",
+        "farina",
+        "uova",
+        "marmellata",
+        "burro"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "5e57fc449c34eb82",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "crostoni_cavolo_nero_cannellini": {
+      "id": "crostoni_cavolo_nero_cannellini",
+      "name": "Crostoni con cavolo nero e cannellini",
+      "dishCategory": "pane",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fagioli_cannellini",
+        "pane",
+        "cavolo_nero"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "7628d18c74826a54",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "curry_ceci_cocco": {
+      "id": "curry_ceci_cocco",
+      "name": "Curry di ceci al latte di cocco",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "ceci_cotti",
+        "latte_cocco",
+        "pomodori_pelati",
+        "riso_basmati",
+        "spinaci_freschi",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "9953ab6b32e45ac5",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "dal_lenticchie_rosse": {
+      "id": "dal_lenticchie_rosse",
+      "name": "Crema di lenticchie rosse speziata",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pomodori_pelati",
+        "lenticchie_rosse",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "4f98245842fa522f",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "fagioli_uccelletto": {
+      "id": "fagioli_uccelletto",
+      "name": "Fagioli all'uccelletto",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fagioli_cannellini",
+        "pomodori_pelati"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "b5be30abda7de40f",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "farinata_ceci_forno": {
+      "id": "farinata_ceci_forno",
+      "name": "Farinata di ceci al forno con insalata",
+      "dishCategory": "pane",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pomodorini",
+        "farina_ceci",
+        "insalata"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "32837a3a0c3a514e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "farro_pomodorini_feta": {
+      "id": "farro_pomodorini_feta",
+      "name": "Farro con pomodorini, cetriolo e feta",
+      "dishCategory": "cereali",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pomodorini",
+        "farro",
+        "cetriolo",
+        "feta"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "e49267ea5267246e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "fette_biscottate_ricotta_marmellata": {
+      "id": "fette_biscottate_ricotta_marmellata",
+      "name": "Fette biscottate con ricotta e marmellata",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "ricotta",
+        "fette_biscottate",
+        "marmellata"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "508819ea41533d04",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "french_toast_fragole": {
+      "id": "french_toast_fragole",
+      "name": "French toast con fragole",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "uova",
+        "fragole",
+        "pane_cassetta",
+        "latte",
+        "sciroppo_acero",
+        "burro"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "2b2fce3393022b3c",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "frittata_forno_patate_cipolle": {
+      "id": "frittata_forno_patate_cipolle",
+      "name": "Frittata al forno con patate e cipolle",
+      "dishCategory": "uova",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "uova",
+        "patata",
+        "cipolla",
+        "parmigiano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "f51a19e103a51d25",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "frittata_zucchine": {
+      "id": "frittata_zucchine",
+      "name": "Frittata di zucchine",
+      "dishCategory": "uova",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "uova",
+        "zucchina",
+        "pane",
+        "parmigiano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "60bfed12e328488f",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "frittelle_verdure_ceci": {
+      "id": "frittelle_verdure_ceci",
+      "name": "Frittelle di verdure senza uova",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "zucchina",
+        "farina_ceci",
+        "carota",
+        "insalata"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "6ed10fb7937b5507",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "frullato_fragole_banana": {
+      "id": "frullato_fragole_banana",
+      "name": "Frullato di fragole e banana",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "latte",
+        "fragole",
+        "banana"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "c229a2a693a9278e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "frullato_kefir_pesca": {
+      "id": "frullato_kefir_pesca",
+      "name": "Frullato di kefir e pesca",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "kefir",
+        "pesca",
+        "miele"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "25f964fe1b2439c2",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "gallette_ricotta_miele": {
+      "id": "gallette_ricotta_miele",
+      "name": "Gallette di riso con ricotta e miele",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "ricotta",
+        "gallette_riso",
+        "miele"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "2e709754a9e04b5d",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "gamberi_zucchine_curcuma": {
+      "id": "gamberi_zucchine_curcuma",
+      "name": "Gamberetti e zucchine alla curcuma",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "gamberetti_surgelati",
+        "zucchina",
+        "limone",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "ce8bb61c1bedffce",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "gnocchi_pomodoro_mozzarella": {
+      "id": "gnocchi_pomodoro_mozzarella",
+      "name": "Gnocchi al pomodoro e mozzarella",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "gnocchi_patate",
+        "passata_pomodoro",
+        "mozzarella",
+        "basilico_fresco"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "a5ea62a7487dfe6a",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "hamburger_insalata": {
+      "id": "hamburger_insalata",
+      "name": "Hamburger in padella con insalata e pomodori",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "macinato_manzo",
+        "pomodoro",
+        "insalata"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "3923d41fa1fc64bd",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "hummus_bowl_tahina": {
+      "id": "hummus_bowl_tahina",
+      "name": "Bowl di hummus fatto in casa con quinoa",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "zucchina",
+        "ceci_cotti",
+        "pomodorini",
+        "quinoa",
+        "limone",
+        "tahina"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "fd7eee187ac92e6f",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "insalata_ceci_tonno": {
+      "id": "insalata_ceci_tonno",
+      "name": "Insalata di ceci, tonno e pomodorini",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "ceci_cotti",
+        "pomodorini",
+        "tonno_scatola",
+        "rucola",
+        "cipolla_rossa"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "10e7e5032b3a72a2",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "insalata_greca": {
+      "id": "insalata_greca",
+      "name": "Insalata greca",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pomodoro",
+        "cetriolo",
+        "feta",
+        "pane_integrale",
+        "cipolla_rossa",
+        "olive_nere"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "05fed19805dbc31e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "insalata_riso_tonno": {
+      "id": "insalata_riso_tonno",
+      "name": "Insalata di riso con tonno",
+      "dishCategory": "riso",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "riso",
+        "pomodorini",
+        "tonno_scatola",
+        "mais_scatola",
+        "olive_nere"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "bbac6ac9de0931c5",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "insalata_sgombro_fagioli": {
+      "id": "insalata_sgombro_fagioli",
+      "name": "Insalata di sgombro, fagioli e cipolla rossa",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fagioli_cannellini",
+        "sgombro_scatola",
+        "insalata",
+        "cipolla_rossa",
+        "limone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "7c8aee4ecfdc179d",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "insalatone_cannellini_mais": {
+      "id": "insalatone_cannellini_mais",
+      "name": "Insalatona con cannellini e mais",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fagioli_cannellini",
+        "pomodorini",
+        "cetriolo",
+        "insalata",
+        "mais_scatola",
+        "carota"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "0ebdbd44728f834b",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "involtini_pollo_cotto_scamorza": {
+      "id": "involtini_pollo_cotto_scamorza",
+      "name": "Involtini di pollo con prosciutto cotto e scamorza",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "petto_pollo",
+        "pomodorini",
+        "insalata",
+        "prosciutto_cotto",
+        "scamorza"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "c85b8a801c672a92",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "latte_cereali_banana": {
+      "id": "latte_cereali_banana",
+      "name": "Latte con cereali e banana",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "latte",
+        "banana",
+        "cereali_colazione"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "3cc7c935775e73b2",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "lenticchie_umido": {
+      "id": "lenticchie_umido",
+      "name": "Lenticchie in umido veloci",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "lenticchie_cotte",
+        "passata_pomodoro",
+        "carota",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "d526f37d99459150",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "lonza_mele": {
+      "id": "lonza_mele",
+      "name": "Lonza di maiale alle mele",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "lonza_maiale",
+        "mela",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "c2637194fb447535",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "macedonia_mattino": {
+      "id": "macedonia_mattino",
+      "name": "Macedonia del mattino",
+      "dishCategory": "frutta",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "arancia",
+        "mela",
+        "banana",
+        "kiwi",
+        "limone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "b54637e0ed8531be",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "mela_cotta_cannella": {
+      "id": "mela_cotta_cannella",
+      "name": "Mela cotta alla cannella",
+      "dishCategory": "frutta",
+      "mealTypes": [
+        "spuntino",
+        "colazione"
+      ],
+      "mainIngredients": [
+        "mela",
+        "limone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "cef8f104c49047b0",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "mela_mandorle": {
+      "id": "mela_mandorle",
+      "name": "Mela a fette con mandorle",
+      "dishCategory": "frutta",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "mela",
+        "mandorle"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "ee3c1ef2d496aa6f",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "merluzzo_impanato_friggitrice": {
+      "id": "merluzzo_impanato_friggitrice",
+      "name": "Filetti di merluzzo impanati in friggitrice ad aria",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "merluzzo_surgelato",
+        "patata",
+        "pangrattato",
+        "limone",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "cfa95023c3628730",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "merluzzo_pomodorini_capperi": {
+      "id": "merluzzo_pomodorini_capperi",
+      "name": "Merluzzo con pomodorini e capperi",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "merluzzo_surgelato",
+        "pomodorini",
+        "capperi",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "92b5f245618ed93e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "minestrone_pastina": {
+      "id": "minestrone_pastina",
+      "name": "Minestrone con pastina",
+      "dishCategory": "zuppa",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "minestrone_surgelato",
+        "pasta_secca",
+        "dado_vegetale"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "f016ca70f311a762",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "noodles_riso_verdure_edamame": {
+      "id": "noodles_riso_verdure_edamame",
+      "name": "Spaghetti di riso con verdure ed edamame",
+      "dishCategory": "riso",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "zucchina",
+        "noodles_riso",
+        "edamame",
+        "carota",
+        "lime",
+        "salsa_soia"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "8f35cdd9a4a59014",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "noodles_tempeh_peperoni": {
+      "id": "noodles_tempeh_peperoni",
+      "name": "Spaghetti di riso con tempeh e peperoni",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "peperone",
+        "tempeh",
+        "noodles_riso",
+        "cipolla",
+        "salsa_soia"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "587783adf8a9ff6d",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "omelette_spinaci_scamorza": {
+      "id": "omelette_spinaci_scamorza",
+      "name": "Omelette con spinaci e scamorza",
+      "dishCategory": "uova",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "uova",
+        "spinaci_freschi",
+        "scamorza"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "fde2a2cd7e47c43a",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "orata_forno_patate": {
+      "id": "orata_forno_patate",
+      "name": "Filetti di orata al forno con patate",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "patata",
+        "orata_filetti",
+        "pomodorini"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "65a9965fae7684fc",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "orzo_zucchine_pomodorini": {
+      "id": "orzo_zucchine_pomodorini",
+      "name": "Orzo tiepido con zucchine, pomodorini e basilico",
+      "dishCategory": "cereali",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "zucchina",
+        "orzo_perlato",
+        "pomodorini",
+        "parmigiano",
+        "basilico_fresco"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "e251757f32278ede",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "orzotto_radicchio": {
+      "id": "orzotto_radicchio",
+      "name": "Orzotto al radicchio",
+      "dishCategory": "cereali",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "radicchio",
+        "orzo_perlato",
+        "cipolla",
+        "parmigiano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "a0e99932efff2230",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "overnight_oats_mirtilli": {
+      "id": "overnight_oats_mirtilli",
+      "name": "Overnight oats ai mirtilli",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "yogurt_bianco",
+        "latte",
+        "mirtilli",
+        "fiocchi_avena",
+        "miele"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "f39bbba2e9dda54a",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "palline_datteri_cacao": {
+      "id": "palline_datteri_cacao",
+      "name": "Palline di datteri e cacao",
+      "dishCategory": "frutta",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "datteri",
+        "cocco_rape",
+        "cacao_amaro",
+        "semi_chia"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "508b196a1cce3c49",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pancake_banana": {
+      "id": "pancake_banana",
+      "name": "Pancake alla banana",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "uova",
+        "banana",
+        "farina",
+        "latte",
+        "miele",
+        "lievito_dolci"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "ace45ef7d0478082",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pancake_ceci_banana": {
+      "id": "pancake_ceci_banana",
+      "name": "Pancake di ceci e banana",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "farina_ceci",
+        "banana",
+        "sciroppo_acero"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "7a1c9aa6b27bc86b",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pane_burro_arachidi_banana": {
+      "id": "pane_burro_arachidi_banana",
+      "name": "Pane integrale con burro di arachidi e banana",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "pane_integrale",
+        "banana",
+        "burro_arachidi"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "d045913e3113ad6b",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "parmigiana_leggera": {
+      "id": "parmigiana_leggera",
+      "name": "Parmigiana di melanzane leggera",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "melanzana",
+        "passata_pomodoro",
+        "mozzarella",
+        "parmigiano",
+        "basilico_fresco"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "5dc805382f1b65cd",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_acciughe_pangrattato": {
+      "id": "pasta_acciughe_pangrattato",
+      "name": "Pasta con acciughe e pangrattato tostato",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pasta_secca",
+        "pangrattato",
+        "acciughe_olio",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "37250721a1371423",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_al_forno": {
+      "id": "pasta_al_forno",
+      "name": "Pasta al forno semplice",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "passata_pomodoro",
+        "pasta_secca",
+        "mozzarella",
+        "parmigiano",
+        "basilico_fresco"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "71580aa8b8a632c3",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_al_pesto": {
+      "id": "pasta_al_pesto",
+      "name": "Pasta al pesto",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pasta_secca",
+        "pesto_basilico"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "90c80fb6e2d23130",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_al_tonno": {
+      "id": "pasta_al_tonno",
+      "name": "Pasta al tonno",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pomodori_pelati",
+        "pasta_secca",
+        "tonno_scatola"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "4565257a68f820b7",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_alla_norma": {
+      "id": "pasta_alla_norma",
+      "name": "Pasta alla norma",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "melanzana",
+        "passata_pomodoro",
+        "pasta_secca",
+        "pecorino",
+        "basilico_fresco"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "4f68766ec9625c70",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_broccoli": {
+      "id": "pasta_broccoli",
+      "name": "Pasta e broccoli",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "broccolo",
+        "pasta_secca"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "8fb0df0991107fcd",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_carbonara": {
+      "id": "pasta_carbonara",
+      "name": "Pasta alla carbonara",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "uova",
+        "pasta_secca",
+        "pancetta",
+        "pecorino"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "b3fdb6dc87b7d2f4",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_carciofi_limone": {
+      "id": "pasta_carciofi_limone",
+      "name": "Pasta con carciofi e limone",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "carciofi",
+        "pasta_secca",
+        "limone",
+        "parmigiano",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "8cdc5fffac27985c",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_crema_cavolo_nero": {
+      "id": "pasta_crema_cavolo_nero",
+      "name": "Pasta alla crema di cavolo nero",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "cavolo_nero",
+        "pasta_secca"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "3b4592c9d50c5457",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_e_ceci": {
+      "id": "pasta_e_ceci",
+      "name": "Pasta e ceci",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "ceci_cotti",
+        "pasta_secca",
+        "pomodori_pelati"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "b0602b15645ac6d0",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_e_fagioli": {
+      "id": "pasta_e_fagioli",
+      "name": "Pasta e fagioli",
+      "dishCategory": "zuppa",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fagioli_borlotti",
+        "pasta_secca",
+        "passata_pomodoro",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "ffda7269f359b4ea",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_e_lenticchie": {
+      "id": "pasta_e_lenticchie",
+      "name": "Pasta e lenticchie",
+      "dishCategory": "zuppa",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "lenticchie_cotte",
+        "pasta_secca",
+        "passata_pomodoro",
+        "carota",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "71521e9802b1258e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_funghi": {
+      "id": "pasta_funghi",
+      "name": "Pasta ai funghi trifolati",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "funghi_champignon",
+        "pasta_secca",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "361d2b9d1f2426c0",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_gamberetti_pomodorini": {
+      "id": "pasta_gamberetti_pomodorini",
+      "name": "Pasta con gamberetti e pomodorini",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pomodorini",
+        "gamberetti_surgelati",
+        "pasta_secca",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "6449ee0f9b483214",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_pancetta_pomodoro_pecorino": {
+      "id": "pasta_pancetta_pomodoro_pecorino",
+      "name": "Pasta pancetta, pomodoro e pecorino",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pomodori_pelati",
+        "pasta_secca",
+        "pancetta",
+        "pecorino"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "ac723f38c295fcc1",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_pesce_spada_menta": {
+      "id": "pasta_pesce_spada_menta",
+      "name": "Pasta con pesce spada, pomodorini e menta",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pesce_spada",
+        "pomodorini",
+        "pasta_secca"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "09f1797ba1b875f8",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_pomodori_secchi_rucola": {
+      "id": "pasta_pomodori_secchi_rucola",
+      "name": "Pasta fredda con pomodori secchi e rucola",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pasta_secca",
+        "pomodori_secchi",
+        "rucola",
+        "olive_nere"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "1c21eb04f71854ce",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_pomodoro_basilico": {
+      "id": "pasta_pomodoro_basilico",
+      "name": "Pasta al pomodoro e basilico",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pomodori_pelati",
+        "pasta_secca",
+        "basilico_fresco"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "5b4e9af290b5a849",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_radicchio_gorgonzola": {
+      "id": "pasta_radicchio_gorgonzola",
+      "name": "Pasta radicchio e gorgonzola",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "radicchio",
+        "pasta_secca",
+        "gorgonzola",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "9d04c6bcf334f215",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_ragu_veloce": {
+      "id": "pasta_ragu_veloce",
+      "name": "Pasta al ragù veloce",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "passata_pomodoro",
+        "macinato_manzo",
+        "pasta_secca",
+        "carota",
+        "cipolla",
+        "sedano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "5100d933d7068892",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_ricotta_spinaci": {
+      "id": "pasta_ricotta_spinaci",
+      "name": "Pasta con ricotta e spinaci",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "spinaci_surgelati",
+        "pasta_secca",
+        "ricotta",
+        "parmigiano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "2bb28dafb435da11",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pasta_zucchine": {
+      "id": "pasta_zucchine",
+      "name": "Pasta con le zucchine",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "zucchina",
+        "pasta_secca",
+        "basilico_fresco"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "1caf5fd57faec13b",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "patata_dolce_avocado": {
+      "id": "patata_dolce_avocado",
+      "name": "Fette di patata dolce con avocado",
+      "dishCategory": "colazione_salata",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "patata_dolce",
+        "avocado",
+        "lime",
+        "semi_zucca"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "60386a1f92ed53d9",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "patate_dolci_ripiene": {
+      "id": "patate_dolci_ripiene",
+      "name": "Patate dolci ripiene di spinaci e feta",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "patata_dolce",
+        "spinaci_freschi",
+        "pomodorini",
+        "feta"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "ea1e0bbc1c85c5fd",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "patate_fagiolini_uova": {
+      "id": "patate_fagiolini_uova",
+      "name": "Patate, fagiolini e uova sode",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "patata",
+        "uova",
+        "fagiolini"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "3deedc173d2e9c3e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "peperoni_ripieni_carne": {
+      "id": "peperoni_ripieni_carne",
+      "name": "Peperoni ripieni di carne al forno",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "peperone",
+        "macinato_manzo",
+        "uova",
+        "pangrattato",
+        "parmigiano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "c29f5818f0ad6bdc",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pera_gorgonzola_noci": {
+      "id": "pera_gorgonzola_noci",
+      "name": "Pera con gorgonzola e noci",
+      "dishCategory": "frutta",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "pera",
+        "gorgonzola",
+        "noci"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "f0b1cbb13126bd09",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pesce_spada_siciliana": {
+      "id": "pesce_spada_siciliana",
+      "name": "Pesce spada alla siciliana",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pesce_spada",
+        "pomodorini",
+        "capperi"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "434466b6e86c40ca",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "piadina_crudo_rucola": {
+      "id": "piadina_crudo_rucola",
+      "name": "Piadina con crudo, rucola e pomodoro",
+      "dishCategory": "pane",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "piadina",
+        "pomodoro",
+        "prosciutto_crudo",
+        "formaggio_spalmabile",
+        "rucola"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "66586a5ad2c2514e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "piadina_salmone_affumicato": {
+      "id": "piadina_salmone_affumicato",
+      "name": "Piadina con salmone affumicato e formaggio fresco",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "piadina",
+        "salmone_affumicato",
+        "formaggio_spalmabile",
+        "rucola",
+        "limone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "2d505ee11ec72cbc",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "polenta_funghi": {
+      "id": "polenta_funghi",
+      "name": "Polenta con funghi trifolati",
+      "dishCategory": "cereali",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "funghi_champignon",
+        "polenta_istantanea",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "0f1b713118c2d2cf",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pollo_al_limone": {
+      "id": "pollo_al_limone",
+      "name": "Petto di pollo al limone",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "petto_pollo",
+        "insalata",
+        "limone",
+        "farina"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "1ebef5acd5428a70",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pollo_cacciatora": {
+      "id": "pollo_cacciatora",
+      "name": "Pollo alla cacciatora in padella",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "cosce_pollo",
+        "pomodori_pelati",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "0a4bce140dc45794",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pollo_friggitrice_verdure": {
+      "id": "pollo_friggitrice_verdure",
+      "name": "Petto di pollo in friggitrice ad aria con peperoni e zucchine",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "petto_pollo",
+        "zucchina",
+        "peperone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "3180fc3dd6930f42",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pollo_peperoni": {
+      "id": "pollo_peperoni",
+      "name": "Bocconcini di pollo con peperoni",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "petto_pollo",
+        "peperone",
+        "passata_pomodoro",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "35d73fedb38ad2a5",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "polpette_al_sugo": {
+      "id": "polpette_al_sugo",
+      "name": "Polpette al sugo",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "passata_pomodoro",
+        "macinato_manzo",
+        "uova",
+        "pane",
+        "pangrattato",
+        "parmigiano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "bf01e4f6977f02dd",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "polpette_ceci_friggitrice": {
+      "id": "polpette_ceci_friggitrice",
+      "name": "Polpette di ceci in friggitrice ad aria",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "ceci_cotti",
+        "insalata",
+        "pangrattato",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "1e10fc14808b5370",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "polpette_tacchino_carote": {
+      "id": "polpette_tacchino_carote",
+      "name": "Polpette di tacchino al forno con carote",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fesa_tacchino",
+        "carota",
+        "uova",
+        "pangrattato",
+        "parmigiano",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "edae97ebb1a9c8f7",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "porridge_banana_cannella": {
+      "id": "porridge_banana_cannella",
+      "name": "Porridge d'avena con banana e cannella",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "banana",
+        "fiocchi_avena"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "9f8e1ec20ebe6f30",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "porridge_cacao_pera": {
+      "id": "porridge_cacao_pera",
+      "name": "Porridge al cacao con pera",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "pera",
+        "fiocchi_avena",
+        "cacao_amaro",
+        "zucchero"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "a56cfd704f213a4d",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "porridge_latte_frutti_bosco": {
+      "id": "porridge_latte_frutti_bosco",
+      "name": "Porridge al latte con frutti di bosco",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "latte",
+        "frutti_bosco",
+        "fiocchi_avena",
+        "miele"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "fa36e3c835404eca",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "pudding_chia_mango": {
+      "id": "pudding_chia_mango",
+      "name": "Pudding di chia al mango",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "mango",
+        "lime",
+        "semi_chia",
+        "cocco_rape"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "5a37a883cb9f0988",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "quinoa_cacao_banana": {
+      "id": "quinoa_cacao_banana",
+      "name": "Quinoa al cacao con banana",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "quinoa",
+        "banana",
+        "sciroppo_acero",
+        "semi_zucca",
+        "cacao_amaro"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "dee53f65e50ded1c",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "quinoa_ceci_cetriolo_menta": {
+      "id": "quinoa_ceci_cetriolo_menta",
+      "name": "Insalata di quinoa, ceci, cetriolo e menta",
+      "dishCategory": "cereali",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "ceci_cotti",
+        "cetriolo",
+        "pomodorini",
+        "quinoa",
+        "limone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "c1a1ff093f27c2ad",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "riso_dolce_frutti_bosco": {
+      "id": "riso_dolce_frutti_bosco",
+      "name": "Riso dolce ai frutti di bosco",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "frutti_bosco",
+        "riso",
+        "cocco_rape",
+        "zucchero"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "df9bf28c4d161a57",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "riso_fagioli_neri_peperoni": {
+      "id": "riso_fagioli_neri_peperoni",
+      "name": "Riso con fagioli neri e peperoni",
+      "dishCategory": "riso",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fagioli_neri",
+        "peperone",
+        "riso_basmati",
+        "lime",
+        "cipolla_rossa"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "88e74d7f1c0dc3cf",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "riso_piselli_carote": {
+      "id": "riso_piselli_carote",
+      "name": "Riso con piselli e carote",
+      "dishCategory": "riso",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "riso_basmati",
+        "piselli_surgelati",
+        "carota"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "8f127145543b108b",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "riso_saltato_uova_verdure": {
+      "id": "riso_saltato_uova_verdure",
+      "name": "Riso saltato con uova e verdure",
+      "dishCategory": "riso",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "uova",
+        "riso_basmati",
+        "piselli_surgelati",
+        "carota",
+        "salsa_soia"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "2c906849a82088fb",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "riso_zucchine_pomodorini": {
+      "id": "riso_zucchine_pomodorini",
+      "name": "Riso saltato con zucchine e pomodorini",
+      "dishCategory": "riso",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "zucchina",
+        "pomodorini",
+        "riso_basmati",
+        "basilico_fresco"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "8f1e4c7ce588082e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "risotto_asparagi": {
+      "id": "risotto_asparagi",
+      "name": "Risotto agli asparagi",
+      "dishCategory": "riso",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "asparagi",
+        "riso",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "781cf370eedb7333",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "risotto_zucca": {
+      "id": "risotto_zucca",
+      "name": "Risotto alla zucca",
+      "dishCategory": "riso",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "zucca",
+        "riso",
+        "cipolla",
+        "parmigiano",
+        "burro",
+        "dado_vegetale"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "0465069ebd7726cd",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "salmone_forno_broccoli": {
+      "id": "salmone_forno_broccoli",
+      "name": "Salmone al forno con broccoli",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "broccolo",
+        "salmone",
+        "limone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "d32758751dede4fb",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "salmone_padella_zucchine": {
+      "id": "salmone_padella_zucchine",
+      "name": "Salmone in padella con zucchine",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "salmone",
+        "zucchina",
+        "limone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "dca417ba87583ed5",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "saltimbocca_tacchino_speck": {
+      "id": "saltimbocca_tacchino_speck",
+      "name": "Saltimbocca di tacchino allo speck",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "tacchino_fettine",
+        "insalata",
+        "speck",
+        "farina"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "3190fe73d5071f1d",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "scaloppine_limone": {
+      "id": "scaloppine_limone",
+      "name": "Scaloppine di vitello al limone",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fettine_vitello",
+        "limone",
+        "farina",
+        "burro",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "8c80c7ace9c1f7cd",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "smoothie_bowl_tropicale": {
+      "id": "smoothie_bowl_tropicale",
+      "name": "Smoothie bowl tropicale",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "ananas",
+        "banana",
+        "kiwi",
+        "cocco_rape",
+        "semi_chia"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "4397e4dc9e4dee43",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "spaghetti_aglio_olio": {
+      "id": "spaghetti_aglio_olio",
+      "name": "Spaghetti aglio, olio e peperoncino",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pasta_secca",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "c399715907259da4",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "spaghetti_vongole": {
+      "id": "spaghetti_vongole",
+      "name": "Spaghetti alle vongole",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "vongole",
+        "pasta_secca",
+        "prezzemolo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "e2638c775152c152",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "spezzatino_piselli": {
+      "id": "spezzatino_piselli",
+      "name": "Spezzatino di manzo con piselli",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "spezzatino_manzo",
+        "passata_pomodoro",
+        "piselli_surgelati",
+        "cipolla",
+        "carota"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "3ed4c68513a17e0e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "spiedini_frutta_cioccolato": {
+      "id": "spiedini_frutta_cioccolato",
+      "name": "Spiedini di frutta al cioccolato",
+      "dishCategory": "frutta",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "fragole",
+        "banana",
+        "kiwi",
+        "cioccolato_fondente"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "5ba9ce0efd4d3bbe",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "straccetti_pollo_friggitrice": {
+      "id": "straccetti_pollo_friggitrice",
+      "name": "Straccetti di pollo croccanti in friggitrice ad aria",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "petto_pollo",
+        "carota",
+        "cetriolo",
+        "pangrattato"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "bd001e94f35cbf67",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "tacchino_curry_cocco": {
+      "id": "tacchino_curry_cocco",
+      "name": "Tacchino al curry con latte di cocco e riso",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fesa_tacchino",
+        "latte_cocco",
+        "riso_basmati",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "077276df044665ad",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "tacchino_rosmarino_insalata": {
+      "id": "tacchino_rosmarino_insalata",
+      "name": "Fettine di tacchino al rosmarino con insalata",
+      "dishCategory": "carne",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "tacchino_fettine",
+        "pomodorini",
+        "insalata"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "f4af7dc29eb0beb6",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "tacos_lenticchie": {
+      "id": "tacos_lenticchie",
+      "name": "Tacos di lenticchie speziate",
+      "dishCategory": "pane",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "tortilla",
+        "lenticchie_cotte",
+        "pomodoro",
+        "avocado",
+        "lime",
+        "insalata"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "ee8d8ff476ff30c0",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "tagliatelle_burro_salvia": {
+      "id": "tagliatelle_burro_salvia",
+      "name": "Tagliatelle burro e salvia",
+      "dishCategory": "pasta",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "pasta_uovo",
+        "burro",
+        "parmigiano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "5a6973e8eaf81952",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "toast_avocado_pomodorini": {
+      "id": "toast_avocado_pomodorini",
+      "name": "Pane tostato con avocado e pomodorini",
+      "dishCategory": "colazione_salata",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "pane_integrale",
+        "avocado",
+        "pomodorini",
+        "limone"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "55ae5102d14c993a",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "toast_prosciutto_mozzarella": {
+      "id": "toast_prosciutto_mozzarella",
+      "name": "Toast prosciutto e mozzarella",
+      "dishCategory": "colazione_salata",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "pane_cassetta",
+        "mozzarella",
+        "prosciutto_cotto"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "875a3e819f1d4e06",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "tofu_croccante_broccoli": {
+      "id": "tofu_croccante_broccoli",
+      "name": "Tofu croccante in friggitrice con broccoli",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "broccolo",
+        "tofu",
+        "limone",
+        "farina_ceci"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "8a911d4b0c3999fa",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "tofu_saltato_verdure": {
+      "id": "tofu_saltato_verdure",
+      "name": "Tofu saltato con verdure",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "tofu",
+        "zucchina",
+        "peperone",
+        "salsa_soia"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "2bf70834f14e4010",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "tofu_strapazzato_spinaci": {
+      "id": "tofu_strapazzato_spinaci",
+      "name": "Tofu strapazzato con spinaci",
+      "dishCategory": "colazione_salata",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "tofu",
+        "pomodorini",
+        "spinaci_freschi"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "6cf9f1b9c2ac1adf",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "tonno_sesamo_zucchine": {
+      "id": "tonno_sesamo_zucchine",
+      "name": "Tonno scottato al sesamo con zucchine allo zenzero",
+      "dishCategory": "pesce",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "tonno_fresco",
+        "zucchina",
+        "lime",
+        "semi_sesamo"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "9477cc8a18b1dcca",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "torta_salata_zucchine": {
+      "id": "torta_salata_zucchine",
+      "name": "Torta salata di sfoglia con zucchine e scamorza",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "zucchina",
+        "ricotta",
+        "pasta_sfoglia",
+        "scamorza",
+        "parmigiano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "7345f6b7ab291388",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "uova_al_pomodoro": {
+      "id": "uova_al_pomodoro",
+      "name": "Uova al pomodoro",
+      "dishCategory": "uova",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "uova",
+        "passata_pomodoro",
+        "pane",
+        "basilico_fresco"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "5d8896eecfc9e398",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "uova_camicia_pomodoro": {
+      "id": "uova_camicia_pomodoro",
+      "name": "Uova in camicia su pane e pomodoro",
+      "dishCategory": "colazione_salata",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "uova",
+        "pomodoro",
+        "pane_integrale"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "d72d07e76253d09b",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "uova_purgatorio_peperoni": {
+      "id": "uova_purgatorio_peperoni",
+      "name": "Uova in purgatorio con peperoni e paprika",
+      "dishCategory": "uova",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "uova",
+        "pomodori_pelati",
+        "peperone",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "0106e6ec4c6186ba",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "uova_strapazzate_toast": {
+      "id": "uova_strapazzate_toast",
+      "name": "Uova strapazzate con pane tostato",
+      "dishCategory": "colazione_salata",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "uova",
+        "pane",
+        "burro"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "7e42312d2192f611",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "vellutata_carote_zenzero": {
+      "id": "vellutata_carote_zenzero",
+      "name": "Vellutata di carote e zenzero",
+      "dishCategory": "zuppa",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "carota",
+        "patata",
+        "cipolla",
+        "semi_zucca"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "80c7f72107e59a88",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "vellutata_zucca": {
+      "id": "vellutata_zucca",
+      "name": "Vellutata di zucca e patate",
+      "dishCategory": "zuppa",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "zucca",
+        "patata",
+        "pane",
+        "cipolla",
+        "dado_vegetale"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "d42f4025bea8f54f",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "verza_stufata_fagioli": {
+      "id": "verza_stufata_fagioli",
+      "name": "Verza stufata con cannellini",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "verza",
+        "fagioli_cannellini",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "0caeb5a1e12b0c9d",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "yogurt_banana_cacao": {
+      "id": "yogurt_banana_cacao",
+      "name": "Yogurt con banana e cacao",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "yogurt_bianco",
+        "banana",
+        "cacao_amaro"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "980556725bec4b19",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "yogurt_greco_noci_miele": {
+      "id": "yogurt_greco_noci_miele",
+      "name": "Yogurt greco con noci, miele e frutta",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "yogurt_greco",
+        "fragole",
+        "noci",
+        "miele"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "4385613c5b181a31",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "yogurt_kiwi_granola": {
+      "id": "yogurt_kiwi_granola",
+      "name": "Bowl di yogurt, kiwi e granola",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione",
+        "spuntino"
+      ],
+      "mainIngredients": [
+        "yogurt_bianco",
+        "kiwi",
+        "muesli",
+        "miele"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "5acafd243b136861",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "yogurt_soia_avena_fragole": {
+      "id": "yogurt_soia_avena_fragole",
+      "name": "Yogurt di soia con avena e fragole",
+      "dishCategory": "colazione_dolce",
+      "mealTypes": [
+        "colazione"
+      ],
+      "mainIngredients": [
+        "yogurt_soia",
+        "fragole",
+        "fiocchi_avena"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "2e3ca8648efbc1a1",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "zucchine_ripiene_couscous": {
+      "id": "zucchine_ripiene_couscous",
+      "name": "Zucchine ripiene di couscous e olive",
+      "dishCategory": "verdure",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "zucchina",
+        "pomodorini",
+        "couscous",
+        "olive_nere"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "b9a50c4dd9277400",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "zuppa_cavolo_nero_cannellini": {
+      "id": "zuppa_cavolo_nero_cannellini",
+      "name": "Zuppa di cavolo nero e cannellini",
+      "dishCategory": "zuppa",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "fagioli_cannellini",
+        "cavolo_nero",
+        "patata",
+        "pomodori_pelati",
+        "carota",
+        "cipolla"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "46141bd5e999550e",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    },
+    "zuppa_piselli_spezzati": {
+      "id": "zuppa_piselli_spezzati",
+      "name": "Zuppa di piselli spezzati",
+      "dishCategory": "legumi",
+      "mealTypes": [
+        "pranzo",
+        "cena"
+      ],
+      "mainIngredients": [
+        "piselli_secchi_spezzati",
+        "patata",
+        "carota",
+        "cipolla",
+        "sedano"
+      ],
+      "status": "pending",
+      "file": null,
+      "promptHash": "9803a2b8b09e69bb",
+      "attempts": 0,
+      "model": null,
+      "phash": null,
+      "qc": {
+        "notes": []
+      },
+      "updatedAt": null
+    }
+  },
+  "runs": []
+}

@@ -1,8 +1,9 @@
 import { CatalogIndex } from './catalog';
 import { diffDays, rangeDays, weekdayOf } from './dates';
 import { MEAL_ORDER } from './planner';
-import { roundUpForShopping, scaleQty, suggestPacks, toMilli, type PackSuggestion } from './quantity';
-import { PERISHABILITY_MAX_DAYS, type IsoDate, type MealType, type MilliQty, type PantryStock, type PlannedMeal, type Weekday } from './types';
+import { ingredientNeed } from './portions';
+import { roundUpForShopping, suggestPacks, type PackSuggestion } from './quantity';
+import { PERISHABILITY_MAX_DAYS, type IsoDate, type MealType, type MilliQty, type PantryStock, type PlannedMeal, type PortionProfile, type Weekday } from './types';
 
 /**
  * ShoppingPlannerEngine — distribuisce gli acquisti mancanti sui giorni di spesa scelti.
@@ -66,6 +67,8 @@ export interface ShoppingInput {
   shoppingDays: Weekday[];
   today: IsoDate;
   horizonEnd: IsoDate;
+  /** Porzioni abituali dell'utente (assenti = ricette come scritte). */
+  portions?: PortionProfile;
 }
 
 export function planShopping(input: ShoppingInput): ShoppingPlan {
@@ -111,7 +114,7 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
         continue;
       }
 
-      let need = scaleQty(toMilli(ri.qty), meal.servings, recipe.baseServings);
+      let need = ingredientNeed(recipe, ri, ing, meal.servings, input.portions);
       if (need <= 0) continue;
 
       // 1) dispensa confermata
@@ -186,7 +189,7 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
 export const WARN_BEFORE_FIRST = 'Serve prima della prossima spesa programmata.';
 
 /** Fabbisogno lordo per ingrediente (milli) dei pasti pianificati futuri: utile per la dispensa. */
-export function futureNeeds(meals: PlannedMeal[], catalog: CatalogIndex, today: IsoDate): Map<string, MilliQty> {
+export function futureNeeds(meals: PlannedMeal[], catalog: CatalogIndex, today: IsoDate, portions?: PortionProfile): Map<string, MilliQty> {
   const needs = new Map<string, MilliQty>();
   for (const m of meals) {
     if (m.status !== 'planned' || diffDays(today, m.date) < 0) continue;
@@ -194,7 +197,7 @@ export function futureNeeds(meals: PlannedMeal[], catalog: CatalogIndex, today: 
     if (!r) continue;
     for (const ri of r.ingredients) {
       if (ri.toTaste || ri.qty === undefined) continue;
-      const q = scaleQty(toMilli(ri.qty), m.servings, r.baseServings);
+      const q = ingredientNeed(r, ri, catalog.ingredient(ri.ingredientId), m.servings, portions);
       needs.set(ri.ingredientId, (needs.get(ri.ingredientId) ?? 0) + q);
     }
   }

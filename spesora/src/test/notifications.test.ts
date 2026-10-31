@@ -78,3 +78,26 @@ describe('Test I — notifiche', () => {
     expect(parseRouteFromNotification({ url: '/spesa?trip=2026-11-03' })).toBe('/spesa?trip=2026-11-03');
   });
 });
+
+describe('Tono dell’assistente', () => {
+  it('le frasi sono brevi, citano la ricetta e non colpevolizzano', async () => {
+    const { greeting, cookSoon, mealReminderBody, shoppingDay, swapSuggestion, EMPTY, TIPS, FORBIDDEN_TONE } = await import('../i18n/assistant');
+    const samples = [
+      ...[0, 8, 14, 21].map((h) => greeting(h, 'k' + h)),
+      ...['a', 'b', 'c', 'd'].map((k) => cookSoon('Pasta al tonno', 20, k)),
+      cookSoon('Pasta al tonno', 15, 'x'),
+      mealReminderBody('Pasta al tonno', 20, 2, 'm'),
+      shoppingDay(3, 'd').body,
+      swapSuggestion('s'),
+      ...Object.values(EMPTY),
+      ...TIPS,
+    ];
+    for (const s of samples) {
+      expect(s.length).toBeLessThan(200);
+      for (const bad of FORBIDDEN_TONE) expect(s.toLowerCase()).not.toContain(bad);
+    }
+    expect(cookSoon('Pasta al tonno', 20, 'a')).toContain('pasta al tonno');
+    expect(cookSoon('Pasta al tonno', 15, 'a')).toMatch(/15 minuti/);
+    expect(greeting(9, 'x')).toBe(greeting(9, 'x'));
+  });
+});

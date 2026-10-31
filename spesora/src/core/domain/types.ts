@@ -197,6 +197,45 @@ export interface DaySchedule {
   mealTimes: Record<MealType, number>;
 }
 
+/* ---------------------------------------------------------------------- */
+/* Porzioni e gusti (personalizzazione di comfort, non indicazioni mediche) */
+/* ---------------------------------------------------------------------- */
+
+export const APPETITES = ['poco', 'normale', 'tanto'] as const;
+export type Appetite = (typeof APPETITES)[number];
+export const LIFESTYLES = ['sedentario', 'attivo', 'mi_alleno'] as const;
+export type Lifestyle = (typeof LIFESTYLES)[number];
+export const MEAL_GOALS = ['leggeri', 'equilibrati', 'sostanziosi', 'proteici'] as const;
+export type MealGoal = (typeof MEAL_GOALS)[number];
+export const PROTEIN_SIZES = ['piccola', 'media', 'abbondante'] as const;
+export type ProteinSize = (typeof PROTEIN_SIZES)[number];
+export const GENDERS = ['non_indicato', 'donna', 'uomo', 'altro'] as const;
+export type Gender = (typeof GENDERS)[number];
+
+export interface PortionProfile {
+  /** Facoltativo e solo informativo: non entra in nessun calcolo. */
+  gender: Gender;
+  appetite: Appetite;
+  lifestyle: Lifestyle;
+  goal: MealGoal;
+  /** Pasta a persona quando è l'ingrediente principale (g). */
+  pastaGrams: number;
+  /** Riso e cereali in chicco a persona quando sono l'ingrediente principale (g). */
+  riceGrams: number;
+  /** Carne, pesce, tofu e uova nei secondi. */
+  proteinSize: ProteinSize;
+}
+
+export const LIKES = ['pesce', 'proteiche', 'primi', 'secondi', 'piatti_unici', 'bowl', 'cene_veloci', 'colazioni_salate', 'colazioni_dolci'] as const;
+export type Like = (typeof LIKES)[number];
+export const WEEK_STYLES = ['pratica', 'varia', 'economica', 'proteica', 'vegetariana', 'veloce'] as const;
+export type WeekStyle = (typeof WEEK_STYLES)[number];
+
+export interface TastePreferences {
+  likes: Like[];
+  weekStyles: WeekStyle[];
+}
+
 export interface UserProfile {
   servings: number;
   mealTypes: MealType[];
@@ -212,6 +251,8 @@ export interface UserProfile {
   /** Budget settimanale facoltativo in centesimi. */
   weeklyBudgetCents: number | null;
   equipment: Equipment[];
+  portions: PortionProfile;
+  tastes: TastePreferences;
 }
 
 /* ---------------------------------------------------------------------- */

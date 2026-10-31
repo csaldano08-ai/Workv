@@ -39,3 +39,6 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# sorgenti immagini a piena risoluzione (artifact della GitHub Action, non nel repo)
+.image-sources/

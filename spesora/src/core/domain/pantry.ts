@@ -1,6 +1,6 @@
 import { CatalogIndex } from './catalog';
-import { scaleQty, toMilli } from './quantity';
-import type { IsoDate, MilliQty, PantryStock, PlannedMeal } from './types';
+import { ingredientNeed } from './portions';
+import type { IsoDate, MilliQty, PantryStock, PlannedMeal, PortionProfile } from './types';
 
 /**
  * PantryEngine — la dispensa è un registro di movimenti (ledger).
@@ -57,14 +57,14 @@ export interface ConsumptionResult {
  * Calcola i movimenti di consumo per un pasto cucinato. Non sottrae mai più
  * di quanto registrato (la quantità non può diventare negativa).
  */
-export function computeMealConsumption(meal: PlannedMeal, catalog: CatalogIndex, stock: PantryStock): ConsumptionResult {
+export function computeMealConsumption(meal: PlannedMeal, catalog: CatalogIndex, stock: PantryStock, portions?: PortionProfile): ConsumptionResult {
   const recipe = catalog.recipe(meal.recipeId);
   if (!recipe) throw new Error(`Ricetta sconosciuta: ${meal.recipeId}`);
   const movements: ConsumptionResult['movements'] = [];
   const shortfalls: ConsumptionResult['shortfalls'] = [];
   for (const ri of recipe.ingredients) {
     if (ri.toTaste || ri.qty === undefined) continue;
-    const need = scaleQty(toMilli(ri.qty), meal.servings, recipe.baseServings);
+    const need = ingredientNeed(recipe, ri, catalog.ingredient(ri.ingredientId), meal.servings, portions);
     const available = stock.get(ri.ingredientId) ?? 0;
     const take = Math.min(available, need);
     if (take > 0) {
@@ -123,6 +123,7 @@ export function mealIngredientStatus(
   catalog: CatalogIndex,
   stock: PantryStock,
   presentStaples: Set<string>,
+  portions?: PortionProfile,
 ): { ingredientId: string; need: MilliQty; status: IngredientAvailability }[] {
   const recipe = catalog.recipe(meal.recipeId);
   if (!recipe) return [];
@@ -131,7 +132,7 @@ export function mealIngredientStatus(
       const present = presentStaples.has(ri.ingredientId) || (stock.get(ri.ingredientId) ?? 0) > 0;
       return { ingredientId: ri.ingredientId, need: 0, status: present ? 'qb_presente' : 'qb_mancante' };
     }
-    const need = scaleQty(toMilli(ri.qty), meal.servings, recipe.baseServings);
+    const need = ingredientNeed(recipe, ri, catalog.ingredient(ri.ingredientId), meal.servings, portions);
     const have = stock.get(ri.ingredientId) ?? 0;
     const status: IngredientAvailability = have >= need ? 'in_dispensa' : have > 0 ? 'parziale' : 'da_comprare';
     return { ingredientId: ri.ingredientId, need, status };

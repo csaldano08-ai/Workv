@@ -2,6 +2,7 @@ import { CatalogIndex } from '../domain/catalog';
 import { addDays, localInstant, minutesToHHMM } from '../domain/dates';
 import { hashString } from '../domain/random';
 import type { IsoDate, MealType, PlannedMeal } from '../domain/types';
+import { mealReminderBody, mealReminderTitle, SHOPPING_REMINDER_BODY, shoppingDay } from '../../i18n/assistant';
 
 /**
  * Calcolo puro degli avvisi locali desiderati (NotificationScheduler, parte deterministica).
@@ -62,13 +63,6 @@ export function isInQuietHours(minutes: number, start: number, end: number): boo
   return start < end ? minutes >= start && minutes < end : minutes >= start || minutes < end;
 }
 
-const MEAL_LABEL: Record<MealType, string> = {
-  colazione: 'la colazione',
-  pranzo: 'il pranzo',
-  cena: 'la cena',
-  spuntino: 'lo spuntino',
-};
-
 function makeId(kind: NotificationKind, key: string, content: string): string {
   return `${NOTIFICATION_PREFIX}${kind}:${key}:${hashString(content).toString(36)}`;
 }
@@ -87,8 +81,8 @@ export function computeNotifications(input: ScheduleInput): DesiredNotification[
       const fireAt = localInstant(meal.date, startMinutes);
       if (fireAt.getTime() <= now.getTime()) continue;
       if (isInQuietHours(minuteOf(fireAt), settings.quietStartMinutes, settings.quietEndMinutes)) continue;
-      const title = `È quasi ora di preparare ${MEAL_LABEL[meal.mealType]}`;
-      const body = `Oggi si cucina ${recipe.name.toLowerCase()}. Preparazione: ${recipe.totalMinutes} minuti, per ${meal.servings} ${meal.servings === 1 ? 'persona' : 'persone'}. Tocca per vedere la ricetta.`;
+      const title = mealReminderTitle(meal.mealType, meal.id);
+      const body = mealReminderBody(recipe.name, recipe.totalMinutes, meal.servings, meal.id);
       const url = `/ricetta/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`;
       out.push({ id: makeId('meal', meal.id, `${fireAt.getTime()}|${body}|${url}`), kind: 'meal', fireAt, title, body, url });
     }
@@ -100,8 +94,8 @@ export function computeNotifications(input: ScheduleInput): DesiredNotification[
       if (isInQuietHours(minutes, settings.quietStartMinutes, settings.quietEndMinutes)) minutes = settings.quietEndMinutes;
       const fireAt = localInstant(date, minutes);
       if (fireAt.getTime() <= now.getTime()) continue;
-      const title = 'Oggi è il tuo giorno di spesa';
-      const body = 'La lista per le prossime ricette è pronta. Tocca per aprirla.';
+      const { title } = shoppingDay(0, date);
+      const body = SHOPPING_REMINDER_BODY;
       const url = `/spesa?trip=${date}`;
       out.push({ id: makeId('shopping', date, `${fireAt.getTime()}|${url}`), kind: 'shopping', fireAt, title, body, url });
     }
@@ -116,8 +110,8 @@ export function computeNotifications(input: ScheduleInput): DesiredNotification[
         id: makeId('plan_end', input.planEnd, `${fireAt.getTime()}`),
         kind: 'plan_end',
         fireAt,
-        title: 'Il tuo calendario finisce oggi',
-        body: `Apri Spesora per preparare i pasti da ${addDays(input.planEnd, 1)} in poi.`,
+        title: 'La settimana è quasi finita',
+        body: `Apri Spesora quando vuoi: preparo io il menù da ${addDays(input.planEnd, 1)} in poi.`,
         url: '/',
       });
     }

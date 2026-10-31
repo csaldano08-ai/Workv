@@ -1,6 +1,7 @@
 import { CatalogIndex } from './catalog';
 import { addDays, diffDays, rangeDays, weekdayOf } from './dates';
-import { scaleQty, toMilli } from './quantity';
+import { ingredientNeed } from './portions';
+import { isProteinDish, LIKE_LABELS, matchesLike } from './classify';
 import { createRng } from './random';
 import {
   PERISHABILITY_MAX_DAYS,
@@ -179,9 +180,10 @@ function scoreCandidate(
     reasons.push('Tra le tue ricette preferite');
   }
 
+  const weekStyles = profile.tastes?.weekStyles ?? [];
   if (!isBreakfastLike) {
     const catCount = state.categoryCount.get(recipe.dishCategory) ?? 0;
-    score -= catCount * 10;
+    score -= catCount * (weekStyles.includes('varia') ? 15 : 10);
     const recent = [
       ...(state.lastCategoryByDate.get(slot.date) ?? []),
       ...(state.lastCategoryByDate.get(addDays(slot.date, -1)) ?? []),
@@ -189,6 +191,10 @@ function scoreCandidate(
     if (recent.includes(recipe.dishCategory)) score -= 20;
     else if (catCount === 0) reasons.push('Aggiunge varietà alla settimana');
   }
+
+  const taste = tasteScore(recipe, slot, profile, catalog);
+  score += taste.score;
+  reasons.push(...taste.reasons);
 
   let shared = 0;
   let fromPantry: string[] = [];
@@ -198,7 +204,7 @@ function scoreCandidate(
   for (const ri of recipe.ingredients) {
     const ing = catalog.ingredient(ri.ingredientId);
     if (ing.staple || ri.toTaste) continue;
-    const need = scaleQty(toMilli(ri.qty ?? 0), profile.servings, recipe.baseServings);
+    const need = ingredientNeed(recipe, ri, ing, profile.servings, profile.portions);
     const available = state.projectedPantry.get(ing.id) ?? 0;
     if (available >= need && need > 0) {
       fromPantry.push(ing.name);
@@ -209,7 +215,7 @@ function scoreCandidate(
   }
   fromPantry = fromPantry.slice(0, 3);
   score += Math.min(fromPantry.length * 6, 18);
-  score += Math.min(shared * 4, 12);
+  score += Math.min(shared * (weekStyles.includes('economica') ? 8 : 4), weekStyles.includes('economica') ? 24 : 12);
   score -= Math.min(perishablePenalty, 60);
   if (fromPantry.length > 0) reasons.push(`Usa ingredienti già in dispensa: ${fromPantry.join(', ')}`);
   if (shared > 0) reasons.push('Condivide ingredienti con altri pasti della settimana');
@@ -219,6 +225,38 @@ function scoreCandidate(
   reasons.unshift(`Pronta in ${recipe.totalMinutes} min (ne hai ${maxMinutes})`);
   score += jitter * 8;
   return { recipe, score, reasons };
+}
+
+/**
+ * Gusti e stile della settimana: spostano il punteggio, non escludono mai ricette
+ * (le esclusioni restano solo quelle alimentari e degli strumenti).
+ */
+export function tasteScore(recipe: Recipe, slot: { mealType: MealType }, profile: UserProfile, catalog: CatalogIndex): { score: number; reasons: string[] } {
+  const reasons: string[] = [];
+  let score = 0;
+  const likes = profile.tastes?.likes ?? [];
+  const styles = profile.tastes?.weekStyles ?? [];
+  const matched = likes.filter((l) => matchesLike(l, recipe, catalog, slot.mealType));
+  if (matched.length > 0) {
+    score += Math.min(matched.length * 12, 24);
+    reasons.push(`Tra i tuoi gusti: ${matched.map((m) => LIKE_LABELS[m].toLowerCase()).join(', ')}`);
+  }
+  const main = slot.mealType === 'pranzo' || slot.mealType === 'cena';
+  if (styles.includes('veloce')) score += Math.max(0, (30 - recipe.totalMinutes) / 2);
+  if (styles.includes('pratica')) {
+    const items = recipe.ingredients.filter((i) => !i.toTaste).length;
+    score += (recipe.totalMinutes <= 20 ? 5 : 0) - Math.max(0, items - 6) * 2;
+  }
+  if (styles.includes('proteica') && main && isProteinDish(recipe)) score += 10;
+  if (styles.includes('vegetariana') && main && catalog.factsOf(recipe).vegetarian) score += 10;
+  if (styles.includes('economica') && main && (recipe.dishCategory === 'legumi' || recipe.dishCategory === 'pasta')) score += 4;
+  const goal = profile.portions?.goal ?? 'equilibrati';
+  if (main) {
+    if (goal === 'leggeri' && ['verdure', 'zuppa', 'pesce', 'legumi'].includes(recipe.dishCategory)) score += 8;
+    if (goal === 'sostanziosi' && ['pasta', 'riso', 'carne', 'cereali'].includes(recipe.dishCategory)) score += 8;
+    if (goal === 'proteici' && isProteinDish(recipe)) score += 8;
+  }
+  return { score, reasons };
 }
 
 function emptyState(pantry: PantryStock): PlanState {
@@ -231,7 +269,7 @@ function emptyState(pantry: PantryStock): PlanState {
   };
 }
 
-function applyToState(state: PlanState, recipe: Recipe, meal: { date: IsoDate; servings: number; mealType: MealType }, catalog: CatalogIndex) {
+function applyToState(state: PlanState, recipe: Recipe, meal: { date: IsoDate; servings: number; mealType: MealType }, catalog: CatalogIndex, profile: UserProfile) {
   state.usedThisPlan.set(recipe.id, (state.usedThisPlan.get(recipe.id) ?? 0) + 1);
   if (meal.mealType === 'pranzo' || meal.mealType === 'cena') {
     state.categoryCount.set(recipe.dishCategory, (state.categoryCount.get(recipe.dishCategory) ?? 0) + 1);
@@ -243,7 +281,7 @@ function applyToState(state: PlanState, recipe: Recipe, meal: { date: IsoDate; s
     const ing = catalog.ingredient(ri.ingredientId);
     if (ing.staple || ri.toTaste) continue;
     state.neededIngredients.add(ing.id);
-    const need = scaleQty(toMilli(ri.qty ?? 0), meal.servings, recipe.baseServings);
+    const need = ingredientNeed(recipe, ri, ing, meal.servings, profile.portions);
     const left = (state.projectedPantry.get(ing.id) ?? 0) - need;
     state.projectedPantry.set(ing.id, Math.max(0, left));
   }
@@ -280,7 +318,7 @@ export function generatePlan(input: PlannerInput): PlannerOutput {
     if (kept) {
       meals.push(kept);
       const r = catalog.recipe(kept.recipeId);
-      if (r && kept.status === 'planned') applyToState(state, r, kept, catalog);
+      if (r && kept.status === 'planned') applyToState(state, r, kept, catalog, profile);
       else if (r) state.usedThisPlan.set(r.id, (state.usedThisPlan.get(r.id) ?? 0) + 1);
       continue;
     }
@@ -313,7 +351,7 @@ export function generatePlan(input: PlannerInput): PlannerOutput {
       reasons: chosen.reasons,
     };
     meals.push(meal);
-    applyToState(state, chosen.recipe, meal, catalog);
+    applyToState(state, chosen.recipe, meal, catalog, profile);
   }
   return { meals, issues };
 }
@@ -334,7 +372,7 @@ export function suggestAlternatives(
   for (const m of sorted) {
     if (m.id === target.id) continue;
     const r = catalog.recipe(m.recipeId);
-    if (r && m.status === 'planned') applyToState(state, r, m, catalog);
+    if (r && m.status === 'planned') applyToState(state, r, m, catalog, profile);
   }
   const maxMinutes = maxMinutesFor(profile, target.date);
   const history = historyIndex(input.history);

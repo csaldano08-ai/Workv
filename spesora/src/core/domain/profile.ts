@@ -1,5 +1,21 @@
 import { z } from 'zod';
-import { ALLERGENS, DIETS, EQUIPMENT, MEAL_TYPES, type DaySchedule, type UserProfile, type Weekday } from './types';
+import {
+  ALLERGENS,
+  APPETITES,
+  DIETS,
+  EQUIPMENT,
+  GENDERS,
+  LIFESTYLES,
+  LIKES,
+  MEAL_GOALS,
+  MEAL_TYPES,
+  PROTEIN_SIZES,
+  WEEK_STYLES,
+  type DaySchedule,
+  type UserProfile,
+  type Weekday,
+} from './types';
+import { DEFAULT_PORTIONS } from './portions';
 import { DEFAULT_NOTIFICATION_SETTINGS, type NotificationSettings } from '../notifications/schedule';
 
 const minutes = z.number().int().min(0).max(1439);
@@ -20,6 +36,24 @@ export const profileSchema = z.object({
   shoppingDays: z.array(z.number().int().min(0).max(6)).min(1).max(7),
   weeklyBudgetCents: z.number().int().min(0).max(10_000_000).nullable(),
   equipment: z.array(z.enum(EQUIPMENT)),
+  // Campi aggiunti dopo la prima versione: i profili salvati prima ricevono i valori predefiniti.
+  portions: z
+    .object({
+      gender: z.enum(GENDERS).default('non_indicato'),
+      appetite: z.enum(APPETITES).default('normale'),
+      lifestyle: z.enum(LIFESTYLES).default('attivo'),
+      goal: z.enum(MEAL_GOALS).default('equilibrati'),
+      pastaGrams: z.number().int().min(40).max(200).default(80),
+      riceGrams: z.number().int().min(40).max(200).default(70),
+      proteinSize: z.enum(PROTEIN_SIZES).default('media'),
+    })
+    .default({ ...DEFAULT_PORTIONS }),
+  tastes: z
+    .object({
+      likes: z.array(z.enum(LIKES)).default([]),
+      weekStyles: z.array(z.enum(WEEK_STYLES)).default([]),
+    })
+    .default({ likes: [], weekStyles: [] }),
 });
 
 export const notificationSettingsSchema = z.object({
@@ -60,6 +94,8 @@ export function draftProfile(): UserProfile {
     shoppingDays: [1, 5] as Weekday[],
     weeklyBudgetCents: null,
     equipment: ['fornelli', 'forno', 'microonde'],
+    portions: { ...DEFAULT_PORTIONS },
+    tastes: { likes: [], weekStyles: [] },
   };
 }
 
