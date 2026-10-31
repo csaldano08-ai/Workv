@@ -1,0 +1,28 @@
+{
+  "status": "locked_after_eight_samples",
+  "generator": "Google Flow UI only",
+  "model": "Nano Banana 2.1",
+  "project": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac",
+  "master_prompt": "Beautiful hand-painted 2D editorial food illustration for a modern premium Italian cookbook app. Refined gouache and subtle watercolor texture, clean delicate hand-drawn outlines, elegant flat color shading, warm natural food colors, soft matte surfaces, artistic yet highly recognizable food presentation. A delicious finished dish clearly illustrated from a consistent slightly elevated three-quarter viewpoint, placed on a simple warm ivory background. Carefully arranged ingredients, visually appealing but believable everyday homemade cooking. Sophisticated contemporary cookbook illustration, cohesive visual language, subtle paper texture, gentle natural shadows, balanced composition, centered food subject, no visual clutter. Not photorealistic, not CGI, not 3D, not glossy, not plastic, not hyperrealistic, not advertising photography, not childish cartoon. No text, no typography, no logos, no watermarks. Landscape 4:3 composition.",
+  "additions": "Full-bleed continuous warm ivory #F6F3EA background reaching every edge; no rectangular panel, no white outer frame, no decorative border. Same thin soft outlines, matte gouache, approximately 45 degree elevated view, plain ivory ceramics with tiny sage rim, subject about 70% of frame. Natural food colors. Only recipe ingredients, no invented garnish. Only finished served food inside serving vessel. Never illustrate raw ingredient displays, packaging, utensils, napkins or loose props outside vessel.",
+  "samples": [
+    "pasta_al_tonno",
+    "risotto_zucca",
+    "pancake_banana",
+    "salmone_forno_broccoli",
+    "insalata_greca",
+    "vellutata_carote_zenzero",
+    "tacos_lenticchie",
+    "yogurt_banana_cacao"
+  ],
+  "commercial_review": {
+    "checked_on": "2026-10-31",
+    "conclusion": "Flow commercial-use FAQ refers to Google Terms. Google does not claim ownership over original generated content. Use remains subject to terms, third-party rights and applicable law; no guarantee of exclusivity or copyright protection. Invisible SynthID retained.",
+    "sources": [
+      "https://support.google.com/flow/answer/16353333?hl=en",
+      "https://policies.google.com/terms?hl=it"
+    ]
+  },
+  "validated_samples": 8
+}
+
