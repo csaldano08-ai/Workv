@@ -1,9 +1,45 @@
-/* File GENERATO da scripts/images/pipeline.ts (comando "map"). Non modificare a mano. */
+/* Generated from individually validated Google Flow PNGs. */
 import type { ImageSourcePropType } from 'react-native';
 
-/** Immagini delle ricette disponibili, per ID persistente. Le ricette assenti usano l'illustrazione di fallback. */
 export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
-
+  'ciambellone_friggitrice': require('../../assets/recipes/ciambellone_friggitrice.png'),
+  'crema_polenta_mele': require('../../assets/recipes/crema_polenta_mele.png'),
+  'crepes_marmellata': require('../../assets/recipes/crepes_marmellata.png'),
+  'fette_biscottate_ricotta_marmellata': require('../../assets/recipes/fette_biscottate_ricotta_marmellata.png'),
+  'french_toast_fragole': require('../../assets/recipes/french_toast_fragole.png'),
+  'frullato_fragole_banana': require('../../assets/recipes/frullato_fragole_banana.png'),
+  'frullato_kefir_pesca': require('../../assets/recipes/frullato_kefir_pesca.png'),
+  'insalata_greca': require('../../assets/recipes/insalata_greca.png'),
+  'latte_cereali_banana': require('../../assets/recipes/latte_cereali_banana.png'),
+  'macedonia_mattino': require('../../assets/recipes/macedonia_mattino.png'),
+  'mela_cotta_cannella': require('../../assets/recipes/mela_cotta_cannella.png'),
+  'overnight_oats_mirtilli': require('../../assets/recipes/overnight_oats_mirtilli.png'),
+  'pancake_banana': require('../../assets/recipes/pancake_banana.png'),
+  'pancake_ceci_banana': require('../../assets/recipes/pancake_ceci_banana.png'),
+  'pane_burro_arachidi_banana': require('../../assets/recipes/pane_burro_arachidi_banana.png'),
+  'pasta_al_tonno': require('../../assets/recipes/pasta_al_tonno.png'),
+  'patata_dolce_avocado': require('../../assets/recipes/patata_dolce_avocado.png'),
+  'porridge_banana_cannella': require('../../assets/recipes/porridge_banana_cannella.png'),
+  'porridge_cacao_pera': require('../../assets/recipes/porridge_cacao_pera.png'),
+  'porridge_latte_frutti_bosco': require('../../assets/recipes/porridge_latte_frutti_bosco.png'),
+  'pudding_chia_mango': require('../../assets/recipes/pudding_chia_mango.png'),
+  'quinoa_cacao_banana': require('../../assets/recipes/quinoa_cacao_banana.png'),
+  'riso_dolce_frutti_bosco': require('../../assets/recipes/riso_dolce_frutti_bosco.png'),
+  'risotto_zucca': require('../../assets/recipes/risotto_zucca.png'),
+  'salmone_forno_broccoli': require('../../assets/recipes/salmone_forno_broccoli.png'),
+  'smoothie_bowl_tropicale': require('../../assets/recipes/smoothie_bowl_tropicale.png'),
+  'tacos_lenticchie': require('../../assets/recipes/tacos_lenticchie.png'),
+  'toast_avocado_pomodorini': require('../../assets/recipes/toast_avocado_pomodorini.png'),
+  'toast_prosciutto_mozzarella': require('../../assets/recipes/toast_prosciutto_mozzarella.png'),
+  'tofu_strapazzato_spinaci': require('../../assets/recipes/tofu_strapazzato_spinaci.png'),
+  'uova_camicia_pomodoro': require('../../assets/recipes/uova_camicia_pomodoro.png'),
+  'uova_strapazzate_toast': require('../../assets/recipes/uova_strapazzate_toast.png'),
+  'vellutata_carote_zenzero': require('../../assets/recipes/vellutata_carote_zenzero.png'),
+  'yogurt_banana_cacao': require('../../assets/recipes/yogurt_banana_cacao.png'),
+  'yogurt_greco_noci_miele': require('../../assets/recipes/yogurt_greco_noci_miele.png'),
+  'yogurt_kiwi_granola': require('../../assets/recipes/yogurt_kiwi_granola.png'),
+  'yogurt_soia_avena_fragole': require('../../assets/recipes/yogurt_soia_avena_fragole.png'),
 };
 
-export const RECIPE_IMAGE_COUNT = 0;
+export const RECIPE_IMAGE_COUNT = 37;
+
