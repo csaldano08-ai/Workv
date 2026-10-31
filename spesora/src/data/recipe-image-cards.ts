@@ -3,9 +3,17 @@ import type { ImageSourcePropType } from 'react-native';
 
 /** Card ottimizzate delle ricette, per ID persistente. Le ricette assenti usano l'illustrazione di fallback. */
 export const RECIPE_IMAGE_CARDS: Readonly<Record<string, ImageSourcePropType>> = {
+  borlotti_mais_piccanti: require('../../assets/recipes/card/borlotti_mais_piccanti.jpg'),
+  bowl_edamame_riso: require('../../assets/recipes/card/bowl_edamame_riso.jpg'),
   bresaola_rucola_parmigiano: require('../../assets/recipes/card/bresaola_rucola_parmigiano.jpg'),
   bulgur_peperoni_olive: require('../../assets/recipes/card/bulgur_peperoni_olive.jpg'),
   calamari_friggitrice: require('../../assets/recipes/card/calamari_friggitrice.jpg'),
+  caprese_pane: require('../../assets/recipes/card/caprese_pane.jpg'),
+  carciofi_patate_padella: require('../../assets/recipes/card/carciofi_patate_padella.jpg'),
+  cavoletti_ceci_friggitrice: require('../../assets/recipes/card/cavoletti_ceci_friggitrice.jpg'),
+  cavolfiore_ceci_forno: require('../../assets/recipes/card/cavolfiore_ceci_forno.jpg'),
+  ceci_spinaci_padella: require('../../assets/recipes/card/ceci_spinaci_padella.jpg'),
+  chili_fagioli_neri: require('../../assets/recipes/card/chili_fagioli_neri.jpg'),
   ciambellone_friggitrice: require('../../assets/recipes/card/ciambellone_friggitrice.jpg'),
   cosce_pollo_patate_forno: require('../../assets/recipes/card/cosce_pollo_patate_forno.jpg'),
   couscous_verdure_ceci: require('../../assets/recipes/card/couscous_verdure_ceci.jpg'),
@@ -13,16 +21,24 @@ export const RECIPE_IMAGE_CARDS: Readonly<Record<string, ImageSourcePropType>> =
   crema_piselli_spezzati: require('../../assets/recipes/card/crema_piselli_spezzati.jpg'),
   crema_polenta_mele: require('../../assets/recipes/card/crema_polenta_mele.jpg'),
   crepes_marmellata: require('../../assets/recipes/card/crepes_marmellata.jpg'),
+  crostoni_cavolo_nero_cannellini: require('../../assets/recipes/card/crostoni_cavolo_nero_cannellini.jpg'),
+  curry_ceci_cocco: require('../../assets/recipes/card/curry_ceci_cocco.jpg'),
+  dal_lenticchie_rosse: require('../../assets/recipes/card/dal_lenticchie_rosse.jpg'),
+  fagioli_uccelletto: require('../../assets/recipes/card/fagioli_uccelletto.jpg'),
+  farinata_ceci_forno: require('../../assets/recipes/card/farinata_ceci_forno.jpg'),
   farro_pomodorini_feta: require('../../assets/recipes/card/farro_pomodorini_feta.jpg'),
   fette_biscottate_ricotta_marmellata: require('../../assets/recipes/card/fette_biscottate_ricotta_marmellata.jpg'),
   french_toast_fragole: require('../../assets/recipes/card/french_toast_fragole.jpg'),
   frittata_forno_patate_cipolle: require('../../assets/recipes/card/frittata_forno_patate_cipolle.jpg'),
   frittata_zucchine: require('../../assets/recipes/card/frittata_zucchine.jpg'),
+  frittelle_verdure_ceci: require('../../assets/recipes/card/frittelle_verdure_ceci.jpg'),
   frullato_fragole_banana: require('../../assets/recipes/card/frullato_fragole_banana.jpg'),
   frullato_kefir_pesca: require('../../assets/recipes/card/frullato_kefir_pesca.jpg'),
   gamberi_zucchine_curcuma: require('../../assets/recipes/card/gamberi_zucchine_curcuma.jpg'),
   gnocchi_pomodoro_mozzarella: require('../../assets/recipes/card/gnocchi_pomodoro_mozzarella.jpg'),
   hamburger_insalata: require('../../assets/recipes/card/hamburger_insalata.jpg'),
+  hummus_bowl_tahina: require('../../assets/recipes/card/hummus_bowl_tahina.jpg'),
+  insalata_ceci_tonno: require('../../assets/recipes/card/insalata_ceci_tonno.jpg'),
   insalata_greca: require('../../assets/recipes/card/insalata_greca.jpg'),
   insalata_riso_tonno: require('../../assets/recipes/card/insalata_riso_tonno.jpg'),
   insalata_sgombro_fagioli: require('../../assets/recipes/card/insalata_sgombro_fagioli.jpg'),
@@ -118,4 +134,4 @@ export const RECIPE_IMAGE_CARDS: Readonly<Record<string, ImageSourcePropType>> =
   zuppa_cavolo_nero_cannellini: require('../../assets/recipes/card/zuppa_cavolo_nero_cannellini.jpg'),
 };
 
-export const RECIPE_IMAGE_CARD_COUNT = 113;
+export const RECIPE_IMAGE_CARD_COUNT = 129;
