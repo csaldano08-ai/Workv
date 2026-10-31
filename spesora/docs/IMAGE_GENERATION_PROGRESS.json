@@ -3163,11 +3163,21 @@
       "filename": "ananas_menta_lime.png",
       "category": "Spuntini",
       "ingredients": "ananas, lime",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/ananas_menta_lime.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Ananas fresco con menta e lime; main ingredients checked against catalog (ananas, lime). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 578425,
+      "sha256": "5e0bf60e5ae7ea1be762e8694aa41b76bf5e5e840a148c4cd182d2faf6714b05",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:06:34.275453+00:00"
     },
     {
       "id": "bruschetta_pomodoro",
@@ -3175,11 +3185,21 @@
       "filename": "bruschetta_pomodoro.png",
       "category": "Spuntini",
       "ingredients": "pomodoro, pane",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/bruschetta_pomodoro.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Bruschetta al pomodoro; main ingredients checked against catalog (pomodoro, pane). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 927743,
+      "sha256": "d1aed408193c8da754bd3606521e6b3e14e1fefc8647d9510b87e58b8c498b27",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:07:46.793120+00:00"
     },
     {
       "id": "ceci_croccanti_friggitrice",
@@ -3187,11 +3207,21 @@
       "filename": "ceci_croccanti_friggitrice.png",
       "category": "Spuntini",
       "ingredients": "ceci cotti",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/ceci_croccanti_friggitrice.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Ceci croccanti in friggitrice ad aria; main ingredients checked against catalog (ceci cotti). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 725069,
+      "sha256": "fc554419b6bf13587202b4cd677fe859868d5fdf98161d0096d89f5008a620aa",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:07:46.212206+00:00"
     },
     {
       "id": "chips_mela_cannella",
@@ -3199,11 +3229,21 @@
       "filename": "chips_mela_cannella.png",
       "category": "Spuntini",
       "ingredients": "mela",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/chips_mela_cannella.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Chips di mela alla cannella; main ingredients checked against catalog (mela). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 942013,
+      "sha256": "6646eb155c1123b01c6be154f1612d379ba9e6a4d7e6f4863fe1aa7e5d87717e",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:05:33.032879+00:00"
     },
     {
       "id": "chips_tortilla_pomodorini",
@@ -3211,11 +3251,21 @@
       "filename": "chips_tortilla_pomodorini.png",
       "category": "Spuntini",
       "ingredients": "tortilla di frumento, pomodorini, lime, cipolla rossa",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/chips_tortilla_pomodorini.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Chips di tortilla con salsa di pomodorini; main ingredients checked against catalog (tortilla di frumento, pomodorini, lime, cipolla rossa). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 846239,
+      "sha256": "cdf3d69427532f6e03781cc29c81c3e865a39335352dc308ae6a9adfae179cdf",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:06:35.160517+00:00"
     },
     {
       "id": "crema_ceci_bastoncini",
@@ -3223,11 +3273,21 @@
       "filename": "crema_ceci_bastoncini.png",
       "category": "Spuntini",
       "ingredients": "ceci cotti, carota, cetriolo, limone",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/crema_ceci_bastoncini.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Crema di ceci al limone con verdure crude; main ingredients checked against catalog (ceci cotti, carota, cetriolo, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 760448,
+      "sha256": "85c28b24e67cb3d3741ae9b237937d91b6f21a57947987eee046f2f044b40730",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:05:33.637900+00:00"
     },
     {
       "id": "gallette_ricotta_miele",
@@ -3235,11 +3295,21 @@
       "filename": "gallette_ricotta_miele.png",
       "category": "Spuntini",
       "ingredients": "ricotta, gallette di riso, miele",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/gallette_ricotta_miele.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Gallette di riso con ricotta e miele; main ingredients checked against catalog (ricotta, gallette di riso, miele). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 929566,
+      "sha256": "3c034a3efcf26db6db3e50fe024684197ab6bd2870fa0dcc5563c636e010b75c",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:07:45.678198+00:00"
     },
     {
       "id": "mela_mandorle",
@@ -3247,11 +3317,21 @@
       "filename": "mela_mandorle.png",
       "category": "Spuntini",
       "ingredients": "mela, mandorle",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/mela_mandorle.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Mela a fette con mandorle; main ingredients checked against catalog (mela, mandorle). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 465336,
+      "sha256": "4b8606729017acd6340b236875b67c23cb870fd7646b9d08da7f69e3b660b22c",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:05:32.492718+00:00"
     },
     {
       "id": "palline_datteri_cacao",
@@ -3259,11 +3339,21 @@
       "filename": "palline_datteri_cacao.png",
       "category": "Spuntini",
       "ingredients": "datteri secchi, cocco rapé, cacao amaro in polvere, semi di chia",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/palline_datteri_cacao.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Palline di datteri e cacao; main ingredients checked against catalog (datteri secchi, cocco rapé, cacao amaro in polvere, semi di chia). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 680720,
+      "sha256": "d22c448399d81f1af8d74bf330b19b702fbb4834178b0a7b3c56b760bade377a",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:05:32.115353+00:00"
     },
     {
       "id": "carasau_rosmarino",
@@ -3271,11 +3361,21 @@
       "filename": "carasau_rosmarino.png",
       "category": "Spuntini",
       "ingredients": "pane carasau",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/carasau_rosmarino.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Pane carasau croccante al rosmarino; main ingredients checked against catalog (pane carasau). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 992076,
+      "sha256": "d04c237c3b2fa817c3c04074cf2f3a9c6404a3cc3799f7f37184ea7164084427",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:07:45.051442+00:00"
     },
     {
       "id": "pera_gorgonzola_noci",
@@ -3283,11 +3383,21 @@
       "filename": "pera_gorgonzola_noci.png",
       "category": "Spuntini",
       "ingredients": "pera, gorgonzola, noci sgusciate",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/pera_gorgonzola_noci.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Pera con gorgonzola e noci; main ingredients checked against catalog (pera, gorgonzola, noci sgusciate). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 566685,
+      "sha256": "c0a48c170fe89f4b7dc30c7cfbdc04d8bb03686e2d076a5605be6bd25f947000",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:06:35.616859+00:00"
     },
     {
       "id": "spiedini_frutta_cioccolato",
@@ -3295,11 +3405,21 @@
       "filename": "spiedini_frutta_cioccolato.png",
       "category": "Spuntini",
       "ingredients": "fragole, banana, kiwi, cioccolato fondente",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/spiedini_frutta_cioccolato.png",
-      "review": null,
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Spiedini di frutta al cioccolato; main ingredients checked against catalog (fragole, banana, kiwi, cioccolato fondente). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 635962,
+      "sha256": "c0c819654cf80c7994de8af4e492ed56c756dbcc9c2718767a9cb70ef81e0bed",
+      "flow_asset_url": "",
+      "updated_at": "2026-10-31T20:06:34.668165+00:00"
     },
     {
       "id": "yogurt_banana_cacao",
