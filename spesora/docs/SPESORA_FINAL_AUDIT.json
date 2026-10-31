@@ -1,0 +1,807 @@
+{
+  "recipes": 156,
+  "final_flow_images": 156,
+  "validated": 156,
+  "missing": 0,
+  "generation_attempts_recorded": 161,
+  "dimensions": [
+    1200,
+    900
+  ],
+  "format": "PNG",
+  "duplicate_sha256": 0,
+  "blank_or_corrupt": 0,
+  "total_bytes": 125086120,
+  "min_bytes": 399669,
+  "max_bytes": 1322219,
+  "categories": {
+    "Colazioni": 30,
+    "Primi (pasta, riso, cereali, zuppe)": 44,
+    "Secondi (carne, pesce, uova)": 36,
+    "Legumi, verdure e piatti unici": 33,
+    "Spuntini": 13
+  },
+  "files": [
+    {
+      "filename": "yogurt_kiwi_granola.png",
+      "bytes": 745501,
+      "sha256": "0f4b92d5b55395f85eda4ed58f3689b4669d016c345a29139454aa431920c8c0"
+    },
+    {
+      "filename": "ciambellone_friggitrice.png",
+      "bytes": 630289,
+      "sha256": "eaec39cd53ec7090aacc20a307f8159fe0c4e8fe1a9b4e496e5f719075fabd88"
+    },
+    {
+      "filename": "crema_polenta_mele.png",
+      "bytes": 614290,
+      "sha256": "37815673548025974da1fe50f79c14ad585f906c52d067c906725b1912b499d3"
+    },
+    {
+      "filename": "crepes_marmellata.png",
+      "bytes": 744509,
+      "sha256": "ceaaf075e2fd70b0de1b811255d64d695add4597c87d0ad91e43a71e8ec2c44c"
+    },
+    {
+      "filename": "fette_biscottate_ricotta_marmellata.png",
+      "bytes": 747960,
+      "sha256": "3cdc549e90654560cf2fd106011c5766b355548fe6ff4bf940e536a424b100ea"
+    },
+    {
+      "filename": "patata_dolce_avocado.png",
+      "bytes": 806213,
+      "sha256": "b411aad09fa6a4026fd8654e5a5a0eca4c4ee1f2e834e0e6d16188b27c889fc6"
+    },
+    {
+      "filename": "french_toast_fragole.png",
+      "bytes": 749290,
+      "sha256": "0da6bde3b50fed7414eec10b5cc80b322dd67456c85005ddd7d485f7dc5ee67b"
+    },
+    {
+      "filename": "frullato_fragole_banana.png",
+      "bytes": 423271,
+      "sha256": "c8687679125c97b55111c52d29070135a2b61e669e15eeda8afc3053c732c0ba"
+    },
+    {
+      "filename": "frullato_kefir_pesca.png",
+      "bytes": 443670,
+      "sha256": "1cfd37d456a1694bb4330bc21ffe945799032836f9d904cbe240d4023ae16dac"
+    },
+    {
+      "filename": "latte_cereali_banana.png",
+      "bytes": 674300,
+      "sha256": "09a6bfe1592677b8c9060a8589fd0675308e1da819ab390e9d25ce193a50544d"
+    },
+    {
+      "filename": "macedonia_mattino.png",
+      "bytes": 673077,
+      "sha256": "a37f75fe41770908816aa35d45f06dd60d4f543c0119839f5d44e74d4b10c1a8"
+    },
+    {
+      "filename": "mela_cotta_cannella.png",
+      "bytes": 608502,
+      "sha256": "ee988fbdb30881c2377bf89307a0721e362cd74b0b2cf02ff0e480369b3739ad"
+    },
+    {
+      "filename": "overnight_oats_mirtilli.png",
+      "bytes": 673317,
+      "sha256": "0d2c4704c275d3a07930a75a3ec7c6e44306aa2800968f7b10a2c347e2624f64"
+    },
+    {
+      "filename": "pancake_banana.png",
+      "bytes": 1134568,
+      "sha256": "85192099584a3f219b9ea4476afa615f927d26eb89751260d663650b5b72bc77"
+    },
+    {
+      "filename": "pancake_ceci_banana.png",
+      "bytes": 820527,
+      "sha256": "0aa923fb3cdcc14f235c87c05db4d1b30dd9ad4daaa3f975ac8d15d263c922f5"
+    },
+    {
+      "filename": "pane_burro_arachidi_banana.png",
+      "bytes": 822103,
+      "sha256": "8e4c3ddd0047c8fac04003c7dd4725ec37acdb885ebfb66ee76cce078e601149"
+    },
+    {
+      "filename": "toast_avocado_pomodorini.png",
+      "bytes": 792179,
+      "sha256": "2dbef10441aa9580cd909985702841840ffde392b33ea808c3556cdf4f3ff4c0"
+    },
+    {
+      "filename": "porridge_cacao_pera.png",
+      "bytes": 785538,
+      "sha256": "7f1b3aaaf095f1a89909dbdcbbe4cc6f11168af2f6601992a7b05679b6ba0249"
+    },
+    {
+      "filename": "porridge_latte_frutti_bosco.png",
+      "bytes": 589963,
+      "sha256": "6b94f6a06d13f802291114689109244a459119ec50f0eeec2d5c7453714dd679"
+    },
+    {
+      "filename": "porridge_banana_cannella.png",
+      "bytes": 828788,
+      "sha256": "a51b427bdc17c42068c284830b754a90dc5339a70bbb98a02ed900fa7c578812"
+    },
+    {
+      "filename": "pudding_chia_mango.png",
+      "bytes": 695845,
+      "sha256": "e4ed19e70dceb616fe808e654208e48b3bb48b1cc83fe54d9f989c7861a7c466"
+    },
+    {
+      "filename": "quinoa_cacao_banana.png",
+      "bytes": 708999,
+      "sha256": "0d5ef5f924315b3f4b29688957686ec91224ed60b2f2bfca1dedcdd0973f40d5"
+    },
+    {
+      "filename": "riso_dolce_frutti_bosco.png",
+      "bytes": 738090,
+      "sha256": "fb32792f316108d1774038ec405e728aa37f4a8b5a93455173f3ce3696f904f0"
+    },
+    {
+      "filename": "smoothie_bowl_tropicale.png",
+      "bytes": 755754,
+      "sha256": "42f19fdb35a3deb2c9cb53d3f89623c784c07aa14b21f7af63b05640c55bc5cd"
+    },
+    {
+      "filename": "toast_prosciutto_mozzarella.png",
+      "bytes": 628024,
+      "sha256": "14be8dfd62f309629b3ff1555f0d636a73a69f18f6b5d7d54a7b39beb831b898"
+    },
+    {
+      "filename": "tofu_strapazzato_spinaci.png",
+      "bytes": 779606,
+      "sha256": "1682ba0b916a45a149d61a3818987ddf8c564498e6c0944ad10fd87915ce8064"
+    },
+    {
+      "filename": "uova_camicia_pomodoro.png",
+      "bytes": 717077,
+      "sha256": "bbd350c515bd2ad1d19e98cb372e22ae4385c20b18c79b00bb3fb941df3de416"
+    },
+    {
+      "filename": "uova_strapazzate_toast.png",
+      "bytes": 684721,
+      "sha256": "138182fb737b339313755c354305cd31e9f806cc64fae3a9ea9208600e61f610"
+    },
+    {
+      "filename": "yogurt_soia_avena_fragole.png",
+      "bytes": 607240,
+      "sha256": "0761b13039979ecaca3b25277a00016d3e07c0dcdd86b68bdd59ca3bf1160b46"
+    },
+    {
+      "filename": "yogurt_greco_noci_miele.png",
+      "bytes": 675441,
+      "sha256": "938c3af798445a99368206f72637d7bb38582534d3d37332a97cb8fcebb743b1"
+    },
+    {
+      "filename": "bulgur_peperoni_olive.png",
+      "bytes": 798914,
+      "sha256": "ff3a7361c64cb3674d8fe6d2f7d2b825583b998e14964a3acc9e0399c7718310"
+    },
+    {
+      "filename": "couscous_verdure_ceci.png",
+      "bytes": 990702,
+      "sha256": "3e7f78b89ee1c91b0efa4f68b63a0e2702a8630c123d41f6d2538cd7604036b4"
+    },
+    {
+      "filename": "crema_piselli_spezzati.png",
+      "bytes": 399669,
+      "sha256": "4fd3ee6f2cf76ecc571bdb8f2da7862d26cbd3defd85b244c84b44c584347805"
+    },
+    {
+      "filename": "farro_pomodorini_feta.png",
+      "bytes": 904473,
+      "sha256": "3ced5a1cc0306377bc2a8079670767f22d0554ba0d83d310dfde034be8c96b57"
+    },
+    {
+      "filename": "gnocchi_pomodoro_mozzarella.png",
+      "bytes": 808931,
+      "sha256": "3a542d83e7ef9dd20ef8798b662c7df142a5d49fd6a0130c0d3afb0ef3f325dc"
+    },
+    {
+      "filename": "quinoa_ceci_cetriolo_menta.png",
+      "bytes": 808391,
+      "sha256": "20590266478739e09e35a710024922f3c094a4bec9f7952bbb9024f75e236b92"
+    },
+    {
+      "filename": "insalata_riso_tonno.png",
+      "bytes": 995915,
+      "sha256": "41a27ab0947c243fc3475b1b431f3fcc661c90bbb7a45fb0ad93f2274ed29051"
+    },
+    {
+      "filename": "minestrone_pastina.png",
+      "bytes": 746428,
+      "sha256": "6548c50f535d3126b7f5485f87cb82b70b7c4a4810e9a82db67b4af6814ab58e"
+    },
+    {
+      "filename": "orzo_zucchine_pomodorini.png",
+      "bytes": 958775,
+      "sha256": "d59afc13898a22226b6253be21c8342473f3bdc1bcbb734351ad2cbe8c262a6d"
+    },
+    {
+      "filename": "orzotto_radicchio.png",
+      "bytes": 887064,
+      "sha256": "f418c0cfc1477a2772a91e6c67e15751b9e141fc30970fd91f6191af17ed5394"
+    },
+    {
+      "filename": "pasta_funghi.png",
+      "bytes": 795419,
+      "sha256": "1f349ab5d52ce71545b3d7a2318248286f65bfda285567838c8f5ea4a3acb418"
+    },
+    {
+      "filename": "pasta_al_forno.png",
+      "bytes": 740080,
+      "sha256": "3d5af08787449bd22b09051824d367616074934c48026267b3bf1ce4de86080f"
+    },
+    {
+      "filename": "pasta_al_pesto.png",
+      "bytes": 884883,
+      "sha256": "33c354cb4ba5ecf63fd9361364df6b3a33ea93f8345efa1105754624ab6319ac"
+    },
+    {
+      "filename": "pasta_pomodoro_basilico.png",
+      "bytes": 935281,
+      "sha256": "eeae7ebd690a526c933d53f63d10d34eba82edc4a6697f41d2f8c3806e69e6a9"
+    },
+    {
+      "filename": "pasta_ragu_veloce.png",
+      "bytes": 885645,
+      "sha256": "8fd49b6a8df86dc76bd5701474757f9fabbbd725bb92be5c96aa862051fec54e"
+    },
+    {
+      "filename": "pasta_al_tonno.png",
+      "bytes": 1322219,
+      "sha256": "8368a1a3985f71b67c871e1b8a679382de69377e30469e8c9aa07074d3a2e5a4"
+    },
+    {
+      "filename": "pasta_carbonara.png",
+      "bytes": 904312,
+      "sha256": "36a0a1c8ef0ddeeba18526830cacdfdb771eb7a396f00ed7851bce88dccc6c0d"
+    },
+    {
+      "filename": "pasta_crema_cavolo_nero.png",
+      "bytes": 827596,
+      "sha256": "0cc4bde0bfb4ba1177c16149e004f3a6768559248a46b4f3f2ca2733baa94606"
+    },
+    {
+      "filename": "pasta_alla_norma.png",
+      "bytes": 841384,
+      "sha256": "398ce90eedc00166f6355c09d89aa4bf7d489967c3fb61036bc3569b82a6bde1"
+    },
+    {
+      "filename": "pasta_acciughe_pangrattato.png",
+      "bytes": 900285,
+      "sha256": "d88585b9d8421831c38aef6cc1b0c069f43ad40a7aa851b8b639470787b373fb"
+    },
+    {
+      "filename": "pasta_carciofi_limone.png",
+      "bytes": 826082,
+      "sha256": "b9425da3b5cb7a04d2bea3b87ae8c04ce797becd48648443e220af10f657e04c"
+    },
+    {
+      "filename": "pasta_zucchine.png",
+      "bytes": 879935,
+      "sha256": "a416a3b55374749c37529d6e91452979d59e382a26352c455759de3e92ab2f5e"
+    },
+    {
+      "filename": "pasta_pesce_spada_menta.png",
+      "bytes": 796185,
+      "sha256": "bef6a72111a2fe87293271d813714ded519437953421c8a8b5aa0663f64b3411"
+    },
+    {
+      "filename": "pasta_ricotta_spinaci.png",
+      "bytes": 871853,
+      "sha256": "1e0f0d7e3f682872de106439bf60ee1a1f4a959502684a0ffa335fa2c9a4acbe"
+    },
+    {
+      "filename": "pasta_broccoli.png",
+      "bytes": 979308,
+      "sha256": "b898e3d4b1cdc303fd51c89315c01ed52dca649e329c2ed76fdff4a6e0d1a332"
+    },
+    {
+      "filename": "pasta_e_fagioli.png",
+      "bytes": 821591,
+      "sha256": "af323085274d9ef5ba85ecea0651e27c313dcd33ba2b3c394d29ae6237e4c7b5"
+    },
+    {
+      "filename": "pasta_e_lenticchie.png",
+      "bytes": 706539,
+      "sha256": "08f6ac82a76b7a7c3d74c8273a92f4c7f5c6e29173bff7b0845fa4590b9b28f9"
+    },
+    {
+      "filename": "pasta_pomodori_secchi_rucola.png",
+      "bytes": 683629,
+      "sha256": "9d264eb3cf2f76eb457bf2d1b825305737fbcccafafc1de28823cd9e2cdfb5a2"
+    },
+    {
+      "filename": "pasta_pancetta_pomodoro_pecorino.png",
+      "bytes": 892905,
+      "sha256": "9ecfdaad0c9370cbbd59b780773621b19b9fdcad87c6e280644c8b60fde0bfbc"
+    },
+    {
+      "filename": "pasta_radicchio_gorgonzola.png",
+      "bytes": 1015341,
+      "sha256": "e39d3a239641344a289c033f2ecd7c69aad3f15fb59de2ff050b6bc58efd28af"
+    },
+    {
+      "filename": "polenta_funghi.png",
+      "bytes": 667489,
+      "sha256": "5b0c1f18cf5a388162e6e1a466c5c7237f84c489441514018d6a0ee931caae7b"
+    },
+    {
+      "filename": "riso_fagioli_neri_peperoni.png",
+      "bytes": 814392,
+      "sha256": "d1ac1e1f37f5023f945b88883e1ec4f851f050be1103750fd3061824c2e7e63d"
+    },
+    {
+      "filename": "riso_piselli_carote.png",
+      "bytes": 845448,
+      "sha256": "9fe8faf87ce7c0b6703090d795a61b8b6277a42dea744b83af52c00283f96591"
+    },
+    {
+      "filename": "riso_saltato_uova_verdure.png",
+      "bytes": 980498,
+      "sha256": "9ad97d2ab6603a62883de59b834c2530cc9f764cf5e226b2b91613d34874e091"
+    },
+    {
+      "filename": "riso_zucchine_pomodorini.png",
+      "bytes": 934470,
+      "sha256": "07f58fa8e839f893b8dc06b91317b7c5d1ad526a9ff7568afcf90500d774bc97"
+    },
+    {
+      "filename": "risotto_asparagi.png",
+      "bytes": 694232,
+      "sha256": "1da027ee61d5186e94767d6a70c66a5e0529f636b0146cdbb7e18d2f99cdc287"
+    },
+    {
+      "filename": "risotto_zucca.png",
+      "bytes": 1293063,
+      "sha256": "bea6f74e1cb5e6fbeb259b625729c030c67fde1f4aba58493491d5c51415493f"
+    },
+    {
+      "filename": "spaghetti_aglio_olio.png",
+      "bytes": 804952,
+      "sha256": "08e1da841b362cabd834f3de502832e2c4d3cd0f5a50d6ceca0a283f8c3ba7ea"
+    },
+    {
+      "filename": "spaghetti_vongole.png",
+      "bytes": 963268,
+      "sha256": "775062cc036b1e37e64ad9ab3858b63a255c448552ba87f659652c20fafa4aba"
+    },
+    {
+      "filename": "noodles_riso_verdure_edamame.png",
+      "bytes": 900499,
+      "sha256": "c71d9ba60992b00ad21b485bbf9bb9bdb3643c1749210565ba3e3e8cc17641e9"
+    },
+    {
+      "filename": "tagliatelle_burro_salvia.png",
+      "bytes": 861702,
+      "sha256": "369a39f3fd3789d3b130ab2900fe90d3044662dc591c74965149a8e928ea2b9d"
+    },
+    {
+      "filename": "vellutata_carote_zenzero.png",
+      "bytes": 1232278,
+      "sha256": "ba747df33e429464a4c3e1d39319f817ca07ac9444f23a775c427da2b2c83af6"
+    },
+    {
+      "filename": "vellutata_zucca.png",
+      "bytes": 674162,
+      "sha256": "cd885e4db3a36ee75459c8b014c1ff37b4508221212a21b6102d079f14f10f2e"
+    },
+    {
+      "filename": "zuppa_cavolo_nero_cannellini.png",
+      "bytes": 796671,
+      "sha256": "7b07d7904fac066c479c4f99a07f72a4b3823ce34bf295294de31b978caa2843"
+    },
+    {
+      "filename": "calamari_friggitrice.png",
+      "bytes": 747778,
+      "sha256": "d1f745fcf6a11bce9a79bc6023b6899ac19b4591afc425ab90d5420fd5498e8c"
+    },
+    {
+      "filename": "pollo_peperoni.png",
+      "bytes": 786270,
+      "sha256": "ff172c6751559c66a38aebbebc34736fc4137bd83cc165ccb0f3ba7a054035a0"
+    },
+    {
+      "filename": "bresaola_rucola_parmigiano.png",
+      "bytes": 851495,
+      "sha256": "5a85f4383fbbb80b9c3b2a1c00f56944b1b50a3ff927a377960ccccd0e2735c1"
+    },
+    {
+      "filename": "cosce_pollo_patate_forno.png",
+      "bytes": 712243,
+      "sha256": "d0200a75ac631391ad73b69d3afd04408427523d62b991036402ab14fe291b0d"
+    },
+    {
+      "filename": "cozze_marinara.png",
+      "bytes": 836197,
+      "sha256": "49a9f6797d676f82b26162a0765f67da7f50eaecc0127f5f5b35fe8132df5c11"
+    },
+    {
+      "filename": "tacchino_rosmarino_insalata.png",
+      "bytes": 776406,
+      "sha256": "2c9cd9acde0edfab70d14d7b5b17ea87b8270cdb8d6931a2d3437e59c5176126"
+    },
+    {
+      "filename": "merluzzo_impanato_friggitrice.png",
+      "bytes": 794538,
+      "sha256": "3ef1fb2162e002f49f5a3723317ded413d7e101f406d9f011797ce11746a8f31"
+    },
+    {
+      "filename": "orata_forno_patate.png",
+      "bytes": 978285,
+      "sha256": "21609cf6883deb27255d65e144eaa6a74a16ccaa36a3cd908fcb926d6753f0d5"
+    },
+    {
+      "filename": "frittata_forno_patate_cipolle.png",
+      "bytes": 746060,
+      "sha256": "f5a71497b18d741e393e562580400b25bd61a311d53b6e4b9a837243970e42e8"
+    },
+    {
+      "filename": "frittata_zucchine.png",
+      "bytes": 759735,
+      "sha256": "de13ca84636c49187e022d783d8595c47232bb6041702fbc45b01126120f3db9"
+    },
+    {
+      "filename": "gamberi_zucchine_curcuma.png",
+      "bytes": 767481,
+      "sha256": "2b0d595bff0d9999a085c32b8ac085ea4feb76949ddc5fed1c55e6f414e90b0c"
+    },
+    {
+      "filename": "hamburger_insalata.png",
+      "bytes": 714555,
+      "sha256": "7dc69011df0e6cf4d999fd8f6988b1dd63407b71fa9e6fbbdfe482dba7056003"
+    },
+    {
+      "filename": "insalata_sgombro_fagioli.png",
+      "bytes": 811071,
+      "sha256": "049f96e7263219882431a693097069d39128708ed8e9dcb0ebfbdf8486487ee5"
+    },
+    {
+      "filename": "involtini_pollo_cotto_scamorza.png",
+      "bytes": 845627,
+      "sha256": "cbc9ac047a2b2c436b5199fcc35a30eb88c37c9295e97993eb0539020ff36f19"
+    },
+    {
+      "filename": "lonza_mele.png",
+      "bytes": 845690,
+      "sha256": "9ccf4445958494807dd0b2c9ac0fb8d356f9155c451a4ba5b3300de5e23b2b4e"
+    },
+    {
+      "filename": "merluzzo_pomodorini_capperi.png",
+      "bytes": 803958,
+      "sha256": "e2e763eea3ee16faacf15ab1545a7ab034bcbb01b1447e6574325e23178ef7d2"
+    },
+    {
+      "filename": "omelette_spinaci_scamorza.png",
+      "bytes": 585987,
+      "sha256": "fd20eab584b66ec4ed0e16d1b832ebd2f7d366c6d13cd83b8944f9e6e28e5b69"
+    },
+    {
+      "filename": "pasta_gamberetti_pomodorini.png",
+      "bytes": 809784,
+      "sha256": "1661111cc1aa56091c69718465fd019ce2747e6d1a9fef7c9ab56ad7661e93ef"
+    },
+    {
+      "filename": "peperoni_ripieni_carne.png",
+      "bytes": 795043,
+      "sha256": "ab8180b95dfaf442e58fa4c82128a93e0f892e0228bef36d0f782953fedbeb13"
+    },
+    {
+      "filename": "pesce_spada_siciliana.png",
+      "bytes": 859223,
+      "sha256": "529b6e9483d016d883285ff3092222cef79272be194c55a351fbf90fb6d8614a"
+    },
+    {
+      "filename": "pollo_al_limone.png",
+      "bytes": 712427,
+      "sha256": "30614abd6f9d3111e49471dca419704cb4cdcc52cda5daccf26051a283e02f08"
+    },
+    {
+      "filename": "pollo_friggitrice_verdure.png",
+      "bytes": 814222,
+      "sha256": "abe3304d38d3025a21288706d3501cfd293f23da3896e068cd8ffee93cfeb527"
+    },
+    {
+      "filename": "piadina_salmone_affumicato.png",
+      "bytes": 873940,
+      "sha256": "26bb6636d1035f55f717896832a2febd1780b803671c2f93318acaa5f2fa989d"
+    },
+    {
+      "filename": "pollo_cacciatora.png",
+      "bytes": 776472,
+      "sha256": "5ef9e37f38e04b2bc6f5bfd7ad42a9351a580e214d395c438830356532455b9f"
+    },
+    {
+      "filename": "polpette_al_sugo.png",
+      "bytes": 787370,
+      "sha256": "756928a559be15cb3ed2ded17f1675e4c606a4f546a6575ab383ba24d459306f"
+    },
+    {
+      "filename": "polpette_tacchino_carote.png",
+      "bytes": 722242,
+      "sha256": "e2922029b6f639cb66b57d7f054d7437dde892d831887198f2a850e3f3739371"
+    },
+    {
+      "filename": "salmone_forno_broccoli.png",
+      "bytes": 692099,
+      "sha256": "d928dcb7c2531ad503f7fcddfff8fb9cf296d1170768b7dbc4eb2220c553d025"
+    },
+    {
+      "filename": "salmone_padella_zucchine.png",
+      "bytes": 726791,
+      "sha256": "31db3354f6cfa2fa7ebfd810f8dcca00dc5297b4610924cccd9a4eee327687dd"
+    },
+    {
+      "filename": "saltimbocca_tacchino_speck.png",
+      "bytes": 742271,
+      "sha256": "e31fa0a0580ae631bccfdc251bacbb98724d2dca3e4a77fcac4ab2abe2d7639f"
+    },
+    {
+      "filename": "scaloppine_limone.png",
+      "bytes": 703559,
+      "sha256": "b902d783b55d7e163a89823890275e3a97e64441ed870bf9315555d812e687a9"
+    },
+    {
+      "filename": "spezzatino_piselli.png",
+      "bytes": 769434,
+      "sha256": "c4a78716b67e209a3f2b006212962bb64fe1887ac0533bb923aeef949bdb471d"
+    },
+    {
+      "filename": "straccetti_pollo_friggitrice.png",
+      "bytes": 867309,
+      "sha256": "8f4367897b16687ad81a6378ec173eacca23943ffc3c6445cb99aceaa6aaa0e8"
+    },
+    {
+      "filename": "tacchino_curry_cocco.png",
+      "bytes": 799985,
+      "sha256": "0432500d146a5a482a8b3651f667b9a9a77084f62b1ad0a341bc1402a3223dbc"
+    },
+    {
+      "filename": "tonno_sesamo_zucchine.png",
+      "bytes": 774254,
+      "sha256": "3303701ef435c264e29093df6930614ad388466d2d57ec7e51e7b1ba61f3e293"
+    },
+    {
+      "filename": "uova_al_pomodoro.png",
+      "bytes": 800299,
+      "sha256": "10b78e817650349e102346141033a272ad235ae7d3675fd1cb6ca418de947718"
+    },
+    {
+      "filename": "uova_purgatorio_peperoni.png",
+      "bytes": 771845,
+      "sha256": "c00120fed32dbea3c6e6edc198a9afce85d149c53f58a6f04bb4f12d077270c5"
+    },
+    {
+      "filename": "hummus_bowl_tahina.png",
+      "bytes": 835853,
+      "sha256": "31ddf67e60aa4e6c4118d7ea410ecf3f71aaaf8af1034299dc66d8907977e4bf"
+    },
+    {
+      "filename": "bowl_edamame_riso.png",
+      "bytes": 657745,
+      "sha256": "7b4a2e24b90b8a3915612bd2d82968e2df4bb8f53e4bc0d3c239344c53aa4b0d"
+    },
+    {
+      "filename": "caprese_pane.png",
+      "bytes": 938592,
+      "sha256": "86cc0bf31738ccd28de447155ea7877e95817e08fea4f38f15c4e2843cc069ea"
+    },
+    {
+      "filename": "carciofi_patate_padella.png",
+      "bytes": 894341,
+      "sha256": "dfb0116a8db80379effba55d3813fca1532cb728f0fcd478131e6edc041fd0b5"
+    },
+    {
+      "filename": "cavoletti_ceci_friggitrice.png",
+      "bytes": 788369,
+      "sha256": "18c0dee6c62239b0b0030d8aa987132eb60f77a03d19007f40e3d21ef2c065f3"
+    },
+    {
+      "filename": "cavolfiore_ceci_forno.png",
+      "bytes": 770553,
+      "sha256": "ad95628fea4facd116c474495690be497b36d1e46cb1efff4b39eacfc634afd4"
+    },
+    {
+      "filename": "ceci_spinaci_padella.png",
+      "bytes": 931840,
+      "sha256": "c1cbf5fe5a006b2e4915f7eea9a8f289c1311915aa236bf0feebd169d0c315ac"
+    },
+    {
+      "filename": "chili_fagioli_neri.png",
+      "bytes": 688381,
+      "sha256": "1a00defc7c4bac5529686f3b40504c75a33cefef0fea05a979d8fb7c5fa9f740"
+    },
+    {
+      "filename": "dal_lenticchie_rosse.png",
+      "bytes": 717054,
+      "sha256": "6e05c505b109d9a036e4328092c3ea8d3356b70243524800b6c9381ed35407f6"
+    },
+    {
+      "filename": "crostoni_cavolo_nero_cannellini.png",
+      "bytes": 806213,
+      "sha256": "2e1590cc25b85575108bd8c5af059905a771520559ce78ff0f6f0e40e6ab24a4"
+    },
+    {
+      "filename": "curry_ceci_cocco.png",
+      "bytes": 829099,
+      "sha256": "186a01fd6fe668eef2224fd454772642d5b41c65047435def4bbf4e336b682ba"
+    },
+    {
+      "filename": "fagioli_uccelletto.png",
+      "bytes": 810877,
+      "sha256": "ac0d41d63363d09a22cb93592b08b6d89471231eaef3c058dd8591d474135d70"
+    },
+    {
+      "filename": "borlotti_mais_piccanti.png",
+      "bytes": 794410,
+      "sha256": "a57e5ef7fddba93bae6d65bd39c39692a8ed8c8df94c4a6041bb6b612c2613c1"
+    },
+    {
+      "filename": "farinata_ceci_forno.png",
+      "bytes": 866111,
+      "sha256": "f20314b228a27f56a077e8c03801f2734b4284dd7f67bbb048a5aca5e0a9725a"
+    },
+    {
+      "filename": "frittelle_verdure_ceci.png",
+      "bytes": 828856,
+      "sha256": "139be73d47e8f3a6a5f1c05892792fb21083e1489fedfb741017cd061e1a6f3a"
+    },
+    {
+      "filename": "insalata_ceci_tonno.png",
+      "bytes": 947030,
+      "sha256": "076a62562aeb400ebbb2296cba451d159693f762dc55181b4ab9111f07e49672"
+    },
+    {
+      "filename": "insalata_greca.png",
+      "bytes": 671626,
+      "sha256": "00584bfc548b2b1ee10bdf759c72aa1ee0d2f48b26f3774e7ce6797f9af6f5bb"
+    },
+    {
+      "filename": "insalatone_cannellini_mais.png",
+      "bytes": 1040359,
+      "sha256": "7d10bcf71337da5210428ccd2019d9aefd3d972f3c0ca970c00243278a6e9eb4"
+    },
+    {
+      "filename": "lenticchie_umido.png",
+      "bytes": 775247,
+      "sha256": "8eabffd7a619b205a7ada812bd67d12bb3b00ca5ab74a381754a61cc47ae1ea7"
+    },
+    {
+      "filename": "parmigiana_leggera.png",
+      "bytes": 827227,
+      "sha256": "a7f86046682028b9d385624bdc57a482b3751664ec4846192ea2e780dd50aefa"
+    },
+    {
+      "filename": "pasta_e_ceci.png",
+      "bytes": 854484,
+      "sha256": "39b7002cf2aa026ace4ece1005559cc68fc8b5e8320695da323952e36dc414f5"
+    },
+    {
+      "filename": "patate_dolci_ripiene.png",
+      "bytes": 755593,
+      "sha256": "0e210e418d1244df4b4f46da79194502e79bd12a08df9ba3dd2160ce94e34e7e"
+    },
+    {
+      "filename": "patate_fagiolini_uova.png",
+      "bytes": 876984,
+      "sha256": "2af1750f0773249aea4dfa5144d077aedf312154eb181f230251e7a68065fbaa"
+    },
+    {
+      "filename": "piadina_crudo_rucola.png",
+      "bytes": 833616,
+      "sha256": "679ff93574ca6e75baae8154a82b12e7db9b0219ccc7ca330dbb89acd072735e"
+    },
+    {
+      "filename": "polpette_ceci_friggitrice.png",
+      "bytes": 742425,
+      "sha256": "86b8984cabd1bdf81f138aa8e8ddac8ea52886bfa2e0bf2536968dc24bcd39bf"
+    },
+    {
+      "filename": "noodles_tempeh_peperoni.png",
+      "bytes": 940028,
+      "sha256": "422a019a54c145fff0e0297984c49953a4a65bd98d7509f48bc13d5b172367b2"
+    },
+    {
+      "filename": "tacos_lenticchie.png",
+      "bytes": 758884,
+      "sha256": "c28e636909716059ce57490da8f5005952baa7ab3537d9cfe090c7eb5d4ce206"
+    },
+    {
+      "filename": "tofu_croccante_broccoli.png",
+      "bytes": 722003,
+      "sha256": "052fddea1f2488d74fe1eba05176d893d59e21375a464febba4481597381c48d"
+    },
+    {
+      "filename": "tofu_saltato_verdure.png",
+      "bytes": 812995,
+      "sha256": "a9f500e7a4d25222df76e615aa42c7ac4029da37f52220bf80e3b02a92210bbb"
+    },
+    {
+      "filename": "torta_salata_zucchine.png",
+      "bytes": 911186,
+      "sha256": "f74f4bb5e4183a1c7a2198369d7a800613a5cbd9ef3257cb867f67bff3485e9d"
+    },
+    {
+      "filename": "verza_stufata_fagioli.png",
+      "bytes": 843409,
+      "sha256": "e65f4bcdc1dbd37cac714daf2dab418fb89558c286cfc408d0ff682707631736"
+    },
+    {
+      "filename": "zucchine_ripiene_couscous.png",
+      "bytes": 957208,
+      "sha256": "e3d9ca4f5d5b37c96ccfb6b83964e21210d17bb7bc008f1810c471a72d80de46"
+    },
+    {
+      "filename": "zuppa_piselli_spezzati.png",
+      "bytes": 600736,
+      "sha256": "e00dc094e961c12f9bac18dda772e45dffd59a951387442731539512bedc327f"
+    },
+    {
+      "filename": "ananas_menta_lime.png",
+      "bytes": 578425,
+      "sha256": "5e0bf60e5ae7ea1be762e8694aa41b76bf5e5e840a148c4cd182d2faf6714b05"
+    },
+    {
+      "filename": "bruschetta_pomodoro.png",
+      "bytes": 927743,
+      "sha256": "d1aed408193c8da754bd3606521e6b3e14e1fefc8647d9510b87e58b8c498b27"
+    },
+    {
+      "filename": "ceci_croccanti_friggitrice.png",
+      "bytes": 725069,
+      "sha256": "fc554419b6bf13587202b4cd677fe859868d5fdf98161d0096d89f5008a620aa"
+    },
+    {
+      "filename": "chips_mela_cannella.png",
+      "bytes": 942013,
+      "sha256": "6646eb155c1123b01c6be154f1612d379ba9e6a4d7e6f4863fe1aa7e5d87717e"
+    },
+    {
+      "filename": "chips_tortilla_pomodorini.png",
+      "bytes": 846239,
+      "sha256": "cdf3d69427532f6e03781cc29c81c3e865a39335352dc308ae6a9adfae179cdf"
+    },
+    {
+      "filename": "crema_ceci_bastoncini.png",
+      "bytes": 760448,
+      "sha256": "85c28b24e67cb3d3741ae9b237937d91b6f21a57947987eee046f2f044b40730"
+    },
+    {
+      "filename": "gallette_ricotta_miele.png",
+      "bytes": 929566,
+      "sha256": "3c034a3efcf26db6db3e50fe024684197ab6bd2870fa0dcc5563c636e010b75c"
+    },
+    {
+      "filename": "mela_mandorle.png",
+      "bytes": 465336,
+      "sha256": "4b8606729017acd6340b236875b67c23cb870fd7646b9d08da7f69e3b660b22c"
+    },
+    {
+      "filename": "palline_datteri_cacao.png",
+      "bytes": 680720,
+      "sha256": "d22c448399d81f1af8d74bf330b19b702fbb4834178b0a7b3c56b760bade377a"
+    },
+    {
+      "filename": "carasau_rosmarino.png",
+      "bytes": 992076,
+      "sha256": "d04c237c3b2fa817c3c04074cf2f3a9c6404a3cc3799f7f37184ea7164084427"
+    },
+    {
+      "filename": "pera_gorgonzola_noci.png",
+      "bytes": 566685,
+      "sha256": "c0a48c170fe89f4b7dc30c7cfbdc04d8bb03686e2d076a5605be6bd25f947000"
+    },
+    {
+      "filename": "spiedini_frutta_cioccolato.png",
+      "bytes": 635962,
+      "sha256": "c0c819654cf80c7994de8af4e492ed56c756dbcc9c2718767a9cb70ef81e0bed"
+    },
+    {
+      "filename": "yogurt_banana_cacao.png",
+      "bytes": 1273049,
+      "sha256": "5f1ea896ecb92f583bf8caa05b0f19fafb718d995d9cf89150d2659a83348f3f"
+    }
+  ]
+}
+
