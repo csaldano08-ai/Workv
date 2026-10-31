@@ -1,7 +1,7 @@
 {
   "version": 1,
   "style": {
-    "reference": null,
+    "reference": "docs/IMAGE_STYLE_REFERENCE.json",
     "promptHash": null
   },
   "recipes": {
@@ -1095,16 +1095,23 @@
         "cipolla_rossa",
         "olive_nere"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/insalata_greca.png",
       "promptHash": "05fed19805dbc31e",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 671626,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor: tomato wedges, cucumber, feta, red onion and wholemeal bread; no olives. Consistent 2D matte gouache, ivory background, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T20:00:17.954315+01:00"
     },
     "insalata_riso_tonno": {
       "id": "insalata_riso_tonno",
@@ -1645,16 +1652,23 @@
         "miele",
         "lievito_dolci"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pancake_banana.png",
       "promptHash": "ace45ef7d0478082",
-      "attempts": 0,
-      "model": null,
+      "attempts": 2,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1134568,
+        "semantic": null,
+        "notes": [
+          "Corrected version viewed individually: golden pancake stack, banana slices and honey drizzle, plate only with all raw props removed. Consistent 2D matte gouache, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T20:02:36.829281+01:00"
     },
     "pancake_ceci_banana": {
       "id": "pancake_ceci_banana",
@@ -1817,16 +1831,23 @@
         "pasta_secca",
         "tonno_scatola"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_al_tonno.png",
       "promptHash": "4565257a68f820b7",
-      "attempts": 0,
-      "model": null,
+      "attempts": 2,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1322219,
+        "semantic": null,
+        "notes": [
+          "Corrected version viewed individually in Flow editor: red tomato penne with separate canned tuna flakes, no extra garnish, seamless ivory background without frame. Consistent matte hand-painted 2D style.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T20:01:39.105856+01:00"
     },
     "pasta_alla_norma": {
       "id": "pasta_alla_norma",
@@ -2984,16 +3005,23 @@
         "burro",
         "dado_vegetale"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/risotto_zucca.png",
       "promptHash": "0465069ebd7726cd",
-      "attempts": 0,
-      "model": null,
+      "attempts": 2,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1293063,
+        "semantic": null,
+        "notes": [
+          "Corrected version viewed individually: creamy pumpkin risotto with visible rice and pumpkin, bowl only, raw props and spoon removed. Consistent 2D gouache, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T20:02:15.666446+01:00"
     },
     "salmone_forno_broccoli": {
       "id": "salmone_forno_broccoli",
@@ -3008,16 +3036,23 @@
         "salmone",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/salmone_forno_broccoli.png",
       "promptHash": "d32758751dede4fb",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 692099,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor: baked pink salmon, distinct cooked broccoli florets and lemon wedge. Cohesive 2D gouache, correct plate, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T20:00:35.764603+01:00"
     },
     "salmone_padella_zucchine": {
       "id": "salmone_padella_zucchine",
@@ -3307,16 +3342,23 @@
         "lime",
         "insalata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/tacos_lenticchie.png",
       "promptHash": "ee8d8ff476ff30c0",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 758884,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor: soft wheat tortillas holding visible brown lentils, tomato and avocado, lime on plate. No meat or cheese, consistent 2D gouache, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T20:00:52.434834+01:00"
     },
     "tagliatelle_burro_salvia": {
       "id": "tagliatelle_burro_salvia",
@@ -3625,16 +3667,23 @@
         "cipolla",
         "semi_zucca"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/vellutata_carote_zenzero.png",
       "promptHash": "80c7f72107e59a88",
-      "attempts": 0,
-      "model": null,
+      "attempts": 2,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1232278,
+        "semantic": null,
+        "notes": [
+          "Corrected version viewed individually: smooth orange carrot soup, pumpkin seeds on top, bowl only. No cream or bread, raw props removed, coherent 2D gouache, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T20:02:51.868733+01:00"
     },
     "vellutata_zucca": {
       "id": "vellutata_zucca",
@@ -3698,16 +3747,23 @@
         "banana",
         "cacao_amaro"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/yogurt_banana_cacao.png",
       "promptHash": "980556725bec4b19",
-      "attempts": 0,
-      "model": null,
+      "attempts": 2,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1273049,
+        "semantic": null,
+        "notes": [
+          "Corrected version viewed individually: white yogurt with banana slices and brown cocoa dusting, bowl only. Raw banana, spoon and cocoa dish removed. Consistent 2D gouache, no text or border.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T20:03:07.232043+01:00"
     },
     "yogurt_greco_noci_miele": {
       "id": "yogurt_greco_noci_miele",
