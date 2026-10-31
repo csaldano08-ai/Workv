@@ -1,7 +1,7 @@
 import { memo, useState } from 'react';
 import { Image, StyleSheet, View, type ViewStyle } from 'react-native';
 import type { Recipe } from '../core/domain/types';
-import { RECIPE_IMAGES } from '../data/recipe-images';
+import { RECIPE_IMAGE_CARDS } from '../data/recipe-image-cards';
 import { colors } from '../theme/tokens';
 import { DishArt } from './DishArt';
 
@@ -20,7 +20,7 @@ export const RecipeImage = memo(function RecipeImage({
   rounded?: number;
   style?: ViewStyle;
 }) {
-  const source = RECIPE_IMAGES[recipe.id];
+  const source = RECIPE_IMAGE_CARDS[recipe.id];
   const [failed, setFailed] = useState(false);
   if (!source || failed) {
     return <DishArt category={recipe.dishCategory} recipeId={recipe.id} rounded={rounded} style={{ aspectRatio, ...style }} />;
@@ -33,7 +33,7 @@ export const RecipeImage = memo(function RecipeImage({
 });
 
 export function hasRecipeImage(id: string): boolean {
-  return id in RECIPE_IMAGES;
+  return id in RECIPE_IMAGE_CARDS;
 }
 
 const styles = StyleSheet.create({

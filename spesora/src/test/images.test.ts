@@ -38,7 +38,7 @@ describe('Immagini delle ricette', () => {
 
   it('la mappatura punta solo a ricette esistenti con file presenti, senza immagini condivise', () => {
     // Il file usa require() per Metro: qui lo leggiamo come testo.
-    const src = readFileSync(join(ROOT, 'src', 'data', 'recipe-images.ts'), 'utf8');
+    const src = readFileSync(join(ROOT, 'src', 'data', 'recipe-image-cards.ts'), 'utf8') + readFileSync(join(ROOT, 'src', 'data', 'recipe-images.ts'), 'utf8');
     const entries = [...src.matchAll(/^\s*'?([a-z0-9_]+)'?: require\('\.\.\/\.\.\/([^']+)'\)/gm)].map((m) => ({ id: m[1], file: m[2] }));
     for (const e of entries) {
       expect(catalog.recipes.has(e.id), e.id).toBe(true);
@@ -46,6 +46,10 @@ describe('Immagini delle ricette', () => {
       expect(e.file).toContain(e.id);
     }
     expect(new Set(entries.map((e) => e.file)).size).toBe(entries.length);
+    // L'app importa solo le card ottimizzate: i PNG sorgente non entrano nel bundle.
+    const appFiles = readFileSync(join(ROOT, 'src', 'ui', 'RecipeImage.tsx'), 'utf8');
+    expect(appFiles).toContain('recipe-image-cards');
+    expect(appFiles).not.toContain("recipe-images'");
   });
 
   it('i prompt usano gli ingredienti reali e distinguono ricette simili', () => {

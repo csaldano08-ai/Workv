@@ -47,23 +47,28 @@ function ensureDirs() {
   for (const d of [PATHS.recipesDir, PATHS.styleDir, PATHS.sourcesDir]) mkdirSync(d, { recursive: true });
 }
 
-/** Scrive src/data/recipe-images.ts con require statici (compatibili con il bundler Metro). */
+/**
+ * Scrive src/data/recipe-image-cards.ts: SOLO versioni ottimizzate (card 800×600 JPEG), con require statici
+ * per Metro. È l'unico file di immagini importato dall'app, così i sorgenti PNG a piena risoluzione non
+ * entrano nel bundle. src/data/recipe-images.ts resta gestito dallo script di Google Flow (Codex).
+ */
 export function writeMap(m: Manifest): number {
+  const cardOf = (e: RecipeImageEntry) => e.card ?? (e.file?.endsWith('.jpg') ? e.file : null);
   const entries = Object.values(m.recipes)
-    .filter((e) => SHOWN_IN_APP.includes(e.status) && e.file && existsSync(join(PATHS.root, e.file)) && catalog.recipes.has(e.id))
+    .filter((e) => SHOWN_IN_APP.includes(e.status) && cardOf(e) && existsSync(join(PATHS.root, cardOf(e)!)) && catalog.recipes.has(e.id))
     .sort((a, b) => a.id.localeCompare(b.id));
-  const body = entries.map((e) => `  ${e.id}: require('../../${e.card && existsSync(join(PATHS.root, e.card)) ? e.card : e.file}'),`).join('\n');
-  const content = `/* File GENERATO da scripts/images/pipeline.ts (comando "map"). Non modificare a mano. */
+  const body = entries.map((e) => `  ${e.id}: require('../../${cardOf(e)}'),`).join('\n');
+  const content = `/* File GENERATO da scripts/images/pipeline.ts (comandi "cards" e "map"). Non modificare a mano. */
 import type { ImageSourcePropType } from 'react-native';
 
-/** Immagini delle ricette disponibili, per ID persistente. Le ricette assenti usano l'illustrazione di fallback. */
-export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
+/** Card ottimizzate delle ricette, per ID persistente. Le ricette assenti usano l'illustrazione di fallback. */
+export const RECIPE_IMAGE_CARDS: Readonly<Record<string, ImageSourcePropType>> = {
 ${body}
 };
 
-export const RECIPE_IMAGE_COUNT = ${entries.length};
+export const RECIPE_IMAGE_CARD_COUNT = ${entries.length};
 `;
-  writeFileSync(PATHS.mapFile, content);
+  writeFileSync(PATHS.cardMapFile, content);
   return entries.length;
 }
 

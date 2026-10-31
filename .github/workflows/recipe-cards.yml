@@ -1,0 +1,44 @@
+# Card ottimizzate delle illustrazioni (800×600 JPEG) generate dai PNG validati di Google Flow.
+# Nessuna API e nessun costo: solo ridimensionamento locale con sharp. I PNG sorgente non vengono modificati.
+name: Spesora · card immagini ricette
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'spesora/assets/recipes/*.png'
+      - 'spesora/assets/recipes/manifest.json'
+
+concurrency:
+  group: recipe-cards-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: spesora
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: spesora/package-lock.json
+      - run: npm ci
+      - run: npx tsx scripts/images/pipeline.ts sync
+      - run: npx tsx scripts/images/pipeline.ts cards
+      - name: Commit delle card
+        run: |
+          git config user.name "spesora-images-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/recipes/card assets/recipes/manifest.json src/data/recipe-image-cards.ts
+          if git diff --cached --quiet; then echo "Nessuna card nuova"; exit 0; fi
+          git commit -m "Card ottimizzate per le nuove illustrazioni"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

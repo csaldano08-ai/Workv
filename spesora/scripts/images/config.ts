@@ -12,7 +12,10 @@ export const PATHS = {
   manifest: `${root}assets/recipes/manifest.json`,
   /** Sorgenti a piena risoluzione: NON nel repository (gitignore), caricate come artifact della Action. */
   sourcesDir: `${root}.image-sources/`,
+  /** Mappatura dei PNG sorgente, scritta dallo script Google Flow di Codex (non usata dall'app). */
   mapFile: `${root}src/data/recipe-images.ts`,
+  /** Mappatura delle card ottimizzate, usata dall'app. */
+  cardMapFile: `${root}src/data/recipe-image-cards.ts`,
 };
 
 export const IMAGE = {
