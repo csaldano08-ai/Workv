@@ -159,7 +159,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:21:59.009152+00:00"
+      "updatedAt": "2026-10-31T20:21:59.009152+01:00"
     },
     "calamari_friggitrice": {
       "id": "calamari_friggitrice",
@@ -508,7 +508,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:21:58.293062+00:00"
+      "updatedAt": "2026-10-31T20:21:58.293062+01:00"
     },
     "cozze_marinara": {
       "id": "cozze_marinara",
@@ -588,7 +588,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:21:11.137397+00:00"
+      "updatedAt": "2026-10-31T20:21:11.137397+01:00"
     },
     "crema_polenta_mele": {
       "id": "crema_polenta_mele",
@@ -804,7 +804,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:20:21.685212+00:00"
+      "updatedAt": "2026-10-31T20:20:21.685212+01:00"
     },
     "fette_biscottate_ricotta_marmellata": {
       "id": "fette_biscottate_ricotta_marmellata",
@@ -1084,7 +1084,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:21:58.657739+00:00"
+      "updatedAt": "2026-10-31T20:21:58.657739+01:00"
     },
     "hamburger_insalata": {
       "id": "hamburger_insalata",
@@ -1228,7 +1228,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:21:57.777915+00:00"
+      "updatedAt": "2026-10-31T20:21:57.777915+01:00"
     },
     "insalata_sgombro_fagioli": {
       "id": "insalata_sgombro_fagioli",
@@ -1553,7 +1553,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:23:21.052814+00:00"
+      "updatedAt": "2026-10-31T20:23:21.052814+01:00"
     },
     "noodles_riso_verdure_edamame": {
       "id": "noodles_riso_verdure_edamame",
@@ -1687,7 +1687,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:20:22.809070+00:00"
+      "updatedAt": "2026-10-31T20:20:22.80907+01:00"
     },
     "orzotto_radicchio": {
       "id": "orzotto_radicchio",
@@ -1719,7 +1719,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:21:09.808101+00:00"
+      "updatedAt": "2026-10-31T20:21:09.808101+01:00"
     },
     "overnight_oats_mirtilli": {
       "id": "overnight_oats_mirtilli",
@@ -1912,16 +1912,23 @@
         "acciughe_olio",
         "prezzemolo"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_acciughe_pangrattato.png",
       "promptHash": "37250721a1371423",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 900285,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta con acciughe e pangrattato tostato; main ingredients checked against catalog (pasta di semola, pangrattato, filetti di acciuga sott’olio, prezzemolo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:26:59.914904+00:00"
     },
     "pasta_al_forno": {
       "id": "pasta_al_forno",
@@ -1954,7 +1961,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:23:21.391794+00:00"
+      "updatedAt": "2026-10-31T20:23:21.391794+01:00"
     },
     "pasta_al_pesto": {
       "id": "pasta_al_pesto",
@@ -1984,7 +1991,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:23:21.865726+00:00"
+      "updatedAt": "2026-10-31T20:23:21.865726+01:00"
     },
     "pasta_al_tonno": {
       "id": "pasta_al_tonno",
@@ -2032,16 +2039,23 @@
         "pecorino",
         "basilico_fresco"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_alla_norma.png",
       "promptHash": "4f68766ec9625c70",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 841384,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta alla norma; main ingredients checked against catalog (melanzana, passata di pomodoro, pasta di semola, pecorino romano, basilico fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:27:54.473114+00:00"
     },
     "pasta_broccoli": {
       "id": "pasta_broccoli",
@@ -2055,16 +2069,23 @@
         "broccolo",
         "pasta_secca"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_broccoli.png",
       "promptHash": "8fb0df0991107fcd",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 979308,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta e broccoli; main ingredients checked against catalog (broccolo, pasta di semola). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:27:53.984981+00:00"
     },
     "pasta_carbonara": {
       "id": "pasta_carbonara",
@@ -2080,16 +2101,23 @@
         "pancetta",
         "pecorino"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_carbonara.png",
       "promptHash": "b3fdb6dc87b7d2f4",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 904312,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta alla carbonara; main ingredients checked against catalog (uova, pasta di semola, pancetta a cubetti, pecorino romano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:26:05.107449+00:00"
     },
     "pasta_carciofi_limone": {
       "id": "pasta_carciofi_limone",
@@ -2106,16 +2134,23 @@
         "parmigiano",
         "prezzemolo"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_carciofi_limone.png",
       "promptHash": "8cdc5fffac27985c",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 826082,
+        "semantic": null,
+        "notes": [
+          "Viewed individually in Flow editor: penne with sliced cooked artichoke hearts, fine lemon zest, parmesan and parsley. Coherent matte 2D gouache, no text, frame or raw props.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:28:18.970486+00:00"
     },
     "pasta_crema_cavolo_nero": {
       "id": "pasta_crema_cavolo_nero",
@@ -2129,16 +2164,23 @@
         "cavolo_nero",
         "pasta_secca"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_crema_cavolo_nero.png",
       "promptHash": "3b4592c9d50c5457",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 827596,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta alla crema di cavolo nero; main ingredients checked against catalog (cavolo nero, pasta di semola). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:26:06.245643+00:00"
     },
     "pasta_e_ceci": {
       "id": "pasta_e_ceci",
@@ -2178,16 +2220,23 @@
         "passata_pomodoro",
         "cipolla"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_e_fagioli.png",
       "promptHash": "ffda7269f359b4ea",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 821591,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta e fagioli; main ingredients checked against catalog (fagioli borlotti cotti, pasta di semola, passata di pomodoro, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:27:53.380060+00:00"
     },
     "pasta_e_lenticchie": {
       "id": "pasta_e_lenticchie",
@@ -2204,16 +2253,23 @@
         "carota",
         "cipolla"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_e_lenticchie.png",
       "promptHash": "71521e9802b1258e",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 706539,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta e lenticchie; main ingredients checked against catalog (lenticchie cotte, pasta di semola, passata di pomodoro, carota, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:26:59.113311+00:00"
     },
     "pasta_funghi": {
       "id": "pasta_funghi",
@@ -2244,7 +2300,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:20:22.443547+00:00"
+      "updatedAt": "2026-10-31T20:20:22.443547+01:00"
     },
     "pasta_gamberetti_pomodorini": {
       "id": "pasta_gamberetti_pomodorini",
@@ -2285,16 +2341,23 @@
         "pancetta",
         "pecorino"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_pancetta_pomodoro_pecorino.png",
       "promptHash": "ac723f38c295fcc1",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 892905,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta pancetta, pomodoro e pecorino; main ingredients checked against catalog (pomodori pelati, pasta di semola, pancetta a cubetti, pecorino romano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:27:00.399040+00:00"
     },
     "pasta_pesce_spada_menta": {
       "id": "pasta_pesce_spada_menta",
@@ -2309,16 +2372,23 @@
         "pomodorini",
         "pasta_secca"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_pesce_spada_menta.png",
       "promptHash": "09f1797ba1b875f8",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 796185,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta con pesce spada, pomodorini e menta; main ingredients checked against catalog (pesce spada a fette, pomodorini, pasta di semola). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:26:05.548699+00:00"
     },
     "pasta_pomodori_secchi_rucola": {
       "id": "pasta_pomodori_secchi_rucola",
@@ -2334,16 +2404,23 @@
         "rucola",
         "olive_nere"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_pomodori_secchi_rucola.png",
       "promptHash": "1c21eb04f71854ce",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 683629,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta fredda con pomodori secchi e rucola; main ingredients checked against catalog (pasta di semola, pomodori secchi sott’olio, rucola, olive nere). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:26:59.461861+00:00"
     },
     "pasta_pomodoro_basilico": {
       "id": "pasta_pomodoro_basilico",
@@ -2374,7 +2451,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:21:10.287208+00:00"
+      "updatedAt": "2026-10-31T20:21:10.287208+01:00"
     },
     "pasta_radicchio_gorgonzola": {
       "id": "pasta_radicchio_gorgonzola",
@@ -2433,7 +2510,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:21:10.760799+00:00"
+      "updatedAt": "2026-10-31T20:21:10.760799+01:00"
     },
     "pasta_ricotta_spinaci": {
       "id": "pasta_ricotta_spinaci",
@@ -2449,16 +2526,23 @@
         "ricotta",
         "parmigiano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_ricotta_spinaci.png",
       "promptHash": "2bb28dafb435da11",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 871853,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta con ricotta e spinaci; main ingredients checked against catalog (spinaci surgelati, pasta di semola, ricotta, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:26:05.897899+00:00"
     },
     "pasta_zucchine": {
       "id": "pasta_zucchine",
@@ -2473,16 +2557,23 @@
         "pasta_secca",
         "basilico_fresco"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasta_zucchine.png",
       "promptHash": "1caf5fd57faec13b",
-      "attempts": 0,
-      "model": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
       "phash": null,
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 879935,
+        "semantic": null,
+        "notes": [
+          "Individually opened and visually reviewed in Google Flow editor: Pasta con le zucchine; main ingredients checked against catalog (zucchina, pasta di semola, basilico fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+          "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-10-31T19:27:54.973559+00:00"
     },
     "patata_dolce_avocado": {
       "id": "patata_dolce_avocado",
@@ -3076,7 +3167,7 @@
           "Visual review performed individually by Codex; no API generation or automatic semantic score claimed."
         ]
       },
-      "updatedAt": "2026-10-31T19:20:22.042507+00:00"
+      "updatedAt": "2026-10-31T20:20:22.042507+01:00"
     },
     "riso_dolce_frutti_bosco": {
       "id": "riso_dolce_frutti_bosco",
