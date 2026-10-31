@@ -1,20 +1,7 @@
 {
   "catalog_count": 156,
-  "validated_count": 65,
+  "validated_count": 78,
   "missing": [
-    "pasta_radicchio_gorgonzola.png",
-    "polenta_funghi.png",
-    "riso_fagioli_neri_peperoni.png",
-    "riso_piselli_carote.png",
-    "riso_saltato_uova_verdure.png",
-    "riso_zucchine_pomodorini.png",
-    "risotto_asparagi.png",
-    "spaghetti_aglio_olio.png",
-    "spaghetti_vongole.png",
-    "noodles_riso_verdure_edamame.png",
-    "tagliatelle_burro_salvia.png",
-    "vellutata_zucca.png",
-    "zuppa_cavolo_nero_cannellini.png",
     "calamari_friggitrice.png",
     "pollo_peperoni.png",
     "bresaola_rucola_parmigiano.png",
@@ -96,7 +83,7 @@
   ],
   "errors": [],
   "unexpected_pngs": [],
-  "total_bytes": 52014044,
+  "total_bytes": 62967168,
   "complete": false
 }
 
