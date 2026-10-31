@@ -2,21 +2,28 @@
 import type { ImageSourcePropType } from 'react-native';
 
 export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
+  'ananas_menta_lime': require('../../assets/recipes/ananas_menta_lime.png'),
   'borlotti_mais_piccanti': require('../../assets/recipes/borlotti_mais_piccanti.png'),
   'bowl_edamame_riso': require('../../assets/recipes/bowl_edamame_riso.png'),
   'bresaola_rucola_parmigiano': require('../../assets/recipes/bresaola_rucola_parmigiano.png'),
+  'bruschetta_pomodoro': require('../../assets/recipes/bruschetta_pomodoro.png'),
   'bulgur_peperoni_olive': require('../../assets/recipes/bulgur_peperoni_olive.png'),
   'calamari_friggitrice': require('../../assets/recipes/calamari_friggitrice.png'),
   'caprese_pane': require('../../assets/recipes/caprese_pane.png'),
+  'carasau_rosmarino': require('../../assets/recipes/carasau_rosmarino.png'),
   'carciofi_patate_padella': require('../../assets/recipes/carciofi_patate_padella.png'),
   'cavoletti_ceci_friggitrice': require('../../assets/recipes/cavoletti_ceci_friggitrice.png'),
   'cavolfiore_ceci_forno': require('../../assets/recipes/cavolfiore_ceci_forno.png'),
+  'ceci_croccanti_friggitrice': require('../../assets/recipes/ceci_croccanti_friggitrice.png'),
   'ceci_spinaci_padella': require('../../assets/recipes/ceci_spinaci_padella.png'),
   'chili_fagioli_neri': require('../../assets/recipes/chili_fagioli_neri.png'),
+  'chips_mela_cannella': require('../../assets/recipes/chips_mela_cannella.png'),
+  'chips_tortilla_pomodorini': require('../../assets/recipes/chips_tortilla_pomodorini.png'),
   'ciambellone_friggitrice': require('../../assets/recipes/ciambellone_friggitrice.png'),
   'cosce_pollo_patate_forno': require('../../assets/recipes/cosce_pollo_patate_forno.png'),
   'couscous_verdure_ceci': require('../../assets/recipes/couscous_verdure_ceci.png'),
   'cozze_marinara': require('../../assets/recipes/cozze_marinara.png'),
+  'crema_ceci_bastoncini': require('../../assets/recipes/crema_ceci_bastoncini.png'),
   'crema_piselli_spezzati': require('../../assets/recipes/crema_piselli_spezzati.png'),
   'crema_polenta_mele': require('../../assets/recipes/crema_polenta_mele.png'),
   'crepes_marmellata': require('../../assets/recipes/crepes_marmellata.png'),
@@ -33,6 +40,7 @@ export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
   'frittelle_verdure_ceci': require('../../assets/recipes/frittelle_verdure_ceci.png'),
   'frullato_fragole_banana': require('../../assets/recipes/frullato_fragole_banana.png'),
   'frullato_kefir_pesca': require('../../assets/recipes/frullato_kefir_pesca.png'),
+  'gallette_ricotta_miele': require('../../assets/recipes/gallette_ricotta_miele.png'),
   'gamberi_zucchine_curcuma': require('../../assets/recipes/gamberi_zucchine_curcuma.png'),
   'gnocchi_pomodoro_mozzarella': require('../../assets/recipes/gnocchi_pomodoro_mozzarella.png'),
   'hamburger_insalata': require('../../assets/recipes/hamburger_insalata.png'),
@@ -48,6 +56,7 @@ export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
   'lonza_mele': require('../../assets/recipes/lonza_mele.png'),
   'macedonia_mattino': require('../../assets/recipes/macedonia_mattino.png'),
   'mela_cotta_cannella': require('../../assets/recipes/mela_cotta_cannella.png'),
+  'mela_mandorle': require('../../assets/recipes/mela_mandorle.png'),
   'merluzzo_impanato_friggitrice': require('../../assets/recipes/merluzzo_impanato_friggitrice.png'),
   'merluzzo_pomodorini_capperi': require('../../assets/recipes/merluzzo_pomodorini_capperi.png'),
   'minestrone_pastina': require('../../assets/recipes/minestrone_pastina.png'),
@@ -58,6 +67,7 @@ export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
   'orzo_zucchine_pomodorini': require('../../assets/recipes/orzo_zucchine_pomodorini.png'),
   'orzotto_radicchio': require('../../assets/recipes/orzotto_radicchio.png'),
   'overnight_oats_mirtilli': require('../../assets/recipes/overnight_oats_mirtilli.png'),
+  'palline_datteri_cacao': require('../../assets/recipes/palline_datteri_cacao.png'),
   'pancake_banana': require('../../assets/recipes/pancake_banana.png'),
   'pancake_ceci_banana': require('../../assets/recipes/pancake_ceci_banana.png'),
   'pane_burro_arachidi_banana': require('../../assets/recipes/pane_burro_arachidi_banana.png'),
@@ -88,6 +98,7 @@ export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
   'patate_dolci_ripiene': require('../../assets/recipes/patate_dolci_ripiene.png'),
   'patate_fagiolini_uova': require('../../assets/recipes/patate_fagiolini_uova.png'),
   'peperoni_ripieni_carne': require('../../assets/recipes/peperoni_ripieni_carne.png'),
+  'pera_gorgonzola_noci': require('../../assets/recipes/pera_gorgonzola_noci.png'),
   'pesce_spada_siciliana': require('../../assets/recipes/pesce_spada_siciliana.png'),
   'piadina_crudo_rucola': require('../../assets/recipes/piadina_crudo_rucola.png'),
   'piadina_salmone_affumicato': require('../../assets/recipes/piadina_salmone_affumicato.png'),
@@ -120,6 +131,7 @@ export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
   'spaghetti_aglio_olio': require('../../assets/recipes/spaghetti_aglio_olio.png'),
   'spaghetti_vongole': require('../../assets/recipes/spaghetti_vongole.png'),
   'spezzatino_piselli': require('../../assets/recipes/spezzatino_piselli.png'),
+  'spiedini_frutta_cioccolato': require('../../assets/recipes/spiedini_frutta_cioccolato.png'),
   'straccetti_pollo_friggitrice': require('../../assets/recipes/straccetti_pollo_friggitrice.png'),
   'tacchino_curry_cocco': require('../../assets/recipes/tacchino_curry_cocco.png'),
   'tacchino_rosmarino_insalata': require('../../assets/recipes/tacchino_rosmarino_insalata.png'),
@@ -148,5 +160,5 @@ export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
   'zuppa_piselli_spezzati': require('../../assets/recipes/zuppa_piselli_spezzati.png'),
 };
 
-export const RECIPE_IMAGE_COUNT = 144;
+export const RECIPE_IMAGE_COUNT = 156;
 
