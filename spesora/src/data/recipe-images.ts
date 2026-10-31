@@ -2,9 +2,17 @@
 import type { ImageSourcePropType } from 'react-native';
 
 export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
+  'borlotti_mais_piccanti': require('../../assets/recipes/borlotti_mais_piccanti.png'),
+  'bowl_edamame_riso': require('../../assets/recipes/bowl_edamame_riso.png'),
   'bresaola_rucola_parmigiano': require('../../assets/recipes/bresaola_rucola_parmigiano.png'),
   'bulgur_peperoni_olive': require('../../assets/recipes/bulgur_peperoni_olive.png'),
   'calamari_friggitrice': require('../../assets/recipes/calamari_friggitrice.png'),
+  'caprese_pane': require('../../assets/recipes/caprese_pane.png'),
+  'carciofi_patate_padella': require('../../assets/recipes/carciofi_patate_padella.png'),
+  'cavoletti_ceci_friggitrice': require('../../assets/recipes/cavoletti_ceci_friggitrice.png'),
+  'cavolfiore_ceci_forno': require('../../assets/recipes/cavolfiore_ceci_forno.png'),
+  'ceci_spinaci_padella': require('../../assets/recipes/ceci_spinaci_padella.png'),
+  'chili_fagioli_neri': require('../../assets/recipes/chili_fagioli_neri.png'),
   'ciambellone_friggitrice': require('../../assets/recipes/ciambellone_friggitrice.png'),
   'cosce_pollo_patate_forno': require('../../assets/recipes/cosce_pollo_patate_forno.png'),
   'couscous_verdure_ceci': require('../../assets/recipes/couscous_verdure_ceci.png'),
@@ -12,16 +20,24 @@ export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
   'crema_piselli_spezzati': require('../../assets/recipes/crema_piselli_spezzati.png'),
   'crema_polenta_mele': require('../../assets/recipes/crema_polenta_mele.png'),
   'crepes_marmellata': require('../../assets/recipes/crepes_marmellata.png'),
+  'crostoni_cavolo_nero_cannellini': require('../../assets/recipes/crostoni_cavolo_nero_cannellini.png'),
+  'curry_ceci_cocco': require('../../assets/recipes/curry_ceci_cocco.png'),
+  'dal_lenticchie_rosse': require('../../assets/recipes/dal_lenticchie_rosse.png'),
+  'fagioli_uccelletto': require('../../assets/recipes/fagioli_uccelletto.png'),
+  'farinata_ceci_forno': require('../../assets/recipes/farinata_ceci_forno.png'),
   'farro_pomodorini_feta': require('../../assets/recipes/farro_pomodorini_feta.png'),
   'fette_biscottate_ricotta_marmellata': require('../../assets/recipes/fette_biscottate_ricotta_marmellata.png'),
   'french_toast_fragole': require('../../assets/recipes/french_toast_fragole.png'),
   'frittata_forno_patate_cipolle': require('../../assets/recipes/frittata_forno_patate_cipolle.png'),
   'frittata_zucchine': require('../../assets/recipes/frittata_zucchine.png'),
+  'frittelle_verdure_ceci': require('../../assets/recipes/frittelle_verdure_ceci.png'),
   'frullato_fragole_banana': require('../../assets/recipes/frullato_fragole_banana.png'),
   'frullato_kefir_pesca': require('../../assets/recipes/frullato_kefir_pesca.png'),
   'gamberi_zucchine_curcuma': require('../../assets/recipes/gamberi_zucchine_curcuma.png'),
   'gnocchi_pomodoro_mozzarella': require('../../assets/recipes/gnocchi_pomodoro_mozzarella.png'),
   'hamburger_insalata': require('../../assets/recipes/hamburger_insalata.png'),
+  'hummus_bowl_tahina': require('../../assets/recipes/hummus_bowl_tahina.png'),
+  'insalata_ceci_tonno': require('../../assets/recipes/insalata_ceci_tonno.png'),
   'insalata_greca': require('../../assets/recipes/insalata_greca.png'),
   'insalata_riso_tonno': require('../../assets/recipes/insalata_riso_tonno.png'),
   'insalata_sgombro_fagioli': require('../../assets/recipes/insalata_sgombro_fagioli.png'),
@@ -117,5 +133,5 @@ export const RECIPE_IMAGES: Readonly<Record<string, ImageSourcePropType>> = {
   'zuppa_cavolo_nero_cannellini': require('../../assets/recipes/zuppa_cavolo_nero_cannellini.png'),
 };
 
-export const RECIPE_IMAGE_COUNT = 113;
+export const RECIPE_IMAGE_COUNT = 129;
 
