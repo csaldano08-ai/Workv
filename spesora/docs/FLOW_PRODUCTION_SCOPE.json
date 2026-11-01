@@ -1,0 +1,4010 @@
+{
+  "source_commit": "1cf78de12cc3ac9028ed300ee16da9c5cc7a718c",
+  "branch": "codex/spesora-flow-344",
+  "initial_missing_ids": [
+    "arance_datteri_cannella",
+    "avocado_toast_uovo_sodo_sesamo",
+    "barrette_avena_datteri",
+    "biscotti_inzuppo_limone",
+    "biscotti_avena_banana",
+    "biscotti_avena_cocco",
+    "bowl_ceci_avocado_pomodorini",
+    "bowl_yogurt_ceci_croccanti_paprika",
+    "yogurt_salato_cetriolo_menta_pane",
+    "cannellini_funghi_pomodorini_padella",
+    "ciambella_yogurt_forno",
+    "crema_banana_lino_cacao",
+    "crema_castagne_cacao_pera",
+    "crema_grano_saraceno_cacao",
+    "crostata_marmellata",
+    "fragole_limone_zucchero",
+    "frittatina_piselli_cipollotto",
+    "frittelle_mele",
+    "frullato_ciliegie_banana",
+    "gallette_riso_tonno_pomodorini_capperi",
+    "macedonia_autunnale_melagrana",
+    "mele_forno_noci_uvetta",
+    "migliaccio_napoletano",
+    "muffin_yogurt_frutti_bosco",
+    "omelette_erbe_aromatiche",
+    "overnight_oats_mela_cannella",
+    "pancake_salati_ceci_spinaci",
+    "pane_cunzato_primo_sale_acciughe",
+    "pane_integrale_crema_cannellini_pomodori_secchi",
+    "pane_integrale_salmone_affumicato_yogurt",
+    "pane_tostato_hummus_carota_cetriolo",
+    "pane_uovo_occhio_bue_spinaci",
+    "patata_dolce_friggitrice_fagioli_neri",
+    "patate_saltate_peperoni_paprika",
+    "pere_forno_cannella",
+    "pesche_yogurt_semi_zucca",
+    "piadina_uova_strapazzate_zucchine",
+    "plumcake_banana_noci",
+    "polenta_morbida_pomodorini_saltati",
+    "polenta_morbida_uovo_tegamino",
+    "porridge_soia_cachi",
+    "porridge_miglio_mela",
+    "porridge_salato_avena_funghi",
+    "pudding_chia_mandorla_lamponi",
+    "quinoa_dolce_albicocche",
+    "quinoa_salata_avocado_semi_zucca",
+    "ricotta_montata_miele_arancia",
+    "riso_latte_cannella",
+    "rosti_patate_friggitrice_aria",
+    "semolino_dolce_arancia",
+    "smoothie_bowl_frutti_rossi",
+    "smoothie_bowl_verde_kiwi",
+    "strapazzata_farina_ceci_zucchine",
+    "succo_arancia_carota_zenzero",
+    "toast_integrale_ricotta_pomodorini",
+    "tofu_strapazzato_peperoni_paprika",
+    "torta_cacao_acqua",
+    "torta_carote_mandorle",
+    "torta_mele_casalinga",
+    "uova_tegamino_patate_rosmarino",
+    "uova_cocotte_friggitrice_spinaci",
+    "uovo_coque_soldatini_pane",
+    "uovo_camicia_asparagi_parmigiano",
+    "wrap_tortilla_fagioli_neri_avocado",
+    "yogurt_fichi_miele_mandorle",
+    "yogurt_greco_albicocche_avena",
+    "yogurt_greco_pere_caramellate",
+    "acquacotta_toscana",
+    "bowl_farro_lenticchie_zucca",
+    "bowl_grano_saraceno_ceci_vapore",
+    "bowl_riso_integrale_fagioli_neri_avocado",
+    "bucatini_amatriciana",
+    "buddha_bowl_quinoa_ceci_patata_dolce",
+    "busiate_pesto_trapanese",
+    "carbonara_di_zucchine",
+    "couscous_gamberetti_zucchine_limone",
+    "couscous_lenticchie_carote_uvetta",
+    "couscous_pollo_verdure_speziate",
+    "crema_porri_patate",
+    "crema_zucca_lenticchie_rosse",
+    "farro_cannellini_pomodori_secchi",
+    "farro_funghi_prezzemolo",
+    "gazpacho",
+    "gnocchi_pesto_pomodorini",
+    "gnocchi_alla_romana",
+    "gnocchi_alla_sorrentina",
+    "grano_saraceno_funghi_cipolla",
+    "insalata_farro_tonno_fagiolini",
+    "insalata_quinoa_lenticchie_barbabietola",
+    "insalata_riso_pollo_mais_peperoni",
+    "lasagne_alla_bolognese",
+    "lasagne_alle_verdure",
+    "miglio_zucchine_carote_curcuma",
+    "minestra_orzo_fagioli",
+    "minestrone_alla_genovese",
+    "orecchiette_cime_di_rapa",
+    "orzo_ceci_melanzane_grigliate",
+    "paccheri_ragu_di_polpo",
+    "paella_pollo_verdure",
+    "pappa_al_pomodoro",
+    "passato_di_verdure",
+    "pasta_quattro_formaggi",
+    "pasta_al_forno_melanzane_scamorza",
+    "pasta_pesto_rosso_pomodori_secchi",
+    "pasta_ragu_bianco",
+    "pasta_al_salmone_affumicato",
+    "pasta_alla_crudaiola",
+    "pasta_alla_genovese",
+    "pasta_fiori_di_zucca_zafferano",
+    "pasta_con_le_sarde",
+    "pasta_pomodorini_burrata",
+    "pasta_salsa_di_noci",
+    "pasta_seppie_pomodorini",
+    "pasta_zucca_salsiccia",
+    "pasta_e_cavolfiore",
+    "pasta_e_fave",
+    "pasta_e_patate_con_provola",
+    "pasta_e_piselli",
+    "pasta_fredda_ceci_peperoni",
+    "pasta_fredda_tonno_olive_pomodorini",
+    "pasta_fredda_verdure_grigliate",
+    "pasta_fredda_zucchine_feta_menta",
+    "pasta_funghi_salsiccia",
+    "pasta_integrale_crema_lenticchie_rosse",
+    "pasta_integrale_verdure_saltate",
+    "pasta_panna_prosciutto_piselli",
+    "pasta_salsiccia_broccoli",
+    "pasta_tonno_limone_capperi",
+    "pasta_zucchine_gamberetti",
+    "penne_all_arrabbiata",
+    "pilaf_riso_ceci_curcuma",
+    "poke_vegetale_edamame_mango",
+    "polenta_forno_pomodoro_mozzarella",
+    "polenta_salsiccia_pomodoro",
+    "polenta_concia",
+    "quinoa_saltata_verdure",
+    "ravioli_burro_salvia",
+    "ribollita_toscana",
+    "rigatoni_alla_gricia",
+    "riso_burro_parmigiano",
+    "riso_basmati_curry_verdure",
+    "riso_e_lenticchie",
+    "riso_integrale_verdure_forno",
+    "riso_venere_gamberetti_zucchine",
+    "riso_venere_verdure_zenzero",
+    "risotto_frutti_di_mare",
+    "risotto_funghi_porcini_secchi",
+    "risotto_al_limone",
+    "risotto_pomodoro_basilico",
+    "risotto_alla_milanese",
+    "risotto_zucchine_zafferano",
+    "spaghetti_ai_frutti_di_mare",
+    "spaghetti_al_limone",
+    "spaghetti_alla_carrettiera",
+    "spaghetti_alla_nerano",
+    "spaghetti_alla_puttanesca",
+    "spaghetti_cacio_e_pepe",
+    "stracciatella_in_brodo",
+    "tabbouleh_bulgur_prezzemolo",
+    "tagliatelle_ragu_bolognese",
+    "tortellini_in_brodo",
+    "tortellini_panna_prosciutto",
+    "trofie_pesto_patate_fagiolini",
+    "vellutata_broccoli_parmigiano",
+    "vellutata_cavolfiore",
+    "vellutata_piselli",
+    "vellutata_zucchine_menta",
+    "zuppa_ceci_rosmarino",
+    "zuppa_cipolle_gratinata",
+    "zuppa_farro_verdure",
+    "zuppa_di_lenticchie",
+    "zuppa_di_pesce_semplice",
+    "zuppa_scarola_fagioli",
+    "agnello_forno_patate",
+    "agnello_cacio_e_uova",
+    "alici_in_tortiera_gratinate",
+    "baccala_umido_patate",
+    "bocconcini_tacchino_funghi",
+    "bocconcini_tacchino_zucchine_zafferano",
+    "braciole_al_sugo_barese",
+    "branzino_cartoccio_zucchine_limone",
+    "carne_alla_pizzaiola",
+    "chili_con_carne",
+    "coniglio_alla_cacciatora",
+    "coniglio_alla_ligure_olive",
+    "costine_maiale_forno_patate",
+    "cotolette_pollo_insalata_pomodori",
+    "crocchette_salmone_patate_friggitrice",
+    "curry_uova_sode_riso",
+    "fajitas_pollo_peperoni",
+    "fegatini_pollo_cipolle_polenta",
+    "fettine_lonza_al_latte",
+    "frittata_di_cipolle",
+    "gamberoni_aglio_olio_prezzemolo",
+    "gulasch_manzo_polenta",
+    "impepata_di_cozze",
+    "insalata_polpo_patate",
+    "involtini_tacchino_spinaci",
+    "maiale_agrodolce_ananas",
+    "merluzzo_alla_livornese",
+    "nasello_vapore_carote_zucchine",
+    "omelette_funghi_champignon",
+    "orata_acqua_pazza",
+    "platessa_limone_padella",
+    "pollo_al_forno_zucca_rosmarino",
+    "pollo_sesamo_broccoli_riso",
+    "pollo_alla_diavola_padella",
+    "pollo_alla_paprika_con_riso",
+    "polpette_pollo_zucchine_friggitrice",
+    "polpette_tonno_patate_forno",
+    "polpette_in_bianco_piselli",
+    "polpettone_forno_patate",
+    "quiche_lorraine",
+    "salmone_glassato_soia_miele",
+    "salmone_crosta_pistacchi",
+    "salsicce_fagioli_pomodoro",
+    "salsiccia_e_friarielli",
+    "salsiccia_patate_forno",
+    "saltimbocca_alla_romana",
+    "sarde_beccafico_semplificate",
+    "sardine_friggitrice_limone_origano",
+    "seppie_con_piselli",
+    "sgombro_forno_patate_pomodorini",
+    "sovracosce_pollo_erbe_friggitrice",
+    "spiedini_pollo_verdure_piastra",
+    "straccetti_manzo_rucola_grana",
+    "tonno_alla_cipollata",
+    "trota_forno_mandorle_limone",
+    "uova_alla_fiorentina",
+    "uova_ripiene_tonno_insalata",
+    "uova_strapazzate_asparagi",
+    "vitello_tonnato_fettine",
+    "baccala_ceci_pomodoro",
+    "bietole_patate_aglio",
+    "bowl_tofu_forno_riso_cavolo_rosso",
+    "burger_ceci_zucchine",
+    "burger_lenticchie_carote_forno",
+    "caponata_siciliana",
+    "carciofi_alla_romana",
+    "cavolfiore_gratinato_besciamella",
+    "ceci_cime_rapa_padella",
+    "ceci_zimino_bietole",
+    "ciambotta_lucana",
+    "cime_rapa_patate",
+    "crema_cannellini_verdure_forno",
+    "erbazzone_semplificato",
+    "fagiolini_patate_umido",
+    "falafel_forno_salsa_yogurt",
+    "fave_e_cicoria",
+    "fave_guanciale_romana",
+    "finocchi_gratinati_friggitrice",
+    "focaccia_farcita_melanzane_mozzarella",
+    "funghi_ripieni_friggitrice",
+    "gatto_di_patate_napoletano",
+    "gratin_patate_porri",
+    "hummus_barbabietola_pita",
+    "insalata_edamame_mais_cavolo_rosso",
+    "insalata_ceci_peperoni_arrostiti",
+    "insalata_ceci_finocchio_arancia",
+    "insalata_fagioli_neri_mais_peperone",
+    "insalata_lenticchie_verdure_croccanti",
+    "insalata_lupini_patate_pomodorini",
+    "insalata_nizzarda",
+    "insalata_tiepida_cannellini_gamberetti",
+    "lenticchie_riso_cipolle_caramellate",
+    "lenticchie_salsiccia_umido",
+    "melanzane_cotoletta_friggitrice",
+    "melanzane_a_funghetto",
+    "melanzane_ripiene_caciocavallo",
+    "panelle_palermitane_insalata",
+    "panino_burger_fagioli_neri",
+    "parmigiana_zucchine_forno",
+    "pasticcio_lenticchie_pure_patate",
+    "patate_alla_pizzaiola",
+    "peperonata_con_patate",
+    "peperoni_ripieni_mollica_capperi",
+    "piadina_funghi_fontina",
+    "piadina_zucchine_scamorza",
+    "piselli_cacio_uova",
+    "pizza_teglia_margherita",
+    "pizza_teglia_verdure_rossa",
+    "polenta_borlotti_umido",
+    "polpette_lenticchie_forno_sugo",
+    "pomodori_ripieni_riso_patate",
+    "quesadilla_borlotti_mais_mozzarella",
+    "ratatouille_in_pentola",
+    "salmone_lenticchie_spinaci",
+    "scaloppine_seitan_funghi",
+    "scarola_olive_capperi_pinoli",
+    "seitan_alla_pizzaiola",
+    "sformato_broccoli_forno",
+    "tempeh_piastra_cavolo_nero",
+    "tempeh_glassato_acero_riso_broccoli",
+    "tofu_limone_capperi_fagiolini",
+    "tofu_piastra_peperoni_zucchine",
+    "tofu_patate_dolci_paprika_friggitrice",
+    "torta_salata_spinaci_ricotta",
+    "torta_salata_porri_stracchino",
+    "tortino_patate_zucchine_strati",
+    "verdure_miste_friggitrice",
+    "vignarola_romana",
+    "wrap_verdure_grigliate_hummus",
+    "zucca_ceci_forno_rosmarino",
+    "zucchine_ripiene_carne_forno",
+    "anguria_menta_lime",
+    "bastoncini_polenta_friggitrice",
+    "bruschetta_zucchine_menta",
+    "cachi_cucchiaio_lime",
+    "castagne_calde_miele_cannella",
+    "chips_cavolo_nero_friggitrice",
+    "chips_patate_rosmarino_friggitrice",
+    "crackers_semi_forno",
+    "crostini_cannellini_salvia",
+    "crostini_crema_fave_menta",
+    "crostini_crema_lenticchie",
+    "crostini_mozzarella_alici",
+    "edamame_sale_lime",
+    "fettunta_aglio_olio",
+    "fichi_ricotta_miele",
+    "verdure_crude_salsa_tahina",
+    "focaccine_yogurt_padella",
+    "frittelle_zucchine_parmigiano",
+    "frullato_melone_pesca_menta",
+    "mix_frutta_secca_rosmarino",
+    "gelato_banana_frutti_bosco",
+    "ghiaccioli_anguria_fragole",
+    "ghiaccioli_yogurt_mirtilli",
+    "girelle_piadina_cotto_formaggio",
+    "hummus_lupini_verdure",
+    "lupini_conditi_limone_peperoncino",
+    "macedonia_inverno_agrumi_kiwi",
+    "macedonia_estiva_anguria_melone",
+    "mandarini_mandorle_tostate",
+    "melone_prosciutto_crudo",
+    "mousse_avocado_cacao",
+    "olive_arancia_caciocavallo",
+    "palline_avena_burro_arachidi",
+    "palline_fichi_secchi_nocciole",
+    "pane_cioccolato_fondente",
+    "pinzimonio_verdure",
+    "prugne_cotte_cannella",
+    "tramezzini_tonno_pomodoro",
+    "uva_primo_sale_pepe",
+    "verdure_crude_salsa_yogurt_erba_cipollina"
+  ],
+  "protected_sha256": {
+    "yogurt_kiwi_granola": "0f4b92d5b55395f85eda4ed58f3689b4669d016c345a29139454aa431920c8c0",
+    "ciambellone_friggitrice": "eaec39cd53ec7090aacc20a307f8159fe0c4e8fe1a9b4e496e5f719075fabd88",
+    "crema_polenta_mele": "37815673548025974da1fe50f79c14ad585f906c52d067c906725b1912b499d3",
+    "crepes_marmellata": "ceaaf075e2fd70b0de1b811255d64d695add4597c87d0ad91e43a71e8ec2c44c",
+    "fette_biscottate_ricotta_marmellata": "3cdc549e90654560cf2fd106011c5766b355548fe6ff4bf940e536a424b100ea",
+    "patata_dolce_avocado": "b411aad09fa6a4026fd8654e5a5a0eca4c4ee1f2e834e0e6d16188b27c889fc6",
+    "french_toast_fragole": "0da6bde3b50fed7414eec10b5cc80b322dd67456c85005ddd7d485f7dc5ee67b",
+    "frullato_fragole_banana": "c8687679125c97b55111c52d29070135a2b61e669e15eeda8afc3053c732c0ba",
+    "frullato_kefir_pesca": "1cfd37d456a1694bb4330bc21ffe945799032836f9d904cbe240d4023ae16dac",
+    "latte_cereali_banana": "09a6bfe1592677b8c9060a8589fd0675308e1da819ab390e9d25ce193a50544d",
+    "macedonia_mattino": "a37f75fe41770908816aa35d45f06dd60d4f543c0119839f5d44e74d4b10c1a8",
+    "mela_cotta_cannella": "ee988fbdb30881c2377bf89307a0721e362cd74b0b2cf02ff0e480369b3739ad",
+    "overnight_oats_mirtilli": "0d2c4704c275d3a07930a75a3ec7c6e44306aa2800968f7b10a2c347e2624f64",
+    "pancake_banana": "85192099584a3f219b9ea4476afa615f927d26eb89751260d663650b5b72bc77",
+    "pancake_ceci_banana": "0aa923fb3cdcc14f235c87c05db4d1b30dd9ad4daaa3f975ac8d15d263c922f5",
+    "pane_burro_arachidi_banana": "8e4c3ddd0047c8fac04003c7dd4725ec37acdb885ebfb66ee76cce078e601149",
+    "toast_avocado_pomodorini": "2dbef10441aa9580cd909985702841840ffde392b33ea808c3556cdf4f3ff4c0",
+    "porridge_cacao_pera": "7f1b3aaaf095f1a89909dbdcbbe4cc6f11168af2f6601992a7b05679b6ba0249",
+    "porridge_latte_frutti_bosco": "6b94f6a06d13f802291114689109244a459119ec50f0eeec2d5c7453714dd679",
+    "porridge_banana_cannella": "a51b427bdc17c42068c284830b754a90dc5339a70bbb98a02ed900fa7c578812",
+    "pudding_chia_mango": "e4ed19e70dceb616fe808e654208e48b3bb48b1cc83fe54d9f989c7861a7c466",
+    "quinoa_cacao_banana": "0d5ef5f924315b3f4b29688957686ec91224ed60b2f2bfca1dedcdd0973f40d5",
+    "riso_dolce_frutti_bosco": "fb32792f316108d1774038ec405e728aa37f4a8b5a93455173f3ce3696f904f0",
+    "smoothie_bowl_tropicale": "42f19fdb35a3deb2c9cb53d3f89623c784c07aa14b21f7af63b05640c55bc5cd",
+    "toast_prosciutto_mozzarella": "14be8dfd62f309629b3ff1555f0d636a73a69f18f6b5d7d54a7b39beb831b898",
+    "tofu_strapazzato_spinaci": "1682ba0b916a45a149d61a3818987ddf8c564498e6c0944ad10fd87915ce8064",
+    "uova_camicia_pomodoro": "bbd350c515bd2ad1d19e98cb372e22ae4385c20b18c79b00bb3fb941df3de416",
+    "uova_strapazzate_toast": "138182fb737b339313755c354305cd31e9f806cc64fae3a9ea9208600e61f610",
+    "yogurt_soia_avena_fragole": "0761b13039979ecaca3b25277a00016d3e07c0dcdd86b68bdd59ca3bf1160b46",
+    "yogurt_greco_noci_miele": "938c3af798445a99368206f72637d7bb38582534d3d37332a97cb8fcebb743b1",
+    "bulgur_peperoni_olive": "ff3a7361c64cb3674d8fe6d2f7d2b825583b998e14964a3acc9e0399c7718310",
+    "couscous_verdure_ceci": "3e7f78b89ee1c91b0efa4f68b63a0e2702a8630c123d41f6d2538cd7604036b4",
+    "crema_piselli_spezzati": "4fd3ee6f2cf76ecc571bdb8f2da7862d26cbd3defd85b244c84b44c584347805",
+    "farro_pomodorini_feta": "3ced5a1cc0306377bc2a8079670767f22d0554ba0d83d310dfde034be8c96b57",
+    "gnocchi_pomodoro_mozzarella": "3a542d83e7ef9dd20ef8798b662c7df142a5d49fd6a0130c0d3afb0ef3f325dc",
+    "quinoa_ceci_cetriolo_menta": "20590266478739e09e35a710024922f3c094a4bec9f7952bbb9024f75e236b92",
+    "insalata_riso_tonno": "41a27ab0947c243fc3475b1b431f3fcc661c90bbb7a45fb0ad93f2274ed29051",
+    "minestrone_pastina": "6548c50f535d3126b7f5485f87cb82b70b7c4a4810e9a82db67b4af6814ab58e",
+    "orzo_zucchine_pomodorini": "d59afc13898a22226b6253be21c8342473f3bdc1bcbb734351ad2cbe8c262a6d",
+    "orzotto_radicchio": "f418c0cfc1477a2772a91e6c67e15751b9e141fc30970fd91f6191af17ed5394",
+    "pasta_funghi": "1f349ab5d52ce71545b3d7a2318248286f65bfda285567838c8f5ea4a3acb418",
+    "pasta_al_forno": "3d5af08787449bd22b09051824d367616074934c48026267b3bf1ce4de86080f",
+    "pasta_al_pesto": "33c354cb4ba5ecf63fd9361364df6b3a33ea93f8345efa1105754624ab6319ac",
+    "pasta_pomodoro_basilico": "eeae7ebd690a526c933d53f63d10d34eba82edc4a6697f41d2f8c3806e69e6a9",
+    "pasta_ragu_veloce": "8fd49b6a8df86dc76bd5701474757f9fabbbd725bb92be5c96aa862051fec54e",
+    "pasta_al_tonno": "8368a1a3985f71b67c871e1b8a679382de69377e30469e8c9aa07074d3a2e5a4",
+    "pasta_carbonara": "36a0a1c8ef0ddeeba18526830cacdfdb771eb7a396f00ed7851bce88dccc6c0d",
+    "pasta_crema_cavolo_nero": "0cc4bde0bfb4ba1177c16149e004f3a6768559248a46b4f3f2ca2733baa94606",
+    "pasta_alla_norma": "398ce90eedc00166f6355c09d89aa4bf7d489967c3fb61036bc3569b82a6bde1",
+    "pasta_acciughe_pangrattato": "d88585b9d8421831c38aef6cc1b0c069f43ad40a7aa851b8b639470787b373fb",
+    "pasta_carciofi_limone": "b9425da3b5cb7a04d2bea3b87ae8c04ce797becd48648443e220af10f657e04c",
+    "pasta_zucchine": "a416a3b55374749c37529d6e91452979d59e382a26352c455759de3e92ab2f5e",
+    "pasta_pesce_spada_menta": "bef6a72111a2fe87293271d813714ded519437953421c8a8b5aa0663f64b3411",
+    "pasta_ricotta_spinaci": "1e0f0d7e3f682872de106439bf60ee1a1f4a959502684a0ffa335fa2c9a4acbe",
+    "pasta_broccoli": "b898e3d4b1cdc303fd51c89315c01ed52dca649e329c2ed76fdff4a6e0d1a332",
+    "pasta_e_fagioli": "af323085274d9ef5ba85ecea0651e27c313dcd33ba2b3c394d29ae6237e4c7b5",
+    "pasta_e_lenticchie": "08f6ac82a76b7a7c3d74c8273a92f4c7f5c6e29173bff7b0845fa4590b9b28f9",
+    "pasta_pomodori_secchi_rucola": "9d264eb3cf2f76eb457bf2d1b825305737fbcccafafc1de28823cd9e2cdfb5a2",
+    "pasta_pancetta_pomodoro_pecorino": "9ecfdaad0c9370cbbd59b780773621b19b9fdcad87c6e280644c8b60fde0bfbc",
+    "pasta_radicchio_gorgonzola": "e39d3a239641344a289c033f2ecd7c69aad3f15fb59de2ff050b6bc58efd28af",
+    "polenta_funghi": "5b0c1f18cf5a388162e6e1a466c5c7237f84c489441514018d6a0ee931caae7b",
+    "riso_fagioli_neri_peperoni": "d1ac1e1f37f5023f945b88883e1ec4f851f050be1103750fd3061824c2e7e63d",
+    "riso_piselli_carote": "9fe8faf87ce7c0b6703090d795a61b8b6277a42dea744b83af52c00283f96591",
+    "riso_saltato_uova_verdure": "9ad97d2ab6603a62883de59b834c2530cc9f764cf5e226b2b91613d34874e091",
+    "riso_zucchine_pomodorini": "07f58fa8e839f893b8dc06b91317b7c5d1ad526a9ff7568afcf90500d774bc97",
+    "risotto_asparagi": "1da027ee61d5186e94767d6a70c66a5e0529f636b0146cdbb7e18d2f99cdc287",
+    "risotto_zucca": "bea6f74e1cb5e6fbeb259b625729c030c67fde1f4aba58493491d5c51415493f",
+    "spaghetti_aglio_olio": "08e1da841b362cabd834f3de502832e2c4d3cd0f5a50d6ceca0a283f8c3ba7ea",
+    "spaghetti_vongole": "775062cc036b1e37e64ad9ab3858b63a255c448552ba87f659652c20fafa4aba",
+    "noodles_riso_verdure_edamame": "c71d9ba60992b00ad21b485bbf9bb9bdb3643c1749210565ba3e3e8cc17641e9",
+    "tagliatelle_burro_salvia": "369a39f3fd3789d3b130ab2900fe90d3044662dc591c74965149a8e928ea2b9d",
+    "vellutata_carote_zenzero": "ba747df33e429464a4c3e1d39319f817ca07ac9444f23a775c427da2b2c83af6",
+    "vellutata_zucca": "cd885e4db3a36ee75459c8b014c1ff37b4508221212a21b6102d079f14f10f2e",
+    "zuppa_cavolo_nero_cannellini": "7b07d7904fac066c479c4f99a07f72a4b3823ce34bf295294de31b978caa2843",
+    "calamari_friggitrice": "d1f745fcf6a11bce9a79bc6023b6899ac19b4591afc425ab90d5420fd5498e8c",
+    "pollo_peperoni": "ff172c6751559c66a38aebbebc34736fc4137bd83cc165ccb0f3ba7a054035a0",
+    "bresaola_rucola_parmigiano": "5a85f4383fbbb80b9c3b2a1c00f56944b1b50a3ff927a377960ccccd0e2735c1",
+    "cosce_pollo_patate_forno": "d0200a75ac631391ad73b69d3afd04408427523d62b991036402ab14fe291b0d",
+    "cozze_marinara": "49a9f6797d676f82b26162a0765f67da7f50eaecc0127f5f5b35fe8132df5c11",
+    "tacchino_rosmarino_insalata": "2c9cd9acde0edfab70d14d7b5b17ea87b8270cdb8d6931a2d3437e59c5176126",
+    "merluzzo_impanato_friggitrice": "3ef1fb2162e002f49f5a3723317ded413d7e101f406d9f011797ce11746a8f31",
+    "orata_forno_patate": "21609cf6883deb27255d65e144eaa6a74a16ccaa36a3cd908fcb926d6753f0d5",
+    "frittata_forno_patate_cipolle": "f5a71497b18d741e393e562580400b25bd61a311d53b6e4b9a837243970e42e8",
+    "frittata_zucchine": "de13ca84636c49187e022d783d8595c47232bb6041702fbc45b01126120f3db9",
+    "gamberi_zucchine_curcuma": "2b0d595bff0d9999a085c32b8ac085ea4feb76949ddc5fed1c55e6f414e90b0c",
+    "hamburger_insalata": "7dc69011df0e6cf4d999fd8f6988b1dd63407b71fa9e6fbbdfe482dba7056003",
+    "insalata_sgombro_fagioli": "049f96e7263219882431a693097069d39128708ed8e9dcb0ebfbdf8486487ee5",
+    "involtini_pollo_cotto_scamorza": "cbc9ac047a2b2c436b5199fcc35a30eb88c37c9295e97993eb0539020ff36f19",
+    "lonza_mele": "9ccf4445958494807dd0b2c9ac0fb8d356f9155c451a4ba5b3300de5e23b2b4e",
+    "merluzzo_pomodorini_capperi": "e2e763eea3ee16faacf15ab1545a7ab034bcbb01b1447e6574325e23178ef7d2",
+    "omelette_spinaci_scamorza": "fd20eab584b66ec4ed0e16d1b832ebd2f7d366c6d13cd83b8944f9e6e28e5b69",
+    "pasta_gamberetti_pomodorini": "1661111cc1aa56091c69718465fd019ce2747e6d1a9fef7c9ab56ad7661e93ef",
+    "peperoni_ripieni_carne": "ab8180b95dfaf442e58fa4c82128a93e0f892e0228bef36d0f782953fedbeb13",
+    "pesce_spada_siciliana": "529b6e9483d016d883285ff3092222cef79272be194c55a351fbf90fb6d8614a",
+    "pollo_al_limone": "30614abd6f9d3111e49471dca419704cb4cdcc52cda5daccf26051a283e02f08",
+    "pollo_friggitrice_verdure": "abe3304d38d3025a21288706d3501cfd293f23da3896e068cd8ffee93cfeb527",
+    "piadina_salmone_affumicato": "26bb6636d1035f55f717896832a2febd1780b803671c2f93318acaa5f2fa989d",
+    "pollo_cacciatora": "5ef9e37f38e04b2bc6f5bfd7ad42a9351a580e214d395c438830356532455b9f",
+    "polpette_al_sugo": "756928a559be15cb3ed2ded17f1675e4c606a4f546a6575ab383ba24d459306f",
+    "polpette_tacchino_carote": "e2922029b6f639cb66b57d7f054d7437dde892d831887198f2a850e3f3739371",
+    "salmone_forno_broccoli": "d928dcb7c2531ad503f7fcddfff8fb9cf296d1170768b7dbc4eb2220c553d025",
+    "salmone_padella_zucchine": "31db3354f6cfa2fa7ebfd810f8dcca00dc5297b4610924cccd9a4eee327687dd",
+    "saltimbocca_tacchino_speck": "e31fa0a0580ae631bccfdc251bacbb98724d2dca3e4a77fcac4ab2abe2d7639f",
+    "scaloppine_limone": "b902d783b55d7e163a89823890275e3a97e64441ed870bf9315555d812e687a9",
+    "spezzatino_piselli": "c4a78716b67e209a3f2b006212962bb64fe1887ac0533bb923aeef949bdb471d",
+    "straccetti_pollo_friggitrice": "8f4367897b16687ad81a6378ec173eacca23943ffc3c6445cb99aceaa6aaa0e8",
+    "tacchino_curry_cocco": "0432500d146a5a482a8b3651f667b9a9a77084f62b1ad0a341bc1402a3223dbc",
+    "tonno_sesamo_zucchine": "3303701ef435c264e29093df6930614ad388466d2d57ec7e51e7b1ba61f3e293",
+    "uova_al_pomodoro": "10b78e817650349e102346141033a272ad235ae7d3675fd1cb6ca418de947718",
+    "uova_purgatorio_peperoni": "c00120fed32dbea3c6e6edc198a9afce85d149c53f58a6f04bb4f12d077270c5",
+    "hummus_bowl_tahina": "31ddf67e60aa4e6c4118d7ea410ecf3f71aaaf8af1034299dc66d8907977e4bf",
+    "bowl_edamame_riso": "7b4a2e24b90b8a3915612bd2d82968e2df4bb8f53e4bc0d3c239344c53aa4b0d",
+    "caprese_pane": "86cc0bf31738ccd28de447155ea7877e95817e08fea4f38f15c4e2843cc069ea",
+    "carciofi_patate_padella": "dfb0116a8db80379effba55d3813fca1532cb728f0fcd478131e6edc041fd0b5",
+    "cavoletti_ceci_friggitrice": "18c0dee6c62239b0b0030d8aa987132eb60f77a03d19007f40e3d21ef2c065f3",
+    "cavolfiore_ceci_forno": "ad95628fea4facd116c474495690be497b36d1e46cb1efff4b39eacfc634afd4",
+    "ceci_spinaci_padella": "c1cbf5fe5a006b2e4915f7eea9a8f289c1311915aa236bf0feebd169d0c315ac",
+    "chili_fagioli_neri": "1a00defc7c4bac5529686f3b40504c75a33cefef0fea05a979d8fb7c5fa9f740",
+    "dal_lenticchie_rosse": "6e05c505b109d9a036e4328092c3ea8d3356b70243524800b6c9381ed35407f6",
+    "crostoni_cavolo_nero_cannellini": "2e1590cc25b85575108bd8c5af059905a771520559ce78ff0f6f0e40e6ab24a4",
+    "curry_ceci_cocco": "186a01fd6fe668eef2224fd454772642d5b41c65047435def4bbf4e336b682ba",
+    "fagioli_uccelletto": "ac0d41d63363d09a22cb93592b08b6d89471231eaef3c058dd8591d474135d70",
+    "borlotti_mais_piccanti": "a57e5ef7fddba93bae6d65bd39c39692a8ed8c8df94c4a6041bb6b612c2613c1",
+    "farinata_ceci_forno": "f20314b228a27f56a077e8c03801f2734b4284dd7f67bbb048a5aca5e0a9725a",
+    "frittelle_verdure_ceci": "139be73d47e8f3a6a5f1c05892792fb21083e1489fedfb741017cd061e1a6f3a",
+    "insalata_ceci_tonno": "076a62562aeb400ebbb2296cba451d159693f762dc55181b4ab9111f07e49672",
+    "insalata_greca": "00584bfc548b2b1ee10bdf759c72aa1ee0d2f48b26f3774e7ce6797f9af6f5bb",
+    "insalatone_cannellini_mais": "7d10bcf71337da5210428ccd2019d9aefd3d972f3c0ca970c00243278a6e9eb4",
+    "lenticchie_umido": "8eabffd7a619b205a7ada812bd67d12bb3b00ca5ab74a381754a61cc47ae1ea7",
+    "parmigiana_leggera": "a7f86046682028b9d385624bdc57a482b3751664ec4846192ea2e780dd50aefa",
+    "pasta_e_ceci": "39b7002cf2aa026ace4ece1005559cc68fc8b5e8320695da323952e36dc414f5",
+    "patate_dolci_ripiene": "0e210e418d1244df4b4f46da79194502e79bd12a08df9ba3dd2160ce94e34e7e",
+    "patate_fagiolini_uova": "2af1750f0773249aea4dfa5144d077aedf312154eb181f230251e7a68065fbaa",
+    "piadina_crudo_rucola": "679ff93574ca6e75baae8154a82b12e7db9b0219ccc7ca330dbb89acd072735e",
+    "polpette_ceci_friggitrice": "86b8984cabd1bdf81f138aa8e8ddac8ea52886bfa2e0bf2536968dc24bcd39bf",
+    "noodles_tempeh_peperoni": "422a019a54c145fff0e0297984c49953a4a65bd98d7509f48bc13d5b172367b2",
+    "tacos_lenticchie": "c28e636909716059ce57490da8f5005952baa7ab3537d9cfe090c7eb5d4ce206",
+    "tofu_croccante_broccoli": "052fddea1f2488d74fe1eba05176d893d59e21375a464febba4481597381c48d",
+    "tofu_saltato_verdure": "a9f500e7a4d25222df76e615aa42c7ac4029da37f52220bf80e3b02a92210bbb",
+    "torta_salata_zucchine": "f74f4bb5e4183a1c7a2198369d7a800613a5cbd9ef3257cb867f67bff3485e9d",
+    "verza_stufata_fagioli": "e65f4bcdc1dbd37cac714daf2dab418fb89558c286cfc408d0ff682707631736",
+    "zucchine_ripiene_couscous": "e3d9ca4f5d5b37c96ccfb6b83964e21210d17bb7bc008f1810c471a72d80de46",
+    "zuppa_piselli_spezzati": "e00dc094e961c12f9bac18dda772e45dffd59a951387442731539512bedc327f",
+    "ananas_menta_lime": "5e0bf60e5ae7ea1be762e8694aa41b76bf5e5e840a148c4cd182d2faf6714b05",
+    "bruschetta_pomodoro": "d1aed408193c8da754bd3606521e6b3e14e1fefc8647d9510b87e58b8c498b27",
+    "ceci_croccanti_friggitrice": "fc554419b6bf13587202b4cd677fe859868d5fdf98161d0096d89f5008a620aa",
+    "chips_mela_cannella": "6646eb155c1123b01c6be154f1612d379ba9e6a4d7e6f4863fe1aa7e5d87717e",
+    "chips_tortilla_pomodorini": "cdf3d69427532f6e03781cc29c81c3e865a39335352dc308ae6a9adfae179cdf",
+    "crema_ceci_bastoncini": "85c28b24e67cb3d3741ae9b237937d91b6f21a57947987eee046f2f044b40730",
+    "gallette_ricotta_miele": "3c034a3efcf26db6db3e50fe024684197ab6bd2870fa0dcc5563c636e010b75c",
+    "mela_mandorle": "4b8606729017acd6340b236875b67c23cb870fd7646b9d08da7f69e3b660b22c",
+    "palline_datteri_cacao": "d22c448399d81f1af8d74bf330b19b702fbb4834178b0a7b3c56b760bade377a",
+    "carasau_rosmarino": "d04c237c3b2fa817c3c04074cf2f3a9c6404a3cc3799f7f37184ea7164084427",
+    "pera_gorgonzola_noci": "c0a48c170fe89f4b7dc30c7cfbdc04d8bb03686e2d076a5605be6bd25f947000",
+    "spiedini_frutta_cioccolato": "c0c819654cf80c7994de8af4e492ed56c756dbcc9c2718767a9cb70ef81e0bed",
+    "yogurt_banana_cacao": "5f1ea896ecb92f583bf8caa05b0f19fafb718d995d9cf89150d2659a83348f3f"
+  },
+  "recipes": [
+    {
+      "id": "arance_datteri_cannella",
+      "name": "Arance a rondelle con datteri e cannella",
+      "filename": "arance_datteri_cannella.png",
+      "category": "Colazioni",
+      "ingredients": "arancia, datteri secchi"
+    },
+    {
+      "id": "avocado_toast_uovo_sodo_sesamo",
+      "name": "Avocado toast con uovo sodo e semi di sesamo",
+      "filename": "avocado_toast_uovo_sodo_sesamo.png",
+      "category": "Colazioni",
+      "ingredients": "uova, pane integrale, avocado, limone, semi di sesamo"
+    },
+    {
+      "id": "barrette_avena_datteri",
+      "name": "Barrette di avena e datteri",
+      "filename": "barrette_avena_datteri.png",
+      "category": "Colazioni",
+      "ingredients": "fiocchi d'avena, datteri secchi, semi di girasole, sciroppo d'acero"
+    },
+    {
+      "id": "biscotti_inzuppo_limone",
+      "name": "Biscotti da inzuppo al limone",
+      "filename": "biscotti_inzuppo_limone.png",
+      "category": "Colazioni",
+      "ingredients": "farina di grano tenero, burro, zucchero, uova, limone"
+    },
+    {
+      "id": "biscotti_avena_banana",
+      "name": "Biscotti di avena e banana",
+      "filename": "biscotti_avena_banana.png",
+      "category": "Colazioni",
+      "ingredients": "banana, fiocchi d'avena, uvetta"
+    },
+    {
+      "id": "biscotti_avena_cocco",
+      "name": "Biscotti di avena e cocco",
+      "filename": "biscotti_avena_cocco.png",
+      "category": "Colazioni",
+      "ingredients": "fiocchi d'avena, farina di grano tenero, zucchero di canna grezzo, cocco rapé, olio extravergine d'oliva"
+    },
+    {
+      "id": "bowl_ceci_avocado_pomodorini",
+      "name": "Bowl del mattino con ceci, avocado e pomodorini",
+      "filename": "bowl_ceci_avocado_pomodorini.png",
+      "category": "Colazioni",
+      "ingredients": "ceci cotti, pomodorini, avocado, cipollotto, limone"
+    },
+    {
+      "id": "bowl_yogurt_ceci_croccanti_paprika",
+      "name": "Bowl di yogurt con ceci croccanti alla paprika",
+      "filename": "bowl_yogurt_ceci_croccanti_paprika.png",
+      "category": "Colazioni",
+      "ingredients": "yogurt greco, ceci cotti, pomodorini, limone"
+    },
+    {
+      "id": "yogurt_salato_cetriolo_menta_pane",
+      "name": "Bowl di yogurt salato con cetriolo, menta e pane tostato",
+      "filename": "yogurt_salato_cetriolo_menta_pane.png",
+      "category": "Colazioni",
+      "ingredients": "yogurt greco, cetriolo, pane"
+    },
+    {
+      "id": "yogurt_kiwi_granola",
+      "name": "Bowl di yogurt, kiwi e granola",
+      "filename": "yogurt_kiwi_granola.png",
+      "category": "Colazioni",
+      "ingredients": "yogurt bianco naturale, kiwi, muesli, miele"
+    },
+    {
+      "id": "cannellini_funghi_pomodorini_padella",
+      "name": "Cannellini, funghi e pomodorini in padella",
+      "filename": "cannellini_funghi_pomodorini_padella.png",
+      "category": "Colazioni",
+      "ingredients": "fagioli cannellini cotti, funghi champignon, pomodorini"
+    },
+    {
+      "id": "ciambella_yogurt_forno",
+      "name": "Ciambella allo yogurt",
+      "filename": "ciambella_yogurt_forno.png",
+      "category": "Colazioni",
+      "ingredients": "uova, farina di grano tenero, zucchero, yogurt bianco naturale, limone"
+    },
+    {
+      "id": "ciambellone_friggitrice",
+      "name": "Ciambellone al limone in friggitrice ad aria",
+      "filename": "ciambellone_friggitrice.png",
+      "category": "Colazioni",
+      "ingredients": "farina di grano tenero, uova, zucchero, latte, limone"
+    },
+    {
+      "id": "crema_banana_lino_cacao",
+      "name": "Crema di banana e semi di lino al cacao",
+      "filename": "crema_banana_lino_cacao.png",
+      "category": "Colazioni",
+      "ingredients": "banana, semi di lino, cacao amaro in polvere, semi di girasole"
+    },
+    {
+      "id": "crema_castagne_cacao_pera",
+      "name": "Crema di castagne al cacao con pera",
+      "filename": "crema_castagne_cacao_pera.png",
+      "category": "Colazioni",
+      "ingredients": "castagne cotte, pera, sciroppo d'acero, cacao amaro in polvere"
+    },
+    {
+      "id": "crema_grano_saraceno_cacao",
+      "name": "Crema di grano saraceno al cacao e banana",
+      "filename": "crema_grano_saraceno_cacao.png",
+      "category": "Colazioni",
+      "ingredients": "banana, grano saraceno, datteri secchi, cacao amaro in polvere"
+    },
+    {
+      "id": "crema_polenta_mele",
+      "name": "Crema di polenta dolce con mele",
+      "filename": "crema_polenta_mele.png",
+      "category": "Colazioni",
+      "ingredients": "mela, farina per polenta istantanea, sciroppo d'acero"
+    },
+    {
+      "id": "crepes_marmellata",
+      "name": "Crêpes con marmellata",
+      "filename": "crepes_marmellata.png",
+      "category": "Colazioni",
+      "ingredients": "latte, farina di grano tenero, uova, marmellata, burro"
+    },
+    {
+      "id": "crostata_marmellata",
+      "name": "Crostata alla marmellata",
+      "filename": "crostata_marmellata.png",
+      "category": "Colazioni",
+      "ingredients": "marmellata, farina di grano tenero, burro, zucchero, uova"
+    },
+    {
+      "id": "fette_biscottate_ricotta_marmellata",
+      "name": "Fette biscottate con ricotta e marmellata",
+      "filename": "fette_biscottate_ricotta_marmellata.png",
+      "category": "Colazioni",
+      "ingredients": "ricotta, fette biscottate, marmellata"
+    },
+    {
+      "id": "patata_dolce_avocado",
+      "name": "Fette di patata dolce con avocado",
+      "filename": "patata_dolce_avocado.png",
+      "category": "Colazioni",
+      "ingredients": "patata dolce, avocado, lime, semi di zucca"
+    },
+    {
+      "id": "fragole_limone_zucchero",
+      "name": "Fragole al limone e zucchero",
+      "filename": "fragole_limone_zucchero.png",
+      "category": "Colazioni",
+      "ingredients": "fragole, limone, zucchero"
+    },
+    {
+      "id": "french_toast_fragole",
+      "name": "French toast con fragole",
+      "filename": "french_toast_fragole.png",
+      "category": "Colazioni",
+      "ingredients": "uova, fragole, pane in cassetta, latte, sciroppo d'acero"
+    },
+    {
+      "id": "frittatina_piselli_cipollotto",
+      "name": "Frittatina con piselli e cipollotto",
+      "filename": "frittatina_piselli_cipollotto.png",
+      "category": "Colazioni",
+      "ingredients": "uova, cipollotto, piselli surgelati, pecorino romano"
+    },
+    {
+      "id": "frittelle_mele",
+      "name": "Frittelle di mele",
+      "filename": "frittelle_mele.png",
+      "category": "Colazioni",
+      "ingredients": "mela, latte, farina di grano tenero, uova, zucchero"
+    },
+    {
+      "id": "frullato_ciliegie_banana",
+      "name": "Frullato di ciliegie e banana",
+      "filename": "frullato_ciliegie_banana.png",
+      "category": "Colazioni",
+      "ingredients": "ciliegie, banana, limone"
+    },
+    {
+      "id": "frullato_fragole_banana",
+      "name": "Frullato di fragole e banana",
+      "filename": "frullato_fragole_banana.png",
+      "category": "Colazioni",
+      "ingredients": "latte, fragole, banana"
+    },
+    {
+      "id": "frullato_kefir_pesca",
+      "name": "Frullato di kefir e pesca",
+      "filename": "frullato_kefir_pesca.png",
+      "category": "Colazioni",
+      "ingredients": "kefir, pesca, miele"
+    },
+    {
+      "id": "gallette_riso_tonno_pomodorini_capperi",
+      "name": "Gallette di riso con tonno, pomodorini e capperi",
+      "filename": "gallette_riso_tonno_pomodorini_capperi.png",
+      "category": "Colazioni",
+      "ingredients": "tonno in scatola, pomodorini, gallette di riso, capperi"
+    },
+    {
+      "id": "latte_cereali_banana",
+      "name": "Latte con cereali e banana",
+      "filename": "latte_cereali_banana.png",
+      "category": "Colazioni",
+      "ingredients": "latte, banana, cereali da colazione"
+    },
+    {
+      "id": "macedonia_autunnale_melagrana",
+      "name": "Macedonia d’autunno con uva e melagrana",
+      "filename": "macedonia_autunnale_melagrana.png",
+      "category": "Colazioni",
+      "ingredients": "uva, mela, pera, melagrana, limone"
+    },
+    {
+      "id": "macedonia_mattino",
+      "name": "Macedonia del mattino",
+      "filename": "macedonia_mattino.png",
+      "category": "Colazioni",
+      "ingredients": "arancia, mela, banana, kiwi, limone"
+    },
+    {
+      "id": "mela_cotta_cannella",
+      "name": "Mela cotta alla cannella",
+      "filename": "mela_cotta_cannella.png",
+      "category": "Colazioni",
+      "ingredients": "mela, limone"
+    },
+    {
+      "id": "mele_forno_noci_uvetta",
+      "name": "Mele al forno ripiene di noci e uvetta",
+      "filename": "mele_forno_noci_uvetta.png",
+      "category": "Colazioni",
+      "ingredients": "mela, noci sgusciate, uvetta, miele"
+    },
+    {
+      "id": "migliaccio_napoletano",
+      "name": "Migliaccio napoletano",
+      "filename": "migliaccio_napoletano.png",
+      "category": "Colazioni",
+      "ingredients": "latte, uova, ricotta, zucchero, semola rimacinata"
+    },
+    {
+      "id": "muffin_yogurt_frutti_bosco",
+      "name": "Muffin allo yogurt e frutti di bosco",
+      "filename": "muffin_yogurt_frutti_bosco.png",
+      "category": "Colazioni",
+      "ingredients": "farina di grano tenero, uova, yogurt bianco naturale, frutti di bosco surgelati, zucchero"
+    },
+    {
+      "id": "omelette_erbe_aromatiche",
+      "name": "Omelette alle erbe aromatiche",
+      "filename": "omelette_erbe_aromatiche.png",
+      "category": "Colazioni",
+      "ingredients": "uova, latte, prezzemolo, burro, erba cipollina"
+    },
+    {
+      "id": "overnight_oats_mirtilli",
+      "name": "Overnight oats ai mirtilli",
+      "filename": "overnight_oats_mirtilli.png",
+      "category": "Colazioni",
+      "ingredients": "yogurt bianco naturale, latte, mirtilli freschi, fiocchi d'avena, miele"
+    },
+    {
+      "id": "overnight_oats_mela_cannella",
+      "name": "Overnight oats alla mela e cannella con bevanda d’avena",
+      "filename": "overnight_oats_mela_cannella.png",
+      "category": "Colazioni",
+      "ingredients": "bevanda all'avena, mela, fiocchi d'avena, uvetta"
+    },
+    {
+      "id": "pancake_banana",
+      "name": "Pancake alla banana",
+      "filename": "pancake_banana.png",
+      "category": "Colazioni",
+      "ingredients": "uova, banana, farina di grano tenero, latte, miele"
+    },
+    {
+      "id": "pancake_ceci_banana",
+      "name": "Pancake di ceci e banana",
+      "filename": "pancake_ceci_banana.png",
+      "category": "Colazioni",
+      "ingredients": "farina di ceci, banana, sciroppo d'acero"
+    },
+    {
+      "id": "pancake_salati_ceci_spinaci",
+      "name": "Pancake salati di ceci e spinaci",
+      "filename": "pancake_salati_ceci_spinaci.png",
+      "category": "Colazioni",
+      "ingredients": "farina di ceci, spinaci freschi"
+    },
+    {
+      "id": "pane_cunzato_primo_sale_acciughe",
+      "name": "Pane cunzato con primo sale e acciughe",
+      "filename": "pane_cunzato_primo_sale_acciughe.png",
+      "category": "Colazioni",
+      "ingredients": "pomodoro, pane, primo sale, filetti di acciuga sott’olio"
+    },
+    {
+      "id": "pane_burro_arachidi_banana",
+      "name": "Pane integrale con burro di arachidi e banana",
+      "filename": "pane_burro_arachidi_banana.png",
+      "category": "Colazioni",
+      "ingredients": "pane integrale, banana, burro di arachidi"
+    },
+    {
+      "id": "pane_integrale_crema_cannellini_pomodori_secchi",
+      "name": "Pane integrale con crema di cannellini e pomodori secchi",
+      "filename": "pane_integrale_crema_cannellini_pomodori_secchi.png",
+      "category": "Colazioni",
+      "ingredients": "fagioli cannellini cotti, pane integrale, pomodori secchi sott’olio, limone"
+    },
+    {
+      "id": "pane_integrale_salmone_affumicato_yogurt",
+      "name": "Pane integrale con salmone affumicato e yogurt al limone",
+      "filename": "pane_integrale_salmone_affumicato_yogurt.png",
+      "category": "Colazioni",
+      "ingredients": "pane integrale, salmone affumicato, yogurt greco, limone"
+    },
+    {
+      "id": "toast_avocado_pomodorini",
+      "name": "Pane tostato con avocado e pomodorini",
+      "filename": "toast_avocado_pomodorini.png",
+      "category": "Colazioni",
+      "ingredients": "pane integrale, avocado, pomodorini, limone"
+    },
+    {
+      "id": "pane_tostato_hummus_carota_cetriolo",
+      "name": "Pane tostato con hummus, carota e cetriolo",
+      "filename": "pane_tostato_hummus_carota_cetriolo.png",
+      "category": "Colazioni",
+      "ingredients": "pane, hummus pronto, cetriolo, carota"
+    },
+    {
+      "id": "pane_uovo_occhio_bue_spinaci",
+      "name": "Pane tostato con uovo all'occhio di bue e spinaci",
+      "filename": "pane_uovo_occhio_bue_spinaci.png",
+      "category": "Colazioni",
+      "ingredients": "uova, spinaci freschi, pane"
+    },
+    {
+      "id": "patata_dolce_friggitrice_fagioli_neri",
+      "name": "Patata dolce in friggitrice con fagioli neri e lime",
+      "filename": "patata_dolce_friggitrice_fagioli_neri.png",
+      "category": "Colazioni",
+      "ingredients": "patata dolce, fagioli neri cotti, cipollotto, lime"
+    },
+    {
+      "id": "patate_saltate_peperoni_paprika",
+      "name": "Patate saltate con peperoni e paprika",
+      "filename": "patate_saltate_peperoni_paprika.png",
+      "category": "Colazioni",
+      "ingredients": "patata, peperone, cipolla"
+    },
+    {
+      "id": "pere_forno_cannella",
+      "name": "Pere al forno con zucchero di canna e chiodi di garofano",
+      "filename": "pere_forno_cannella.png",
+      "category": "Colazioni",
+      "ingredients": "pera, limone, zucchero di canna grezzo"
+    },
+    {
+      "id": "pesche_yogurt_semi_zucca",
+      "name": "Pesche con yogurt, miele e semi di zucca",
+      "filename": "pesche_yogurt_semi_zucca.png",
+      "category": "Colazioni",
+      "ingredients": "yogurt bianco naturale, pesca, semi di zucca, miele"
+    },
+    {
+      "id": "piadina_uova_strapazzate_zucchine",
+      "name": "Piadina arrotolata con uova strapazzate e zucchine",
+      "filename": "piadina_uova_strapazzate_zucchine.png",
+      "category": "Colazioni",
+      "ingredients": "uova, piadina, zucchina, parmigiano reggiano"
+    },
+    {
+      "id": "plumcake_banana_noci",
+      "name": "Plumcake integrale alla banana e noci",
+      "filename": "plumcake_banana_noci.png",
+      "category": "Colazioni",
+      "ingredients": "banana, farina integrale di frumento, uova, zucchero di canna grezzo, noci sgusciate"
+    },
+    {
+      "id": "polenta_morbida_pomodorini_saltati",
+      "name": "Polenta morbida con pomodorini saltati e basilico",
+      "filename": "polenta_morbida_pomodorini_saltati.png",
+      "category": "Colazioni",
+      "ingredients": "pomodorini, farina per polenta istantanea"
+    },
+    {
+      "id": "polenta_morbida_uovo_tegamino",
+      "name": "Polenta morbida con uovo al tegamino",
+      "filename": "polenta_morbida_uovo_tegamino.png",
+      "category": "Colazioni",
+      "ingredients": "uova, farina per polenta istantanea, parmigiano reggiano, burro"
+    },
+    {
+      "id": "porridge_cacao_pera",
+      "name": "Porridge al cacao con pera",
+      "filename": "porridge_cacao_pera.png",
+      "category": "Colazioni",
+      "ingredients": "pera, fiocchi d'avena, cacao amaro in polvere, zucchero"
+    },
+    {
+      "id": "porridge_latte_frutti_bosco",
+      "name": "Porridge al latte con frutti di bosco",
+      "filename": "porridge_latte_frutti_bosco.png",
+      "category": "Colazioni",
+      "ingredients": "latte, frutti di bosco surgelati, fiocchi d'avena, miele"
+    },
+    {
+      "id": "porridge_soia_cachi",
+      "name": "Porridge con bevanda di soia e cachi",
+      "filename": "porridge_soia_cachi.png",
+      "category": "Colazioni",
+      "ingredients": "bevanda di soia, cachi, fiocchi d'avena, semi di zucca"
+    },
+    {
+      "id": "porridge_banana_cannella",
+      "name": "Porridge d'avena con banana e cannella",
+      "filename": "porridge_banana_cannella.png",
+      "category": "Colazioni",
+      "ingredients": "banana, fiocchi d'avena"
+    },
+    {
+      "id": "porridge_miglio_mela",
+      "name": "Porridge di miglio con mela e cannella",
+      "filename": "porridge_miglio_mela.png",
+      "category": "Colazioni",
+      "ingredients": "mela, miglio decorticato, sciroppo d'acero"
+    },
+    {
+      "id": "porridge_salato_avena_funghi",
+      "name": "Porridge salato d'avena con funghi e parmigiano",
+      "filename": "porridge_salato_avena_funghi.png",
+      "category": "Colazioni",
+      "ingredients": "funghi champignon, fiocchi d'avena, parmigiano reggiano"
+    },
+    {
+      "id": "pudding_chia_mango",
+      "name": "Pudding di chia al mango",
+      "filename": "pudding_chia_mango.png",
+      "category": "Colazioni",
+      "ingredients": "mango, lime, semi di chia, cocco rapé"
+    },
+    {
+      "id": "pudding_chia_mandorla_lamponi",
+      "name": "Pudding di chia alla mandorla con lamponi",
+      "filename": "pudding_chia_mandorla_lamponi.png",
+      "category": "Colazioni",
+      "ingredients": "bevanda alla mandorla, lamponi, semi di chia, sciroppo d'acero"
+    },
+    {
+      "id": "quinoa_cacao_banana",
+      "name": "Quinoa al cacao con banana",
+      "filename": "quinoa_cacao_banana.png",
+      "category": "Colazioni",
+      "ingredients": "quinoa, banana, sciroppo d'acero, semi di zucca, cacao amaro in polvere"
+    },
+    {
+      "id": "quinoa_dolce_albicocche",
+      "name": "Quinoa dolce con albicocche e miele",
+      "filename": "quinoa_dolce_albicocche.png",
+      "category": "Colazioni",
+      "ingredients": "albicocche, quinoa, limone, miele"
+    },
+    {
+      "id": "quinoa_salata_avocado_semi_zucca",
+      "name": "Quinoa salata con avocado, pomodorini e semi di zucca",
+      "filename": "quinoa_salata_avocado_semi_zucca.png",
+      "category": "Colazioni",
+      "ingredients": "pomodorini, quinoa, avocado, limone, semi di zucca"
+    },
+    {
+      "id": "ricotta_montata_miele_arancia",
+      "name": "Ricotta montata al miele e arancia",
+      "filename": "ricotta_montata_miele_arancia.png",
+      "category": "Colazioni",
+      "ingredients": "ricotta, arancia, miele"
+    },
+    {
+      "id": "riso_latte_cannella",
+      "name": "Riso al latte con cannella e limone",
+      "filename": "riso_latte_cannella.png",
+      "category": "Colazioni",
+      "ingredients": "latte, limone, riso, zucchero"
+    },
+    {
+      "id": "riso_dolce_frutti_bosco",
+      "name": "Riso dolce ai frutti di bosco",
+      "filename": "riso_dolce_frutti_bosco.png",
+      "category": "Colazioni",
+      "ingredients": "frutti di bosco surgelati, riso, cocco rapé, zucchero"
+    },
+    {
+      "id": "rosti_patate_friggitrice_aria",
+      "name": "Rösti di patate in friggitrice ad aria",
+      "filename": "rosti_patate_friggitrice_aria.png",
+      "category": "Colazioni",
+      "ingredients": "patata, cipollotto, fecola di patate"
+    },
+    {
+      "id": "semolino_dolce_arancia",
+      "name": "Semolino dolce all’arancia",
+      "filename": "semolino_dolce_arancia.png",
+      "category": "Colazioni",
+      "ingredients": "latte, semola rimacinata, arancia, zucchero"
+    },
+    {
+      "id": "smoothie_bowl_frutti_rossi",
+      "name": "Smoothie bowl ai frutti rossi",
+      "filename": "smoothie_bowl_frutti_rossi.png",
+      "category": "Colazioni",
+      "ingredients": "frutti di bosco surgelati, banana, semi di zucca, cocco rapé"
+    },
+    {
+      "id": "smoothie_bowl_tropicale",
+      "name": "Smoothie bowl tropicale",
+      "filename": "smoothie_bowl_tropicale.png",
+      "category": "Colazioni",
+      "ingredients": "ananas, banana, kiwi, cocco rapé, semi di chia"
+    },
+    {
+      "id": "smoothie_bowl_verde_kiwi",
+      "name": "Smoothie bowl verde con kiwi e spinaci",
+      "filename": "smoothie_bowl_verde_kiwi.png",
+      "category": "Colazioni",
+      "ingredients": "kiwi, banana, mela, spinaci freschi, semi di girasole"
+    },
+    {
+      "id": "strapazzata_farina_ceci_zucchine",
+      "name": "Strapazzata di farina di ceci con zucchine",
+      "filename": "strapazzata_farina_ceci_zucchine.png",
+      "category": "Colazioni",
+      "ingredients": "zucchina, farina di ceci, cipollotto"
+    },
+    {
+      "id": "succo_arancia_carota_zenzero",
+      "name": "Succo di arancia, carota e zenzero",
+      "filename": "succo_arancia_carota_zenzero.png",
+      "category": "Colazioni",
+      "ingredients": "arancia, carota, limone, zenzero fresco"
+    },
+    {
+      "id": "toast_integrale_ricotta_pomodorini",
+      "name": "Toast integrale con ricotta e pomodorini",
+      "filename": "toast_integrale_ricotta_pomodorini.png",
+      "category": "Colazioni",
+      "ingredients": "ricotta, pane integrale, pomodorini"
+    },
+    {
+      "id": "toast_prosciutto_mozzarella",
+      "name": "Toast prosciutto e mozzarella",
+      "filename": "toast_prosciutto_mozzarella.png",
+      "category": "Colazioni",
+      "ingredients": "pane in cassetta, mozzarella, prosciutto cotto"
+    },
+    {
+      "id": "tofu_strapazzato_peperoni_paprika",
+      "name": "Tofu strapazzato con peperoni e paprika",
+      "filename": "tofu_strapazzato_peperoni_paprika.png",
+      "category": "Colazioni",
+      "ingredients": "tofu, peperone, cipolla"
+    },
+    {
+      "id": "tofu_strapazzato_spinaci",
+      "name": "Tofu strapazzato con spinaci",
+      "filename": "tofu_strapazzato_spinaci.png",
+      "category": "Colazioni",
+      "ingredients": "tofu, pomodorini, spinaci freschi"
+    },
+    {
+      "id": "torta_cacao_acqua",
+      "name": "Torta al cacao all’acqua",
+      "filename": "torta_cacao_acqua.png",
+      "category": "Colazioni",
+      "ingredients": "farina di grano tenero, zucchero, cacao amaro in polvere, lievito per dolci"
+    },
+    {
+      "id": "torta_carote_mandorle",
+      "name": "Torta di carote e mandorle",
+      "filename": "torta_carote_mandorle.png",
+      "category": "Colazioni",
+      "ingredients": "uova, carota, farina di grano tenero, zucchero, mandorle"
+    },
+    {
+      "id": "torta_mele_casalinga",
+      "name": "Torta di mele della nonna",
+      "filename": "torta_mele_casalinga.png",
+      "category": "Colazioni",
+      "ingredients": "mela, farina di grano tenero, uova, zucchero, limone"
+    },
+    {
+      "id": "uova_tegamino_patate_rosmarino",
+      "name": "Uova al tegamino con patate al rosmarino",
+      "filename": "uova_tegamino_patate_rosmarino.png",
+      "category": "Colazioni",
+      "ingredients": "uova, patata"
+    },
+    {
+      "id": "uova_camicia_pomodoro",
+      "name": "Uova in camicia su pane e pomodoro",
+      "filename": "uova_camicia_pomodoro.png",
+      "category": "Colazioni",
+      "ingredients": "uova, pomodoro, pane integrale"
+    },
+    {
+      "id": "uova_cocotte_friggitrice_spinaci",
+      "name": "Uova in cocotte in friggitrice ad aria con spinaci",
+      "filename": "uova_cocotte_friggitrice_spinaci.png",
+      "category": "Colazioni",
+      "ingredients": "uova, spinaci surgelati, parmigiano reggiano"
+    },
+    {
+      "id": "uova_strapazzate_toast",
+      "name": "Uova strapazzate con pane tostato",
+      "filename": "uova_strapazzate_toast.png",
+      "category": "Colazioni",
+      "ingredients": "uova, pane, burro"
+    },
+    {
+      "id": "uovo_coque_soldatini_pane",
+      "name": "Uovo alla coque con soldatini di pane",
+      "filename": "uovo_coque_soldatini_pane.png",
+      "category": "Colazioni",
+      "ingredients": "uova, pane, burro"
+    },
+    {
+      "id": "uovo_camicia_asparagi_parmigiano",
+      "name": "Uovo in camicia con asparagi e parmigiano",
+      "filename": "uovo_camicia_asparagi_parmigiano.png",
+      "category": "Colazioni",
+      "ingredients": "asparagi, uova, parmigiano reggiano"
+    },
+    {
+      "id": "wrap_tortilla_fagioli_neri_avocado",
+      "name": "Wrap di tortilla con fagioli neri, avocado e pomodoro",
+      "filename": "wrap_tortilla_fagioli_neri_avocado.png",
+      "category": "Colazioni",
+      "ingredients": "tortilla di frumento, fagioli neri cotti, pomodoro, avocado, lime"
+    },
+    {
+      "id": "yogurt_fichi_miele_mandorle",
+      "name": "Yogurt con fichi freschi, miele e mandorle",
+      "filename": "yogurt_fichi_miele_mandorle.png",
+      "category": "Colazioni",
+      "ingredients": "fichi freschi, yogurt bianco naturale, mandorle, miele"
+    },
+    {
+      "id": "yogurt_soia_avena_fragole",
+      "name": "Yogurt di soia con avena e fragole",
+      "filename": "yogurt_soia_avena_fragole.png",
+      "category": "Colazioni",
+      "ingredients": "yogurt di soia, fragole, fiocchi d'avena"
+    },
+    {
+      "id": "yogurt_greco_albicocche_avena",
+      "name": "Yogurt greco con albicocche e avena caramellata",
+      "filename": "yogurt_greco_albicocche_avena.png",
+      "category": "Colazioni",
+      "ingredients": "albicocche, yogurt greco, fiocchi d'avena, zucchero di canna grezzo"
+    },
+    {
+      "id": "yogurt_greco_noci_miele",
+      "name": "Yogurt greco con noci, miele e frutta",
+      "filename": "yogurt_greco_noci_miele.png",
+      "category": "Colazioni",
+      "ingredients": "yogurt greco, fragole, noci sgusciate, miele"
+    },
+    {
+      "id": "yogurt_greco_pere_caramellate",
+      "name": "Yogurt greco con pere caramellate",
+      "filename": "yogurt_greco_pere_caramellate.png",
+      "category": "Colazioni",
+      "ingredients": "yogurt greco, pera, zucchero di canna grezzo"
+    },
+    {
+      "id": "acquacotta_toscana",
+      "name": "Acquacotta",
+      "filename": "acquacotta_toscana.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodori pelati, cipolla, uova, pane, sedano"
+    },
+    {
+      "id": "bowl_farro_lenticchie_zucca",
+      "name": "Bowl di farro, lenticchie e zucca al forno",
+      "filename": "bowl_farro_lenticchie_zucca.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucca, lenticchie cotte, farro perlato, rucola, semi di zucca"
+    },
+    {
+      "id": "bowl_grano_saraceno_ceci_vapore",
+      "name": "Bowl di grano saraceno, ceci e verdure al vapore",
+      "filename": "bowl_grano_saraceno_ceci_vapore.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "broccolo, ceci cotti, carota, fagiolini, grano saraceno"
+    },
+    {
+      "id": "bowl_riso_integrale_fagioli_neri_avocado",
+      "name": "Bowl di riso integrale, fagioli neri e avocado",
+      "filename": "bowl_riso_integrale_fagioli_neri_avocado.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "fagioli neri cotti, pomodorini, riso integrale, avocado, cavolo rosso"
+    },
+    {
+      "id": "bucatini_amatriciana",
+      "name": "Bucatini all'amatriciana",
+      "filename": "bucatini_amatriciana.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodori pelati, pasta di semola, guanciale, pecorino romano"
+    },
+    {
+      "id": "buddha_bowl_quinoa_ceci_patata_dolce",
+      "name": "Buddha bowl con quinoa, ceci e patata dolce",
+      "filename": "buddha_bowl_quinoa_ceci_patata_dolce.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "patata dolce, ceci cotti, quinoa, spinaci freschi, limone"
+    },
+    {
+      "id": "bulgur_peperoni_olive",
+      "name": "Bulgur con peperoni, olive e capperi",
+      "filename": "bulgur_peperoni_olive.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "peperone, bulgur, cipolla, olive nere, capperi"
+    },
+    {
+      "id": "busiate_pesto_trapanese",
+      "name": "Busiate al pesto alla trapanese",
+      "filename": "busiate_pesto_trapanese.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodoro, pasta di semola, mandorle, pecorino romano, basilico fresco"
+    },
+    {
+      "id": "carbonara_di_zucchine",
+      "name": "Carbonara di zucchine",
+      "filename": "carbonara_di_zucchine.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, uova, pasta di semola, parmigiano reggiano"
+    },
+    {
+      "id": "couscous_gamberetti_zucchine_limone",
+      "name": "Couscous con gamberetti, zucchine e limone",
+      "filename": "couscous_gamberetti_zucchine_limone.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, gamberetti sgusciati surgelati, couscous, limone"
+    },
+    {
+      "id": "couscous_lenticchie_carote_uvetta",
+      "name": "Couscous con lenticchie, carote e uvetta",
+      "filename": "couscous_lenticchie_carote_uvetta.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "lenticchie cotte, carota, couscous, cipolla, uvetta"
+    },
+    {
+      "id": "couscous_pollo_verdure_speziate",
+      "name": "Couscous con pollo e verdure speziate",
+      "filename": "couscous_pollo_verdure_speziate.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "petto di pollo, couscous, zucchina, carota, peperone"
+    },
+    {
+      "id": "couscous_verdure_ceci",
+      "name": "Couscous con verdure e ceci",
+      "filename": "couscous_verdure_ceci.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "ceci cotti, zucchina, pomodorini, couscous"
+    },
+    {
+      "id": "crema_piselli_spezzati",
+      "name": "Crema di piselli spezzati",
+      "filename": "crema_piselli_spezzati.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "piselli secchi spezzati, patata, carota, cipolla"
+    },
+    {
+      "id": "crema_porri_patate",
+      "name": "Crema di porri e patate",
+      "filename": "crema_porri_patate.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "patata, porro, latte, burro"
+    },
+    {
+      "id": "crema_zucca_lenticchie_rosse",
+      "name": "Crema di zucca e lenticchie rosse",
+      "filename": "crema_zucca_lenticchie_rosse.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucca, lenticchie rosse decorticate, cipolla"
+    },
+    {
+      "id": "farro_cannellini_pomodori_secchi",
+      "name": "Farro con cannellini, pomodori secchi e rucola",
+      "filename": "farro_cannellini_pomodori_secchi.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "fagioli cannellini cotti, farro perlato, rucola, pomodori secchi sott’olio"
+    },
+    {
+      "id": "farro_funghi_prezzemolo",
+      "name": "Farro con funghi e prezzemolo",
+      "filename": "farro_funghi_prezzemolo.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "funghi champignon, farro perlato"
+    },
+    {
+      "id": "farro_pomodorini_feta",
+      "name": "Farro con pomodorini, cetriolo e feta",
+      "filename": "farro_pomodorini_feta.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodorini, farro perlato, cetriolo, feta"
+    },
+    {
+      "id": "gazpacho",
+      "name": "Gazpacho",
+      "filename": "gazpacho.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodoro, cetriolo, peperone, pane, cipolla rossa"
+    },
+    {
+      "id": "gnocchi_pesto_pomodorini",
+      "name": "Gnocchi al pesto con pomodorini",
+      "filename": "gnocchi_pesto_pomodorini.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "gnocchi di patate, pomodorini, pesto alla genovese"
+    },
+    {
+      "id": "gnocchi_pomodoro_mozzarella",
+      "name": "Gnocchi al pomodoro e mozzarella",
+      "filename": "gnocchi_pomodoro_mozzarella.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "gnocchi di patate, passata di pomodoro, mozzarella, basilico fresco"
+    },
+    {
+      "id": "gnocchi_alla_romana",
+      "name": "Gnocchi alla romana",
+      "filename": "gnocchi_alla_romana.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "latte, semola rimacinata, uova, parmigiano reggiano, burro"
+    },
+    {
+      "id": "gnocchi_alla_sorrentina",
+      "name": "Gnocchi alla sorrentina",
+      "filename": "gnocchi_alla_sorrentina.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "gnocchi di patate, pomodori pelati, mozzarella, parmigiano reggiano, basilico fresco"
+    },
+    {
+      "id": "grano_saraceno_funghi_cipolla",
+      "name": "Grano saraceno con funghi e cipolla",
+      "filename": "grano_saraceno_funghi_cipolla.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "funghi champignon, grano saraceno, cipolla"
+    },
+    {
+      "id": "insalata_farro_tonno_fagiolini",
+      "name": "Insalata di farro con tonno e fagiolini",
+      "filename": "insalata_farro_tonno_fagiolini.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "fagiolini, farro perlato, pomodorini, tonno in scatola"
+    },
+    {
+      "id": "quinoa_ceci_cetriolo_menta",
+      "name": "Insalata di quinoa, ceci, cetriolo e menta",
+      "filename": "quinoa_ceci_cetriolo_menta.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "ceci cotti, cetriolo, pomodorini, quinoa, limone"
+    },
+    {
+      "id": "insalata_quinoa_lenticchie_barbabietola",
+      "name": "Insalata di quinoa, lenticchie e barbabietola",
+      "filename": "insalata_quinoa_lenticchie_barbabietola.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "lenticchie cotte, barbabietola cotta, quinoa, rucola, limone"
+    },
+    {
+      "id": "insalata_riso_pollo_mais_peperoni",
+      "name": "Insalata di riso basmati con pollo, mais e peperoni",
+      "filename": "insalata_riso_pollo_mais_peperoni.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "petto di pollo, riso basmati, peperone, mais in scatola, limone"
+    },
+    {
+      "id": "insalata_riso_tonno",
+      "name": "Insalata di riso con tonno",
+      "filename": "insalata_riso_tonno.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "riso, pomodorini, tonno in scatola, mais in scatola, olive nere"
+    },
+    {
+      "id": "lasagne_alla_bolognese",
+      "name": "Lasagne alla bolognese",
+      "filename": "lasagne_alla_bolognese.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "besciamella pronta, macinato misto manzo e maiale, passata di pomodoro, lasagne all'uovo secche, cipolla"
+    },
+    {
+      "id": "lasagne_alle_verdure",
+      "name": "Lasagne alle verdure",
+      "filename": "lasagne_alle_verdure.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "besciamella pronta, zucchina, peperone, lasagne all'uovo secche, carota"
+    },
+    {
+      "id": "miglio_zucchine_carote_curcuma",
+      "name": "Miglio con zucchine e carote alla curcuma",
+      "filename": "miglio_zucchine_carote_curcuma.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, miglio decorticato, carota, cipolla"
+    },
+    {
+      "id": "minestra_orzo_fagioli",
+      "name": "Minestra di orzo e fagioli",
+      "filename": "minestra_orzo_fagioli.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "fagioli borlotti cotti, patata, orzo perlato, carota, sedano"
+    },
+    {
+      "id": "minestrone_alla_genovese",
+      "name": "Minestrone alla genovese",
+      "filename": "minestrone_alla_genovese.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "patata, zucchina, fagioli borlotti cotti, fagiolini, verza"
+    },
+    {
+      "id": "minestrone_pastina",
+      "name": "Minestrone con pastina",
+      "filename": "minestrone_pastina.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "minestrone surgelato, pasta di semola, dado vegetale"
+    },
+    {
+      "id": "orecchiette_cime_di_rapa",
+      "name": "Orecchiette con le cime di rapa",
+      "filename": "orecchiette_cime_di_rapa.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cime di rapa, pasta di semola, filetti di acciuga sott’olio"
+    },
+    {
+      "id": "orzo_ceci_melanzane_grigliate",
+      "name": "Orzo con ceci e melanzane grigliate",
+      "filename": "orzo_ceci_melanzane_grigliate.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "melanzana, ceci cotti, pomodorini, orzo perlato"
+    },
+    {
+      "id": "orzo_zucchine_pomodorini",
+      "name": "Orzo tiepido con zucchine, pomodorini e basilico",
+      "filename": "orzo_zucchine_pomodorini.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, orzo perlato, pomodorini, parmigiano reggiano, basilico fresco"
+    },
+    {
+      "id": "orzotto_radicchio",
+      "name": "Orzotto al radicchio",
+      "filename": "orzotto_radicchio.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "radicchio rosso, orzo perlato, cipolla, parmigiano reggiano"
+    },
+    {
+      "id": "paccheri_ragu_di_polpo",
+      "name": "Paccheri al ragù di polpo",
+      "filename": "paccheri_ragu_di_polpo.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "polpo, pomodorini in scatola, pasta di semola, olive nere"
+    },
+    {
+      "id": "paella_pollo_verdure",
+      "name": "Paella di pollo e verdure",
+      "filename": "paella_pollo_verdure.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cosce di pollo, riso, peperone, pomodoro, piselli surgelati"
+    },
+    {
+      "id": "pappa_al_pomodoro",
+      "name": "Pappa al pomodoro",
+      "filename": "pappa_al_pomodoro.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodori pelati, pane, basilico fresco"
+    },
+    {
+      "id": "passato_di_verdure",
+      "name": "Passato di verdure",
+      "filename": "passato_di_verdure.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "patata, zucchina, carota, porro, sedano"
+    },
+    {
+      "id": "pasta_funghi",
+      "name": "Pasta ai funghi trifolati",
+      "filename": "pasta_funghi.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "funghi champignon, pasta di semola, prezzemolo"
+    },
+    {
+      "id": "pasta_quattro_formaggi",
+      "name": "Pasta ai quattro formaggi",
+      "filename": "pasta_quattro_formaggi.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, latte, gorgonzola, fontina, emmental"
+    },
+    {
+      "id": "pasta_al_forno_melanzane_scamorza",
+      "name": "Pasta al forno con melanzane e scamorza",
+      "filename": "pasta_al_forno_melanzane_scamorza.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "melanzana, passata di pomodoro, pasta di semola, scamorza affumicata, parmigiano reggiano"
+    },
+    {
+      "id": "pasta_al_forno",
+      "name": "Pasta al forno semplice",
+      "filename": "pasta_al_forno.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "passata di pomodoro, pasta di semola, mozzarella, parmigiano reggiano, basilico fresco"
+    },
+    {
+      "id": "pasta_al_pesto",
+      "name": "Pasta al pesto",
+      "filename": "pasta_al_pesto.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, pesto alla genovese"
+    },
+    {
+      "id": "pasta_pesto_rosso_pomodori_secchi",
+      "name": "Pasta al pesto rosso di pomodori secchi",
+      "filename": "pasta_pesto_rosso_pomodori_secchi.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, pomodori secchi sott’olio, mandorle, basilico fresco"
+    },
+    {
+      "id": "pasta_pomodoro_basilico",
+      "name": "Pasta al pomodoro e basilico",
+      "filename": "pasta_pomodoro_basilico.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodori pelati, pasta di semola, basilico fresco"
+    },
+    {
+      "id": "pasta_ragu_bianco",
+      "name": "Pasta al ragù bianco",
+      "filename": "pasta_ragu_bianco.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "macinato misto manzo e maiale, pasta di semola, carota, cipolla, sedano"
+    },
+    {
+      "id": "pasta_ragu_veloce",
+      "name": "Pasta al ragù veloce",
+      "filename": "pasta_ragu_veloce.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "passata di pomodoro, carne macinata di manzo, pasta di semola, carota, cipolla"
+    },
+    {
+      "id": "pasta_al_salmone_affumicato",
+      "name": "Pasta al salmone affumicato",
+      "filename": "pasta_al_salmone_affumicato.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, panna da cucina, salmone affumicato, scalogno"
+    },
+    {
+      "id": "pasta_al_tonno",
+      "name": "Pasta al tonno",
+      "filename": "pasta_al_tonno.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodori pelati, pasta di semola, tonno in scatola"
+    },
+    {
+      "id": "pasta_carbonara",
+      "name": "Pasta alla carbonara",
+      "filename": "pasta_carbonara.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "uova, pasta di semola, pancetta a cubetti, pecorino romano"
+    },
+    {
+      "id": "pasta_crema_cavolo_nero",
+      "name": "Pasta alla crema di cavolo nero",
+      "filename": "pasta_crema_cavolo_nero.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cavolo nero, pasta di semola"
+    },
+    {
+      "id": "pasta_alla_crudaiola",
+      "name": "Pasta alla crudaiola",
+      "filename": "pasta_alla_crudaiola.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodorini, pasta di semola, mozzarella, olive nere, basilico fresco"
+    },
+    {
+      "id": "pasta_alla_genovese",
+      "name": "Pasta alla genovese napoletana",
+      "filename": "pasta_alla_genovese.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cipolla, manzo a cubetti, pasta di semola, carota, sedano"
+    },
+    {
+      "id": "pasta_alla_norma",
+      "name": "Pasta alla norma",
+      "filename": "pasta_alla_norma.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "melanzana, passata di pomodoro, pasta di semola, pecorino romano, basilico fresco"
+    },
+    {
+      "id": "pasta_acciughe_pangrattato",
+      "name": "Pasta con acciughe e pangrattato tostato",
+      "filename": "pasta_acciughe_pangrattato.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, pangrattato, filetti di acciuga sott’olio, prezzemolo"
+    },
+    {
+      "id": "pasta_carciofi_limone",
+      "name": "Pasta con carciofi e limone",
+      "filename": "pasta_carciofi_limone.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "carciofi, pasta di semola, limone, parmigiano reggiano, prezzemolo"
+    },
+    {
+      "id": "pasta_fiori_di_zucca_zafferano",
+      "name": "Pasta con fiori di zucca, zucchine e zafferano",
+      "filename": "pasta_fiori_di_zucca_zafferano.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "fiori di zucca, zucchina, pasta di semola, scalogno"
+    },
+    {
+      "id": "pasta_con_le_sarde",
+      "name": "Pasta con le sarde",
+      "filename": "pasta_con_le_sarde.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "sardine fresche, finocchio, pasta di semola, cipolla, uvetta"
+    },
+    {
+      "id": "pasta_zucchine",
+      "name": "Pasta con le zucchine",
+      "filename": "pasta_zucchine.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, pasta di semola, basilico fresco"
+    },
+    {
+      "id": "pasta_pesce_spada_menta",
+      "name": "Pasta con pesce spada, pomodorini e menta",
+      "filename": "pasta_pesce_spada_menta.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pesce spada a fette, pomodorini, pasta di semola"
+    },
+    {
+      "id": "pasta_pomodorini_burrata",
+      "name": "Pasta con pomodorini e burrata",
+      "filename": "pasta_pomodorini_burrata.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodorini, pasta di semola, burrata, basilico fresco"
+    },
+    {
+      "id": "pasta_ricotta_spinaci",
+      "name": "Pasta con ricotta e spinaci",
+      "filename": "pasta_ricotta_spinaci.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "spinaci surgelati, pasta di semola, ricotta, parmigiano reggiano"
+    },
+    {
+      "id": "pasta_salsa_di_noci",
+      "name": "Pasta con salsa di noci",
+      "filename": "pasta_salsa_di_noci.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, noci sgusciate, latte, parmigiano reggiano"
+    },
+    {
+      "id": "pasta_seppie_pomodorini",
+      "name": "Pasta con seppie e pomodorini",
+      "filename": "pasta_seppie_pomodorini.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "seppie pulite, pomodorini, pasta di semola, prezzemolo"
+    },
+    {
+      "id": "pasta_zucca_salsiccia",
+      "name": "Pasta con zucca e salsiccia",
+      "filename": "pasta_zucca_salsiccia.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucca, pasta di semola, salsiccia, cipolla, parmigiano reggiano"
+    },
+    {
+      "id": "pasta_broccoli",
+      "name": "Pasta e broccoli",
+      "filename": "pasta_broccoli.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "broccolo, pasta di semola"
+    },
+    {
+      "id": "pasta_e_cavolfiore",
+      "name": "Pasta e cavolfiore",
+      "filename": "pasta_e_cavolfiore.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cavolfiore, pasta di semola, pomodorini"
+    },
+    {
+      "id": "pasta_e_fagioli",
+      "name": "Pasta e fagioli",
+      "filename": "pasta_e_fagioli.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "fagioli borlotti cotti, pasta di semola, passata di pomodoro, cipolla"
+    },
+    {
+      "id": "pasta_e_fave",
+      "name": "Pasta e fave",
+      "filename": "pasta_e_fave.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "fave surgelate, cipollotto, pasta di semola"
+    },
+    {
+      "id": "pasta_e_lenticchie",
+      "name": "Pasta e lenticchie",
+      "filename": "pasta_e_lenticchie.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "lenticchie cotte, pasta di semola, passata di pomodoro, carota, cipolla"
+    },
+    {
+      "id": "pasta_e_patate_con_provola",
+      "name": "Pasta e patate con la provola",
+      "filename": "pasta_e_patate_con_provola.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "patata, pasta di semola, scamorza affumicata, cipolla, carota"
+    },
+    {
+      "id": "pasta_e_piselli",
+      "name": "Pasta e piselli",
+      "filename": "pasta_e_piselli.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "piselli surgelati, pasta di semola, cipolla, parmigiano reggiano"
+    },
+    {
+      "id": "pasta_fredda_ceci_peperoni",
+      "name": "Pasta fredda con ceci, peperoni e prezzemolo",
+      "filename": "pasta_fredda_ceci_peperoni.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "ceci cotti, peperone, pasta di semola, cipolla rossa, limone"
+    },
+    {
+      "id": "pasta_pomodori_secchi_rucola",
+      "name": "Pasta fredda con pomodori secchi e rucola",
+      "filename": "pasta_pomodori_secchi_rucola.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, pomodori secchi sott’olio, rucola, olive nere"
+    },
+    {
+      "id": "pasta_fredda_tonno_olive_pomodorini",
+      "name": "Pasta fredda con tonno, olive e pomodorini",
+      "filename": "pasta_fredda_tonno_olive_pomodorini.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodorini, pasta di semola, tonno in scatola, olive verdi"
+    },
+    {
+      "id": "pasta_fredda_verdure_grigliate",
+      "name": "Pasta fredda con verdure grigliate",
+      "filename": "pasta_fredda_verdure_grigliate.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "melanzana, zucchina, peperone, pasta di semola, basilico fresco"
+    },
+    {
+      "id": "pasta_fredda_zucchine_feta_menta",
+      "name": "Pasta fredda con zucchine, feta e menta",
+      "filename": "pasta_fredda_zucchine_feta_menta.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, pasta di semola, feta, limone"
+    },
+    {
+      "id": "pasta_funghi_salsiccia",
+      "name": "Pasta funghi e salsiccia",
+      "filename": "pasta_funghi_salsiccia.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "funghi champignon, salsiccia, pasta di semola, parmigiano reggiano"
+    },
+    {
+      "id": "pasta_integrale_crema_lenticchie_rosse",
+      "name": "Pasta integrale con crema di lenticchie rosse",
+      "filename": "pasta_integrale_crema_lenticchie_rosse.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta integrale, lenticchie rosse decorticate, carota, cipolla, concentrato di pomodoro"
+    },
+    {
+      "id": "pasta_integrale_verdure_saltate",
+      "name": "Pasta integrale con verdure saltate",
+      "filename": "pasta_integrale_verdure_saltate.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta integrale, zucchina, peperone, pomodorini, carota"
+    },
+    {
+      "id": "pasta_pancetta_pomodoro_pecorino",
+      "name": "Pasta pancetta, pomodoro e pecorino",
+      "filename": "pasta_pancetta_pomodoro_pecorino.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodori pelati, pasta di semola, pancetta a cubetti, pecorino romano"
+    },
+    {
+      "id": "pasta_panna_prosciutto_piselli",
+      "name": "Pasta panna, prosciutto e piselli",
+      "filename": "pasta_panna_prosciutto_piselli.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, piselli surgelati, panna da cucina, prosciutto cotto, parmigiano reggiano"
+    },
+    {
+      "id": "pasta_radicchio_gorgonzola",
+      "name": "Pasta radicchio e gorgonzola",
+      "filename": "pasta_radicchio_gorgonzola.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "radicchio rosso, pasta di semola, gorgonzola, cipolla"
+    },
+    {
+      "id": "pasta_salsiccia_broccoli",
+      "name": "Pasta salsiccia e broccoli",
+      "filename": "pasta_salsiccia_broccoli.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "broccolo, pasta di semola, salsiccia, pecorino romano"
+    },
+    {
+      "id": "pasta_tonno_limone_capperi",
+      "name": "Pasta tonno, limone e capperi",
+      "filename": "pasta_tonno_limone_capperi.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, tonno in scatola, limone, capperi, prezzemolo"
+    },
+    {
+      "id": "pasta_zucchine_gamberetti",
+      "name": "Pasta zucchine e gamberetti",
+      "filename": "pasta_zucchine_gamberetti.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, gamberetti sgusciati surgelati, pasta di semola, limone"
+    },
+    {
+      "id": "penne_all_arrabbiata",
+      "name": "Penne all'arrabbiata",
+      "filename": "penne_all_arrabbiata.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodori pelati, pasta di semola, prezzemolo"
+    },
+    {
+      "id": "pilaf_riso_ceci_curcuma",
+      "name": "Pilaf di riso e ceci alla curcuma",
+      "filename": "pilaf_riso_ceci_curcuma.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "ceci cotti, riso basmati, cipolla, carota, piselli surgelati"
+    },
+    {
+      "id": "poke_vegetale_edamame_mango",
+      "name": "Poke vegetale con edamame e mango",
+      "filename": "poke_vegetale_edamame_mango.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "edamame surgelati, cetriolo, riso, mango, cavolo rosso"
+    },
+    {
+      "id": "polenta_forno_pomodoro_mozzarella",
+      "name": "Polenta al forno con pomodoro e mozzarella",
+      "filename": "polenta_forno_pomodoro_mozzarella.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "passata di pomodoro, farina per polenta istantanea, mozzarella, parmigiano reggiano"
+    },
+    {
+      "id": "polenta_funghi",
+      "name": "Polenta con funghi trifolati",
+      "filename": "polenta_funghi.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "funghi champignon, farina per polenta istantanea, prezzemolo"
+    },
+    {
+      "id": "polenta_salsiccia_pomodoro",
+      "name": "Polenta con salsiccia al pomodoro",
+      "filename": "polenta_salsiccia_pomodoro.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "passata di pomodoro, salsiccia, farina per polenta istantanea, cipolla"
+    },
+    {
+      "id": "polenta_concia",
+      "name": "Polenta concia",
+      "filename": "polenta_concia.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "farina per polenta istantanea, fontina, burro, parmigiano reggiano"
+    },
+    {
+      "id": "quinoa_saltata_verdure",
+      "name": "Quinoa saltata con verdure",
+      "filename": "quinoa_saltata_verdure.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "quinoa, zucchina, peperone, carota, cipollotto"
+    },
+    {
+      "id": "ravioli_burro_salvia",
+      "name": "Ravioli ricotta e spinaci burro e salvia",
+      "filename": "ravioli_burro_salvia.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "ravioli freschi ricotta e spinaci, burro, parmigiano reggiano"
+    },
+    {
+      "id": "ribollita_toscana",
+      "name": "Ribollita",
+      "filename": "ribollita_toscana.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "fagioli cannellini cotti, cavolo nero, pomodori pelati, verza, patata"
+    },
+    {
+      "id": "rigatoni_alla_gricia",
+      "name": "Rigatoni alla gricia",
+      "filename": "rigatoni_alla_gricia.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, guanciale, pecorino romano"
+    },
+    {
+      "id": "riso_burro_parmigiano",
+      "name": "Riso al burro e parmigiano",
+      "filename": "riso_burro_parmigiano.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "riso, parmigiano reggiano, burro"
+    },
+    {
+      "id": "riso_basmati_curry_verdure",
+      "name": "Riso basmati al curry con verdure",
+      "filename": "riso_basmati_curry_verdure.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cavolfiore, riso basmati, carota, latte di cocco, piselli surgelati"
+    },
+    {
+      "id": "riso_fagioli_neri_peperoni",
+      "name": "Riso con fagioli neri e peperoni",
+      "filename": "riso_fagioli_neri_peperoni.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "fagioli neri cotti, peperone, riso basmati, lime, cipolla rossa"
+    },
+    {
+      "id": "riso_piselli_carote",
+      "name": "Riso con piselli e carote",
+      "filename": "riso_piselli_carote.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "riso basmati, piselli surgelati, carota"
+    },
+    {
+      "id": "riso_e_lenticchie",
+      "name": "Riso e lenticchie",
+      "filename": "riso_e_lenticchie.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "lenticchie cotte, riso, passata di pomodoro, carota, cipolla"
+    },
+    {
+      "id": "riso_integrale_verdure_forno",
+      "name": "Riso integrale con verdure al forno",
+      "filename": "riso_integrale_verdure_forno.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "melanzana, riso integrale, peperone, zucchina, cipolla rossa"
+    },
+    {
+      "id": "riso_saltato_uova_verdure",
+      "name": "Riso saltato con uova e verdure",
+      "filename": "riso_saltato_uova_verdure.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "uova, riso basmati, piselli surgelati, carota, salsa di soia"
+    },
+    {
+      "id": "riso_zucchine_pomodorini",
+      "name": "Riso saltato con zucchine e pomodorini",
+      "filename": "riso_zucchine_pomodorini.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, pomodorini, riso basmati, basilico fresco"
+    },
+    {
+      "id": "riso_venere_gamberetti_zucchine",
+      "name": "Riso venere con gamberetti e zucchine",
+      "filename": "riso_venere_gamberetti_zucchine.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, gamberetti sgusciati surgelati, riso nero venere, limone"
+    },
+    {
+      "id": "riso_venere_verdure_zenzero",
+      "name": "Riso venere con verdure saltate e zenzero",
+      "filename": "riso_venere_verdure_zenzero.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "riso nero venere, peperone, zucchina, carota, cipollotto"
+    },
+    {
+      "id": "risotto_asparagi",
+      "name": "Risotto agli asparagi",
+      "filename": "risotto_asparagi.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "asparagi, riso, cipolla"
+    },
+    {
+      "id": "risotto_frutti_di_mare",
+      "name": "Risotto ai frutti di mare",
+      "filename": "risotto_frutti_di_mare.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cozze, vongole, riso, gamberetti sgusciati surgelati, anelli di calamaro surgelati"
+    },
+    {
+      "id": "risotto_funghi_porcini_secchi",
+      "name": "Risotto ai funghi porcini secchi",
+      "filename": "risotto_funghi_porcini_secchi.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "riso, scalogno, parmigiano reggiano, funghi porcini secchi, burro"
+    },
+    {
+      "id": "risotto_al_limone",
+      "name": "Risotto al limone",
+      "filename": "risotto_al_limone.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "riso, limone, scalogno, parmigiano reggiano, burro"
+    },
+    {
+      "id": "risotto_pomodoro_basilico",
+      "name": "Risotto al pomodoro e basilico",
+      "filename": "risotto_pomodoro_basilico.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "passata di pomodoro, riso, cipolla, basilico fresco"
+    },
+    {
+      "id": "risotto_alla_milanese",
+      "name": "Risotto alla milanese",
+      "filename": "risotto_alla_milanese.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "riso, cipolla, burro, parmigiano reggiano, dado vegetale"
+    },
+    {
+      "id": "risotto_zucca",
+      "name": "Risotto alla zucca",
+      "filename": "risotto_zucca.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucca, riso, cipolla, parmigiano reggiano, burro"
+    },
+    {
+      "id": "risotto_zucchine_zafferano",
+      "name": "Risotto alle zucchine e zafferano",
+      "filename": "risotto_zucchine_zafferano.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, riso, cipolla"
+    },
+    {
+      "id": "spaghetti_aglio_olio",
+      "name": "Spaghetti aglio, olio e peperoncino",
+      "filename": "spaghetti_aglio_olio.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, prezzemolo"
+    },
+    {
+      "id": "spaghetti_ai_frutti_di_mare",
+      "name": "Spaghetti ai frutti di mare",
+      "filename": "spaghetti_ai_frutti_di_mare.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cozze, vongole, pasta di semola, anelli di calamaro surgelati, pomodorini"
+    },
+    {
+      "id": "spaghetti_al_limone",
+      "name": "Spaghetti al limone",
+      "filename": "spaghetti_al_limone.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "limone, pasta di semola, parmigiano reggiano, burro"
+    },
+    {
+      "id": "spaghetti_alla_carrettiera",
+      "name": "Spaghetti alla carrettiera",
+      "filename": "spaghetti_alla_carrettiera.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodoro, pasta di semola, pecorino romano, basilico fresco"
+    },
+    {
+      "id": "spaghetti_alla_nerano",
+      "name": "Spaghetti alla Nerano",
+      "filename": "spaghetti_alla_nerano.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, pasta di semola, provolone, parmigiano reggiano, basilico fresco"
+    },
+    {
+      "id": "spaghetti_alla_puttanesca",
+      "name": "Spaghetti alla puttanesca",
+      "filename": "spaghetti_alla_puttanesca.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodori pelati, pasta di semola, olive nere, capperi, filetti di acciuga sott’olio"
+    },
+    {
+      "id": "spaghetti_vongole",
+      "name": "Spaghetti alle vongole",
+      "filename": "spaghetti_vongole.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "vongole, pasta di semola, prezzemolo"
+    },
+    {
+      "id": "spaghetti_cacio_e_pepe",
+      "name": "Spaghetti cacio e pepe",
+      "filename": "spaghetti_cacio_e_pepe.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, pecorino romano"
+    },
+    {
+      "id": "noodles_riso_verdure_edamame",
+      "name": "Spaghetti di riso con verdure ed edamame",
+      "filename": "noodles_riso_verdure_edamame.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, spaghetti di riso, edamame surgelati, carota, lime"
+    },
+    {
+      "id": "stracciatella_in_brodo",
+      "name": "Stracciatella in brodo",
+      "filename": "stracciatella_in_brodo.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cosce di pollo, uova, carota, cipolla, sedano"
+    },
+    {
+      "id": "tabbouleh_bulgur_prezzemolo",
+      "name": "Tabbouleh di bulgur e prezzemolo",
+      "filename": "tabbouleh_bulgur_prezzemolo.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pomodoro, bulgur, cetriolo, cipollotto, limone"
+    },
+    {
+      "id": "tagliatelle_ragu_bolognese",
+      "name": "Tagliatelle al ragù alla bolognese",
+      "filename": "tagliatelle_ragu_bolognese.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "macinato misto manzo e maiale, pasta all'uovo, passata di pomodoro, cipolla, latte"
+    },
+    {
+      "id": "tagliatelle_burro_salvia",
+      "name": "Tagliatelle burro e salvia",
+      "filename": "tagliatelle_burro_salvia.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta all'uovo, burro, parmigiano reggiano"
+    },
+    {
+      "id": "tortellini_in_brodo",
+      "name": "Tortellini in brodo",
+      "filename": "tortellini_in_brodo.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cosce di pollo, tortellini freschi al prosciutto, carota, cipolla, sedano"
+    },
+    {
+      "id": "tortellini_panna_prosciutto",
+      "name": "Tortellini panna e prosciutto",
+      "filename": "tortellini_panna_prosciutto.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "tortellini freschi al prosciutto, panna da cucina, prosciutto cotto, parmigiano reggiano, burro"
+    },
+    {
+      "id": "trofie_pesto_patate_fagiolini",
+      "name": "Trofie al pesto con patate e fagiolini",
+      "filename": "trofie_pesto_patate_fagiolini.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "pasta di semola, patata, fagiolini, pesto alla genovese"
+    },
+    {
+      "id": "vellutata_broccoli_parmigiano",
+      "name": "Vellutata di broccoli e parmigiano",
+      "filename": "vellutata_broccoli_parmigiano.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "broccolo, patata, parmigiano reggiano"
+    },
+    {
+      "id": "vellutata_carote_zenzero",
+      "name": "Vellutata di carote e zenzero",
+      "filename": "vellutata_carote_zenzero.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "carota, patata, cipolla, semi di zucca"
+    },
+    {
+      "id": "vellutata_cavolfiore",
+      "name": "Vellutata di cavolfiore",
+      "filename": "vellutata_cavolfiore.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cavolfiore, patata, cipolla"
+    },
+    {
+      "id": "vellutata_piselli",
+      "name": "Vellutata di piselli",
+      "filename": "vellutata_piselli.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "piselli surgelati, patata, cipollotto"
+    },
+    {
+      "id": "vellutata_zucca",
+      "name": "Vellutata di zucca e patate",
+      "filename": "vellutata_zucca.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucca, patata, pane, cipolla, dado vegetale"
+    },
+    {
+      "id": "vellutata_zucchine_menta",
+      "name": "Vellutata di zucchine e menta",
+      "filename": "vellutata_zucchine_menta.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "zucchina, patata, cipolla"
+    },
+    {
+      "id": "zuppa_cavolo_nero_cannellini",
+      "name": "Zuppa di cavolo nero e cannellini",
+      "filename": "zuppa_cavolo_nero_cannellini.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "fagioli cannellini cotti, cavolo nero, patata, pomodori pelati, carota"
+    },
+    {
+      "id": "zuppa_ceci_rosmarino",
+      "name": "Zuppa di ceci e rosmarino",
+      "filename": "zuppa_ceci_rosmarino.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "ceci cotti, patata, cipolla, concentrato di pomodoro"
+    },
+    {
+      "id": "zuppa_cipolle_gratinata",
+      "name": "Zuppa di cipolle gratinata",
+      "filename": "zuppa_cipolle_gratinata.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cipolla, pane, emmental, burro, farina di grano tenero"
+    },
+    {
+      "id": "zuppa_farro_verdure",
+      "name": "Zuppa di farro e verdure",
+      "filename": "zuppa_farro_verdure.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "patata, zucchina, pomodori pelati, farro perlato, carota"
+    },
+    {
+      "id": "zuppa_di_lenticchie",
+      "name": "Zuppa di lenticchie",
+      "filename": "zuppa_di_lenticchie.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "lenticchie secche, pomodori pelati, carota, sedano, cipolla"
+    },
+    {
+      "id": "zuppa_di_pesce_semplice",
+      "name": "Zuppa di pesce semplice",
+      "filename": "zuppa_di_pesce_semplice.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "cozze, pomodori pelati, filetti di merluzzo surgelati, anelli di calamaro surgelati, gamberetti sgusciati surgelati"
+    },
+    {
+      "id": "zuppa_scarola_fagioli",
+      "name": "Zuppa di scarola e fagioli",
+      "filename": "zuppa_scarola_fagioli.png",
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "ingredients": "scarola, fagioli cannellini cotti"
+    },
+    {
+      "id": "agnello_forno_patate",
+      "name": "Agnello al forno con patate",
+      "filename": "agnello_forno_patate.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "agnello a pezzi, patata"
+    },
+    {
+      "id": "agnello_cacio_e_uova",
+      "name": "Agnello cacio e uova",
+      "filename": "agnello_cacio_e_uova.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "agnello a pezzi, uova, limone, cipolla, pecorino romano"
+    },
+    {
+      "id": "alici_in_tortiera_gratinate",
+      "name": "Alici in tortiera gratinate",
+      "filename": "alici_in_tortiera_gratinate.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "alici fresche, limone, pangrattato, pecorino romano"
+    },
+    {
+      "id": "calamari_friggitrice",
+      "name": "Anelli di calamaro croccanti in friggitrice ad aria",
+      "filename": "calamari_friggitrice.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "anelli di calamaro surgelati, insalata verde, limone, farina di ceci"
+    },
+    {
+      "id": "baccala_umido_patate",
+      "name": "Baccalà in umido con patate",
+      "filename": "baccala_umido_patate.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "baccalà dissalato, patata, passata di pomodoro, cipolla"
+    },
+    {
+      "id": "pollo_peperoni",
+      "name": "Bocconcini di pollo con peperoni",
+      "filename": "pollo_peperoni.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "petto di pollo, peperone, passata di pomodoro, cipolla"
+    },
+    {
+      "id": "bocconcini_tacchino_funghi",
+      "name": "Bocconcini di tacchino ai funghi",
+      "filename": "bocconcini_tacchino_funghi.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fesa di tacchino a cubetti, funghi champignon, fecola di patate"
+    },
+    {
+      "id": "bocconcini_tacchino_zucchine_zafferano",
+      "name": "Bocconcini di tacchino con zucchine e zafferano",
+      "filename": "bocconcini_tacchino_zucchine_zafferano.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fesa di tacchino a cubetti, zucchina, cipolla"
+    },
+    {
+      "id": "braciole_al_sugo_barese",
+      "name": "Braciole al sugo alla barese",
+      "filename": "braciole_al_sugo_barese.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "passata di pomodoro, fettine di manzo, cipolla, pecorino romano"
+    },
+    {
+      "id": "branzino_cartoccio_zucchine_limone",
+      "name": "Branzino in cartoccio con zucchine e limone",
+      "filename": "branzino_cartoccio_zucchine_limone.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "filetti di orata, zucchina, limone"
+    },
+    {
+      "id": "bresaola_rucola_parmigiano",
+      "name": "Bresaola con rucola e scaglie di parmigiano",
+      "filename": "bresaola_rucola_parmigiano.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "bresaola, rucola, limone, parmigiano reggiano"
+    },
+    {
+      "id": "carne_alla_pizzaiola",
+      "name": "Carne alla pizzaiola",
+      "filename": "carne_alla_pizzaiola.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "pomodori pelati, fettine di manzo"
+    },
+    {
+      "id": "chili_con_carne",
+      "name": "Chili con carne",
+      "filename": "chili_con_carne.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "pomodori pelati, carne macinata di manzo, fagioli borlotti cotti, peperone, cipolla"
+    },
+    {
+      "id": "coniglio_alla_cacciatora",
+      "name": "Coniglio alla cacciatora",
+      "filename": "coniglio_alla_cacciatora.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "coniglio a pezzi, pomodori pelati, cipolla, carota"
+    },
+    {
+      "id": "coniglio_alla_ligure_olive",
+      "name": "Coniglio alla ligure con olive",
+      "filename": "coniglio_alla_ligure_olive.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "coniglio a pezzi, olive nere, pinoli"
+    },
+    {
+      "id": "cosce_pollo_patate_forno",
+      "name": "Cosce di pollo con patate al forno",
+      "filename": "cosce_pollo_patate_forno.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "cosce di pollo, patata"
+    },
+    {
+      "id": "costine_maiale_forno_patate",
+      "name": "Costine di maiale al forno con patate",
+      "filename": "costine_maiale_forno_patate.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "costine di maiale, patata"
+    },
+    {
+      "id": "cotolette_pollo_insalata_pomodori",
+      "name": "Cotolette di pollo con insalata di pomodori",
+      "filename": "cotolette_pollo_insalata_pomodori.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "petto di pollo, pomodoro, uova, pangrattato, limone"
+    },
+    {
+      "id": "cozze_marinara",
+      "name": "Cozze alla marinara",
+      "filename": "cozze_marinara.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "cozze, pomodorini, prezzemolo"
+    },
+    {
+      "id": "crocchette_salmone_patate_friggitrice",
+      "name": "Crocchette di salmone e patate in friggitrice ad aria",
+      "filename": "crocchette_salmone_patate_friggitrice.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "patata, salmone al naturale in scatola, uova, pangrattato"
+    },
+    {
+      "id": "curry_uova_sode_riso",
+      "name": "Curry di uova sode con riso basmati",
+      "filename": "curry_uova_sode_riso.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, passata di pomodoro, riso basmati, latte di cocco, cipolla"
+    },
+    {
+      "id": "fajitas_pollo_peperoni",
+      "name": "Fajitas di pollo con peperoni",
+      "filename": "fajitas_pollo_peperoni.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "tortilla di frumento, petto di pollo, peperone, cipolla rossa, lime"
+    },
+    {
+      "id": "fegatini_pollo_cipolle_polenta",
+      "name": "Fegatini di pollo con cipolle e polenta",
+      "filename": "fegatini_pollo_cipolle_polenta.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fegatini di pollo, cipolla, farina per polenta istantanea"
+    },
+    {
+      "id": "fettine_lonza_al_latte",
+      "name": "Fettine di lonza al latte",
+      "filename": "fettine_lonza_al_latte.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "lonza di maiale a fette, latte, burro, farina di grano tenero"
+    },
+    {
+      "id": "tacchino_rosmarino_insalata",
+      "name": "Fettine di tacchino al rosmarino con insalata",
+      "filename": "tacchino_rosmarino_insalata.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fettine di tacchino, pomodorini, insalata verde"
+    },
+    {
+      "id": "merluzzo_impanato_friggitrice",
+      "name": "Filetti di merluzzo impanati in friggitrice ad aria",
+      "filename": "merluzzo_impanato_friggitrice.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "filetti di merluzzo surgelati, patata, pangrattato, limone, prezzemolo"
+    },
+    {
+      "id": "orata_forno_patate",
+      "name": "Filetti di orata al forno con patate",
+      "filename": "orata_forno_patate.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "patata, filetti di orata, pomodorini"
+    },
+    {
+      "id": "frittata_forno_patate_cipolle",
+      "name": "Frittata al forno con patate e cipolle",
+      "filename": "frittata_forno_patate_cipolle.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, patata, cipolla, parmigiano reggiano"
+    },
+    {
+      "id": "frittata_di_cipolle",
+      "name": "Frittata di cipolle",
+      "filename": "frittata_di_cipolle.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, cipolla, parmigiano reggiano"
+    },
+    {
+      "id": "frittata_zucchine",
+      "name": "Frittata di zucchine",
+      "filename": "frittata_zucchine.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, zucchina, pane, parmigiano reggiano"
+    },
+    {
+      "id": "gamberi_zucchine_curcuma",
+      "name": "Gamberetti e zucchine alla curcuma",
+      "filename": "gamberi_zucchine_curcuma.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "gamberetti sgusciati surgelati, zucchina, limone, prezzemolo"
+    },
+    {
+      "id": "gamberoni_aglio_olio_prezzemolo",
+      "name": "Gamberoni in padella aglio, olio e prezzemolo",
+      "filename": "gamberoni_aglio_olio_prezzemolo.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "gamberi interi, limone"
+    },
+    {
+      "id": "gulasch_manzo_polenta",
+      "name": "Gulasch di manzo con polenta",
+      "filename": "gulasch_manzo_polenta.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "manzo a cubetti, cipolla, farina per polenta istantanea, concentrato di pomodoro"
+    },
+    {
+      "id": "hamburger_insalata",
+      "name": "Hamburger in padella con insalata e pomodori",
+      "filename": "hamburger_insalata.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "carne macinata di manzo, pomodoro, insalata verde"
+    },
+    {
+      "id": "impepata_di_cozze",
+      "name": "Impepata di cozze",
+      "filename": "impepata_di_cozze.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "cozze, limone"
+    },
+    {
+      "id": "insalata_polpo_patate",
+      "name": "Insalata di polpo e patate",
+      "filename": "insalata_polpo_patate.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "polpo, patata, limone"
+    },
+    {
+      "id": "insalata_sgombro_fagioli",
+      "name": "Insalata di sgombro, fagioli e cipolla rossa",
+      "filename": "insalata_sgombro_fagioli.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fagioli cannellini cotti, sgombro in scatola, insalata verde, cipolla rossa, limone"
+    },
+    {
+      "id": "involtini_pollo_cotto_scamorza",
+      "name": "Involtini di pollo con prosciutto cotto e scamorza",
+      "filename": "involtini_pollo_cotto_scamorza.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "petto di pollo, pomodorini, insalata verde, prosciutto cotto, scamorza affumicata"
+    },
+    {
+      "id": "involtini_tacchino_spinaci",
+      "name": "Involtini di tacchino con spinaci e parmigiano",
+      "filename": "involtini_tacchino_spinaci.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fettine di tacchino, spinaci surgelati, parmigiano reggiano"
+    },
+    {
+      "id": "lonza_mele",
+      "name": "Lonza di maiale alle mele",
+      "filename": "lonza_mele.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "lonza di maiale a fette, mela, cipolla"
+    },
+    {
+      "id": "maiale_agrodolce_ananas",
+      "name": "Maiale in agrodolce con peperoni e ananas",
+      "filename": "maiale_agrodolce_ananas.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "lonza di maiale a fette, peperone, ananas, riso basmati, cipolla"
+    },
+    {
+      "id": "merluzzo_alla_livornese",
+      "name": "Merluzzo alla livornese",
+      "filename": "merluzzo_alla_livornese.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "filetti di merluzzo surgelati, pomodori pelati, olive nere, capperi"
+    },
+    {
+      "id": "merluzzo_pomodorini_capperi",
+      "name": "Merluzzo con pomodorini e capperi",
+      "filename": "merluzzo_pomodorini_capperi.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "filetti di merluzzo surgelati, pomodorini, capperi, prezzemolo"
+    },
+    {
+      "id": "nasello_vapore_carote_zucchine",
+      "name": "Nasello al vapore con carote e zucchine",
+      "filename": "nasello_vapore_carote_zucchine.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "nasello fresco, carota, zucchina, limone"
+    },
+    {
+      "id": "omelette_funghi_champignon",
+      "name": "Omelette ai funghi champignon",
+      "filename": "omelette_funghi_champignon.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, funghi champignon, parmigiano reggiano"
+    },
+    {
+      "id": "omelette_spinaci_scamorza",
+      "name": "Omelette con spinaci e scamorza",
+      "filename": "omelette_spinaci_scamorza.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, spinaci freschi, scamorza affumicata"
+    },
+    {
+      "id": "orata_acqua_pazza",
+      "name": "Orata all'acqua pazza",
+      "filename": "orata_acqua_pazza.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "filetti di orata, pomodorini"
+    },
+    {
+      "id": "pasta_gamberetti_pomodorini",
+      "name": "Pasta con gamberetti e pomodorini",
+      "filename": "pasta_gamberetti_pomodorini.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "pomodorini, gamberetti sgusciati surgelati, pasta di semola, prezzemolo"
+    },
+    {
+      "id": "peperoni_ripieni_carne",
+      "name": "Peperoni ripieni di carne al forno",
+      "filename": "peperoni_ripieni_carne.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "peperone, carne macinata di manzo, uova, pangrattato, parmigiano reggiano"
+    },
+    {
+      "id": "pesce_spada_siciliana",
+      "name": "Pesce spada alla siciliana",
+      "filename": "pesce_spada_siciliana.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "pesce spada a fette, pomodorini, capperi"
+    },
+    {
+      "id": "pollo_al_limone",
+      "name": "Petto di pollo al limone",
+      "filename": "pollo_al_limone.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "petto di pollo, insalata verde, limone, farina di grano tenero"
+    },
+    {
+      "id": "pollo_friggitrice_verdure",
+      "name": "Petto di pollo in friggitrice ad aria con peperoni e zucchine",
+      "filename": "pollo_friggitrice_verdure.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "petto di pollo, zucchina, peperone"
+    },
+    {
+      "id": "piadina_salmone_affumicato",
+      "name": "Piadina con salmone affumicato e formaggio fresco",
+      "filename": "piadina_salmone_affumicato.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "piadina, salmone affumicato, formaggio fresco spalmabile, rucola, limone"
+    },
+    {
+      "id": "platessa_limone_padella",
+      "name": "Platessa al limone in padella",
+      "filename": "platessa_limone_padella.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "filetti di platessa, limone, fecola di patate"
+    },
+    {
+      "id": "pollo_al_forno_zucca_rosmarino",
+      "name": "Pollo al forno con zucca e rosmarino",
+      "filename": "pollo_al_forno_zucca_rosmarino.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "cosce di pollo, zucca, cipolla rossa"
+    },
+    {
+      "id": "pollo_sesamo_broccoli_riso",
+      "name": "Pollo al sesamo con broccoli e riso",
+      "filename": "pollo_sesamo_broccoli_riso.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "petto di pollo, broccolo, riso basmati, salsa di soia, semi di sesamo"
+    },
+    {
+      "id": "pollo_cacciatora",
+      "name": "Pollo alla cacciatora in padella",
+      "filename": "pollo_cacciatora.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "cosce di pollo, pomodori pelati, cipolla"
+    },
+    {
+      "id": "pollo_alla_diavola_padella",
+      "name": "Pollo alla diavola in padella",
+      "filename": "pollo_alla_diavola_padella.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "cosce di pollo, insalata verde, limone"
+    },
+    {
+      "id": "pollo_alla_paprika_con_riso",
+      "name": "Pollo alla paprika con riso",
+      "filename": "pollo_alla_paprika_con_riso.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "petto di pollo, passata di pomodoro, riso basmati, cipolla, yogurt greco"
+    },
+    {
+      "id": "polpette_al_sugo",
+      "name": "Polpette al sugo",
+      "filename": "polpette_al_sugo.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "passata di pomodoro, carne macinata di manzo, uova, pane, pangrattato"
+    },
+    {
+      "id": "polpette_pollo_zucchine_friggitrice",
+      "name": "Polpette di pollo e zucchine in friggitrice ad aria",
+      "filename": "polpette_pollo_zucchine_friggitrice.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "macinato di pollo, zucchina, uova, insalata verde, pangrattato"
+    },
+    {
+      "id": "polpette_tacchino_carote",
+      "name": "Polpette di tacchino al forno con carote",
+      "filename": "polpette_tacchino_carote.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fesa di tacchino a cubetti, carota, uova, pangrattato, parmigiano reggiano"
+    },
+    {
+      "id": "polpette_tonno_patate_forno",
+      "name": "Polpette di tonno e patate al forno",
+      "filename": "polpette_tonno_patate_forno.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "patata, tonno in scatola, uova, pangrattato, parmigiano reggiano"
+    },
+    {
+      "id": "polpette_in_bianco_piselli",
+      "name": "Polpette in bianco con piselli",
+      "filename": "polpette_in_bianco_piselli.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "carne macinata di manzo, piselli surgelati, uova, cipolla, pangrattato"
+    },
+    {
+      "id": "polpettone_forno_patate",
+      "name": "Polpettone al forno con patate",
+      "filename": "polpettone_forno_patate.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "patata, macinato misto manzo e maiale, uova, prosciutto cotto, pangrattato"
+    },
+    {
+      "id": "quiche_lorraine",
+      "name": "Quiche lorraine",
+      "filename": "quiche_lorraine.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, panna da cucina, pancetta a cubetti, pasta brisée, latte"
+    },
+    {
+      "id": "salmone_forno_broccoli",
+      "name": "Salmone al forno con broccoli",
+      "filename": "salmone_forno_broccoli.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "broccolo, filetto di salmone, limone"
+    },
+    {
+      "id": "salmone_glassato_soia_miele",
+      "name": "Salmone glassato con soia e miele",
+      "filename": "salmone_glassato_soia_miele.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "filetto di salmone, cipollotto, salsa di soia, miele, zenzero fresco"
+    },
+    {
+      "id": "salmone_crosta_pistacchi",
+      "name": "Salmone in crosta di pistacchi",
+      "filename": "salmone_crosta_pistacchi.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "filetto di salmone, limone, pistacchi sgusciati, pangrattato"
+    },
+    {
+      "id": "salmone_padella_zucchine",
+      "name": "Salmone in padella con zucchine",
+      "filename": "salmone_padella_zucchine.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "filetto di salmone, zucchina, limone"
+    },
+    {
+      "id": "salsicce_fagioli_pomodoro",
+      "name": "Salsicce e fagioli al pomodoro",
+      "filename": "salsicce_fagioli_pomodoro.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fagioli cannellini cotti, salsiccia, passata di pomodoro"
+    },
+    {
+      "id": "salsiccia_e_friarielli",
+      "name": "Salsiccia e friarielli",
+      "filename": "salsiccia_e_friarielli.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "cime di rapa, salsiccia"
+    },
+    {
+      "id": "salsiccia_patate_forno",
+      "name": "Salsiccia e patate al forno",
+      "filename": "salsiccia_patate_forno.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "patata, salsiccia, cipolla rossa"
+    },
+    {
+      "id": "saltimbocca_alla_romana",
+      "name": "Saltimbocca alla romana",
+      "filename": "saltimbocca_alla_romana.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fettine di vitello, insalata verde, prosciutto crudo, burro, farina di grano tenero"
+    },
+    {
+      "id": "saltimbocca_tacchino_speck",
+      "name": "Saltimbocca di tacchino allo speck",
+      "filename": "saltimbocca_tacchino_speck.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fettine di tacchino, insalata verde, speck, farina di grano tenero"
+    },
+    {
+      "id": "sarde_beccafico_semplificate",
+      "name": "Sarde a beccafico semplificate",
+      "filename": "sarde_beccafico_semplificate.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "sardine fresche, arancia, pangrattato, uvetta, pinoli"
+    },
+    {
+      "id": "sardine_friggitrice_limone_origano",
+      "name": "Sardine in friggitrice ad aria con limone e origano",
+      "filename": "sardine_friggitrice_limone_origano.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "sardine fresche, limone"
+    },
+    {
+      "id": "scaloppine_limone",
+      "name": "Scaloppine di vitello al limone",
+      "filename": "scaloppine_limone.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fettine di vitello, limone, farina di grano tenero, burro, prezzemolo"
+    },
+    {
+      "id": "seppie_con_piselli",
+      "name": "Seppie con i piselli",
+      "filename": "seppie_con_piselli.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "seppie pulite, piselli surgelati, passata di pomodoro, cipolla"
+    },
+    {
+      "id": "sgombro_forno_patate_pomodorini",
+      "name": "Sgombro al forno con patate e pomodorini",
+      "filename": "sgombro_forno_patate_pomodorini.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "patata, sgombro fresco, pomodorini"
+    },
+    {
+      "id": "sovracosce_pollo_erbe_friggitrice",
+      "name": "Sovracosce di pollo alle erbe in friggitrice ad aria",
+      "filename": "sovracosce_pollo_erbe_friggitrice.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "cosce di pollo, fagiolini, limone"
+    },
+    {
+      "id": "spezzatino_piselli",
+      "name": "Spezzatino di manzo con piselli",
+      "filename": "spezzatino_piselli.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "manzo a cubetti, passata di pomodoro, piselli surgelati, cipolla, carota"
+    },
+    {
+      "id": "spiedini_pollo_verdure_piastra",
+      "name": "Spiedini di pollo e verdure alla piastra",
+      "filename": "spiedini_pollo_verdure_piastra.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "petto di pollo, zucchina, pomodorini, cipolla rossa, limone"
+    },
+    {
+      "id": "straccetti_manzo_rucola_grana",
+      "name": "Straccetti di manzo con rucola e grana",
+      "filename": "straccetti_manzo_rucola_grana.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fettine di manzo, pomodorini, rucola, grana padano"
+    },
+    {
+      "id": "straccetti_pollo_friggitrice",
+      "name": "Straccetti di pollo croccanti in friggitrice ad aria",
+      "filename": "straccetti_pollo_friggitrice.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "petto di pollo, carota, cetriolo, pangrattato"
+    },
+    {
+      "id": "tacchino_curry_cocco",
+      "name": "Tacchino al curry con latte di cocco e riso",
+      "filename": "tacchino_curry_cocco.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fesa di tacchino a cubetti, latte di cocco, riso basmati, cipolla"
+    },
+    {
+      "id": "tonno_alla_cipollata",
+      "name": "Tonno alla cipollata",
+      "filename": "tonno_alla_cipollata.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "tonno fresco, cipolla, aceto di vino, zucchero"
+    },
+    {
+      "id": "tonno_sesamo_zucchine",
+      "name": "Tonno scottato al sesamo con zucchine allo zenzero",
+      "filename": "tonno_sesamo_zucchine.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "tonno fresco, zucchina, lime, semi di sesamo"
+    },
+    {
+      "id": "trota_forno_mandorle_limone",
+      "name": "Trota al forno con mandorle e limone",
+      "filename": "trota_forno_mandorle_limone.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "filetti di trota, limone, mandorle"
+    },
+    {
+      "id": "uova_al_pomodoro",
+      "name": "Uova al pomodoro",
+      "filename": "uova_al_pomodoro.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, passata di pomodoro, pane, basilico fresco"
+    },
+    {
+      "id": "uova_alla_fiorentina",
+      "name": "Uova alla fiorentina",
+      "filename": "uova_alla_fiorentina.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, spinaci freschi, parmigiano reggiano, burro"
+    },
+    {
+      "id": "uova_purgatorio_peperoni",
+      "name": "Uova in purgatorio con peperoni e paprika",
+      "filename": "uova_purgatorio_peperoni.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, pomodori pelati, peperone, cipolla"
+    },
+    {
+      "id": "uova_ripiene_tonno_insalata",
+      "name": "Uova ripiene al tonno con insalata",
+      "filename": "uova_ripiene_tonno_insalata.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, insalata verde, tonno in scatola, maionese, capperi"
+    },
+    {
+      "id": "uova_strapazzate_asparagi",
+      "name": "Uova strapazzate con asparagi",
+      "filename": "uova_strapazzate_asparagi.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "uova, asparagi, grana padano"
+    },
+    {
+      "id": "vitello_tonnato_fettine",
+      "name": "Vitello tonnato con fettine",
+      "filename": "vitello_tonnato_fettine.png",
+      "category": "Secondi (carne, pesce, uova)",
+      "ingredients": "fettine di vitello, maionese, tonno in scatola, limone, capperi"
+    },
+    {
+      "id": "baccala_ceci_pomodoro",
+      "name": "Baccalà e ceci al pomodoro",
+      "filename": "baccala_ceci_pomodoro.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "baccalà dissalato, pomodori pelati, ceci cotti, prezzemolo"
+    },
+    {
+      "id": "bietole_patate_aglio",
+      "name": "Bietole e patate all'aglio",
+      "filename": "bietole_patate_aglio.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "bietole, patata"
+    },
+    {
+      "id": "hummus_bowl_tahina",
+      "name": "Bowl di hummus fatto in casa con quinoa",
+      "filename": "hummus_bowl_tahina.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "zucchina, ceci cotti, pomodorini, quinoa, limone"
+    },
+    {
+      "id": "bowl_edamame_riso",
+      "name": "Bowl di riso con edamame e avocado",
+      "filename": "bowl_edamame_riso.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "edamame surgelati, cetriolo, riso basmati, carota, avocado"
+    },
+    {
+      "id": "bowl_tofu_forno_riso_cavolo_rosso",
+      "name": "Bowl di tofu al forno con riso e cavolo rosso",
+      "filename": "bowl_tofu_forno_riso_cavolo_rosso.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "tofu, cavolo rosso, riso basmati, carota, salsa di soia"
+    },
+    {
+      "id": "burger_ceci_zucchine",
+      "name": "Burger di ceci e zucchine in padella",
+      "filename": "burger_ceci_zucchine.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, zucchina, pomodoro, insalata verde, farina di ceci"
+    },
+    {
+      "id": "burger_lenticchie_carote_forno",
+      "name": "Burger di lenticchie e carote al forno con patate",
+      "filename": "burger_lenticchie_carote_forno.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "lenticchie cotte, patata, carota, fiocchi d'avena, cipolla"
+    },
+    {
+      "id": "caponata_siciliana",
+      "name": "Caponata di melanzane",
+      "filename": "caponata_siciliana.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "melanzana, pomodori pelati, cipolla, sedano, olive verdi"
+    },
+    {
+      "id": "caprese_pane",
+      "name": "Caprese con pane",
+      "filename": "caprese_pane.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "pomodoro, mozzarella, pane, basilico fresco"
+    },
+    {
+      "id": "carciofi_alla_romana",
+      "name": "Carciofi alla romana",
+      "filename": "carciofi_alla_romana.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "carciofi, limone"
+    },
+    {
+      "id": "carciofi_patate_padella",
+      "name": "Carciofi e patate in padella",
+      "filename": "carciofi_patate_padella.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "carciofi, patata, limone, prezzemolo"
+    },
+    {
+      "id": "cavoletti_ceci_friggitrice",
+      "name": "Cavoletti di Bruxelles e ceci in friggitrice",
+      "filename": "cavoletti_ceci_friggitrice.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "cavoletti di bruxelles, ceci cotti, limone"
+    },
+    {
+      "id": "cavolfiore_ceci_forno",
+      "name": "Cavolfiore e ceci al forno con curry",
+      "filename": "cavolfiore_ceci_forno.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "cavolfiore, ceci cotti, yogurt di soia"
+    },
+    {
+      "id": "cavolfiore_gratinato_besciamella",
+      "name": "Cavolfiore gratinato al forno",
+      "filename": "cavolfiore_gratinato_besciamella.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "cavolfiore, besciamella pronta, parmigiano reggiano"
+    },
+    {
+      "id": "ceci_cime_rapa_padella",
+      "name": "Ceci e cime di rapa in padella",
+      "filename": "ceci_cime_rapa_padella.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "cime di rapa, ceci cotti"
+    },
+    {
+      "id": "ceci_spinaci_padella",
+      "name": "Ceci e spinaci in padella",
+      "filename": "ceci_spinaci_padella.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, spinaci freschi, pomodori pelati"
+    },
+    {
+      "id": "ceci_zimino_bietole",
+      "name": "Ceci in zimino con bietole",
+      "filename": "ceci_zimino_bietole.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, bietole, pomodori pelati, cipolla, carota"
+    },
+    {
+      "id": "chili_fagioli_neri",
+      "name": "Chili di fagioli neri con riso",
+      "filename": "chili_fagioli_neri.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagioli neri cotti, pomodori pelati, peperone, riso, cipolla"
+    },
+    {
+      "id": "ciambotta_lucana",
+      "name": "Ciambotta di verdure estive",
+      "filename": "ciambotta_lucana.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "melanzana, peperone, patata, pomodori pelati, zucchina"
+    },
+    {
+      "id": "cime_rapa_patate",
+      "name": "Cime di rapa e patate",
+      "filename": "cime_rapa_patate.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "cime di rapa, patata"
+    },
+    {
+      "id": "crema_cannellini_verdure_forno",
+      "name": "Crema di cannellini al rosmarino con verdure al forno",
+      "filename": "crema_cannellini_verdure_forno.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagioli cannellini cotti, patata, finocchio, carota, limone"
+    },
+    {
+      "id": "dal_lenticchie_rosse",
+      "name": "Crema di lenticchie rosse speziata",
+      "filename": "dal_lenticchie_rosse.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "pomodori pelati, lenticchie rosse decorticate, cipolla"
+    },
+    {
+      "id": "crostoni_cavolo_nero_cannellini",
+      "name": "Crostoni con cavolo nero e cannellini",
+      "filename": "crostoni_cavolo_nero_cannellini.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagioli cannellini cotti, pane, cavolo nero"
+    },
+    {
+      "id": "curry_ceci_cocco",
+      "name": "Curry di ceci al latte di cocco",
+      "filename": "curry_ceci_cocco.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, latte di cocco, pomodori pelati, riso basmati, spinaci freschi"
+    },
+    {
+      "id": "erbazzone_semplificato",
+      "name": "Erbazzone semplificato",
+      "filename": "erbazzone_semplificato.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "bietole, farina di grano tenero, cipollotto, parmigiano reggiano, pancetta a cubetti"
+    },
+    {
+      "id": "fagioli_uccelletto",
+      "name": "Fagioli all'uccelletto",
+      "filename": "fagioli_uccelletto.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagioli cannellini cotti, pomodori pelati"
+    },
+    {
+      "id": "borlotti_mais_piccanti",
+      "name": "Fagioli borlotti piccanti con mais",
+      "filename": "borlotti_mais_piccanti.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagioli borlotti cotti, passata di pomodoro, peperone, mais in scatola, cipolla"
+    },
+    {
+      "id": "fagiolini_patate_umido",
+      "name": "Fagiolini e patate in umido",
+      "filename": "fagiolini_patate_umido.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagiolini, patata, passata di pomodoro, cipolla"
+    },
+    {
+      "id": "falafel_forno_salsa_yogurt",
+      "name": "Falafel al forno con salsa allo yogurt",
+      "filename": "falafel_forno_salsa_yogurt.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, pane pita, yogurt greco, cetriolo, cipolla"
+    },
+    {
+      "id": "farinata_ceci_forno",
+      "name": "Farinata di ceci al forno con insalata",
+      "filename": "farinata_ceci_forno.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "pomodorini, farina di ceci, insalata verde"
+    },
+    {
+      "id": "fave_e_cicoria",
+      "name": "Fave e cicoria",
+      "filename": "fave_e_cicoria.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "cicoria, fave secche decorticate, patata"
+    },
+    {
+      "id": "fave_guanciale_romana",
+      "name": "Fave e guanciale alla romana",
+      "filename": "fave_guanciale_romana.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fave surgelate, cipollotto, pane, guanciale"
+    },
+    {
+      "id": "finocchi_gratinati_friggitrice",
+      "name": "Finocchi gratinati in friggitrice ad aria",
+      "filename": "finocchi_gratinati_friggitrice.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "finocchio, parmigiano reggiano, burro, pangrattato"
+    },
+    {
+      "id": "focaccia_farcita_melanzane_mozzarella",
+      "name": "Focaccia farcita con melanzane grigliate e mozzarella",
+      "filename": "focaccia_farcita_melanzane_mozzarella.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "focaccia, melanzana, pomodoro, mozzarella"
+    },
+    {
+      "id": "frittelle_verdure_ceci",
+      "name": "Frittelle di verdure senza uova",
+      "filename": "frittelle_verdure_ceci.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "zucchina, farina di ceci, carota, insalata verde"
+    },
+    {
+      "id": "funghi_ripieni_friggitrice",
+      "name": "Funghi ripieni in friggitrice ad aria",
+      "filename": "funghi_ripieni_friggitrice.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "funghi champignon, insalata verde, pangrattato, parmigiano reggiano"
+    },
+    {
+      "id": "gatto_di_patate_napoletano",
+      "name": "Gattò di patate",
+      "filename": "gatto_di_patate_napoletano.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata, uova, mozzarella, prosciutto cotto, parmigiano reggiano"
+    },
+    {
+      "id": "gratin_patate_porri",
+      "name": "Gratin di patate e porri",
+      "filename": "gratin_patate_porri.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata, latte, porro, emmental, burro"
+    },
+    {
+      "id": "hummus_barbabietola_pita",
+      "name": "Hummus di barbabietola con pita e verdure",
+      "filename": "hummus_barbabietola_pita.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, pane pita, barbabietola cotta, carota, cetriolo"
+    },
+    {
+      "id": "insalata_edamame_mais_cavolo_rosso",
+      "name": "Insalata croccante di edamame, mais e cavolo rosso",
+      "filename": "insalata_edamame_mais_cavolo_rosso.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "edamame surgelati, cavolo rosso, mais in scatola, carota, cipollotto"
+    },
+    {
+      "id": "insalata_ceci_peperoni_arrostiti",
+      "name": "Insalata di ceci e peperoni arrostiti",
+      "filename": "insalata_ceci_peperoni_arrostiti.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, peperone, cipolla rossa, capperi"
+    },
+    {
+      "id": "insalata_ceci_finocchio_arancia",
+      "name": "Insalata di ceci, finocchio e arancia",
+      "filename": "insalata_ceci_finocchio_arancia.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, finocchio, arancia, cipolla rossa"
+    },
+    {
+      "id": "insalata_ceci_tonno",
+      "name": "Insalata di ceci, tonno e pomodorini",
+      "filename": "insalata_ceci_tonno.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, pomodorini, tonno in scatola, rucola, cipolla rossa"
+    },
+    {
+      "id": "insalata_fagioli_neri_mais_peperone",
+      "name": "Insalata di fagioli neri, mais e peperone",
+      "filename": "insalata_fagioli_neri_mais_peperone.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagioli neri cotti, peperone, pomodorini, mais in scatola, lime"
+    },
+    {
+      "id": "insalata_lenticchie_verdure_croccanti",
+      "name": "Insalata di lenticchie e verdure croccanti",
+      "filename": "insalata_lenticchie_verdure_croccanti.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "lenticchie cotte, peperone, carota, limone, sedano"
+    },
+    {
+      "id": "insalata_lupini_patate_pomodorini",
+      "name": "Insalata di lupini, patate e pomodorini",
+      "filename": "insalata_lupini_patate_pomodorini.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata, lupini in salamoia, pomodorini, rucola"
+    },
+    {
+      "id": "insalata_greca",
+      "name": "Insalata greca",
+      "filename": "insalata_greca.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "pomodoro, cetriolo, feta, pane integrale, cipolla rossa"
+    },
+    {
+      "id": "insalata_nizzarda",
+      "name": "Insalata nizzarda",
+      "filename": "insalata_nizzarda.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata, pomodoro, fagiolini, uova, tonno in scatola"
+    },
+    {
+      "id": "insalata_tiepida_cannellini_gamberetti",
+      "name": "Insalata tiepida di cannellini e gamberetti",
+      "filename": "insalata_tiepida_cannellini_gamberetti.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagioli cannellini cotti, gamberetti sgusciati surgelati, pomodorini, limone, rucola"
+    },
+    {
+      "id": "insalatone_cannellini_mais",
+      "name": "Insalatona con cannellini e mais",
+      "filename": "insalatone_cannellini_mais.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagioli cannellini cotti, pomodorini, cetriolo, insalata verde, mais in scatola"
+    },
+    {
+      "id": "lenticchie_riso_cipolle_caramellate",
+      "name": "Lenticchie e riso con cipolle caramellate",
+      "filename": "lenticchie_riso_cipolle_caramellate.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "cipolla, cetriolo, lenticchie secche, riso basmati"
+    },
+    {
+      "id": "lenticchie_salsiccia_umido",
+      "name": "Lenticchie e salsiccia in umido",
+      "filename": "lenticchie_salsiccia_umido.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "salsiccia, lenticchie secche, passata di pomodoro, cipolla, carota"
+    },
+    {
+      "id": "lenticchie_umido",
+      "name": "Lenticchie in umido veloci",
+      "filename": "lenticchie_umido.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "lenticchie cotte, passata di pomodoro, carota, cipolla"
+    },
+    {
+      "id": "melanzane_cotoletta_friggitrice",
+      "name": "Melanzane a cotoletta in friggitrice ad aria",
+      "filename": "melanzane_cotoletta_friggitrice.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "melanzana, pomodoro, uova, pangrattato, parmigiano reggiano"
+    },
+    {
+      "id": "melanzane_a_funghetto",
+      "name": "Melanzane a funghetto",
+      "filename": "melanzane_a_funghetto.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "melanzana, pomodorini"
+    },
+    {
+      "id": "melanzane_ripiene_caciocavallo",
+      "name": "Melanzane ripiene al forno con caciocavallo",
+      "filename": "melanzane_ripiene_caciocavallo.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "melanzana, pomodorini, uova, caciocavallo, pane"
+    },
+    {
+      "id": "panelle_palermitane_insalata",
+      "name": "Panelle palermitane con insalata",
+      "filename": "panelle_palermitane_insalata.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "pomodorini, farina di ceci, insalata verde, limone, prezzemolo"
+    },
+    {
+      "id": "panino_burger_fagioli_neri",
+      "name": "Panino con burger di fagioli neri e mais",
+      "filename": "panino_burger_fagioli_neri.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagioli neri cotti, pane, pomodoro, mais in scatola, pangrattato"
+    },
+    {
+      "id": "parmigiana_leggera",
+      "name": "Parmigiana di melanzane leggera",
+      "filename": "parmigiana_leggera.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "melanzana, passata di pomodoro, mozzarella, parmigiano reggiano, basilico fresco"
+    },
+    {
+      "id": "parmigiana_zucchine_forno",
+      "name": "Parmigiana di zucchine",
+      "filename": "parmigiana_zucchine_forno.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "zucchina, passata di pomodoro, mozzarella, parmigiano reggiano"
+    },
+    {
+      "id": "pasta_e_ceci",
+      "name": "Pasta e ceci",
+      "filename": "pasta_e_ceci.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, pasta di semola, pomodori pelati"
+    },
+    {
+      "id": "pasticcio_lenticchie_pure_patate",
+      "name": "Pasticcio di lenticchie con purè di patate al forno",
+      "filename": "pasticcio_lenticchie_pure_patate.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata, lenticchie cotte, passata di pomodoro, carota, cipolla"
+    },
+    {
+      "id": "patate_alla_pizzaiola",
+      "name": "Patate alla pizzaiola in padella",
+      "filename": "patate_alla_pizzaiola.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata, pomodori pelati"
+    },
+    {
+      "id": "patate_dolci_ripiene",
+      "name": "Patate dolci ripiene di spinaci e feta",
+      "filename": "patate_dolci_ripiene.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata dolce, spinaci freschi, pomodorini, feta"
+    },
+    {
+      "id": "patate_fagiolini_uova",
+      "name": "Patate, fagiolini e uova sode",
+      "filename": "patate_fagiolini_uova.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata, uova, fagiolini"
+    },
+    {
+      "id": "peperonata_con_patate",
+      "name": "Peperonata con patate",
+      "filename": "peperonata_con_patate.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "peperone, patata, pomodori pelati, cipolla"
+    },
+    {
+      "id": "peperoni_ripieni_mollica_capperi",
+      "name": "Peperoni ripieni di mollica, capperi e pecorino",
+      "filename": "peperoni_ripieni_mollica_capperi.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "peperone, pomodorini, pane, pecorino romano, capperi"
+    },
+    {
+      "id": "piadina_crudo_rucola",
+      "name": "Piadina con crudo, rucola e pomodoro",
+      "filename": "piadina_crudo_rucola.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "piadina, pomodoro, prosciutto crudo, formaggio fresco spalmabile, rucola"
+    },
+    {
+      "id": "piadina_funghi_fontina",
+      "name": "Piadina con funghi trifolati e fontina",
+      "filename": "piadina_funghi_fontina.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "funghi champignon, piadina, fontina"
+    },
+    {
+      "id": "piadina_zucchine_scamorza",
+      "name": "Piadina con zucchine grigliate e scamorza",
+      "filename": "piadina_zucchine_scamorza.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "zucchina, piadina, scamorza affumicata"
+    },
+    {
+      "id": "piselli_cacio_uova",
+      "name": "Piselli cacio e uova",
+      "filename": "piselli_cacio_uova.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "piselli surgelati, uova, cipolla, pecorino romano"
+    },
+    {
+      "id": "pizza_teglia_margherita",
+      "name": "Pizza margherita in teglia",
+      "filename": "pizza_teglia_margherita.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "impasto per pizza pronto, passata di pomodoro, mozzarella"
+    },
+    {
+      "id": "pizza_teglia_verdure_rossa",
+      "name": "Pizza rossa alle verdure",
+      "filename": "pizza_teglia_verdure_rossa.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "impasto per pizza pronto, passata di pomodoro, zucchina, peperone, cipolla rossa"
+    },
+    {
+      "id": "polenta_borlotti_umido",
+      "name": "Polenta con fagioli borlotti in umido",
+      "filename": "polenta_borlotti_umido.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fagioli borlotti cotti, passata di pomodoro, farina per polenta istantanea, cipolla"
+    },
+    {
+      "id": "polpette_ceci_friggitrice",
+      "name": "Polpette di ceci in friggitrice ad aria",
+      "filename": "polpette_ceci_friggitrice.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "ceci cotti, insalata verde, pangrattato, prezzemolo"
+    },
+    {
+      "id": "polpette_lenticchie_forno_sugo",
+      "name": "Polpette di lenticchie al forno con sugo",
+      "filename": "polpette_lenticchie_forno_sugo.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "lenticchie cotte, passata di pomodoro, uova, pangrattato, parmigiano reggiano"
+    },
+    {
+      "id": "pomodori_ripieni_riso_patate",
+      "name": "Pomodori ripieni di riso con patate",
+      "filename": "pomodori_ripieni_riso_patate.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "pomodoro, patata, riso"
+    },
+    {
+      "id": "quesadilla_borlotti_mais_mozzarella",
+      "name": "Quesadilla di borlotti, mais e mozzarella",
+      "filename": "quesadilla_borlotti_mais_mozzarella.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "tortilla di frumento, fagioli borlotti cotti, mozzarella, mais in scatola, insalata verde"
+    },
+    {
+      "id": "ratatouille_in_pentola",
+      "name": "Ratatouille",
+      "filename": "ratatouille_in_pentola.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "melanzana, pomodoro, zucchina, peperone, cipolla"
+    },
+    {
+      "id": "salmone_lenticchie_spinaci",
+      "name": "Salmone su lenticchie e spinaci",
+      "filename": "salmone_lenticchie_spinaci.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "filetto di salmone, lenticchie cotte, spinaci freschi, limone"
+    },
+    {
+      "id": "scaloppine_seitan_funghi",
+      "name": "Scaloppine di seitan ai funghi",
+      "filename": "scaloppine_seitan_funghi.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "seitan, funghi champignon, farina di grano tenero"
+    },
+    {
+      "id": "scarola_olive_capperi_pinoli",
+      "name": "Scarola in padella con olive, capperi e pinoli",
+      "filename": "scarola_olive_capperi_pinoli.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "scarola, pane, olive nere, capperi, pinoli"
+    },
+    {
+      "id": "seitan_alla_pizzaiola",
+      "name": "Seitan alla pizzaiola",
+      "filename": "seitan_alla_pizzaiola.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "pomodori pelati, seitan, capperi"
+    },
+    {
+      "id": "sformato_broccoli_forno",
+      "name": "Sformato di broccoli",
+      "filename": "sformato_broccoli_forno.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "broccolo, besciamella pronta, uova, parmigiano reggiano, pangrattato"
+    },
+    {
+      "id": "noodles_tempeh_peperoni",
+      "name": "Spaghetti di riso con tempeh e peperoni",
+      "filename": "noodles_tempeh_peperoni.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "peperone, tempeh, spaghetti di riso, cipolla, salsa di soia"
+    },
+    {
+      "id": "tacos_lenticchie",
+      "name": "Tacos di lenticchie speziate",
+      "filename": "tacos_lenticchie.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "tortilla di frumento, lenticchie cotte, pomodoro, avocado, lime"
+    },
+    {
+      "id": "tempeh_piastra_cavolo_nero",
+      "name": "Tempeh alla piastra con cavolo nero saltato",
+      "filename": "tempeh_piastra_cavolo_nero.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "cavolo nero, tempeh, limone"
+    },
+    {
+      "id": "tempeh_glassato_acero_riso_broccoli",
+      "name": "Tempeh glassato all'acero con riso e broccoli",
+      "filename": "tempeh_glassato_acero_riso_broccoli.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "broccolo, tempeh, riso basmati, salsa di soia, sciroppo d'acero"
+    },
+    {
+      "id": "tofu_limone_capperi_fagiolini",
+      "name": "Tofu al limone e capperi con fagiolini",
+      "filename": "tofu_limone_capperi_fagiolini.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "tofu, fagiolini, limone, fecola di patate, capperi"
+    },
+    {
+      "id": "tofu_piastra_peperoni_zucchine",
+      "name": "Tofu alla piastra con peperoni e zucchine",
+      "filename": "tofu_piastra_peperoni_zucchine.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "tofu, peperone, zucchina, limone"
+    },
+    {
+      "id": "tofu_croccante_broccoli",
+      "name": "Tofu croccante in friggitrice con broccoli",
+      "filename": "tofu_croccante_broccoli.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "broccolo, tofu, limone, farina di ceci"
+    },
+    {
+      "id": "tofu_patate_dolci_paprika_friggitrice",
+      "name": "Tofu e patate dolci alla paprika in friggitrice ad aria",
+      "filename": "tofu_patate_dolci_paprika_friggitrice.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata dolce, tofu, rucola, fecola di patate"
+    },
+    {
+      "id": "tofu_saltato_verdure",
+      "name": "Tofu saltato con verdure",
+      "filename": "tofu_saltato_verdure.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "tofu, zucchina, peperone, salsa di soia"
+    },
+    {
+      "id": "torta_salata_spinaci_ricotta",
+      "name": "Torta salata con spinaci e ricotta",
+      "filename": "torta_salata_spinaci_ricotta.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "spinaci surgelati, ricotta, uova, pasta brisée, parmigiano reggiano"
+    },
+    {
+      "id": "torta_salata_porri_stracchino",
+      "name": "Torta salata di porri e stracchino",
+      "filename": "torta_salata_porri_stracchino.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "porro, stracchino, pasta sfoglia, uova, parmigiano reggiano"
+    },
+    {
+      "id": "torta_salata_zucchine",
+      "name": "Torta salata di sfoglia con zucchine e scamorza",
+      "filename": "torta_salata_zucchine.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "zucchina, ricotta, pasta sfoglia, scamorza affumicata, parmigiano reggiano"
+    },
+    {
+      "id": "tortino_patate_zucchine_strati",
+      "name": "Tortino di patate e zucchine a strati",
+      "filename": "tortino_patate_zucchine_strati.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata, zucchina, scamorza affumicata, parmigiano reggiano, pangrattato"
+    },
+    {
+      "id": "verdure_miste_friggitrice",
+      "name": "Verdure miste croccanti in friggitrice ad aria",
+      "filename": "verdure_miste_friggitrice.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "patata, zucchina, peperone, cipolla rossa"
+    },
+    {
+      "id": "verza_stufata_fagioli",
+      "name": "Verza stufata con cannellini",
+      "filename": "verza_stufata_fagioli.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "verza, fagioli cannellini cotti, cipolla"
+    },
+    {
+      "id": "vignarola_romana",
+      "name": "Vignarola romana",
+      "filename": "vignarola_romana.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "fave surgelate, piselli surgelati, carciofi, cipollotto, insalata verde"
+    },
+    {
+      "id": "wrap_verdure_grigliate_hummus",
+      "name": "Wrap con verdure grigliate e hummus",
+      "filename": "wrap_verdure_grigliate_hummus.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "tortilla di frumento, zucchina, melanzana, peperone, hummus pronto"
+    },
+    {
+      "id": "zucca_ceci_forno_rosmarino",
+      "name": "Zucca e ceci al forno con rosmarino",
+      "filename": "zucca_ceci_forno_rosmarino.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "zucca, ceci cotti, cipolla rossa"
+    },
+    {
+      "id": "zucchine_ripiene_carne_forno",
+      "name": "Zucchine ripiene di carne al forno",
+      "filename": "zucchine_ripiene_carne_forno.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "zucchina, macinato misto manzo e maiale, uova, parmigiano reggiano, pangrattato"
+    },
+    {
+      "id": "zucchine_ripiene_couscous",
+      "name": "Zucchine ripiene di couscous e olive",
+      "filename": "zucchine_ripiene_couscous.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "zucchina, pomodorini, couscous, olive nere"
+    },
+    {
+      "id": "zuppa_piselli_spezzati",
+      "name": "Zuppa di piselli spezzati",
+      "filename": "zuppa_piselli_spezzati.png",
+      "category": "Legumi, verdure e piatti unici",
+      "ingredients": "piselli secchi spezzati, patata, carota, cipolla, sedano"
+    },
+    {
+      "id": "ananas_menta_lime",
+      "name": "Ananas fresco con menta e lime",
+      "filename": "ananas_menta_lime.png",
+      "category": "Spuntini",
+      "ingredients": "ananas, lime"
+    },
+    {
+      "id": "anguria_menta_lime",
+      "name": "Anguria con menta e lime",
+      "filename": "anguria_menta_lime.png",
+      "category": "Spuntini",
+      "ingredients": "anguria, lime"
+    },
+    {
+      "id": "bastoncini_polenta_friggitrice",
+      "name": "Bastoncini di polenta croccanti in friggitrice ad aria",
+      "filename": "bastoncini_polenta_friggitrice.png",
+      "category": "Spuntini",
+      "ingredients": "farina per polenta istantanea"
+    },
+    {
+      "id": "bruschetta_pomodoro",
+      "name": "Bruschetta al pomodoro",
+      "filename": "bruschetta_pomodoro.png",
+      "category": "Spuntini",
+      "ingredients": "pomodoro, pane"
+    },
+    {
+      "id": "bruschetta_zucchine_menta",
+      "name": "Bruschetta con zucchine grigliate e menta",
+      "filename": "bruschetta_zucchine_menta.png",
+      "category": "Spuntini",
+      "ingredients": "zucchina, pane"
+    },
+    {
+      "id": "cachi_cucchiaio_lime",
+      "name": "Cachi al cucchiaio con lime",
+      "filename": "cachi_cucchiaio_lime.png",
+      "category": "Spuntini",
+      "ingredients": "cachi, lime"
+    },
+    {
+      "id": "castagne_calde_miele_cannella",
+      "name": "Castagne calde al miele e cannella",
+      "filename": "castagne_calde_miele_cannella.png",
+      "category": "Spuntini",
+      "ingredients": "castagne cotte, miele"
+    },
+    {
+      "id": "ceci_croccanti_friggitrice",
+      "name": "Ceci croccanti in friggitrice ad aria",
+      "filename": "ceci_croccanti_friggitrice.png",
+      "category": "Spuntini",
+      "ingredients": "ceci cotti"
+    },
+    {
+      "id": "chips_cavolo_nero_friggitrice",
+      "name": "Chips di cavolo nero in friggitrice ad aria",
+      "filename": "chips_cavolo_nero_friggitrice.png",
+      "category": "Spuntini",
+      "ingredients": "cavolo nero"
+    },
+    {
+      "id": "chips_mela_cannella",
+      "name": "Chips di mela alla cannella",
+      "filename": "chips_mela_cannella.png",
+      "category": "Spuntini",
+      "ingredients": "mela"
+    },
+    {
+      "id": "chips_patate_rosmarino_friggitrice",
+      "name": "Chips di patate al rosmarino in friggitrice ad aria",
+      "filename": "chips_patate_rosmarino_friggitrice.png",
+      "category": "Spuntini",
+      "ingredients": "patata"
+    },
+    {
+      "id": "chips_tortilla_pomodorini",
+      "name": "Chips di tortilla con salsa di pomodorini",
+      "filename": "chips_tortilla_pomodorini.png",
+      "category": "Spuntini",
+      "ingredients": "tortilla di frumento, pomodorini, lime, cipolla rossa"
+    },
+    {
+      "id": "crackers_semi_forno",
+      "name": "Crackers di semi al forno",
+      "filename": "crackers_semi_forno.png",
+      "category": "Spuntini",
+      "ingredients": "semi di lino, semi di girasole, semi di zucca, semi di chia, semi di sesamo"
+    },
+    {
+      "id": "crema_ceci_bastoncini",
+      "name": "Crema di ceci al limone con verdure crude",
+      "filename": "crema_ceci_bastoncini.png",
+      "category": "Spuntini",
+      "ingredients": "ceci cotti, carota, cetriolo, limone"
+    },
+    {
+      "id": "crostini_cannellini_salvia",
+      "name": "Crostini con cannellini alla salvia",
+      "filename": "crostini_cannellini_salvia.png",
+      "category": "Spuntini",
+      "ingredients": "fagioli cannellini cotti, pane"
+    },
+    {
+      "id": "crostini_crema_fave_menta",
+      "name": "Crostini con crema di fave e menta",
+      "filename": "crostini_crema_fave_menta.png",
+      "category": "Spuntini",
+      "ingredients": "fave surgelate, pane, limone"
+    },
+    {
+      "id": "crostini_crema_lenticchie",
+      "name": "Crostini con crema di lenticchie e cipolla rossa",
+      "filename": "crostini_crema_lenticchie.png",
+      "category": "Spuntini",
+      "ingredients": "lenticchie cotte, pane, cipolla rossa"
+    },
+    {
+      "id": "crostini_mozzarella_alici",
+      "name": "Crostini con mozzarella e alici",
+      "filename": "crostini_mozzarella_alici.png",
+      "category": "Spuntini",
+      "ingredients": "mozzarella, pane, filetti di acciuga sott’olio"
+    },
+    {
+      "id": "edamame_sale_lime",
+      "name": "Edamame al sale e lime",
+      "filename": "edamame_sale_lime.png",
+      "category": "Spuntini",
+      "ingredients": "edamame surgelati, lime"
+    },
+    {
+      "id": "fettunta_aglio_olio",
+      "name": "Fettunta all'aglio e olio",
+      "filename": "fettunta_aglio_olio.png",
+      "category": "Spuntini",
+      "ingredients": "pane"
+    },
+    {
+      "id": "fichi_ricotta_miele",
+      "name": "Fichi con ricotta e miele",
+      "filename": "fichi_ricotta_miele.png",
+      "category": "Spuntini",
+      "ingredients": "fichi freschi, ricotta, miele"
+    },
+    {
+      "id": "verdure_crude_salsa_tahina",
+      "name": "Finocchi, ravanelli e cavolfiore con salsa alla tahina",
+      "filename": "verdure_crude_salsa_tahina.png",
+      "category": "Spuntini",
+      "ingredients": "finocchio, cavolfiore, ravanelli, limone, tahina"
+    },
+    {
+      "id": "focaccine_yogurt_padella",
+      "name": "Focaccine allo yogurt in padella",
+      "filename": "focaccine_yogurt_padella.png",
+      "category": "Spuntini",
+      "ingredients": "farina di grano tenero, yogurt bianco naturale, lievito per dolci"
+    },
+    {
+      "id": "frittelle_zucchine_parmigiano",
+      "name": "Frittelle di zucchine e parmigiano",
+      "filename": "frittelle_zucchine_parmigiano.png",
+      "category": "Spuntini",
+      "ingredients": "zucchina, uova, farina di grano tenero, parmigiano reggiano"
+    },
+    {
+      "id": "frullato_melone_pesca_menta",
+      "name": "Frullato di melone, pesca e menta",
+      "filename": "frullato_melone_pesca_menta.png",
+      "category": "Spuntini",
+      "ingredients": "melone, pesca"
+    },
+    {
+      "id": "mix_frutta_secca_rosmarino",
+      "name": "Frutta secca e semi tostati al rosmarino",
+      "filename": "mix_frutta_secca_rosmarino.png",
+      "category": "Spuntini",
+      "ingredients": "mandorle, nocciole, semi di zucca"
+    },
+    {
+      "id": "gallette_ricotta_miele",
+      "name": "Gallette di riso con ricotta e miele",
+      "filename": "gallette_ricotta_miele.png",
+      "category": "Spuntini",
+      "ingredients": "ricotta, gallette di riso, miele"
+    },
+    {
+      "id": "gelato_banana_frutti_bosco",
+      "name": "Gelato istantaneo di banana e frutti di bosco",
+      "filename": "gelato_banana_frutti_bosco.png",
+      "category": "Spuntini",
+      "ingredients": "banana, frutti di bosco surgelati"
+    },
+    {
+      "id": "ghiaccioli_anguria_fragole",
+      "name": "Ghiaccioli di anguria e fragole",
+      "filename": "ghiaccioli_anguria_fragole.png",
+      "category": "Spuntini",
+      "ingredients": "anguria, fragole, lime, zucchero"
+    },
+    {
+      "id": "ghiaccioli_yogurt_mirtilli",
+      "name": "Ghiaccioli di yogurt e mirtilli",
+      "filename": "ghiaccioli_yogurt_mirtilli.png",
+      "category": "Spuntini",
+      "ingredients": "yogurt greco, mirtilli freschi, miele"
+    },
+    {
+      "id": "girelle_piadina_cotto_formaggio",
+      "name": "Girelle di piadina con prosciutto cotto e formaggio fresco",
+      "filename": "girelle_piadina_cotto_formaggio.png",
+      "category": "Spuntini",
+      "ingredients": "piadina, formaggio fresco spalmabile, prosciutto cotto, insalata verde"
+    },
+    {
+      "id": "hummus_lupini_verdure",
+      "name": "Hummus di lupini con verdure crude",
+      "filename": "hummus_lupini_verdure.png",
+      "category": "Spuntini",
+      "ingredients": "lupini in salamoia, carota, cetriolo, limone, tahina"
+    },
+    {
+      "id": "lupini_conditi_limone_peperoncino",
+      "name": "Lupini conditi con limone, aglio e peperoncino",
+      "filename": "lupini_conditi_limone_peperoncino.png",
+      "category": "Spuntini",
+      "ingredients": "lupini in salamoia, limone"
+    },
+    {
+      "id": "macedonia_inverno_agrumi_kiwi",
+      "name": "Macedonia d'inverno con agrumi, kiwi e melagrana",
+      "filename": "macedonia_inverno_agrumi_kiwi.png",
+      "category": "Spuntini",
+      "ingredients": "mandarini, kiwi, arancia, melagrana"
+    },
+    {
+      "id": "macedonia_estiva_anguria_melone",
+      "name": "Macedonia estiva di anguria, melone e pesca",
+      "filename": "macedonia_estiva_anguria_melone.png",
+      "category": "Spuntini",
+      "ingredients": "anguria, melone, pesca, lime"
+    },
+    {
+      "id": "mandarini_mandorle_tostate",
+      "name": "Mandarini e mandorle tostate",
+      "filename": "mandarini_mandorle_tostate.png",
+      "category": "Spuntini",
+      "ingredients": "mandarini, mandorle"
+    },
+    {
+      "id": "mela_mandorle",
+      "name": "Mela a fette con mandorle",
+      "filename": "mela_mandorle.png",
+      "category": "Spuntini",
+      "ingredients": "mela, mandorle"
+    },
+    {
+      "id": "melone_prosciutto_crudo",
+      "name": "Melone e prosciutto crudo",
+      "filename": "melone_prosciutto_crudo.png",
+      "category": "Spuntini",
+      "ingredients": "melone, prosciutto crudo"
+    },
+    {
+      "id": "mousse_avocado_cacao",
+      "name": "Mousse di avocado e cacao",
+      "filename": "mousse_avocado_cacao.png",
+      "category": "Spuntini",
+      "ingredients": "avocado, banana, sciroppo d'acero, cacao amaro in polvere"
+    },
+    {
+      "id": "olive_arancia_caciocavallo",
+      "name": "Olive condite all'arancia con caciocavallo",
+      "filename": "olive_arancia_caciocavallo.png",
+      "category": "Spuntini",
+      "ingredients": "olive verdi, caciocavallo, arancia"
+    },
+    {
+      "id": "palline_avena_burro_arachidi",
+      "name": "Palline di avena e burro di arachidi",
+      "filename": "palline_avena_burro_arachidi.png",
+      "category": "Spuntini",
+      "ingredients": "fiocchi d'avena, burro di arachidi, miele, gocce di cioccolato"
+    },
+    {
+      "id": "palline_datteri_cacao",
+      "name": "Palline di datteri e cacao",
+      "filename": "palline_datteri_cacao.png",
+      "category": "Spuntini",
+      "ingredients": "datteri secchi, cocco rapé, cacao amaro in polvere, semi di chia"
+    },
+    {
+      "id": "palline_fichi_secchi_nocciole",
+      "name": "Palline di fichi secchi e nocciole",
+      "filename": "palline_fichi_secchi_nocciole.png",
+      "category": "Spuntini",
+      "ingredients": "fichi secchi, nocciole, arancia, cacao amaro in polvere"
+    },
+    {
+      "id": "carasau_rosmarino",
+      "name": "Pane carasau croccante al rosmarino",
+      "filename": "carasau_rosmarino.png",
+      "category": "Spuntini",
+      "ingredients": "pane carasau"
+    },
+    {
+      "id": "pane_cioccolato_fondente",
+      "name": "Pane e cioccolato",
+      "filename": "pane_cioccolato_fondente.png",
+      "category": "Spuntini",
+      "ingredients": "pane, cioccolato fondente"
+    },
+    {
+      "id": "pera_gorgonzola_noci",
+      "name": "Pera con gorgonzola e noci",
+      "filename": "pera_gorgonzola_noci.png",
+      "category": "Spuntini",
+      "ingredients": "pera, gorgonzola, noci sgusciate"
+    },
+    {
+      "id": "pinzimonio_verdure",
+      "name": "Pinzimonio",
+      "filename": "pinzimonio_verdure.png",
+      "category": "Spuntini",
+      "ingredients": "finocchio, carota, sedano, ravanelli"
+    },
+    {
+      "id": "prugne_cotte_cannella",
+      "name": "Prugne cotte alla cannella",
+      "filename": "prugne_cotte_cannella.png",
+      "category": "Spuntini",
+      "ingredients": "prugne fresche, limone, zucchero di canna grezzo"
+    },
+    {
+      "id": "spiedini_frutta_cioccolato",
+      "name": "Spiedini di frutta al cioccolato",
+      "filename": "spiedini_frutta_cioccolato.png",
+      "category": "Spuntini",
+      "ingredients": "fragole, banana, kiwi, cioccolato fondente"
+    },
+    {
+      "id": "tramezzini_tonno_pomodoro",
+      "name": "Tramezzini tonno e pomodoro",
+      "filename": "tramezzini_tonno_pomodoro.png",
+      "category": "Spuntini",
+      "ingredients": "pane in cassetta, pomodoro, tonno in scatola, maionese, insalata verde"
+    },
+    {
+      "id": "uva_primo_sale_pepe",
+      "name": "Uva e primo sale al pepe nero",
+      "filename": "uva_primo_sale_pepe.png",
+      "category": "Spuntini",
+      "ingredients": "uva, primo sale"
+    },
+    {
+      "id": "verdure_crude_salsa_yogurt_erba_cipollina",
+      "name": "Verdure crude con salsa allo yogurt ed erba cipollina",
+      "filename": "verdure_crude_salsa_yogurt_erba_cipollina.png",
+      "category": "Spuntini",
+      "ingredients": "yogurt greco, carota, cetriolo, peperone"
+    },
+    {
+      "id": "yogurt_banana_cacao",
+      "name": "Yogurt con banana e cacao",
+      "filename": "yogurt_banana_cacao.png",
+      "category": "Spuntini",
+      "ingredients": "yogurt bianco naturale, banana, cacao amaro in polvere"
+    }
+  ]
+}
