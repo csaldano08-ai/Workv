@@ -5457,11 +5457,21 @@
       "filename": "agnello_forno_patate.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "agnello a pezzi, patata",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/agnello_forno_patate.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Agnello al forno con patate; ingredients and prepared appearance checked against catalog (agnello a pezzi, patata). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/112ba940-e976-4853-9b58-2dc074bd4870",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1526540,
+      "sha256": "2d22b68a9b6201b1bae0fb4666ff6c129f3a88dc05450a028bfc051c09cb497c",
+      "updated_at": "2026-11-01T14:19:18.486870+00:00"
     },
     {
       "id": "agnello_cacio_e_uova",
@@ -5469,11 +5479,21 @@
       "filename": "agnello_cacio_e_uova.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "agnello a pezzi, uova, limone, cipolla, pecorino romano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/agnello_cacio_e_uova.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Agnello cacio e uova; ingredients and prepared appearance checked against catalog (agnello a pezzi, uova, limone, cipolla, pecorino romano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/b5b92609-f43a-4890-a10b-923fb6df5373",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1502190,
+      "sha256": "06486ae3934de3423beb4bd2b8d6053bfcb4b7182d5fa1c9ae3823afb6184cca",
+      "updated_at": "2026-11-01T14:19:09.895393+00:00"
     },
     {
       "id": "alici_in_tortiera_gratinate",
@@ -5481,11 +5501,21 @@
       "filename": "alici_in_tortiera_gratinate.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "alici fresche, limone, pangrattato, pecorino romano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/alici_in_tortiera_gratinate.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Alici in tortiera gratinate; ingredients and prepared appearance checked against catalog (alici fresche, limone, pangrattato, pecorino romano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/f66c9152-51f8-42e3-96b4-afd0f8091e73",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1630238,
+      "sha256": "129ef6fb5510b66277be1c81300f80561994e030e7e3a9b25ec8b69e41493f2c",
+      "updated_at": "2026-11-01T14:19:26.890067+00:00"
     },
     {
       "id": "calamari_friggitrice",
@@ -5515,11 +5545,21 @@
       "filename": "baccala_umido_patate.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "baccalÃ  dissalato, patata, passata di pomodoro, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/baccala_umido_patate.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: BaccalÃ  in umido con patate; ingredients and prepared appearance checked against catalog (baccalÃ  dissalato, patata, passata di pomodoro, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/5a577eba-cba0-4c94-b1f7-3e02c58fdb4c",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1365178,
+      "sha256": "edc9757188a165c955d76616271acee899fb368f90c9aa365a4448426ac285b1",
+      "updated_at": "2026-11-01T14:19:06.782433+00:00"
     },
     {
       "id": "pollo_peperoni",
@@ -5549,11 +5589,21 @@
       "filename": "bocconcini_tacchino_funghi.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "fesa di tacchino a cubetti, funghi champignon, fecola di patate",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/bocconcini_tacchino_funghi.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Bocconcini di tacchino ai funghi; ingredients and prepared appearance checked against catalog (fesa di tacchino a cubetti, funghi champignon, fecola di patate). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/ae8e8476-6493-4736-be28-cd3dff98c299",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1449872,
+      "sha256": "76f26a097f07ce8958cc0f0645dc15372a4f2bb336726d650d1430cce1a7f84f",
+      "updated_at": "2026-11-01T14:19:47.775616+00:00"
     },
     {
       "id": "bocconcini_tacchino_zucchine_zafferano",
@@ -5561,11 +5611,21 @@
       "filename": "bocconcini_tacchino_zucchine_zafferano.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "fesa di tacchino a cubetti, zucchina, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/bocconcini_tacchino_zucchine_zafferano.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Bocconcini di tacchino con zucchine e zafferano; ingredients and prepared appearance checked against catalog (fesa di tacchino a cubetti, zucchina, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/ca93f3e9-e9b7-4068-b03a-a712704dc15b",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1471938,
+      "sha256": "eba7346500199c3b67066a5ef32abe60ba22aa4fbe5406025fc4fc5e9022d5cb",
+      "updated_at": "2026-11-01T14:19:23.796521+00:00"
     },
     {
       "id": "braciole_al_sugo_barese",
@@ -5573,11 +5633,21 @@
       "filename": "braciole_al_sugo_barese.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "passata di pomodoro, fettine di manzo, cipolla, pecorino romano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/braciole_al_sugo_barese.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Braciole al sugo alla barese; ingredients and prepared appearance checked against catalog (passata di pomodoro, fettine di manzo, cipolla, pecorino romano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/ec511e5e-ea11-471f-875e-f0af884f495d",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1500019,
+      "sha256": "a3c972cf964d660d7bedb9e3f6ca79ca64b44f4de57c7d56823e44d7f5b7e412",
+      "updated_at": "2026-11-01T14:18:59.192047+00:00"
     },
     {
       "id": "branzino_cartoccio_zucchine_limone",
@@ -5585,11 +5655,21 @@
       "filename": "branzino_cartoccio_zucchine_limone.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "filetti di orata, zucchina, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/branzino_cartoccio_zucchine_limone.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Branzino in cartoccio con zucchine e limone; ingredients and prepared appearance checked against catalog (filetti di orata, zucchina, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/b4d6272c-6baa-43ff-83d7-a4f58ae59c7c",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1601154,
+      "sha256": "83279c6e83374c2370970501ff8755ec7543cd1667007a39a9cf49360429fbe2",
+      "updated_at": "2026-11-01T14:19:33.755552+00:00"
     },
     {
       "id": "bresaola_rucola_parmigiano",
@@ -5619,11 +5699,21 @@
       "filename": "carne_alla_pizzaiola.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "pomodori pelati, fettine di manzo",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/carne_alla_pizzaiola.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Carne alla pizzaiola; ingredients and prepared appearance checked against catalog (pomodori pelati, fettine di manzo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/23631b8b-14b7-4c90-b0b6-222232d0d41c",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1516711,
+      "sha256": "72a957e1a0313ab7edabeab44d69874c07c786c161f2973210cf2024b65b03b7",
+      "updated_at": "2026-11-01T14:19:37.578680+00:00"
     },
     {
       "id": "chili_con_carne",
@@ -5631,11 +5721,21 @@
       "filename": "chili_con_carne.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "pomodori pelati, carne macinata di manzo, fagioli borlotti cotti, peperone, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/chili_con_carne.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Chili con carne; ingredients and prepared appearance checked against catalog (pomodori pelati, carne macinata di manzo, fagioli borlotti cotti, peperone, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/e136f1ff-7069-424b-ba27-a82169af7540",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1173725,
+      "sha256": "4b77b071a6b35a99cfbc66ae16dde59c1ce2c8638045d8f970be7273de5f8a70",
+      "updated_at": "2026-11-01T14:19:45.986546+00:00"
     },
     {
       "id": "coniglio_alla_cacciatora",
@@ -5643,11 +5743,21 @@
       "filename": "coniglio_alla_cacciatora.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "coniglio a pezzi, pomodori pelati, cipolla, carota",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/coniglio_alla_cacciatora.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Coniglio alla cacciatora; ingredients and prepared appearance checked against catalog (coniglio a pezzi, pomodori pelati, cipolla, carota). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/62b1083f-cc76-4581-889e-2b9511904491",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1225602,
+      "sha256": "6f5f635c1a73c5fdd9115c0727a658a36e8e9c4526fabfa62e6342d840806d0a",
+      "updated_at": "2026-11-01T14:19:44.267828+00:00"
     },
     {
       "id": "coniglio_alla_ligure_olive",
@@ -5655,11 +5765,21 @@
       "filename": "coniglio_alla_ligure_olive.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "coniglio a pezzi, olive nere, pinoli",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/coniglio_alla_ligure_olive.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Coniglio alla ligure con olive; ingredients and prepared appearance checked against catalog (coniglio a pezzi, olive nere, pinoli). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/97f620dd-3b8b-42dd-b079-ed05640dc9ca",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1371107,
+      "sha256": "976d3299835ed5aed2c5d21f48d83bb0b9ddb385c97d57e81d19813d659adb13",
+      "updated_at": "2026-11-01T14:19:35.673430+00:00"
     },
     {
       "id": "cosce_pollo_patate_forno",
@@ -5689,11 +5809,21 @@
       "filename": "costine_maiale_forno_patate.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "costine di maiale, patata",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/costine_maiale_forno_patate.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Costine di maiale al forno con patate; ingredients and prepared appearance checked against catalog (costine di maiale, patata). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/9025bc42-fda4-4eb8-bde4-923514297b0a",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1281591,
+      "sha256": "395cd4e6894118e2cbb98eb5f32eac9becbf8c44da6071386cc5f04a70cd70c7",
+      "updated_at": "2026-11-01T14:19:04.219186+00:00"
     },
     {
       "id": "cotolette_pollo_insalata_pomodori",
@@ -5701,11 +5831,21 @@
       "filename": "cotolette_pollo_insalata_pomodori.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "petto di pollo, pomodoro, uova, pangrattato, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/cotolette_pollo_insalata_pomodori.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Cotolette di pollo con insalata di pomodori; ingredients and prepared appearance checked against catalog (petto di pollo, pomodoro, uova, pangrattato, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/09882f0f-41b6-4afd-a703-9ee2f8fe7e47",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1328420,
+      "sha256": "0c2cc2f12f74b71367a8cae4b65a75c5489112d1385217a8ec06c993336b30c2",
+      "updated_at": "2026-11-01T14:19:42.345912+00:00"
     },
     {
       "id": "cozze_marinara",
@@ -5735,11 +5875,21 @@
       "filename": "crocchette_salmone_patate_friggitrice.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "patata, salmone al naturale in scatola, uova, pangrattato",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/crocchette_salmone_patate_friggitrice.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Crocchette di salmone e patate in friggitrice ad aria; ingredients and prepared appearance checked against catalog (patata, salmone al naturale in scatola, uova, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/e3a01b6e-0ac1-4edd-be73-e10626f95bac",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1439887,
+      "sha256": "0812fa691a0901f86dc7ed2e7fb9ddb6205970f99d9a24f4ab214bdee2d54d68",
+      "updated_at": "2026-11-01T14:19:30.056053+00:00"
     },
     {
       "id": "curry_uova_sode_riso",
@@ -5747,11 +5897,21 @@
       "filename": "curry_uova_sode_riso.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "uova, passata di pomodoro, riso basmati, latte di cocco, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/curry_uova_sode_riso.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Curry di uova sode con riso basmati; ingredients and prepared appearance checked against catalog (uova, passata di pomodoro, riso basmati, latte di cocco, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/e80af351-4ded-4248-a6fb-025c072efe52",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1411648,
+      "sha256": "df2d35caf92796ba208e85d16b294b52920aafbaceb67cdbaf965c5f718ab56c",
+      "updated_at": "2026-11-01T14:19:12.983353+00:00"
     },
     {
       "id": "fajitas_pollo_peperoni",
@@ -5759,11 +5919,21 @@
       "filename": "fajitas_pollo_peperoni.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "tortilla di frumento, petto di pollo, peperone, cipolla rossa, lime",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/fajitas_pollo_peperoni.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Fajitas di pollo con peperoni; ingredients and prepared appearance checked against catalog (tortilla di frumento, petto di pollo, peperone, cipolla rossa, lime). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/3eb47295-d24b-4cbf-a24f-885f8746e660",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1132519,
+      "sha256": "6b363766dc2be8917b2897f7d8189985ca26fc73187cc7f62f04b0a1cb15fc51",
+      "updated_at": "2026-11-01T14:19:01.682274+00:00"
     },
     {
       "id": "fegatini_pollo_cipolle_polenta",
@@ -5771,11 +5941,21 @@
       "filename": "fegatini_pollo_cipolle_polenta.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "fegatini di pollo, cipolla, farina per polenta istantanea",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/fegatini_pollo_cipolle_polenta.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Fegatini di pollo con cipolle e polenta; ingredients and prepared appearance checked against catalog (fegatini di pollo, cipolla, farina per polenta istantanea). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/f8bf7820-5a21-4dcf-8a1a-ae0713179657",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1395731,
+      "sha256": "26d7eeae5338536b8a4ef44e99c33c5410e412d0ead0755611f407f3dbe02b7c",
+      "updated_at": "2026-11-01T14:19:31.961077+00:00"
     },
     {
       "id": "fettine_lonza_al_latte",
@@ -5783,11 +5963,21 @@
       "filename": "fettine_lonza_al_latte.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "lonza di maiale a fette, latte, burro, farina di grano tenero",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/fettine_lonza_al_latte.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Fettine di lonza al latte; ingredients and prepared appearance checked against catalog (lonza di maiale a fette, latte, burro, farina di grano tenero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/40fcfdaa-4e95-4227-b5fc-cc79c9f2c2f5",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1449817,
+      "sha256": "4d5bd7e5c73c0c6493ea76415e1035b52c9ca692edfdc039f165037b0c949e93",
+      "updated_at": "2026-11-01T14:19:39.556884+00:00"
     },
     {
       "id": "tacchino_rosmarino_insalata",
@@ -5883,11 +6073,21 @@
       "filename": "frittata_di_cipolle.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "uova, cipolla, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/frittata_di_cipolle.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Frittata di cipolle; ingredients and prepared appearance checked against catalog (uova, cipolla, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/8742a214-02db-4532-af5f-abf1c93fc02d",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1480651,
+      "sha256": "162fff6daa95be741b6245f8c77d239c848964e34341b769af69dba429ccd11b",
+      "updated_at": "2026-11-01T14:19:15.662101+00:00"
     },
     {
       "id": "frittata_zucchine",
@@ -5939,11 +6139,21 @@
       "filename": "gamberoni_aglio_olio_prezzemolo.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "gamberi interi, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/gamberoni_aglio_olio_prezzemolo.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Gamberoni in padella aglio, olio e prezzemolo; ingredients and prepared appearance checked against catalog (gamberi interi, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/413c4a27-cacc-408d-a8aa-0b631486a728",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1379461,
+      "sha256": "c0916ab4a6c67d523e3dfd537c6a09c63eb68aafec1ffecf0668e8f81fc0e06c",
+      "updated_at": "2026-11-01T14:22:49.835017+00:00"
     },
     {
       "id": "gulasch_manzo_polenta",
@@ -5951,11 +6161,21 @@
       "filename": "gulasch_manzo_polenta.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "manzo a cubetti, cipolla, farina per polenta istantanea, concentrato di pomodoro",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/gulasch_manzo_polenta.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Gulasch di manzo con polenta; ingredients and prepared appearance checked against catalog (manzo a cubetti, cipolla, farina per polenta istantanea, concentrato di pomodoro). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/cf1cc9ce-095c-423c-a582-78eb1a12ef7b",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1218473,
+      "sha256": "29bc96763b5962c3a769c1be74a7b57c995f911fcc3dda07448bff46248288d5",
+      "updated_at": "2026-11-01T14:23:04.832496+00:00"
     },
     {
       "id": "hamburger_insalata",
@@ -5985,11 +6205,21 @@
       "filename": "impepata_di_cozze.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "cozze, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/impepata_di_cozze.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Impepata di cozze; ingredients and prepared appearance checked against catalog (cozze, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/4a528e13-8fd7-40e7-a276-f5deef334a29",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1549099,
+      "sha256": "5619a03c1e3dd3ef485327b7b1406d54b3315c9a358c506fe1dfa300688c88ca",
+      "updated_at": "2026-11-01T14:22:59.499435+00:00"
     },
     {
       "id": "insalata_polpo_patate",
@@ -5997,11 +6227,21 @@
       "filename": "insalata_polpo_patate.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "polpo, patata, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/insalata_polpo_patate.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata di polpo e patate; ingredients and prepared appearance checked against catalog (polpo, patata, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/b7f42fbd-6ebc-460e-9217-7f40220873a5",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1379678,
+      "sha256": "633fc9a64e690757608f52bbfd4f5d357ad5ea9898f22642fc721857795c11e7",
+      "updated_at": "2026-11-01T14:23:01.346017+00:00"
     },
     {
       "id": "insalata_sgombro_fagioli",
@@ -6053,11 +6293,21 @@
       "filename": "involtini_tacchino_spinaci.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "fettine di tacchino, spinaci surgelati, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/involtini_tacchino_spinaci.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Involtini di tacchino con spinaci e parmigiano; ingredients and prepared appearance checked against catalog (fettine di tacchino, spinaci surgelati, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/c471bf1f-cdc7-4127-b4f4-d3b6d3f271b2",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1160735,
+      "sha256": "8594919346f069d1c98d5563f5d8f5ad472f2d2f747a1c7bd6d0ba1c71edd0b1",
+      "updated_at": "2026-11-01T14:22:55.808055+00:00"
     },
     {
       "id": "lonza_mele",
@@ -6087,11 +6337,21 @@
       "filename": "maiale_agrodolce_ananas.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "lonza di maiale a fette, peperone, ananas, riso basmati, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/maiale_agrodolce_ananas.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Maiale in agrodolce con peperoni e ananas; ingredients and prepared appearance checked against catalog (lonza di maiale a fette, peperone, ananas, riso basmati, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/5ec7e8e4-e50c-4e05-8b11-8fda46d4aaf6",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1448750,
+      "sha256": "bac35b73eb3b081a456ba87657d68b7e60911773ce76c0be7d24dbad3049c81b",
+      "updated_at": "2026-11-01T14:22:36.771053+00:00"
     },
     {
       "id": "merluzzo_alla_livornese",
@@ -6099,11 +6359,21 @@
       "filename": "merluzzo_alla_livornese.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "filetti di merluzzo surgelati, pomodori pelati, olive nere, capperi",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/merluzzo_alla_livornese.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Merluzzo alla livornese; ingredients and prepared appearance checked against catalog (filetti di merluzzo surgelati, pomodori pelati, olive nere, capperi). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/1bc61e9e-79ed-4984-b82a-b1e2e34c2dd9",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1462425,
+      "sha256": "917360c3392078d74566e373363a542380147e0fb1357e2c1e7945ac2add23b6",
+      "updated_at": "2026-11-01T14:23:06.606252+00:00"
     },
     {
       "id": "merluzzo_pomodorini_capperi",
@@ -6133,11 +6403,21 @@
       "filename": "nasello_vapore_carote_zucchine.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "nasello fresco, carota, zucchina, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/nasello_vapore_carote_zucchine.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Nasello al vapore con carote e zucchine; ingredients and prepared appearance checked against catalog (nasello fresco, carota, zucchina, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/ed0c2887-4756-4c79-8230-6fff2e24bdc6",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1040811,
+      "sha256": "297673ac7af6c7b8ff3947a9b93b363124c67bc3312a0f0696ff66dea9957e2b",
+      "updated_at": "2026-11-01T14:22:46.100233+00:00"
     },
     {
       "id": "omelette_funghi_champignon",
@@ -6145,11 +6425,21 @@
       "filename": "omelette_funghi_champignon.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "uova, funghi champignon, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/omelette_funghi_champignon.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Omelette ai funghi champignon; ingredients and prepared appearance checked against catalog (uova, funghi champignon, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/b19b8d58-6f3f-473c-9c6c-7b78f899f608",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1409937,
+      "sha256": "1368235c6a01769ed850685b16acf5a7cd873235b19dca2ef9108de2c2c1ddcb",
+      "updated_at": "2026-11-01T14:22:48.013161+00:00"
     },
     {
       "id": "omelette_spinaci_scamorza",
@@ -6179,11 +6469,21 @@
       "filename": "orata_acqua_pazza.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "filetti di orata, pomodorini",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/orata_acqua_pazza.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Orata all'acqua pazza; ingredients and prepared appearance checked against catalog (filetti di orata, pomodorini). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/428a6629-c17c-4115-8c8e-2c30e5e3b592",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1586631,
+      "sha256": "be63f73851b26ae2270d0d1f594d32bf03dfbb78b69d993f70dadc4dd987a8ae",
+      "updated_at": "2026-11-01T14:22:53.867226+00:00"
     },
     {
       "id": "pasta_gamberetti_pomodorini",
@@ -6323,11 +6623,21 @@
       "filename": "platessa_limone_padella.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "filetti di platessa, limone, fecola di patate",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/platessa_limone_padella.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Platessa al limone in padella; ingredients and prepared appearance checked against catalog (filetti di platessa, limone, fecola di patate). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/d6c949ac-9017-4f3c-8101-cbf528e4de1f",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1169283,
+      "sha256": "aa048edffa62f0728dc75647042b7e0bf89153cedec8957fc0282dc3e2bf974d",
+      "updated_at": "2026-11-01T14:22:40.239892+00:00"
     },
     {
       "id": "pollo_al_forno_zucca_rosmarino",
@@ -6335,11 +6645,21 @@
       "filename": "pollo_al_forno_zucca_rosmarino.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "cosce di pollo, zucca, cipolla rossa",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pollo_al_forno_zucca_rosmarino.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pollo al forno con zucca e rosmarino; ingredients and prepared appearance checked against catalog (cosce di pollo, zucca, cipolla rossa). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/8d59d639-9232-42ad-9ca3-2d2d4a402d7c",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1557512,
+      "sha256": "e417d16b985e9ee404f8c7b75de8be23239340c03d018ef8b645c74f459b7f33",
+      "updated_at": "2026-11-01T14:23:03.036788+00:00"
     },
     {
       "id": "pollo_sesamo_broccoli_riso",
@@ -6347,11 +6667,21 @@
       "filename": "pollo_sesamo_broccoli_riso.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "petto di pollo, broccolo, riso basmati, salsa di soia, semi di sesamo",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pollo_sesamo_broccoli_riso.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pollo al sesamo con broccoli e riso; ingredients and prepared appearance checked against catalog (petto di pollo, broccolo, riso basmati, salsa di soia, semi di sesamo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/2452e03e-e23a-4882-a77e-cdad3e1cd4c9",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1490899,
+      "sha256": "07eb9f28b37b10b16faa12fa15d2ccc53e80415aa1f109ec5cc12746d5ccd946",
+      "updated_at": "2026-11-01T14:22:35.022870+00:00"
     },
     {
       "id": "pollo_cacciatora",
@@ -6381,11 +6711,21 @@
       "filename": "pollo_alla_diavola_padella.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "cosce di pollo, insalata verde, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pollo_alla_diavola_padella.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pollo alla diavola in padella; ingredients and prepared appearance checked against catalog (cosce di pollo, insalata verde, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/0ec8de33-5074-4d42-b204-6471007c51a6",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1577356,
+      "sha256": "fb2e2611435e2286208a87844dbf7ce5426d6f99d128ab8c59ebe6ab0f9f1957",
+      "updated_at": "2026-11-01T14:22:51.841780+00:00"
     },
     {
       "id": "pollo_alla_paprika_con_riso",
@@ -6393,11 +6733,21 @@
       "filename": "pollo_alla_paprika_con_riso.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "petto di pollo, passata di pomodoro, riso basmati, cipolla, yogurt greco",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pollo_alla_paprika_con_riso.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pollo alla paprika con riso; ingredients and prepared appearance checked against catalog (petto di pollo, passata di pomodoro, riso basmati, cipolla, yogurt greco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/2e38b976-66b7-4dfa-808f-1e05bb416dd8",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1475548,
+      "sha256": "f3eccbaf0cf2d6258f395807b2c16531cf00c7e9e84dc28ea66997e57cc4b507",
+      "updated_at": "2026-11-01T14:22:57.710875+00:00"
     },
     {
       "id": "polpette_al_sugo",
@@ -6427,11 +6777,21 @@
       "filename": "polpette_pollo_zucchine_friggitrice.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "macinato di pollo, zucchina, uova, insalata verde, pangrattato",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/polpette_pollo_zucchine_friggitrice.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Polpette di pollo e zucchine in friggitrice ad aria; ingredients and prepared appearance checked against catalog (macinato di pollo, zucchina, uova, insalata verde, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/8fe76fcd-e683-4818-b2c5-cc7365918e12",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1546622,
+      "sha256": "0bd85b80adf2252e8ebf6b83d98ec4139903828bc92da067fb967e418614d7d5",
+      "updated_at": "2026-11-01T14:22:44.134193+00:00"
     },
     {
       "id": "polpette_tacchino_carote",
@@ -6461,11 +6821,21 @@
       "filename": "polpette_tonno_patate_forno.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "patata, tonno in scatola, uova, pangrattato, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/polpette_tonno_patate_forno.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Polpette di tonno e patate al forno; ingredients and prepared appearance checked against catalog (patata, tonno in scatola, uova, pangrattato, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/3a258575-695e-4c5f-b894-7ddcc207e826",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1493539,
+      "sha256": "3c53b42fdaffa04a2683d447f637332c2e465a5dec91d32452e5436345ca4fbd",
+      "updated_at": "2026-11-01T14:22:42.166988+00:00"
     },
     {
       "id": "polpette_in_bianco_piselli",
@@ -6473,11 +6843,21 @@
       "filename": "polpette_in_bianco_piselli.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "carne macinata di manzo, piselli surgelati, uova, cipolla, pangrattato",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/polpette_in_bianco_piselli.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Polpette in bianco con piselli; ingredients and prepared appearance checked against catalog (carne macinata di manzo, piselli surgelati, uova, cipolla, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/b2550d92-8fee-4998-b38f-68587b23a3c8",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1328490,
+      "sha256": "7abd8f1e072182b7fac081bed21111f697ff7e4adb5f0f0fe4d8aa441bd6b922",
+      "updated_at": "2026-11-01T14:22:31.575527+00:00"
     },
     {
       "id": "polpettone_forno_patate",
@@ -6485,11 +6865,21 @@
       "filename": "polpettone_forno_patate.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "patata, macinato misto manzo e maiale, uova, prosciutto cotto, pangrattato",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/polpettone_forno_patate.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Polpettone al forno con patate; ingredients and prepared appearance checked against catalog (patata, macinato misto manzo e maiale, uova, prosciutto cotto, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/a76fbc41-2287-4d2b-829b-685067bdc9c1",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1641185,
+      "sha256": "028e7938be8bc279b0ecc6350256309c3ce9412f3d1054a3a93fb2eb01c7aa4e",
+      "updated_at": "2026-11-01T14:22:38.453124+00:00"
     },
     {
       "id": "quiche_lorraine",
@@ -6497,11 +6887,21 @@
       "filename": "quiche_lorraine.png",
       "category": "Secondi (carne, pesce, uova)",
       "ingredients": "uova, panna da cucina, pancetta a cubetti, pasta brisÃ©e, latte",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/quiche_lorraine.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Quiche lorraine; ingredients and prepared appearance checked against catalog (uova, panna da cucina, pancetta a cubetti, pasta brisÃ©e, latte). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "https://flow.google.com/project/99eff84c-3bfc-443a-86ca-fe29dc506bac/edit/cb96e6ce-82cb-4740-a208-e8ec513bbe79",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1427785,
+      "sha256": "d4c15a6b5323ec97800a6a0d0bfd51e6e3c0939818f61146bac1bfd3cf7bc68d",
+      "updated_at": "2026-11-01T14:23:08.561044+00:00"
     },
     {
       "id": "salmone_forno_broccoli",
