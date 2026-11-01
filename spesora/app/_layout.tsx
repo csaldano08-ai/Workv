@@ -7,6 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { parseRouteFromNotification } from '../src/core/notifications/routing';
 import { AppProvider, useApp } from '../src/features/app/AppProvider';
 import { colors, space } from '../src/theme/tokens';
+import { CelebrationHost } from '../src/ui/CelebrationHost';
 import { Button } from '../src/ui/Button';
 import { LogoMark } from '../src/ui/Logo';
 import { Text } from '../src/ui/Text';
@@ -67,6 +68,7 @@ function Shell() {
     <>
       {Platform.OS !== 'web' ? <NotificationRouter /> : null}
       <OnboardingGate />
+      <CelebrationHost />
       <Stack
         screenOptions={{
           headerTintColor: colors.green,

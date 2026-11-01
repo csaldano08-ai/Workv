@@ -144,3 +144,17 @@ describe('Mascotte Mina', () => {
     expect(existsSync(join(ROOT, 'assets', 'mascot', 'mina', 'vector', 'mina_badge.png'))).toBe(true);
   });
 });
+
+describe('Mina — illustrazioni raster opzionali', () => {
+  it('la mappa raster usa solo pose valide, file locali esistenti e nessuna immagine di rete', () => {
+    const src = readFileSync(join(ROOT, 'src', 'ui', 'mascot', 'minaRaster.ts'), 'utf8');
+    const code = src.replace(/\/\*[\s\S]*?\*\//g, '');
+    const entries = [...code.matchAll(/^\s*([a-z]+):\s*require\('([^']+)'\)/gm)];
+    for (const [, pose, rel] of entries) {
+      expect((MINA_POSES as readonly string[]).includes(pose), pose).toBe(true);
+      expect(existsSync(join(ROOT, 'src', 'ui', 'mascot', rel)), rel).toBe(true);
+    }
+    expect(code).not.toMatch(/https?:\/\//);
+    expect(readFileSync(join(ROOT, 'src', 'ui', 'mascot', 'Mina.tsx'), 'utf8')).not.toMatch(/uri:\s*['"`]http/);
+  });
+});

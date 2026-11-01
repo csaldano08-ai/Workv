@@ -1,7 +1,8 @@
 import { memo, useEffect, useMemo, useState } from 'react';
-import { Animated, Easing, Platform, View, type ViewStyle } from 'react-native';
+import { Animated, Easing, Image, Platform, View, type ViewStyle } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { useReducedMotion } from '../useReducedMotion';
+import { MINA_RASTER } from './minaRaster';
 import { MINA_VIEWBOX, minaBadgeSvg, minaSvg, resolvePose, type MinaPose } from './minaSvg';
 
 const native = Platform.OS !== 'web';
@@ -53,6 +54,7 @@ function gesture(pose: MinaPose, rotate: Animated.Value, lift: Animated.Value): 
  */
 export const MinaMascot = memo(function MinaMascot({ pose = 'neutral', size = 96, animated = false, accessibilityLabel, style }: MinaMascotProps) {
   const resolved = resolvePose(pose);
+  const raster = MINA_RASTER[resolved];
   const xml = useMemo(() => minaSvg(resolved), [resolved]);
   const reduced = useReducedMotion();
   const [enter] = useState(() => new Animated.Value(animated ? 0 : 1));
@@ -90,7 +92,7 @@ export const MinaMascot = memo(function MinaMascot({ pose = 'neutral', size = 96
       ]}
     >
       <View style={{ width: '100%', height: '100%' }}>
-        <SvgXml xml={xml} width="100%" height="100%" />
+        {raster ? <Image source={raster} style={{ width: '100%', height: '100%' }} resizeMode="contain" fadeDuration={0} /> : <SvgXml xml={xml} width="100%" height="100%" />}
       </View>
     </Animated.View>
   );

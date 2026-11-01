@@ -133,3 +133,15 @@ describe('Preparazioni della sera prima', () => {
     expect(compute([later], { settings: { ...DEFAULT_NOTIFICATION_SETTINGS, mealReminders: false } }).filter((n) => n.kind === 'prep')).toHaveLength(0);
   });
 });
+
+describe('Festeggiamenti di Mina', () => {
+  it('consegna l’evento a chi è in ascolto e smette dopo l’annullamento', async () => {
+    const { celebrate, onCelebrate } = await import('../ui/celebration');
+    const seen: string[] = [];
+    const off = onCelebrate((c) => seen.push(c.title));
+    celebrate({ title: 'Pasto completato', text: 'ok' });
+    off();
+    celebrate({ title: 'Ignorato', text: 'ok' });
+    expect(seen).toEqual(['Pasto completato']);
+  });
+});

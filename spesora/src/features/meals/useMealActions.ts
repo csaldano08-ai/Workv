@@ -1,3 +1,5 @@
+import { celebrate } from '../../ui/celebration';
+import { recipeCompleted } from '../../i18n/assistant';
 import { router } from 'expo-router';
 import { Alert } from '../../ui/dialog';
 import { formatQtyWithUnit } from '../../core/domain/quantity';
@@ -25,7 +27,9 @@ export function useMealActions() {
         })
         .join(', ');
       Alert.alert('Pasto registrato', `In dispensa non risultavano: ${list}. Se li avevi, aggiungili dalla Dispensa per tenerla allineata.`);
+      return;
     }
+    celebrate({ title: 'Pasto completato', text: recipeCompleted(meal.id) });
   };
 
   const notFollowed = async (meal: PlannedMeal, outcome: Exclude<MealStatus, 'planned' | 'cooked'>) => {
