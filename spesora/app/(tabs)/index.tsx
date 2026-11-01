@@ -3,6 +3,7 @@ import { router } from 'expo-router';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { addDays, capitalize, formatLongDate, formatShortDate, minutesToHHMM } from '../../src/core/domain/dates';
 import { mealIngredientStatus, toStock } from '../../src/core/domain/pantry';
+import { prepAheadOf, prepAheadShort } from '../../src/core/domain/prepAhead';
 import type { PlannedMeal } from '../../src/core/domain/types';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import type { AppSnapshot } from '../../src/features/app/SpesoraService';
@@ -46,6 +47,11 @@ export default function Today() {
   const todayTrip = snap.shopping.trips.find((tr) => tr.date === snap.today && tr.lines.length > 0);
   const nextTrip = snap.shopping.trips.find((tr) => tr.date > snap.today && !tr.isInitial);
   const issuesToday = snap.issues.filter((i) => i.date === snap.today);
+  // Pasti di domani che chiedono qualcosa stasera (riposo notturno, scongelamento in frigo).
+  const prepTonight = snap.meals
+    .filter((m) => m.status === 'planned' && m.date === addDays(snap.today, 1))
+    .map((m) => ({ meal: m, recipe: catalogIndex.recipe(m.recipeId) }))
+    .filter((x) => x.recipe && prepAheadOf(x.recipe));
 
   return (
     <Screen>
@@ -64,6 +70,12 @@ export default function Today() {
       </View>
 
       <TimoMessage snap={snap} next={next} todayTripItems={todayTrip?.lines.length ?? 0} todayTripDate={todayTrip?.date ?? null} initial={!!todayTrip?.isInitial} />
+
+      {prepTonight.map(({ meal, recipe }) => (
+        <Pressable key={meal.id} accessibilityRole="button" onPress={() => router.push(`/ricetta/${recipe!.id}?mealId=${encodeURIComponent(meal.id)}`)}>
+          <Notice title={`Stasera, per ${MEAL_LABELS[meal.mealType].toLowerCase()} di domani`} text={`${recipe!.name}: ${prepAheadShort(prepAheadOf(recipe!)!)}.`} />
+        </Pressable>
+      ))}
 
       {next ? <NextMealCard meal={next} snap={snap} onMore={() => actions.openMenu(next)} /> : <NoMealCard snap={snap} />}
 

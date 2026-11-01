@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { computeNotifications, diffNotifications, DEFAULT_NOTIFICATION_SETTINGS, isInQuietHours, MAX_PENDING } from '../core/notifications/schedule';
 import { parseRouteFromNotification } from '../core/notifications/routing';
 import type { PlannedMeal } from '../core/domain/types';
+import { prepAheadOf, prepAheadShort } from '../core/domain/prepAhead';
 import { catalog } from './helpers';
 
 const meal: PlannedMeal = {
@@ -99,5 +100,36 @@ describe('Tono dell’assistente', () => {
     expect(cookSoon('Pasta al tonno', 20, 'a')).toContain('pasta al tonno');
     expect(cookSoon('Pasta al tonno', 15, 'a')).toMatch(/15 minuti/);
     expect(greeting(9, 'x')).toBe(greeting(9, 'x'));
+  });
+});
+
+describe('Preparazioni della sera prima', () => {
+  const overnight = catalog.catalog.recipes.find((r) => prepAheadOf(r)?.kind === 'riposo' && r.mealTypes.includes('colazione'))!;
+
+  it('riconosce in modo deterministico riposo notturno e scongelamento, senza falsi positivi', () => {
+    expect(overnight).toBeDefined();
+    const all = catalog.catalog.recipes.filter((r) => prepAheadOf(r));
+    expect(all.some((r) => prepAheadOf(r)!.kind === 'scongelamento')).toBe(true);
+    // "Non serve metterli in ammollo" o un ammollo di 20 minuti non sono preparazioni del giorno prima.
+    expect(prepAheadOf(catalog.recipe('pasta_al_tonno')!)).toBeNull();
+    for (const r of all) expect(prepAheadShort(prepAheadOf(r)!).length).toBeLessThanOrEqual(140);
+  });
+
+  it('programma il promemoria alle 20 del giorno prima, anche per la colazione', () => {
+    const m: PlannedMeal = { ...meal, id: 'm_2026-11-04_colazione', date: '2026-11-04', mealType: 'colazione', timeMinutes: 8 * 60, recipeId: overnight.id };
+    const prep = compute([m]).filter((n) => n.kind === 'prep');
+    expect(prep).toHaveLength(1);
+    expect(prep[0].fireAt.getTime()).toBe(new Date(2026, 10, 3, 20, 0).getTime());
+    expect(prep[0].title).toBe('Per la colazione di domani');
+    expect(prep[0].body).toContain(overnight.name);
+    expect(parseRouteFromNotification({ url: prep[0].url })).toBe(prep[0].url);
+  });
+
+  it('non programma promemoria passati, per pasti già cucinati o con i promemoria spenti', () => {
+    const m: PlannedMeal = { ...meal, id: 'm_2026-11-02_colazione', date: '2026-11-02', mealType: 'colazione', recipeId: overnight.id };
+    expect(compute([m]).filter((n) => n.kind === 'prep')).toHaveLength(0);
+    const later: PlannedMeal = { ...m, id: 'm_2026-11-05_colazione', date: '2026-11-05' };
+    expect(compute([{ ...later, status: 'cooked' }]).filter((n) => n.kind === 'prep')).toHaveLength(0);
+    expect(compute([later], { settings: { ...DEFAULT_NOTIFICATION_SETTINGS, mealReminders: false } }).filter((n) => n.kind === 'prep')).toHaveLength(0);
   });
 });

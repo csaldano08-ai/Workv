@@ -169,7 +169,10 @@ export class SpesoraService {
 
   private async plannerInput(profile: UserProfile, startDate: IsoDate, days: number, seed: number): Promise<PlannerInput> {
     const pantry = toStock(stockFromMovements(await this.repo.getMovements()));
+    const expiries = new Map<string, IsoDate>();
+    for (const i of await this.repo.getPantryItems()) if (i.expiryDate) expiries.set(i.ingredientId, i.expiryDate);
     return {
+      expiries,
       profile,
       catalog: this.catalog,
       startDate,

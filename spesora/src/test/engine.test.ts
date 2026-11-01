@@ -210,3 +210,36 @@ describe('Test H — calendario', () => {
     expect(new Set(meals.map((m) => m.date))).toEqual(new Set(rangeDays('2026-12-29', 7)));
   });
 });
+
+describe('Dispensa — scadenze', () => {
+  it('privilegia nei primi giorni le ricette che usano un ingrediente in scadenza', () => {
+    const p = profile({ mealTypes: ['pranzo', 'cena'] });
+    // Ingrediente fresco usato da più ricette compatibili, con quantità abbondante in dispensa.
+    const uses = new Map<string, number>();
+    for (const r of catalog.catalog.recipes) {
+      if (checkHardConstraints(r, p, catalog).length) continue;
+      for (const ri of r.ingredients) {
+        const ing = catalog.ingredient(ri.ingredientId);
+        if (!ing.staple && !ri.toTaste && ing.perishability !== 'dispensa') uses.set(ing.id, (uses.get(ing.id) ?? 0) + 1);
+      }
+    }
+    const target = [...uses.entries()].sort((a, b) => b[1] - a[1])[0][0];
+    const pantry = new Map([[target, toMilli(5000)]]);
+    const usesTarget = (ids: string[]) => ids.filter((id) => catalog.recipe(id)!.ingredients.some((i) => i.ingredientId === target)).length;
+    const firstDays = (exp?: Map<string, string>) => {
+      const { meals } = generatePlan(input(p, { pantry, expiries: exp }));
+      return meals.filter((m) => diffDays(MONDAY, m.date) <= 1);
+    };
+    const without = firstDays();
+    const withExpiry = firstDays(new Map([[target, addDays(MONDAY, 1)]]));
+    expect(usesTarget(withExpiry.map((m) => m.recipeId))).toBeGreaterThanOrEqual(1);
+    expect(usesTarget(withExpiry.map((m) => m.recipeId))).toBeGreaterThanOrEqual(usesTarget(without.map((m) => m.recipeId)));
+    expect(withExpiry.some((m) => m.reasons.some((r) => r.startsWith('Usa prima della scadenza')))).toBe(true);
+  });
+
+  it('non dà priorità a ingredienti già scaduti', () => {
+    const p = profile({ mealTypes: ['pranzo', 'cena'] });
+    const { meals } = generatePlan(input(p, { pantry: new Map([['zucchine', toMilli(2000)]]), expiries: new Map([['zucchine', addDays(MONDAY, -1)]]) }));
+    expect(meals.some((m) => m.reasons.some((r) => r.startsWith('Usa prima della scadenza')))).toBe(false);
+  });
+});
