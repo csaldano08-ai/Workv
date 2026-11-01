@@ -1,0 +1,126 @@
+{
+  "source_commit": "e0c17d79f148b2f3096cccea72f0cfe707e3eaec",
+  "branch": "codex/spesora-mina-assets",
+  "flow_project": "https://flow.google.com/project/2506d8ab-83f0-4841-b9bb-a1e65468c14f",
+  "generator": "Google Flow browser UI / Nano Banana 2.1",
+  "protected_food_manifest_sha256": "a5775a25ffe20a87d791f01f4580bd460cc385d0c5b06a232154e7c18c4f3e65",
+  "master": {
+    "status": "validated",
+    "file": "master/mina_master.png",
+    "source": "master/sources/mina_master_flow.jpg",
+    "flow_asset_url": "https://flow.google.com/project/2506d8ab-83f0-4841-b9bb-a1e65468c14f/edit/cd8e2eb1-7af9-46a5-b96f-0b9cd15cb815",
+    "width": 1024,
+    "height": 1024,
+    "sha256": "49cbc411133f74267dd250ca2082e12150a23303c5b8f82880592c688015ead4",
+    "review": "Faithful book silhouette and approved reference identity; eyes, spine, elastic, tabs, bookmark, botanical decoration and limbs checked. Real alpha visually checked on ivory, charcoal and peach."
+  },
+  "reference_sheet": {
+    "status": "validated",
+    "file": "master/mina_reference_sheet.png",
+    "source": "master/sources/mina_reference_sheet_flow.jpg",
+    "width": 1200,
+    "height": 896,
+    "attempts": 2,
+    "flow_asset_url": "https://flow.google.com/project/2506d8ab-83f0-4841-b9bb-a1e65468c14f/edit/71be7157-653d-4f6b-82cf-c872312ee6d9",
+    "sha256": "db040f0e875f1dd30d2504ce20ae8c1e87e84e96e8fa402bac378f2ad0afc647",
+    "review": "Front neutral, three-quarter smile, left profile, two expressions and four palette swatches verified. First sheet corrected to remove an invented nose; final sheet matches nose-free master."
+  },
+  "poses": [
+    {
+      "id": "mina_neutral",
+      "file": "poses/mina_neutral.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_welcome",
+      "file": "poses/mina_welcome.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_wave",
+      "file": "poses/mina_wave.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_explaining",
+      "file": "poses/mina_explaining.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_thinking",
+      "file": "poses/mina_thinking.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_calendar",
+      "file": "poses/mina_calendar.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_shopping",
+      "file": "poses/mina_shopping.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_cooking",
+      "file": "poses/mina_cooking.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_recipe",
+      "file": "poses/mina_recipe.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_pantry",
+      "file": "poses/mina_pantry.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_missing",
+      "file": "poses/mina_missing.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_savings",
+      "file": "poses/mina_savings.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_happy",
+      "file": "poses/mina_happy.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_success",
+      "file": "poses/mina_success.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_sleepy",
+      "file": "poses/mina_sleepy.png",
+      "status": "generating",
+      "attempts": 1
+    },
+    {
+      "id": "mina_empty",
+      "file": "poses/mina_empty.png",
+      "status": "generating",
+      "attempts": 1
+    }
+  ]
+}
