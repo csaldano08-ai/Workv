@@ -42,3 +42,11 @@ Il comando `npm run images -- cards` **non scrive il manifest**: i percorsi di c
 ## Scala oltre 500 ricette
 
 Mappe e controlli sono generati dal manifest e dal catalogo, senza elenchi scritti a mano. Peso stimato a 1.000 ricette: card ~40 MB, miniature ~10 MB nel bundle; i sorgenti PNG restano solo nel repository. Oltre questa soglia conviene valutare la consegna delle card tramite aggiornamento OTA o pacchetto scaricabile, mantenendo comunque la disponibilità offline dopo il primo download.
+
+## Stato dell'integrazione (1 novembre 2026)
+
+- Integrato `origin/codex/spesora-flow-344` @ `25388c3` (merge senza conflitti): **500/500 ricette con illustrazione validata**, 0 pending.
+- `images:check --strict`: nessun errore. Card 20,0 MB, miniature 4,0 MB (JPEG). Esportazione iOS: JS 6,7 MB, asset 27 MB; esportazione web riuscita.
+- Controllo visivo nella demo web: Oggi, Settimana (miniature) e Ricettario (card) mostrano le nuove illustrazioni; nessun errore in console.
+- **Peso del repository**: i 500 PNG sorgente (1200×900) pesano ~559 MB. Non entrano nell'app, ma appesantiscono clone e CI. Prima di crescere oltre 500 valutare Git LFS o la rimozione dei sorgenti dal ramo principale (conservandoli altrove), da decidere col proprietario del repository.
+- Non ancora verificato a mano: la qualità culinaria di ciascuna immagine (Codex ha prodotto 24 schede di controllo in `docs/`); 500 ricette restano `needs_culinary_review`.
