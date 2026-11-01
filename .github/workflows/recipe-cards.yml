@@ -1,10 +1,16 @@
 # Card ottimizzate delle illustrazioni (800×600 JPEG) generate dai PNG validati di Google Flow.
-# Nessuna API e nessun costo: solo ridimensionamento locale con sharp. I PNG sorgente non vengono modificati.
+# Nessuna API e nessun costo: solo ridimensionamento locale con sharp. I PNG sorgente non vengono toccati.
+#
+# Non viene MAI eseguito sui rami di produzione delle immagini (codex/**): lì il manifest, le mappe
+# e i PNG sono gestiti solo dallo script di Codex. Il comando "cards" non scrive il manifest:
+# il percorso della card è deterministico (assets/recipes/card/<id>.jpg).
 name: Spesora · card immagini ricette
 
 on:
   workflow_dispatch:
   push:
+    branches:
+      - 'claude/**'
     paths:
       - 'spesora/assets/recipes/*.png'
       - 'spesora/assets/recipes/manifest.json'
@@ -18,6 +24,7 @@ permissions:
 
 jobs:
   cards:
+    if: ${{ !startsWith(github.ref_name, 'codex/') }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     defaults:
@@ -31,13 +38,13 @@ jobs:
           cache: npm
           cache-dependency-path: spesora/package-lock.json
       - run: npm ci
-      - run: npx tsx scripts/images/pipeline.ts sync
       - run: npx tsx scripts/images/pipeline.ts cards
-      - name: Commit delle card
+      - run: npx tsx scripts/images/check.ts
+      - name: Commit delle card (solo card e mappa dell'app)
         run: |
           git config user.name "spesora-images-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/recipes/card assets/recipes/manifest.json src/data/recipe-image-cards.ts
+          git add assets/recipes/card assets/recipes/thumb src/data/recipe-image-cards.ts src/data/recipe-image-thumbs.ts
           if git diff --cached --quiet; then echo "Nessuna card nuova"; exit 0; fi
           git commit -m "Card ottimizzate per le nuove illustrazioni"
           git pull --rebase origin "${GITHUB_REF_NAME}"

@@ -189,7 +189,7 @@ function RecipeRow({ recipe, favorite }: { recipe: Recipe; favorite: boolean }) 
       onPress={() => router.push(`/ricetta/${recipe.id}`)}
       style={({ pressed }) => [styles.row, pressed && { opacity: 0.7 }]}
     >
-      <RecipeImage recipe={recipe} style={styles.thumb} rounded={12} />
+      <RecipeImage variant="thumb" recipe={recipe} style={styles.thumb} rounded={12} />
       <View style={styles.flex}>
         <Text variant="heading" numberOfLines={2}>
           {recipe.name}

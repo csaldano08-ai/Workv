@@ -1,0 +1,45 @@
+# Controllo delle pull request che integrano illustrazioni (es. codex/spesora-flow-344 → claude/**).
+# Solo verifiche: nessuna generazione di immagini, nessuna credenziale, nessun merge automatico,
+# nessuna scrittura sul ramo (permessi in sola lettura).
+name: Spesora · controllo immagini
+
+on:
+  pull_request:
+    paths:
+      - 'spesora/assets/recipes/**'
+      - 'spesora/src/data/recipe-images.ts'
+      - 'spesora/src/data/recipe-image-cards.ts'
+      - 'spesora/src/data/recipe-image-thumbs.ts'
+      - 'spesora/src/data/recipes/**'
+      - 'spesora/scripts/images/**'
+      - 'spesora/docs/IMAGE_GENERATION_PROGRESS.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: images-check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: spesora
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: spesora/package-lock.json
+      - run: npm ci
+      - name: Manifest, file, proporzioni, duplicati e mappe statiche
+        run: npx tsx scripts/images/check.ts
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Test
+        run: npm test

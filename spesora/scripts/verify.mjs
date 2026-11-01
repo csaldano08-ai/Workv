@@ -5,6 +5,7 @@ const steps = [
   ['Typecheck', 'npx', ['tsc', '--noEmit']],
   ['Lint', 'npx', ['eslint', '.', '--max-warnings=0']],
   ['Test (motore, catalogo, persistenza, notifiche, stringhe, sorgenti)', 'npx', ['vitest', 'run']],
+  ['Immagini (manifest, file, mappe statiche)', 'npx', ['tsx', 'scripts/images/check.ts']],
   ['Configurazione e dipendenze', 'node', ['scripts/check-config.mjs']],
 ];
 

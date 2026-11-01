@@ -46,6 +46,7 @@
     "verify": "node scripts/verify.mjs",
     "check:config": "node scripts/check-config.mjs",
     "images": "tsx scripts/images/pipeline.ts",
+    "images:check": "tsx scripts/images/check.ts",
     "mascot:export": "node scripts/mascot/export-mascot.mjs",
     "catalog:report": "tsx scripts/catalog/report.ts",
     "catalog:export-images": "tsx scripts/images/export-list.ts"

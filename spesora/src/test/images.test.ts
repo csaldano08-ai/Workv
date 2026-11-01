@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { CATALOG } from '../data/catalog';
 import { emptyManifest, loadManifest, syncWithCatalog } from '../../scripts/images/manifest';
 import { buildRecipePrompt, mainIngredients } from '../../scripts/images/prompts';
-import { hammingDistance, perceptualHash, technicalCheck, toCardJpeg } from '../../scripts/images/quality';
+import { hammingDistance, perceptualHash, technicalCheck, toCardJpeg, toThumbJpeg } from '../../scripts/images/quality';
 import { TIMO_POSES, timoSvg } from '../ui/mascot/timoSvg';
 import { catalog } from './helpers';
 
@@ -50,6 +50,24 @@ describe('Immagini delle ricette', () => {
     const appFiles = readFileSync(join(ROOT, 'src', 'ui', 'RecipeImage.tsx'), 'utf8');
     expect(appFiles).toContain('recipe-image-cards');
     expect(appFiles).not.toContain("recipe-images'");
+  });
+
+  it('miniature per le liste: solo per ricette con card, percorsi deterministici, nessuna immagine di rete', async () => {
+    const read = (f: string) => readFileSync(join(ROOT, 'src', 'data', f), 'utf8');
+    const keys = (t: string) => new Map([...t.matchAll(/^\s*'?([a-z0-9_]+)'?: require\('\.\.\/\.\.\/([^']+)'\)/gm)].map((m) => [m[1], m[2]]));
+    const cards = keys(read('recipe-image-cards.ts'));
+    const thumbs = keys(read('recipe-image-thumbs.ts'));
+    for (const [id, file] of thumbs) {
+      expect(cards.has(id), id).toBe(true);
+      expect(file).toBe(`assets/recipes/thumb/${id}.jpg`);
+    }
+    for (const [id, file] of cards) expect(file).toBe(`assets/recipes/card/${id}.jpg`);
+    const ui = readFileSync(join(ROOT, 'src', 'ui', 'RecipeImage.tsx'), 'utf8');
+    expect(ui).not.toMatch(/uri:\s*['"`]http/);
+    const thumb = await toThumbJpeg(await noise(7));
+    const meta = await sharp(thumb).metadata();
+    expect([meta.width, meta.height]).toEqual([320, 240]);
+    expect(thumb.length).toBeLessThan(60 * 1024);
   });
 
   it('i prompt usano gli ingredienti reali e distinguono ricette simili', () => {

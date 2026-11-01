@@ -38,6 +38,13 @@ export async function toCardJpeg(source: Buffer): Promise<Buffer> {
     .toBuffer();
 }
 
+export async function toThumbJpeg(source: Buffer): Promise<Buffer> {
+  return sharp(source)
+    .resize(IMAGE.thumbWidth, IMAGE.thumbHeight, { fit: 'cover', position: 'centre' })
+    .jpeg({ quality: 76, mozjpeg: true })
+    .toBuffer();
+}
+
 /** Hash percettivo (dHash 8×8, 64 bit) per riconoscere immagini duplicate tra ricette diverse. */
 export async function perceptualHash(image: Buffer): Promise<string> {
   const { data } = await sharp(image).greyscale().resize(9, 8, { fit: 'fill' }).raw().toBuffer({ resolveWithObject: true });

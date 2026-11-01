@@ -22,7 +22,7 @@ import { LIMITS, MODELS, PATHS } from './config';
 import { ApiError, checkImage, generateImage, listModels, QuotaExhaustedError, resolveModel } from './gemini';
 import { countByStatus, loadManifest, saveManifest, SHOWN_IN_APP, syncWithCatalog, type Manifest, type RecipeImageEntry, type RunRecord } from './manifest';
 import { buildRecipePrompt, buildStylePrompt, promptHash } from './prompts';
-import { hammingDistance, perceptualHash, technicalCheck, toCardJpeg } from './quality';
+import { hammingDistance, perceptualHash, technicalCheck, toCardJpeg, toThumbJpeg } from './quality';
 
 const catalog = new CatalogIndex(CATALOG);
 const args = process.argv.slice(2);
@@ -52,8 +52,43 @@ function ensureDirs() {
  * per Metro. È l'unico file di immagini importato dall'app, così i sorgenti PNG a piena risoluzione non
  * entrano nel bundle. src/data/recipe-images.ts resta gestito dallo script di Google Flow (Codex).
  */
+/** Percorso deterministico della card ottimizzata. */
+export function cardPath(id: string): string {
+  return `assets/recipes/card/${id}.jpg`;
+}
+
+/** Percorso deterministico della miniatura per le liste. */
+export function thumbPath(id: string): string {
+  return `assets/recipes/thumb/${id}.jpg`;
+}
+
+/** Scrive src/data/recipe-image-thumbs.ts: miniature 320×240 per le liste, solo per ricette con card valida. */
+function writeThumbMap(ids: string[]): number {
+  const withThumb = ids.filter((id) => existsSync(join(PATHS.root, thumbPath(id))));
+  const body = withThumb.map((id) => `  ${id}: require('../../${thumbPath(id)}'),`).join('\n');
+  writeFileSync(
+    PATHS.thumbMapFile,
+    `/* File GENERATO da scripts/images/pipeline.ts (comandi "cards" e "map"). Non modificare a mano. */
+import type { ImageSourcePropType } from 'react-native';
+
+/** Miniature 320×240 per le liste. Se assente, l'app usa la card 800×600. */
+export const RECIPE_IMAGE_THUMBS: Readonly<Record<string, ImageSourcePropType>> = {
+${body}
+};
+
+export const RECIPE_IMAGE_THUMB_COUNT = ${withThumb.length};
+`,
+  );
+  return withThumb.length;
+}
+
 export function writeMap(m: Manifest): number {
-  const cardOf = (e: RecipeImageEntry) => e.card ?? (e.file?.endsWith('.jpg') ? e.file : null);
+  // Percorso deterministico: la card non richiede di scrivere nel manifest (che resta di Codex durante la produzione).
+  const cardOf = (e: RecipeImageEntry) => {
+    const det = cardPath(e.id);
+    if (existsSync(join(PATHS.root, det))) return det;
+    return e.card ?? (e.file?.endsWith('.jpg') ? e.file : null);
+  };
   const entries = Object.values(m.recipes)
     .filter((e) => SHOWN_IN_APP.includes(e.status) && cardOf(e) && existsSync(join(PATHS.root, cardOf(e)!)) && catalog.recipes.has(e.id))
     .sort((a, b) => a.id.localeCompare(b.id));
@@ -69,6 +104,7 @@ ${body}
 export const RECIPE_IMAGE_CARD_COUNT = ${entries.length};
 `;
   writeFileSync(PATHS.cardMapFile, content);
+  writeThumbMap(entries.map((e) => e.id));
   return entries.length;
 }
 
@@ -303,19 +339,28 @@ async function main() {
       ensureDirs();
       const m = loadManifest();
       mkdirSync(join(PATHS.recipesDir, 'card'), { recursive: true });
+      mkdirSync(join(PATHS.recipesDir, 'thumb'), { recursive: true });
       let made = 0;
+      let thumbs = 0;
       for (const e of Object.values(m.recipes)) {
         if (!SHOWN_IN_APP.includes(e.status) || !e.file || !existsSync(join(PATHS.root, e.file))) continue;
-        const rel = `assets/recipes/card/${e.id}.jpg`;
-        if (e.card === rel && existsSync(join(PATHS.root, rel)) && !flag('force')) continue;
-        const card = await toCardJpeg(readFileSync(join(PATHS.root, e.file)));
-        writeFileSync(join(PATHS.root, rel), card);
-        e.card = rel;
-        e.phash = e.phash ?? (await perceptualHash(card));
-        made++;
+        const rel = cardPath(e.id);
+        const thumb = thumbPath(e.id);
+        const needCard = !existsSync(join(PATHS.root, rel)) || flag('force');
+        const needThumb = !existsSync(join(PATHS.root, thumb)) || flag('force');
+        if (!needCard && !needThumb) continue;
+        const source = readFileSync(join(PATHS.root, e.file));
+        if (needCard) {
+          writeFileSync(join(PATHS.root, rel), await toCardJpeg(source));
+          made++;
+        }
+        if (needThumb) {
+          writeFileSync(join(PATHS.root, thumb), await toThumbJpeg(source));
+          thumbs++;
+        }
       }
-      saveManifest(m);
-      log(`Card generate: ${made}. Immagini nell'app: ${writeMap(m)}`);
+      // Il manifest NON viene scritto: le card hanno un percorso deterministico (assets/recipes/card/<id>.jpg).
+      log(`Card generate: ${made}, miniature: ${thumbs}. Immagini nell'app: ${writeMap(m)}`);
       break;
     }
     case 'map':
