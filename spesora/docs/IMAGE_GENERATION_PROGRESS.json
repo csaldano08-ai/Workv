@@ -2145,11 +2145,21 @@
       "filename": "acquacotta_toscana.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodori pelati, cipolla, uova, pane, sedano",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/acquacotta_toscana.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Acquacotta; main ingredients checked against catalog (pomodori pelati, cipolla, uova, pane, sedano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1468430,
+      "sha256": "acbb395b28f2c51c7ece1b9a4d3ed31bd711b7392c77ac2bfdf280079e379ec7",
+      "updated_at": "2026-11-01T13:37:41.255530+00:00"
     },
     {
       "id": "bowl_farro_lenticchie_zucca",
@@ -2157,11 +2167,21 @@
       "filename": "bowl_farro_lenticchie_zucca.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucca, lenticchie cotte, farro perlato, rucola, semi di zucca",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/bowl_farro_lenticchie_zucca.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Bowl di farro, lenticchie e zucca al forno; main ingredients checked against catalog (zucca, lenticchie cotte, farro perlato, rucola, semi di zucca). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1211748,
+      "sha256": "690fe87f731fed5c7ed5571dafd6e9d59466e37fb6b5b69b296228c9886850e9",
+      "updated_at": "2026-11-01T13:37:54.734452+00:00"
     },
     {
       "id": "bowl_grano_saraceno_ceci_vapore",
@@ -2169,11 +2189,21 @@
       "filename": "bowl_grano_saraceno_ceci_vapore.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "broccolo, ceci cotti, carota, fagiolini, grano saraceno",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/bowl_grano_saraceno_ceci_vapore.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Bowl di grano saraceno, ceci e verdure al vapore; main ingredients checked against catalog (broccolo, ceci cotti, carota, fagiolini, grano saraceno). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1482560,
+      "sha256": "012c2fc4f5c3c8fb93fa6031d0f96d6887d6be15bc13ebdc5e1af837c19f6642",
+      "updated_at": "2026-11-01T13:37:38.140566+00:00"
     },
     {
       "id": "bowl_riso_integrale_fagioli_neri_avocado",
@@ -2181,11 +2211,21 @@
       "filename": "bowl_riso_integrale_fagioli_neri_avocado.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "fagioli neri cotti, pomodorini, riso integrale, avocado, cavolo rosso",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/bowl_riso_integrale_fagioli_neri_avocado.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Bowl di riso integrale, fagioli neri e avocado; main ingredients checked against catalog (fagioli neri cotti, pomodorini, riso integrale, avocado, cavolo rosso). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1158371,
+      "sha256": "14c73f6df3951a2ff51905da033db836e664d6e8bb1d0a29bc91c05cc8dfd6b0",
+      "updated_at": "2026-11-01T13:37:51.870503+00:00"
     },
     {
       "id": "bucatini_amatriciana",
@@ -2193,11 +2233,21 @@
       "filename": "bucatini_amatriciana.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodori pelati, pasta di semola, guanciale, pecorino romano",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/bucatini_amatriciana.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Bucatini all'amatriciana; main ingredients checked against catalog (pomodori pelati, pasta di semola, guanciale, pecorino romano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1702425,
+      "sha256": "392f470f6cfc0a057d49d20d3ce781d970e18494055198b8ee721e370b9cc287",
+      "updated_at": "2026-11-01T13:37:50.414487+00:00"
     },
     {
       "id": "buddha_bowl_quinoa_ceci_patata_dolce",
@@ -2205,11 +2255,21 @@
       "filename": "buddha_bowl_quinoa_ceci_patata_dolce.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "patata dolce, ceci cotti, quinoa, spinaci freschi, limone",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/buddha_bowl_quinoa_ceci_patata_dolce.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Buddha bowl con quinoa, ceci e patata dolce; main ingredients checked against catalog (patata dolce, ceci cotti, quinoa, spinaci freschi, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1484027,
+      "sha256": "45628209faea32344006ea64a1a86705de7277011eda4ee2be38369f6725a830",
+      "updated_at": "2026-11-01T13:37:59.305389+00:00"
     },
     {
       "id": "bulgur_peperoni_olive",
@@ -2239,11 +2299,21 @@
       "filename": "busiate_pesto_trapanese.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodoro, pasta di semola, mandorle, pecorino romano, basilico fresco",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/busiate_pesto_trapanese.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Busiate al pesto alla trapanese; main ingredients checked against catalog (pomodoro, pasta di semola, mandorle, pecorino romano, basilico fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1642128,
+      "sha256": "b329c1dd826b29749b4f27b9bbb610de72a8a6b1dccac5a44ccbc6c862254eef",
+      "updated_at": "2026-11-01T13:37:31.631372+00:00"
     },
     {
       "id": "carbonara_di_zucchine",
@@ -2251,11 +2321,21 @@
       "filename": "carbonara_di_zucchine.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucchina, uova, pasta di semola, parmigiano reggiano",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/carbonara_di_zucchine.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Carbonara di zucchine; main ingredients checked against catalog (zucchina, uova, pasta di semola, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1434052,
+      "sha256": "ba6142a31e3d3dd584739e53e7cf10de26bd8d3a49102cf801a8632508628f73",
+      "updated_at": "2026-11-01T13:37:56.251457+00:00"
     },
     {
       "id": "couscous_gamberetti_zucchine_limone",
@@ -2263,11 +2343,21 @@
       "filename": "couscous_gamberetti_zucchine_limone.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucchina, gamberetti sgusciati surgelati, couscous, limone",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/couscous_gamberetti_zucchine_limone.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Couscous con gamberetti, zucchine e limone; main ingredients checked against catalog (zucchina, gamberetti sgusciati surgelati, couscous, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1541945,
+      "sha256": "d5333b158795e90db4356f55bd228720c7bf5d42fbcffd0c32618c0b320eea6d",
+      "updated_at": "2026-11-01T13:37:47.697620+00:00"
     },
     {
       "id": "couscous_lenticchie_carote_uvetta",
@@ -2275,11 +2365,21 @@
       "filename": "couscous_lenticchie_carote_uvetta.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "lenticchie cotte, carota, couscous, cipolla, uvetta",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/couscous_lenticchie_carote_uvetta.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Couscous con lenticchie, carote e uvetta; main ingredients checked against catalog (lenticchie cotte, carota, couscous, cipolla, uvetta). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1536992,
+      "sha256": "82531ac5a7762d5636d5c3dee6ebc2d051bdbeef9a5abbd375d90df4c8c2b470",
+      "updated_at": "2026-11-01T13:38:00.773388+00:00"
     },
     {
       "id": "couscous_pollo_verdure_speziate",
@@ -2287,11 +2387,21 @@
       "filename": "couscous_pollo_verdure_speziate.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "petto di pollo, couscous, zucchina, carota, peperone",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/couscous_pollo_verdure_speziate.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Couscous con pollo e verdure speziate; main ingredients checked against catalog (petto di pollo, couscous, zucchina, carota, peperone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1130984,
+      "sha256": "b991daa6d6ae282a9442660898202cc6db132035b1d8645733e6d0794456df58",
+      "updated_at": "2026-11-01T13:37:34.495475+00:00"
     },
     {
       "id": "couscous_verdure_ceci",
@@ -2343,11 +2453,21 @@
       "filename": "crema_porri_patate.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "patata, porro, latte, burro",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/crema_porri_patate.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Crema di porri e patate; main ingredients checked against catalog (patata, porro, latte, burro). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 991058,
+      "sha256": "c7c0c3679553e185788113bae6cd53b4e3d8dc759c960e7472037257e1e7414a",
+      "updated_at": "2026-11-01T13:37:39.750520+00:00"
     },
     {
       "id": "crema_zucca_lenticchie_rosse",
@@ -2355,11 +2475,21 @@
       "filename": "crema_zucca_lenticchie_rosse.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucca, lenticchie rosse decorticate, cipolla",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/crema_zucca_lenticchie_rosse.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Crema di zucca e lenticchie rosse; main ingredients checked against catalog (zucca, lenticchie rosse decorticate, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1245701,
+      "sha256": "c9d252c337c2c936d2ca102e70e288ee064768dc2d5eca92a7199419a9935a95",
+      "updated_at": "2026-11-01T13:37:43.101698+00:00"
     },
     {
       "id": "farro_cannellini_pomodori_secchi",
@@ -2367,11 +2497,21 @@
       "filename": "farro_cannellini_pomodori_secchi.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "fagioli cannellini cotti, farro perlato, rucola, pomodori secchi sottâ€™olio",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/farro_cannellini_pomodori_secchi.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Farro con cannellini, pomodori secchi e rucola; main ingredients checked against catalog (fagioli cannellini cotti, farro perlato, rucola, pomodori secchi sottâ€™olio). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1127880,
+      "sha256": "76ead3cd5232e12bb55441d71289153c689554f44bb318f90f1b5ab5c1ca0594",
+      "updated_at": "2026-11-01T13:37:57.693379+00:00"
     },
     {
       "id": "farro_funghi_prezzemolo",
@@ -2379,11 +2519,21 @@
       "filename": "farro_funghi_prezzemolo.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "funghi champignon, farro perlato",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/farro_funghi_prezzemolo.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Farro con funghi e prezzemolo; main ingredients checked against catalog (funghi champignon, farro perlato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1314262,
+      "sha256": "0c60a84b35b301874667fe3171918bcb83216febc55af5869144f3ed5d791568",
+      "updated_at": "2026-11-01T13:38:02.291862+00:00"
     },
     {
       "id": "farro_pomodorini_feta",
@@ -2413,11 +2563,21 @@
       "filename": "gazpacho.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodoro, cetriolo, peperone, pane, cipolla rossa",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/gazpacho.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Gazpacho; main ingredients checked against catalog (pomodoro, cetriolo, peperone, pane, cipolla rossa). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1206720,
+      "sha256": "873e370ee5a40d383e3bcdce87a51352debfe8d3035482785e689ce4cdeaa8ce",
+      "updated_at": "2026-11-01T13:37:46.263353+00:00"
     },
     {
       "id": "gnocchi_pesto_pomodorini",
@@ -2425,11 +2585,21 @@
       "filename": "gnocchi_pesto_pomodorini.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "gnocchi di patate, pomodorini, pesto alla genovese",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/gnocchi_pesto_pomodorini.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Gnocchi al pesto con pomodorini; main ingredients checked against catalog (gnocchi di patate, pomodorini, pesto alla genovese). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1225324,
+      "sha256": "a16899d5e67c57c252b69e4fc6425fcb7083f5f0730fb5cde7f87d7dae12a6c8",
+      "updated_at": "2026-11-01T13:37:49.107356+00:00"
     },
     {
       "id": "gnocchi_pomodoro_mozzarella",
@@ -2459,11 +2629,21 @@
       "filename": "gnocchi_alla_romana.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "latte, semola rimacinata, uova, parmigiano reggiano, burro",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/gnocchi_alla_romana.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Gnocchi alla romana; main ingredients checked against catalog (latte, semola rimacinata, uova, parmigiano reggiano, burro). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1375744,
+      "sha256": "bd7d1d3a27cdcf846753e1bb3dfec5cf41c916252825b52564dbb3599a0f304e",
+      "updated_at": "2026-11-01T13:37:44.623140+00:00"
     },
     {
       "id": "gnocchi_alla_sorrentina",
@@ -2471,11 +2651,21 @@
       "filename": "gnocchi_alla_sorrentina.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "gnocchi di patate, pomodori pelati, mozzarella, parmigiano reggiano, basilico fresco",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/gnocchi_alla_sorrentina.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Gnocchi alla sorrentina; main ingredients checked against catalog (gnocchi di patate, pomodori pelati, mozzarella, parmigiano reggiano, basilico fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1416080,
+      "sha256": "9ea43b57614b2f5ab3602811602161fde3dc65059437887ea3e51fcef23c0757",
+      "updated_at": "2026-11-01T13:37:53.320372+00:00"
     },
     {
       "id": "grano_saraceno_funghi_cipolla",
@@ -2483,11 +2673,21 @@
       "filename": "grano_saraceno_funghi_cipolla.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "funghi champignon, grano saraceno, cipolla",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/grano_saraceno_funghi_cipolla.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Grano saraceno con funghi e cipolla; main ingredients checked against catalog (funghi champignon, grano saraceno, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1593214,
+      "sha256": "8d889ac2f381c7ef199dd130c728278efbeed98e204c717fdad9969b75077cb8",
+      "updated_at": "2026-11-01T13:37:36.630107+00:00"
     },
     {
       "id": "insalata_farro_tonno_fagiolini",
@@ -2495,11 +2695,21 @@
       "filename": "insalata_farro_tonno_fagiolini.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "fagiolini, farro perlato, pomodorini, tonno in scatola",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/insalata_farro_tonno_fagiolini.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata di farro con tonno e fagiolini; ingredients and prepared appearance checked against catalog (fagiolini, farro perlato, pomodorini, tonno in scatola). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1499723,
+      "sha256": "796f46ef626ddb62e84524a0644e23bc851133e89a42742bd28c8a09cdbd7f3f",
+      "updated_at": "2026-11-01T13:44:43.837088+00:00"
     },
     {
       "id": "quinoa_ceci_cetriolo_menta",
@@ -2529,11 +2739,21 @@
       "filename": "insalata_quinoa_lenticchie_barbabietola.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "lenticchie cotte, barbabietola cotta, quinoa, rucola, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/insalata_quinoa_lenticchie_barbabietola.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata di quinoa, lenticchie e barbabietola; ingredients and prepared appearance checked against catalog (lenticchie cotte, barbabietola cotta, quinoa, rucola, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1152731,
+      "sha256": "ecd43d1c7ac3502cc079a6e3e44b0fc91303f42f67814e1434c07eb624a4e568",
+      "updated_at": "2026-11-01T13:44:12.642298+00:00"
     },
     {
       "id": "insalata_riso_pollo_mais_peperoni",
@@ -2541,11 +2761,21 @@
       "filename": "insalata_riso_pollo_mais_peperoni.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "petto di pollo, riso basmati, peperone, mais in scatola, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/insalata_riso_pollo_mais_peperoni.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata di riso basmati con pollo, mais e peperoni; ingredients and prepared appearance checked against catalog (petto di pollo, riso basmati, peperone, mais in scatola, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1207792,
+      "sha256": "15a094354b4df757004af09fe5e8af2bdd96ac1eb054e6a054c891af36153dcb",
+      "updated_at": "2026-11-01T13:44:35.126854+00:00"
     },
     {
       "id": "insalata_riso_tonno",
@@ -2575,11 +2805,21 @@
       "filename": "lasagne_alla_bolognese.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "besciamella pronta, macinato misto manzo e maiale, passata di pomodoro, lasagne all'uovo secche, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/lasagne_alla_bolognese.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Lasagne alla bolognese; ingredients and prepared appearance checked against catalog (besciamella pronta, macinato misto manzo e maiale, passata di pomodoro, lasagne all'uovo secche, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1270645,
+      "sha256": "feb4e45de74c8c0868dfdca9d52bce1ff7e5238ff9240c2d2f78c1f9ffa6fba9",
+      "updated_at": "2026-11-01T13:44:41.953132+00:00"
     },
     {
       "id": "lasagne_alle_verdure",
@@ -2587,11 +2827,21 @@
       "filename": "lasagne_alle_verdure.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "besciamella pronta, zucchina, peperone, lasagne all'uovo secche, carota",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/lasagne_alle_verdure.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Lasagne alle verdure; ingredients and prepared appearance checked against catalog (besciamella pronta, zucchina, peperone, lasagne all'uovo secche, carota). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1459718,
+      "sha256": "f5010822e6052f64dc34474fb6eea0045df0b236d7fc6689702f007134bdcb7a",
+      "updated_at": "2026-11-01T13:44:18.978863+00:00"
     },
     {
       "id": "miglio_zucchine_carote_curcuma",
@@ -2599,11 +2849,21 @@
       "filename": "miglio_zucchine_carote_curcuma.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucchina, miglio decorticato, carota, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/miglio_zucchine_carote_curcuma.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Miglio con zucchine e carote alla curcuma; ingredients and prepared appearance checked against catalog (zucchina, miglio decorticato, carota, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1526866,
+      "sha256": "13a24aae8975b0247e4299a1f9d5892a9328d87930d728ba7606ef97d94f27bf",
+      "updated_at": "2026-11-01T13:44:40.212947+00:00"
     },
     {
       "id": "minestra_orzo_fagioli",
@@ -2611,11 +2871,21 @@
       "filename": "minestra_orzo_fagioli.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "fagioli borlotti cotti, patata, orzo perlato, carota, sedano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/minestra_orzo_fagioli.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Minestra di orzo e fagioli; ingredients and prepared appearance checked against catalog (fagioli borlotti cotti, patata, orzo perlato, carota, sedano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1193576,
+      "sha256": "aca625a0cfe2e1c4453221020afb7cea1ed537bcb966e5feeff0481eff1cf79e",
+      "updated_at": "2026-11-01T13:44:26.895737+00:00"
     },
     {
       "id": "minestrone_alla_genovese",
@@ -2623,11 +2893,21 @@
       "filename": "minestrone_alla_genovese.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "patata, zucchina, fagioli borlotti cotti, fagiolini, verza",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/minestrone_alla_genovese.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Minestrone alla genovese; ingredients and prepared appearance checked against catalog (patata, zucchina, fagioli borlotti cotti, fagiolini, verza). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1453173,
+      "sha256": "d770334087f1d977b05cb1d93e781394c93c189b1e668657e240669dc20a37bf",
+      "updated_at": "2026-11-01T13:44:33.396019+00:00"
     },
     {
       "id": "minestrone_pastina",
@@ -2657,11 +2937,21 @@
       "filename": "orecchiette_cime_di_rapa.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "cime di rapa, pasta di semola, filetti di acciuga sottâ€™olio",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/orecchiette_cime_di_rapa.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Orecchiette con le cime di rapa; ingredients and prepared appearance checked against catalog (cime di rapa, pasta di semola, filetti di acciuga sottâ€™olio). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1454569,
+      "sha256": "cbe5ad1caba4b51808d73006db9215a6d5f0d65bc949b199b7c4c3d5b52c9b7f",
+      "updated_at": "2026-11-01T13:44:36.874141+00:00"
     },
     {
       "id": "orzo_ceci_melanzane_grigliate",
@@ -2669,11 +2959,21 @@
       "filename": "orzo_ceci_melanzane_grigliate.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "melanzana, ceci cotti, pomodorini, orzo perlato",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/orzo_ceci_melanzane_grigliate.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Orzo con ceci e melanzane grigliate; ingredients and prepared appearance checked against catalog (melanzana, ceci cotti, pomodorini, orzo perlato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1530212,
+      "sha256": "099ea26d4ecfce6c7870956edfddc0738102e6c1ff76c165fe29667508b4c706",
+      "updated_at": "2026-11-01T13:44:31.677234+00:00"
     },
     {
       "id": "orzo_zucchine_pomodorini",
@@ -2725,11 +3025,21 @@
       "filename": "paccheri_ragu_di_polpo.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "polpo, pomodorini in scatola, pasta di semola, olive nere",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/paccheri_ragu_di_polpo.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Paccheri al ragÃ¹ di polpo; ingredients and prepared appearance checked against catalog (polpo, pomodorini in scatola, pasta di semola, olive nere). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1185738,
+      "sha256": "7297aef1c8872f579d79a62772c30636163da40e6d5532d84b55d376ab0f84ec",
+      "updated_at": "2026-11-01T13:44:30.076936+00:00"
     },
     {
       "id": "paella_pollo_verdure",
@@ -2737,11 +3047,21 @@
       "filename": "paella_pollo_verdure.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "cosce di pollo, riso, peperone, pomodoro, piselli surgelati",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/paella_pollo_verdure.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Paella di pollo e verdure; ingredients and prepared appearance checked against catalog (cosce di pollo, riso, peperone, pomodoro, piselli surgelati). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1619503,
+      "sha256": "f83282c116784b6a75b74ee091359c8eb66a4929f286fd22832267d1215a7b5a",
+      "updated_at": "2026-11-01T13:44:28.494993+00:00"
     },
     {
       "id": "pappa_al_pomodoro",
@@ -2749,11 +3069,21 @@
       "filename": "pappa_al_pomodoro.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodori pelati, pane, basilico fresco",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pappa_al_pomodoro.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pappa al pomodoro; ingredients and prepared appearance checked against catalog (pomodori pelati, pane, basilico fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1458125,
+      "sha256": "65766f5c6f0e2c496e02fda759b9fbea49f89d331d96f9140fdfe15bf387de90",
+      "updated_at": "2026-11-01T13:44:14.223987+00:00"
     },
     {
       "id": "passato_di_verdure",
@@ -2761,11 +3091,21 @@
       "filename": "passato_di_verdure.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "patata, zucchina, carota, porro, sedano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/passato_di_verdure.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Passato di verdure; ingredients and prepared appearance checked against catalog (patata, zucchina, carota, porro, sedano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 847065,
+      "sha256": "1d0c8afc04f636e9c631284a847f4df5b57e925db5024fe921b40bcb88f67581",
+      "updated_at": "2026-11-01T13:44:22.215962+00:00"
     },
     {
       "id": "pasta_funghi",
@@ -2795,11 +3135,21 @@
       "filename": "pasta_quattro_formaggi.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pasta di semola, latte, gorgonzola, fontina, emmental",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_quattro_formaggi.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pasta ai quattro formaggi; ingredients and prepared appearance checked against catalog (pasta di semola, latte, gorgonzola, fontina, emmental). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1076462,
+      "sha256": "66d817075e75aa01de888c784223690e94c9dcc1f6c562b5f0c32eb53522f7f2",
+      "updated_at": "2026-11-01T13:44:20.556098+00:00"
     },
     {
       "id": "pasta_al_forno_melanzane_scamorza",
@@ -2807,11 +3157,21 @@
       "filename": "pasta_al_forno_melanzane_scamorza.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "melanzana, passata di pomodoro, pasta di semola, scamorza affumicata, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_al_forno_melanzane_scamorza.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pasta al forno con melanzane e scamorza; ingredients and prepared appearance checked against catalog (melanzana, passata di pomodoro, pasta di semola, scamorza affumicata, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1254944,
+      "sha256": "083f8519aee56bfba92b0446637fea8a9caa62cef4612bd58b4ad8c72e4537e5",
+      "updated_at": "2026-11-01T13:44:17.368033+00:00"
     },
     {
       "id": "pasta_al_forno",
@@ -2863,11 +3223,21 @@
       "filename": "pasta_pesto_rosso_pomodori_secchi.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pasta di semola, pomodori secchi sottâ€™olio, mandorle, basilico fresco",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_pesto_rosso_pomodori_secchi.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pasta al pesto rosso di pomodori secchi; ingredients and prepared appearance checked against catalog (pasta di semola, pomodori secchi sottâ€™olio, mandorle, basilico fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1532461,
+      "sha256": "1e952ace0c519e7153ed758554ced2da20760bc1d1111802770c9a21ecdaa5cc",
+      "updated_at": "2026-11-01T13:44:25.293622+00:00"
     },
     {
       "id": "pasta_pomodoro_basilico",
@@ -2897,11 +3267,21 @@
       "filename": "pasta_ragu_bianco.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "macinato misto manzo e maiale, pasta di semola, carota, cipolla, sedano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_ragu_bianco.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pasta al ragÃ¹ bianco; ingredients and prepared appearance checked against catalog (macinato misto manzo e maiale, pasta di semola, carota, cipolla, sedano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1543785,
+      "sha256": "ad6e0477dc8a54813c84dbd199bf0a03e615e602174950b7bcd1f41bfb0e8294",
+      "updated_at": "2026-11-01T13:44:15.819186+00:00"
     },
     {
       "id": "pasta_ragu_veloce",
@@ -2931,11 +3311,21 @@
       "filename": "pasta_al_salmone_affumicato.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pasta di semola, panna da cucina, salmone affumicato, scalogno",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_al_salmone_affumicato.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pasta al salmone affumicato; ingredients and prepared appearance checked against catalog (pasta di semola, panna da cucina, salmone affumicato, scalogno). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1480587,
+      "sha256": "e4bb958371a7091f5a46efd5e3586096168ff6d675feb8b1fee9ae083c27b6b3",
+      "updated_at": "2026-11-01T13:44:38.542951+00:00"
     },
     {
       "id": "pasta_al_tonno",
@@ -3011,11 +3401,21 @@
       "filename": "pasta_alla_crudaiola.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodorini, pasta di semola, mozzarella, olive nere, basilico fresco",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_alla_crudaiola.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pasta alla crudaiola; ingredients and prepared appearance checked against catalog (pomodorini, pasta di semola, mozzarella, olive nere, basilico fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1501571,
+      "sha256": "a69f17978998d5174657edc1c7d2db0817bf75d093f58a647eebde6b5aed5330",
+      "updated_at": "2026-11-01T13:44:23.757940+00:00"
     },
     {
       "id": "pasta_alla_genovese",
@@ -3023,8 +3423,8 @@
       "filename": "pasta_alla_genovese.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "cipolla, manzo a cubetti, pasta di semola, carota, sedano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_alla_genovese.png",
       "review": "",
       "issues": []
@@ -3101,8 +3501,8 @@
       "filename": "pasta_fiori_di_zucca_zafferano.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "fiori di zucca, zucchina, pasta di semola, scalogno",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_fiori_di_zucca_zafferano.png",
       "review": "",
       "issues": []
@@ -3113,8 +3513,8 @@
       "filename": "pasta_con_le_sarde.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "sardine fresche, finocchio, pasta di semola, cipolla, uvetta",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_con_le_sarde.png",
       "review": "",
       "issues": []
@@ -3169,8 +3569,8 @@
       "filename": "pasta_pomodorini_burrata.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodorini, pasta di semola, burrata, basilico fresco",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_pomodorini_burrata.png",
       "review": "",
       "issues": []
@@ -3203,8 +3603,8 @@
       "filename": "pasta_salsa_di_noci.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pasta di semola, noci sgusciate, latte, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_salsa_di_noci.png",
       "review": "",
       "issues": []
@@ -3215,8 +3615,8 @@
       "filename": "pasta_seppie_pomodorini.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "seppie pulite, pomodorini, pasta di semola, prezzemolo",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_seppie_pomodorini.png",
       "review": "",
       "issues": []
@@ -3227,8 +3627,8 @@
       "filename": "pasta_zucca_salsiccia.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucca, pasta di semola, salsiccia, cipolla, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_zucca_salsiccia.png",
       "review": "",
       "issues": []
@@ -3261,8 +3661,8 @@
       "filename": "pasta_e_cavolfiore.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "cavolfiore, pasta di semola, pomodorini",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_e_cavolfiore.png",
       "review": "",
       "issues": []
@@ -3295,8 +3695,8 @@
       "filename": "pasta_e_fave.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "fave surgelate, cipollotto, pasta di semola",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_e_fave.png",
       "review": "",
       "issues": []
@@ -3329,8 +3729,8 @@
       "filename": "pasta_e_patate_con_provola.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "patata, pasta di semola, scamorza affumicata, cipolla, carota",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_e_patate_con_provola.png",
       "review": "",
       "issues": []
@@ -3341,8 +3741,8 @@
       "filename": "pasta_e_piselli.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "piselli surgelati, pasta di semola, cipolla, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_e_piselli.png",
       "review": "",
       "issues": []
@@ -3353,8 +3753,8 @@
       "filename": "pasta_fredda_ceci_peperoni.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "ceci cotti, peperone, pasta di semola, cipolla rossa, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_fredda_ceci_peperoni.png",
       "review": "",
       "issues": []
@@ -3387,8 +3787,8 @@
       "filename": "pasta_fredda_tonno_olive_pomodorini.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodorini, pasta di semola, tonno in scatola, olive verdi",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_fredda_tonno_olive_pomodorini.png",
       "review": "",
       "issues": []
@@ -3399,8 +3799,8 @@
       "filename": "pasta_fredda_verdure_grigliate.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "melanzana, zucchina, peperone, pasta di semola, basilico fresco",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_fredda_verdure_grigliate.png",
       "review": "",
       "issues": []
@@ -3411,8 +3811,8 @@
       "filename": "pasta_fredda_zucchine_feta_menta.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucchina, pasta di semola, feta, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_fredda_zucchine_feta_menta.png",
       "review": "",
       "issues": []
@@ -3423,8 +3823,8 @@
       "filename": "pasta_funghi_salsiccia.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "funghi champignon, salsiccia, pasta di semola, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_funghi_salsiccia.png",
       "review": "",
       "issues": []
@@ -3435,8 +3835,8 @@
       "filename": "pasta_integrale_crema_lenticchie_rosse.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pasta integrale, lenticchie rosse decorticate, carota, cipolla, concentrato di pomodoro",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_integrale_crema_lenticchie_rosse.png",
       "review": "",
       "issues": []
@@ -3447,8 +3847,8 @@
       "filename": "pasta_integrale_verdure_saltate.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pasta integrale, zucchina, peperone, pomodorini, carota",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_integrale_verdure_saltate.png",
       "review": "",
       "issues": []
@@ -3481,8 +3881,8 @@
       "filename": "pasta_panna_prosciutto_piselli.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pasta di semola, piselli surgelati, panna da cucina, prosciutto cotto, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_panna_prosciutto_piselli.png",
       "review": "",
       "issues": []
@@ -3515,8 +3915,8 @@
       "filename": "pasta_salsiccia_broccoli.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "broccolo, pasta di semola, salsiccia, pecorino romano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/pasta_salsiccia_broccoli.png",
       "review": "",
       "issues": []
