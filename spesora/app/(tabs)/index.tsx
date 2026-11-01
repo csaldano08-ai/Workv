@@ -13,7 +13,8 @@ import { formatCents } from '../../src/core/domain/prices';
 import { t } from '../../src/i18n/it';
 import { cookSoon, EMPTY, greeting, missingIngredients, shoppingDay, tipOfTheDay } from '../../src/i18n/assistant';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
-import { AssistantBubble } from '../../src/ui/AssistantBubble';
+import { AssistantBubble, MinaNote } from '../../src/ui/AssistantBubble';
+import { Reveal } from '../../src/ui/Reveal';
 import { Button } from '../../src/ui/Button';
 import { Card } from '../../src/ui/Card';
 import { RecipeImage } from '../../src/ui/RecipeImage';
@@ -69,15 +70,17 @@ export default function Today() {
         </Pressable>
       </View>
 
-      <TimoMessage snap={snap} next={next} todayTripItems={todayTrip?.lines.length ?? 0} todayTripDate={todayTrip?.date ?? null} initial={!!todayTrip?.isInitial} />
+      <Reveal>
+      <MinaMessage snap={snap} next={next} todayTripItems={todayTrip?.lines.length ?? 0} todayTripDate={todayTrip?.date ?? null} initial={!!todayTrip?.isInitial} />
+      </Reveal>
 
       {prepTonight.map(({ meal, recipe }) => (
         <Pressable key={meal.id} accessibilityRole="button" onPress={() => router.push(`/ricetta/${recipe!.id}?mealId=${encodeURIComponent(meal.id)}`)}>
-          <Notice title={`Stasera, per ${MEAL_LABELS[meal.mealType].toLowerCase()} di domani`} text={`${recipe!.name}: ${prepAheadShort(prepAheadOf(recipe!)!)}.`} />
+          <MinaNote pose="thinking" title={`Stasera, per ${MEAL_LABELS[meal.mealType].toLowerCase()} di domani`} text={`${recipe!.name}: ${prepAheadShort(prepAheadOf(recipe!)!)}.`} />
         </Pressable>
       ))}
 
-      {next ? <NextMealCard meal={next} snap={snap} onMore={() => actions.openMenu(next)} /> : <NoMealCard snap={snap} />}
+      <Reveal index={1}>{next ? <NextMealCard meal={next} snap={snap} onMore={() => actions.openMenu(next)} /> : <NoMealCard snap={snap} />}</Reveal>
 
       {todayTrip ? null : nextTrip ? (
         <Text variant="small" color={colors.inkSoft}>
@@ -132,14 +135,14 @@ export default function Today() {
   );
 }
 
-/** Messaggio contestuale di Timo: spesa, cucina imminente, saluto o giornata conclusa. */
-function TimoMessage({ snap, next, todayTripItems, todayTripDate, initial }: { snap: AppSnapshot; next: PlannedMeal | null; todayTripItems: number; todayTripDate: string | null; initial: boolean }) {
+/** Messaggio contestuale di Mina: spesa, cucina imminente, saluto o giornata conclusa. */
+function MinaMessage({ snap, next, todayTripItems, todayTripDate, initial }: { snap: AppSnapshot; next: PlannedMeal | null; todayTripItems: number; todayTripDate: string | null; initial: boolean }) {
   const hour = new Date().getHours();
   const key = `${snap.today}-${hour < 12 ? 'm' : hour < 18 ? 'p' : 's'}`;
   if (todayTripDate) {
     const msg = shoppingDay(todayTripItems, key);
     return (
-      <AssistantBubble pose="spesa" title={initial ? 'Serve una piccola spesa oggi' : msg.title} text={msg.body}>
+      <AssistantBubble pose="shopping" title={initial ? 'Serve una piccola spesa oggi' : msg.title} text={msg.body}>
         <Button kind="peach" compact label="Apri la lista" icon="basket-outline" onPress={() => router.push(`/spesa?trip=${todayTripDate}`)} style={styles.bubbleBtn} />
       </AssistantBubble>
     );
@@ -147,10 +150,10 @@ function TimoMessage({ snap, next, todayTripItems, todayTripDate, initial }: { s
   const recipe = next ? catalogIndex.recipe(next.recipeId) : null;
   if (next && recipe && next.date === snap.today) {
     const startsIn = next.timeMinutes - recipe.totalMinutes - nowMinutes();
-    if (startsIn <= 90) return <AssistantBubble pose="cucinare" text={cookSoon(recipe.name, recipe.totalMinutes, key)} />;
+    if (startsIn <= 90) return <AssistantBubble pose="cooking" text={cookSoon(recipe.name, recipe.totalMinutes, key)} />;
   }
-  if (!next) return <AssistantBubble pose={snap.issues.length > 0 ? 'vuoto' : 'completata'} text={snap.issues.length > 0 ? EMPTY.noRecipes : EMPTY.dayDone} />;
-  return <AssistantBubble pose="saluto" text={`${greeting(hour, key)} ${tipOfTheDay(snap.today)}`} />;
+  if (!next) return <AssistantBubble pose={snap.issues.length > 0 ? 'thinking' : 'success'} text={snap.issues.length > 0 ? EMPTY.noRecipes : EMPTY.dayDone} />;
+  return <AssistantBubble pose="wave" text={`${greeting(hour, key)} ${tipOfTheDay(snap.today)}`} />;
 }
 
 function statusLabel(m: PlannedMeal): string {

@@ -10,6 +10,7 @@ import { MEAL_LABELS } from '../../src/i18n/labels';
 import { t } from '../../src/i18n/it';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
+import { MinaMascot } from '../../src/ui/mascot/Mina';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
 import { Screen } from '../../src/ui/Screen';
@@ -23,6 +24,8 @@ export default function Week() {
   const plan = snapshot.plan;
   const days = rangeDays(plan.startDate, diffDays(plan.startDate, plan.endDate) + 1);
   const tripDates = new Set(snap.shopping.trips.map((tr) => tr.date));
+  const toCook = snap.meals.filter((m) => m.status === 'planned').length;
+  const tripCount = tripDates.size;
 
   const regenerate = () =>
     Alert.alert(
@@ -36,9 +39,17 @@ export default function Week() {
 
   return (
     <Screen>
-      <Text variant="title" accessibilityRole="header">
-        La tua settimana
-      </Text>
+      <View style={styles.header}>
+        <MinaMascot pose="calendar" size={104} animated />
+        <View style={styles.flex}>
+          <Text variant="title" accessibilityRole="header">
+            La tua settimana
+          </Text>
+          <Text variant="small" color={colors.inkSoft}>
+            {`${toCook} ${toCook === 1 ? 'pasto da cucinare' : 'pasti da cucinare'} · ${tripCount} ${tripCount === 1 ? 'spesa' : 'spese'}`}
+          </Text>
+        </View>
+      </View>
       <Text variant="small" color={colors.inkSoft}>
         {`Dal ${formatLongDate(plan.startDate)} al ${formatLongDate(plan.endDate)}. Tocca un pasto per la ricetta, tieni premuto per le altre azioni.`}
       </Text>
@@ -138,6 +149,7 @@ function Badge({ text, bg, fg, icon, onPress }: { text: string; bg: string; fg: 
 }
 
 const styles = StyleSheet.create({
+  header: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   day: { flexDirection: 'row', gap: space.md, backgroundColor: colors.paper, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.line, padding: space.md },
   dayToday: { borderColor: colors.green, borderWidth: 2 },
   dayPast: { opacity: 0.75 },

@@ -17,7 +17,7 @@ import {
   type StepProps,
 } from './steps';
 import { PortionProfileStep, QuantitiesStep, TastesStep } from './stepsPersonal';
-import type { TimoPose } from '../../ui/mascot/timoSvg';
+import type { MinaPose } from '../../ui/mascot/minaSvg';
 
 export interface StepDef {
   id: string;
@@ -29,15 +29,17 @@ export interface StepDef {
   validate?: (d: OnboardingDraft) => string | null;
   /** Modificabile dalle Impostazioni. */
   editable?: boolean;
-  /** Frase di Timo mostrata nel passo. */
+  /** Frase di Mina mostrata nel passo. */
   tip?: string;
-  pose?: TimoPose;
+  pose?: MinaPose;
+  /** Reazione di Mina alle scelte già fatte nel passo (posa e frase); assente = usa `tip`/`pose`. */
+  react?: (d: OnboardingDraft) => { pose: MinaPose; tip: string } | null;
   /** Funzione di personalizzazione avanzata (Spesora Plus in futuro; oggi disponibile a tutti). */
   premium?: boolean;
 }
 
 export const STEPS: StepDef[] = [
-  { id: 'persone', title: 'Quante persone mangeranno abitualmente?', Component: PeopleStep, editable: true, pose: 'saluto', tip: 'Ciao, sono Timo! Bastano due minuti e organizzo io la tua settimana.' },
+  { id: 'persone', title: 'Quante persone mangeranno abitualmente?', Component: PeopleStep, editable: true, pose: 'wave', tip: 'Ciao, sono Mina! Bastano due minuti e organizzo io la tua settimana.' },
   {
     id: 'pasti',
     title: 'Quali pasti vuoi organizzare?',
@@ -54,8 +56,9 @@ export const STEPS: StepDef[] = [
     Component: AllergenStep,
     optional: true,
     editable: true,
+    react: (d) => (d.profile.excludedAllergens.length + d.profile.excludedIngredientIds.length > 0 ? { pose: 'thinking', tip: 'Preso nota: questi ingredienti non compariranno mai nelle ricette che ti propongo.' } : null),
   },
-  { id: 'non-graditi', title: 'C’è qualcosa che non ti piace?', subtitle: 'Non lo vedrai nelle ricette proposte.', Component: DislikeStep, optional: true, editable: true },
+  { id: 'non-graditi', title: 'C’è qualcosa che non ti piace?', subtitle: 'Non lo vedrai nelle ricette proposte.', Component: DislikeStep, optional: true, editable: true, react: (d) => (d.profile.dislikedIngredientIds.length > 0 ? { pose: 'happy', tip: 'Va bene così: userò gli altri ingredienti per variare i piatti.' } : null) },
   {
     id: 'porzioni',
     title: 'Come mangi di solito?',
@@ -72,7 +75,7 @@ export const STEPS: StepDef[] = [
     Component: QuantitiesStep,
     editable: true,
     premium: true,
-    pose: 'cucinare',
+    pose: 'cooking',
     tip: 'Se di solito cuoci 70 g di pasta, userò 70 g. Semplice.',
   },
   {
@@ -83,7 +86,7 @@ export const STEPS: StepDef[] = [
     optional: true,
     editable: true,
     premium: true,
-    pose: 'suggerimento',
+    pose: 'thinking',
     tip: 'Dimmi cosa ti piace e lo proporrò più spesso, senza rinunciare alla varietà.',
   },
   { id: 'tempo', title: 'Quanto tempo hai per cucinare?', subtitle: 'Per ogni pasto principale.', Component: TimeStep, editable: true },
@@ -92,13 +95,13 @@ export const STEPS: StepDef[] = [
   {
     id: 'giorni-spesa',
     title: 'In quali giorni fai la spesa?',
-    pose: 'spesa',
+    pose: 'shopping',
     tip: 'Dividerò la spesa tra questi giorni, così i prodotti freschi restano freschi.',
     Component: ShoppingDaysStep,
     editable: true,
     validate: (d) => (d.profile.shoppingDays.length === 0 ? 'Scegli almeno un giorno.' : null),
   },
-  { id: 'budget', title: 'Quanto vuoi spendere per la tua spesa?', subtitle: 'Facoltativo: aiuta a scegliere ricette che riutilizzano gli ingredienti.', Component: BudgetStep, editable: true, premium: true, pose: 'spesa', tip: 'Mangiare bene secondo i tuoi gusti, senza comprare più del necessario.' },
+  { id: 'budget', title: 'Quanto vuoi spendere per la tua spesa?', subtitle: 'Facoltativo: aiuta a scegliere ricette che riutilizzano gli ingredienti.', Component: BudgetStep, editable: true, premium: true, pose: 'savings', tip: 'Mangiare bene secondo i tuoi gusti, senza comprare più del necessario.' },
   {
     id: 'strumenti',
     title: 'Cosa hai in cucina?',
@@ -112,7 +115,7 @@ export const STEPS: StepDef[] = [
     title: 'Vuoi dei promemoria?',
     subtitle: 'Un avviso quando è ora di iniziare a cucinare e nei giorni di spesa. Nessuno spam: solo ciò che scegli qui.',
     Component: NotificationsStep,
-    pose: 'suggerimento',
+    pose: 'thinking',
     tip: 'Ti scrivo solo quando serve: niente spam, promesso.',
   },
 ];

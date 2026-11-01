@@ -7,7 +7,7 @@ import { useApp } from '../src/features/app/AppProvider';
 import { STEPS } from '../src/features/onboarding/registry';
 import { colors, radius, space } from '../src/theme/tokens';
 import { Card } from '../src/ui/Card';
-import { TimoBadge } from '../src/ui/mascot/Timo';
+import { MinaBadge } from '../src/ui/mascot/Mina';
 import { LIKE_LABELS } from '../src/core/domain/classify';
 import { PROTEIN_LABELS } from '../src/features/onboarding/stepsPersonal';
 import { Divider, Row, SectionTitle } from '../src/ui/Row';
@@ -72,7 +72,7 @@ export default function Settings() {
     <Screen edges={['bottom']}>
       {p ? (
         <Card tone="green" style={styles.profile}>
-          <TimoBadge size={52} />
+          <MinaBadge size={52} />
           <View style={styles.flex}>
             <Text variant="heading">Il tuo profilo cucina</Text>
             <Text variant="small" color={colors.inkSoft}>

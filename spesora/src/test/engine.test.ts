@@ -243,3 +243,38 @@ describe('Dispensa — scadenze', () => {
     expect(meals.some((m) => m.reasons.some((r) => r.startsWith('Usa prima della scadenza')))).toBe(false);
   });
 });
+
+describe('Spesa — una sola riga per ingrediente (regressione chiave duplicata "prezzemolo")', () => {
+  it('lo stesso ingrediente, "q.b." in una ricetta e quantificato in un’altra, compare una volta per spesa', () => {
+    let checked = 0;
+    for (let seed = 1; seed <= 120; seed++) {
+      const p = profile({ shoppingDays: [1, 3, 5], mealTypes: ['colazione', 'pranzo', 'cena'] });
+      const { meals } = generatePlan(input(p, { seed }));
+      const plan = planShopping({ meals, catalog, pantry: new Map(), presentStaples: new Set(), shoppingDays: p.shoppingDays, today: MONDAY, horizonEnd: addDays(MONDAY, 6) });
+      const tripKeys = plan.trips.map((t) => `${t.isInitial ? 'init_' : ''}${t.date}`);
+      expect(new Set(tripKeys).size).toBe(tripKeys.length);
+      for (const t of plan.trips) {
+        const ids = t.lines.map((l) => l.ingredientId);
+        expect(new Set(ids).size, `seed ${seed} spesa ${t.date}`).toBe(ids.length);
+        checked += ids.length;
+      }
+      expect(new Set(plan.covered.map((c) => c.ingredientId)).size).toBe(plan.covered.length);
+    }
+    expect(checked).toBeGreaterThan(500);
+  });
+
+  it('unisce q.b. e quantità nella stessa riga senza perdere gli usi', () => {
+    const base = { catalog, pantry: new Map(), presentStaples: new Set<string>(), shoppingDays: [1 as const], today: MONDAY, horizonEnd: addDays(MONDAY, 6) };
+    const withParsley = (qb: boolean) =>
+      catalog.catalog.recipes.filter((r) => r.ingredients.some((i) => i.ingredientId === 'prezzemolo' && (qb ? i.toTaste || i.qty === undefined : i.qty !== undefined && !i.toTaste)));
+    const qb = withParsley(true)[0];
+    const qty = withParsley(false)[0];
+    expect(qb && qty).toBeTruthy();
+    const mk = (id: string, recipeId: string, date: string, mealType: 'pranzo' | 'cena') => ({ id, date, mealType, timeMinutes: 13 * 60, recipeId, servings: 2, status: 'planned' as const, source: 'auto' as const, reasons: [] });
+    const meals = [mk('a', qb.id, addDays(MONDAY, 2), 'pranzo'), mk('b', qty.id, addDays(MONDAY, 2), 'cena')];
+    const plan = planShopping({ ...base, meals });
+    for (const t of plan.trips) expect(new Set(t.lines.map((l) => l.ingredientId)).size).toBe(t.lines.length);
+    const line = plan.trips.flatMap((t) => t.lines).find((l) => l.ingredientId === 'prezzemolo')!;
+    expect(line.uses.map((u) => u.mealId).sort()).toEqual(expect.arrayContaining(['b']));
+  });
+});

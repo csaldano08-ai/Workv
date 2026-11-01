@@ -54,13 +54,13 @@ export default function Pantry() {
       </Text>
 
       {warnings.length > 0 ? (
-        <AssistantBubble pose="mancanti" size={60} title="Potrebbe non bastare" text={warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name).join(', ') + ': la quantità mancante è già nella lista della spesa.'} />
+        <AssistantBubble pose="missing" size={96} title="Potrebbe non bastare" text={warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name).join(', ') + ': la quantità mancante è già nella lista della spesa.'} />
       ) : null}
 
       {expiring.length > 0 ? (
         <AssistantBubble
-          pose="suggerimento"
-          size={60}
+          pose="thinking"
+          size={96}
           title="In scadenza a breve"
           text={`${expiring.map((e) => `${catalogIndex.ingredient(e.ingredientId).name} (${formatShortDate(e.expiryDate!)})`).join(', ')}: non sono ancora previsti in un pasto.`}
         >
@@ -69,7 +69,7 @@ export default function Pantry() {
       ) : null}
 
       {quantified.length === 0 ? (
-        <AssistantBubble pose="vuoto" text={`${EMPTY.noPantry} Puoi anche aggiungere ciò che hai già.`} />
+        <AssistantBubble pose="empty" text={`${EMPTY.noPantry} Puoi anche aggiungere ciò che hai già.`} />
       ) : (
         <Card style={styles.list}>
           {quantified.map((i, idx) => {

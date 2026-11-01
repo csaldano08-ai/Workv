@@ -34,7 +34,7 @@ export default function CheaperWeek() {
   if (!proposal || proposal.changes.length === 0) {
     return (
       <Screen edges={['bottom']}>
-        <AssistantBubble pose="vuoto" text="Il calendario è già il più semplice possibile con le tue preferenze: non trovo sostituzioni che riducano la spesa senza ripetere piatti o superare i tuoi vincoli." />
+        <AssistantBubble pose="happy" text="Il calendario è già il più semplice possibile con le tue preferenze: non trovo sostituzioni che riducano la spesa senza ripetere piatti o superare i tuoi vincoli." />
         <Button kind="secondary" label="Torna alla settimana" onPress={() => goBack('/settimana')} />
       </Screen>
     );
@@ -59,7 +59,7 @@ export default function CheaperWeek() {
         />
       }
     >
-      <AssistantBubble pose="suggerimento" text={`${summary}${limitText} I pasti cucinati e gli acquisti già confermati non cambiano.`} />
+      <AssistantBubble pose="savings" text={`${summary}${limitText} I pasti cucinati e gli acquisti già confermati non cambiano.`} />
       <Card style={{ gap: 0 }}>
         {proposal.changes.map((c, i) => {
           const meal = snapshot?.meals.find((m) => m.id === c.mealId);

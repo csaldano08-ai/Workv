@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { colors, space, TOUCH } from '../theme/tokens';
+import { LeafMark } from './Decor';
 import { Text } from './Text';
 
 export interface RowProps {
@@ -50,6 +51,7 @@ export function Divider() {
 export function SectionTitle({ children, action }: { children: string; action?: React.ReactNode }) {
   return (
     <View style={styles.section}>
+      <LeafMark />
       <Text variant="caption" color={colors.inkSoft} accessibilityRole="header" style={styles.sectionText}>
         {children.toUpperCase()}
       </Text>
@@ -62,6 +64,6 @@ const styles = StyleSheet.create({
   row: { minHeight: TOUCH + 8, flexDirection: 'row', alignItems: 'center', gap: space.md, paddingVertical: space.sm },
   text: { flex: 1, gap: 2 },
   divider: { height: 1, backgroundColor: colors.line },
-  section: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: space.sm },
+  section: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.sm },
   sectionText: { flex: 1 },
 });

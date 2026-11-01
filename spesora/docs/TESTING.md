@@ -19,7 +19,7 @@ Esegue typecheck (TypeScript strict), ESLint (0 avvisi), Vitest e controllo di c
 | L — errori | `service.test.ts` | DB vuoto, quantità nulle/negative/NaN/non intere, ingrediente inesistente, profilo malformato, JSON corrotto (nessuna perdita di dati), migrazioni idempotenti e schema futuro |
 | Catalogo | `catalog.test.ts` | Schema Zod, riferimenti, duplicati, alias ambigui, minimo 150 ricette (25 colazioni, 90 pranzi/cene, 15 spuntini); errori introdotti intenzionalmente vengono rilevati |
 | Personalizzazione | `personalization.test.ts` | Pasta 70 e 110 g, riso, proteine e appetito; spesa e dispensa con porzioni personalizzate (nessun doppio consumo); gusti (pesce, proteica, vegetariana, veloce) senza violare i vincoli; profili vecchi compatibili; salvataggio del nuovo formulario; registro Plus |
-| Immagini e mascotte | `images.test.ts` | Manifest = ricette reali, mappatura valida, prompt dagli ingredienti reali, sincronizzazione nuove/modificate, controlli tecnici (vuote, piccole, 800×600 JPEG, duplicati), pose di Timo e PNG presenti |
+| Immagini e mascotte | `images.test.ts` | Manifest = ricette reali, mappatura valida, prompt dagli ingredienti reali, sincronizzazione nuove/modificate, controlli tecnici (vuote, piccole, 800×600 JPEG, duplicati), pose di Mina e PNG presenti |
 | Tono dell'assistente | `notifications.test.ts` | Frasi brevi, con il nome della ricetta, senza parole colpevolizzanti |
 | Qualità | `checks.test.ts` | Chiavi di traduzione, assenza di `console.log`/TODO/segnaposto/mock fuori posto/SDK vietati; i controlli rilevano errori introdotti di proposito |
 

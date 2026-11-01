@@ -13,6 +13,7 @@ import { newDraft, pantryItems, restoreDraft, type OnboardingDraft } from '../sr
 import { PREVIEW_STEP, STEPS } from '../src/features/onboarding/registry';
 import { MEAL_LABELS } from '../src/i18n/labels';
 import { colors, radius, space } from '../src/theme/tokens';
+import { Reveal } from '../src/ui/Reveal';
 import { AssistantBubble } from '../src/ui/AssistantBubble';
 import { Button } from '../src/ui/Button';
 import { Card } from '../src/ui/Card';
@@ -76,6 +77,8 @@ export default function Onboarding() {
     return <Preview draft={draft} busy={busy} onBack={() => go(STEPS.length - 1)} onConfirm={finish} />;
   }
 
+  const reaction = def.react?.(draft) ?? null;
+  const mina = reaction ?? (def.tip ? { pose: def.pose ?? 'explaining', tip: def.tip } : null);
   return (
     <Screen
       edges={['top', 'bottom']}
@@ -97,7 +100,7 @@ export default function Onboarding() {
       <Text variant="caption" color={colors.inkSoft}>
         {`PASSO ${step + 1} DI ${STEPS.length}`}
       </Text>
-      {def.tip ? <AssistantBubble pose={def.pose ?? 'neutra'} text={def.tip} size={56} /> : null}
+      {mina ? <AssistantBubble pose={mina.pose} text={mina.tip} size={96} /> : null}
       <Text variant="title" accessibilityRole="header">
         {def.title}
       </Text>
@@ -151,7 +154,7 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
       <Text variant="title" accessibilityRole="header">
         La tua prima settimana
       </Text>
-      <AssistantBubble pose="completata" text="È pronta! L’ho preparata con le tue risposte. Puoi cambiare ogni pasto quando vuoi." />
+      <AssistantBubble pose="success" size={96} text="È pronta! L’ho preparata con le tue risposte. Puoi cambiare ogni pasto quando vuoi." />
       <Text variant="body" color={colors.inkSoft}>
         {`Dal ${formatLongDate(today)} al ${formatLongDate(addDays(today, PLAN_DAYS - 1))}. Potrai cambiare ogni pasto in qualsiasi momento.`}
       </Text>
@@ -160,10 +163,11 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
         <Notice tone="warning" title={`${result.issues.length} pasti senza ricetta`} text={result.issues[0].message} />
       ) : null}
       {result
-        ? rangeDays(today, PLAN_DAYS).map((date) => {
+        ? rangeDays(today, PLAN_DAYS).map((date, dayIndex) => {
             const meals = result.meals.filter((m) => m.date === date);
             return (
-              <Card key={date}>
+              <Reveal key={date} index={dayIndex}>
+              <Card>
                 <Text variant="heading">
                   {capitalize(formatLongDate(date))}
                   {draft.profile.shoppingDays.includes(weekdayOf(date)) ? ' · giorno di spesa' : ''}
@@ -191,6 +195,7 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
                   })
                 )}
               </Card>
+              </Reveal>
             );
           })
         : null}

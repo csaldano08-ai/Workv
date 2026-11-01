@@ -47,7 +47,7 @@ Si apre http://localhost:8081 (se non si apre da solo, incollalo in Chrome o Edg
 | `npm run catalog:report` | Rapporto di copertura del catalogo per profili alimentari (docs/COVERAGE.md) |
 | `npm run catalog:export-images` | Elenco immagini fatte e da creare per Google Flow |
 | `npm run images -- status` | Stato della produzione delle immagini delle ricette (vedi docs/IMAGES.md) |
-| `npm run mascot:export` | Esporta le pose di Timo in PNG trasparenti |
+| `npm run mascot:export` | Esporta le pose di Mina in PNG trasparenti |
 | `npm run check:release` | Controllo di produzione: fallisce finché mancano URL legali, bundle id, progetto EAS |
 | `npm run web` | Demo nel browser su http://localhost:8081 (vedi sotto) |
 

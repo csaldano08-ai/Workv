@@ -2,7 +2,7 @@ import { hashString } from '../core/domain/random';
 import type { MealType } from '../core/domain/types';
 
 /**
- * Micro-copy dell'assistente (Timo). Tono: amichevole, utile, breve, mai colpevolizzante.
+ * Micro-copy dell'assistente (Mina). Tono: amichevole, utile, breve, mai colpevolizzante.
  * Le varianti sono scelte in modo deterministico (stessa chiave → stessa frase) per evitare
  * testi che cambiano a ogni apertura.
  */
@@ -27,7 +27,7 @@ export function cookSoon(recipeName: string, minutes: number, key: string): stri
 }
 
 export function mealReminderTitle(mealType: MealType, key: string): string {
-  return pick([`È quasi ora di preparare ${MEAL_ARTICLE[mealType]}`, `Timo ti ricorda ${MEAL_ARTICLE[mealType]}`, `Pronto per ${MEAL_ARTICLE[mealType]}?`], key);
+  return pick([`È quasi ora di preparare ${MEAL_ARTICLE[mealType]}`, `Mina ti ricorda ${MEAL_ARTICLE[mealType]}`, `Pronto per ${MEAL_ARTICLE[mealType]}?`], key);
 }
 
 export function mealReminderBody(recipeName: string, minutes: number, servings: number, key: string): string {

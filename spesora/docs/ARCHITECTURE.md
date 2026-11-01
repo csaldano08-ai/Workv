@@ -55,7 +55,7 @@ Catalogo ricette e ingredienti **non** è nel database: è codice versionato con
 - `src/core/domain/classify.ts`: classificazione delle ricette (pesce, proteiche, primi, secondi, piatti unici, bowl) e `tasteScore` nel pianificatore.
 - Profilo: `portions` e `tastes` dentro `user_preferences` (JSON Zod con valori predefiniti: i profili salvati prima restano validi, nessuna migrazione SQL).
 - `src/i18n/assistant.ts`: micro-copy dell'assistente, scelte deterministiche per chiave.
-- `src/ui/mascot/`: Timo (sorgente SVG unica), `src/ui/AssistantBubble.tsx`.
+- `src/ui/mascot/`: Mina (sorgente SVG unica), `src/ui/AssistantBubble.tsx`.
 - `src/ui/RecipeImage.tsx` + `src/data/recipe-images.ts` (generato): immagine reale o illustrazione di fallback, proporzioni fisse.
 - `scripts/images/` + `.github/workflows/recipe-images.yml`: pipeline immagini (vedi IMAGES.md).
 

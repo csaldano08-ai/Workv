@@ -7,6 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { parseRouteFromNotification } from '../src/core/notifications/routing';
 import { AppProvider, useApp } from '../src/features/app/AppProvider';
 import { colors, space } from '../src/theme/tokens';
+import { CelebrationHost } from '../src/ui/CelebrationHost';
 import { Button } from '../src/ui/Button';
 import { LogoMark } from '../src/ui/Logo';
 import { Text } from '../src/ui/Text';
@@ -67,6 +68,7 @@ function Shell() {
     <>
       {Platform.OS !== 'web' ? <NotificationRouter /> : null}
       <OnboardingGate />
+      <CelebrationHost />
       <Stack
         screenOptions={{
           headerTintColor: colors.green,
@@ -75,10 +77,12 @@ function Shell() {
           headerShadowVisible: false,
           contentStyle: { backgroundColor: colors.ivory },
           headerBackButtonDisplayMode: 'minimal',
+          animation: 'slide_from_right',
+          animationDuration: 220,
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="benvenuto" options={{ headerShown: false }} />
+        <Stack.Screen name="benvenuto" options={{ headerShown: false, animation: 'fade' }} />
         <Stack.Screen name="onboarding" options={{ headerShown: false, gestureEnabled: false }} />
         <Stack.Screen name="privacy" options={{ title: 'Privacy e dati' }} />
         <Stack.Screen name="ricetta/[id]" options={{ title: '' }} />

@@ -46,7 +46,7 @@ export default function Shopping() {
         Spesa
       </Text>
       {trips.length === 0 ? (
-        <AssistantBubble pose="completata" text={EMPTY.noShopping} />
+        <AssistantBubble pose="success" text={EMPTY.noShopping} />
       ) : (        <>
           <ChipGroup>
             {trips.map((tr) => (
@@ -61,9 +61,9 @@ export default function Shopping() {
           </ChipGroup>
           {current ? (
             current.date === snapshot.today ? (
-              <AssistantBubble pose="spesa" size={60} title={shoppingDay(current.lines.length, current.date).title} text="Spunta i prodotti mentre li metti nel carrello, poi conferma: solo allora entrano in dispensa." />
+              <AssistantBubble pose="shopping" size={96} title={shoppingDay(current.lines.length, current.date).title} text="Spunta i prodotti mentre li metti nel carrello, poi conferma: solo allora entrano in dispensa." />
             ) : (
-              <AssistantBubble pose="neutra" size={60} text={`Questa lista è per ${formatLongDate(current.date)}: ogni prodotto arriva prima della ricetta che lo usa.`} />
+              <AssistantBubble pose="neutral" size={96} text={`Questa lista è per ${formatLongDate(current.date)}: ogni prodotto arriva prima della ricetta che lo usa.`} />
             )
           ) : null}
           {current ? <TripView trip={current} /> : null}

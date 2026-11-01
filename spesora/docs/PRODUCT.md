@@ -30,7 +30,7 @@ Spesora è un calendario che decide cosa cucinare, quando fare la spesa e cosa c
 - **Profilo porzioni**: appetito (poco/normale/tanto), stile di vita, tipo di pasti (leggeri, equilibrati, sostanziosi, più proteici), sesso facoltativo e mai usato nei calcoli.
 - **Quantità abituali**: pasta (70–120 g o personalizzata), riso e cereali (60–100 g o personalizzata), secondi (piccola/media/abbondante). Ricette, spesa e dispensa usano questi valori; nella ricetta le quantità adattate sono segnate "TUA". Dicitura: "Le porzioni sono indicative e si basano sulle tue abitudini impostate nell'app."
 - **Gusti combinabili**: pesce, ricette proteiche, primi, secondi, piatti unici, insalatone/bowl, cene veloci, colazioni dolci o salate. **Tipo di settimana**: pratica, varia, ingredienti semplici e riutilizzati, proteica, più vegetariana, veloce. Spostano le preferenze del motore senza mai superare le esclusioni.
-- **Timo**, la mascotte, accompagna onboarding, Oggi, Spesa, Dispensa, stati vuoti e Plus; le notifiche usano un tono amichevole, breve e mai colpevolizzante.
+- **Mina**, la mascotte, accompagna onboarding, Oggi, Spesa, Dispensa, stati vuoti e Plus; le notifiche usano un tono amichevole, breve e mai colpevolizzante.
 - **Immagini delle ricette**: struttura pronta (vedi IMAGES.md); finché mancano, illustrazioni originali.
 - **Plus**: registro delle funzioni premium (`src/core/purchases/features.ts`), etichette PLUS nelle impostazioni, nessun blocco attivo (`paywallMode: off`).
 

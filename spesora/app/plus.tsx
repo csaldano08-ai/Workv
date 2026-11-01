@@ -4,7 +4,7 @@ import { Linking, StyleSheet, View } from 'react-native';
 import { Alert } from '../src/ui/dialog';
 import { appConfig } from '../src/core/config';
 import { PLUS_FEATURES } from '../src/core/purchases/features';
-import { Timo } from '../src/ui/mascot/Timo';
+import { MinaMascot } from '../src/ui/mascot/Mina';
 import { createPurchaseService } from '../src/core/purchases/services';
 import type { EntitlementStatus, PlusPackage, PurchaseOutcome } from '../src/core/purchases/types';
 import { colors, space } from '../src/theme/tokens';
@@ -58,7 +58,7 @@ export default function Plus() {
         <Notice tone="warning" title="Modalità sviluppo" text="Acquisti simulati: nessun pagamento reale, nulla viene salvato. Prezzi indicati come ESEMPIO." />
       ) : null}
       <View style={styles.hero}>
-        <Timo pose="suggerimento" size={84} />
+        <MinaMascot pose="savings" size={104} animated />
         <Text variant="title" style={styles.flex}>
           Più tempo per te, meno decisioni
         </Text>
