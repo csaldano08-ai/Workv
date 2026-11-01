@@ -1,0 +1,447 @@
+{
+  "primary_assets": 18,
+  "poses": 16,
+  "png_files_checked": 54,
+  "animation_keyframes": 15,
+  "animation_layers": 4,
+  "dimensions_alpha_integrity": "passed",
+  "unique_final_poses": "16 of 16",
+  "rigid_frame_source_consistency": "passed 9 frames",
+  "wave_layer_reconstruction": "pixel-identical",
+  "visual_review": "16 selected pose illustrations, light/dark contact sheets, 17 three-background alpha composites, and 15 animation keyframes examined",
+  "app_runtime_tested": false,
+  "files": [
+    {
+      "file": "animation-frames/book_open/book_open_00.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 553227,
+      "sha256": "0f59f07d556ec5a59bccbee625481866a15cb52019e05d5aed6c0f1ae3423e46"
+    },
+    {
+      "file": "animation-frames/book_open/book_open_01.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 586565,
+      "sha256": "e2df6a5125ec8e5d7558044fb5d8306d5b0a7fe1de32dd2f7bf1c6a3f0cf4255"
+    },
+    {
+      "file": "animation-frames/book_open/book_open_02.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 580300,
+      "sha256": "5b161cb26142e0fce87d9eaae94704bec8f5288b091b9cdbc6ffa10304bf977c"
+    },
+    {
+      "file": "animation-frames/cooking_reminder/cooking_reminder_00.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 542696,
+      "sha256": "fdca05dc12527ab1143e9ea8dce5d1a7447ef0aaeca185df57be947aaeee1483"
+    },
+    {
+      "file": "animation-frames/cooking_reminder/cooking_reminder_01.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 542546,
+      "sha256": "2be1a083fa038ee908ec363c35d2b900a6c0214d2d87b62a2d594fe477877146"
+    },
+    {
+      "file": "animation-frames/cooking_reminder/cooking_reminder_02.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 542508,
+      "sha256": "21aca3d9a02fdcf15cb763f8ec678164ba61a4d4d507d6bec065e56238ead2ab"
+    },
+    {
+      "file": "animation-frames/layers/book_body_pages.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 332781,
+      "sha256": "58ff264ab79588f087cd62be7c949e0119dbe92f8bbd008092eb4f024f00bd10"
+    },
+    {
+      "file": "animation-frames/layers/book_cover.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 540148,
+      "sha256": "6a10a1aef407837db4fe74e4fc8bec9a32e2f7ff205049a0f16ee3539c74e6fb"
+    },
+    {
+      "file": "animation-frames/layers/wave_arm.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 535497,
+      "sha256": "a2d34ce5e1108b352e8f91b8f588f5d0c675cf52a533c13463c937e8a4e6fb0d"
+    },
+    {
+      "file": "animation-frames/layers/wave_body.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 543837,
+      "sha256": "1984c1da642bfc4d793db06e9b160589f3d357228aa75e521d2bb2454e60c208"
+    },
+    {
+      "file": "animation-frames/shopping/shopping_00.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 562545,
+      "sha256": "5fe4a7fb649b43421c794dfaa2bfae57cc930e1ca7652da2da4214e526e52a17"
+    },
+    {
+      "file": "animation-frames/shopping/shopping_01.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 562566,
+      "sha256": "a762212a0021aac5cde228495e0af7483415ccd9eb0c5fc6d01623a3586b87b8"
+    },
+    {
+      "file": "animation-frames/shopping/shopping_02.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 562566,
+      "sha256": "3f2950035f0798829b8f067e7ab315757d9bde7e8a9aa2e5071a4a519d508a9d"
+    },
+    {
+      "file": "animation-frames/success/success_00.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 555332,
+      "sha256": "ebb47e88be55cfe2cba06eeb728c955e69ab5426aa6895daf4e6c6a8232ce079"
+    },
+    {
+      "file": "animation-frames/success/success_01.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 555124,
+      "sha256": "e633cb0c9f839a08db68d02182c35fcbc6a4c13cbc9304343ee38ca40ca9b42a"
+    },
+    {
+      "file": "animation-frames/success/success_02.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 555332,
+      "sha256": "ebb47e88be55cfe2cba06eeb728c955e69ab5426aa6895daf4e6c6a8232ce079"
+    },
+    {
+      "file": "animation-frames/wave/wave_00.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 526883,
+      "sha256": "fabee7facdd628b3f995bbaa191588840d4d8d288b1ec0e92386ad3a3255554c"
+    },
+    {
+      "file": "animation-frames/wave/wave_01.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 519040,
+      "sha256": "cbdf43c646f68c8017bf42d28f4328c75beada19f2f5b3c697232660ee258af8"
+    },
+    {
+      "file": "animation-frames/wave/wave_02.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 521466,
+      "sha256": "49615f6cf2a6c1b24710b87440207be73077e288eb1b4ae9b2321333e2d5dec3"
+    },
+    {
+      "file": "master/mina_master.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 450703,
+      "sha256": "7bc26eb2eddc7e99c9e523718f8c88f2d91362da8f259261ca4e491e8a30634e"
+    },
+    {
+      "file": "master/mina_reference_sheet.png",
+      "width": 1200,
+      "height": 896,
+      "mode": "RGB",
+      "bytes": 1171746,
+      "sha256": "db040f0e875f1dd30d2504ce20ae8c1e87e84e96e8fa402bac378f2ad0afc647"
+    },
+    {
+      "file": "optimized/mina_calendar.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 170328,
+      "sha256": "dea388e3443a080df5c099839d2dbbbc7637fe962109c98ec386f6d54267ab4e"
+    },
+    {
+      "file": "optimized/mina_cooking.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 180076,
+      "sha256": "fc48a1afba782cc419bb90357f433ab4a4d1f3fb54e5f5cc1f38ef0cc2c4c95c"
+    },
+    {
+      "file": "optimized/mina_empty.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 165769,
+      "sha256": "8651081da511f631a3949ca8ac618f01140ddfff5ea2573c50b5050601623e62"
+    },
+    {
+      "file": "optimized/mina_explaining.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 167544,
+      "sha256": "7282de531503616682901d843ad6dde68cb5bfef9e63eb31d886a47d97821f16"
+    },
+    {
+      "file": "optimized/mina_happy.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 166015,
+      "sha256": "c4cc7e80c1acf371c95d682f59fc46ce3fc329d7050ea90fa631bc855bca2999"
+    },
+    {
+      "file": "optimized/mina_master.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 144996,
+      "sha256": "8af1ff3e5a74c9e1cfc38efa5d1a024fb2c3c52acee01e879d4a6c05e6f95844"
+    },
+    {
+      "file": "optimized/mina_missing.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 169218,
+      "sha256": "c2c5095826e00db4001e58a259d9fc84194ecde906a527c485497b5525f70a0e"
+    },
+    {
+      "file": "optimized/mina_neutral.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 164368,
+      "sha256": "906bbf2a4f34dac8787deebf51af720d3c9214f5f5b5f9fd8b14c7038a460806"
+    },
+    {
+      "file": "optimized/mina_pantry.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 178172,
+      "sha256": "5437ff8b47a2e7af70d26cbe2b947309058532208bf2e03e04a5adc0c3c3d588"
+    },
+    {
+      "file": "optimized/mina_recipe.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 171699,
+      "sha256": "47596d48abd32f46cf158bb645bb95464a8ff28a9483ae008dca33b16275da00"
+    },
+    {
+      "file": "optimized/mina_savings.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 168485,
+      "sha256": "9c4606f4799868c1c180db0ef2f3626ad5803de6eb765b78549e5f529f05b9b5"
+    },
+    {
+      "file": "optimized/mina_shopping.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 181687,
+      "sha256": "12003059c5eca6a13ba8b8ba858870b068a6ef9f1ba909673f101d20bb1c1734"
+    },
+    {
+      "file": "optimized/mina_sleepy.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 161127,
+      "sha256": "6c73d9389ccfceb62788da03f5d181924cfba353d35067d1692d358a7f2ebffc"
+    },
+    {
+      "file": "optimized/mina_success.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 183613,
+      "sha256": "90ab50c0c428d433decd9cf53e7fa19872f7f0fe1405b76fa04ef7537781fff4"
+    },
+    {
+      "file": "optimized/mina_thinking.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 164087,
+      "sha256": "197b13cf5c396853ddfda7132b6171be20d4567883cd036a3935c9a1c5b34891"
+    },
+    {
+      "file": "optimized/mina_wave.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 170655,
+      "sha256": "34df604ee62dd0303be1fe62102981881157c8f2eae5fcbc81e1bba351f497e2"
+    },
+    {
+      "file": "optimized/mina_welcome.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 168325,
+      "sha256": "e4be4ca343ea21156f9e6df797b558f242362211338cb153029be6e13afb3c42"
+    },
+    {
+      "file": "poses/mina_calendar.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 554467,
+      "sha256": "afdda119738a0789af1923e2bfdcec8d68c0afa4fb496afad047a55b326ddf4c"
+    },
+    {
+      "file": "poses/mina_cooking.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 573837,
+      "sha256": "26b85ae983caa0941f4630f63673043ba09833998c50ab5a71246c8dcbddde5e"
+    },
+    {
+      "file": "poses/mina_empty.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 536945,
+      "sha256": "6afa6cc06adb41ef6839bcd893b6a052b97c6ac33609eabecc418a280ae01561"
+    },
+    {
+      "file": "poses/mina_explaining.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 541512,
+      "sha256": "15222e2648215e0f072090dfc3a35fe17aebe6e2fd70f743b7b33124b5c2f384"
+    },
+    {
+      "file": "poses/mina_happy.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 538229,
+      "sha256": "bc122cf7b1908daa74f6f70aea1d174f2926884980d91973dee67766c58f59b4"
+    },
+    {
+      "file": "poses/mina_missing.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 545696,
+      "sha256": "ec6726b6f6136d883cfe97b2e297720616bd6eb59b8238d6827b6db618e01126"
+    },
+    {
+      "file": "poses/mina_neutral.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 525899,
+      "sha256": "5c5afb56413da9f592c89b39dea3f0af94299f06775561a8a6b4d723594b8cc5"
+    },
+    {
+      "file": "poses/mina_pantry.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 579693,
+      "sha256": "6790c14722a8d2282fa50734b9c918b7be905f0c856a290a0ddce3b4b4796031"
+    },
+    {
+      "file": "poses/mina_recipe.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 553164,
+      "sha256": "a6fed817e5e2c12be40669db82c02f4ed9a1b7270103f526e60e01ab10d872ef"
+    },
+    {
+      "file": "poses/mina_savings.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 542324,
+      "sha256": "135a851c004adfec04856f9e630b7e7f31cce27c0c52f0f3bb032e55ffac6db8"
+    },
+    {
+      "file": "poses/mina_shopping.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 585707,
+      "sha256": "a3e6e59155279f7a6d60ee63c806e5168105c34546a80b22c6fa43adbacdcd04"
+    },
+    {
+      "file": "poses/mina_sleepy.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 516649,
+      "sha256": "3a0330cb05b9ec97de04c3c68f8f79c9c3a478c356f53821ee12f7424afdc45a"
+    },
+    {
+      "file": "poses/mina_success.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 587082,
+      "sha256": "c4bd80f1579556560a8e06b27ba421494275899fcf0175bd67a8eadc7d9f68d4"
+    },
+    {
+      "file": "poses/mina_thinking.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 526352,
+      "sha256": "f868186b13bd21428707d67d69f69115c5409338733e11947e8178bd3b2f8db7"
+    },
+    {
+      "file": "poses/mina_wave.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 546551,
+      "sha256": "57053f2ffd3c2f8c3682af51937bbc383aba6788544eb2f5ee6bc7303a11606f"
+    },
+    {
+      "file": "poses/mina_welcome.png",
+      "width": 1024,
+      "height": 1024,
+      "mode": "RGBA",
+      "bytes": 542167,
+      "sha256": "5aa0b3fce54b724ac24ccf8cd2854427ef6c344c74470149b60dc182304fd670"
+    }
+  ]
+}
