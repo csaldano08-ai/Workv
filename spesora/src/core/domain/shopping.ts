@@ -110,7 +110,10 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
         if (present || stapleAssigned.has(ing.id)) continue;
         stapleAssigned.add(ing.id);
         const trip = latestTrip ? ensureTrip(latestTrip, false) : ensureTrip(today, true);
-        trip.lines.push({ ingredientId: ing.id, qty: 0, suggestedQty: 0, packs: null, toTaste: true, uses: [makeUse(0)], warnings: [] });
+        // Una sola riga per ingrediente in ogni spesa: se è già prevista con quantità, il q.b. si aggiunge ai suoi usi.
+        const same = trip.lines.find((l) => l.ingredientId === ing.id);
+        if (same) same.uses.push(makeUse(0));
+        else trip.lines.push({ ingredientId: ing.id, qty: 0, suggestedQty: 0, packs: null, toTaste: true, uses: [makeUse(0)], warnings: [] });
         continue;
       }
 
@@ -159,7 +162,9 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
       else if (latestTrip) trip = ensureTrip(latestTrip, false);
       else trip = ensureTrip(today, true);
 
-      let line = trip.lines.find((l) => l.ingredientId === ing.id && !l.toTaste);
+      // Se nella stessa spesa l'ingrediente è già presente come "q.b.", la riga diventa quantificata (mai due righe).
+      let line = trip.lines.find((l) => l.ingredientId === ing.id);
+      if (line?.toTaste) line.toTaste = false;
       if (!line) {
         line = { ingredientId: ing.id, qty: 0, suggestedQty: 0, packs: null, toTaste: false, uses: [], warnings: [] };
         trip.lines.push(line);

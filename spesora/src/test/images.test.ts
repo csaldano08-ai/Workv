@@ -6,7 +6,7 @@ import { CATALOG } from '../data/catalog';
 import { emptyManifest, loadManifest, syncWithCatalog } from '../../scripts/images/manifest';
 import { buildRecipePrompt, mainIngredients } from '../../scripts/images/prompts';
 import { hammingDistance, perceptualHash, technicalCheck, toCardJpeg, toThumbJpeg } from '../../scripts/images/quality';
-import { TIMO_POSES, timoSvg } from '../ui/mascot/timoSvg';
+import { MINA_POSES, minaBadgeSvg, minaSvg, resolvePose } from '../ui/mascot/minaSvg';
 import { catalog } from './helpers';
 
 const ROOT = join(__dirname, '..', '..');
@@ -108,18 +108,39 @@ describe('Immagini delle ricette', () => {
   });
 });
 
-describe('Mascotte Timo', () => {
-  it('ogni posa è un SVG valido, distinto e senza testo', () => {
-    const svgs = TIMO_POSES.map((p) => timoSvg(p));
-    expect(new Set(svgs).size).toBe(TIMO_POSES.length);
+describe('Mascotte Mina', () => {
+  it('ogni posa è un SVG valido, distinto, senza testo e con l’identità fissa del ricettario', () => {
+    const svgs = MINA_POSES.map((p) => minaSvg(p));
+    expect(MINA_POSES).toHaveLength(12);
+    expect(new Set(svgs).size).toBe(MINA_POSES.length);
     for (const s of svgs) {
       expect(s.startsWith('<svg')).toBe(true);
+      expect(s.endsWith('</svg>')).toBe(true);
       expect(s).not.toMatch(/<text/);
+      // elementi permanenti: copertina avorio, dorso verde, elastico, segnalibro pesca
+      for (const color of ['#FAF6EC', '#2F5C47', '#386E55', '#E6A46D']) expect(s).toContain(color);
+      const open = (s.match(/<(?!\/|\?|!)[a-zA-Z]/g) ?? []).length;
+      const selfClosed = (s.match(/\/>/g) ?? []).length;
+      const closed = (s.match(/<\/[a-zA-Z]+>/g) ?? []).length;
+      expect(open).toBe(selfClosed + closed);
     }
+    expect(minaBadgeSvg().startsWith('<svg')).toBe(true);
   });
 
-  it('gli asset PNG esportati esistono per tutte le pose', () => {
-    for (const p of TIMO_POSES) expect(existsSync(join(ROOT, 'assets', 'mascot', `timo-${p}.png`))).toBe(true);
-    expect(existsSync(join(ROOT, 'assets', 'mascot', 'timo-badge.png'))).toBe(true);
+  it('i vecchi nomi italiani delle pose restano risolti e un nome ignoto usa la posa neutra', () => {
+    expect(resolvePose('saluto')).toBe('welcome');
+    expect(resolvePose('spesa')).toBe('shopping');
+    expect(resolvePose('success')).toBe('success');
+    expect(resolvePose('inesistente')).toBe('neutral');
+  });
+
+  it('gli asset PNG esportati (sfondo trasparente, 1024×1024) esistono per tutte le pose', async () => {
+    for (const p of MINA_POSES) {
+      const file = join(ROOT, 'assets', 'mascot', 'mina', 'vector', `mina_${p}.png`);
+      expect(existsSync(file), file).toBe(true);
+      const meta = await sharp(file).metadata();
+      expect([meta.width, meta.height, meta.hasAlpha]).toEqual([1024, 1024, true]);
+    }
+    expect(existsSync(join(ROOT, 'assets', 'mascot', 'mina', 'vector', 'mina_badge.png'))).toBe(true);
   });
 });

@@ -15,7 +15,7 @@ export default function History() {
   return (
     <Screen edges={['bottom']}>
       {history.length === 0 ? (
-        <AssistantBubble pose="neutra" text={EMPTY.noHistory} />
+        <AssistantBubble pose="neutral" text={EMPTY.noHistory} />
       ) : (
         <Card style={{ gap: 0 }}>
           {history.map((h, i) => (

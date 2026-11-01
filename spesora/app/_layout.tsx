@@ -75,10 +75,12 @@ function Shell() {
           headerShadowVisible: false,
           contentStyle: { backgroundColor: colors.ivory },
           headerBackButtonDisplayMode: 'minimal',
+          animation: 'slide_from_right',
+          animationDuration: 220,
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="benvenuto" options={{ headerShown: false }} />
+        <Stack.Screen name="benvenuto" options={{ headerShown: false, animation: 'fade' }} />
         <Stack.Screen name="onboarding" options={{ headerShown: false, gestureEnabled: false }} />
         <Stack.Screen name="privacy" options={{ title: 'Privacy e dati' }} />
         <Stack.Screen name="ricetta/[id]" options={{ title: '' }} />

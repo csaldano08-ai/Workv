@@ -155,7 +155,7 @@ export default function Recipes() {
         ListHeaderComponent={header}
         initialNumToRender={12}
         windowSize={7}
-        ListEmptyComponent={<AssistantBubble pose="vuoto" text="Nessuna ricetta con questi filtri. Prova a toglierne uno." />}
+        ListEmptyComponent={<AssistantBubble pose="pantry" text="Nessuna ricetta con questi filtri. Prova a toglierne uno." />}
         renderItem={({ item }) => <RecipeRow recipe={item} favorite={favorites.has(item.id)} />}
         ItemSeparatorComponent={() => <View style={styles.sep} />}
       />

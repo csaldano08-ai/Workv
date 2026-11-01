@@ -1,8 +1,10 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 import { useApp } from '../src/features/app/AppProvider';
-import { colors, space } from '../src/theme/tokens';
-import { AssistantBubble } from '../src/ui/AssistantBubble';
+import { colors, radius, space } from '../src/theme/tokens';
+import { MinaMascot } from '../src/ui/mascot/Mina';
+import { OrnamentDivider, SoftBlob, Sprig } from '../src/ui/Decor';
+import { Reveal } from '../src/ui/Reveal';
 import { Button } from '../src/ui/Button';
 import { Logo } from '../src/ui/Logo';
 import { Screen } from '../src/ui/Screen';
@@ -29,15 +31,33 @@ export default function Welcome() {
       }
     >
       <View style={styles.hero}>
-        <Logo size={60} />
-        <AssistantBubble pose="saluto" size={84} text="Ciao, sono Timo! Ti aiuto a decidere cosa cucinare, cosa comprare e quando. Tu pensi solo a goderti il pasto." />
-        <Text variant="title" color={colors.ink}>
-          {t('app.slogan')}
-        </Text>
-        <Text variant="body" color={colors.inkSoft}>
-          {t('welcome.value')}
-        </Text>
+        <Reveal>
+          <View style={styles.stage}>
+            <SoftBlob size={250} style={styles.blob} />
+            <Sprig height={96} style={styles.sprigL} />
+            <Sprig height={80} tone="peach" style={styles.sprigR} />
+            <MinaMascot pose="welcome" size={150} animated accessibilityLabel="Mina, il ricettario vivente di Spesora, che ti saluta" />
+          </View>
+        </Reveal>
+        <Reveal index={1}>
+          <View style={styles.speech} accessible accessibilityLabel="Mina: Ciao, sono Mina! Ti aiuto a decidere cosa cucinare, cosa comprare e quando. Tu pensi solo a goderti il pasto.">
+            <Text variant="heading">Ciao, sono Mina!</Text>
+            <Text variant="body" color={colors.inkSoft}>
+              Ti aiuto a decidere cosa cucinare, cosa comprare e quando. Tu pensi solo a goderti il pasto.
+            </Text>
+          </View>
+        </Reveal>
+        <Reveal index={2} style={{ gap: space.sm }}>
+          <Logo size={44} />
+          <Text variant="title" color={colors.ink} style={styles.slogan}>
+            {t('app.slogan')}
+          </Text>
+          <Text variant="body" color={colors.inkSoft}>
+            {t('welcome.value')}
+          </Text>
+        </Reveal>
       </View>
+      <OrnamentDivider />
       <View style={styles.points}>
         {POINTS.map((p, i) => (
           <View key={p.title} style={styles.point}>
@@ -63,7 +83,13 @@ export default function Welcome() {
 }
 
 const styles = StyleSheet.create({
-  hero: { gap: space.md, marginTop: space.xl },
+  hero: { gap: space.md, marginTop: space.md },
+  stage: { alignItems: 'center', justifyContent: 'center', height: 230 },
+  blob: { position: 'absolute' },
+  sprigL: { position: 'absolute', left: 16, bottom: 8 },
+  sprigR: { position: 'absolute', right: 18, bottom: 14, transform: [{ scaleX: -1 }] },
+  speech: { backgroundColor: colors.paper, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.line, padding: space.lg, gap: space.xs, alignItems: 'center' },
+  slogan: { marginTop: space.sm },
   points: { gap: space.lg, marginTop: space.md },
   point: { flexDirection: 'row', gap: space.md, alignItems: 'flex-start' },
   num: { width: 32, height: 32, borderRadius: 16, backgroundColor: colors.peach, alignItems: 'center', justifyContent: 'center' },

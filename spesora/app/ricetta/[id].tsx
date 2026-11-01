@@ -19,6 +19,7 @@ import { t } from '../../src/i18n/it';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
 import { Card } from '../../src/ui/Card';
+import { MinaNote } from '../../src/ui/AssistantBubble';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
 import { SectionTitle } from '../../src/ui/Row';
@@ -57,6 +58,8 @@ export default function RecipeScreen() {
   const servings = meal?.servings ?? localServings;
   const planned = meal?.status === 'planned';
   const statuses = meal ? new Map(mealIngredientStatus(meal, catalogIndex, toStock(snapshot.pantry), snapshot.staples, snapshot.profile?.portions).map((s) => [s.ingredientId, s.status])) : null;
+
+  const missingCount = statuses ? [...statuses.values()].filter((s) => s === 'da_comprare' || s === 'parziale').length : 0;
 
   const setServings = (v: number) => {
     if (meal && planned) void run((s) => s.setServings(meal.id, v));
@@ -117,11 +120,13 @@ export default function RecipeScreen() {
         ))}
       </View>
       {prepAhead ? (
-        <Notice
+        <MinaNote
+          pose="thinking"
           title={prepAhead.kind === 'scongelamento' ? (prepAhead.conditional ? 'Se usi un prodotto surgelato: la sera prima' : 'Da scongelare la sera prima') : 'Da preparare la sera prima'}
-          text={`${prepAhead.step}${meal && meal.status === 'planned' ? ' Con i promemoria attivi, Spesora te lo ricorda la sera prima.' : ''}`}
+          text={`${prepAhead.step}${meal && meal.status === 'planned' ? ' Con i promemoria attivi te lo ricordo io la sera prima.' : ''}`}
         />
       ) : null}
+      {missingCount > 0 && planned ? <MinaNote pose="missing" text={`Mancano ${missingCount} ${missingCount === 1 ? 'ingrediente' : 'ingredienti'} in dispensa: ${missingCount === 1 ? 'è già' : 'sono già'} nella lista della spesa.`} /> : null}
 
       <Card>
         <View style={styles.servingsRow}>
