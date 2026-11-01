@@ -179,16 +179,24 @@
         "anguria",
         "lime"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/anguria_menta_lime.png",
       "promptHash": "dd5a536a51a2e411",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0a70f0f8f8703812",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1375571,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Anguria con menta e lime; ingredients and prepared appearance checked against catalog (anguria, lime). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:47:24.419856+00:00",
+      "card": "assets/recipes/card/anguria_menta_lime.jpg"
     },
     "arance_datteri_cannella": {
       "id": "arance_datteri_cannella",
@@ -268,16 +276,24 @@
         "ceci_cotti",
         "prezzemolo"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/baccala_ceci_pomodoro.png",
       "promptHash": "0d8cea57de8a39d4",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "583071d4e46039b2",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1324020,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: BaccalÃ  e ceci al pomodoro; ingredients and prepared appearance checked against catalog (baccalÃ  dissalato, pomodori pelati, ceci cotti, prezzemolo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:55.713180+00:00",
+      "card": "assets/recipes/card/baccala_ceci_pomodoro.jpg"
     },
     "baccala_umido_patate": {
       "id": "baccala_umido_patate",
@@ -355,16 +371,24 @@
       "mainIngredients": [
         "polenta_istantanea"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/bastoncini_polenta_friggitrice.png",
       "promptHash": "23958d2a33e07979",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "a9d0b2e9f9b2cc31",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1102033,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Bastoncini di polenta croccanti in friggitrice ad aria; ingredients and prepared appearance checked against catalog (farina per polenta istantanea). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:46:43.371785+00:00",
+      "card": "assets/recipes/card/bastoncini_polenta_friggitrice.jpg"
     },
     "bietole_patate_aglio": {
       "id": "bietole_patate_aglio",
@@ -378,16 +402,24 @@
         "bietole",
         "patata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/bietole_patate_aglio.png",
       "promptHash": "40c656fb22ce8cb5",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "b060e0e8e8f070b9",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1493508,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Bietole e patate all'aglio; ingredients and prepared appearance checked against catalog (bietole, patata). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:53.329554+00:00",
+      "card": "assets/recipes/card/bietole_patate_aglio.jpg"
     },
     "biscotti_avena_banana": {
       "id": "biscotti_avena_banana",
@@ -778,16 +810,24 @@
         "salsa_soia",
         "semi_sesamo"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/bowl_tofu_forno_riso_cavolo_rosso.png",
       "promptHash": "afdccce7ca0f72d4",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9061e4e0e0603870",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1539483,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Bowl di tofu al forno con riso e cavolo rosso; ingredients and prepared appearance checked against catalog (tofu, cavolo rosso, riso basmati, carota, salsa di soia). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:33.420707+00:00",
+      "card": "assets/recipes/card/bowl_tofu_forno_riso_cavolo_rosso.jpg"
     },
     "bowl_yogurt_ceci_croccanti_paprika": {
       "id": "bowl_yogurt_ceci_croccanti_paprika",
@@ -961,16 +1001,24 @@
         "zucchina",
         "pane"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/bruschetta_zucchine_menta.png",
       "promptHash": "f6ac2a95843a5664",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "44f0f0f0e8f2f079",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1516583,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Bruschetta con zucchine grigliate e menta; ingredients and prepared appearance checked against catalog (zucchina, pane). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:47:11.450370+00:00",
+      "card": "assets/recipes/card/bruschetta_zucchine_menta.jpg"
     },
     "bucatini_amatriciana": {
       "id": "bucatini_amatriciana",
@@ -1091,16 +1139,24 @@
         "farina_ceci",
         "prezzemolo"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/burger_ceci_zucchine.png",
       "promptHash": "bf81fd9bdf995629",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0679f8e4e8f070b2",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1496755,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Burger di ceci e zucchine in padella; ingredients and prepared appearance checked against catalog (ceci cotti, zucchina, pomodoro, insalata verde, farina di ceci). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:15.126434+00:00",
+      "card": "assets/recipes/card/burger_ceci_zucchine.jpg"
     },
     "burger_lenticchie_carote_forno": {
       "id": "burger_lenticchie_carote_forno",
@@ -1117,16 +1173,24 @@
         "fiocchi_avena",
         "cipolla"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/burger_lenticchie_carote_forno.png",
       "promptHash": "c1390b292fa2cce1",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4832f1e068f2d431",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1223061,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Burger di lenticchie e carote al forno con patate; ingredients and prepared appearance checked against catalog (lenticchie cotte, patata, carota, fiocchi d'avena, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:38.394564+00:00",
+      "card": "assets/recipes/card/burger_lenticchie_carote_forno.jpg"
     },
     "busiate_pesto_trapanese": {
       "id": "busiate_pesto_trapanese",
@@ -1173,16 +1237,24 @@
         "cachi",
         "lime"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/cachi_cucchiaio_lime.png",
       "promptHash": "695ac2d8e6641b97",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4016e9e87c644c12",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1226743,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Cachi al cucchiaio con lime; ingredients and prepared appearance checked against catalog (cachi, lime). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:46:50.850107+00:00",
+      "card": "assets/recipes/card/cachi_cucchiaio_lime.jpg"
     },
     "calamari_friggitrice": {
       "id": "calamari_friggitrice",
@@ -1264,16 +1336,24 @@
         "olive_verdi",
         "aceto"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/caponata_siciliana.png",
       "promptHash": "37d7401e8df7930c",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1060e8e4c4e871b2",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1204285,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Caponata di melanzane; ingredients and prepared appearance checked against catalog (melanzana, pomodori pelati, cipolla, sedano, olive verdi). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:21.475350+00:00",
+      "card": "assets/recipes/card/caponata_siciliana.jpg"
     },
     "caprese_pane": {
       "id": "caprese_pane",
@@ -1382,16 +1462,24 @@
         "carciofi",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/carciofi_alla_romana.png",
       "promptHash": "44378b97b0931860",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0864f0f171e06c31",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1093001,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Carciofi alla romana; ingredients and prepared appearance checked against catalog (carciofi, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:10.776024+00:00",
+      "card": "assets/recipes/card/carciofi_alla_romana.jpg"
     },
     "carciofi_patate_padella": {
       "id": "carciofi_patate_padella",
@@ -1468,16 +1556,24 @@
         "castagne",
         "miele"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/castagne_calde_miele_cannella.png",
       "promptHash": "1e6c0cf45b94203c",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "3070e8d8c8e87879",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1506802,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Castagne calde al miele e cannella; ingredients and prepared appearance checked against catalog (castagne cotte, miele). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:46:34.226897+00:00",
+      "card": "assets/recipes/card/castagne_calde_miele_cannella.jpg"
     },
     "cavoletti_ceci_friggitrice": {
       "id": "cavoletti_ceci_friggitrice",
@@ -1556,16 +1652,24 @@
         "besciamella",
         "parmigiano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/cavolfiore_gratinato_besciamella.png",
       "promptHash": "ae16952c077d582c",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8678eccce8ec7922",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1611382,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Cavolfiore gratinato al forno; ingredients and prepared appearance checked against catalog (cavolfiore, besciamella pronta, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:48.421020+00:00",
+      "card": "assets/recipes/card/cavolfiore_gratinato_besciamella.jpg"
     },
     "ceci_cime_rapa_padella": {
       "id": "ceci_cime_rapa_padella",
@@ -1579,16 +1683,24 @@
         "cime_rapa",
         "ceci_cotti"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/ceci_cime_rapa_padella.png",
       "promptHash": "c664d5e3b79089b7",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0870f0e9e8707942",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1565396,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Ceci e cime di rapa in padella; ingredients and prepared appearance checked against catalog (cime di rapa, ceci cotti). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:23.565035+00:00",
+      "card": "assets/recipes/card/ceci_cime_rapa_padella.jpg"
     },
     "ceci_croccanti_friggitrice": {
       "id": "ceci_croccanti_friggitrice",
@@ -1667,16 +1779,24 @@
         "carota",
         "sedano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/ceci_zimino_bietole.png",
       "promptHash": "eaa5f2ecc38f08d5",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1d72e8ccd86838f0",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1388109,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Ceci in zimino con bietole; ingredients and prepared appearance checked against catalog (ceci cotti, bietole, pomodori pelati, cipolla, carota). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:28.274581+00:00",
+      "card": "assets/recipes/card/ceci_zimino_bietole.jpg"
     },
     "chili_con_carne": {
       "id": "chili_con_carne",
@@ -1757,16 +1877,24 @@
       "mainIngredients": [
         "cavolo_nero"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/chips_cavolo_nero_friggitrice.png",
       "promptHash": "9a1d5b7df1f967b4",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9a70e1e8f8603851",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1554481,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Chips di cavolo nero in friggitrice ad aria; ingredients and prepared appearance checked against catalog (cavolo nero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:47:21.613999+00:00",
+      "card": "assets/recipes/card/chips_cavolo_nero_friggitrice.jpg"
     },
     "chips_mela_cannella": {
       "id": "chips_mela_cannella",
@@ -1807,16 +1935,24 @@
       "mainIngredients": [
         "patata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/chips_patate_rosmarino_friggitrice.png",
       "promptHash": "b4fbe7ae2ac2625f",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0c70f0c8d4783932",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1444835,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Chips di patate al rosmarino in friggitrice ad aria; ingredients and prepared appearance checked against catalog (patata). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:47:14.163056+00:00",
+      "card": "assets/recipes/card/chips_patate_rosmarino_friggitrice.jpg"
     },
     "chips_tortilla_pomodorini": {
       "id": "chips_tortilla_pomodorini",
@@ -1935,16 +2071,24 @@
         "zucchina",
         "cipolla"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/ciambotta_lucana.png",
       "promptHash": "1aaabb684e11406b",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9470e0d0e8603871",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1142765,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Ciambotta di verdure estive; ingredients and prepared appearance checked against catalog (melanzana, peperone, patata, pomodori pelati, zucchina). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:12.958285+00:00",
+      "card": "assets/recipes/card/ciambotta_lucana.jpg"
     },
     "cime_rapa_patate": {
       "id": "cime_rapa_patate",
@@ -1958,16 +2102,24 @@
         "cime_rapa",
         "patata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/cime_rapa_patate.png",
       "promptHash": "3639929bb06b0f5c",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0974f0e4f8f878b1",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1226738,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Cime di rapa e patate; ingredients and prepared appearance checked against catalog (cime di rapa, patata). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:17.223767+00:00",
+      "card": "assets/recipes/card/cime_rapa_patate.jpg"
     },
     "coniglio_alla_cacciatora": {
       "id": "coniglio_alla_cacciatora",
@@ -2311,16 +2463,24 @@
         "semi_chia",
         "semi_sesamo"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/crackers_semi_forno.png",
       "promptHash": "15726c6470f3630f",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0920716978f26c30",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1212763,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Crackers di semi al forno; ingredients and prepared appearance checked against catalog (semi di lino, semi di girasole, semi di zucca, semi di chia, semi di sesamo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:47:19.126392+00:00",
+      "card": "assets/recipes/card/crackers_semi_forno.jpg"
     },
     "crema_banana_lino_cacao": {
       "id": "crema_banana_lino_cacao",
@@ -2370,16 +2530,24 @@
         "carota",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/crema_cannellini_verdure_forno.png",
       "promptHash": "76ea8fda79ecc84b",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "b060f0f9f8f668b1",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1192753,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Crema di cannellini al rosmarino con verdure al forno; ingredients and prepared appearance checked against catalog (fagioli cannellini cotti, patata, finocchio, carota, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:43.648793+00:00",
+      "card": "assets/recipes/card/crema_cannellini_verdure_forno.jpg"
     },
     "crema_castagne_cacao_pera": {
       "id": "crema_castagne_cacao_pera",
@@ -2719,16 +2887,24 @@
         "fagioli_cannellini",
         "pane"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/crostini_cannellini_salvia.png",
       "promptHash": "7659b35578fbcb63",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "48f0f0e4c8f0f079",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1589760,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Crostini con cannellini alla salvia; ingredients and prepared appearance checked against catalog (fagioli cannellini cotti, pane). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:47:04.027124+00:00",
+      "card": "assets/recipes/card/crostini_cannellini_salvia.jpg"
     },
     "crostini_crema_fave_menta": {
       "id": "crostini_crema_fave_menta",
@@ -2742,16 +2918,24 @@
         "pane",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/crostini_crema_fave_menta.png",
       "promptHash": "4466aaf07d138663",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0070f0f0e8d86833",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1369606,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Crostini con crema di fave e menta; ingredients and prepared appearance checked against catalog (fave surgelate, pane, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:47:08.854022+00:00",
+      "card": "assets/recipes/card/crostini_crema_fave_menta.jpg"
     },
     "crostini_crema_lenticchie": {
       "id": "crostini_crema_lenticchie",
@@ -2765,16 +2949,24 @@
         "pane",
         "cipolla_rossa"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/crostini_crema_lenticchie.png",
       "promptHash": "e666a3ad11428042",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4df2f2f0f4e8cc71",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1290729,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Crostini con crema di lenticchie e cipolla rossa; ingredients and prepared appearance checked against catalog (lenticchie cotte, pane, cipolla rossa). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:47:01.236125+00:00",
+      "card": "assets/recipes/card/crostini_crema_lenticchie.jpg"
     },
     "crostini_mozzarella_alici": {
       "id": "crostini_mozzarella_alici",
@@ -2788,16 +2980,24 @@
         "pane",
         "acciughe_olio"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/crostini_mozzarella_alici.png",
       "promptHash": "85dd0e32525d32c1",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1070f0e0f8f27432",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1382930,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Crostini con mozzarella e alici; ingredients and prepared appearance checked against catalog (mozzarella, pane, filetti di acciuga sottâ€™olio). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:47:16.586045+00:00",
+      "card": "assets/recipes/card/crostini_mozzarella_alici.jpg"
     },
     "crostoni_cavolo_nero_cannellini": {
       "id": "crostoni_cavolo_nero_cannellini",
@@ -2943,16 +3143,24 @@
         "edamame",
         "lime"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/edamame_sale_lime.png",
       "promptHash": "685dfca50a30721a",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "3060f0e8e870b8f3",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1274130,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Edamame al sale e lime; ingredients and prepared appearance checked against catalog (edamame surgelati, lime). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:46:47.960568+00:00",
+      "card": "assets/recipes/card/edamame_sale_lime.jpg"
     },
     "erbazzone_semplificato": {
       "id": "erbazzone_semplificato",
@@ -2970,16 +3178,24 @@
         "pancetta",
         "pangrattato"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/erbazzone_semplificato.png",
       "promptHash": "eec195b87e723c24",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8471f4e4f8f4d431",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1509246,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Erbazzone semplificato; ingredients and prepared appearance checked against catalog (bietole, farina di grano tenero, cipollotto, parmigiano reggiano, pancetta a cubetti). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:19.405431+00:00",
+      "card": "assets/recipes/card/erbazzone_semplificato.jpg"
     },
     "fagioli_uccelletto": {
       "id": "fagioli_uccelletto",
@@ -3026,16 +3242,24 @@
         "passata_pomodoro",
         "cipolla"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/fagiolini_patate_umido.png",
       "promptHash": "9fee44c53f4bcdbb",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1870e0e8d8f03cf9",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1395611,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Fagiolini e patate in umido; ingredients and prepared appearance checked against catalog (fagiolini, patata, passata di pomodoro, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:41.079549+00:00",
+      "card": "assets/recipes/card/fagiolini_patate_umido.jpg"
     },
     "fajitas_pollo_peperoni": {
       "id": "fajitas_pollo_peperoni",
@@ -3088,16 +3312,24 @@
         "cipolla",
         "farina_ceci"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/falafel_forno_salsa_yogurt.png",
       "promptHash": "d3834f2f672b2c78",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "2299707064f6dcf2",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1319145,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Falafel al forno con salsa allo yogurt; ingredients and prepared appearance checked against catalog (ceci cotti, pane pita, yogurt greco, cetriolo, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:50.952184+00:00",
+      "card": "assets/recipes/card/falafel_forno_salsa_yogurt.jpg"
     },
     "farinata_ceci_forno": {
       "id": "farinata_ceci_forno",
@@ -3241,16 +3473,24 @@
         "fave_secche",
         "patata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/fave_e_cicoria.png",
       "promptHash": "ba583dc20ba2c312",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1862f9f8d8f870b0",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1344487,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Fave e cicoria; ingredients and prepared appearance checked against catalog (cicoria, fave secche decorticate, patata). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:35.830459+00:00",
+      "card": "assets/recipes/card/fave_e_cicoria.jpg"
     },
     "fave_guanciale_romana": {
       "id": "fave_guanciale_romana",
@@ -3266,16 +3506,24 @@
         "pane",
         "guanciale"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/fave_guanciale_romana.png",
       "promptHash": "da176d9ca14ce285",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "a269f4e0e8f07833",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1460244,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Fave e guanciale alla romana; ingredients and prepared appearance checked against catalog (fave surgelate, cipollotto, pane, guanciale). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:30.789910+00:00",
+      "card": "assets/recipes/card/fave_guanciale_romana.jpg"
     },
     "fegatini_pollo_cipolle_polenta": {
       "id": "fegatini_pollo_cipolle_polenta",
@@ -3383,16 +3631,24 @@
       "mainIngredients": [
         "pane"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/fettunta_aglio_olio.png",
       "promptHash": "a6a6bfaee3e38c3e",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9669e0e4ccf8f069",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1641774,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Fettunta all'aglio e olio; ingredients and prepared appearance checked against catalog (pane). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:46:38.906298+00:00",
+      "card": "assets/recipes/card/fettunta_aglio_olio.jpg"
     },
     "fichi_ricotta_miele": {
       "id": "fichi_ricotta_miele",
@@ -3406,16 +3662,24 @@
         "ricotta",
         "miele"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/fichi_ricotta_miele.png",
       "promptHash": "dd7764174bd535b1",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "043879f8e8f07933",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1423987,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Fichi con ricotta e miele; ingredients and prepared appearance checked against catalog (fichi freschi, ricotta, miele). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:46:57.988760+00:00",
+      "card": "assets/recipes/card/fichi_ricotta_miele.jpg"
     },
     "finocchi_gratinati_friggitrice": {
       "id": "finocchi_gratinati_friggitrice",
@@ -3431,16 +3695,24 @@
         "burro",
         "pangrattato"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/finocchi_gratinati_friggitrice.png",
       "promptHash": "b1788b6765b2cd8d",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9870f8dce4ec7872",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1504133,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Finocchi gratinati in friggitrice ad aria; ingredients and prepared appearance checked against catalog (finocchio, parmigiano reggiano, burro, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:46.048922+00:00",
+      "card": "assets/recipes/card/finocchi_gratinati_friggitrice.jpg"
     },
     "focaccia_farcita_melanzane_mozzarella": {
       "id": "focaccia_farcita_melanzane_mozzarella",
@@ -3456,16 +3728,24 @@
         "pomodoro",
         "mozzarella"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/focaccia_farcita_melanzane_mozzarella.png",
       "promptHash": "543952a53fb90508",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8671e8e4e4ecfc71",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1532670,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Focaccia farcita con melanzane grigliate e mozzarella; ingredients and prepared appearance checked against catalog (focaccia, melanzana, pomodoro, mozzarella). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:34:25.789629+00:00",
+      "card": "assets/recipes/card/focaccia_farcita_melanzane_mozzarella.jpg"
     },
     "focaccine_yogurt_padella": {
       "id": "focaccine_yogurt_padella",
@@ -3479,16 +3759,24 @@
         "yogurt_bianco",
         "lievito_dolci"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/focaccine_yogurt_padella.png",
       "promptHash": "0ea1636f950841a1",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "047368fcf0f0f831",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1200046,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Focaccine allo yogurt in padella; ingredients and prepared appearance checked against catalog (farina di grano tenero, yogurt bianco naturale, lievito per dolci). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:46:36.645496+00:00",
+      "card": "assets/recipes/card/focaccine_yogurt_padella.jpg"
     },
     "fragole_limone_zucchero": {
       "id": "fragole_limone_zucchero",
@@ -3768,16 +4056,24 @@
         "farina",
         "parmigiano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/frittelle_zucchine_parmigiano.png",
       "promptHash": "0a52e877ef61c985",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8870f0e8f8f06032",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1496828,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Frittelle di zucchine e parmigiano; ingredients and prepared appearance checked against catalog (zucchina, uova, farina di grano tenero, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:46:45.660647+00:00",
+      "card": "assets/recipes/card/frittelle_zucchine_parmigiano.jpg"
     },
     "frullato_ciliegie_banana": {
       "id": "frullato_ciliegie_banana",
@@ -3886,16 +4182,24 @@
         "melone",
         "pesca"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/frullato_melone_pesca_menta.png",
       "promptHash": "112060d03b6df9c0",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "106071797a383990",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 911622,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Frullato di melone, pesca e menta; ingredients and prepared appearance checked against catalog (melone, pesca). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:46:54.669135+00:00",
+      "card": "assets/recipes/card/frullato_melone_pesca_menta.jpg"
     },
     "funghi_ripieni_friggitrice": {
       "id": "funghi_ripieni_friggitrice",
@@ -3911,16 +4215,24 @@
         "pangrattato",
         "parmigiano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/funghi_ripieni_friggitrice.png",
       "promptHash": "bf71e19acd55a2ca",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "241a796070f07173",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1411752,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Funghi ripieni in friggitrice ad aria; ingredients and prepared appearance checked against catalog (funghi champignon, insalata verde, pangrattato, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:57.508374+00:00",
+      "card": "assets/recipes/card/funghi_ripieni_friggitrice.jpg"
     },
     "gallette_ricotta_miele": {
       "id": "gallette_ricotta_miele",
@@ -4066,16 +4378,24 @@
         "parmigiano",
         "latte"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/gatto_di_patate_napoletano.png",
       "promptHash": "e7d912fe4bf3cc35",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9c71e8c4c464f853",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1164094,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: GattÃ² di patate; ingredients and prepared appearance checked against catalog (patata, uova, mozzarella, prosciutto cotto, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:35.257922+00:00",
+      "card": "assets/recipes/card/gatto_di_patate_napoletano.jpg"
     },
     "gazpacho": {
       "id": "gazpacho",
@@ -4122,16 +4442,24 @@
         "banana",
         "frutti_bosco"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/gelato_banana_frutti_bosco.png",
       "promptHash": "e121f78557e2fdfe",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4892727971b97904",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1184878,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Gelato istantaneo di banana e frutti di bosco; ingredients and prepared appearance checked against catalog (banana, frutti di bosco surgelati). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:01.147441+00:00",
+      "card": "assets/recipes/card/gelato_banana_frutti_bosco.jpg"
     },
     "ghiaccioli_anguria_fragole": {
       "id": "ghiaccioli_anguria_fragole",
@@ -4146,16 +4474,24 @@
         "lime",
         "zucchero"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/ghiaccioli_anguria_fragole.png",
       "promptHash": "807d06f4ef93772d",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "6854b26970b45932",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 977411,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Ghiaccioli di anguria e fragole; ingredients and prepared appearance checked against catalog (anguria, fragole, lime, zucchero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:34.831445+00:00",
+      "card": "assets/recipes/card/ghiaccioli_anguria_fragole.jpg"
     },
     "ghiaccioli_yogurt_mirtilli": {
       "id": "ghiaccioli_yogurt_mirtilli",
@@ -4169,16 +4505,24 @@
         "mirtilli",
         "miele"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/ghiaccioli_yogurt_mirtilli.png",
       "promptHash": "5e1b1519660bf61d",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8870f0e0e0f0f932",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1428956,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Ghiaccioli di yogurt e mirtilli; ingredients and prepared appearance checked against catalog (yogurt greco, mirtilli freschi, miele). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:10.803112+00:00",
+      "card": "assets/recipes/card/ghiaccioli_yogurt_mirtilli.jpg"
     },
     "girelle_piadina_cotto_formaggio": {
       "id": "girelle_piadina_cotto_formaggio",
@@ -4193,16 +4537,24 @@
         "prosciutto_cotto",
         "insalata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/girelle_piadina_cotto_formaggio.png",
       "promptHash": "78be5543e041f127",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "5528f1e868f0ec31",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1562492,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Girelle di piadina con prosciutto cotto e formaggio fresco; ingredients and prepared appearance checked against catalog (piadina, formaggio fresco spalmabile, prosciutto cotto, insalata verde). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:49:51.452150+00:00",
+      "card": "assets/recipes/card/girelle_piadina_cotto_formaggio.jpg"
     },
     "gnocchi_alla_romana": {
       "id": "gnocchi_alla_romana",
@@ -4384,16 +4736,24 @@
         "emmental",
         "burro"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/gratin_patate_porri.png",
       "promptHash": "75f714a4f2f79229",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1c61c49cf4f47c13",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1174065,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Gratin di patate e porri; ingredients and prepared appearance checked against catalog (patata, latte, porro, emmental, burro). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:50.385452+00:00",
+      "card": "assets/recipes/card/gratin_patate_porri.jpg"
     },
     "gulasch_manzo_polenta": {
       "id": "gulasch_manzo_polenta",
@@ -4476,16 +4836,24 @@
         "cetriolo",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/hummus_barbabietola_pita.png",
       "promptHash": "b88c1eca12de2001",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "245960e0e0683942",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1329022,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Hummus di barbabietola con pita e verdure; ingredients and prepared appearance checked against catalog (ceci cotti, pane pita, barbabietola cotta, carota, cetriolo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:38:15.197355+00:00",
+      "card": "assets/recipes/card/hummus_barbabietola_pita.jpg"
     },
     "hummus_bowl_tahina": {
       "id": "hummus_bowl_tahina",
@@ -4536,16 +4904,24 @@
         "limone",
         "tahina"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/hummus_lupini_verdure.png",
       "promptHash": "d02029c0791cee26",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9470c8d8b8f07032",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1442905,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Hummus di lupini con verdure crude; ingredients and prepared appearance checked against catalog (lupini in salamoia, carota, cetriolo, limone, tahina). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:22.810680+00:00",
+      "card": "assets/recipes/card/hummus_lupini_verdure.jpg"
     },
     "impepata_di_cozze": {
       "id": "impepata_di_cozze",
@@ -4592,16 +4968,24 @@
         "arancia",
         "cipolla_rossa"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/insalata_ceci_finocchio_arancia.png",
       "promptHash": "ae7ad95dfd7dff65",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "aa70f0e0f8f078b3",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1560595,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata di ceci, finocchio e arancia; ingredients and prepared appearance checked against catalog (ceci cotti, finocchio, arancia, cipolla rossa). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:40.915363+00:00",
+      "card": "assets/recipes/card/insalata_ceci_finocchio_arancia.jpg"
     },
     "insalata_ceci_peperoni_arrostiti": {
       "id": "insalata_ceci_peperoni_arrostiti",
@@ -4617,16 +5001,24 @@
         "cipolla_rossa",
         "capperi"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/insalata_ceci_peperoni_arrostiti.png",
       "promptHash": "61d3828dc16b8dd4",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9060f0f8d8e07011",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1514788,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata di ceci e peperoni arrostiti; ingredients and prepared appearance checked against catalog (ceci cotti, peperone, cipolla rossa, capperi). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:38:04.413523+00:00",
+      "card": "assets/recipes/card/insalata_ceci_peperoni_arrostiti.jpg"
     },
     "insalata_ceci_tonno": {
       "id": "insalata_ceci_tonno",
@@ -4678,16 +5070,24 @@
         "cipollotto",
         "lime"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/insalata_edamame_mais_cavolo_rosso.png",
       "promptHash": "9defa8ced4e604f4",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4872e1e8e8703872",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1446634,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata croccante di edamame, mais e cavolo rosso; ingredients and prepared appearance checked against catalog (edamame surgelati, cavolo rosso, mais in scatola, carota, cipollotto). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:38:08.639312+00:00",
+      "card": "assets/recipes/card/insalata_edamame_mais_cavolo_rosso.jpg"
     },
     "insalata_fagioli_neri_mais_peperone": {
       "id": "insalata_fagioli_neri_mais_peperone",
@@ -4705,16 +5105,24 @@
         "lime",
         "cipolla_rossa"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/insalata_fagioli_neri_mais_peperone.png",
       "promptHash": "5d8f1af4daf92792",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8c70e1c8d070b871",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1501062,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata di fagioli neri, mais e peperone; ingredients and prepared appearance checked against catalog (fagioli neri cotti, peperone, pomodorini, mais in scatola, lime). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:59.799391+00:00",
+      "card": "assets/recipes/card/insalata_fagioli_neri_mais_peperone.jpg"
     },
     "insalata_farro_tonno_fagiolini": {
       "id": "insalata_farro_tonno_fagiolini",
@@ -4800,16 +5208,24 @@
         "sedano",
         "cipolla_rossa"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/insalata_lenticchie_verdure_croccanti.png",
       "promptHash": "52c37656bbd1b5fb",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "48b2716971797912",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1460507,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata di lenticchie e verdure croccanti; ingredients and prepared appearance checked against catalog (lenticchie cotte, peperone, carota, limone, sedano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:42.773224+00:00",
+      "card": "assets/recipes/card/insalata_lenticchie_verdure_croccanti.jpg"
     },
     "insalata_lupini_patate_pomodorini": {
       "id": "insalata_lupini_patate_pomodorini",
@@ -4825,16 +5241,24 @@
         "pomodorini",
         "rucola"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/insalata_lupini_patate_pomodorini.png",
       "promptHash": "787596be44db42dc",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "3270e0ece8f078b1",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1225558,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata di lupini, patate e pomodorini; ingredients and prepared appearance checked against catalog (patata, lupini in salamoia, pomodorini, rucola). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:38:13.036622+00:00",
+      "card": "assets/recipes/card/insalata_lupini_patate_pomodorini.jpg"
     },
     "insalata_nizzarda": {
       "id": "insalata_nizzarda",
@@ -4852,16 +5276,24 @@
         "tonno_scatola",
         "insalata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/insalata_nizzarda.png",
       "promptHash": "ba5b7ae6a4a36cfe",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8c72f1e8d0f87032",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1446844,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata nizzarda; ingredients and prepared appearance checked against catalog (patata, pomodoro, fagiolini, uova, tonno in scatola). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:44.680368+00:00",
+      "card": "assets/recipes/card/insalata_nizzarda.jpg"
     },
     "insalata_polpo_patate": {
       "id": "insalata_polpo_patate",
@@ -5047,16 +5479,24 @@
         "limone",
         "rucola"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/insalata_tiepida_cannellini_gamberetti.png",
       "promptHash": "956a08f1e6217972",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0870e8fcc8e8788b",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1521564,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Insalata tiepida di cannellini e gamberetti; ingredients and prepared appearance checked against catalog (fagioli cannellini cotti, gamberetti sgusciati surgelati, pomodorini, limone, rucola). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:38:10.913339+00:00",
+      "card": "assets/recipes/card/insalata_tiepida_cannellini_gamberetti.jpg"
     },
     "insalatone_cannellini_mais": {
       "id": "insalatone_cannellini_mais",
@@ -5274,16 +5714,24 @@
         "lenticchie_secche",
         "riso_basmati"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/lenticchie_riso_cipolle_caramellate.png",
       "promptHash": "d8e790a99190da5f",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "2070f0f0f8f87032",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1251600,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Lenticchie e riso con cipolle caramellate; ingredients and prepared appearance checked against catalog (cipolla, cetriolo, lenticchie secche, riso basmati). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:39.091544+00:00",
+      "card": "assets/recipes/card/lenticchie_riso_cipolle_caramellate.jpg"
     },
     "lenticchie_salsiccia_umido": {
       "id": "lenticchie_salsiccia_umido",
@@ -5300,16 +5748,24 @@
         "cipolla",
         "carota"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/lenticchie_salsiccia_umido.png",
       "promptHash": "9bfde207c8b2755d",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8c72f1c8cc703851",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1522132,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Lenticchie e salsiccia in umido; ingredients and prepared appearance checked against catalog (salsiccia, lenticchie secche, passata di pomodoro, cipolla, carota). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:38:02.169345+00:00",
+      "card": "assets/recipes/card/lenticchie_salsiccia_umido.jpg"
     },
     "lenticchie_umido": {
       "id": "lenticchie_umido",
@@ -5387,16 +5843,24 @@
         "lupini",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/lupini_conditi_limone_peperoncino.png",
       "promptHash": "25acafa6ae92d878",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9960e0d8d8747831",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1449239,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Lupini conditi con limone, aglio e peperoncino; ingredients and prepared appearance checked against catalog (lupini in salamoia, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:13.132053+00:00",
+      "card": "assets/recipes/card/lupini_conditi_limone_peperoncino.jpg"
     },
     "macedonia_autunnale_melagrana": {
       "id": "macedonia_autunnale_melagrana",
@@ -5445,16 +5909,24 @@
         "pesca",
         "lime"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/macedonia_estiva_anguria_melone.png",
       "promptHash": "233fce42cce160cc",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0870f0f0d8603831",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1338260,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Macedonia estiva di anguria, melone e pesca; ingredients and prepared appearance checked against catalog (anguria, melone, pesca, lime). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:37.435640+00:00",
+      "card": "assets/recipes/card/macedonia_estiva_anguria_melone.jpg"
     },
     "macedonia_inverno_agrumi_kiwi": {
       "id": "macedonia_inverno_agrumi_kiwi",
@@ -5469,16 +5941,24 @@
         "arancia",
         "melagrana"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/macedonia_inverno_agrumi_kiwi.png",
       "promptHash": "ec369c633e741441",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1c70e1f0d0607831",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1517317,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Macedonia d'inverno con agrumi, kiwi e melagrana; ingredients and prepared appearance checked against catalog (mandarini, kiwi, arancia, melagrana). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:29.965719+00:00",
+      "card": "assets/recipes/card/macedonia_inverno_agrumi_kiwi.jpg"
     },
     "macedonia_mattino": {
       "id": "macedonia_mattino",
@@ -5560,16 +6040,24 @@
         "mandarini",
         "mandorle"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/mandarini_mandorle_tostate.png",
       "promptHash": "93cefca8e594660b",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "2270f0e8f8f06132",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1344580,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Mandarini e mandorle tostate; ingredients and prepared appearance checked against catalog (mandarini, mandorle). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:17.946776+00:00",
+      "card": "assets/recipes/card/mandarini_mandorle_tostate.jpg"
     },
     "mela_cotta_cannella": {
       "id": "mela_cotta_cannella",
@@ -5644,16 +6132,24 @@
         "melanzana",
         "pomodorini"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/melanzane_a_funghetto.png",
       "promptHash": "861af9aa9784bfcb",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0870f0e0e878305a",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1442816,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Melanzane a funghetto; ingredients and prepared appearance checked against catalog (melanzana, pomodorini). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:38:06.501281+00:00",
+      "card": "assets/recipes/card/melanzane_a_funghetto.jpg"
     },
     "melanzane_cotoletta_friggitrice": {
       "id": "melanzane_cotoletta_friggitrice",
@@ -5670,16 +6166,24 @@
         "pangrattato",
         "parmigiano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/melanzane_cotoletta_friggitrice.png",
       "promptHash": "6d579452379fcc13",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9472f0dcccf0703a",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1549164,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Melanzane a cotoletta in friggitrice ad aria; ingredients and prepared appearance checked against catalog (melanzana, pomodoro, uova, pangrattato, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:37.131253+00:00",
+      "card": "assets/recipes/card/melanzane_cotoletta_friggitrice.jpg"
     },
     "melanzane_ripiene_caciocavallo": {
       "id": "melanzane_ripiene_caciocavallo",
@@ -5696,16 +6200,24 @@
         "caciocavallo",
         "pane"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/melanzane_ripiene_caciocavallo.png",
       "promptHash": "070c2ea02517cfd1",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0c73f0f4c8e0710a",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1383935,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Melanzane ripiene al forno con caciocavallo; ingredients and prepared appearance checked against catalog (melanzana, pomodorini, uova, caciocavallo, pane). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:54.678359+00:00",
+      "card": "assets/recipes/card/melanzane_ripiene_caciocavallo.jpg"
     },
     "mele_forno_noci_uvetta": {
       "id": "mele_forno_noci_uvetta",
@@ -5751,16 +6263,24 @@
         "melone",
         "prosciutto_crudo"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/melone_prosciutto_crudo.png",
       "promptHash": "941e75306ef653ca",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4c13f8e8d0f8f022",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1409532,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Melone e prosciutto crudo; ingredients and prepared appearance checked against catalog (melone, prosciutto crudo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:32.374815+00:00",
+      "card": "assets/recipes/card/melone_prosciutto_crudo.jpg"
     },
     "merluzzo_alla_livornese": {
       "id": "merluzzo_alla_livornese",
@@ -6044,16 +6564,24 @@
         "nocciole",
         "semi_zucca"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/mix_frutta_secca_rosmarino.png",
       "promptHash": "3230537b0483a5e2",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "200c327171b01204",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1206104,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Frutta secca e semi tostati al rosmarino; ingredients and prepared appearance checked against catalog (mandorle, nocciole, semi di zucca). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:47:06.500641+00:00",
+      "card": "assets/recipes/card/mix_frutta_secca_rosmarino.jpg"
     },
     "mousse_avocado_cacao": {
       "id": "mousse_avocado_cacao",
@@ -6068,16 +6596,24 @@
         "sciroppo_acero",
         "cacao_amaro"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/mousse_avocado_cacao.png",
       "promptHash": "f994b2346a47f93b",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "48b6716971b97912",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1202116,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Mousse di avocado e cacao; ingredients and prepared appearance checked against catalog (avocado, banana, sciroppo d'acero, cacao amaro in polvere). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:49:58.599868+00:00",
+      "card": "assets/recipes/card/mousse_avocado_cacao.jpg"
     },
     "muffin_yogurt_frutti_bosco": {
       "id": "muffin_yogurt_frutti_bosco",
@@ -6228,16 +6764,24 @@
         "caciocavallo",
         "arancia"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/olive_arancia_caciocavallo.png",
       "promptHash": "f633576d3c2e0a0b",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "2870f060f0f04932",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1044005,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Olive condite all'arancia con caciocavallo; ingredients and prepared appearance checked against catalog (olive verdi, caciocavallo, arancia). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:05.927855+00:00",
+      "card": "assets/recipes/card/olive_arancia_caciocavallo.jpg"
     },
     "omelette_erbe_aromatiche": {
       "id": "omelette_erbe_aromatiche",
@@ -6678,16 +7222,24 @@
         "miele",
         "gocce_cioccolato"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/palline_avena_burro_arachidi.png",
       "promptHash": "1d7078cdb5dedc66",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0471f1e969f0f471",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1222059,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Palline di avena e burro di arachidi; ingredients and prepared appearance checked against catalog (fiocchi d'avena, burro di arachidi, miele, gocce di cioccolato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:49:56.136685+00:00",
+      "card": "assets/recipes/card/palline_avena_burro_arachidi.jpg"
     },
     "palline_datteri_cacao": {
       "id": "palline_datteri_cacao",
@@ -6734,16 +7286,24 @@
         "arancia",
         "cacao_amaro"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/palline_fichi_secchi_nocciole.png",
       "promptHash": "6396ebe7584669bf",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4c32f1f8f8f0d021",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1537516,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Palline di fichi secchi e nocciole; ingredients and prepared appearance checked against catalog (fichi secchi, nocciole, arancia, cacao amaro in polvere). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:25.192697+00:00",
+      "card": "assets/recipes/card/palline_fichi_secchi_nocciole.jpg"
     },
     "pancake_banana": {
       "id": "pancake_banana",
@@ -6885,16 +7445,24 @@
         "pane",
         "cioccolato_fondente"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pane_cioccolato_fondente.png",
       "promptHash": "f33efc1fc7e0febc",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4cb271e9f1b26833",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1403173,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pane e cioccolato; ingredients and prepared appearance checked against catalog (pane, cioccolato fondente). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:49:53.765121+00:00",
+      "card": "assets/recipes/card/pane_cioccolato_fondente.jpg"
     },
     "pane_cunzato_primo_sale_acciughe": {
       "id": "pane_cunzato_primo_sale_acciughe",
@@ -7074,16 +7642,24 @@
         "limone",
         "prezzemolo"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/panelle_palermitane_insalata.png",
       "promptHash": "4f25e8729a442c36",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0431f9d8f0f07132",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1372315,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Panelle palermitane con insalata; ingredients and prepared appearance checked against catalog (pomodorini, farina di ceci, insalata verde, limone, prezzemolo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:52.660172+00:00",
+      "card": "assets/recipes/card/panelle_palermitane_insalata.jpg"
     },
     "panino_burger_fagioli_neri": {
       "id": "panino_burger_fagioli_neri",
@@ -7101,16 +7677,24 @@
         "pangrattato",
         "insalata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/panino_burger_fagioli_neri.png",
       "promptHash": "91e38bb4b010fba3",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "04b279e9f8f068b2",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1450282,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Panino con burger di fagioli neri e mais; ingredients and prepared appearance checked against catalog (fagioli neri cotti, pane, pomodoro, mais in scatola, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:46.535267+00:00",
+      "card": "assets/recipes/card/panino_burger_fagioli_neri.jpg"
     },
     "pappa_al_pomodoro": {
       "id": "pappa_al_pomodoro",
@@ -7192,16 +7776,24 @@
         "mozzarella",
         "parmigiano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/parmigiana_zucchine_forno.png",
       "promptHash": "9f9d45ca946dc150",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0c70f8ece89aec31",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1555756,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Parmigiana di zucchine; ingredients and prepared appearance checked against catalog (zucchina, passata di pomodoro, mozzarella, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:37:48.424243+00:00",
+      "card": "assets/recipes/card/parmigiana_zucchine_forno.jpg"
     },
     "passato_di_verdure": {
       "id": "passato_di_verdure",
@@ -8916,16 +9508,24 @@
         "carota",
         "cipolla"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pasticcio_lenticchie_pure_patate.png",
       "promptHash": "5409641a170be8a5",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9671c494f0f47831",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1538309,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pasticcio di lenticchie con purÃ¨ di patate al forno; ingredients and prepared appearance checked against catalog (patata, lenticchie cotte, passata di pomodoro, carota, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:06.671340+00:00",
+      "card": "assets/recipes/card/pasticcio_lenticchie_pure_patate.jpg"
     },
     "patata_dolce_avocado": {
       "id": "patata_dolce_avocado",
@@ -9003,16 +9603,24 @@
         "patata",
         "pomodori_pelati"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/patate_alla_pizzaiola.png",
       "promptHash": "9a8e48b6de468e31",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "a170f0e8f0f070b8",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1425350,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Patate alla pizzaiola in padella; ingredients and prepared appearance checked against catalog (patata, pomodori pelati). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:24.430091+00:00",
+      "card": "assets/recipes/card/patate_alla_pizzaiola.jpg"
     },
     "patate_dolci_ripiene": {
       "id": "patate_dolci_ripiene",
@@ -9156,16 +9764,24 @@
         "pomodori_pelati",
         "cipolla"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/peperonata_con_patate.png",
       "promptHash": "793772b7ab7a9b3c",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9060e1f8cc703851",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1123916,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Peperonata con patate; ingredients and prepared appearance checked against catalog (peperone, patata, pomodori pelati, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:17.881182+00:00",
+      "card": "assets/recipes/card/peperonata_con_patate.jpg"
     },
     "peperoni_ripieni_carne": {
       "id": "peperoni_ripieni_carne",
@@ -9216,16 +9832,24 @@
         "pecorino",
         "capperi"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/peperoni_ripieni_mollica_capperi.png",
       "promptHash": "119b1e892af006b7",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0c30f0ece8c07872",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1489641,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Peperoni ripieni di mollica, capperi e pecorino; ingredients and prepared appearance checked against catalog (peperone, pomodorini, pane, pecorino romano, capperi). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:40:53.048419+00:00",
+      "card": "assets/recipes/card/peperoni_ripieni_mollica_capperi.jpg"
     },
     "pera_gorgonzola_noci": {
       "id": "pera_gorgonzola_noci",
@@ -9402,16 +10026,24 @@
         "piadina",
         "fontina"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/piadina_funghi_fontina.png",
       "promptHash": "5ad023c6cf28c808",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "32c8fcecd9e0fc31",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1540259,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Piadina con funghi trifolati e fontina; ingredients and prepared appearance checked against catalog (funghi champignon, piadina, fontina). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:04.318237+00:00",
+      "card": "assets/recipes/card/piadina_funghi_fontina.jpg"
     },
     "piadina_salmone_affumicato": {
       "id": "piadina_salmone_affumicato",
@@ -9493,16 +10125,24 @@
         "piadina",
         "scamorza"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/piadina_zucchine_scamorza.png",
       "promptHash": "90d327ad5a9427b5",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "a669dcacd8d2ec31",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1483661,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Piadina con zucchine grigliate e scamorza; ingredients and prepared appearance checked against catalog (zucchina, piadina, scamorza affumicata). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:40:49.955871+00:00",
+      "card": "assets/recipes/card/piadina_zucchine_scamorza.jpg"
     },
     "pilaf_riso_ceci_curcuma": {
       "id": "pilaf_riso_ceci_curcuma",
@@ -9551,16 +10191,24 @@
         "sedano",
         "ravanelli"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pinzimonio_verdure.png",
       "promptHash": "e8bf4e846f3575de",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1261d4b49cdc78b0",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1235591,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pinzimonio; ingredients and prepared appearance checked against catalog (finocchio, carota, sedano, ravanelli). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:08.415871+00:00",
+      "card": "assets/recipes/card/pinzimonio_verdure.jpg"
     },
     "piselli_cacio_uova": {
       "id": "piselli_cacio_uova",
@@ -9576,16 +10224,24 @@
         "cipolla",
         "pecorino"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/piselli_cacio_uova.png",
       "promptHash": "02fee7c3b221fec9",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9470e0d4ccf87c71",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1485163,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Piselli cacio e uova; ingredients and prepared appearance checked against catalog (piselli surgelati, uova, cipolla, pecorino romano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:13.367040+00:00",
+      "card": "assets/recipes/card/piselli_cacio_uova.jpg"
     },
     "pizza_teglia_margherita": {
       "id": "pizza_teglia_margherita",
@@ -9600,16 +10256,24 @@
         "passata_pomodoro",
         "mozzarella"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pizza_teglia_margherita.png",
       "promptHash": "3e6c097d67699366",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4639f88cdcd0e24d",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1642684,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pizza margherita in teglia; ingredients and prepared appearance checked against catalog (impasto per pizza pronto, passata di pomodoro, mozzarella). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:22.216087+00:00",
+      "card": "assets/recipes/card/pizza_teglia_margherita.jpg"
     },
     "pizza_teglia_verdure_rossa": {
       "id": "pizza_teglia_verdure_rossa",
@@ -9626,16 +10290,24 @@
         "peperone",
         "cipolla_rossa"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pizza_teglia_verdure_rossa.png",
       "promptHash": "04c6d78cc58bed36",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "ca39f8ccd8e0e24c",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1588719,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pizza rossa alle verdure; ingredients and prepared appearance checked against catalog (impasto per pizza pronto, passata di pomodoro, zucchina, peperone, cipolla rossa). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:01.373263+00:00",
+      "card": "assets/recipes/card/pizza_teglia_verdure_rossa.jpg"
     },
     "platessa_limone_padella": {
       "id": "platessa_limone_padella",
@@ -9753,16 +10425,24 @@
         "polenta_istantanea",
         "cipolla"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/polenta_borlotti_umido.png",
       "promptHash": "607329693c75de62",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "b264f0f8f8f078b1",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1399463,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Polenta con fagioli borlotti in umido; ingredients and prepared appearance checked against catalog (fagioli borlotti cotti, passata di pomodoro, farina per polenta istantanea, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:40:47.533075+00:00",
+      "card": "assets/recipes/card/polenta_borlotti_umido.jpg"
     },
     "polenta_concia": {
       "id": "polenta_concia",
@@ -10338,16 +11018,24 @@
         "pangrattato",
         "parmigiano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/polpette_lenticchie_forno_sugo.png",
       "promptHash": "bb92927daa56f977",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1860f0f8f8703952",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1476384,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Polpette di lenticchie al forno con sugo; ingredients and prepared appearance checked against catalog (lenticchie cotte, passata di pomodoro, uova, pangrattato, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:40:40.863291+00:00",
+      "card": "assets/recipes/card/polpette_lenticchie_forno_sugo.jpg"
     },
     "polpette_pollo_zucchine_friggitrice": {
       "id": "polpette_pollo_zucchine_friggitrice",
@@ -10501,16 +11189,24 @@
         "patata",
         "riso"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/pomodori_ripieni_riso_patate.png",
       "promptHash": "0ed562ada13b7d5f",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1669e8e4e4f03870",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1311096,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Pomodori ripieni di riso con patate; ingredients and prepared appearance checked against catalog (pomodoro, patata, riso). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:40:43.065013+00:00",
+      "card": "assets/recipes/card/pomodori_ripieni_riso_patate.jpg"
     },
     "porridge_banana_cannella": {
       "id": "porridge_banana_cannella",
@@ -10712,16 +11408,24 @@
         "limone",
         "zucchero_canna"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/prugne_cotte_cannella.png",
       "promptHash": "d8dd6556adc205b9",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "3044e2e9f9709873",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1119963,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Prugne cotte alla cannella; ingredients and prepared appearance checked against catalog (prugne fresche, limone, zucchero di canna grezzo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:03.523849+00:00",
+      "card": "assets/recipes/card/prugne_cotte_cannella.jpg"
     },
     "pudding_chia_mandorla_lamponi": {
       "id": "pudding_chia_mandorla_lamponi",
@@ -10804,16 +11508,24 @@
         "mais_scatola",
         "insalata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/quesadilla_borlotti_mais_mozzarella.png",
       "promptHash": "0ad8d8d1a3ba3b8e",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "25f978f0e0e8f032",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1249732,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Quesadilla di borlotti, mais e mozzarella; ingredients and prepared appearance checked against catalog (tortilla di frumento, fagioli borlotti cotti, mozzarella, mais in scatola, insalata verde). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:15.722955+00:00",
+      "card": "assets/recipes/card/quesadilla_borlotti_mais_mozzarella.jpg"
     },
     "quiche_lorraine": {
       "id": "quiche_lorraine",
@@ -11032,16 +11744,24 @@
         "peperone",
         "cipolla"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/ratatouille_in_pentola.png",
       "promptHash": "2627be988debd8fd",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9870e1e0e868305a",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1476456,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Ratatouille; ingredients and prepared appearance checked against catalog (melanzana, pomodoro, zucchina, peperone, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:11.102057+00:00",
+      "card": "assets/recipes/card/ratatouille_in_pentola.jpg"
     },
     "ravioli_burro_salvia": {
       "id": "ravioli_burro_salvia",
@@ -11889,16 +12609,24 @@
         "pistacchi",
         "pangrattato"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/salmone_crosta_pistacchi.png",
       "promptHash": "0d4f932fe752663f",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "20d2f8e8e1e6cc71",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1401818,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Salmone in crosta di pistacchi; ingredients and prepared appearance checked against catalog (filetto di salmone, limone, pistacchi sgusciati, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:54.556589+00:00",
+      "card": "assets/recipes/card/salmone_crosta_pistacchi.jpg"
     },
     "salmone_forno_broccoli": {
       "id": "salmone_forno_broccoli",
@@ -11948,16 +12676,24 @@
         "zenzero",
         "semi_sesamo"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/salmone_glassato_soia_miele.png",
       "promptHash": "bf626b9f8800c9ef",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "a54af8f8e8e26cb3",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1410700,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Salmone glassato con soia e miele; ingredients and prepared appearance checked against catalog (filetto di salmone, cipollotto, salsa di soia, miele, zenzero fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:39.462676+00:00",
+      "card": "assets/recipes/card/salmone_glassato_soia_miele.jpg"
     },
     "salmone_lenticchie_spinaci": {
       "id": "salmone_lenticchie_spinaci",
@@ -11973,16 +12709,24 @@
         "spinaci_freschi",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/salmone_lenticchie_spinaci.png",
       "promptHash": "0d3fdfac97713969",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "2870e0c9f8f07831",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1441752,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Salmone su lenticchie e spinaci; ingredients and prepared appearance checked against catalog (filetto di salmone, lenticchie cotte, spinaci freschi, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:08.870937+00:00",
+      "card": "assets/recipes/card/salmone_lenticchie_spinaci.jpg"
     },
     "salmone_padella_zucchine": {
       "id": "salmone_padella_zucchine",
@@ -12029,16 +12773,24 @@
         "salsiccia",
         "passata_pomodoro"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/salsicce_fagioli_pomodoro.png",
       "promptHash": "2b39d5acd896633a",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8870f0e8c8e87052",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1473746,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Salsicce e fagioli al pomodoro; ingredients and prepared appearance checked against catalog (fagioli cannellini cotti, salsiccia, passata di pomodoro). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:52.274682+00:00",
+      "card": "assets/recipes/card/salsicce_fagioli_pomodoro.jpg"
     },
     "salsiccia_e_friarielli": {
       "id": "salsiccia_e_friarielli",
@@ -12052,16 +12804,24 @@
         "cime_rapa",
         "salsiccia"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/salsiccia_e_friarielli.png",
       "promptHash": "3bcf403e13a5e333",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4c32f1e8f8f07031",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1294056,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Salsiccia e friarielli; ingredients and prepared appearance checked against catalog (cime di rapa, salsiccia). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:43.829080+00:00",
+      "card": "assets/recipes/card/salsiccia_e_friarielli.jpg"
     },
     "salsiccia_patate_forno": {
       "id": "salsiccia_patate_forno",
@@ -12076,16 +12836,24 @@
         "salsiccia",
         "cipolla_rossa"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/salsiccia_patate_forno.png",
       "promptHash": "5083d2f360f02eb1",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8671e8c4f4e07871",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1588257,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Salsiccia e patate al forno; ingredients and prepared appearance checked against catalog (patata, salsiccia, cipolla rossa). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:58.657665+00:00",
+      "card": "assets/recipes/card/salsiccia_patate_forno.jpg"
     },
     "saltimbocca_alla_romana": {
       "id": "saltimbocca_alla_romana",
@@ -12102,16 +12870,24 @@
         "burro",
         "farina"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/saltimbocca_alla_romana.png",
       "promptHash": "f6509306146ccdb0",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4611f8e0f8f27832",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1195414,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Saltimbocca alla romana; ingredients and prepared appearance checked against catalog (fettine di vitello, insalata verde, prosciutto crudo, burro, farina di grano tenero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:34.818488+00:00",
+      "card": "assets/recipes/card/saltimbocca_alla_romana.jpg"
     },
     "saltimbocca_tacchino_speck": {
       "id": "saltimbocca_tacchino_speck",
@@ -12161,16 +12937,24 @@
         "uvetta",
         "pinoli"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/sarde_beccafico_semplificate.png",
       "promptHash": "bf63e8515d054702",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9279f8f8c4e070f2",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1619564,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Sarde a beccafico semplificate; ingredients and prepared appearance checked against catalog (sardine fresche, arancia, pangrattato, uvetta, pinoli). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:48.086529+00:00",
+      "card": "assets/recipes/card/sarde_beccafico_semplificate.jpg"
     },
     "sardine_friggitrice_limone_origano": {
       "id": "sardine_friggitrice_limone_origano",
@@ -12184,16 +12968,24 @@
         "sardine_fresche",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/sardine_friggitrice_limone_origano.png",
       "promptHash": "7cc953084bb9d2cf",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "20d0f0e8e8b2cc71",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1500024,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Sardine in friggitrice ad aria con limone e origano; ingredients and prepared appearance checked against catalog (sardine fresche, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:30.612246+00:00",
+      "card": "assets/recipes/card/sardine_friggitrice_limone_origano.jpg"
     },
     "scaloppine_limone": {
       "id": "scaloppine_limone",
@@ -12242,16 +13034,24 @@
         "funghi_champignon",
         "farina"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/scaloppine_seitan_funghi.png",
       "promptHash": "55ef92498b19f644",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0472f9f0f0f8f071",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1544416,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Scaloppine di seitan ai funghi; ingredients and prepared appearance checked against catalog (seitan, funghi champignon, farina di grano tenero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:41:20.083284+00:00",
+      "card": "assets/recipes/card/scaloppine_seitan_funghi.jpg"
     },
     "scarola_olive_capperi_pinoli": {
       "id": "scarola_olive_capperi_pinoli",
@@ -12268,16 +13068,24 @@
         "capperi",
         "pinoli"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/scarola_olive_capperi_pinoli.png",
       "promptHash": "5e9b4b772d18c955",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "32ccf0e0e9f8f479",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1564786,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Scarola in padella con olive, capperi e pinoli; ingredients and prepared appearance checked against catalog (scarola, pane, olive nere, capperi, pinoli). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:40:38.588441+00:00",
+      "card": "assets/recipes/card/scarola_olive_capperi_pinoli.jpg"
     },
     "seitan_alla_pizzaiola": {
       "id": "seitan_alla_pizzaiola",
@@ -12292,16 +13100,24 @@
         "seitan",
         "capperi"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/seitan_alla_pizzaiola.png",
       "promptHash": "c416903bdcb8a5ba",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "a450f9f1e9e8e431",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1466312,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Seitan alla pizzaiola; ingredients and prepared appearance checked against catalog (pomodori pelati, seitan, capperi). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:40:55.925410+00:00",
+      "card": "assets/recipes/card/seitan_alla_pizzaiola.jpg"
     },
     "semolino_dolce_arancia": {
       "id": "semolino_dolce_arancia",
@@ -12349,16 +13165,24 @@
         "passata_pomodoro",
         "cipolla"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/seppie_con_piselli.png",
       "promptHash": "67e9b5210dd221ae",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9a60f0f8c4e8789b",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1475005,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Seppie con i piselli; ingredients and prepared appearance checked against catalog (seppie pulite, piselli surgelati, passata di pomodoro, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:50.187174+00:00",
+      "card": "assets/recipes/card/seppie_con_piselli.jpg"
     },
     "sformato_broccoli_forno": {
       "id": "sformato_broccoli_forno",
@@ -12375,16 +13199,24 @@
         "parmigiano",
         "pangrattato"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/sformato_broccoli_forno.png",
       "promptHash": "d27579172de66998",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1861e0e0f098e933",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1481602,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Sformato di broccoli; ingredients and prepared appearance checked against catalog (broccolo, besciamella pronta, uova, parmigiano reggiano, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:40:45.269239+00:00",
+      "card": "assets/recipes/card/sformato_broccoli_forno.jpg"
     },
     "sgombro_forno_patate_pomodorini": {
       "id": "sgombro_forno_patate_pomodorini",
@@ -12399,16 +13231,24 @@
         "sgombro_fresco",
         "pomodorini"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/sgombro_forno_patate_pomodorini.png",
       "promptHash": "75573eb6a9090e94",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8032e0d4d8f07952",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1419064,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Sgombro al forno con patate e pomodorini; ingredients and prepared appearance checked against catalog (patata, sgombro fresco, pomodorini). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:32:00.758828+00:00",
+      "card": "assets/recipes/card/sgombro_forno_patate_pomodorini.jpg"
     },
     "smoothie_bowl_frutti_rossi": {
       "id": "smoothie_bowl_frutti_rossi",
@@ -12524,16 +13364,24 @@
         "fagiolini",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/sovracosce_pollo_erbe_friggitrice.png",
       "promptHash": "5118e1120890c241",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0c70f0f8f8f07132",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1496253,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Sovracosce di pollo alle erbe in friggitrice ad aria; ingredients and prepared appearance checked against catalog (cosce di pollo, fagiolini, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:26.491780+00:00",
+      "card": "assets/recipes/card/sovracosce_pollo_erbe_friggitrice.jpg"
     },
     "spaghetti_aglio_olio": {
       "id": "spaghetti_aglio_olio",
@@ -12879,16 +13727,24 @@
         "cipolla_rossa",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/spiedini_pollo_verdure_piastra.png",
       "promptHash": "5adf9dab190b6146",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0870f0f8e0b8d870",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1497265,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Spiedini di pollo e verdure alla piastra; ingredients and prepared appearance checked against catalog (petto di pollo, zucchina, pomodorini, cipolla rossa, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:24.465559+00:00",
+      "card": "assets/recipes/card/spiedini_pollo_verdure_piastra.jpg"
     },
     "straccetti_manzo_rucola_grana": {
       "id": "straccetti_manzo_rucola_grana",
@@ -12904,16 +13760,24 @@
         "rucola",
         "grana_padano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/straccetti_manzo_rucola_grana.png",
       "promptHash": "0ce85987e3a37be1",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4cf0f8e4dce8f479",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1699648,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Straccetti di manzo con rucola e grana; ingredients and prepared appearance checked against catalog (fettine di manzo, pomodorini, rucola, grana padano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:28.412999+00:00",
+      "card": "assets/recipes/card/straccetti_manzo_rucola_grana.jpg"
     },
     "straccetti_pollo_friggitrice": {
       "id": "straccetti_pollo_friggitrice",
@@ -13265,16 +14129,24 @@
         "sciroppo_acero",
         "semi_sesamo"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/tempeh_glassato_acero_riso_broccoli.png",
       "promptHash": "adabc4268ba78377",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "3162ccf8f8707198",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1293199,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Tempeh glassato all'acero con riso e broccoli; ingredients and prepared appearance checked against catalog (broccolo, tempeh, riso basmati, salsa di soia, sciroppo d'acero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:26.596302+00:00",
+      "card": "assets/recipes/card/tempeh_glassato_acero_riso_broccoli.jpg"
     },
     "tempeh_piastra_cavolo_nero": {
       "id": "tempeh_piastra_cavolo_nero",
@@ -13289,16 +14161,24 @@
         "tempeh",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/tempeh_piastra_cavolo_nero.png",
       "promptHash": "7ccae19277185b7e",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "49b2e1cce8f0f029",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1149177,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Tempeh alla piastra con cavolo nero saltato; ingredients and prepared appearance checked against catalog (cavolo nero, tempeh, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:40:58.956746+00:00",
+      "card": "assets/recipes/card/tempeh_piastra_cavolo_nero.jpg"
     },
     "toast_avocado_pomodorini": {
       "id": "toast_avocado_pomodorini",
@@ -13445,16 +14325,24 @@
         "fecola_patate",
         "capperi"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/tofu_limone_capperi_fagiolini.png",
       "promptHash": "3ce44e5485c44742",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8860f9f8ecf87833",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1444287,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Tofu al limone e capperi con fagiolini; ingredients and prepared appearance checked against catalog (tofu, fagiolini, limone, fecola di patate, capperi). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:13.465727+00:00",
+      "card": "assets/recipes/card/tofu_limone_capperi_fagiolini.jpg"
     },
     "tofu_patate_dolci_paprika_friggitrice": {
       "id": "tofu_patate_dolci_paprika_friggitrice",
@@ -13470,16 +14358,24 @@
         "rucola",
         "fecola_patate"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/tofu_patate_dolci_paprika_friggitrice.png",
       "promptHash": "6144f34a0e31e3e9",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0860f1e8e8f07079",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1180506,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Tofu e patate dolci alla paprika in friggitrice ad aria; ingredients and prepared appearance checked against catalog (patata dolce, tofu, rucola, fecola di patate). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:22.065984+00:00",
+      "card": "assets/recipes/card/tofu_patate_dolci_paprika_friggitrice.jpg"
     },
     "tofu_piastra_peperoni_zucchine": {
       "id": "tofu_piastra_peperoni_zucchine",
@@ -13495,16 +14391,24 @@
         "zucchina",
         "limone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/tofu_piastra_peperoni_zucchine.png",
       "promptHash": "30f0bb3d2aaa9a3f",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0c72f9f8d8f87032",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1467650,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Tofu alla piastra con peperoni e zucchine; ingredients and prepared appearance checked against catalog (tofu, peperone, zucchina, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:37.028053+00:00",
+      "card": "assets/recipes/card/tofu_piastra_peperoni_zucchine.jpg"
     },
     "tofu_saltato_verdure": {
       "id": "tofu_saltato_verdure",
@@ -13615,16 +14519,24 @@
         "aceto",
         "zucchero"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/tonno_alla_cipollata.png",
       "promptHash": "4a2c3b146485d57a",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "60f8f9f8ece8e079",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1581105,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Tonno alla cipollata; ingredients and prepared appearance checked against catalog (tonno fresco, cipolla, aceto di vino, zucchero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:20.039331+00:00",
+      "card": "assets/recipes/card/tonno_alla_cipollata.jpg"
     },
     "tonno_sesamo_zucchine": {
       "id": "tonno_sesamo_zucchine",
@@ -13777,16 +14689,24 @@
         "uova",
         "parmigiano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/torta_salata_porri_stracchino.png",
       "promptHash": "1b4796f1e48b7821",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "3268cc94d6f6f079",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1628786,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Torta salata di porri e stracchino; ingredients and prepared appearance checked against catalog (porro, stracchino, pasta sfoglia, uova, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:15.653419+00:00",
+      "card": "assets/recipes/card/torta_salata_porri_stracchino.jpg"
     },
     "torta_salata_spinaci_ricotta": {
       "id": "torta_salata_spinaci_ricotta",
@@ -13803,16 +14723,24 @@
         "pasta_brisee",
         "parmigiano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/torta_salata_spinaci_ricotta.png",
       "promptHash": "bc1f61f28fbf2412",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1164c490e0f27088",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1226609,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Torta salata con spinaci e ricotta; ingredients and prepared appearance checked against catalog (spinaci surgelati, ricotta, uova, pasta brisÃ©e, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:34.341970+00:00",
+      "card": "assets/recipes/card/torta_salata_spinaci_ricotta.jpg"
     },
     "torta_salata_zucchine": {
       "id": "torta_salata_zucchine",
@@ -13932,16 +14860,24 @@
         "parmigiano",
         "pangrattato"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/tortino_patate_zucchine_strati.png",
       "promptHash": "8f0d30446b4c5acc",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4c31e8ecf8b8d471",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1585936,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Tortino di patate e zucchine a strati; ingredients and prepared appearance checked against catalog (patata, zucchina, scamorza affumicata, parmigiano reggiano, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:31.887062+00:00",
+      "card": "assets/recipes/card/tortino_patate_zucchine_strati.jpg"
     },
     "tramezzini_tonno_pomodoro": {
       "id": "tramezzini_tonno_pomodoro",
@@ -13957,16 +14893,24 @@
         "maionese",
         "insalata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/tramezzini_tonno_pomodoro.png",
       "promptHash": "4fcf2943ce80f205",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "5824f6d8e8f26c32",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1072930,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Tramezzini tonno e pomodoro; ingredients and prepared appearance checked against catalog (pane in cassetta, pomodoro, tonno in scatola, maionese, insalata verde). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:20.368619+00:00",
+      "card": "assets/recipes/card/tramezzini_tonno_pomodoro.jpg"
     },
     "trofie_pesto_patate_fagiolini": {
       "id": "trofie_pesto_patate_fagiolini",
@@ -14014,16 +14958,24 @@
         "limone",
         "mandorle"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/trota_forno_mandorle_limone.png",
       "promptHash": "067a2a457ca39099",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "11e0f0f0d8f8e433",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1180715,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Trota al forno con mandorle e limone; ingredients and prepared appearance checked against catalog (filetti di trota, limone, mandorle). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:37.068268+00:00",
+      "card": "assets/recipes/card/trota_forno_mandorle_limone.jpg"
     },
     "uova_al_pomodoro": {
       "id": "uova_al_pomodoro",
@@ -14072,16 +15024,24 @@
         "parmigiano",
         "burro"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/uova_alla_fiorentina.png",
       "promptHash": "b5412ad4d6846014",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4639e4d6dcc87172",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1509440,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Uova alla fiorentina; ingredients and prepared appearance checked against catalog (uova, spinaci freschi, parmigiano reggiano, burro). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:32.646587+00:00",
+      "card": "assets/recipes/card/uova_alla_fiorentina.jpg"
     },
     "uova_camicia_pomodoro": {
       "id": "uova_camicia_pomodoro",
@@ -14193,16 +15153,24 @@
         "maionese",
         "capperi"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/uova_ripiene_tonno_insalata.png",
       "promptHash": "aa41381ba1222698",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "4c31f0e4d4f47032",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1066322,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Uova ripiene al tonno con insalata; ingredients and prepared appearance checked against catalog (uova, insalata verde, tonno in scatola, maionese, capperi). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:56.669190+00:00",
+      "card": "assets/recipes/card/uova_ripiene_tonno_insalata.jpg"
     },
     "uova_strapazzate_asparagi": {
       "id": "uova_strapazzate_asparagi",
@@ -14217,16 +15185,24 @@
         "asparagi",
         "grana_padano"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/uova_strapazzate_asparagi.png",
       "promptHash": "95a55f1e90f6c683",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "28f0f8f0e8f0d071",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1490272,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Uova strapazzate con asparagi; ingredients and prepared appearance checked against catalog (uova, asparagi, grana padano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:41.724249+00:00",
+      "card": "assets/recipes/card/uova_strapazzate_asparagi.jpg"
     },
     "uova_strapazzate_toast": {
       "id": "uova_strapazzate_toast",
@@ -14362,16 +15338,24 @@
         "uva",
         "primo_sale"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/uva_primo_sale_pepe.png",
       "promptHash": "07145be4b67dff6e",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "8468d998f8d878b3",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1414338,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Uva e primo sale al pepe nero; ingredients and prepared appearance checked against catalog (uva, primo sale). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:15.471067+00:00",
+      "card": "assets/recipes/card/uva_primo_sale_pepe.jpg"
     },
     "vellutata_broccoli_parmigiano": {
       "id": "vellutata_broccoli_parmigiano",
@@ -14582,16 +15566,24 @@
         "limone",
         "tahina"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/verdure_crude_salsa_tahina.png",
       "promptHash": "92f30a123c376acc",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "1460e894e4e4e031",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1539942,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Finocchi, ravanelli e cavolfiore con salsa alla tahina; ingredients and prepared appearance checked against catalog (finocchio, cavolfiore, ravanelli, limone, tahina). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:46:41.121270+00:00",
+      "card": "assets/recipes/card/verdure_crude_salsa_tahina.jpg"
     },
     "verdure_crude_salsa_yogurt_erba_cipollina": {
       "id": "verdure_crude_salsa_yogurt_erba_cipollina",
@@ -14606,16 +15598,24 @@
         "cetriolo",
         "peperone"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/verdure_crude_salsa_yogurt_erba_cipollina.png",
       "promptHash": "5db3178a33146f8d",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9661e0e4d4f870b3",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1468956,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Verdure crude con salsa allo yogurt ed erba cipollina; ingredients and prepared appearance checked against catalog (yogurt greco, carota, cetriolo, peperone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:50:27.664757+00:00",
+      "card": "assets/recipes/card/verdure_crude_salsa_yogurt_erba_cipollina.jpg"
     },
     "verdure_miste_friggitrice": {
       "id": "verdure_miste_friggitrice",
@@ -14631,16 +15631,24 @@
         "peperone",
         "cipolla_rossa"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/verdure_miste_friggitrice.png",
       "promptHash": "34e4391fd3caeaf8",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9570f0e8f8f07031",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1517715,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Verdure miste croccanti in friggitrice ad aria; ingredients and prepared appearance checked against catalog (patata, zucchina, peperone, cipolla rossa). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:24.396819+00:00",
+      "card": "assets/recipes/card/verdure_miste_friggitrice.jpg"
     },
     "verza_stufata_fagioli": {
       "id": "verza_stufata_fagioli",
@@ -14689,16 +15697,24 @@
         "cipollotto",
         "insalata"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/vignarola_romana.png",
       "promptHash": "dd366c9a6dc86fd0",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "9460f0e8dcf078b3",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1345714,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Vignarola romana; ingredients and prepared appearance checked against catalog (fave surgelate, piselli surgelati, carciofi, cipollotto, insalata verde). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:17.781786+00:00",
+      "card": "assets/recipes/card/vignarola_romana.jpg"
     },
     "vitello_tonnato_fettine": {
       "id": "vitello_tonnato_fettine",
@@ -14716,16 +15732,24 @@
         "capperi",
         "acciughe_olio"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/vitello_tonnato_fettine.png",
       "promptHash": "c92d2cc83e76305d",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0070f0f8f8f07832",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 979599,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Vitello tonnato con fettine; ingredients and prepared appearance checked against catalog (fettine di vitello, maionese, tonno in scatola, limone, capperi). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:31:45.954521+00:00",
+      "card": "assets/recipes/card/vitello_tonnato_fettine.jpg"
     },
     "wrap_tortilla_fagioli_neri_avocado": {
       "id": "wrap_tortilla_fagioli_neri_avocado",
@@ -14777,16 +15801,24 @@
         "hummus",
         "rucola"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/wrap_verdure_grigliate_hummus.png",
       "promptHash": "0afb0b272d7d0009",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0cf0f098f1b2c479",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1392205,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Wrap con verdure grigliate e hummus; ingredients and prepared appearance checked against catalog (tortilla di frumento, zucchina, melanzana, peperone, hummus pronto). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:39.548159+00:00",
+      "card": "assets/recipes/card/wrap_verdure_grigliate_hummus.jpg"
     },
     "yogurt_banana_cacao": {
       "id": "yogurt_banana_cacao",
@@ -15059,16 +16091,24 @@
         "ceci_cotti",
         "cipolla_rossa"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/zucca_ceci_forno_rosmarino.png",
       "promptHash": "4f7e0354cb358386",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0c70f1d0c8f87853",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1313647,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Zucca e ceci al forno con rosmarino; ingredients and prepared appearance checked against catalog (zucca, ceci cotti, cipolla rossa). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:19.967899+00:00",
+      "card": "assets/recipes/card/zucca_ceci_forno_rosmarino.jpg"
     },
     "zucchine_ripiene_carne_forno": {
       "id": "zucchine_ripiene_carne_forno",
@@ -15085,16 +16125,24 @@
         "parmigiano",
         "pangrattato"
       ],
-      "status": "pending",
-      "file": null,
+      "status": "validated",
+      "file": "assets/recipes/zucchine_ripiene_carne_forno.png",
       "promptHash": "abdec7ce148acc99",
-      "attempts": 0,
-      "model": null,
-      "phash": null,
+      "attempts": 1,
+      "model": "Google Flow / Nano Banana 2.1 (browser UI)",
+      "phash": "0c72f0ecd8f0b942",
       "qc": {
-        "notes": []
+        "width": 1200,
+        "height": 900,
+        "bytes": 1118706,
+        "semantic": null,
+        "notes": [
+          "Individually opened in Google Flow and visually reviewed from the browser-exported original: Zucchine ripiene di carne al forno; ingredients and prepared appearance checked against catalog (zucchina, macinato misto manzo e maiale, uova, parmigiano reggiano, pangrattato). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Original source-to-filename correspondence also visually reviewed.",
+          "Individually visually reviewed; no automated semantic score claimed."
+        ]
       },
-      "updatedAt": null
+      "updatedAt": "2026-11-01T14:43:29.522164+00:00",
+      "card": "assets/recipes/card/zucchine_ripiene_carne_forno.jpg"
     },
     "zucchine_ripiene_couscous": {
       "id": "zucchine_ripiene_couscous",

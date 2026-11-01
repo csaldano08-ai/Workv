@@ -1,0 +1,98 @@
+{
+  "completed_at": "2026-11-01T15:12:38.822814+00:00",
+  "source_commit": "1cf78de12cc3ac9028ed300ee16da9c5cc7a718c",
+  "branch": "codex/spesora-flow-344",
+  "pull_request": "https://github.com/csaldano08-ai/Workv/pull/1",
+  "generator": "Google Flow browser UI / Nano Banana 2.1",
+  "catalog": 500,
+  "original_approved_preserved": 156,
+  "new_validated": 344,
+  "total_validated": 500,
+  "missing": 0,
+  "needs_review": 0,
+  "failed": 0,
+  "new_generation_attempts": 345,
+  "regenerated": [
+    "stracciatella_in_brodo"
+  ],
+  "categories": [
+    {
+      "category": "Colazioni",
+      "total": 97,
+      "new": 67,
+      "validated": 97
+    },
+    {
+      "category": "Primi (pasta, riso, cereali, zuppe)",
+      "total": 150,
+      "new": 106,
+      "validated": 150
+    },
+    {
+      "category": "Secondi (carne, pesce, uova)",
+      "total": 95,
+      "new": 59,
+      "validated": 95
+    },
+    {
+      "category": "Legumi, verdure e piatti unici",
+      "total": 105,
+      "new": 72,
+      "validated": 105
+    },
+    {
+      "category": "Spuntini",
+      "total": 53,
+      "new": 40,
+      "validated": 53
+    }
+  ],
+  "png": {
+    "count": 500,
+    "width": 1200,
+    "height": 900,
+    "bytes": 586057674
+  },
+  "cards": {
+    "count": 500,
+    "width": 800,
+    "height": 600,
+    "bytes": 20998823
+  },
+  "checks": {
+    "png_decode_dimensions_sha_and_unique_hash": "passed",
+    "protected_156_original_sha256": "passed",
+    "card_decode_dimensions_unique_hash": "passed",
+    "static_require_references_500_png_and_500_card": "passed",
+    "individual_visual_review": "recorded for every image",
+    "automated_semantic_score": "not claimed",
+    "npm_run_verify": "passed: typecheck, lint, 110 tests in 11 files; 7 existing release-configuration warnings"
+  },
+  "contact_sheets": [
+    "contact-sheets-500/colazioni_01.jpg",
+    "contact-sheets-500/colazioni_02.jpg",
+    "contact-sheets-500/colazioni_03.jpg",
+    "contact-sheets-500/colazioni_04.jpg",
+    "contact-sheets-500/colazioni_05.jpg",
+    "contact-sheets-500/primi (pasta, riso, cereali, zuppe)_01.jpg",
+    "contact-sheets-500/primi (pasta, riso, cereali, zuppe)_02.jpg",
+    "contact-sheets-500/primi (pasta, riso, cereali, zuppe)_03.jpg",
+    "contact-sheets-500/primi (pasta, riso, cereali, zuppe)_04.jpg",
+    "contact-sheets-500/primi (pasta, riso, cereali, zuppe)_05.jpg",
+    "contact-sheets-500/primi (pasta, riso, cereali, zuppe)_06.jpg",
+    "contact-sheets-500/primi (pasta, riso, cereali, zuppe)_07.jpg",
+    "contact-sheets-500/secondi (carne, pesce, uova)_01.jpg",
+    "contact-sheets-500/secondi (carne, pesce, uova)_02.jpg",
+    "contact-sheets-500/secondi (carne, pesce, uova)_03.jpg",
+    "contact-sheets-500/secondi (carne, pesce, uova)_04.jpg",
+    "contact-sheets-500/legumi, verdure e piatti unici_01.jpg",
+    "contact-sheets-500/legumi, verdure e piatti unici_02.jpg",
+    "contact-sheets-500/legumi, verdure e piatti unici_03.jpg",
+    "contact-sheets-500/legumi, verdure e piatti unici_04.jpg",
+    "contact-sheets-500/legumi, verdure e piatti unici_05.jpg",
+    "contact-sheets-500/spuntini_01.jpg",
+    "contact-sheets-500/spuntini_02.jpg",
+    "contact-sheets-500/spuntini_03.jpg"
+  ],
+  "service_interruptions": "Normal user verification used for Google Flow unusual-activity/reCAPTCHA blocks. No bypass. Upload size failure retried in smaller GitHub UI batches."
+}
