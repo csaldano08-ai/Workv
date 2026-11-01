@@ -1,0 +1,199 @@
+{
+  "units": "1024-square source pixels; scale all geometry together",
+  "runtime": "Local PNG files. Apply transforms to layers or use explicit keyframes; do not mount both at once. Reanimated is not implemented by this asset-only branch.",
+  "reduced_motion": "Use static source pose; suppress loops and jumping.",
+  "sequences": [
+    {
+      "id": "wave",
+      "width": 1024,
+      "height": 1024,
+      "frames": [
+        {
+          "file": "animation-frames/wave/wave_00.png",
+          "time_ms": 0
+        },
+        {
+          "file": "animation-frames/wave/wave_01.png",
+          "time_ms": 160
+        },
+        {
+          "file": "animation-frames/wave/wave_02.png",
+          "time_ms": 320
+        }
+      ],
+      "source": "poses/mina_wave.png",
+      "type": "articulated_arm",
+      "layers": [
+        "layers/wave_arm.png",
+        "layers/wave_body.png"
+      ],
+      "pivot_px": [
+        797,
+        522
+      ],
+      "degrees": [
+        -8,
+        0,
+        8
+      ],
+      "draw_order": [
+        "wave_arm",
+        "wave_body"
+      ],
+      "loop": "0,1,2,1; finish at 1"
+    },
+    {
+      "id": "book_open",
+      "width": 1024,
+      "height": 1024,
+      "frames": [
+        {
+          "file": "animation-frames/book_open/book_open_00.png",
+          "time_ms": 0
+        },
+        {
+          "file": "animation-frames/book_open/book_open_01.png",
+          "time_ms": 160
+        },
+        {
+          "file": "animation-frames/book_open/book_open_02.png",
+          "time_ms": 320
+        }
+      ],
+      "source": "poses/mina_recipe.png",
+      "type": "cover_hinge",
+      "layers": [
+        "layers/book_body_pages.png",
+        "layers/book_cover.png"
+      ],
+      "draw_order": [
+        "book_body_pages",
+        "book_cover"
+      ],
+      "hinge_px": [
+        [
+          334,
+          220
+        ],
+        [
+          425,
+          790
+        ]
+      ],
+      "horizontal_compression": [
+        0,
+        0.025,
+        0.05
+      ],
+      "limitation": "Small opening from an already ajar recipe cover, not a full closed-to-open spread. Paper beneath cover is sampled from the same Flow illustration."
+    },
+    {
+      "id": "shopping",
+      "width": 1024,
+      "height": 1024,
+      "frames": [
+        {
+          "file": "animation-frames/shopping/shopping_00.png",
+          "time_ms": 0
+        },
+        {
+          "file": "animation-frames/shopping/shopping_01.png",
+          "time_ms": 120
+        },
+        {
+          "file": "animation-frames/shopping/shopping_02.png",
+          "time_ms": 240
+        }
+      ],
+      "source": "poses/mina_shopping.png",
+      "type": "rigid_translation",
+      "translate_px": [
+        [
+          0,
+          24
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "limitation": "Whole illustration moves rigidly; no separately articulated checklist, spoon or pointing hand. The action is already depicted in the source pose."
+    },
+    {
+      "id": "success",
+      "width": 1024,
+      "height": 1024,
+      "frames": [
+        {
+          "file": "animation-frames/success/success_00.png",
+          "time_ms": 0
+        },
+        {
+          "file": "animation-frames/success/success_01.png",
+          "time_ms": 180
+        },
+        {
+          "file": "animation-frames/success/success_02.png",
+          "time_ms": 360
+        }
+      ],
+      "source": "poses/mina_success.png",
+      "type": "rigid_translation",
+      "translate_px": [
+        [
+          0,
+          28
+        ],
+        [
+          0,
+          -16
+        ],
+        [
+          0,
+          28
+        ]
+      ],
+      "limitation": "Whole illustration moves rigidly; no separately articulated checklist, spoon or pointing hand. The action is already depicted in the source pose."
+    },
+    {
+      "id": "cooking_reminder",
+      "width": 1024,
+      "height": 1024,
+      "frames": [
+        {
+          "file": "animation-frames/cooking_reminder/cooking_reminder_00.png",
+          "time_ms": 0
+        },
+        {
+          "file": "animation-frames/cooking_reminder/cooking_reminder_01.png",
+          "time_ms": 140
+        },
+        {
+          "file": "animation-frames/cooking_reminder/cooking_reminder_02.png",
+          "time_ms": 280
+        }
+      ],
+      "source": "poses/mina_cooking.png",
+      "type": "rigid_translation",
+      "translate_px": [
+        [
+          0,
+          24
+        ],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "limitation": "Whole illustration moves rigidly; no separately articulated checklist, spoon or pointing hand. The action is already depicted in the source pose."
+    }
+  ]
+}

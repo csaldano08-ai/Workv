@@ -61,9 +61,9 @@ export default function Shopping() {
           </ChipGroup>
           {current ? (
             current.date === snapshot.today ? (
-              <AssistantBubble pose="shopping" size={76} title={shoppingDay(current.lines.length, current.date).title} text="Spunta i prodotti mentre li metti nel carrello, poi conferma: solo allora entrano in dispensa." />
+              <AssistantBubble pose="shopping" size={96} title={shoppingDay(current.lines.length, current.date).title} text="Spunta i prodotti mentre li metti nel carrello, poi conferma: solo allora entrano in dispensa." />
             ) : (
-              <AssistantBubble pose="neutral" size={76} text={`Questa lista è per ${formatLongDate(current.date)}: ogni prodotto arriva prima della ricetta che lo usa.`} />
+              <AssistantBubble pose="neutral" size={96} text={`Questa lista è per ${formatLongDate(current.date)}: ogni prodotto arriva prima della ricetta che lo usa.`} />
             )
           ) : null}
           {current ? <TripView trip={current} /> : null}

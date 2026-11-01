@@ -78,7 +78,7 @@ export default function Onboarding() {
   }
 
   const reaction = def.react?.(draft) ?? null;
-  const mina = reaction ?? (def.tip ? { pose: def.pose ?? 'neutral', tip: def.tip } : null);
+  const mina = reaction ?? (def.tip ? { pose: def.pose ?? 'explaining', tip: def.tip } : null);
   return (
     <Screen
       edges={['top', 'bottom']}
@@ -100,7 +100,7 @@ export default function Onboarding() {
       <Text variant="caption" color={colors.inkSoft}>
         {`PASSO ${step + 1} DI ${STEPS.length}`}
       </Text>
-      {mina ? <AssistantBubble pose={mina.pose} text={mina.tip} size={76} /> : null}
+      {mina ? <AssistantBubble pose={mina.pose} text={mina.tip} size={96} /> : null}
       <Text variant="title" accessibilityRole="header">
         {def.title}
       </Text>

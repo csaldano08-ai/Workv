@@ -40,7 +40,7 @@ export default function Week() {
   return (
     <Screen>
       <View style={styles.header}>
-        <MinaMascot pose="calendar" size={88} animated />
+        <MinaMascot pose="calendar" size={104} animated />
         <View style={styles.flex}>
           <Text variant="title" accessibilityRole="header">
             La tua settimana

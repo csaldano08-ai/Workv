@@ -8,8 +8,19 @@
  * guance pesca, braccia e gambe verdi. Cambiano solo espressione, braccia e accessori.
  */
 
-export const MINA_POSES = ['neutral', 'welcome', 'happy', 'calendar', 'shopping', 'cooking', 'recipe', 'thinking', 'pantry', 'missing', 'success', 'sleepy'] as const;
+/** Pose vettoriali disegnate nel codice (riserva e fonte dei PNG in assets/mascot/mina/vector). */
+export const MINA_VECTOR_POSES = ['neutral', 'welcome', 'happy', 'calendar', 'shopping', 'cooking', 'recipe', 'thinking', 'pantry', 'missing', 'success', 'sleepy'] as const;
+/** Tutte le pose ufficiali (16): le illustrazioni di Google Flow hanno anche saluto, spiegazione, risparmio e stato vuoto. */
+export const MINA_POSES = [...MINA_VECTOR_POSES, 'wave', 'explaining', 'savings', 'empty'] as const;
 export type MinaPose = (typeof MINA_POSES)[number];
+export type MinaVectorPose = (typeof MINA_VECTOR_POSES)[number];
+
+/** Per le pose senza disegno vettoriale proprio, la più vicina. */
+const VECTOR_ALIAS: Record<MinaPose, MinaVectorPose> = {
+  neutral: 'neutral', welcome: 'welcome', happy: 'happy', calendar: 'calendar', shopping: 'shopping', cooking: 'cooking', recipe: 'recipe',
+  thinking: 'thinking', pantry: 'pantry', missing: 'missing', success: 'success', sleepy: 'sleepy',
+  wave: 'welcome', explaining: 'recipe', savings: 'shopping', empty: 'pantry',
+};
 
 /** Rapporto larghezza/altezza della tavola di disegno. */
 export const MINA_VIEWBOX = { width: 140, height: 156 } as const;
@@ -178,7 +189,7 @@ interface Scene {
 const LS: [number, number] = [38, 72];
 const RS: [number, number] = [108, 72];
 
-function scene(pose: MinaPose): Scene {
+function scene(pose: MinaVectorPose): Scene {
   switch (pose) {
     case 'welcome':
       return {
@@ -260,7 +271,7 @@ function scene(pose: MinaPose): Scene {
 
 /** SVG completo di una posa (sfondo trasparente). */
 export function minaSvg(pose: MinaPose): string {
-  const s = scene(pose);
+  const s = scene(VECTOR_ALIAS[pose]);
   const inner = `${body()}<g transform="translate(-13.5 -9) scale(1.18)">${face(s.face)}</g>${s.mid ?? ''}${s.arms}${s.front ?? ''}`;
   const wrapped = s.tilt ? `<g transform="rotate(${s.tilt} 75 140)">${inner}</g>` : inner;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${MINA_VIEWBOX.width} ${MINA_VIEWBOX.height}">${wrapped}</svg>`;

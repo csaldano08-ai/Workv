@@ -39,7 +39,7 @@ export interface StepDef {
 }
 
 export const STEPS: StepDef[] = [
-  { id: 'persone', title: 'Quante persone mangeranno abitualmente?', Component: PeopleStep, editable: true, pose: 'welcome', tip: 'Ciao, sono Mina! Bastano due minuti e organizzo io la tua settimana.' },
+  { id: 'persone', title: 'Quante persone mangeranno abitualmente?', Component: PeopleStep, editable: true, pose: 'wave', tip: 'Ciao, sono Mina! Bastano due minuti e organizzo io la tua settimana.' },
   {
     id: 'pasti',
     title: 'Quali pasti vuoi organizzare?',
@@ -101,7 +101,7 @@ export const STEPS: StepDef[] = [
     editable: true,
     validate: (d) => (d.profile.shoppingDays.length === 0 ? 'Scegli almeno un giorno.' : null),
   },
-  { id: 'budget', title: 'Quanto vuoi spendere per la tua spesa?', subtitle: 'Facoltativo: aiuta a scegliere ricette che riutilizzano gli ingredienti.', Component: BudgetStep, editable: true, premium: true, pose: 'shopping', tip: 'Mangiare bene secondo i tuoi gusti, senza comprare più del necessario.' },
+  { id: 'budget', title: 'Quanto vuoi spendere per la tua spesa?', subtitle: 'Facoltativo: aiuta a scegliere ricette che riutilizzano gli ingredienti.', Component: BudgetStep, editable: true, premium: true, pose: 'savings', tip: 'Mangiare bene secondo i tuoi gusti, senza comprare più del necessario.' },
   {
     id: 'strumenti',
     title: 'Cosa hai in cucina?',

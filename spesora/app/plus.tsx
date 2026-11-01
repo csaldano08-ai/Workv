@@ -58,7 +58,7 @@ export default function Plus() {
         <Notice tone="warning" title="Modalità sviluppo" text="Acquisti simulati: nessun pagamento reale, nulla viene salvato. Prezzi indicati come ESEMPIO." />
       ) : null}
       <View style={styles.hero}>
-        <MinaMascot pose="thinking" size={84} animated />
+        <MinaMascot pose="savings" size={104} animated />
         <Text variant="title" style={styles.flex}>
           Più tempo per te, meno decisioni
         </Text>

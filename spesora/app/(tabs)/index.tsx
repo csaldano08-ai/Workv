@@ -153,7 +153,7 @@ function MinaMessage({ snap, next, todayTripItems, todayTripDate, initial }: { s
     if (startsIn <= 90) return <AssistantBubble pose="cooking" text={cookSoon(recipe.name, recipe.totalMinutes, key)} />;
   }
   if (!next) return <AssistantBubble pose={snap.issues.length > 0 ? 'thinking' : 'success'} text={snap.issues.length > 0 ? EMPTY.noRecipes : EMPTY.dayDone} />;
-  return <AssistantBubble pose="welcome" text={`${greeting(hour, key)} ${tipOfTheDay(snap.today)}`} />;
+  return <AssistantBubble pose="wave" text={`${greeting(hour, key)} ${tipOfTheDay(snap.today)}`} />;
 }
 
 function statusLabel(m: PlannedMeal): string {

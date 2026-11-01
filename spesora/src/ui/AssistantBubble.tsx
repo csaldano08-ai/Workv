@@ -12,7 +12,7 @@ export function AssistantBubble({
   pose = 'neutral',
   text,
   title,
-  size = 88,
+  size = 104,
   animated = true,
   children,
 }: {
@@ -39,7 +39,7 @@ export function AssistantBubble({
 }
 
 /** Piccolo richiamo di Mina (dimensione piccola) accanto a un testo breve, senza nuvoletta. */
-export function MinaNote({ pose = 'neutral', title, text, size = 48 }: { pose?: MinaPose | string; title?: string; text: string; size?: number }) {
+export function MinaNote({ pose = 'neutral', title, text, size = 64 }: { pose?: MinaPose | string; title?: string; text: string; size?: number }) {
   return (
     <View style={styles.note} accessible accessibilityLabel={`Mina: ${title ? `${title}. ` : ''}${text}`}>
       <MinaMascot pose={pose} size={size} />

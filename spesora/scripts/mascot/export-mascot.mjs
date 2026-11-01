@@ -5,7 +5,7 @@
 import { createRequire } from 'node:module';
 import { mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { MINA_POSES, minaBadgeSvg, minaSvg } from '../../src/ui/mascot/minaSvg.ts';
+import { MINA_VECTOR_POSES as MINA_POSES, minaBadgeSvg, minaSvg } from '../../src/ui/mascot/minaSvg.ts';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');

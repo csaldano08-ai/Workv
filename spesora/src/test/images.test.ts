@@ -6,7 +6,7 @@ import { CATALOG } from '../data/catalog';
 import { emptyManifest, loadManifest, syncWithCatalog } from '../../scripts/images/manifest';
 import { buildRecipePrompt, mainIngredients } from '../../scripts/images/prompts';
 import { hammingDistance, perceptualHash, technicalCheck, toCardJpeg, toThumbJpeg } from '../../scripts/images/quality';
-import { MINA_POSES, minaBadgeSvg, minaSvg, resolvePose } from '../ui/mascot/minaSvg';
+import { MINA_POSES, MINA_VECTOR_POSES, minaBadgeSvg, minaSvg, resolvePose } from '../ui/mascot/minaSvg';
 import { catalog } from './helpers';
 
 const ROOT = join(__dirname, '..', '..');
@@ -110,9 +110,10 @@ describe('Immagini delle ricette', () => {
 
 describe('Mascotte Mina', () => {
   it('ogni posa è un SVG valido, distinto, senza testo e con l’identità fissa del ricettario', () => {
-    const svgs = MINA_POSES.map((p) => minaSvg(p));
-    expect(MINA_POSES).toHaveLength(12);
-    expect(new Set(svgs).size).toBe(MINA_POSES.length);
+    const svgs = MINA_VECTOR_POSES.map((p) => minaSvg(p));
+    expect(MINA_VECTOR_POSES).toHaveLength(12);
+    expect(MINA_POSES).toHaveLength(16);
+    expect(new Set(svgs).size).toBe(MINA_VECTOR_POSES.length);
     for (const s of svgs) {
       expect(s.startsWith('<svg')).toBe(true);
       expect(s.endsWith('</svg>')).toBe(true);
@@ -135,7 +136,7 @@ describe('Mascotte Mina', () => {
   });
 
   it('gli asset PNG esportati (sfondo trasparente, 1024×1024) esistono per tutte le pose', async () => {
-    for (const p of MINA_POSES) {
+    for (const p of MINA_VECTOR_POSES) {
       const file = join(ROOT, 'assets', 'mascot', 'mina', 'vector', `mina_${p}.png`);
       expect(existsSync(file), file).toBe(true);
       const meta = await sharp(file).metadata();
@@ -145,16 +146,33 @@ describe('Mascotte Mina', () => {
   });
 });
 
-describe('Mina — illustrazioni raster opzionali', () => {
-  it('la mappa raster usa solo pose valide, file locali esistenti e nessuna immagine di rete', () => {
-    const src = readFileSync(join(ROOT, 'src', 'ui', 'mascot', 'minaRaster.ts'), 'utf8');
-    const code = src.replace(/\/\*[\s\S]*?\*\//g, '');
-    const entries = [...code.matchAll(/^\s*([a-z]+):\s*require\('([^']+)'\)/gm)];
-    for (const [, pose, rel] of entries) {
+describe('Mina — illustrazioni di Google Flow nell’app', () => {
+  const src = readFileSync(join(ROOT, 'src', 'ui', 'mascot', 'minaRaster.ts'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+  const block = (name: string) => {
+    const start = src.indexOf(`export const ${name}`);
+    const end = src.indexOf('};', start);
+    return [...src.slice(start, end).matchAll(/^\s*([a-z]+):\s*require\('([^']+)'\)/gm)].map((m) => ({ pose: m[1], rel: m[2] }));
+  };
+
+  it('tutte le 16 pose hanno un PNG trasparente 512×512; welcome e success anche 1024×1024', async () => {
+    const small = block('MINA_RASTER');
+    expect(small.map((e) => e.pose).sort()).toEqual([...MINA_POSES].sort());
+    for (const { pose, rel } of small) {
       expect((MINA_POSES as readonly string[]).includes(pose), pose).toBe(true);
-      expect(existsSync(join(ROOT, 'src', 'ui', 'mascot', rel)), rel).toBe(true);
+      const file = join(ROOT, 'src', 'ui', 'mascot', rel);
+      expect(existsSync(file), rel).toBe(true);
+      const meta = await sharp(file).metadata();
+      expect([meta.width, meta.height, meta.hasAlpha], rel).toEqual([512, 512, true]);
     }
-    expect(code).not.toMatch(/https?:\/\//);
+    for (const { rel } of block('MINA_RASTER_LARGE')) {
+      const meta = await sharp(join(ROOT, 'src', 'ui', 'mascot', rel)).metadata();
+      expect([meta.width, meta.height, meta.hasAlpha]).toEqual([1024, 1024, true]);
+    }
+  });
+
+  it('i livelli del saluto esistono, solo asset locali e nessuna immagine di rete', () => {
+    for (const m of src.matchAll(/require\('([^']+)'\)/g)) expect(existsSync(join(ROOT, 'src', 'ui', 'mascot', m[1])), m[1]).toBe(true);
+    expect(src).not.toMatch(/https?:\/\//);
     expect(readFileSync(join(ROOT, 'src', 'ui', 'mascot', 'Mina.tsx'), 'utf8')).not.toMatch(/uri:\s*['"`]http/);
   });
 });

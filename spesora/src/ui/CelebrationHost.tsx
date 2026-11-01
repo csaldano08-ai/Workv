@@ -24,7 +24,7 @@ export function CelebrationHost() {
     <View pointerEvents="box-none" style={[styles.wrap, { bottom: insets.bottom + 84 }]}>
       <Reveal key={current.id}>
         <Pressable accessibilityRole="alert" accessibilityLabel={`Mina: ${current.title}. ${current.text}`} onPress={() => setCurrent(null)} style={styles.card}>
-          <MinaMascot pose="success" size={84} animated style={styles.mina} />
+          <MinaMascot pose="success" size={104} animated style={styles.mina} />
           <View style={styles.text}>
             <Text variant="heading">{current.title}</Text>
             <Text variant="small" color={colors.inkSoft}>

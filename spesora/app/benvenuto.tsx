@@ -33,10 +33,10 @@ export default function Welcome() {
       <View style={styles.hero}>
         <Reveal>
           <View style={styles.stage}>
-            <SoftBlob size={250} style={styles.blob} />
+            <SoftBlob size={300} style={styles.blob} />
             <Sprig height={96} style={styles.sprigL} />
             <Sprig height={80} tone="peach" style={styles.sprigR} />
-            <MinaMascot pose="welcome" size={150} animated accessibilityLabel="Mina, il ricettario vivente di Spesora, che ti saluta" />
+            <MinaMascot pose="welcome" size={260} animated accessibilityLabel="Mina, il ricettario vivente di Spesora, che ti saluta" />
           </View>
         </Reveal>
         <Reveal index={1}>
@@ -84,7 +84,7 @@ export default function Welcome() {
 
 const styles = StyleSheet.create({
   hero: { gap: space.md, marginTop: space.md },
-  stage: { alignItems: 'center', justifyContent: 'center', height: 230 },
+  stage: { alignItems: 'center', justifyContent: 'center', height: 290 },
   blob: { position: 'absolute' },
   sprigL: { position: 'absolute', left: 16, bottom: 8 },
   sprigR: { position: 'absolute', right: 18, bottom: 14, transform: [{ scaleX: -1 }] },
