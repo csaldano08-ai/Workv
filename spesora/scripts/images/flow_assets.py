@@ -23,7 +23,10 @@ def save_json(path, data):
     temp.replace(path)
 
 def audit(progress):
-    with (ROOT/'docs/ricette_immagini.csv').open(encoding='utf-8-sig') as f:
+    # This production order covers the original 156 recipes at b351a68.
+    # The shared app catalog can grow independently without invalidating this audit.
+    catalog_path=ROOT/'docs/ricette_immagini_156_flow.csv'
+    with catalog_path.open(encoding='utf-8-sig') as f:
         catalog=list(csv.DictReader(f,delimiter=';'))
     assert len(catalog)==156 and len({r['nome_file'] for r in catalog})==156
     expected={r['nome_file'] for r in catalog}
@@ -104,4 +107,5 @@ def main():
     if report['errors']: raise SystemExit(1)
 
 if __name__=='__main__': main()
+
 

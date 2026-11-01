@@ -49,3 +49,12 @@ Fonti: https://support.google.com/flow/answer/16353333?hl=en e https://policies.
 
 La produzione è completa solo quando `IMAGE_COVERAGE_REPORT.json` riporta **156 PNG validati, nessun mancante e nessun errore**, e tutti i file sono presenti nel branch remoto.
 
+## Chiusura della consegna originale
+
+Completate e verificate tutte le 156 immagini richieste: 30 colazioni, 44 primi, 36 secondi, 33 piatti con legumi e verdure, 13 spuntini. Sono registrati 161 tentativi, inclusi cinque interventi correttivi sui campioni. Ogni PNG definitivo è 1200 × 900; totale 125.086.120 byte. Nessun file mancante, danneggiato, vuoto o duplicato esatto. Le cinque tavole di controllo sono state riesaminate dopo la revisione individuale.
+
+Durante la produzione il catalogo condiviso dell'app è cresciuto a 500 ricette. Questa consegna riguarda esclusivamente le 156 ricette del commit sorgente `b351a68`, conservate senza modifiche in `docs/ricette_immagini_156_flow.csv`. Il comando `audit` usa questa copia stabile: non confonde le ricette aggiunte successivamente con immagini mancanti di questo ordine. Conservare il catalogo corrente dell'app e le modifiche concorrenti.
+
+La mappatura `src/data/recipe-images.ts` contiene 156 riferimenti statici PNG; `docs/RECIPE_IMAGE_PATHS.json` fornisce i percorsi per l'integrazione. Le card JPEG e il resto del codice dell'app sono gestiti dal workflow già presente nel ramo condiviso. La verifica di questa consegna riguarda gli asset originali e la corrispondenza dei percorsi; non dichiara una build completa dell'app eseguita.
+
+
