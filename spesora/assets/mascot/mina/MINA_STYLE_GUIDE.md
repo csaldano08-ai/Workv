@@ -15,7 +15,7 @@ Il riferimento principale è `master/sources/mina_user_reference.png`, fornito d
 
 ## Proporzioni e inquadratura
 
-Canvas sorgente quadrato 1024×1024. Il master ha bounding box alpha `(178,119,887,908)`: il personaggio completo è alto 789 px, con margini liberi e nessun elemento tagliato. La copertina ha rapporto larghezza/altezza indicativo 0,72; il libro occupa la grande maggioranza dell’altezza del personaggio e le gambe restano corte.
+Canvas sorgente quadrato 1024×1024. Il master ha bounding box alpha `(180, 120, 886, 906)`: il personaggio completo è alto 786 px, con margini liberi e nessun elemento tagliato. La copertina ha rapporto larghezza/altezza indicativo 0,72; il libro occupa la grande maggioranza dell’altezza del personaggio e le gambe restano corte.
 
 La vista operativa è a tre quarti anteriore, dorso a sinistra. Le pose devono conservare il volume del libro, la posizione relativa di occhi, guance, elastico, rametto e linguette. Una variazione espressiva non deve cambiare la distanza fra gli occhi o trasformare il libro in un volto umano.
 
