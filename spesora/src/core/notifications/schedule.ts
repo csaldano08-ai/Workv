@@ -2,6 +2,7 @@ import { CatalogIndex } from '../domain/catalog';
 import { addDays, localInstant, minutesToHHMM } from '../domain/dates';
 import { hashString } from '../domain/random';
 import type { IsoDate, MealType, PlannedMeal } from '../domain/types';
+import { PREP_AHEAD_MINUTES, prepAheadOf, prepAheadShort } from '../domain/prepAhead';
 import { mealReminderBody, mealReminderTitle, SHOPPING_REMINDER_BODY, shoppingDay } from '../../i18n/assistant';
 
 /**
@@ -36,7 +37,7 @@ export const DEFAULT_NOTIFICATION_SETTINGS: NotificationSettings = {
   quietEndMinutes: 7 * 60,
 };
 
-export type NotificationKind = 'meal' | 'shopping' | 'plan_end';
+export type NotificationKind = 'meal' | 'prep' | 'shopping' | 'plan_end';
 
 export interface DesiredNotification {
   id: string;
@@ -57,6 +58,8 @@ export interface ScheduleInput {
   settings: NotificationSettings;
   now: Date;
 }
+
+const FOR_MEAL: Record<MealType, string> = { colazione: 'la colazione', pranzo: 'il pranzo', spuntino: 'lo spuntino', cena: 'la cena' };
 
 export function isInQuietHours(minutes: number, start: number, end: number): boolean {
   if (start === end) return false;
@@ -85,6 +88,26 @@ export function computeNotifications(input: ScheduleInput): DesiredNotification[
       const body = mealReminderBody(recipe.name, recipe.totalMinutes, meal.servings, meal.id);
       const url = `/ricetta/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`;
       out.push({ id: makeId('meal', meal.id, `${fireAt.getTime()}|${body}|${url}`), kind: 'meal', fireAt, title, body, url });
+    }
+  }
+
+  // Preparazioni da fare la sera prima (ammollo/riposo notturno, scongelamento in frigo):
+  // per tutti i pasti programmati, anche quelli senza promemoria di cottura (es. colazione).
+  if (settings.mealReminders) {
+    for (const meal of input.meals) {
+      if (meal.status !== 'planned') continue;
+      const recipe = catalog.recipe(meal.recipeId);
+      const prep = recipe ? prepAheadOf(recipe) : null;
+      if (!recipe || !prep) continue;
+      let minutes = PREP_AHEAD_MINUTES;
+      if (isInQuietHours(minutes, settings.quietStartMinutes, settings.quietEndMinutes)) minutes = settings.quietStartMinutes - 60;
+      if (minutes < 0 || isInQuietHours(minutes, settings.quietStartMinutes, settings.quietEndMinutes)) continue;
+      const fireAt = localInstant(addDays(meal.date, -1), minutes);
+      if (fireAt.getTime() <= now.getTime()) continue;
+      const title = `Per ${FOR_MEAL[meal.mealType]} di domani`;
+      const body = `${recipe.name}. Da fare stasera: ${prepAheadShort(prep)}.`;
+      const url = `/ricetta/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`;
+      out.push({ id: makeId('prep', meal.id, `${fireAt.getTime()}|${body}|${url}`), kind: 'prep', fireAt, title, body, url });
     }
   }
 

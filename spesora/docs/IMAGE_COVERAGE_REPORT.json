@@ -1,10 +1,9 @@
 {
-  "catalog_count": 156,
-  "validated_count": 156,
+  "catalog_count": 500,
+  "validated_count": 500,
   "missing": [],
   "errors": [],
   "unexpected_pngs": [],
-  "total_bytes": 125086120,
+  "total_bytes": 586057674,
   "complete": true
 }
-

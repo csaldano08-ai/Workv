@@ -16,6 +16,8 @@ export const PATHS = {
   mapFile: `${root}src/data/recipe-images.ts`,
   /** Mappatura delle card ottimizzate, usata dall'app. */
   cardMapFile: `${root}src/data/recipe-image-cards.ts`,
+  /** Miniature per le liste (settimana, ricettario, sostituzioni). */
+  thumbMapFile: `${root}src/data/recipe-image-thumbs.ts`,
 };
 
 export const IMAGE = {
@@ -23,6 +25,9 @@ export const IMAGE = {
   /** Versione per le card dell'app (JPEG, ~40–90 KB). */
   cardWidth: 800,
   cardHeight: 600,
+  /** Miniatura per le liste virtualizzate (JPEG, ~8–15 KB): decodifica leggera durante lo scorrimento. */
+  thumbWidth: 320,
+  thumbHeight: 240,
   jpegQuality: 78,
   /** Dimensione minima accettata del sorgente generato. */
   minSourceWidth: 640,

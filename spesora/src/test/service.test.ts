@@ -248,3 +248,15 @@ describe('Test L — errori e input non validi', () => {
     await expect(migrate(db)).rejects.toThrow(/più recente/);
   });
 });
+
+describe('Dispensa — scadenze nel calendario', () => {
+  it('dopo aver inserito una scadenza, la riorganizzazione usa prima l’ingrediente', async () => {
+    const today = '2026-11-02';
+    const { service } = await onboardedService(profile({ mealTypes: ['pranzo', 'cena'] }), today, [{ ingredientId: 'pasta_secca', qty: toMilli(1000) }]);
+    await service.setExpiry('pasta_secca', '2026-11-03');
+    await service.regenerate(today);
+    const snap = await service.snapshot(today);
+    const early = snap.meals.filter((m) => m.date <= '2026-11-03');
+    expect(early.some((m) => m.reasons.some((r) => r.startsWith('Usa prima della scadenza')))).toBe(true);
+  });
+});

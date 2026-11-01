@@ -98,7 +98,7 @@ function MealLine({ meal, onMenu }: { meal: PlannedMeal; onMenu: () => void }) {
         onLongPress={done ? undefined : onMenu}
         style={({ pressed }) => [styles.mealMain, pressed && { opacity: 0.7 }]}
       >
-        {recipe ? <RecipeImage recipe={recipe} style={styles.thumb} rounded={8} /> : null}
+        {recipe ? <RecipeImage variant="thumb" recipe={recipe} style={styles.thumb} rounded={8} /> : null}
         <View style={styles.mealText}>
         <Text variant="caption" color={colors.inkSoft}>
           {`${MEAL_LABELS[meal.mealType].toUpperCase()} · ${minutesToHHMM(meal.timeMinutes)}${recipe ? ` · ${recipe.totalMinutes} MIN` : ''}`}

@@ -58,7 +58,7 @@ export default function ReplaceMeal() {
           {({ pressed }) => (
             <Card style={[styles.card, pressed && { borderColor: colors.green }]}>
               <View style={styles.row}>
-                <RecipeImage recipe={a.recipe} style={styles.thumb} rounded={10} />
+                <RecipeImage variant="thumb" recipe={a.recipe} style={styles.thumb} rounded={10} />
                 <View style={styles.flex}>
                   <Text variant="heading">{a.recipe.name}</Text>
                   <Text variant="small" color={colors.inkSoft}>

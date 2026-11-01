@@ -9,6 +9,7 @@ import { ingredientNeed, isPersonalized } from '../../src/core/domain/portions';
 import { PORTIONS_NOTE } from '../../src/features/onboarding/stepsPersonal';
 import { foodInfo } from '../../src/core/domain/nutrition';
 import { metaOf } from '../../src/core/domain/meta';
+import { prepAheadOf } from '../../src/core/domain/prepAhead';
 import { recipeCost } from '../../src/core/domain/cost';
 import { formatCents } from '../../src/core/domain/prices';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
@@ -52,6 +53,7 @@ export default function RecipeScreen() {
   }
   const facts = catalogIndex.factsOf(recipe);
   const favorite = snapshot.favorites.has(recipe.id);
+  const prepAhead = prepAheadOf(recipe);
   const servings = meal?.servings ?? localServings;
   const planned = meal?.status === 'planned';
   const statuses = meal ? new Map(mealIngredientStatus(meal, catalogIndex, toStock(snapshot.pantry), snapshot.staples, snapshot.profile?.portions).map((s) => [s.ingredientId, s.status])) : null;
@@ -114,6 +116,12 @@ export default function RecipeScreen() {
           <Info key={e} icon="construct-outline" text={EQUIPMENT_LABELS[e]} />
         ))}
       </View>
+      {prepAhead ? (
+        <Notice
+          title={prepAhead.kind === 'scongelamento' ? (prepAhead.conditional ? 'Se usi un prodotto surgelato: la sera prima' : 'Da scongelare la sera prima') : 'Da preparare la sera prima'}
+          text={`${prepAhead.step}${meal && meal.status === 'planned' ? ' Con i promemoria attivi, Spesora te lo ricorda la sera prima.' : ''}`}
+        />
+      ) : null}
 
       <Card>
         <View style={styles.servingsRow}>

@@ -25,11 +25,17 @@ def save_json(path, data):
 def audit(progress):
     # This production order covers the original 156 recipes at b351a68.
     # The shared app catalog can grow independently without invalidating this audit.
-    catalog_path=ROOT/'docs/ricette_immagini_156_flow.csv'
-    with catalog_path.open(encoding='utf-8-sig') as f:
-        catalog=list(csv.DictReader(f,delimiter=';'))
-    assert len(catalog)==156 and len({r['nome_file'] for r in catalog})==156
-    expected={r['nome_file'] for r in catalog}
+    scope_path=ROOT/'docs/FLOW_PRODUCTION_SCOPE.json'
+    if scope_path.exists():
+        scope=read_json(scope_path)
+        expected={r['filename'] for r in scope['recipes']}
+        for ident,digest in scope['protected_sha256'].items():
+            assert hashlib.sha256((ROOT/'assets/recipes'/f'{ident}.png').read_bytes()).hexdigest()==digest, 'Approved asset changed: '+ident
+    else:
+        catalog_path=ROOT/'docs/ricette_immagini_156_flow.csv'
+        with catalog_path.open(encoding='utf-8-sig') as f:
+            catalog=list(csv.DictReader(f,delimiter=';'))
+        expected={r['nome_file'] for r in catalog}
     assert {r['filename'] for r in progress['recipes']}==expected
     valid=[]; missing=[]; errors=[]; hashes={}
     for r in progress['recipes']:
@@ -46,10 +52,10 @@ def audit(progress):
             assert r.get('review'),'Missing individual review'
             hashes[digest]=r['filename']; valid.append(r)
         except Exception as exc: errors.append({'filename':r['filename'],'error':str(exc)})
-    report={'catalog_count':156,'validated_count':len(valid),'missing':missing,'errors':errors,
+    report={'catalog_count':len(expected),'validated_count':len(valid),'missing':missing,'errors':errors,
             'unexpected_pngs':sorted(p.name for p in (ROOT/'assets/recipes').glob('*.png') if p.name not in expected),
             'total_bytes':sum((ROOT/'assets/recipes'/r['filename']).stat().st_size for r in valid),
-            'complete':len(valid)==156 and not errors and not missing}
+            'complete':len(valid)==len(expected) and not errors and not missing}
     save_json(ROOT/'docs/IMAGE_COVERAGE_REPORT.json',report)
     return valid,report
 
@@ -65,8 +71,11 @@ def checkpoint(progress):
     (ROOT/'src/data/recipe-images.ts').write_text('\n'.join(lines),encoding='utf-8')
     manifest_path=ROOT/'assets/recipes/manifest.json'
     manifest=read_json(manifest_path)
+    scope_path=ROOT/'docs/FLOW_PRODUCTION_SCOPE.json'
+    protected=read_json(scope_path)['protected_sha256'] if scope_path.exists() else {}
     manifest['style']['reference']='docs/IMAGE_STYLE_REFERENCE.json'
     for r in valid:
+        if r['id'] in protected: continue
         m=manifest['recipes'][r['id']]
         m.update(status='validated',file='assets/recipes/'+r['filename'],attempts=r['attempts'],
                  model='Google Flow / Nano Banana 2.1 (browser UI)',updatedAt=r.get('updated_at'),

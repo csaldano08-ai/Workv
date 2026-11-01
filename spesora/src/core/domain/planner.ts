@@ -40,7 +40,12 @@ export interface PlannerInput {
   skipFirstDayBefore?: number;
   /** Prezzi indicativi (facoltativi): usati solo se il budget è attivo. */
   prices?: IngredientPriceEngine;
+  /** Scadenze inserite dall'utente per gli ingredienti in dispensa: privilegia chi li usa prima. */
+  expiries?: Map<string, IsoDate>;
 }
+
+/** Giorni prima della scadenza in cui un ingrediente in dispensa diventa prioritario. */
+export const EXPIRY_PRIORITY_DAYS = 3;
 
 export interface PlannerOutput {
   meals: PlannedMeal[];
@@ -230,6 +235,7 @@ function scoreCandidate(
   let marginalCents = 0;
   let unknownPrices = 0;
   let fromPantry: string[] = [];
+  const expiring: string[] = [];
   let perishablePenalty = 0;
   const shop = lastShopDate(slot.date, slot.mealType, profile, startDate);
   const heldDays = diffDays(shop, slot.date);
@@ -240,6 +246,11 @@ function scoreCandidate(
     const available = state.projectedPantry.get(ing.id) ?? 0;
     if (available >= need && need > 0) {
       fromPantry.push(ing.name);
+      const exp = input.expiries?.get(ing.id);
+      if (exp) {
+        const left = diffDays(slot.date, exp);
+        if (left >= 0 && left <= EXPIRY_PRIORITY_DAYS) expiring.push(ing.name);
+      }
       continue;
     }
     if (state.neededIngredients.has(ing.id)) shared++;
@@ -255,7 +266,9 @@ function scoreCandidate(
   score += Math.min(fromPantry.length * 6, 18);
   score += Math.min(shared * (weekStyles.includes('economica') ? 8 : 4), weekStyles.includes('economica') ? 24 : 12);
   score -= Math.min(perishablePenalty, 60);
-  if (fromPantry.length > 0) reasons.push(`Usa ingredienti già in dispensa: ${fromPantry.join(', ')}`);
+  score += Math.min(expiring.length * 14, 28);
+  if (expiring.length > 0) reasons.push(`Usa prima della scadenza: ${expiring.slice(0, 2).join(', ')}`);
+  else if (fromPantry.length > 0) reasons.push(`Usa ingredienti già in dispensa: ${fromPantry.join(', ')}`);
   if (shared > 0) reasons.push('Condivide ingredienti con altri pasti della settimana');
   if (perishablePenalty > 0) reasons.push('Contiene ingredienti freschi lontani dal giorno di spesa');
 

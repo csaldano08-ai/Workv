@@ -1,7 +1,9 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
-import { formatShortDate } from '../../src/core/domain/dates';
+import { diffDays, formatShortDate } from '../../src/core/domain/dates';
+import { EXPIRY_PRIORITY_DAYS } from '../../src/core/domain/planner';
+import { Alert } from '../../src/ui/dialog';
 import { formatQtyWithUnit } from '../../src/core/domain/quantity';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { t } from '../../src/i18n/it';
@@ -15,7 +17,7 @@ import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
 
 export default function Pantry() {
-  const { snapshot } = useApp();
+  const { snapshot, run } = useApp();
   if (!snapshot?.profile) return <Screen>{null}</Screen>;
   const items = [...snapshot.outlook].sort((a, b) =>
     a.insufficient === b.insufficient ? catalogIndex.ingredient(a.ingredientId).name.localeCompare(catalogIndex.ingredient(b.ingredientId).name) : a.insufficient ? -1 : 1,
@@ -23,6 +25,21 @@ export default function Pantry() {
   const quantified = items.filter((i) => !catalogIndex.ingredient(i.ingredientId).staple);
   const staples = [...snapshot.staples].filter((id) => catalogIndex.ingredients.has(id));
   const warnings = quantified.filter((i) => i.insufficient && i.available > 0);
+  // In scadenza a breve e non ancora previsti in un pasto: Spesora può spostarli in cima al calendario.
+  const expiring = quantified.filter((i) => {
+    if (!i.expiryDate || i.available <= 0 || i.reserved > 0) return false;
+    const left = diffDays(snapshot.today, i.expiryDate);
+    return left >= 0 && left <= EXPIRY_PRIORITY_DAYS;
+  });
+  const prioritize = () =>
+    Alert.alert(
+      'Usare prima questi ingredienti?',
+      'Spesora riorganizza i pasti futuri non ancora cucinati preferendo ricette che li usano prima della scadenza. Pasti completati, scelte manuali, acquisti e dispensa restano invariati.',
+      [
+        { text: t('action.cancel'), style: 'cancel' },
+        { text: 'Riorganizza', onPress: () => void run((s, today) => s.regenerate(today)) },
+      ],
+    );
 
   return (
     <Screen>
@@ -38,6 +55,17 @@ export default function Pantry() {
 
       {warnings.length > 0 ? (
         <AssistantBubble pose="mancanti" size={60} title="Potrebbe non bastare" text={warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name).join(', ') + ': la quantità mancante è già nella lista della spesa.'} />
+      ) : null}
+
+      {expiring.length > 0 ? (
+        <AssistantBubble
+          pose="suggerimento"
+          size={60}
+          title="In scadenza a breve"
+          text={`${expiring.map((e) => `${catalogIndex.ingredient(e.ingredientId).name} (${formatShortDate(e.expiryDate!)})`).join(', ')}: non sono ancora previsti in un pasto.`}
+        >
+          <Button kind="secondary" compact icon="calendar-outline" label="Usali nei prossimi pasti" onPress={prioritize} />
+        </AssistantBubble>
       ) : null}
 
       {quantified.length === 0 ? (
