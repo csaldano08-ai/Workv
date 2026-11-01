@@ -1309,11 +1309,21 @@
       "filename": "porridge_soia_cachi.png",
       "category": "Colazioni",
       "ingredients": "bevanda di soia, cachi, fiocchi d'avena, semi di zucca",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/porridge_soia_cachi.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Porridge con bevanda di soia e cachi; main ingredients checked against catalog (bevanda di soia, cachi, fiocchi d'avena, semi di zucca). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1444564,
+      "sha256": "f2fcc7b503459a7bc11bd2a0989180f0679898dbbde2b5f06855eef69916b791",
+      "updated_at": "2026-11-01T13:24:56.807502+00:00"
     },
     {
       "id": "porridge_banana_cannella",
@@ -1343,11 +1353,21 @@
       "filename": "porridge_miglio_mela.png",
       "category": "Colazioni",
       "ingredients": "mela, miglio decorticato, sciroppo d'acero",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/porridge_miglio_mela.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Porridge di miglio con mela e cannella; main ingredients checked against catalog (mela, miglio decorticato, sciroppo d'acero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1386268,
+      "sha256": "30d4356538fa5d5269f955798295414821001566614b3afd191b65de409c7ba3",
+      "updated_at": "2026-11-01T13:25:03.999177+00:00"
     },
     {
       "id": "porridge_salato_avena_funghi",
@@ -1355,11 +1375,21 @@
       "filename": "porridge_salato_avena_funghi.png",
       "category": "Colazioni",
       "ingredients": "funghi champignon, fiocchi d'avena, parmigiano reggiano",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/porridge_salato_avena_funghi.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Porridge salato d'avena con funghi e parmigiano; main ingredients checked against catalog (funghi champignon, fiocchi d'avena, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1161752,
+      "sha256": "2bd2bf85c025306726a8d4a7dc6a910da78833aa7f3fb0f4bfc9200ec4aeaf1e",
+      "updated_at": "2026-11-01T13:24:58.254142+00:00"
     },
     {
       "id": "pudding_chia_mango",
@@ -1389,11 +1419,21 @@
       "filename": "pudding_chia_mandorla_lamponi.png",
       "category": "Colazioni",
       "ingredients": "bevanda alla mandorla, lamponi, semi di chia, sciroppo d'acero",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/pudding_chia_mandorla_lamponi.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Pudding di chia alla mandorla con lamponi; main ingredients checked against catalog (bevanda alla mandorla, lamponi, semi di chia, sciroppo d'acero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1289615,
+      "sha256": "702104efcca3a55289621299d50a66061a8b039846b15ad00424e8c9b09b2700",
+      "updated_at": "2026-11-01T13:25:06.860201+00:00"
     },
     {
       "id": "quinoa_cacao_banana",
@@ -1423,11 +1463,21 @@
       "filename": "quinoa_dolce_albicocche.png",
       "category": "Colazioni",
       "ingredients": "albicocche, quinoa, limone, miele",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/quinoa_dolce_albicocche.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Quinoa dolce con albicocche e miele; main ingredients checked against catalog (albicocche, quinoa, limone, miele). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1192615,
+      "sha256": "abb8bac3dd114b8af3bcb122ddee5a915b53438dcd901376a68e2c70431acbcf",
+      "updated_at": "2026-11-01T13:25:17.770186+00:00"
     },
     {
       "id": "quinoa_salata_avocado_semi_zucca",
@@ -1435,11 +1485,21 @@
       "filename": "quinoa_salata_avocado_semi_zucca.png",
       "category": "Colazioni",
       "ingredients": "pomodorini, quinoa, avocado, limone, semi di zucca",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/quinoa_salata_avocado_semi_zucca.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Quinoa salata con avocado, pomodorini e semi di zucca; main ingredients checked against catalog (pomodorini, quinoa, avocado, limone, semi di zucca). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1460949,
+      "sha256": "79a0895a93972b7938e1ab1c2c72c769032c43531e7836ac746c12354d686168",
+      "updated_at": "2026-11-01T13:25:16.326178+00:00"
     },
     {
       "id": "ricotta_montata_miele_arancia",
@@ -1447,11 +1507,21 @@
       "filename": "ricotta_montata_miele_arancia.png",
       "category": "Colazioni",
       "ingredients": "ricotta, arancia, miele",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/ricotta_montata_miele_arancia.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Ricotta montata al miele e arancia; main ingredients checked against catalog (ricotta, arancia, miele). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1071193,
+      "sha256": "e189d05f2158165029f37268713a88c6b7c19a67d287365849e62266f8a91361",
+      "updated_at": "2026-11-01T13:25:08.218197+00:00"
     },
     {
       "id": "riso_latte_cannella",
@@ -1459,11 +1529,21 @@
       "filename": "riso_latte_cannella.png",
       "category": "Colazioni",
       "ingredients": "latte, limone, riso, zucchero",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/riso_latte_cannella.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Riso al latte con cannella e limone; main ingredients checked against catalog (latte, limone, riso, zucchero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1414331,
+      "sha256": "0eddfc87097b6e1facf11b689e8d05ff32c3356bf26098b215970795c2b0e63e",
+      "updated_at": "2026-11-01T13:24:59.608828+00:00"
     },
     {
       "id": "riso_dolce_frutti_bosco",
@@ -1493,11 +1573,21 @@
       "filename": "rosti_patate_friggitrice_aria.png",
       "category": "Colazioni",
       "ingredients": "patata, cipollotto, fecola di patate",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/rosti_patate_friggitrice_aria.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: RÃ¶sti di patate in friggitrice ad aria; main ingredients checked against catalog (patata, cipollotto, fecola di patate). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1524257,
+      "sha256": "eb047623cd642301478abc7a426c229b1dfa2be9a2a350b8525fd808faa748fd",
+      "updated_at": "2026-11-01T13:24:52.546755+00:00"
     },
     {
       "id": "semolino_dolce_arancia",
@@ -1505,11 +1595,21 @@
       "filename": "semolino_dolce_arancia.png",
       "category": "Colazioni",
       "ingredients": "latte, semola rimacinata, arancia, zucchero",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/semolino_dolce_arancia.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Semolino dolce allâ€™arancia; main ingredients checked against catalog (latte, semola rimacinata, arancia, zucchero). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 941652,
+      "sha256": "c1bb3fbd14b0833e0f232b5a376d25060f07d6fdec45b638bc79c5e5222aa35f",
+      "updated_at": "2026-11-01T13:25:02.566178+00:00"
     },
     {
       "id": "smoothie_bowl_frutti_rossi",
@@ -1517,11 +1617,21 @@
       "filename": "smoothie_bowl_frutti_rossi.png",
       "category": "Colazioni",
       "ingredients": "frutti di bosco surgelati, banana, semi di zucca, cocco rapÃ©",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/smoothie_bowl_frutti_rossi.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Smoothie bowl ai frutti rossi; main ingredients checked against catalog (frutti di bosco surgelati, banana, semi di zucca, cocco rapÃ©). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1293650,
+      "sha256": "4de33775b50281d847515e411454cf101e99dd421d7df74870a69a31168810c3",
+      "updated_at": "2026-11-01T13:24:54.018556+00:00"
     },
     {
       "id": "smoothie_bowl_tropicale",
@@ -1551,11 +1661,21 @@
       "filename": "smoothie_bowl_verde_kiwi.png",
       "category": "Colazioni",
       "ingredients": "kiwi, banana, mela, spinaci freschi, semi di girasole",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/smoothie_bowl_verde_kiwi.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Smoothie bowl verde con kiwi e spinaci; main ingredients checked against catalog (kiwi, banana, mela, spinaci freschi, semi di girasole). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1267535,
+      "sha256": "6e056c968e62c242711da9fa02e101d117ec5d3f65bce4ed132a736c3abef88d",
+      "updated_at": "2026-11-01T13:25:05.491830+00:00"
     },
     {
       "id": "strapazzata_farina_ceci_zucchine",
@@ -1563,11 +1683,21 @@
       "filename": "strapazzata_farina_ceci_zucchine.png",
       "category": "Colazioni",
       "ingredients": "zucchina, farina di ceci, cipollotto",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/strapazzata_farina_ceci_zucchine.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Strapazzata di farina di ceci con zucchine; main ingredients checked against catalog (zucchina, farina di ceci, cipollotto). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1573388,
+      "sha256": "f9d70d0fbe9423015c83438132f92fef9297b39b1691ee2426bed51f42975cfe",
+      "updated_at": "2026-11-01T13:25:13.491198+00:00"
     },
     {
       "id": "succo_arancia_carota_zenzero",
@@ -1575,11 +1705,21 @@
       "filename": "succo_arancia_carota_zenzero.png",
       "category": "Colazioni",
       "ingredients": "arancia, carota, limone, zenzero fresco",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/succo_arancia_carota_zenzero.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Succo di arancia, carota e zenzero; main ingredients checked against catalog (arancia, carota, limone, zenzero fresco). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1281818,
+      "sha256": "86a0fc0e175498ffe1c62bf93285d3823ae5b1da5359a93ee2ffdeb48e099cbe",
+      "updated_at": "2026-11-01T13:24:55.403609+00:00"
     },
     {
       "id": "toast_integrale_ricotta_pomodorini",
@@ -1587,11 +1727,21 @@
       "filename": "toast_integrale_ricotta_pomodorini.png",
       "category": "Colazioni",
       "ingredients": "ricotta, pane integrale, pomodorini",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/toast_integrale_ricotta_pomodorini.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Toast integrale con ricotta e pomodorini; main ingredients checked against catalog (ricotta, pane integrale, pomodorini). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1555552,
+      "sha256": "4821e3c55ed2818e4b393fd464319ae28cbc0cdda72ff4b36de10d9a75b5852a",
+      "updated_at": "2026-11-01T13:25:12.210352+00:00"
     },
     {
       "id": "toast_prosciutto_mozzarella",
@@ -1621,11 +1771,21 @@
       "filename": "tofu_strapazzato_peperoni_paprika.png",
       "category": "Colazioni",
       "ingredients": "tofu, peperone, cipolla",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/tofu_strapazzato_peperoni_paprika.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Tofu strapazzato con peperoni e paprika; main ingredients checked against catalog (tofu, peperone, cipolla). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1436895,
+      "sha256": "e5c32781dbc285c2e5753f7e76c401b0ba504b0d92a392e8a9483b1d35e82d13",
+      "updated_at": "2026-11-01T13:25:01.064235+00:00"
     },
     {
       "id": "tofu_strapazzato_spinaci",
@@ -1655,11 +1815,21 @@
       "filename": "torta_cacao_acqua.png",
       "category": "Colazioni",
       "ingredients": "farina di grano tenero, zucchero, cacao amaro in polvere, lievito per dolci",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/torta_cacao_acqua.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Torta al cacao allâ€™acqua; main ingredients checked against catalog (farina di grano tenero, zucchero, cacao amaro in polvere, lievito per dolci). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1136555,
+      "sha256": "2ee121ff758d8d5553a247c21dfb71b1e67861a5ac3d3559e94fbedb18855469",
+      "updated_at": "2026-11-01T13:25:10.938315+00:00"
     },
     {
       "id": "torta_carote_mandorle",
@@ -1667,11 +1837,21 @@
       "filename": "torta_carote_mandorle.png",
       "category": "Colazioni",
       "ingredients": "uova, carota, farina di grano tenero, zucchero, mandorle",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/torta_carote_mandorle.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Torta di carote e mandorle; main ingredients checked against catalog (uova, carota, farina di grano tenero, zucchero, mandorle). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1377184,
+      "sha256": "5b08518fa78151927274e0a2c61806cc5be5cc3b5fc2facf13e9d1bfff090bb4",
+      "updated_at": "2026-11-01T13:24:50.445285+00:00"
     },
     {
       "id": "torta_mele_casalinga",
@@ -1679,11 +1859,21 @@
       "filename": "torta_mele_casalinga.png",
       "category": "Colazioni",
       "ingredients": "mela, farina di grano tenero, uova, zucchero, limone",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/torta_mele_casalinga.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Torta di mele della nonna; main ingredients checked against catalog (mela, farina di grano tenero, uova, zucchero, limone). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1426479,
+      "sha256": "a6ec2344cb43a9fb906731d7cf9bf5b04d01a06ec7d3e1924c32b6004f0d1cc0",
+      "updated_at": "2026-11-01T13:25:14.861153+00:00"
     },
     {
       "id": "uova_tegamino_patate_rosmarino",
@@ -1691,11 +1881,21 @@
       "filename": "uova_tegamino_patate_rosmarino.png",
       "category": "Colazioni",
       "ingredients": "uova, patata",
-      "status": "generating",
+      "status": "validated",
       "attempts": 1,
       "path": "spesora/assets/recipes/uova_tegamino_patate_rosmarino.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Uova al tegamino con patate al rosmarino; main ingredients checked against catalog (uova, patata). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1503141,
+      "sha256": "c11c2e2acc5cc18700c490398593d845701e7cfce7755345b2e24dc0bd13955b",
+      "updated_at": "2026-11-01T13:25:09.527335+00:00"
     },
     {
       "id": "uova_camicia_pomodoro",
@@ -1725,11 +1925,21 @@
       "filename": "uova_cocotte_friggitrice_spinaci.png",
       "category": "Colazioni",
       "ingredients": "uova, spinaci surgelati, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/uova_cocotte_friggitrice_spinaci.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Uova in cocotte in friggitrice ad aria con spinaci; main ingredients checked against catalog (uova, spinaci surgelati, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1339958,
+      "sha256": "5b5a3f17098f32b56d4d7ac4797e5af4ca01d8a7797a2ea230a90fd623d974c5",
+      "updated_at": "2026-11-01T13:28:30.532136+00:00"
     },
     {
       "id": "uova_strapazzate_toast",
@@ -1759,11 +1969,21 @@
       "filename": "uovo_coque_soldatini_pane.png",
       "category": "Colazioni",
       "ingredients": "uova, pane, burro",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/uovo_coque_soldatini_pane.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Uovo alla coque con soldatini di pane; main ingredients checked against catalog (uova, pane, burro). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1384896,
+      "sha256": "1fabafeab9c7ebd3873aa9dd5aec7cb6c529491739bc6292cf150a39a2a948e1",
+      "updated_at": "2026-11-01T13:28:37.919621+00:00"
     },
     {
       "id": "uovo_camicia_asparagi_parmigiano",
@@ -1771,11 +1991,21 @@
       "filename": "uovo_camicia_asparagi_parmigiano.png",
       "category": "Colazioni",
       "ingredients": "asparagi, uova, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/uovo_camicia_asparagi_parmigiano.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Uovo in camicia con asparagi e parmigiano; main ingredients checked against catalog (asparagi, uova, parmigiano reggiano). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1123994,
+      "sha256": "b5539a4e7f73628f52e38c0b00695f3e1727948479fe93a4aab16c06db11a709",
+      "updated_at": "2026-11-01T13:28:28.995622+00:00"
     },
     {
       "id": "wrap_tortilla_fagioli_neri_avocado",
@@ -1783,11 +2013,21 @@
       "filename": "wrap_tortilla_fagioli_neri_avocado.png",
       "category": "Colazioni",
       "ingredients": "tortilla di frumento, fagioli neri cotti, pomodoro, avocado, lime",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/wrap_tortilla_fagioli_neri_avocado.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Wrap di tortilla con fagioli neri, avocado e pomodoro; main ingredients checked against catalog (tortilla di frumento, fagioli neri cotti, pomodoro, avocado, lime). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1303950,
+      "sha256": "687237ee38fff541831a6620808d2fbfd14eb5202885d9485a1b108f89da797d",
+      "updated_at": "2026-11-01T13:28:32.037627+00:00"
     },
     {
       "id": "yogurt_fichi_miele_mandorle",
@@ -1795,11 +2035,21 @@
       "filename": "yogurt_fichi_miele_mandorle.png",
       "category": "Colazioni",
       "ingredients": "fichi freschi, yogurt bianco naturale, mandorle, miele",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/yogurt_fichi_miele_mandorle.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Yogurt con fichi freschi, miele e mandorle; main ingredients checked against catalog (fichi freschi, yogurt bianco naturale, mandorle, miele). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1355102,
+      "sha256": "2daae9f70d483a8da811dcb76d13d742017e8bfd64832fa5deaba478641a1493",
+      "updated_at": "2026-11-01T13:28:36.494612+00:00"
     },
     {
       "id": "yogurt_soia_avena_fragole",
@@ -1829,11 +2079,21 @@
       "filename": "yogurt_greco_albicocche_avena.png",
       "category": "Colazioni",
       "ingredients": "albicocche, yogurt greco, fiocchi d'avena, zucchero di canna grezzo",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/yogurt_greco_albicocche_avena.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Yogurt greco con albicocche e avena caramellata; main ingredients checked against catalog (albicocche, yogurt greco, fiocchi d'avena, zucchero di canna grezzo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1347333,
+      "sha256": "3641ce041e925e0ed2e335b74f9cca393addc7a0ab7b95e62f86e6810676cee9",
+      "updated_at": "2026-11-01T13:28:35.029918+00:00"
     },
     {
       "id": "yogurt_greco_noci_miele",
@@ -1863,11 +2123,21 @@
       "filename": "yogurt_greco_pere_caramellate.png",
       "category": "Colazioni",
       "ingredients": "yogurt greco, pera, zucchero di canna grezzo",
-      "status": "pending",
-      "attempts": 0,
+      "status": "validated",
+      "attempts": 1,
       "path": "spesora/assets/recipes/yogurt_greco_pere_caramellate.png",
-      "review": "",
-      "issues": []
+      "review": "Individually opened and visually reviewed in Google Flow editor: Yogurt greco con pere caramellate; main ingredients checked against catalog (yogurt greco, pera, zucchero di canna grezzo). Cohesive matte hand-painted 2D gouache, natural food colours, ivory setting, no text or frame. Downloaded source-to-filename correspondence also reviewed.",
+      "issues": [],
+      "flow_asset_url": "",
+      "source_size": [
+        1200,
+        896
+      ],
+      "width": 1200,
+      "height": 900,
+      "bytes": 1297626,
+      "sha256": "8ead0bedfd024d0b6d52816d667df7db4db3c86be5086bb86320528608bf969d",
+      "updated_at": "2026-11-01T13:28:33.527624+00:00"
     },
     {
       "id": "acquacotta_toscana",
@@ -1875,8 +2145,8 @@
       "filename": "acquacotta_toscana.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodori pelati, cipolla, uova, pane, sedano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/acquacotta_toscana.png",
       "review": "",
       "issues": []
@@ -1887,8 +2157,8 @@
       "filename": "bowl_farro_lenticchie_zucca.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucca, lenticchie cotte, farro perlato, rucola, semi di zucca",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/bowl_farro_lenticchie_zucca.png",
       "review": "",
       "issues": []
@@ -1899,8 +2169,8 @@
       "filename": "bowl_grano_saraceno_ceci_vapore.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "broccolo, ceci cotti, carota, fagiolini, grano saraceno",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/bowl_grano_saraceno_ceci_vapore.png",
       "review": "",
       "issues": []
@@ -1911,8 +2181,8 @@
       "filename": "bowl_riso_integrale_fagioli_neri_avocado.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "fagioli neri cotti, pomodorini, riso integrale, avocado, cavolo rosso",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/bowl_riso_integrale_fagioli_neri_avocado.png",
       "review": "",
       "issues": []
@@ -1923,8 +2193,8 @@
       "filename": "bucatini_amatriciana.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodori pelati, pasta di semola, guanciale, pecorino romano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/bucatini_amatriciana.png",
       "review": "",
       "issues": []
@@ -1935,8 +2205,8 @@
       "filename": "buddha_bowl_quinoa_ceci_patata_dolce.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "patata dolce, ceci cotti, quinoa, spinaci freschi, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/buddha_bowl_quinoa_ceci_patata_dolce.png",
       "review": "",
       "issues": []
@@ -1969,8 +2239,8 @@
       "filename": "busiate_pesto_trapanese.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodoro, pasta di semola, mandorle, pecorino romano, basilico fresco",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/busiate_pesto_trapanese.png",
       "review": "",
       "issues": []
@@ -1981,8 +2251,8 @@
       "filename": "carbonara_di_zucchine.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucchina, uova, pasta di semola, parmigiano reggiano",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/carbonara_di_zucchine.png",
       "review": "",
       "issues": []
@@ -1993,8 +2263,8 @@
       "filename": "couscous_gamberetti_zucchine_limone.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucchina, gamberetti sgusciati surgelati, couscous, limone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/couscous_gamberetti_zucchine_limone.png",
       "review": "",
       "issues": []
@@ -2005,8 +2275,8 @@
       "filename": "couscous_lenticchie_carote_uvetta.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "lenticchie cotte, carota, couscous, cipolla, uvetta",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/couscous_lenticchie_carote_uvetta.png",
       "review": "",
       "issues": []
@@ -2017,8 +2287,8 @@
       "filename": "couscous_pollo_verdure_speziate.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "petto di pollo, couscous, zucchina, carota, peperone",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/couscous_pollo_verdure_speziate.png",
       "review": "",
       "issues": []
@@ -2073,8 +2343,8 @@
       "filename": "crema_porri_patate.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "patata, porro, latte, burro",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/crema_porri_patate.png",
       "review": "",
       "issues": []
@@ -2085,8 +2355,8 @@
       "filename": "crema_zucca_lenticchie_rosse.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "zucca, lenticchie rosse decorticate, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/crema_zucca_lenticchie_rosse.png",
       "review": "",
       "issues": []
@@ -2097,8 +2367,8 @@
       "filename": "farro_cannellini_pomodori_secchi.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "fagioli cannellini cotti, farro perlato, rucola, pomodori secchi sottâ€™olio",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/farro_cannellini_pomodori_secchi.png",
       "review": "",
       "issues": []
@@ -2109,8 +2379,8 @@
       "filename": "farro_funghi_prezzemolo.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "funghi champignon, farro perlato",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/farro_funghi_prezzemolo.png",
       "review": "",
       "issues": []
@@ -2143,8 +2413,8 @@
       "filename": "gazpacho.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "pomodoro, cetriolo, peperone, pane, cipolla rossa",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/gazpacho.png",
       "review": "",
       "issues": []
@@ -2155,8 +2425,8 @@
       "filename": "gnocchi_pesto_pomodorini.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "gnocchi di patate, pomodorini, pesto alla genovese",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/gnocchi_pesto_pomodorini.png",
       "review": "",
       "issues": []
@@ -2189,8 +2459,8 @@
       "filename": "gnocchi_alla_romana.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "latte, semola rimacinata, uova, parmigiano reggiano, burro",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/gnocchi_alla_romana.png",
       "review": "",
       "issues": []
@@ -2201,8 +2471,8 @@
       "filename": "gnocchi_alla_sorrentina.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "gnocchi di patate, pomodori pelati, mozzarella, parmigiano reggiano, basilico fresco",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/gnocchi_alla_sorrentina.png",
       "review": "",
       "issues": []
@@ -2213,8 +2483,8 @@
       "filename": "grano_saraceno_funghi_cipolla.png",
       "category": "Primi (pasta, riso, cereali, zuppe)",
       "ingredients": "funghi champignon, grano saraceno, cipolla",
-      "status": "pending",
-      "attempts": 0,
+      "status": "generating",
+      "attempts": 1,
       "path": "spesora/assets/recipes/grano_saraceno_funghi_cipolla.png",
       "review": "",
       "issues": []
