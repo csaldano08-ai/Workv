@@ -111,6 +111,17 @@ CREATE TABLE ingredient_prices (
 ALTER TABLE shopping_trips ADD COLUMN actual_cents INTEGER CHECK (actual_cents IS NULL OR actual_cents >= 0);
 `,
   },
+  {
+    version: 3,
+    description: "Stato dell'interfaccia (es. animazione iniziale già vista)",
+    sql: `
+CREATE TABLE app_state (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+`,
+  },
 ];
 
 export const LATEST_VERSION = MIGRATIONS[MIGRATIONS.length - 1].version;

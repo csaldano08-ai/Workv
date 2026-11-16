@@ -8,6 +8,8 @@ import { parseRouteFromNotification } from '../src/core/notifications/routing';
 import { AppProvider, useApp } from '../src/features/app/AppProvider';
 import { colors, space } from '../src/theme/tokens';
 import { CelebrationHost } from '../src/ui/CelebrationHost';
+import { IntroGate } from '../src/features/intro/IntroGate';
+import { LoaderHost } from '../src/ui/loader/LoaderHost';
 import { Button } from '../src/ui/Button';
 import { LogoMark } from '../src/ui/Logo';
 import { Text } from '../src/ui/Text';
@@ -68,7 +70,6 @@ function Shell() {
     <>
       {Platform.OS !== 'web' ? <NotificationRouter /> : null}
       <OnboardingGate />
-      <CelebrationHost />
       <Stack
         screenOptions={{
           headerTintColor: colors.green,
@@ -99,6 +100,9 @@ function Shell() {
         <Stack.Screen name="prezzi" options={{ title: 'Prezzi' }} />
         <Stack.Screen name="economica" options={{ title: 'Settimana più economica', presentation: 'modal' }} />
       </Stack>
+      <CelebrationHost />
+      <LoaderHost />
+      <IntroGate />
     </>
   );
 }

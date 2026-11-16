@@ -117,5 +117,5 @@ export default function Prices() {
 const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: space.sm },
   flex: { flex: 1 },
-  input: { flex: 1, minHeight: TOUCH + 4, borderWidth: 1.5, borderColor: colors.line, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, color: colors.ink, backgroundColor: colors.paper },
+  input: { flex: 1, minHeight: TOUCH + 4, borderWidth: 2, borderColor: colors.ink, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, color: colors.ink, backgroundColor: colors.paper },
 });

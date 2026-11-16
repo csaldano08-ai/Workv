@@ -3,7 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import { useApp } from '../src/features/app/AppProvider';
 import { colors, radius, space } from '../src/theme/tokens';
 import { MinaMascot } from '../src/ui/mascot/Mina';
-import { OrnamentDivider, SoftBlob, Sprig } from '../src/ui/Decor';
+import { Floaty, OrnamentDivider, PetalBloom } from '../src/ui/Decor';
+import { Ingredient } from '../src/ui/illustrations/Ingredient';
 import { Reveal } from '../src/ui/Reveal';
 import { Button } from '../src/ui/Button';
 import { Logo } from '../src/ui/Logo';
@@ -33,9 +34,19 @@ export default function Welcome() {
       <View style={styles.hero}>
         <Reveal>
           <View style={styles.stage}>
-            <SoftBlob size={300} style={styles.blob} />
-            <Sprig height={96} style={styles.sprigL} />
-            <Sprig height={80} tone="peach" style={styles.sprigR} />
+            <PetalBloom size={310} style={styles.blob} />
+            <Floaty style={styles.ingTL}>
+              <Ingredient kind="leaf" size={46} />
+            </Floaty>
+            <Floaty delay={400} style={styles.ingTR}>
+              <Ingredient kind="lemon" size={44} />
+            </Floaty>
+            <Floaty delay={800} style={styles.ingBL}>
+              <Ingredient kind="tomato" size={50} />
+            </Floaty>
+            <Floaty delay={1200} style={styles.ingBR}>
+              <Ingredient kind="carrot" size={48} />
+            </Floaty>
             <MinaMascot pose="welcome" size={260} animated accessibilityLabel="Mina, il ricettario vivente di Spesora, che ti saluta" />
           </View>
         </Reveal>
@@ -86,9 +97,11 @@ const styles = StyleSheet.create({
   hero: { gap: space.md, marginTop: space.md },
   stage: { alignItems: 'center', justifyContent: 'center', height: 290 },
   blob: { position: 'absolute' },
-  sprigL: { position: 'absolute', left: 16, bottom: 8 },
-  sprigR: { position: 'absolute', right: 18, bottom: 14, transform: [{ scaleX: -1 }] },
-  speech: { backgroundColor: colors.paper, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.line, padding: space.lg, gap: space.xs, alignItems: 'center' },
+  ingTL: { position: 'absolute', left: 8, top: 18 },
+  ingTR: { position: 'absolute', right: 10, top: 30 },
+  ingBL: { position: 'absolute', left: 22, bottom: 10 },
+  ingBR: { position: 'absolute', right: 26, bottom: 4 },
+  speech: { backgroundColor: colors.paper, borderRadius: radius.lg, borderWidth: 2, borderColor: colors.ink, padding: space.lg, gap: space.xs, alignItems: 'center' },
   slogan: { marginTop: space.sm },
   points: { gap: space.lg, marginTop: space.md },
   point: { flexDirection: 'row', gap: space.md, alignItems: 'flex-start' },

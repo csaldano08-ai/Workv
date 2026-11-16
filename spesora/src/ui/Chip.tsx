@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Pressable, StyleSheet, View } from 'react-native';
-import { colors, radius, space, TOUCH } from '../theme/tokens';
+import { StyleSheet, View } from 'react-native';
+import { Squish } from './Squish';
+import { colors, outline, radius, space, TOUCH } from '../theme/tokens';
 import { Text } from './Text';
 
 export interface ChipProps {
@@ -14,22 +15,19 @@ export interface ChipProps {
 export function Chip({ label, selected, onPress, tone = 'green', accessibilityHint }: ChipProps) {
   const active = tone === 'danger' ? colors.danger : tone === 'peach' ? colors.peachInk : colors.green;
   return (
-    <Pressable
+    <Squish
       accessibilityRole="checkbox"
       accessibilityState={{ checked: selected }}
       accessibilityLabel={label}
       accessibilityHint={accessibilityHint}
       onPress={onPress}
-      style={({ pressed }) => [
-        styles.chip,
-        { borderColor: selected ? active : colors.line, backgroundColor: selected ? active : colors.paper, opacity: pressed ? 0.85 : 1 },
-      ]}
+      style={[styles.chip, { backgroundColor: selected ? active : colors.paper }]}
     >
       {selected ? <Ionicons name="checkmark" size={16} color={colors.white} /> : null}
       <Text variant="body" color={selected ? colors.white : colors.ink}>
         {label}
       </Text>
-    </Pressable>
+    </Squish>
   );
 }
 
@@ -46,7 +44,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.lg,
     paddingVertical: space.sm,
     borderRadius: radius.pill,
-    borderWidth: 1.5,
+    borderWidth: outline.thin,
+    borderColor: outline.color,
   },
   group: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
 });

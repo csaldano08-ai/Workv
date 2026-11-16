@@ -55,3 +55,9 @@ L'intro scelta non andrà nell'app come MP4: verrà ricostruita con `Animated` (
 - Con "Riduci movimento" si passerà alla Home con una dissolvenza breve.
 - La Home si caricherà mentre l'intro gira, senza bloccare l'accesso.
 - Funzionerà su iOS e Android.
+
+## Scelta (16 novembre 2026)
+
+- **Intro: concept B** — integrato nell'app (`src/features/intro/`), ricostruito in SVG in tempo reale.
+- **Caricamento: concept C** — gli ingredienti che danzano e si riuniscono sono diventati il caricamento quando Spesora prepara le ricette (`src/ui/loader/`).
+- Lo stile dei video (contorni scuri, forme morbide, risposta elastica) è stato portato nei componenti dell'app.

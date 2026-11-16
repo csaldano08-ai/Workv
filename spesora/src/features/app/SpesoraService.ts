@@ -485,6 +485,17 @@ export class SpesoraService {
     await this.repo.setStaplePresent(ingredientId, present);
   }
 
+  /** Versione dell'animazione iniziale: se cambia, l'intro viene mostrata di nuovo una volta. */
+  static readonly INTRO_VERSION = '1';
+
+  async introSeen(): Promise<boolean> {
+    return (await this.repo.getAppState('intro_seen')) === SpesoraService.INTRO_VERSION;
+  }
+
+  async markIntroSeen(): Promise<void> {
+    await this.repo.setAppState('intro_seen', SpesoraService.INTRO_VERSION);
+  }
+
   async setExpiry(ingredientId: string, expiry: IsoDate | null): Promise<void> {
     await this.repo.setExpiry(ingredientId, expiry);
   }

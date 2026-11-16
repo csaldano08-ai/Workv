@@ -1,0 +1,20 @@
+/** Colori delle illustrazioni (palette di Spesora + colori naturali smorzati dei cibi). */
+export const illo = {
+  ink: '#24332C',
+  green: '#386E55',
+  greenDark: '#2B5643',
+  greenMid: '#4F8468',
+  sage: '#A7B897',
+  sageLight: '#CFE0D3',
+  greenSoft: '#E3ECE5',
+  ivory: '#F6F3EA',
+  paper: '#FFFDF8',
+  peach: '#E6A46D',
+  peachLight: '#F3C9A2',
+  peachSoft: '#F8E6D5',
+  tomato: '#D8613F',
+  carrot: '#E58A3F',
+  lemon: '#F2CB5C',
+  lemonLight: '#FBE7A6',
+  mushroom: '#C98A5E',
+} as const;

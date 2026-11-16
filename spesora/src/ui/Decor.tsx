@@ -1,6 +1,10 @@
-import { memo } from 'react';
-import { View, type ViewStyle } from 'react-native';
-import { SvgXml } from 'react-native-svg';
+import { memo, useEffect, useState } from 'react';
+import { Animated, Easing, Platform, View, type ViewStyle } from 'react-native';
+import RNSvg, { Circle, Path, SvgXml } from 'react-native-svg';
+import { Ingredient, type IngredientKind } from './illustrations/Ingredient';
+import { illo } from './illustrations/palette';
+import { bloomPts, smoothD } from './motion/shapes';
+import { useReducedMotion } from './useReducedMotion';
 
 /** Decorazioni leggere e puramente grafiche (nascoste agli screen reader), nei colori di Spesora. */
 
@@ -53,3 +57,76 @@ const LEAF_MARK = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><
 export const LeafMark = memo(function LeafMark({ size = 14, style }: { size?: number; style?: ViewStyle }) {
   return <Svg xml={LEAF_MARK} width={size} height={size} style={style} />;
 });
+
+/* ---- Linguaggio dei video: fiore a petali (intro B) e ingredienti che fluttuano (caricamento C) ---- */
+
+/** Fiore a petali dello splash, fermo o con una rotazione lentissima. Colori tenui per stare dietro ai contenuti. */
+export const PetalBloom = memo(function PetalBloom({ size = 260, spin = true, soft = true, style }: { size?: number; spin?: boolean; soft?: boolean; style?: ViewStyle }) {
+  const reduced = useReducedMotion();
+  const [v] = useState(() => new Animated.Value(0));
+  useEffect(() => {
+    if (!spin || reduced) return;
+    const loop = Animated.loop(Animated.timing(v, { toValue: 1, duration: 60000, easing: Easing.linear, useNativeDriver: Platform.OS !== 'web' }));
+    loop.start();
+    return () => loop.stop();
+  }, [spin, reduced, v]);
+  const c = 100;
+  const lobesG = Array.from({ length: 9 }, (_, i) => ({ a: (i / 9) * Math.PI * 2, len: i % 2 ? 46 : 56, w: 0.2 }));
+  const lobesP = Array.from({ length: 9 }, (_, i) => ({ a: ((i + 0.5) / 9) * Math.PI * 2, len: 34, w: 0.17 }));
+  const outer = smoothD(bloomPts(c, c, 34, lobesG, 160));
+  const inner = smoothD(bloomPts(c, c, 22, lobesP, 140));
+  return (
+    <Animated.View
+      pointerEvents="none"
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
+      style={[{ width: size, height: size, transform: [{ rotate: v.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '360deg'] }) }] }, style]}
+    >
+      <RNSvg width="100%" height="100%" viewBox="0 0 200 200">
+        <Path d={outer} fill={soft ? illo.sageLight : illo.green} stroke={illo.ink} strokeWidth={2.5} strokeLinejoin="round" />
+        <Path d={inner} fill={soft ? illo.peachSoft : illo.peach} stroke={illo.ink} strokeWidth={2.5} strokeLinejoin="round" />
+        <Circle cx={c} cy={c} r={20} fill={illo.ivory} stroke={illo.ink} strokeWidth={2.5} />
+      </RNSvg>
+    </Animated.View>
+  );
+});
+
+/** Fa fluttuare lentamente il contenuto (su e giù, leggera rotazione). Fermo con "Riduci movimento". */
+export function Floaty({ children, delay = 0, amp = 5, style }: { children: React.ReactNode; delay?: number; amp?: number; style?: ViewStyle }) {
+  const reduced = useReducedMotion();
+  const [v] = useState(() => new Animated.Value(0));
+  useEffect(() => {
+    if (reduced) return;
+    const native = Platform.OS !== 'web';
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.delay(delay),
+        Animated.timing(v, { toValue: 1, duration: 1600, easing: Easing.inOut(Easing.quad), useNativeDriver: native }),
+        Animated.timing(v, { toValue: 0, duration: 1600, easing: Easing.inOut(Easing.quad), useNativeDriver: native }),
+      ]),
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [reduced, delay, v]);
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[style, { transform: [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [amp, -amp] }) }, { rotate: v.interpolate({ inputRange: [0, 1], outputRange: ['-6deg', '6deg'] }) }] }]}
+    >
+      {children}
+    </Animated.View>
+  );
+}
+
+/** Piccolo gruppo di ingredienti illustrati per le intestazioni. */
+export function HeaderDecor({ kinds = ['leaf', 'tomato', 'lemon'], size = 26 }: { kinds?: IngredientKind[]; size?: number }) {
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2 }} pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+      {kinds.map((k, i) => (
+        <Floaty key={k} delay={i * 350} amp={3}>
+          <Ingredient kind={k} size={size} />
+        </Floaty>
+      ))}
+    </View>
+  );
+}

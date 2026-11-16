@@ -8,6 +8,7 @@ import { formatQtyWithUnit } from '../../src/core/domain/quantity';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { t } from '../../src/i18n/it';
 import { colors, radius, space } from '../../src/theme/tokens';
+import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
 import { AssistantBubble } from '../../src/ui/AssistantBubble';
 import { Button } from '../../src/ui/Button';
 import { EMPTY } from '../../src/i18n/assistant';
@@ -37,7 +38,7 @@ export default function Pantry() {
       'Spesora riorganizza i pasti futuri non ancora cucinati preferendo ricette che li usano prima della scadenza. Pasti completati, scelte manuali, acquisti e dispensa restano invariati.',
       [
         { text: t('action.cancel'), style: 'cancel' },
-        { text: 'Riorganizza', onPress: () => void run((s, today) => s.regenerate(today)) },
+        { text: 'Riorganizza', onPress: () => void withLoader(LOADER_TEXT.expiring, () => run((s, today) => s.regenerate(today))) },
       ],
     );
 

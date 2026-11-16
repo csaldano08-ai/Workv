@@ -16,8 +16,11 @@ export const colors = {
   white: '#FFFFFF',
 } as const;
 
+/** Contorno scuro dello stile illustrato (come nell'intro): oggetti ben definiti, mai aggressivi. */
+export const outline = { color: '#24332C', width: 2, thin: 1.5 } as const;
+
 export const space = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 } as const;
-export const radius = { sm: 8, md: 12, lg: 18, xl: 26, pill: 999 } as const;
+export const radius = { sm: 8, md: 14, lg: 20, xl: 28, pill: 999 } as const;
 
 /** Tipografia: font di sistema (SF su iPhone) con scala chiara. Rispetta Dynamic Type. */
 export const type = {

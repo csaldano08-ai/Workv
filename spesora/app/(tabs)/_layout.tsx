@@ -21,7 +21,7 @@ export default function TabsLayout() {
         animation: 'fade',
         tabBarActiveTintColor: colors.green,
         tabBarInactiveTintColor: colors.inkSoft,
-        tabBarStyle: { backgroundColor: colors.paper, borderTopColor: colors.line },
+        tabBarStyle: { backgroundColor: colors.paper, borderTopColor: colors.ink, borderTopWidth: 2 },
         tabBarLabelStyle: { fontSize: 12, fontWeight: '600' },
       }}
     >

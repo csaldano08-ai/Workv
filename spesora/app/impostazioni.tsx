@@ -11,6 +11,7 @@ import { MinaBadge } from '../src/ui/mascot/Mina';
 import { LIKE_LABELS } from '../src/core/domain/classify';
 import { PROTEIN_LABELS } from '../src/features/onboarding/stepsPersonal';
 import { Divider, Row, SectionTitle } from '../src/ui/Row';
+import { replayIntro } from '../src/features/intro/introBus';
 import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
 
@@ -118,6 +119,8 @@ export default function Settings() {
         <Row icon="pricetag-outline" title="Prezzi" subtitle="I prezzi che paghi di solito, per stimare la spesa" onPress={() => router.push('/prezzi')} />
         <Divider />
         <Row icon="star-outline" title="Spesora Plus" onPress={() => router.push('/plus')} />
+        <Divider />
+        <Row icon="play-circle-outline" title="Rivedi l'animazione iniziale" onPress={replayIntro} />
         <Divider />
         <Row icon="shield-checkmark-outline" title="Privacy e dati" onPress={() => router.push('/privacy')} />
         {legalLinks.map((l) => (

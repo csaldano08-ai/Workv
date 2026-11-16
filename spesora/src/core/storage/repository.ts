@@ -361,6 +361,21 @@ export class Repository {
     }
   }
 
+  /* --- Stato dell'interfaccia (chiave → valore) ---------------------- */
+
+  async getAppState(key: string): Promise<string | null> {
+    const row = await this.db.first<{ value: string }>('SELECT value FROM app_state WHERE key = ?', [key]);
+    return row?.value ?? null;
+  }
+
+  async setAppState(key: string, value: string): Promise<void> {
+    await this.db.run(
+      `INSERT INTO app_state (key, value, updated_at) VALUES (?, ?, ?)
+       ON CONFLICT(key) DO UPDATE SET value = excluded.value, updated_at = excluded.updated_at`,
+      [key, value, nowIso()],
+    );
+  }
+
   /* --- Esportazione e cancellazione ---------------------------------- */
 
   async exportAll(): Promise<Record<string, unknown[]>> {
@@ -376,6 +391,7 @@ export class Repository {
       'shopping_items',
       'favorite_recipes',
       'ingredient_prices',
+      'app_state',
     ];
     const out: Record<string, unknown[]> = {};
     for (const t of tables) out[t] = await this.db.all(`SELECT * FROM ${t}`);
@@ -394,6 +410,7 @@ export class Repository {
         'shopping_trips',
         'favorite_recipes',
         'ingredient_prices',
+        'app_state',
         'notification_settings',
         'user_preferences',
       ]) {

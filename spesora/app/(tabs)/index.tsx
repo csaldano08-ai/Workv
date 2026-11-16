@@ -13,6 +13,7 @@ import { formatCents } from '../../src/core/domain/prices';
 import { t } from '../../src/i18n/it';
 import { cookSoon, EMPTY, greeting, missingIngredients, shoppingDay, tipOfTheDay } from '../../src/i18n/assistant';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
+import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
 import { AssistantBubble, MinaNote } from '../../src/ui/AssistantBubble';
 import { Reveal } from '../../src/ui/Reveal';
 import { Button } from '../../src/ui/Button';
@@ -242,7 +243,7 @@ function NoMealCard({ snap }: { snap: AppSnapshot }) {
           ? 'Alcuni pasti non hanno ricette compatibili con le tue preferenze. Puoi rivederle dalle impostazioni.'
           : 'Il calendario non ha altri pasti in programma.'}
       </Text>
-      <Button kind="secondary" label={t('action.regenerate')} onPress={() => void run((s, today) => s.regenerate(today))} />
+      <Button kind="secondary" label={t('action.regenerate')} onPress={() => void withLoader(LOADER_TEXT.regenerate, () => run((s, today) => s.regenerate(today)))} />
     </Card>
   );
 }
@@ -251,7 +252,7 @@ const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   flex: { flex: 1 },
   iconBtn: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center', borderRadius: radius.pill },
-  nextCard: { gap: space.md, padding: space.md, borderColor: colors.green, borderWidth: 1.5 },
+  nextCard: { gap: space.md, padding: space.md, borderBottomWidth: 5 },
   heroBadge: { position: 'absolute', top: space.sm, left: space.sm, flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: 'rgba(36,51,44,0.72)', paddingHorizontal: space.sm, paddingVertical: 4, borderRadius: radius.pill },
   facts: { gap: space.xs },
   fact: { flexDirection: 'row', alignItems: 'center', gap: space.sm },

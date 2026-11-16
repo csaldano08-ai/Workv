@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, View, type ScrollViewProps } from 'react-native';
 import { SafeAreaView, type Edge } from 'react-native-safe-area-context';
-import { colors, space } from '../theme/tokens';
+import { colors, outline, space } from '../theme/tokens';
 
 export interface ScreenProps extends ScrollViewProps {
   children: React.ReactNode;
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.lg,
     paddingTop: space.md,
     paddingBottom: space.lg,
-    borderTopWidth: 1,
-    borderTopColor: colors.line,
+    borderTopWidth: outline.width,
+    borderTopColor: outline.color,
     backgroundColor: colors.ivory,
     gap: space.sm,
   },

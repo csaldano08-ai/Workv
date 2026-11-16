@@ -2,6 +2,8 @@
 export interface Celebration {
   title: string;
   text: string;
+  /** Posa di Mina (predefinita: success). */
+  pose?: string;
 }
 type Listener = (c: Celebration) => void;
 const listeners = new Set<Listener>();

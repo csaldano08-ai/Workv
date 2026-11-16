@@ -260,3 +260,14 @@ describe('Dispensa — scadenze nel calendario', () => {
     expect(early.some((m) => m.reasons.some((r) => r.startsWith('Usa prima della scadenza')))).toBe(true);
   });
 });
+
+describe('Animazione iniziale', () => {
+  it('viene ricordata come vista e si azzera cancellando i dati', async () => {
+    const { service } = await makeService();
+    expect(await service.introSeen()).toBe(false);
+    await service.markIntroSeen();
+    expect(await service.introSeen()).toBe(true);
+    await service.wipe();
+    expect(await service.introSeen()).toBe(false);
+  });
+});

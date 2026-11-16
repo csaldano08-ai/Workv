@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import type { MinaPose } from './mascot/minaSvg';
 import { MinaMascot } from './mascot/Mina';
-import { colors, radius, space } from '../theme/tokens';
+import { colors, outline, radius, space } from '../theme/tokens';
 import { Text } from './Text';
 
 /**
@@ -60,24 +60,24 @@ const styles = StyleSheet.create({
     backgroundColor: colors.paper,
     borderRadius: radius.lg,
     borderBottomLeftRadius: radius.sm,
-    borderWidth: 1,
-    borderColor: colors.line,
+    borderWidth: outline.width,
+    borderColor: outline.color,
     padding: space.md,
     gap: space.xs,
     marginBottom: space.md,
   },
   tail: {
     position: 'absolute',
-    left: -6,
-    bottom: 10,
-    width: 12,
-    height: 12,
+    left: -8,
+    bottom: 12,
+    width: 14,
+    height: 14,
     backgroundColor: colors.paper,
-    borderLeftWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: colors.line,
+    borderLeftWidth: outline.width,
+    borderBottomWidth: outline.width,
+    borderColor: outline.color,
     transform: [{ rotate: '45deg' }],
   },
-  note: { flexDirection: 'row', alignItems: 'center', gap: space.sm, backgroundColor: colors.greenSoft, borderRadius: radius.lg, padding: space.sm, paddingRight: space.md },
+  note: { flexDirection: 'row', alignItems: 'center', gap: space.sm, backgroundColor: colors.greenSoft, borderRadius: radius.lg, borderWidth: outline.width, borderColor: outline.color, padding: space.sm, paddingRight: space.md },
   noteText: { flex: 1, gap: 2 },
 });

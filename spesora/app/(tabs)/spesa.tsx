@@ -13,6 +13,9 @@ import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { checkKey } from '../../src/features/app/SpesoraService';
 import { CATEGORY_LABELS } from '../../src/i18n/labels';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
+import { CheckBox } from '../../src/ui/CheckBox';
+import { HeaderDecor } from '../../src/ui/Decor';
+import { celebrate } from '../../src/ui/celebration';
 import { AssistantBubble } from '../../src/ui/AssistantBubble';
 import { Button } from '../../src/ui/Button';
 import { EMPTY, shoppingDay } from '../../src/i18n/assistant';
@@ -42,9 +45,12 @@ export default function Shopping() {
     <Screen
       footer={current ? <ConfirmBar trip={current} /> : undefined}
     >
-      <Text variant="title" accessibilityRole="header">
-        Spesa
-      </Text>
+      <View style={styles.titleRow}>
+        <Text variant="title" accessibilityRole="header" style={styles.flex}>
+          Spesa
+        </Text>
+        <HeaderDecor kinds={['carrot', 'tomato', 'leaf']} />
+      </View>
       {trips.length === 0 ? (
         <AssistantBubble pose="success" text={EMPTY.noShopping} />
       ) : (        <>
@@ -159,7 +165,7 @@ function LineRow({ line, trip, checked }: { line: ShoppingLine; trip: ShoppingTr
       onPress={() => void run((s) => s.setChecked(trip.date, line.ingredientId, !checked))}
       style={({ pressed }) => [styles.line, pressed && { opacity: 0.7 }]}
     >
-      <Ionicons name={checked ? 'checkbox' : 'square-outline'} size={26} color={checked ? colors.green : colors.inkSoft} />
+      <CheckBox checked={checked} />
       <View style={styles.flex}>
         <View style={styles.lineTop}>
           <Text variant="body" style={[styles.flex, checked && styles.checked]}>
@@ -234,14 +240,17 @@ function ConfirmBar({ trip }: { trip: ShoppingTripPlan }) {
         {
           text: 'Conferma',
           onPress: () =>
-            void run((s) =>
-              s.confirmShopping(
+            void run(async (s) => {
+              await s.confirmShopping(
                 trip.date,
                 checked.map((l) => ({ ingredientId: l.ingredientId, qty: l.suggestedQty, toTaste: l.toTaste })),
                 partial,
                 paidCents,
-              ),
-            ),
+              );
+              return true;
+            }).then((ok) => {
+              if (ok) celebrate({ title: 'Spesa registrata', text: `${checked.length} ${checked.length === 1 ? 'prodotto è' : 'prodotti sono'} in dispensa.`, pose: 'shopping' });
+            }),
         },
       ],
     );
@@ -270,8 +279,9 @@ function ConfirmBar({ trip }: { trip: ShoppingTripPlan }) {
 }
 
 const styles = StyleSheet.create({
+  titleRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   confirmWrap: { gap: space.sm },
-  paid: { minHeight: TOUCH, borderWidth: 1.5, borderColor: colors.line, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, color: colors.ink, backgroundColor: colors.paper },
+  paid: { minHeight: TOUCH, borderWidth: 2, borderColor: colors.ink, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, color: colors.ink, backgroundColor: colors.paper },
   gap: { gap: space.sm },
   flex: { flex: 1 },
   list: { gap: 0, paddingVertical: space.xs },

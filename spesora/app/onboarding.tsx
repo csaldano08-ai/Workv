@@ -14,6 +14,7 @@ import { PREVIEW_STEP, STEPS } from '../src/features/onboarding/registry';
 import { MEAL_LABELS } from '../src/i18n/labels';
 import { colors, radius, space } from '../src/theme/tokens';
 import { Reveal } from '../src/ui/Reveal';
+import { LOADER_TEXT, withLoader } from '../src/ui/loader/loaderBus';
 import { AssistantBubble } from '../src/ui/AssistantBubble';
 import { Button } from '../src/ui/Button';
 import { Card } from '../src/ui/Card';
@@ -58,6 +59,11 @@ export default function Onboarding() {
       setBusy(true);
       await requestPermission(); // se negato, l'app continua a funzionare senza avvisi
       setBusy(false);
+    }
+    if (step + 1 >= PREVIEW_STEP) {
+      // la settimana viene composta mentre gli ingredienti ballano, poi si riuniscono nel piatto
+      await withLoader(LOADER_TEXT.firstWeek, async () => go(step + 1));
+      return;
     }
     go(step + 1);
   };

@@ -10,6 +10,7 @@ import { MEAL_LABELS } from '../../src/i18n/labels';
 import { t } from '../../src/i18n/it';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
+import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
@@ -33,7 +34,7 @@ export default function Week() {
       'Verranno proposte nuove ricette per i pasti futuri non ancora cucinati. Pasti completati, scelte manuali, acquisti e dispensa restano invariati.',
       [
         { text: t('action.cancel'), style: 'cancel' },
-        { text: 'Rigenera', onPress: () => void run((s, today) => s.regenerate(today)) },
+        { text: 'Rigenera', onPress: () => void withLoader(LOADER_TEXT.regenerate, () => run((s, today) => s.regenerate(today))) },
       ],
     );
 
@@ -150,13 +151,13 @@ function Badge({ text, bg, fg, icon, onPress }: { text: string; bg: string; fg: 
 
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', gap: space.md },
-  day: { flexDirection: 'row', gap: space.md, backgroundColor: colors.paper, borderRadius: radius.lg, borderWidth: 1, borderColor: colors.line, padding: space.md },
-  dayToday: { borderColor: colors.green, borderWidth: 2 },
+  day: { flexDirection: 'row', gap: space.md, backgroundColor: colors.paper, borderRadius: radius.lg, borderWidth: 2, borderColor: colors.ink, padding: space.md },
+  dayToday: { borderBottomWidth: 5, backgroundColor: colors.paper },
   dayPast: { opacity: 0.75 },
-  dateTab: { width: 54, alignItems: 'center', paddingVertical: space.sm, borderRadius: radius.md, backgroundColor: colors.ivory, alignSelf: 'flex-start' },
+  dateTab: { width: 54, alignItems: 'center', paddingVertical: space.sm, borderRadius: radius.md, backgroundColor: colors.ivory, alignSelf: 'flex-start', borderWidth: 2, borderColor: colors.ink },
   dayBody: { flex: 1, gap: space.sm },
   badges: { flexDirection: 'row', gap: space.xs, flexWrap: 'wrap' },
-  badge: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: space.sm, paddingVertical: 4, borderRadius: radius.pill },
+  badge: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: space.sm, paddingVertical: 4, borderRadius: radius.pill, borderWidth: 1.5, borderColor: colors.ink },
   mealRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   mealMain: { flex: 1, minHeight: TOUCH, flexDirection: 'row', alignItems: 'center', gap: space.sm },
   mealText: { flex: 1, gap: 2 },
