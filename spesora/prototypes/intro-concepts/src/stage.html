@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<title>Spesora · prototipi intro</title>
+<style>html,body{margin:0;background:#111}canvas{display:block;width:1080px;height:1920px}</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="lib.js"></script>
+<script src="concept-a.js"></script>
+<script src="concept-b.js"></script>
+<script src="concept-c.js"></script>
+<script src="concept-d.js"></script>
+<script>
+  // Percorsi relativi alla radice del progetto spesora/ (servita in locale dallo script di rendering).
+  const A = '/assets/mascot/mina/';
+  const thumbs = ['polenta_concia', 'pasta_al_pesto', 'bowl_farro_lenticchie_zucca', 'risotto_zucca', 'insalata_ceci_finocchio_arancia', 'pasta_al_tonno', 'frittata_zucchine'];
+  const params = new URLSearchParams(location.search);
+  const concept = params.get('c') || 'A';
+  const ctx = document.getElementById('c').getContext('2d');
+  window.ready = (async () => {
+    await document.fonts.load('700 140px Inter');
+    const map = {
+      neutral: A + 'poses/mina_neutral.png',
+      welcome: A + 'poses/mina_welcome.png',
+      explaining: A + 'poses/mina_explaining.png',
+      calendar: A + 'poses/mina_calendar.png',
+      happy: A + 'poses/mina_happy.png',
+      success: A + 'poses/mina_success.png',
+      shopping: A + 'poses/mina_shopping.png',
+      waveBody: A + 'animation-frames/layers/wave_body.png',
+      waveArm: A + 'animation-frames/layers/wave_arm.png',
+      bookCover: A + 'animation-frames/layers/book_cover.png',
+      bookBody: A + 'animation-frames/layers/book_body_pages.png',
+      home: '/prototypes/intro-concepts/ui-reference/home.png',
+      week: '/prototypes/intro-concepts/ui-reference/settimana.png',
+    };
+    thumbs.forEach((t, i) => (map['thumb' + i] = '/assets/recipes/card/' + t + '.jpg'));
+    await loadImages(map);
+    window.duration = CONCEPTS[concept].duration;
+    return true;
+  })();
+  window.renderFrame = (t) => {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+    CONCEPTS[concept].draw(ctx, t);
+  };
+</script>
+</body>
+</html>

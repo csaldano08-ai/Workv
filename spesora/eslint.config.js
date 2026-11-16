@@ -5,7 +5,7 @@ const expoConfig = require('eslint-config-expo/flat');
 module.exports = defineConfig([
   expoConfig,
   {
-    ignores: ['dist/*', 'node_modules/*', '.expo/*', 'web-build/*'],
+    ignores: ['dist/*', 'node_modules/*', '.expo/*', 'web-build/*', 'prototypes/**'],
   },
   {
     rules: {

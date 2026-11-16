@@ -1,0 +1,103 @@
+<title>Intro Spesora: quattro concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: una colonna di testo, poi le quattro intro come "telefoni" affiancati (2×2, una colonna su phone). */
+  :root {
+    --bg: #F6F3EA;
+    --surface: #FFFDF8;
+    --ink: #24332C;
+    --ink-soft: #56645D;
+    --green: #386E55;
+    --green-soft: #E3ECE5;
+    --peach: #E6A46D;
+    --line: #E2DDCF;
+    --font: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #18211C; --surface: #202B25; --ink: #EEF1EC; --ink-soft: #B3BDB6; --green: #8CC0A3; --green-soft: #26372D; --peach: #E9B080; --line: #33413A; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #18211C; --surface: #202B25; --ink: #EEF1EC; --ink-soft: #B3BDB6; --green: #8CC0A3; --green-soft: #26372D; --peach: #E9B080; --line: #33413A; color-scheme: dark; }
+
+  body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.5; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-block: 40px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 40px; }
+  header { display: grid; gap: 12px; max-width: 68ch; }
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); }
+  h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+  header p { margin: 0; color: var(--ink-soft); }
+  .note { background: var(--green-soft); border-radius: 14px; padding: 14px 16px; color: var(--ink); font-size: 15px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .concept { display: grid; gap: 12px; align-content: start; min-width: 0; }
+  .phone { position: relative; aspect-ratio: 9 / 16; max-width: 100%; border-radius: 26px; overflow: hidden; border: 3px solid var(--ink); background: #F6F3EA; }
+  .phone video { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .tag { display: flex; align-items: baseline; gap: 10px; }
+  .letter { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--green); color: var(--bg); display: grid; place-items: center; font-weight: 700; }
+  h2 { font-size: 19px; margin: 0; line-height: 1.25; }
+  .concept p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+  .meta { font-size: 13px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+  .compare { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 28px; align-items: start; }
+  .compare h2 { font-size: 22px; }
+  .compare ul { margin: 8px 0 0; padding-left: 20px; display: grid; gap: 8px; }
+  code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; overflow-wrap: anywhere; }
+  .files { display: grid; gap: 6px; font-size: 14px; }
+  @media (max-width: 640px) { .compare { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { video { animation: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Spesora · prototipi intro</span>
+    <h1>Quattro intro da confrontare prima di sceglierne una</h1>
+    <p>Animazioni 2D vere, disegnate fotogramma per fotogramma con Mina originale e il logo dell'app. Ognuna termina sulla schermata reale di Spesora. 1080×1920, 60 fps, 7 secondi circa.</p>
+    <p class="note">Nessuna è ancora nell'app. Scegli la tua preferita: solo dopo la integrerò nell'apertura di Spesora (saltabile, al primo avvio, con "Riduci movimento" rispettato).</p>
+  </header>
+
+  <section class="grid" aria-label="I quattro concept">
+    <article class="concept">
+      <div class="phone"><video src="videos/spesora_intro_A_mina.mp4" poster="videos/spesora_intro_A_mina.jpg" muted loop playsinline autoplay controls preload="metadata" aria-label="Video del concept A"></video></div>
+      <div class="tag"><span class="letter">A</span><h2>Mina prende vita</h2></div>
+      <p>Una forma verde diventa un ricettario che si apre, si richiude e diventa Mina. Lei apre gli occhi, saluta, ne fa uscire gli ingredienti e presenta il logo. Poi vola al suo posto nella Home.</p>
+      <span class="meta">7,3 s · fa conoscere il personaggio</span>
+    </article>
+    <article class="concept">
+      <div class="phone"><video src="videos/spesora_intro_B_splash.mp4" poster="videos/spesora_intro_B_splash.jpg" muted loop playsinline autoplay controls preload="metadata" aria-label="Video del concept B"></video></div>
+      <div class="tag"><span class="letter">B</span><h2>Splash elastico</h2></div>
+      <p>Una goccia verde cade, si schiaccia e sboccia in petali verdi e pesca. Tutto torna al centro in una gelatina che diventa il marchio, e le lettere atterrano una alla volta.</p>
+      <span class="meta">7,0 s · la più d'impatto grafico</span>
+    </article>
+    <article class="concept">
+      <div class="phone"><video src="videos/spesora_intro_C_ingredients.mp4" poster="videos/spesora_intro_C_ingredients.jpg" muted loop playsinline autoplay controls preload="metadata" aria-label="Video del concept C"></video></div>
+      <div class="tag"><span class="letter">C</span><h2>Ingredienti che danzano</h2></div>
+      <p>Sei ingredienti danzano su due orbite, un vortice li trasforma in pallini e i pallini costruiscono il logo. Mina lo presenta e la Home sale dal basso.</p>
+      <span class="meta">6,9 s · parla di cucina</span>
+    </article>
+    <article class="concept">
+      <div class="phone"><video src="videos/spesora_intro_D_calendar.mp4" poster="videos/spesora_intro_D_calendar.jpg" muted loop playsinline autoplay controls preload="metadata" aria-label="Video del concept D"></video></div>
+      <div class="tag"><span class="letter">D</span><h2>Il calendario magico</h2></div>
+      <p>Una pagina si divide nei sette giorni, compaiono i piatti veri del ricettario e la spesa si spunta. Il calendario si chiude in un libro, il libro gira e il logo diventa la schermata Settimana.</p>
+      <span class="meta">7,1 s · mostra a cosa serve l'app</span>
+    </article>
+  </section>
+
+  <section class="compare" aria-label="Confronto">
+    <div class="phone"><video src="videos/spesora_intro_confronto.mp4" muted playsinline controls preload="metadata" aria-label="Le quattro intro in sequenza"></video></div>
+    <div>
+      <h2>Tutte e quattro in sequenza</h2>
+      <p class="meta">Circa 33 secondi, con un cartello prima di ogni concept e l'etichetta in alto.</p>
+      <ul>
+        <li><strong>A</strong> è la più narrativa: punta su Mina.</li>
+        <li><strong>B</strong> è la più grafica: forma, peso, elasticità.</li>
+        <li><strong>C</strong> lega il marchio alla cucina.</li>
+        <li><strong>D</strong> racconta il servizio: giorni, piatti, spesa.</li>
+      </ul>
+      <div class="files">
+        <p class="meta">File e sorgenti nel repository, ramo <code>claude/spesora-intro-concepts</code>:</p>
+        <code>spesora/prototypes/intro-concepts/out/</code>
+        <code>spesora/prototypes/intro-concepts/src/</code>
+      </div>
+    </div>
+  </section>
+</div>
