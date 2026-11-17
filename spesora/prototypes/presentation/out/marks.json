@@ -1,0 +1,70 @@
+{
+  "marks": [
+    {
+      "id": "intro",
+      "t": 0
+    },
+    {
+      "id": "benvenuto",
+      "t": 8.393985082626342
+    },
+    {
+      "id": "questionario",
+      "t": 12.722985082626343
+    },
+    {
+      "id": "caricamento",
+      "t": 28.302985082626343
+    },
+    {
+      "id": "caricamento",
+      "t": 29.17398508262634
+    },
+    {
+      "id": "anteprima",
+      "t": 33.225985082626345
+    },
+    {
+      "id": "oggi",
+      "t": 38.387985082626344
+    },
+    {
+      "id": "ricetta",
+      "t": 41.92198508262634
+    },
+    {
+      "id": "settimana",
+      "t": 48.30998508262634
+    },
+    {
+      "id": "rigenera",
+      "t": 52.252985082626346
+    },
+    {
+      "id": "spesa",
+      "t": 55.908985082626344
+    },
+    {
+      "id": "conferma",
+      "t": 61.76098508262634
+    },
+    {
+      "id": "dispensa",
+      "t": 65.20498508262634
+    },
+    {
+      "id": "cucinato",
+      "t": 69.20398508262635
+    },
+    {
+      "id": "ricettario",
+      "t": 76.45998508262635
+    },
+    {
+      "id": "fine",
+      "t": 83.92898508262634
+    }
+  ],
+  "video": "/home/user/Workv/spesora/prototypes/presentation/out/tour_raw.mp4",
+  "errors": []
+}
