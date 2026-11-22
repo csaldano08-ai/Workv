@@ -27,6 +27,7 @@ const CHAPTERS = [
   ['oggi', 'Oggi', 'Cosa cucinare e quando, cosa manca, la prossima spesa.'],
   ['ricetta', 'La ricetta', 'Ingredienti per le tue porzioni, passaggi con timer.'],
   ['settimana', 'La settimana', 'Pasti e giorni di spesa a colpo d’occhio.'],
+  ['griglia', 'La settimana a griglia', 'Tutti i pasti in un colpo d’occhio, con i giorni di spesa.'],
   ['rigenera', 'Rifare il menù', 'Nuove ricette per i pasti ancora da cucinare.'],
   ['spesa', 'La lista della spesa', 'Divisa per giorno di spesa, con le quantità giuste.'],
   ['conferma', 'Spesa fatta', 'Confermi e i prodotti entrano in dispensa.'],

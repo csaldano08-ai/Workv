@@ -98,7 +98,7 @@ const path = require('path');
   await w(1200);
 
   mark('ricetta');
-  await btn(/Apri la preparazione/).click();
+  await btn(/^Cucina$/).click();
   await w(1600);
   await scroll(700, 10);
   await w(1200);
@@ -113,6 +113,14 @@ const path = require('path');
   await scroll(800, 12);
   await w(800);
   await scroll(-800, 6);
+
+  mark('griglia');
+  await p.getByRole('tab', { name: 'Settimana', exact: true }).last().click().catch(() => {});
+  await w(1400);
+  await scroll(600, 10);
+  await w(1000);
+  await p.getByRole('tab', { name: 'Giorno', exact: true }).last().click().catch(() => {});
+  await w(900);
 
   mark('rigenera');
   await btn(/Rigenera/).click();
@@ -143,7 +151,7 @@ const path = require('path');
   mark('cucinato');
   await tab(/Oggi/);
   await w(900);
-  await btn(/Apri la preparazione/).click();
+  await btn(/^Cucina$/).click();
   await w(1200);
   const cooked = btn(/Ho cucinato|Cucinato/);
   if (await cooked.count()) await cooked.click();
