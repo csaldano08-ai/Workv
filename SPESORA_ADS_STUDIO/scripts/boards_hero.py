@@ -29,7 +29,7 @@ im = Image.new("RGB", (W, 6000), BG)
 d = ImageDraw.Draw(im)
 d.rectangle([0, 0, W, 130], fill=GREEN)
 d.text((48, 26), "Protagonista · ricalcato dal tuo riferimento", font=B(54), fill=BG)
-d.text((48, 94), "Stessa testa, stessa larghezza, stesse forme · maglietta nera · espressioni 2D sulla faccia", font=R(24), fill=(214, 228, 218))
+d.text((48, 94), "Stesse forme del riferimento · maglietta nera · occhi come il riferimento · sopracciglia nere · espressioni 2D", font=R(24), fill=(214, 228, 218))
 y = 160
 d.text((48, y), "Confronto: riferimento (a sinistra) e modello 3D in Blender (a destra)", font=B(30), fill=GREEN)
 y += 50
@@ -41,8 +41,16 @@ im.paste(panel, (0, y))
 im.paste(load("turn_fronte", 600).resize((600, 900)), (900, y))
 pill(d, 20, y + 14, "Riferimento")
 pill(d, 920, y + 14, "Modello 3D")
-side = load("turn_tre_quarti", 300)
 y += 900 + 30
+d.text((48, y), "Primo piano: occhi e sopracciglia (riferimento a sinistra, modello a destra)", font=B(30), fill=GREEN)
+y += 46
+rf = Image.open(REF).convert("RGB").crop((120, 70, 350, 260)).resize((900, 743), Image.LANCZOS)
+mn = Image.open(f"{SRC}/H_expr_neutro.png").convert("RGB").crop((90, 0, 390, 247)).resize((900, 741), Image.LANCZOS)
+im.paste(rf, (0, y))
+im.paste(mn, (900, y))
+pill(d, 14, y + 12, "Riferimento")
+pill(d, 914, y + 12, "Modello 3D")
+y += 743 + 30
 d.text((48, y), "Fronte · 3/4 · Lato", font=B(30), fill=GREEN)
 y += 46
 for i, v in enumerate(("fronte", "tre_quarti", "lato")):

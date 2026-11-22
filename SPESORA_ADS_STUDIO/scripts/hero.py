@@ -114,7 +114,7 @@ def build(name="eroe"):
     ch["pivot"], ch["head"] = pivot, head
 
     # naso rosso 3D
-    nose = ellipsoid(f"{name}_nose", (0, -HEAD_R[1] + 0.012, HEAD_Z - NECK_Z - 0.03), (0.062, 0.062, 0.062), nose_m, None, pivot, seg=40, rings=24)
+    nose = ellipsoid(f"{name}_nose", (0, -HEAD_R[1] + 0.010, HEAD_Z - NECK_Z - 0.03), (0.055, 0.055, 0.055), nose_m, None, pivot, seg=40, rings=24)
     ch["nose"] = nose
 
     # faccia 2D (decal con bump) proiettata sulla testa

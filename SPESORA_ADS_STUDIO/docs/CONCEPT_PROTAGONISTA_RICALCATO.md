@@ -4,12 +4,14 @@ Il cliente ha fornito una scheda di riferimento: il personaggio deve essere ugua
 misurate sulla scheda (testa larga = 1.0): testa leggermente più alta che larga, busto più largo della testa e più stretto in alto,
 braccia grosse che si allargano verso il basso e arrivano ai fianchi, gambe tozze affiancate con fondo arrotondato, nessuna scarpa.
 
-Unica differenza richiesta: **maglietta nera** al posto di quella crema.
+Differenze richieste: **maglietta nera** al posto di quella crema e **sopracciglia nere** al posto di quelle bianche.
 
 ## Faccia
 
 - Espressioni **2D** disegnate in codice (`scripts/faces2.py`) e proiettate sulla testa 3D (restano ancorate alla curvatura).
-- Sopracciglia e sclere sono rialzate tramite una mappa di altezza (bump), per l'effetto pongo. Il naso rosso è 3D.
+- Occhi come nel riferimento: sclera bianca rialzata, pupille nere ovali e grandi (senza puntino bianco) spostate verso il naso, occhi vicini e
+  il naso che ne sfiora gli angoli interni. Sopracciglia **nere** a pillola, con le estremità esterne più basse. Rilievo da mappa di altezza a 16 bit.
+  Il naso rosso è 3D.
 - 13 stati: neutro, felice, sorpreso, confuso, stanco, frustrato, imbarazzato, ironico, sguardo laterale, guarda in camera,
   occhi chiusi, occhi semichiusi, sbadiglio. Le forme della bocca per il labiale italiano NON sono ancora fatte.
 

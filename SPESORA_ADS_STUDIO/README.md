@@ -16,7 +16,7 @@ Struttura prevista (le cartelle vuote sono segnaposto): `characters/`, `environm
 ## Cosa c'è
 
 - `scripts/hero.py` + `scripts/faces2.py` + `scripts/render_hero.py` + `scripts/boards_hero.py`: **protagonista ricalcato dal riferimento**
-  (testa tonda, busto rastremato, braccia grosse, gambe tozze, naso rosso 3D, sopracciglia e occhi rialzati come pongo,
+  (testa tonda, busto rastremato, braccia grosse, gambe tozze, naso rosso 3D, occhi come il riferimento, sopracciglia nere rialzate come pongo,
   maglietta nera). Tavola in `renders/previews/concept_protagonista_ricalcato/`.
 - `scripts/faces.py` (storico A/B/C): sistema delle facce 2D (13 stati: neutro, felice, sorpreso, confuso, stanco, frustrato, imbarazzato,
   ironico, sguardo laterale, guarda in camera, occhi chiusi, semichiusi, sbadiglio).
