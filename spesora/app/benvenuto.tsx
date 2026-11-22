@@ -33,6 +33,9 @@ export default function Welcome() {
       }
     >
       <View style={styles.hero}>
+        <Reveal style={styles.brand}>
+          <Logo size={36} />
+        </Reveal>
         <Reveal>
           <View style={styles.stage}>
             <PetalBloom size={310} style={styles.blob} />
@@ -60,7 +63,6 @@ export default function Welcome() {
           </StickyNote>
         </Reveal>
         <Reveal index={2} style={{ gap: space.sm }}>
-          <Logo size={44} />
           <Text variant="title" color={colors.ink} style={styles.slogan}>
             {t('app.slogan')}
           </Text>
@@ -96,6 +98,7 @@ export default function Welcome() {
 
 const styles = StyleSheet.create({
   hero: { gap: space.md, marginTop: space.md },
+  brand: { alignItems: 'center' },
   stage: { alignItems: 'center', justifyContent: 'center', height: 290 },
   blob: { position: 'absolute' },
   ingTL: { position: 'absolute', left: 8, top: 18 },
