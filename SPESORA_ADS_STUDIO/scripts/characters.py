@@ -125,7 +125,7 @@ def ellipsoid(name, center, scale, mat, deform=None, parent=None, rot=None, seg=
     return _link(ob, parent)
 
 
-def tube(name, pts, radius, mat, parent=None, res=12, taper_end=None):
+def tube(name, pts, radius, mat, parent=None, res=12, taper_end=None, taper_pow=2.0):
     """Tubo morbido lungo una polilinea (curva con bevel). taper_end: raggio finale relativo (0..1)."""
     cu = bpy.data.curves.new(name, "CURVE")
     cu.dimensions = "3D"
@@ -137,7 +137,7 @@ def tube(name, pts, radius, mat, parent=None, res=12, taper_end=None):
     for i, p in enumerate(pts):
         sp.points[i].co = (p[0], p[1], p[2], 1)
         n = len(pts) - 1
-        sp.points[i].radius = 1.0 if taper_end is None else 1.0 + (taper_end - 1.0) * (i / n) ** 2
+        sp.points[i].radius = 1.0 if taper_end is None else 1.0 + (taper_end - 1.0) * (i / n) ** taper_pow
     cu.materials.append(mat)
     ob = bpy.data.objects.new(name, cu)
     return _link(ob, parent)
