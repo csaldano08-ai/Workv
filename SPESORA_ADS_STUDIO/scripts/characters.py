@@ -47,7 +47,7 @@ def clay_material(name, color, rough=0.82, sss=0.0, bump=0.12):
     bsdf.inputs["Base Color"].default_value = (*srgb(color), 1)
     bsdf.inputs["Roughness"].default_value = rough
     if "Specular IOR Level" in bsdf.inputs:
-        bsdf.inputs["Specular IOR Level"].default_value = 0.25
+        bsdf.inputs["Specular IOR Level"].default_value = 0.15
     if sss > 0 and "Subsurface Weight" in bsdf.inputs:
         bsdf.inputs["Subsurface Weight"].default_value = sss
         bsdf.inputs["Subsurface Radius"].default_value = (0.9, 0.35, 0.2)

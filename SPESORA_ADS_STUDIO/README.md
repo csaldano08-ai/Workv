@@ -18,6 +18,8 @@ Struttura prevista (le cartelle vuote sono segnaposto): `characters/`, `environm
 - `scripts/hero.py` + `scripts/faces2.py` + `scripts/render_hero.py` + `scripts/boards_hero.py`: **protagonista ricalcato dal riferimento**
   (testa tonda, busto rastremato, braccia grosse, gambe tozze, naso rosso 3D, occhi come il riferimento, sopracciglia nere rialzate come pongo,
   maglietta nera). Tavola in `renders/previews/concept_protagonista_ricalcato/`.
+- `scripts/mina.py` + `scripts/faces_mina.py` + `scripts/render_mina.py` + `scripts/boards_mina.py`: **Mina in 3D** fedele al design
+  approvato (libro 3D con cerniera sulla copertina, faccia e illustrazioni 2D). Tavola in `renders/previews/concept_mina/`.
 - `scripts/faces.py` (storico A/B/C): sistema delle facce 2D (13 stati: neutro, felice, sorpreso, confuso, stanco, frustrato, imbarazzato,
   ironico, sguardo laterale, guarda in camera, occhi chiusi, semichiusi, sbadiglio).
 - `scripts/characters.py`: costruzione del protagonista in Blender (3 varianti A/B/C), materiale pongo, faccia come decal
