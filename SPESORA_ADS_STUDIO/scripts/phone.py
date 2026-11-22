@@ -9,7 +9,7 @@ PHONE_W, PHONE_T, PHONE_H = 0.34, 0.045, 0.70
 
 
 def build_phone(screen_png, name="phone"):
-    mat_body = clay_material(f"{name}_body", (0.46, 0.40, 0.80), 0.5, bump=0.02)
+    mat_body = clay_material(f"{name}_body", (0.141, 0.2, 0.172), 0.45, bump=0.02)  # antracite Spesora #24332C
     bm = bmesh.new()
     bmesh.ops.create_cube(bm, size=1.0)
     for v in bm.verts:

@@ -206,12 +206,15 @@ class HeroRig:
         openeyes = mode == "open"
         for key, closed, es in (("L", closedL, p["eyeL_scale"]), ("R", closedR, p["eyeR_scale"])):
             g = self.eyeg[key]
-            g.scale = (es, max(0.04, 1 - closed) * es, 1)
-            self.scl[key].hide_render = not openeyes
-            self.pup[key].hide_render = not openeyes
-            self.alt[("arc_happy", key)].hide_render = mode != "arc_happy"
-            self.alt[("arc_sleep", key)].hide_render = mode != "arc_sleep"
-            self.alt[("angry", key)].hide_render = mode != "angry"
+            # oltre il 60% di chiusura l'occhio diventa la linea chiusa disegnata (niente fessura bianca schiacciata)
+            em = "arc_sleep" if (mode == "open" and closed >= 0.6) else mode
+            op = em == "open"
+            g.scale = (es, max(0.45, 1 - closed) * es, 1)
+            self.scl[key].hide_render = not op
+            self.pup[key].hide_render = not op
+            self.alt[("arc_happy", key)].hide_render = em != "arc_happy"
+            self.alt[("arc_sleep", key)].hide_render = em != "arc_sleep"
+            self.alt[("angry", key)].hide_render = em != "angry"
             side_in = 1 if key == "L" else -1
             ps = p["pupil_scale"]
             maxdx = max(0.0, (self.sclera_w - self.P["pupil"]["size"][0] * ps) / 2 * 0.92)

@@ -186,3 +186,35 @@ class Walk:
 
 def breathe(t, rate=0.32, amp=0.012, phase=0.0):
     return amp * math.sin(2 * math.pi * rate * t + phase)
+
+
+VOWEL = {"a": "m_vA", "à": "m_vA", "e": "m_vE", "è": "m_vE", "é": "m_vE", "i": "m_vI", "ì": "m_vI", "o": "m_vO", "ò": "m_vO", "u": "m_vU", "ù": "m_vU"}
+LABIAL = {"m": "m_vM", "b": "m_vM", "p": "m_vM", "f": "m_vF", "v": "m_vF"}
+
+
+def visemes(text, t0, t1, rest="m_smile"):
+    """Sequenza PROVVISORIA di forme della bocca ricavata dal testo italiano, distribuita sulla durata stimata della battuta.
+    Vocali -> A/E/I/O/U, M/B/P -> labbra chiuse, F/V -> F. Pause brevi su virgole e punti. Sarà sostituita dal labiale sulle registrazioni."""
+    toks = []
+    for ch in text.lower():
+        if ch in VOWEL:
+            toks.append((VOWEL[ch], 1.0))
+        elif ch in LABIAL:
+            toks.append((LABIAL[ch], 0.55))
+        elif ch in ",;:":
+            toks.append(("m_vM", 1.6))
+        elif ch in ".!?":
+            toks.append(("m_vM", 1.2))
+    if not toks:
+        return [(t0, rest)]
+    tot = sum(w for _, w in toks)
+    ev, t = [], t0
+    span = (t1 - t0) - 0.06
+    last = None
+    for s_, w in toks:
+        if s_ != last:
+            ev.append((t, s_))
+            last = s_
+        t += span * w / tot
+    ev.append((t1, rest))
+    return ev

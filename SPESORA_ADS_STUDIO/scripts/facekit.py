@@ -87,6 +87,14 @@ def hero_parts(outdir):
     add("m_t1", lambda f: f.mouth_o(rx=40, ry=30, ytop=F2.MY - 10))
     add("m_t2", lambda f: f.mouth_o(rx=52, ry=52, ytop=F2.MY - 20))
     add("m_t3", lambda f: f.mouth_open(w=96, h=104))
+    # visemi per il parlato italiano: A, E, I, O, U, M/B/P (labbra chiuse), F/V
+    add("m_vA", lambda f: f.mouth_open(w=104, h=148))
+    add("m_vE", lambda f: f.mouth_open(w=124, h=84, tongue=False))
+    add("m_vI", lambda f: f.mouth_open(w=118, h=50, tongue=False))
+    add("m_vO", lambda f: f.mouth_o(rx=50, ry=66))
+    add("m_vU", lambda f: f.mouth_o(rx=30, ry=40, ytop=F2.MY - 6))
+    add("m_vM", lambda f: f.mouth_line(w=58, dy=6))
+    add("m_vF", lambda f: f.mouth_line(w=74, dy=10))
     # occhi chiusi / arrabbiati (sostituiscono l'occhio aperto)
     add("arc_happy", lambda f: f.eye_arc(L, F2.EY + 14))
     add("arc_sleep", lambda f: f.eye_arc(L, F2.EY + 10, up=False))
@@ -158,6 +166,13 @@ def mina_parts(outdir):
     add("m_t1", lambda c: FM.mouth_o(c, my + 2, rx=16, ry=14))
     add("m_t2", lambda c: FM.mouth_o(c, my + 2, rx=20, ry=24))
     add("m_t3", lambda c: FM.mouth_open(c, my, w=36, h=48))
+    add("m_vA", lambda c: FM.mouth_open(c, my, w=40, h=52))
+    add("m_vE", lambda c: FM.mouth_open(c, my + 2, w=42, h=30))
+    add("m_vI", lambda c: FM.mouth_open(c, my + 4, w=38, h=18))
+    add("m_vO", lambda c: FM.mouth_o(c, my + 2, rx=19, ry=25))
+    add("m_vU", lambda c: FM.mouth_o(c, my + 6, rx=12, ry=16))
+    add("m_vM", lambda c: c.tstroke([(FX - 22, my + 8), (FX + 22, my + 8)], lambda t: 3.4, FM.EYE))
+    add("m_vF", lambda c: c.tstroke([(FX - 28, my + 9), (FX + 28, my + 9)], lambda t: 3.0, FM.EYE))
 
     def cheek(side):
         def draw(c):

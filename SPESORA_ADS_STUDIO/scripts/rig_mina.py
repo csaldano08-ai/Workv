@@ -245,16 +245,17 @@ class MinaRig:
         P = self.P
         for key, lidv in (("L", p["lidL"]), ("R", p["lidR"])):
             closed = max(lidv, p["blink"])
-            op = mode == "open"
-            self.eyeg[key].scale = (es, max(0.04, 1 - closed) * es, 1)
+            em = "arc_sleep" if (mode == "open" and closed >= 0.6) else mode
+            op = em == "open"
+            self.eyeg[key].scale = (es, max(0.5, 1 - closed) * es, 1)
             self.scl[key].hide_render = not op
             self.iris[key].hide_render = not op
             self.lid[key].hide_render = not op
             for kind in ("arc_happy", "arc_sleep"):
-                self.alt[(kind, key)].hide_render = mode != kind
+                self.alt[(kind, key)].hide_render = em != kind
             ex, ey = self.eye_pos[key]
             ld = P["lid_" + key]
-            self.lid[key].location = (ex + ld["center"][0], ey + ld["center"][1] - closed * 0.1, 0.004)
+            self.lid[key].location = (ex + ld["center"][0], ey + ld["center"][1] - min(closed, 0.5) * 0.1, 0.004)
             hs = self.sclera_h / 2
             maxdx = max(0.0, (self.sclera_w - P["iris"]["size"][0]) / 2 * 0.95)
             maxdy = max(0.0, (self.sclera_h - P["iris"]["size"][1]) / 2 * 0.95)
