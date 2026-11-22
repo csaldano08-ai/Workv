@@ -22,14 +22,15 @@
   .concept { display:grid; gap:18px; }
   .chead { display:flex; gap:14px; align-items:flex-start; }
   .chead p { color:var(--soft); max-width:70ch; margin-top:4px; }
-  .badge { flex:none; width:46px; height:46px; border-radius:50%; background:var(--green); color:var(--bg); display:grid; place-items:center; font-family:var(--display); font-size:24px; font-weight:600; border:2px solid var(--ink); }
+  .badge { flex:none; min-width:46px; padding:0 8px; width:auto; height:46px; border-radius:23px; background:var(--green); color:var(--bg); display:grid; place-items:center; font-family:var(--display); font-size:24px; font-weight:600; border:2px solid var(--ink); }
   .phones { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
   .anims { display:grid; grid-template-columns:repeat(2,minmax(0,220px)); gap:18px; }
   figure { margin:0; display:grid; gap:8px; min-width:0; }
   figure img, figure video { width:100%; max-width:100%; aspect-ratio:390/844; object-fit:cover; border-radius:26px; border:3px solid var(--ink); background:#F6F3EA; display:block; }
   figcaption { font-size:14px; color:var(--soft); }
   .phones figcaption { font-weight:600; color:var(--ink); }
-  @media (max-width:640px) { .phones { grid-template-columns:1fr 1fr; } .anims { grid-template-columns:1fr 1fr; } }
+  .phones.four { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  @media (max-width:640px) { .phones, .phones.four { grid-template-columns:1fr 1fr; } .anims { grid-template-columns:1fr 1fr; } }
   .table { overflow-x:auto; }
   table { border-collapse:collapse; width:100%; min-width:520px; font-variant-numeric:tabular-nums; }
   th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:center; font-size:15px; }
@@ -51,8 +52,22 @@
     <h1>Quattro direzioni per il redesign</h1>
     <p>Home, Settimana e Spesa per ogni concept, con i contenuti veri della demo: le stesse ricette e immagini, le quantità del catalogo, Mina originale e la navigazione attuale. Sotto, due micro-animazioni per concept.</p>
     <p class="note">Sono prototipi: l'app non è stata toccata. Scegli una direzione (anche mescolando) e la porto nell'app nella fase 2.</p>
-    <nav class="toc" aria-label="Concept"><a href="#cA">A · Editoriale Botanico</a><a href="#cB">B · Mina Interattiva</a><a href="#cC">C · Ricettario a Schede</a><a href="#cD">D · Moderno Illustrato</a><a href="#confronto">Confronto</a></nav>
+    <nav class="toc" aria-label="Concept"><a href="#cE">B+C · la tua scelta</a><a href="#cA">A · Editoriale Botanico</a><a href="#cB">B · Mina Interattiva</a><a href="#cC">C · Ricettario a Schede</a><a href="#cD">D · Moderno Illustrato</a><a href="#confronto">Confronto</a></nav>
   </header>
+<section class="concept" id="cE">
+  <header class="chead"><span class="badge">B+C</span><div><h2>La tua scelta: Mina Interattiva in stile Ricettario</h2><p>Il comportamento di B (Mina tiene la lista, presenta il piatto, riassume il giorno, festeggia) con il look di C (taccuino ad anelli, linguette, foto incollate, scritte a mano). Con più aria: meno elementi per schermata, margini più ampi, i dettagli a un tocco. Il calendario ha due viste: "Giorno" e "Settimana" (7 giorni × 3 miniature).</p></div></header>
+  <div class="phones four">
+    <figure><img src="img/concept-E_home.jpg" alt="B+C, Home"/><figcaption>Home</figcaption></figure>
+    <figure><img src="img/concept-E_week.jpg" alt="B+C, Settimana vista Giorno"/><figcaption>Settimana · Giorno</figcaption></figure>
+    <figure><img src="img/concept-E_weekgrid.jpg" alt="B+C, Settimana vista Settimana"/><figcaption>Settimana · Settimana</figcaption></figure>
+    <figure><img src="img/concept-E_shop.jpg" alt="B+C, Spesa"/><figcaption>Spesa</figcaption></figure>
+  </div>
+  <h3>Micro-animazioni</h3>
+  <div class="anims">
+    <figure><video src="video/concept-E_a1.mp4" muted loop playsinline autoplay controls preload="metadata"></video><figcaption>Mina entra e appare il biglietto della spesa</figcaption></figure>
+    <figure><video src="video/concept-E_a2.mp4" muted loop playsinline autoplay controls preload="metadata"></video><figcaption>Spunte con rimbalzo, anello che si riempie, Mina festeggia</figcaption></figure>
+  </div>
+</section>
   <section class="concept" id="cA">
   <header class="chead"><span class="badge">A</span><div><h2>Editoriale Botanico</h2><p>Premium e illustrato: ricetta grande, titoli con grazie, rametti botanici, contorni sottili. La spesa si riassume in una riga.</p></div></header>
   <div class="phones">

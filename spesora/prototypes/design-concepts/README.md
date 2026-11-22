@@ -96,3 +96,13 @@ node scripts/render.cjs
 ```bash
 node scripts/animate.cjs
 ```
+
+## Scelta dell'utente: B + C (concept E)
+
+Il comportamento di B con lo stile di C, e più spazio in schermata. Anteprime in `out/previews/concept-E_*.png`:
+
+- Home;
+- Settimana in due viste, "Giorno" e "Settimana";
+- Spesa.
+
+Animazioni in `out/animations/concept-E_a1.mp4` e `concept-E_a2.mp4`. È la base per la fase 2.

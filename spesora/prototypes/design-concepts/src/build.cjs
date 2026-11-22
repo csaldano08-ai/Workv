@@ -350,7 +350,127 @@ const D = {
   </div>${tabbar('Spesa', 'D')}`,
 };
 
+
+/* ============================== E — B + C: Mina interattiva in stile ricettario a schede, con più aria ============================== */
+const E = {
+  title: 'Mina Interattiva in stile Ricettario (B + C)',
+  css: `
+  .E { --bg:#EFE7D6; --ink:#24332C; --muted:#6A6455; --green:#386E55; --green2:#2B5643; --sage:#C9DAC3; --peach:#E6A46D; --peachSoft:#F5DCC0; --paper:#FBF6EA; --tabbg:#FBF6EA; --tabborder:2px solid #24332C; }
+  .E .hand { font-family: Caveat, cursive; font-weight:700; }
+  .E .pad { padding: 0 22px; }
+  .E .title { font: 800 25px Inter; letter-spacing:-.02em; }
+  .E .page { background: var(--paper); border:2px solid var(--ink); border-radius: 18px; position:relative; box-shadow: 5px 5px 0 #D9CDB4, 5px 5px 0 2px var(--ink); }
+  .E .rings { position:absolute; top:-13px; left:28px; right:28px; display:flex; justify-content:space-between; }
+  .E .rings i { width:12px; height:24px; border-radius:7px; border:2.2px solid var(--ink); background:#D8B24F; display:block; }
+  .E .tape { position:absolute; width:70px; height:22px; background: rgba(230,164,109,.72); border:1.5px solid rgba(36,51,44,.35); }
+  .E .note { background: var(--peachSoft); border:2px solid var(--ink); border-radius:6px 20px 20px 20px; padding:12px 14px; position:relative; transform: rotate(-1.2deg); }
+  .E .lab { font: 700 16px Caveat, cursive; padding:1px 9px; border-radius:6px; border:1.5px solid var(--ink); background:#fff; }
+  .E .chip { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; border-radius:99px; border:2px solid var(--ink); font:700 12.5px Inter; background:#fff; }
+  .E .chip svg { width:14px; height:14px; }
+  .E .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; height:44px; padding:0 18px; border-radius:99px; background:var(--green); color:#fff; font:800 15px Inter; border:2px solid var(--ink); border-bottom-width:4px; }
+  .E .btn.peach { background: var(--peach); color: var(--ink); }
+  .E .btn svg { width:18px; height:18px; }
+  .E .tabs { display:flex; gap:4px; }
+  .E .tabs div { padding:7px 14px 9px; border:2px solid var(--ink); border-bottom:none; border-radius:12px 12px 0 0; font:700 13px Inter; background:#E2D7BF; color:var(--muted); margin-bottom:-2px; }
+  .E .tabs .on { background: var(--paper); color: var(--ink); position:relative; z-index:2; }
+  .E .dtabs { display:flex; gap:5px; }
+  .E .dtab { flex:1; height:56px; border-radius:12px; border:2px solid var(--ink); display:flex; flex-direction:column; align-items:center; justify-content:center; font:700 10.5px Inter; color:var(--muted); background:#fff; position:relative; }
+  .E .dtab b { font:800 18px Inter; color:var(--ink); line-height:1.05; }
+  .E .dtab.on { background: var(--green); color:#DDEEDF; transform: translateY(-3px); box-shadow: 0 3px 0 var(--ink); } .E .dtab.on b { color:#fff; }
+  .E .dtab .sh { position:absolute; top:-9px; right:-5px; width:19px; height:19px; border-radius:50%; background:var(--peach); border:2px solid var(--ink); display:flex; align-items:center; justify-content:center; }
+  .E .dtab .sh svg { width:10px; height:10px; }
+  .E .idx { display:flex; gap:14px; align-items:center; background:#fff; border:2px solid var(--ink); border-radius:16px; padding:10px 12px; position:relative; }
+  .E .ph { border:2px solid var(--ink); border-radius:12px; overflow:hidden; flex:none; box-shadow:3px 3px 0 var(--ink); }
+  .E .tile { flex:1; border:2px solid var(--ink); border-radius:16px; background:#fff; padding:12px 6px 10px; display:flex; flex-direction:column; align-items:center; gap:5px; position:relative; }
+  .E .tile svg.cat { width:42px; height:42px; }
+  .E .ck { width:26px; height:26px; border-radius:8px; border:2px solid var(--ink); display:flex; align-items:center; justify-content:center; background:#fff; }
+  .E .ck.on { background: var(--green); } .E .ck svg { width:17px; height:17px; color:#fff; }
+  .E .acc { display:flex; align-items:center; gap:12px; padding:12px 14px; border:2px solid var(--ink); border-radius:14px; background:#fff; }
+  .E .acc svg.cat { width:30px; height:30px; }
+  .E .ring { width:58px; height:58px; border-radius:50%; background: conic-gradient(var(--green) 0 25%, #E2D7BF 25% 100%); border:2px solid var(--ink); display:flex; align-items:center; justify-content:center; }
+  .E .ring div { width:40px; height:40px; border-radius:50%; background: var(--paper); border:2px solid var(--ink); display:flex; align-items:center; justify-content:center; font:800 13px Inter; }
+  .E .dayrow { display:flex; align-items:center; gap:12px; padding:8px 12px; border-top:1.5px dashed rgba(36,51,44,.25); }
+  .E .th { width:48px; height:48px; border-radius:11px; overflow:hidden; border:1.8px solid var(--ink); position:relative; }
+  .E .th i { position:absolute; left:2px; top:2px; width:13px; height:13px; border-radius:50%; border:1.5px solid var(--ink); }
+  `,
+  home: () => `<div class="body">
+    <div class="pad row" style="justify-content:space-between;padding-top:8px"><div class="row" style="gap:8px">${LOGO(28)}<span style="font:800 22px Inter;color:var(--green);letter-spacing:-.02em">Spesora</span></div><span style="width:24px;color:var(--green)">${I.gear}</span></div>
+    <div class="pad row" style="gap:6px;margin-top:22px;align-items:center" id="minaScene">
+      <img class="mina" id="minaB" src="${MINA('shopping')}" style="width:128px;height:128px;margin-left:-14px"/>
+      <div class="note grow" id="bubbleB"><div class="tape" style="left:34%;top:-12px;transform:rotate(-4deg)"></div><div class="hand" style="font-size:27px;line-height:1">Ho preparato la spesa!</div><div style="font:600 13px Inter;color:var(--muted);margin-top:4px">${SHOP_TOTAL} prodotti · ${SHOP_URGENT} per oggi</div><div class="btn peach" style="margin-top:10px;height:38px;font-size:14px">${I.basket} Apri la lista</div></div>
+    </div>
+    <div class="pad" style="margin-top:30px"><div class="page" style="padding:26px 16px 16px">
+      <div class="rings">${'<i></i>'.repeat(5)}</div>
+      <div class="row" style="justify-content:space-between"><span class="hand" style="font-size:27px">Oggi si cucina</span><span class="lab" style="background:var(--peachSoft)">colazione 07:30</span></div>
+      <div class="ph" style="height:176px;margin-top:12px;transform:rotate(-1deg);position:relative"><img class="dish" src="${IMG(next.id)}"/></div>
+      <img class="mina" src="${MINA('recipe')}" style="position:absolute;right:-12px;top:150px;width:92px;height:92px"/>
+      <div style="font:800 19px Inter;line-height:1.18;margin-top:16px;padding-right:40px">${next.name}</div>
+      <div class="row" style="gap:8px;margin-top:12px"><span class="chip">${I.clock}12 min</span><span class="chip">${I.users}2</span><span class="grow"></span><div class="btn" style="height:40px;font-size:14px">Cucina ${I.right}</div></div>
+    </div></div>
+    <div class="pad row" style="margin-top:20px;gap:8px;font:600 13px Inter;color:var(--muted)"><span class="hand" style="font-size:19px;color:var(--ink)">Poi:</span>Polenta concia · Pasta funghi e salsiccia<span style="width:16px">${I.right}</span></div>
+  </div>${tabbar('Oggi')}`,
+  week: () => `<div class="body">
+    <div class="pad row" style="justify-content:space-between;padding-top:8px"><span class="title">La tua settimana</span><span style="width:22px;color:var(--green)">${I.refresh}</span></div>
+    <div class="pad" style="margin-top:14px"><div class="tabs"><div class="on">Giorno</div><div>Settimana</div></div><div style="border-top:2px solid var(--ink)"></div></div>
+    <div class="pad dtabs" style="margin-top:20px" id="days">${DAYS.map((d) => `<div class="dtab ${d.today ? 'on' : ''}"><span>${d.d}</span><b>${d.n}</b>${d.shop ? `<span class="sh">${I.basket}</span>` : ''}</div>`).join('')}</div>
+    <div class="pad row" style="margin-top:22px;gap:6px;align-items:center">
+      <img class="mina" src="${MINA('calendar')}" style="width:96px;height:96px;margin-left:-10px"/>
+      <div class="note grow"><div class="hand" style="font-size:23px;line-height:1.05">Martedì: 3 pasti e la spesa</div><div style="font:600 12.5px Inter;color:var(--muted);margin-top:3px">tutto pronto entro le 20:00</div></div>
+    </div>
+    <div class="pad col" style="gap:14px;margin-top:20px">${meals.map((m, i) => `<div class="idx"><div class="ph" style="width:64px;height:64px;transform:rotate(${i % 2 ? 2 : -2}deg)"><img class="dish" src="${IMG(m.id)}"/></div><div class="grow"><span class="lab" style="font-size:15px;background:${['var(--peachSoft)', 'var(--sage)', '#D9D4E8'][i]}">${m.type.toLowerCase()} ${m.time}</span><div style="font:800 15.5px Inter;line-height:1.15;margin-top:5px">${m.name}</div></div><span style="width:20px;color:var(--muted)">${I.right}</span></div>`).join('')}</div>
+  </div>${tabbar('Settimana')}`,
+  weekgrid: () => `<div class="body">
+    <div class="pad row" style="justify-content:space-between;padding-top:8px"><span class="title">La tua settimana</span><span style="width:22px;color:var(--green)">${I.refresh}</span></div>
+    <div class="pad" style="margin-top:14px"><div class="tabs"><div>Giorno</div><div class="on">Settimana</div></div><div style="border-top:2px solid var(--ink)"></div></div>
+    <div class="pad" style="margin-top:26px"><div class="page" style="padding:22px 0 6px">
+      <div class="rings">${'<i></i>'.repeat(6)}</div>
+      <div class="row" style="justify-content:center;gap:16px;padding-bottom:4px"><span style="width:20px">${I.left}</span><span class="hand" style="font-size:24px">16 – 22 novembre</span><span style="width:20px">${I.right}</span></div>
+      ${DAYS.map((d) => `<div class="dayrow" style="${d.today ? 'background:rgba(201,218,195,.55)' : ''}"><div style="width:40px;text-align:center;font:700 11px Inter;color:var(--muted)">${d.d}<br/><b style="font:800 17px Inter;color:var(--ink)">${d.n}</b></div><div class="row" style="gap:6px">${MEALS[d.n].map((m, i) => `<div class="th"><img class="dish" src="${IMG(m.id)}"/><i style="background:${['#F5DCC0', '#C9DAC3', '#D9D4E8'][i]}"></i></div>`).join('')}</div><div class="grow"></div>${d.shop ? `<span class="lab" style="background:var(--peachSoft);font-size:15px">spesa</span>` : ''}</div>`).join('')}
+    </div></div>
+  </div>${tabbar('Settimana')}`,
+  shop: () => `<div class="body">
+    <div class="pad row" style="gap:12px;padding-top:8px"><div class="grow"><div class="title">La spesa</div><div style="font:600 13px Inter;color:var(--muted)">oggi martedì 17 · poi sabato 21</div></div><div class="ring" id="ring"><div id="ringTxt">${SHOP_DONE}/${SHOP_TOTAL}</div></div></div>
+    <div class="pad" style="margin-top:16px"><div class="tabs" style="padding-left:12px"><div class="on">Oggi · mar 17</div><div>Sab 21</div></div></div>
+    <div class="pad"><div class="page" style="padding:18px 14px 16px;border-radius:4px 18px 18px 18px">
+      <div class="row" style="gap:4px;align-items:center">
+        <img class="mina" id="minaShop" src="${MINA('shopping')}" style="width:80px;height:80px;margin:-6px 0 -6px -8px"/>
+        <div class="grow hand" style="font-size:24px;line-height:1.05">Prima questi ${SHOP_URGENT}: servono oggi!</div>
+      </div>
+      <div class="row" style="gap:10px;margin-top:14px" id="tiles">${items.filter((i) => i.urgent).slice(0, 3).map((i, k) => `<div class="tile" style="transform:rotate(${[-1.5, 1, -0.5][k]}deg)">${icon(i)}<div style="font:800 12.5px Inter;text-align:center;line-height:1.1;min-height:28px">${i.name}</div><div style="font:700 11.5px Inter;color:var(--muted)">${i.qty}</div><div class="ck ${i.done ? 'on' : ''}">${i.done ? I.check : ''}</div></div>`).join('')}</div>
+      <div class="hand" style="font-size:19px;color:var(--green2);text-align:center;margin-top:12px">+ altri ${SHOP_URGENT - 3} per oggi</div>
+    </div></div>
+    <div class="pad col" style="gap:10px;margin-top:22px">
+      <div class="hand" style="font-size:22px">Il resto della lista</div>
+      ${SHOP.filter((c) => c.items.some((i) => !i.urgent && !i.qb)).slice(0, 3).map((c) => `<div class="acc">${CAT[c.icon].replace('<svg', '<svg class="cat"')}<span class="grow" style="font:800 15px Inter">${c.cat}</span><span style="font:700 12px Inter;color:var(--muted)">${c.items.filter((i) => !i.urgent && !i.qb).length}</span><span style="width:18px;transform:rotate(-90deg)">${I.down}</span></div>`).join('')}
+    </div>
+    <div class="fadecta"></div><div style="position:absolute;left:22px;right:22px;bottom:12px"><div class="btn" style="width:100%;height:50px">${I.check}Conferma ${SHOP_DONE} acquisti</div></div>
+  </div>${tabbar('Spesa')}`,
+};
+
 /* ---------- micro-animazioni (Web Animations API: solo per i video di prova) ---------- */
+const B_ANIMS = `window.anims = {
+    async a1() { // Mina presenta il messaggio
+      const m=document.querySelector('#minaB'), b=document.querySelector('#bubbleB');
+      m.style.opacity=0; b.style.opacity=0; await wait(400);
+      m.style.opacity=1; await m.animate([{transform:'translateY(60px) scale(.6,1.3)'},{transform:'translateY(-10px) scale(1.08,.92)'},{transform:'none'}],{duration:620,easing:'cubic-bezier(.3,1.5,.5,1)'}).finished;
+      b.style.opacity=1; b.style.transformOrigin='0% 80%'; await b.animate([{transform:'scale(.2)',opacity:0},{transform:'scale(1.06)',opacity:1},{transform:'scale(1)'}],{duration:420,easing:'ease-out'}).finished;
+      m.animate([{transform:'rotate(0)'},{transform:'rotate(-5deg)'},{transform:'rotate(5deg)'},{transform:'rotate(0)'}],{duration:700});
+      await wait(1700);
+    },
+    async a2() { // spunta in tessera: rimbalzo, anello che si riempie, Mina festeggia
+      await wait(500);
+      const tiles=[...document.querySelectorAll('#shop .tile .ck')];
+      let n=${SHOP_DONE};
+      for (const ck of tiles.filter(c=>!c.classList.contains('on'))) {
+        ck.classList.add('on'); ck.innerHTML=CHECK; ck.animate([{transform:'scale(.4)'},{transform:'scale(1.25)'},{transform:'scale(1)'}],{duration:380,easing:'cubic-bezier(.3,1.6,.5,1)'});
+        ck.parentElement.animate([{transform:'translateY(0)'},{transform:'translateY(-6px)'},{transform:'none'}],{duration:380});
+        n++; const pct=n/${SHOP_TOTAL}*100; document.querySelector('#ring').style.background='conic-gradient(var(--green) 0 '+pct+'%, #E7E1D2 '+pct+'% 100%)'; document.querySelector('#ringTxt').textContent=n+'/${SHOP_TOTAL}';
+        await wait(450);
+      }
+      const m=document.querySelector('#minaShop'); m.src=MINA_SUCCESS;
+      await m.animate([{transform:'translateY(0) scale(1)'},{transform:'translateY(-22px) scale(.95,1.08)'},{transform:'translateY(0) scale(1.06,.94)'},{transform:'none'}],{duration:620,easing:'ease-out'}).finished;
+      await wait(1400);
+    } };`;
 const ANIMS = {
   A: `window.anims = {
     async a1() { // cambio giorno: la pillola passa a Mer 18 e i pasti scorrono
@@ -374,29 +494,7 @@ const ANIMS = {
       await box.animate([{height:'0px'},{height:'58px'}],{duration:360,easing:'cubic-bezier(.2,.9,.3,1.15)',fill:'forwards'}).finished;
       await wait(1700);
     } };`,
-  B: `window.anims = {
-    async a1() { // Mina presenta il messaggio
-      const m=document.querySelector('#minaB'), b=document.querySelector('#bubbleB');
-      m.style.opacity=0; b.style.opacity=0; await wait(400);
-      m.style.opacity=1; await m.animate([{transform:'translateY(60px) scale(.6,1.3)'},{transform:'translateY(-10px) scale(1.08,.92)'},{transform:'none'}],{duration:620,easing:'cubic-bezier(.3,1.5,.5,1)'}).finished;
-      b.style.opacity=1; b.style.transformOrigin='0% 80%'; await b.animate([{transform:'scale(.2)',opacity:0},{transform:'scale(1.06)',opacity:1},{transform:'scale(1)'}],{duration:420,easing:'ease-out'}).finished;
-      m.animate([{transform:'rotate(0)'},{transform:'rotate(-5deg)'},{transform:'rotate(5deg)'},{transform:'rotate(0)'}],{duration:700});
-      await wait(1700);
-    },
-    async a2() { // spunta in tessera: rimbalzo, anello che si riempie, Mina festeggia
-      await wait(500);
-      const tiles=[...document.querySelectorAll('#shop .tile .ck')];
-      let n=${SHOP_DONE};
-      for (const ck of tiles.filter(c=>!c.classList.contains('on'))) {
-        ck.classList.add('on'); ck.innerHTML=CHECK; ck.animate([{transform:'scale(.4)'},{transform:'scale(1.25)'},{transform:'scale(1)'}],{duration:380,easing:'cubic-bezier(.3,1.6,.5,1)'});
-        ck.parentElement.animate([{transform:'translateY(0)'},{transform:'translateY(-6px)'},{transform:'none'}],{duration:380});
-        n++; const pct=n/${SHOP_TOTAL}*100; document.querySelector('#ring').style.background='conic-gradient(var(--green) 0 '+pct+'%, #E7E1D2 '+pct+'% 100%)'; document.querySelector('#ringTxt').textContent=n+'/${SHOP_TOTAL}';
-        await wait(450);
-      }
-      const m=document.querySelector('#minaShop'); m.src=MINA_SUCCESS;
-      await m.animate([{transform:'translateY(0) scale(1)'},{transform:'translateY(-22px) scale(.95,1.08)'},{transform:'translateY(0) scale(1.06,.94)'},{transform:'none'}],{duration:620,easing:'ease-out'}).finished;
-      await wait(1400);
-    } };`,
+  B: B_ANIMS,
   C: `window.anims = {
     async a1() { // cambio settimana: la pagina dell'agenda si gira
       await wait(500);
@@ -417,6 +515,7 @@ const ANIMS = {
       await clone.animate([{left:(r.left-s.left)+'px',top:(r.top-s.top)+'px',width:'150px',height:'150px',transform:'rotate(3deg) translateY(-14px)'},{left:'0px',top:'0px',width:'390px',height:'330px',transform:'none',borderRadius:'0px'}],{duration:480,easing:'cubic-bezier(.2,.9,.3,1)',fill:'forwards'}).finished;
       await wait(1400);
     } };`,
+  E: B_ANIMS,
   D: `window.anims = {
     async a1() { // cambio giorno: l'indicatore scorre, i pasti entrano sfalsati
       await wait(500);
@@ -448,7 +547,7 @@ const page = (key, c) => {
   const html = `<!doctype html><html lang="it"><head><meta charset="utf-8"/><title>Spesora · Concept ${key} — ${c.title}</title>
 <link rel="stylesheet" href="common.css"/><style>${c.css}
 .wrap{display:flex;gap:40px;padding:40px;}</style></head>
-<body class="${key}"><div class="wrap">${screen('home', c.home())}${screen('week', c.week())}${screen('shop', c.shop())}</div>
+<body class="${key}"><div class="wrap">${screen('home', c.home())}${screen('week', c.week())}${c.weekgrid ? screen('weekgrid', c.weekgrid()) : ''}${screen('shop', c.shop())}</div>
 <script>const wait=(ms)=>new Promise(r=>setTimeout(r,ms));const CHECK=${JSON.stringify(I.check)};const MINA_SUCCESS=${JSON.stringify(MINA('success'))};
 const MEALS18=${JSON.stringify(key === 'A' ? MEALS[18].map((m) => A.mealCard(m)).join('') : '')};const MEALS18D=${JSON.stringify(key === 'D' ? MEALS[18].map((m) => D.mealRow(m)).join('') : '')};
 ${ANIMS[key]}
@@ -459,4 +558,5 @@ page('A', A);
 page('B', B);
 page('C', C);
 page('D', D);
-console.log('Pagine generate: src/concept-A..D.html');
+page('E', E);
+console.log('Pagine generate: src/concept-A..E.html');

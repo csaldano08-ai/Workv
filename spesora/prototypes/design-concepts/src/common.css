@@ -6,7 +6,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: #ddd; }
 body { font-family: Inter, system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
-.screen { width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--bg); display: flex; flex-direction: column; }
+.screen { flex: none; width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--bg); display: flex; flex-direction: column; }
 .status { height: 47px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 32px; font: 600 15px Inter; color: var(--ink); }
 .status .ic { display: flex; gap: 5px; align-items: center; }
 .fadecta { position:absolute; left:0; right:0; bottom:0; height:96px; background: linear-gradient(rgba(0,0,0,0), var(--bg) 45%); }
