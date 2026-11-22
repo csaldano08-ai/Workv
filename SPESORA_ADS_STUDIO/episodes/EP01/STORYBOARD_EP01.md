@@ -1,6 +1,11 @@
 # EP01 — «Ancora non sai cosa mangiare?» (il frigorifero delle 21:00)
 
-Durata obiettivo: 35 s · 1080×1920 · 30 fps · dialoghi in italiano. L'animatic usa fotogrammi chiave 3D + zoom: non è animazione.
+Durata: 35 s · 1080×1920 · 30 fps · dialoghi in italiano. **Animazione continua** (vedi `docs/RIG_E_ANIMAZIONE.md`). Le versioni a pose fisse sono superate.
+
+Azioni principali, in ordine: il protagonista tira la maniglia e apre il frigo (la luce fredda esce), cammina davanti all'apertura, guarda dentro e parla; spinge lo sportello,
+si gira verso la camera (quarta parete), pausa comica; il telefono si illumina e vibra; Mina salta fuori dal telefono con effetto illustrato, atterra dietro il telefono,
+poi fa un balzo sul piano; il protagonista sobbalza; Mina indica lo schermo e la camera ci entra dentro: la registrazione reale dell'app scorre
+(calendario, ricetta, lista della spesa); i due si scambiano le battute; il protagonista guarda il pubblico; cartello finale animato.
 Non si apre col logo: il problema (frigo quasi vuoto) è chiaro entro i primi 3 secondi.
 
 | Id | Tempo | Cosa si vede | Camera | Espressione / posa | Da animare nel passo successivo |

@@ -6,8 +6,8 @@ Non imitare voci famose senza autorizzazione.
 
 | Id | Personaggio | Battuta | Emozione | Velocità | Pause | Durata prevista | File da registrare |
 |---|---|---|---|---|---|---|---|
-| L01 | Protagonista | «Sono le otto e non so ancora cosa cucinare.» | stanco, un po' frustrato, sospiro prima di parlare | lenta | 0.4 s prima; breve pausa dopo «otto» | 4.1 s (0.5–4.6) | `audio/voices/protagonist/EP01_L01_protagonista.wav` |
-| L02 | Protagonista | «Non ditemi che succede solo a me.» | rivolto al pubblico, complice, esasperato | media | pausa comica di ~1.0 s dopo la frase | 2.5 s (5.5–8.0) | `audio/voices/protagonist/EP01_L02_protagonista.wav` |
+| L01 | Protagonista | «Sono le otto e non so ancora cosa cucinare.» | stanco, un po' frustrato, sospiro prima di parlare | lenta | 0.4 s prima; breve pausa dopo «otto» | 2.9 s (2.0–4.9) | `audio/voices/protagonist/EP01_L01_protagonista.wav` |
+| L02 | Protagonista | «Non ditemi che succede solo a me.» | rivolto al pubblico, complice, esasperato | media | pausa comica di ~1.0 s dopo la frase | 2.2 s (6.4–8.6) | `audio/voices/protagonist/EP01_L02_protagonista.wav` |
 | L03 | Mina | «Se ti organizzassi prima, non saremmo qui ogni sera.» | calda, sicura, leggera ironia gentile | media, ritmo chiaro | piccola pausa dopo «prima,» | 3.5 s (12.9–16.4) | `audio/voices/mina/EP01_L03_mina.wav` |
 | L04 | Protagonista | «Quindi domani so già cosa cucinare?» | sollevato, quasi incredulo | media | — | 2.1 s (27.1–29.2) | `audio/voices/protagonist/EP01_L04_protagonista.wav` |
 | L05 | Mina | «Anche dopodomani.» | soddisfatta, sorriso nella voce | media-lenta | — | 1.2 s (29.4–30.6) | `audio/voices/mina/EP01_L05_mina.wav` |

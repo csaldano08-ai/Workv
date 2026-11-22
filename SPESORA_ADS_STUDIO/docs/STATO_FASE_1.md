@@ -1,43 +1,38 @@
-# Stato della fase 1 (animatic EP01)
+# Stato della fase 1
 
-## Strumenti e skill
+## Correzione importante
 
-- **Nessuna skill Blender era disponibile** nell'ambiente, e i workflow allegati (`Workflow_01/02.zip`) sono un motore 2D in Python (skia) per video scientifici: non contengono
-  skill Blender e non sono stati usati. Il video `VID-...WA0019.mp4` allegato è stato usato come riferimento di stile (ambiente 3D + personaggi semplici con faccia 2D).
-- Blender è usato come modulo Python: `bpy` 5.3.0 da PyPI, installato in un ambiente separato (non è nel repository).
+La prima consegna (`episodes/EP01/animatic/`) era fatta di **pose fisse con zoom e tagli**, quindi il movimento andava a scatti: non era lo stile richiesto.
+È **superata**. La versione corrente è un'**animazione continua a 30 fps** (`episodes/EP01/animazione/`), con rig, movimento fluido e facce animate.
 
-## Cosa è stato realizzato
+## Cosa c'è ora
 
-- Protagonista ricalcato dal riferimento del cliente (`scripts/hero.py`, `faces2.py`), 13 espressioni 2D.
-- Mina 3D fedele al design ufficiale, occhi identici all'originale (`scripts/mina.py`, `faces_mina.py`).
-- Cucina 3D di sera con frigorifero apribile e luce interna (`scripts/kitchen.py`).
-- 12 fotogrammi chiave dell'episodio (`scripts/render_ep01.py`) e **animatic muto di 35 s** (`episodes/EP01/animatic/spesora_ep01_animatic.mp4`).
-- Schermate reali dell'app catturate dalla demo (`props/ui/`, `scripts/capture_ui.cjs`).
-- Copione delle voci, piano suoni, registro licenze (vuoto), tracce silenziose segnaposto con i nomi dei file da registrare.
-- Sorgente Blender della cucina con i personaggi: `environments/kitchen/ep01_cucina.blend` (immagini incorporate).
+- `episodes/EP01/animazione/spesora_ep01_animazione_bozza.mp4`: bozza animata di 35 s, 1080×1920, 30 fps (versione pulita).
+- `episodes/EP01/animazione/spesora_ep01_animazione_bozza_con_sottotitoli.mp4`: stessa bozza con sottotitoli provvisori, indicazioni di effetti sonori/musica e timecode.
+- `episodes/EP01/animazione/ep01_cucina_animata.blend`: sorgente Blender (cucina, personaggi con rig, telefono, telecamere, keyframe su ogni fotogramma).
+- Rig e viso animabile: `scripts/rig_hero.py`, `rig_mina.py`, `rig_common.py`, `facekit.py`; animazione: `anim.py`, `ep01_anim.py`; montaggio: `assemble_ep01.py`, `fx2d.py`.
+- Come funziona e come si modifica: `docs/RIG_E_ANIMAZIONE.md`.
 
-## Cosa è stato testato davvero
+## Tempi misurati
 
-- Tutti i render sono veri (Cycles, CPU, 4 core). Tempi misurati:
-  - Mina: 19 immagini (640×800, 480×480, scena 1200×800), 48 campioni: circa 176 s in totale.
-  - EP01: 12 fotogrammi 720×1280, 40 campioni: da 33 s a 59 s per immagine, circa 505 s in totale.
-- **Eevee non ha potuto essere usato**: in questo ambiente non c'è scheda grafica né libreria EGL/Vulkan e Blender si interrompe. Non ho misurato Eevee.
-- Stima (non misurata) per il render finale a 1080×1920 in Cycles CPU: circa 2,25 volte il costo di 720×1280, cioè 75–130 s per fotogramma.
-  35 s a 30 fps sono 1050 fotogrammi: circa 22–38 ore di CPU su questa macchina. Per questo serve Eevee su una macchina con GPU, meno campioni,
-  o un servizio di render. Il tempo definitivo va misurato prima di promettere una consegna.
+- Bake dei keyframe (960 fotogrammi): circa 7 s.
+- Render bozza (Cycles CPU, 4 core, 540×960, 10 campioni, adattivo): circa 5–6,5 s a fotogramma. Tutta la sequenza (960 fotogrammi) ha richiesto circa 1 h 40 min,
+  più circa 14 min per rifare due tratti corretti. Il risultato è rumoroso e a bassa risoluzione: è una bozza.
+- **Render finale non stimato in modo affidabile**: 1080×1920 ha circa 4 volte i pixel e servono molti più campioni. Eevee non gira in questo ambiente (nessuna GPU/EGL).
+  Va misurato su una macchina con GPU prima di promettere una consegna.
 
 ## Problemi noti
 
-- L'animatic non è animazione: sono fotogrammi chiave con zoom e tagli. Mancano i movimenti dei personaggi.
-- Nessun rig con armatura: le pose sono generate da codice (tubi per le braccia). Il rig riutilizzabile è il passo successivo.
-- Il sistema facciale cambia espressione per immagini intere: non ci sono ancora forme di bocca per il labiale italiano né transizioni fra espressioni.
-- La transizione illustrata dell'ingresso di Mina dal telefono non è disegnata (c'è solo il fotogramma di Mina che sbuca).
-- Nelle inquadrature S4b–S4d Mina è la posa 2D ufficiale usata come segnaposto.
-- Scala di Mina e del telefono sono scelte da cartoon, da confermare.
-- La cucina è semplificata (poche geometrie, materiali base): da rifinire.
-- Le battute sono solo sottotitoli provvisori: nessuna voce, nessun effetto, nessuna musica.
+- Rumore e bassa risoluzione (bozza).
+- Le gambe del protagonista sono rigide (pongo): la camminata è un'oscillazione, non un passo vero.
+- Nessun labiale reale: la bocca cambia forma a ritmo irregolare durante il parlato; il labiale vero si fa sulle registrazioni.
+- Il rig è una gerarchia di giunti con IK via codice, non un'armatura Blender con controlli per un animatore.
+- Mina è un libro rigido: l'espressività viene da viso, copertina e braccia, non da deformazioni.
+- Lo schermo del telefono nei primi secondi del tratto 11–12 è ancora sovraesposto.
+- La cucina è semplificata; le luci vanno rifinite.
+- Nessuna voce, nessun effetto, nessuna musica (solo segnaposto). Nessuna licenza da verificare finché non si scelgono gli asset.
 
-## Cosa manca prima del render definitivo
+## Skill e strumenti
 
-Approvazione dell'animatic · rig e controlli · animazione continua · forme della bocca e labiale sulle registrazioni reali · transizione illustrata di Mina ·
-voci, effetti e musica con licenze verificate · rifinitura di cucina e luci · test sulle inquadrature più difficili · misura reale dei tempi di render.
+Nell'ambiente non c'erano skill Blender. I workflow allegati (`Workflow_01/02.zip`) sono un motore 2D Python/skia e non sono stati usati.
+Blender 5.3 è usato come modulo Python (`bpy`) in un ambiente separato (non nel repository). Il video allegato è usato come riferimento di stile.
