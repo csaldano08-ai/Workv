@@ -24,8 +24,9 @@ def pill(d, x, y, t):
     d.text((x + 15, y + 6), t, font=B(22), fill=INK)
 
 
+ref_full = Image.open(REF).convert("RGB")
 W = 1800
-im = Image.new("RGB", (W, 7000), BG)
+im = Image.new("RGB", (W, 7500), BG)
 d = ImageDraw.Draw(im)
 d.rectangle([0, 0, W, 130], fill=GREEN)
 d.text((48, 26), "Mina · concept 3D fedele al design approvato", font=B(54), fill=BG)
@@ -43,6 +44,20 @@ for i, v in enumerate(("fronte", "tre_quarti", "lato")):
     im.paste(t, (i * 600, y))
 pill(d, 16, y + 14, "Modello 3D")
 y += load("turn_fronte", 600).height + 30
+d.text((48, y), "Occhi: identici all'originale · si muove solo l'iride (a sinistra l'originale, a destra il modello 3D)", font=B(30), fill=GREEN)
+y += 46
+eyes = Image.new("RGB", (W, 880), (255, 255, 255))
+for k, (box, name) in enumerate((((80, 620, 340, 840), "expr_neutra"), ((370, 620, 630, 840), "expr_felice"))):
+    a = ref_full.crop(box).resize((450, 381), Image.LANCZOS)
+    b = Image.open(f"{SRC}/M_{name}.png").convert("RGB").crop((105, 70, 375, 290)).resize((450, 367), Image.LANCZOS)
+    eyes.paste(a, (k * 900, 0)); eyes.paste(b, (k * 900 + 450, 0))
+eyes = eyes.crop((0, 0, W, 385))
+im.paste(eyes, (0, y))
+pill(d, 10, y + 10, "Originale")
+pill(d, 460, y + 10, "Modello 3D")
+pill(d, 910, y + 10, "Originale")
+pill(d, 1360, y + 10, "Modello 3D")
+y += 385 + 30
 d.text((48, y), "Espressioni 2D sulla copertina (nessun naso, ciglia esterne, guance pesca)", font=B(30), fill=GREEN)
 y += 46
 for i, (k, lab) in enumerate(EXPR):

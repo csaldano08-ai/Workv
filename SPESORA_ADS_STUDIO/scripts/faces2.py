@@ -182,6 +182,10 @@ def make(name: str):
         f.eye(L, EY, look=(46, 6)); f.eye(R, EY, look=(46, 6))
         f.brow(BL, BY + 4, angle=-12, arch=14); f.brow(BR, BY + 4, angle=12, arch=14)
         f.mouth_line(w=62, dy=10, tilt=-8)
+    elif name == "sguardo_sinistra":
+        f.eye(L, EY, look=(-46, 6)); f.eye(R, EY, look=(-46, 6))
+        f.brow(BL, BY + 4, angle=-12, arch=14); f.brow(BR, BY + 4, angle=12, arch=14)
+        f.mouth_line(w=62, dy=10, tilt=8)
     elif name == "guarda_in_camera":
         f.eye(L, EY, pr=(60, 90), inward=30); f.eye(R, EY, pr=(60, 90), inward=30)
         f.brow(BL, BY - 16, angle=-14, arch=18); f.brow(BR, BY - 16, angle=14, arch=18)

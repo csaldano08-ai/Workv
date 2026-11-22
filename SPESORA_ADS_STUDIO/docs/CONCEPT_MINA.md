@@ -8,6 +8,14 @@ Dorso salvia con fascia chiara sul fronte, copertina avorio con **cerniera sul d
 copertina posteriore, elastico verde scuro vicino al bordo destro, linguette pesca e salvia, segnalibro pesca a due punte sotto il lato
 sinistro, braccia salvia con mani a muffola (pollice incluso), due gambe corte con piedi arrotondati. Nessun naso.
 
+## Occhi (identici all'originale)
+
+Misurati sul volto ingrandito della scheda ufficiale: bianco dell'occhio visibile come anello, iride verde scurissima (circa 70% della larghezza e 77% dell'altezza
+del bianco), **un solo** grande riflesso rotondo in alto a destra, palpebra superiore spessa che si assottiglia, tre ciglia a ventaglio sul lato esterno,
+sopracciglia a mezzaluna, guance ovali pesca piatte, bocca a mezzaluna (neutra) o a D con lingua (felice).
+Si muove solo l'iride, con il suo riflesso, dentro il bianco. Nelle espressioni più interattive cambiano appena palpebra e scala dell'occhio, non le proporzioni.
+Un primo piano di confronto originale/3D è nella tavola `renders/previews/concept_mina/mina_3d.png`.
+
 ## Parti 2D (`scripts/faces_mina.py`)
 
 Faccia e illustrazioni restano 2D, applicate come decal sulla copertina e sul dorso: occhi ovali verde scuro con riflessi chiari e ciglia

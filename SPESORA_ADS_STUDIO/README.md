@@ -5,7 +5,7 @@ Questa cartella è **separata** dal codice dell'app (`spesora/`): non modifica l
 
 ## Stato
 
-Fase attuale: **concept del protagonista, in attesa di approvazione**.
+Fase attuale: **animatic di EP01 pronto per essere valutato** (`episodes/EP01/animatic/spesora_ep01_animatic.mp4`). Stato, tempi misurati e limiti in `docs/STATO_FASE_1.md`.
 Il design scelto è quello **ricalcato dalla scheda di riferimento del cliente** (`scripts/hero.py`, `scripts/faces2.py`).
 Le prime tre varianti A/B/C (`scripts/characters.py`, `renders/previews/concept_protagonista/`) sono superate e restano solo come storico.
 Non è stato prodotto nessun video dell'episodio.
@@ -20,6 +20,9 @@ Struttura prevista (le cartelle vuote sono segnaposto): `characters/`, `environm
   maglietta nera). Tavola in `renders/previews/concept_protagonista_ricalcato/`.
 - `scripts/mina.py` + `scripts/faces_mina.py` + `scripts/render_mina.py` + `scripts/boards_mina.py`: **Mina in 3D** fedele al design
   approvato (libro 3D con cerniera sulla copertina, faccia e illustrazioni 2D). Tavola in `renders/previews/concept_mina/`.
+- `scripts/kitchen.py` + `scripts/render_ep01.py` + `scripts/animatic_ep01.py` + `scripts/capture_ui.cjs`: cucina 3D, fotogrammi chiave dell'episodio,
+  montaggio dell'animatic (sottotitoli provvisori, indicazioni suoni/musica) e cattura delle schermate reali dell'app. Storyboard: `episodes/EP01/STORYBOARD_EP01.md`.
+- `docs/COPIONE_VOCI_EP01.md`, `docs/PIANO_SUONI_EP01.md`, `docs/REGISTRO_LICENZE.md`: copione delle voci, piano suoni, registro licenze (vuoto).
 - `scripts/faces.py` (storico A/B/C): sistema delle facce 2D (13 stati: neutro, felice, sorpreso, confuso, stanco, frustrato, imbarazzato,
   ironico, sguardo laterale, guarda in camera, occhi chiusi, semichiusi, sbadiglio).
 - `scripts/characters.py`: costruzione del protagonista in Blender (3 varianti A/B/C), materiale pongo, faccia come decal

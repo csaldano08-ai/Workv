@@ -48,7 +48,7 @@ def build_phone(screen_png, name="phone"):
     tex.image = bpy.data.images.load(screen_png, check_existing=False)
     nt.links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
     nt.links.new(tex.outputs["Color"], bsdf.inputs["Emission Color"])
-    bsdf.inputs["Emission Strength"].default_value = 0.55
+    bsdf.inputs["Emission Strength"].default_value = 0.18
     bsdf.inputs["Roughness"].default_value = 0.35
     nt.links.new(bsdf.outputs["BSDF"], out.inputs["Surface"])
     me2.materials.append(m)

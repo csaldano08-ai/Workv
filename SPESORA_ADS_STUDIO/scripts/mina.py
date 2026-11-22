@@ -22,10 +22,21 @@ from characters import clay_material, _link, ellipsoid, tube, bez_pts, decal_mat
 from hero import rounded_box  # noqa: E402
 
 TMP = os.environ.get("ADS_TMP", "/tmp/ads_tmp")
+# calibrazione delle illustrazioni 2D per le luci dello studio (stessa logica del colore della copertina); None = disattivata
+CALIB = (0.77, 0.77, 0.80)
+
+
+def _calib(im):
+    if not CALIB:
+        return im
+    from PIL import Image
+    r, g, b, a = im.convert("RGBA").split()
+    r, g, b = (c.point(lambda v, k=k: int(v * k)) for c, k in zip((r, g, b), CALIB))
+    return Image.merge("RGBA", (r, g, b, a))
 
 # colori campionati dalla scheda ufficiale (sRGB 0..1)
-IVORY = (0.90, 0.79, 0.71)
-PAGES = (0.93, 0.86, 0.76)
+IVORY = (0.75, 0.72, 0.69)
+PAGES = (0.78, 0.72, 0.64)
 SPINE = (0.42, 0.50, 0.39)
 SPINE_EDGE = (0.55, 0.62, 0.51)
 ARM = (0.44, 0.53, 0.41)
@@ -155,12 +166,12 @@ def build(name="mina"):
 
     # decal faccia + rametto sulla copertina; rametti sul dorso
     cp = os.path.join(TMP, f"{name}_cover_neutra.png")
-    FM.cover_image("neutra").save(cp)
+    _calib(FM.cover_image("neutra")).save(cp)
     mat = decal_material(f"{name}_facemat", cp)
     face = plane_decal(f"{name}_face", WC, H, mat, cover, (0, -0.0305, 0), (math.radians(90), 0, 0))
     ch["face"] = face
     sp_path = os.path.join(TMP, f"{name}_spine_art.png")
-    FM.spine_image().save(sp_path)
+    _calib(FM.spine_image()).save(sp_path)
     plane_decal(f"{name}_spine_art", D * 0.92, H * 0.98, decal_material(f"{name}_spinemat", sp_path), root,
                 (-W / 2 - 0.0405, 0, CY), (math.radians(90), 0, math.radians(90)))
     pose(ch)
@@ -170,7 +181,7 @@ def build(name="mina"):
 def set_face(ch, expr):
     path = os.path.join(TMP, f"{ch['nm']}_cover_{expr}.png")
     if not os.path.exists(path):
-        FM.cover_image(expr).save(path)
+        _calib(FM.cover_image(expr)).save(path)
     for n in ch["face"].data.materials[0].node_tree.nodes:
         if n.type == "TEX_IMAGE":
             n.image = bpy.data.images.load(path, check_existing=False)
