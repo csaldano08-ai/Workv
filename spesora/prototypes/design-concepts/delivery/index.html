@@ -1,0 +1,126 @@
+<title>Spesora: quattro concept di design</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: intestazione, indice dei concept, una sezione per concept (3 telefoni + 2 animazioni), confronto, proposta. */
+  :root { --bg:#F6F3EA; --surface:#FFFDF8; --ink:#24332C; --soft:#5B6861; --green:#386E55; --greenSoft:#E3ECE5; --peach:#E6A46D; --peachSoft:#F8E6D5; --line:#E2DDCF;
+    --display:'Fraunces', Georgia, serif; --body:'Inter', -apple-system, 'Segoe UI', sans-serif; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#18211C; --surface:#202B25; --ink:#EEF1EC; --soft:#B3BDB6; --green:#8CC0A3; --greenSoft:#26372D; --peach:#E9B080; --peachSoft:#3A2D22; --line:#33413A; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#18211C; --surface:#202B25; --ink:#EEF1EC; --soft:#B3BDB6; --green:#8CC0A3; --greenSoft:#26372D; --peach:#E9B080; --peachSoft:#3A2D22; --line:#33413A; color-scheme:dark; }
+  body { background:var(--bg); color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.5; }
+  .wrap { max-width:1180px; margin:0 auto; padding-block:40px 72px; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); display:grid; gap:48px; }
+  .intro { display:grid; gap:12px; max-width:70ch; }
+  .eyebrow { font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--green); }
+  h1 { font-family:var(--display); font-weight:600; font-size:clamp(32px,5vw,48px); line-height:1.08; margin:0; text-wrap:balance; }
+  h2 { font-family:var(--display); font-weight:600; font-size:28px; margin:0; line-height:1.15; }
+  h3 { font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--soft); margin:0; }
+  p { margin:0; }
+  .intro p { color:var(--soft); }
+  .note { background:var(--greenSoft); border-radius:14px; padding:12px 16px; font-size:15px; }
+  nav.toc { display:flex; flex-wrap:wrap; gap:8px; }
+  nav.toc a { text-decoration:none; color:var(--ink); background:var(--surface); border:2px solid var(--ink); border-radius:99px; padding:6px 14px; font-weight:600; font-size:14px; }
+  .concept { display:grid; gap:18px; }
+  .chead { display:flex; gap:14px; align-items:flex-start; }
+  .chead p { color:var(--soft); max-width:70ch; margin-top:4px; }
+  .badge { flex:none; width:46px; height:46px; border-radius:50%; background:var(--green); color:var(--bg); display:grid; place-items:center; font-family:var(--display); font-size:24px; font-weight:600; border:2px solid var(--ink); }
+  .phones { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+  .anims { display:grid; grid-template-columns:repeat(2,minmax(0,220px)); gap:18px; }
+  figure { margin:0; display:grid; gap:8px; min-width:0; }
+  figure img, figure video { width:100%; max-width:100%; aspect-ratio:390/844; object-fit:cover; border-radius:26px; border:3px solid var(--ink); background:#F6F3EA; display:block; }
+  figcaption { font-size:14px; color:var(--soft); }
+  .phones figcaption { font-weight:600; color:var(--ink); }
+  @media (max-width:640px) { .phones { grid-template-columns:1fr 1fr; } .anims { grid-template-columns:1fr 1fr; } }
+  .table { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; min-width:520px; font-variant-numeric:tabular-nums; }
+  th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:center; font-size:15px; }
+  th[scope=row] { text-align:left; font-weight:500; }
+  thead th { font-family:var(--display); font-size:18px; font-weight:600; }
+  .dots[data-v="5"] { background:var(--green); color:var(--bg); } .dots[data-v="4"] { background:var(--greenSoft); } .dots[data-v="2"], .dots[data-v="1"] { background:var(--peachSoft); }
+  .dots { display:inline-grid; place-items:center; width:30px; height:30px; border-radius:50%; font-weight:600; }
+  tr.tot td, tr.tot th { font-weight:700; border-bottom:none; }
+  .pick { background:var(--surface); border:2px solid var(--ink); border-radius:22px; padding:20px; display:grid; gap:10px; }
+  .cols { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+  .cols div { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:16px; }
+  .cols h4 { margin:0 0 6px; font-size:16px; }
+  .cols ul { margin:0; padding-left:18px; display:grid; gap:4px; font-size:15px; color:var(--soft); }
+  code { font-family:ui-monospace,Menlo,monospace; font-size:13px; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:1px 6px; overflow-wrap:anywhere; }
+</style>
+<div class="wrap">
+  <header class="intro">
+    <span class="eyebrow">Spesora · Design evolution, fase 1</span>
+    <h1>Quattro direzioni per il redesign</h1>
+    <p>Home, Settimana e Spesa per ogni concept, con i contenuti veri della demo: le stesse ricette e immagini, le quantità del catalogo, Mina originale e la navigazione attuale. Sotto, due micro-animazioni per concept.</p>
+    <p class="note">Sono prototipi: l'app non è stata toccata. Scegli una direzione (anche mescolando) e la porto nell'app nella fase 2.</p>
+    <nav class="toc" aria-label="Concept"><a href="#cA">A · Editoriale Botanico</a><a href="#cB">B · Mina Interattiva</a><a href="#cC">C · Ricettario a Schede</a><a href="#cD">D · Moderno Illustrato</a><a href="#confronto">Confronto</a></nav>
+  </header>
+  <section class="concept" id="cA">
+  <header class="chead"><span class="badge">A</span><div><h2>Editoriale Botanico</h2><p>Premium e illustrato: ricetta grande, titoli con grazie, rametti botanici, contorni sottili. La spesa si riassume in una riga.</p></div></header>
+  <div class="phones">
+    <figure><img src="img/concept-A_home.jpg" alt="Concept A, Home" loading="lazy"/><figcaption>Home</figcaption></figure>
+    <figure><img src="img/concept-A_week.jpg" alt="Concept A, Settimana" loading="lazy"/><figcaption>Settimana</figcaption></figure>
+    <figure><img src="img/concept-A_shop.jpg" alt="Concept A, Spesa" loading="lazy"/><figcaption>Spesa</figcaption></figure>
+  </div>
+  <h3>Micro-animazioni</h3>
+  <div class="anims">
+    <figure><video src="video/concept-A_a1.mp4" muted loop playsinline autoplay controls preload="metadata"></video><figcaption>Cambio giorno: la pillola passa a mercoledì e i pasti scorrono</figcaption></figure>
+    <figure><video src="video/concept-A_a2.mp4" muted loop playsinline autoplay controls preload="metadata"></video><figcaption>Il "perché serve" si apre sotto il prodotto</figcaption></figure>
+  </div>
+</section><section class="concept" id="cB">
+  <header class="chead"><span class="badge">B</span><div><h2>Mina Interattiva</h2><p>Mina fa qualcosa: tiene la lista, presenta il piatto, riassume il giorno, festeggia. Messaggi di una riga, tessere per ciò che serve oggi.</p></div></header>
+  <div class="phones">
+    <figure><img src="img/concept-B_home.jpg" alt="Concept B, Home" loading="lazy"/><figcaption>Home</figcaption></figure>
+    <figure><img src="img/concept-B_week.jpg" alt="Concept B, Settimana" loading="lazy"/><figcaption>Settimana</figcaption></figure>
+    <figure><img src="img/concept-B_shop.jpg" alt="Concept B, Spesa" loading="lazy"/><figcaption>Spesa</figcaption></figure>
+  </div>
+  <h3>Micro-animazioni</h3>
+  <div class="anims">
+    <figure><video src="video/concept-B_a1.mp4" muted loop playsinline autoplay controls preload="metadata"></video><figcaption>Mina entra con un rimbalzo e la nuvoletta si apre</figcaption></figure>
+    <figure><video src="video/concept-B_a2.mp4" muted loop playsinline autoplay controls preload="metadata"></video><figcaption>Spunte con rimbalzo, anello che si riempie, Mina festeggia</figcaption></figure>
+  </div>
+</section><section class="concept" id="cC">
+  <header class="chead"><span class="badge">C</span><div><h2>Ricettario a Schede</h2><p>Agenda e taccuino: pagine ad anelli, linguette, foto incollate, scritte a mano. La settimana intera su una pagina, 7 giorni × 3 miniature.</p></div></header>
+  <div class="phones">
+    <figure><img src="img/concept-C_home.jpg" alt="Concept C, Home" loading="lazy"/><figcaption>Home</figcaption></figure>
+    <figure><img src="img/concept-C_week.jpg" alt="Concept C, Settimana" loading="lazy"/><figcaption>Settimana</figcaption></figure>
+    <figure><img src="img/concept-C_shop.jpg" alt="Concept C, Spesa" loading="lazy"/><figcaption>Spesa</figcaption></figure>
+  </div>
+  <h3>Micro-animazioni</h3>
+  <div class="anims">
+    <figure><video src="video/concept-C_a1.mp4" muted loop playsinline autoplay controls preload="metadata"></video><figcaption>La pagina dell'agenda gira al cambio settimana</figcaption></figure>
+    <figure><video src="video/concept-C_a2.mp4" muted loop playsinline autoplay controls preload="metadata"></video><figcaption>La foto della ricetta si solleva e si apre</figcaption></figure>
+  </div>
+</section><section class="concept" id="cD">
+  <header class="chead"><span class="badge">D</span><div><h2>Moderno Illustrato</h2><p>Pulito e funzionale: grandi foto, poche parole, superfici bianche con ombre morbide, verde deciso. Il più facile da realizzare.</p></div></header>
+  <div class="phones">
+    <figure><img src="img/concept-D_home.jpg" alt="Concept D, Home" loading="lazy"/><figcaption>Home</figcaption></figure>
+    <figure><img src="img/concept-D_week.jpg" alt="Concept D, Settimana" loading="lazy"/><figcaption>Settimana</figcaption></figure>
+    <figure><img src="img/concept-D_shop.jpg" alt="Concept D, Spesa" loading="lazy"/><figcaption>Spesa</figcaption></figure>
+  </div>
+  <h3>Micro-animazioni</h3>
+  <div class="anims">
+    <figure><video src="video/concept-D_a1.mp4" muted loop playsinline autoplay controls preload="metadata"></video><figcaption>L'indicatore del giorno scorre e i pasti entrano sfalsati</figcaption></figure>
+    <figure><video src="video/concept-D_a2.mp4" muted loop playsinline autoplay controls preload="metadata"></video><figcaption>Spunta: casella piena, testo barrato, contatori aggiornati</figcaption></figure>
+  </div>
+</section>
+  <section id="confronto" class="concept">
+    <h2>Confronto</h2>
+    <p class="intro" style="color:var(--soft)">Voto da 1 a 5, dato da me guardando le anteprime e pensando a iPhone e all'implementazione in React Native.</p>
+    <div class="table"><table><thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead><tbody><tr><th scope="row">Bellezza visiva</th><td><span class="dots" data-v="5">5</span></td><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="4">4</span></td></tr><tr><th scope="row">Originalità</th><td><span class="dots" data-v="3">3</span></td><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="5">5</span></td><td><span class="dots" data-v="2">2</span></td></tr><tr><th scope="row">Coerenza con Spesora</th><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="5">5</span></td><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="3">3</span></td></tr><tr><th scope="row">Leggibilità su iPhone</th><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="3">3</span></td><td><span class="dots" data-v="5">5</span></td></tr><tr><th scope="row">Chiarezza del calendario</th><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="5">5</span></td><td><span class="dots" data-v="4">4</span></td></tr><tr><th scope="row">Semplicità della spesa</th><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="5">5</span></td><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="4">4</span></td></tr><tr><th scope="row">Uso di Mina</th><td><span class="dots" data-v="2">2</span></td><td><span class="dots" data-v="5">5</span></td><td><span class="dots" data-v="3">3</span></td><td><span class="dots" data-v="2">2</span></td></tr><tr><th scope="row">Facilità di implementazione</th><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="3">3</span></td><td><span class="dots" data-v="3">3</span></td><td><span class="dots" data-v="5">5</span></td></tr><tr><th scope="row">Fluidità e prestazioni</th><td><span class="dots" data-v="5">5</span></td><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="4">4</span></td><td><span class="dots" data-v="5">5</span></td></tr><tr class="tot"><th scope="row">Totale</th><td>35</td><td>38</td><td>35</td><td>34</td></tr></tbody></table></div>
+    <div class="pick">
+      <h2>La mia preferenza: B</h2>
+      <p>Risolve meglio i problemi che hai indicato. Mina fa qualcosa invece di stare accanto a un fumetto: tiene la lista, presenta il piatto, riassume il giorno, festeggia. I messaggi sono di una riga e nella spesa si vede subito cosa serve oggi. Continua lo stile dell'intro con contorni, forme morbide e rimbalzi.</p>
+      <p>Da C prenderei la settimana intera (7 giorni × 3 miniature) come seconda vista del calendario. La scelta resta tua.</p>
+    </div>
+    <div class="cols">
+      <div><h4>Home</h4><ul><li>Mina con un messaggio di una riga e un pulsante</li><li>Il prossimo pasto come protagonista</li><li>Gli altri pasti del giorno in piccolo</li><li>I dettagli a un tocco</li></ul></div>
+      <div><h4>Settimana</h4><ul><li>Barra dei 7 giorni, giorni di spesa marcati</li><li>Miniature e colore per colazione, pranzo e cena</li><li>Stesse azioni di oggi, dietro ⋯</li><li>Animazione al cambio giorno</li></ul></div>
+      <div><h4>Spesa</h4><ul><li>Quale spesa, quando, quanti prodotti</li><li>"Serve oggi" in evidenza, quantità a destra</li><li>Il perché dietro ⓘ</li><li>La conferma resta l'unica via verso la dispensa</li></ul></div>
+      <div><h4>Dispensa</h4><ul><li>Disponibile, da verificare, potrebbe non bastare</li><li>"Stimato" sempre scritto, mai mostrato come certo</li><li>Spiegazioni in una scheda informativa</li></ul></div>
+    </div>
+    <div class="cols">
+      <div><h4>Rischi tecnici</h4><ul><li>Font personalizzati da includere (licenza OFL, 20–80 KB) e da provare con caratteri grandi</li><li>Calendario compatto: aree di tocco minime da 44 pt</li><li>Mina: dosarla e rispettare "Riduci movimento"</li><li>Allergeni, prodotti da verificare, prezzi e privacy mai nascosti dietro un gesto</li></ul></div>
+      <div><h4>Cosa non ho aggiunto</h4><ul><li>Scansione dei prodotti, profilo e aggiunta manuale alla lista: comparivano nelle immagini di riferimento ma non sono funzioni di Spesora</li><li>Tab bar invariata (Oggi, Settimana, Spesa, Dispensa, Ricette)</li></ul></div>
+      <div><h4>File</h4><ul><li>Ramo <code>claude/spesora-design-concepts</code></li><li><code>spesora/prototypes/design-concepts/</code></li><li>Anteprime in <code>out/previews/</code></li><li>Video in <code>out/animations/</code></li></ul></div>
+    </div>
+  </section>
+</div>

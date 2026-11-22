@@ -1,0 +1,24 @@
+/* Base comune ai quattro concept: schermo iPhone 390×844, barra di stato, contenuti reali di Spesora. */
+@font-face { font-family: 'Fraunces'; src: url('../fonts/Fraunces.woff2') format('woff2'); font-weight: 100 900; }
+@font-face { font-family: 'Nunito'; src: url('../fonts/Nunito.woff2') format('woff2'); font-weight: 100 900; }
+@font-face { font-family: 'Caveat'; src: url('../fonts/Caveat.woff2') format('woff2'); font-weight: 100 900; }
+@font-face { font-family: 'Manrope'; src: url('../fonts/Manrope.woff2') format('woff2'); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #ddd; }
+body { font-family: Inter, system-ui, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+.screen { width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--bg); display: flex; flex-direction: column; }
+.status { height: 47px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 32px; font: 600 15px Inter; color: var(--ink); }
+.status .ic { display: flex; gap: 5px; align-items: center; }
+.fadecta { position:absolute; left:0; right:0; bottom:0; height:96px; background: linear-gradient(rgba(0,0,0,0), var(--bg) 45%); }
+.status .ic i { display: block; background: var(--ink); border-radius: 2px; }
+.body { flex: 1; overflow: hidden; position: relative; }
+.tabbar { height: 84px; flex: none; display: flex; justify-content: space-around; padding: 8px 6px 26px; background: var(--tabbg); border-top: var(--tabborder); }
+.tab { display: flex; flex-direction: column; align-items: center; gap: 3px; font: 600 10.5px Inter; color: var(--muted); width: 66px; }
+.tab svg { width: 24px; height: 24px; }
+.tab.on { color: var(--green); }
+img.dish { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mina { display: block; object-fit: contain; }
+.row { display: flex; align-items: center; }
+.col { display: flex; flex-direction: column; }
+.grow { flex: 1; min-width: 0; }
+.ico { width: 18px; height: 18px; flex: none; }
