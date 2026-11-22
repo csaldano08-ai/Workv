@@ -1,11 +1,12 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 import { useApp } from '../src/features/app/AppProvider';
-import { colors, radius, space } from '../src/theme/tokens';
+import { colors, space } from '../src/theme/tokens';
 import { MinaMascot } from '../src/ui/mascot/Mina';
 import { Floaty, OrnamentDivider, PetalBloom } from '../src/ui/Decor';
 import { Ingredient } from '../src/ui/illustrations/Ingredient';
 import { Reveal } from '../src/ui/Reveal';
+import { StickyNote } from '../src/ui/notebook';
 import { Button } from '../src/ui/Button';
 import { Logo } from '../src/ui/Logo';
 import { Screen } from '../src/ui/Screen';
@@ -51,12 +52,12 @@ export default function Welcome() {
           </View>
         </Reveal>
         <Reveal index={1}>
-          <View style={styles.speech} accessible accessibilityLabel="Mina: Ciao, sono Mina! Ti aiuto a decidere cosa cucinare, cosa comprare e quando. Tu pensi solo a goderti il pasto.">
-            <Text variant="heading">Ciao, sono Mina!</Text>
+          <StickyNote style={styles.speech}>
+            <Text variant="hand" center accessibilityLabel="Mina: Ciao, sono Mina!">Ciao, sono Mina!</Text>
             <Text variant="body" color={colors.inkSoft}>
               Ti aiuto a decidere cosa cucinare, cosa comprare e quando. Tu pensi solo a goderti il pasto.
             </Text>
-          </View>
+          </StickyNote>
         </Reveal>
         <Reveal index={2} style={{ gap: space.sm }}>
           <Logo size={44} />
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
   ingTR: { position: 'absolute', right: 10, top: 30 },
   ingBL: { position: 'absolute', left: 22, bottom: 10 },
   ingBR: { position: 'absolute', right: 26, bottom: 4 },
-  speech: { backgroundColor: colors.paper, borderRadius: radius.lg, borderWidth: 2, borderColor: colors.ink, padding: space.lg, gap: space.xs, alignItems: 'center' },
+  speech: { padding: space.lg, alignItems: 'center' },
   slogan: { marginTop: space.sm },
   points: { gap: space.lg, marginTop: space.md },
   point: { flexDirection: 'row', gap: space.md, alignItems: 'flex-start' },

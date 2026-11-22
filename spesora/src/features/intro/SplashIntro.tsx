@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text as RNText, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Svg, { Circle, Ellipse, G, Line, Path } from 'react-native-svg';
+import Svg, { Circle, Ellipse, G, Line, Path, Rect } from 'react-native-svg';
 import { colors, radius, space } from '../../theme/tokens';
 import { LogoMarkSvg } from '../../ui/illustrations/LogoMarkSvg';
 import { illo } from '../../ui/illustrations/palette';
@@ -69,7 +69,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
     <Pressable style={StyleSheet.absoluteFill} onPress={skip} accessibilityRole="button" accessibilityLabel="Animazione iniziale di Spesora. Tocca per saltarla.">
       {/* livello 1: fondo (con il foro finale), splash e marchio */}
       <Svg style={StyleSheet.absoluteFill} viewBox={`0 0 ${INTRO_W} ${H}`} preserveAspectRatio="none" pointerEvents="none">
-        <Path d={f.holeD ? `${f.bgD}${f.holeD}` : f.bgD} fill={colors.ivory} fillRule="evenodd" />
+        <Path d={f.holeD ? `${f.bgD}${f.holeD}` : f.bgD} fill={colors.desk} fillRule="evenodd" />
         {f.fall ? (
           <G>
             <Ellipse cx={f.fall.shadow.cx} cy={f.fall.shadow.cy} rx={f.fall.shadow.rx} ry={f.fall.shadow.rx * 0.16} fill={illo.ink} opacity={f.fall.shadow.alpha} />
@@ -91,6 +91,15 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
             {f.bloom.peach ? <Path d={f.bloom.peach} fill={illo.peach} stroke={illo.ink} strokeWidth={LW} strokeLinejoin="round" /> : null}
             {f.bloom.core ? <Circle cx={f.bloom.core.cx} cy={f.bloom.core.cy} r={f.bloom.core.r} fill={illo.ivory} stroke={illo.ink} strokeWidth={LW} /> : null}
             {f.bloom.highlight ? <Ellipse {...f.bloom.highlight} fill="#FFFFFF" opacity={0.25} /> : null}
+          </G>
+        ) : null}
+        {f.page ? (
+          <G opacity={f.contentAlpha} transform={`translate(${f.page.cx} ${f.page.cy + f.page.drop}) scale(${f.page.scale}) translate(${-f.page.cx} ${-f.page.cy})`}>
+            <Rect x={f.page.cx - f.page.w / 2 + 14} y={f.page.cy - f.page.h / 2 + 14} width={f.page.w} height={f.page.h} rx={40} fill={colors.shadowPaper} stroke={illo.ink} strokeWidth={6} />
+            <Rect x={f.page.cx - f.page.w / 2} y={f.page.cy - f.page.h / 2} width={f.page.w} height={f.page.h} rx={40} fill={colors.paper} stroke={illo.ink} strokeWidth={6} />
+            {Array.from({ length: 6 }, (_, i) => (
+              <Rect key={i} x={f.page!.cx - f.page!.w / 2 + 90 + (i * (f.page!.w - 180)) / 5 - 14} y={f.page!.cy - f.page!.h / 2 - 34} width={28} height={64} rx={15} fill="#D8B24F" stroke={illo.ink} strokeWidth={5} />
+            ))}
           </G>
         ) : null}
         <G opacity={f.contentAlpha}>

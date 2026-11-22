@@ -52,8 +52,8 @@ export function SectionTitle({ children, action }: { children: string; action?: 
   return (
     <View style={styles.section}>
       <LeafMark />
-      <Text variant="caption" color={colors.inkSoft} accessibilityRole="header" style={styles.sectionText}>
-        {children.toUpperCase()}
+      <Text variant="handSmall" color={colors.ink} accessibilityRole="header" style={styles.sectionText}>
+        {children}
       </Text>
       {action}
     </View>

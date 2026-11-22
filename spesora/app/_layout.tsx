@@ -7,6 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { parseRouteFromNotification } from '../src/core/notifications/routing';
 import { AppProvider, useApp } from '../src/features/app/AppProvider';
 import { colors, space } from '../src/theme/tokens';
+import { useFonts } from 'expo-font';
 import { CelebrationHost } from '../src/ui/CelebrationHost';
 import { IntroGate } from '../src/features/intro/IntroGate';
 import { LoaderHost } from '../src/ui/loader/LoaderHost';
@@ -73,10 +74,10 @@ function Shell() {
       <Stack
         screenOptions={{
           headerTintColor: colors.green,
-          headerStyle: { backgroundColor: colors.ivory },
+          headerStyle: { backgroundColor: colors.desk },
           headerTitleStyle: { color: colors.ink },
           headerShadowVisible: false,
-          contentStyle: { backgroundColor: colors.ivory },
+          contentStyle: { backgroundColor: colors.desk },
           headerBackButtonDisplayMode: 'minimal',
           animation: 'slide_from_right',
           animationDuration: 220,
@@ -108,6 +109,9 @@ function Shell() {
 }
 
 export default function RootLayout() {
+  // Caveat: la scrittura a mano delle annotazioni. Se non si carica, l'app usa il carattere di sistema.
+  const [fontsLoaded, fontError] = useFonts({ Caveat: require('../assets/fonts/Caveat-Bold.ttf') });
+  if (!fontsLoaded && !fontError) return <View style={styles.center} />;
   return (
     <SafeAreaProvider>
       <StatusBar style="dark" />
@@ -119,5 +123,5 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
-  center: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: space.lg, padding: space.xl, backgroundColor: colors.ivory },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: space.lg, padding: space.xl, backgroundColor: colors.desk },
 });

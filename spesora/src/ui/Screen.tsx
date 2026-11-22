@@ -32,7 +32,7 @@ export function Screen({ children, edges = ['top'], footer, scroll = true, conte
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.ivory },
+  safe: { flex: 1, backgroundColor: colors.desk },
   content: { padding: space.lg, paddingBottom: space.xxl },
   inner: { width: '100%', maxWidth: 640, alignSelf: 'center', gap: space.lg },
   fill: { flex: 1 },
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     paddingBottom: space.lg,
     borderTopWidth: outline.width,
     borderTopColor: outline.color,
-    backgroundColor: colors.ivory,
+    backgroundColor: colors.desk,
     gap: space.sm,
   },
 });

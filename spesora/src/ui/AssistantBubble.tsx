@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import type { MinaPose } from './mascot/minaSvg';
 import { MinaMascot } from './mascot/Mina';
 import { colors, outline, radius, space } from '../theme/tokens';
+import { StickyNote } from './notebook';
 import { Text } from './Text';
 
 /**
@@ -26,14 +27,13 @@ export function AssistantBubble({
   return (
     <View style={styles.row} accessible accessibilityLabel={`Mina: ${title ? `${title}. ` : ''}${text}`}>
       <MinaMascot pose={pose} size={size} animated={animated} />
-      <View style={styles.bubble}>
-        <View style={styles.tail} />
-        {title ? <Text variant="heading">{title}</Text> : null}
-        <Text variant="body" color={colors.ink}>
+      <StickyNote style={styles.bubble}>
+        {title ? <Text variant="hand">{title}</Text> : null}
+        <Text variant={title ? 'small' : 'body'} color={title ? colors.inkSoft : colors.ink}>
           {text}
         </Text>
         {children}
-      </View>
+      </StickyNote>
     </View>
   );
 }
@@ -54,18 +54,8 @@ export function MinaNote({ pose = 'neutral', title, text, size = 64 }: { pose?: 
 }
 
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', alignItems: 'flex-end', gap: space.sm },
-  bubble: {
-    flex: 1,
-    backgroundColor: colors.paper,
-    borderRadius: radius.lg,
-    borderBottomLeftRadius: radius.sm,
-    borderWidth: outline.width,
-    borderColor: outline.color,
-    padding: space.md,
-    gap: space.xs,
-    marginBottom: space.md,
-  },
+  row: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
+  bubble: { flex: 1 },
   tail: {
     position: 'absolute',
     left: -8,

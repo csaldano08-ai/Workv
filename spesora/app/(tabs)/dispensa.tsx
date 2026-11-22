@@ -1,24 +1,25 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { diffDays, formatShortDate } from '../../src/core/domain/dates';
 import { EXPIRY_PRIORITY_DAYS } from '../../src/core/domain/planner';
 import { Alert } from '../../src/ui/dialog';
 import { formatQtyWithUnit } from '../../src/core/domain/quantity';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { t } from '../../src/i18n/it';
-import { colors, radius, space } from '../../src/theme/tokens';
+import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
+import { CategoryIcon } from '../../src/ui/illustrations/CategoryIcon';
+import { MinaMascot } from '../../src/ui/mascot/Mina';
+import { LinkRow, NotebookPage, StickyNote } from '../../src/ui/notebook';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
-import { AssistantBubble } from '../../src/ui/AssistantBubble';
 import { Button } from '../../src/ui/Button';
-import { EMPTY } from '../../src/i18n/assistant';
-import { Card } from '../../src/ui/Card';
-import { Divider, Row, SectionTitle } from '../../src/ui/Row';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
 
 export default function Pantry() {
   const { snapshot, run } = useApp();
+  const [info, setInfo] = useState(false);
   if (!snapshot?.profile) return <Screen>{null}</Screen>;
   const items = [...snapshot.outlook].sort((a, b) =>
     a.insufficient === b.insufficient ? catalogIndex.ingredient(a.ingredientId).name.localeCompare(catalogIndex.ingredient(b.ingredientId).name) : a.insufficient ? -1 : 1,
@@ -42,6 +43,15 @@ export default function Pantry() {
       ],
     );
 
+  const stateOf = (i: (typeof quantified)[number]): PantryState => {
+    if (i.available <= 0) return 'out';
+    if (i.insufficient) return 'short';
+    if (i.estimated) return 'check';
+    return 'ok';
+  };
+  const counts = { ok: 0, check: 0, short: 0, out: 0 } as Record<PantryState, number>;
+  for (const i of quantified) counts[stateOf(i)]++;
+
   return (
     <Screen>
       <View style={styles.header}>
@@ -50,78 +60,151 @@ export default function Pantry() {
         </Text>
         <Button compact label="Aggiungi" icon="add" onPress={() => router.push('/aggiungi')} />
       </View>
-      <Text variant="small" color={colors.inkSoft}>
-        Quantità confermate da spesa e correzioni; i pasti programmati non sottraggono nulla finché non confermi di averli cucinati.
-      </Text>
+
+      {quantified.length > 0 ? (
+        <View style={styles.legend} accessibilityLabel={`${counts.ok} disponibili, ${counts.check} da verificare, ${counts.short} potrebbero non bastare, ${counts.out} esauriti`}>
+          {(['ok', 'check', 'short', 'out'] as const).map((k) => (counts[k] > 0 ? <StatePill key={k} state={k} count={counts[k]} /> : null))}
+        </View>
+      ) : null}
 
       {warnings.length > 0 ? (
-        <AssistantBubble pose="missing" size={96} title="Potrebbe non bastare" text={warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name).join(', ') + ': la quantità mancante è già nella lista della spesa.'} />
+        <View style={styles.scene}>
+          <MinaMascot pose="missing" size={92} style={styles.sceneMina} />
+          <StickyNote style={styles.flex}>
+            <Text variant="hand">Potrebbe non bastare</Text>
+            <Text variant="small" color={colors.inkSoft}>
+              {`${warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name).join(', ')}: il resto è già nella lista della spesa.`}
+            </Text>
+          </StickyNote>
+        </View>
       ) : null}
 
       {expiring.length > 0 ? (
-        <AssistantBubble
-          pose="thinking"
-          size={96}
-          title="In scadenza a breve"
-          text={`${expiring.map((e) => `${catalogIndex.ingredient(e.ingredientId).name} (${formatShortDate(e.expiryDate!)})`).join(', ')}: non sono ancora previsti in un pasto.`}
-        >
-          <Button kind="secondary" compact icon="calendar-outline" label="Usali nei prossimi pasti" onPress={prioritize} />
-        </AssistantBubble>
+        <View style={styles.scene}>
+          <MinaMascot pose="thinking" size={92} style={styles.sceneMina} />
+          <StickyNote tone="sage" style={styles.flex}>
+            <Text variant="hand">In scadenza a breve</Text>
+            <Text variant="small" color={colors.inkSoft}>
+              {`${expiring.map((e) => `${catalogIndex.ingredient(e.ingredientId).name} (${formatShortDate(e.expiryDate!)})`).join(', ')}: non ancora previsti in un pasto.`}
+            </Text>
+            <Button kind="secondary" compact icon="calendar-outline" label="Usali nei prossimi pasti" onPress={prioritize} style={styles.noteBtn} />
+          </StickyNote>
+        </View>
       ) : null}
 
       {quantified.length === 0 ? (
-        <AssistantBubble pose="empty" text={`${EMPTY.noPantry} Puoi anche aggiungere ciò che hai già.`} />
+        <View style={styles.scene}>
+          <MinaMascot pose="empty" size={110} animated style={styles.sceneMina} />
+          <StickyNote style={styles.flex}>
+            <Text variant="hand">La dispensa è vuota</Text>
+            <Text variant="small" color={colors.inkSoft}>
+              Quando confermi una spesa, i prodotti compaiono qui. Puoi anche aggiungere ciò che hai già.
+            </Text>
+          </StickyNote>
+        </View>
       ) : (
-        <Card style={styles.list}>
+        <NotebookPage rings={5} contentStyle={styles.page}>
           {quantified.map((i, idx) => {
             const ing = catalogIndex.ingredient(i.ingredientId);
+            const st = stateOf(i);
             const parts = [
-              i.available > 0 ? `${formatQtyWithUnit(i.available, ing.unit)}${i.estimated ? ' (stima)' : ''}` : 'esaurito',
-              i.reserved > 0 ? `previsti ${formatQtyWithUnit(i.reserved, ing.unit)} nei prossimi pasti` : null,
+              i.available > 0 ? `${formatQtyWithUnit(i.available, ing.unit)}${i.estimated ? ' (stima)' : ''}` : null,
+              i.reserved > 0 ? `previsti ${formatQtyWithUnit(i.reserved, ing.unit)}` : null,
               i.expiryDate ? `scade ${formatShortDate(i.expiryDate)}` : null,
             ].filter(Boolean);
             return (
-              <View key={i.ingredientId}>
-                {idx > 0 ? <Divider /> : null}
-                <Row
-                  title={ing.name}
-                  subtitle={parts.join(' · ')}
-                  onPress={() => router.push(`/voce/${i.ingredientId}`)}
-                  right={i.insufficient ? <Ionicons name="alert-circle-outline" size={20} color={colors.peachInk} accessibilityLabel="Potrebbe non bastare" /> : null}
-                />
-              </View>
+              <Pressable
+                key={i.ingredientId}
+                accessibilityRole="button"
+                accessibilityLabel={`${ing.name}: ${STATE[st].label}. ${parts.join(', ')}`}
+                onPress={() => router.push(`/voce/${i.ingredientId}`)}
+                style={({ pressed }) => [styles.item, idx > 0 && styles.itemLine, pressed && { opacity: 0.7 }]}
+              >
+                <CategoryIcon category={ing.category} size={30} />
+                <View style={styles.flex}>
+                  <Text variant="body">{ing.name}</Text>
+                  {parts.length ? (
+                    <Text variant="small" color={colors.inkSoft}>
+                      {parts.join(' · ')}
+                    </Text>
+                  ) : null}
+                </View>
+                <StatePill state={st} />
+                <Ionicons name="chevron-forward" size={16} color={colors.inkSoft} />
+              </Pressable>
             );
           })}
-        </Card>
+        </NotebookPage>
       )}
 
-      <SectionTitle>Basi in casa (quanto basta)</SectionTitle>
-      <Card style={styles.list}>
+      <Text variant="hand" style={styles.section}>
+        Basi in casa
+      </Text>
+      <View style={styles.staples}>
         {staples.length === 0 ? (
           <Text variant="small" color={colors.inkSoft}>
             Sale, olio, spezie e simili: segnali come presenti per non vederli in lista.
           </Text>
         ) : (
-          staples.map((id, idx) => (
-            <View key={id}>
-              {idx > 0 ? <Divider /> : null}
-              <Row title={catalogIndex.ingredient(id).name} subtitle="Presente" onPress={() => router.push(`/voce/${id}`)} />
-            </View>
+          staples.map((id) => (
+            <Pressable key={id} accessibilityRole="button" accessibilityLabel={`${catalogIndex.ingredient(id).name}, presente`} onPress={() => router.push(`/voce/${id}`)} style={styles.staple}>
+              <Ionicons name="checkmark" size={14} color={colors.green} />
+              <Text variant="small">{catalogIndex.ingredient(id).name}</Text>
+            </Pressable>
           ))
         )}
-      </Card>
-      <View style={styles.note}>
-        <Text variant="small" color={colors.inkSoft}>
-          {t('estimate.note')}
-        </Text>
       </View>
+
+      <LinkRow label="Come funziona la dispensa" onPress={() => setInfo((v) => !v)}>
+        <Ionicons name="information-circle-outline" size={20} color={colors.green} />
+        <Text variant="heading" color={colors.green} style={styles.flex}>
+          Come funziona la dispensa
+        </Text>
+        <Ionicons name={info ? 'chevron-up' : 'chevron-down'} size={18} color={colors.green} />
+      </LinkRow>
+      {info ? (
+        <View style={styles.infoBox}>
+          <Text variant="small">Le quantità arrivano dalle spese confermate e dalle tue correzioni. I pasti programmati non sottraggono nulla finché non confermi di averli cucinati.</Text>
+          <Text variant="small">{t('estimate.note')}</Text>
+        </View>
+      ) : null}
     </Screen>
+  );
+}
+
+type PantryState = 'ok' | 'check' | 'short' | 'out';
+const STATE: Record<PantryState, { label: string; bg: string; fg: string; icon: keyof typeof Ionicons.glyphMap }> = {
+  ok: { label: 'Disponibile', bg: colors.greenSoft, fg: colors.greenDark, icon: 'checkmark-circle' },
+  check: { label: 'Da verificare (stima)', bg: '#F3E3A6', fg: '#6B5410', icon: 'help-circle' },
+  short: { label: 'Potrebbe non bastare', bg: colors.peachSoft, fg: colors.peachInk, icon: 'alert-circle' },
+  out: { label: 'Esaurito', bg: colors.tab, fg: colors.inkSoft, icon: 'remove-circle' },
+};
+
+function StatePill({ state, count }: { state: PantryState; count?: number }) {
+  const s = STATE[state];
+  return (
+    <View style={[styles.pill, { backgroundColor: s.bg }]}>
+      <Ionicons name={s.icon} size={14} color={s.fg} />
+      <Text variant="caption" color={s.fg}>
+        {count !== undefined ? `${count} · ${s.label.replace(' (stima)', '')}` : s.label.replace(' (stima)', '')}
+      </Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   flex: { flex: 1 },
-  list: { gap: 0, paddingVertical: space.xs },
-  note: { padding: space.sm, borderRadius: radius.md },
+  legend: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
+  pill: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 9, paddingVertical: 4, borderRadius: radius.pill, borderWidth: 1.5, borderColor: colors.ink },
+  scene: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
+  sceneMina: { marginLeft: -space.sm },
+  noteBtn: { alignSelf: 'flex-start', marginTop: space.sm },
+  page: { paddingHorizontal: space.md, gap: 0 },
+  item: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: TOUCH + 8, paddingVertical: space.sm },
+  itemLine: { borderTopWidth: 1.5, borderStyle: 'dashed', borderTopColor: 'rgba(36,51,44,0.22)' },
+  section: { marginTop: space.sm },
+  staples: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
+  staple: { flexDirection: 'row', alignItems: 'center', gap: 4, minHeight: TOUCH - 8, paddingHorizontal: space.md, borderRadius: radius.pill, borderWidth: 1.5, borderColor: colors.ink, backgroundColor: colors.white },
+  infoBox: { gap: space.sm, padding: space.md, borderRadius: radius.md, backgroundColor: colors.paper, borderWidth: 1.5, borderColor: colors.ink },
 });

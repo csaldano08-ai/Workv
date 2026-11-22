@@ -1,32 +1,39 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
+import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Alert } from '../../src/ui/dialog';
-import { diffDays, formatLongDate, minutesToHHMM, rangeDays, weekdayOf, weekdayShort } from '../../src/core/domain/dates';
-import type { PlannedMeal } from '../../src/core/domain/types';
+import { diffDays, formatLongDate, minutesToHHMM, rangeDays, weekdayOf, weekdayShort, capitalize } from '../../src/core/domain/dates';
+import type { IsoDate, PlannedMeal } from '../../src/core/domain/types';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
+import type { AppSnapshot } from '../../src/features/app/SpesoraService';
 import { useMealActions } from '../../src/features/meals/useMealActions';
 import { MEAL_LABELS } from '../../src/i18n/labels';
 import { t } from '../../src/i18n/it';
-import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
+import { colors, mealTone, radius, space, TOUCH } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
+import { HandLabel, NotebookPage, PaperTabs, StickyNote, TapedPhoto } from '../../src/ui/notebook';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
+import { Reveal } from '../../src/ui/Reveal';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
+
+type View_ = 'giorno' | 'settimana';
 
 export default function Week() {
   const { snapshot, run } = useApp();
   const actions = useMealActions();
+  const [view, setView] = useState<View_>('giorno');
+  const [picked, setPicked] = useState<IsoDate | null>(null);
   if (!snapshot?.profile || !snapshot.plan) return <Screen>{null}</Screen>;
   const snap = snapshot;
   const plan = snapshot.plan;
   const days = rangeDays(plan.startDate, diffDays(plan.startDate, plan.endDate) + 1);
-  const tripDates = new Set(snap.shopping.trips.map((tr) => tr.date));
-  const toCook = snap.meals.filter((m) => m.status === 'planned').length;
-  const tripCount = tripDates.size;
+  const selected = picked && days.includes(picked) ? picked : days.includes(snap.today) ? snap.today : days[0];
+  const tripDates = new Set(snap.shopping.trips.filter((tr) => tr.lines.length > 0).map((tr) => tr.date));
 
   const regenerate = () =>
     Alert.alert(
@@ -41,130 +48,239 @@ export default function Week() {
   return (
     <Screen>
       <View style={styles.header}>
-        <MinaMascot pose="calendar" size={104} animated />
-        <View style={styles.flex}>
-          <Text variant="title" accessibilityRole="header">
-            La tua settimana
-          </Text>
-          <Text variant="small" color={colors.inkSoft}>
-            {`${toCook} ${toCook === 1 ? 'pasto da cucinare' : 'pasti da cucinare'} · ${tripCount} ${tripCount === 1 ? 'spesa' : 'spese'}`}
-          </Text>
-        </View>
+        <Text variant="title" accessibilityRole="header" style={styles.flex}>
+          La tua settimana
+        </Text>
+        <Pressable accessibilityRole="button" accessibilityLabel={t('action.regenerate')} onPress={regenerate} style={styles.iconBtn} hitSlop={6}>
+          <Ionicons name="refresh-outline" size={24} color={colors.green} />
+        </Pressable>
       </View>
-      <Text variant="small" color={colors.inkSoft}>
-        {`Dal ${formatLongDate(plan.startDate)} al ${formatLongDate(plan.endDate)}. Tocca un pasto per la ricetta, tieni premuto per le altre azioni.`}
-      </Text>
+      <PaperTabs
+        tabs={[
+          { key: 'giorno', label: 'Giorno' },
+          { key: 'settimana', label: 'Settimana' },
+        ]}
+        value={view}
+        onChange={setView}
+      />
       {snap.issues.length > 0 ? <Notice tone="warning" title={`${snap.issues.length} pasti senza ricetta`} text={snap.issues[0].message} /> : null}
 
-      {days.map((date) => {
-        const isToday = date === snap.today;
-        const isPast = date < snap.today;
-        const meals = snap.meals.filter((m) => m.date === date);
-        const shopping = tripDates.has(date);
-        return (
-          <View key={date} style={[styles.day, shopping && styles.dayShopping, isToday && styles.dayToday, isPast && styles.dayPast]}>
-            <View style={[styles.dateTab, isToday && { backgroundColor: colors.green }]}>
-              <Text variant="caption" color={isToday ? colors.white : colors.inkSoft}>
-                {weekdayShort(weekdayOf(date)).toUpperCase()}
-              </Text>
-              <Text variant="title" color={isToday ? colors.white : colors.ink}>
-                {String(Number(date.slice(8)))}
-              </Text>
-            </View>
-            <View style={styles.dayBody}>
-              {isToday || shopping ? (
-                <View style={styles.badges}>
-                  {isToday ? <Badge text="Oggi" bg={colors.greenSoft} fg={colors.greenDark} /> : null}
-                  {shopping ? <Badge text="Giorno di spesa" bg={colors.peachSoft} fg={colors.peachInk} icon="basket-outline" onPress={() => router.push(`/spesa?trip=${date}`)} /> : null}
-                </View>
-              ) : null}
-              {meals.length === 0 ? (
-                <Text variant="small" color={colors.inkSoft}>
-                  Nessun pasto programmato
-                </Text>
-              ) : (
-                meals.map((m) => <MealLine key={m.id} meal={m} onMenu={() => actions.openMenu(m)} />)
-              )}
-            </View>
-          </View>
-        );
-      })}
-      <Button kind="secondary" icon="refresh-outline" label={t('action.regenerate')} onPress={regenerate} />
+      {view === 'giorno' ? (
+        <DayView snap={snap} days={days} selected={selected} onSelect={setPicked} tripDates={tripDates} onMenu={actions.openMenu} />
+      ) : (
+        <WeekGrid
+          snap={snap}
+          days={days}
+          tripDates={tripDates}
+          onOpenDay={(d) => {
+            setPicked(d);
+            setView('giorno');
+          }}
+        />
+      )}
+
       <Button kind="ghost" icon="wallet-outline" label="Rendi questa settimana più economica" onPress={() => router.push('/economica')} />
       {actions.sheet}
     </Screen>
   );
 }
 
-function MealLine({ meal, onMenu }: { meal: PlannedMeal; onMenu: () => void }) {
+/** Vista "Giorno": linguette dei giorni, riassunto di Mina, schede dei pasti. */
+function DayView({ snap, days, selected, onSelect, tripDates, onMenu }: { snap: AppSnapshot; days: IsoDate[]; selected: IsoDate; onSelect: (d: IsoDate) => void; tripDates: Set<string>; onMenu: (m: PlannedMeal) => void }) {
+  const meals = snap.meals.filter((m) => m.date === selected);
+  const toCook = meals.filter((m) => m.status === 'planned');
+  const shopping = tripDates.has(selected);
+  const last = toCook[toCook.length - 1];
+  const dayName = capitalize(formatLongDate(selected).split(' ')[0]);
+  const summary =
+    meals.length === 0
+      ? 'Niente in programma'
+      : toCook.length === 0
+        ? 'Giornata completata'
+        : `${dayName}: ${toCook.length} ${toCook.length === 1 ? 'pasto' : 'pasti'}${shopping ? ' e la spesa' : ''}`;
+  return (
+    <>
+      <View style={styles.dayTabs} accessibilityRole="tablist">
+        {days.map((d) => {
+          const on = d === selected;
+          return (
+            <Pressable
+              key={d}
+              accessibilityRole="tab"
+              accessibilityState={{ selected: on }}
+              accessibilityLabel={`${formatLongDate(d)}${d === snap.today ? ', oggi' : ''}${tripDates.has(d) ? ', giorno di spesa' : ''}`}
+              onPress={() => onSelect(d)}
+              style={[styles.dtab, on && styles.dtabOn, d === snap.today && !on && styles.dtabToday]}
+            >
+              <Text variant="caption" color={on ? colors.greenSoft : colors.inkSoft}>
+                {weekdayShort(weekdayOf(d))}
+              </Text>
+              <Text variant="heading" color={on ? colors.white : colors.ink} style={styles.dnum}>
+                {String(Number(d.slice(8)))}
+              </Text>
+              {tripDates.has(d) ? (
+                <View style={styles.shopDot}>
+                  <Ionicons name="basket" size={10} color={colors.ink} />
+                </View>
+              ) : null}
+            </Pressable>
+          );
+        })}
+      </View>
+
+      <View style={styles.scene}>
+        <MinaMascot pose={toCook.length === 0 && meals.length > 0 ? 'success' : 'calendar'} size={92} style={styles.sceneMina} />
+        <StickyNote style={styles.flex}>
+          <Text variant="hand">{summary}</Text>
+          {last ? (
+            <Text variant="small" color={colors.inkSoft}>
+              {`Ultimo pasto alle ${minutesToHHMM(last.timeMinutes)}`}
+            </Text>
+          ) : null}
+          {shopping ? <Button kind="peach" compact icon="basket-outline" label="Lista della spesa" onPress={() => router.push(`/spesa?trip=${selected}`)} style={styles.noteBtn} /> : null}
+        </StickyNote>
+      </View>
+
+      {meals.length === 0 ? (
+        <Text variant="small" color={colors.inkSoft}>
+          Nessun pasto programmato per questo giorno.
+        </Text>
+      ) : (
+        <View style={styles.cards}>
+          {meals.map((m, i) => (
+            <Reveal key={`${selected}-${m.id}`} index={i}>
+              <MealCard meal={m} index={i} onMenu={() => onMenu(m)} />
+            </Reveal>
+          ))}
+        </View>
+      )}
+    </>
+  );
+}
+
+function MealCard({ meal, index, onMenu }: { meal: PlannedMeal; index: number; onMenu: () => void }) {
   const recipe = catalogIndex.recipe(meal.recipeId);
   const done = meal.status !== 'planned';
-  const statusIcon = meal.status === 'cooked' ? 'checkmark-circle' : meal.status === 'planned' ? null : 'remove-circle-outline';
+  const statusText = meal.status === 'cooked' ? 'cucinato' : meal.status === 'planned' ? null : 'non cucinato';
   return (
-    <View style={styles.mealRow}>
+    <View style={[styles.card, done && styles.cardDone]}>
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel={`${MEAL_LABELS[meal.mealType]}: ${recipe?.name ?? ''}${done ? ', completato' : ''}`}
+        accessibilityLabel={`${MEAL_LABELS[meal.mealType]} alle ${minutesToHHMM(meal.timeMinutes)}: ${recipe?.name ?? ''}${statusText ? `, ${statusText}` : ''}`}
         accessibilityHint="Apre la ricetta. Tieni premuto per altre azioni."
         onPress={() => router.push(`/ricetta/${meal.recipeId}?mealId=${encodeURIComponent(meal.id)}`)}
         onLongPress={done ? undefined : onMenu}
-        style={({ pressed }) => [styles.mealMain, pressed && { opacity: 0.7 }]}
+        style={({ pressed }) => [styles.cardMain, pressed && { opacity: 0.75 }]}
       >
-        {recipe ? <RecipeImage variant="thumb" recipe={recipe} style={styles.thumb} rounded={8} /> : null}
-        <View style={styles.mealText}>
-        <Text variant="caption" color={colors.inkSoft}>
-          {`${MEAL_LABELS[meal.mealType].toUpperCase()} · ${minutesToHHMM(meal.timeMinutes)}${recipe ? ` · ${recipe.totalMinutes} MIN` : ''}`}
-        </Text>
-        <View style={styles.nameRow}>
-          {statusIcon ? <Ionicons name={statusIcon} size={16} color={meal.status === 'cooked' ? colors.green : colors.inkSoft} /> : null}
-          <Text variant="body" color={done ? colors.inkSoft : colors.ink} style={[styles.flex, done && styles.strike]}>
+        {recipe ? (
+          <TapedPhoto tilt={index % 2 ? 2 : -2}>
+            <RecipeImage variant="thumb" recipe={recipe} rounded={0} aspectRatio={1} style={styles.thumb} />
+          </TapedPhoto>
+        ) : null}
+        <View style={styles.cardText}>
+          <HandLabel text={`${MEAL_LABELS[meal.mealType].toLowerCase()} ${minutesToHHMM(meal.timeMinutes)}`} bg={mealTone[meal.mealType]} />
+          <Text variant="heading" color={done ? colors.inkSoft : colors.ink} style={done && styles.strike}>
             {recipe?.name ?? 'Ricetta non trovata'}
           </Text>
-        </View>
+          <Text variant="caption" color={colors.inkSoft}>
+            {statusText ? statusText.toUpperCase() : recipe ? `${recipe.totalMinutes} MIN` : ''}
+          </Text>
         </View>
       </Pressable>
       {!done ? (
         <Pressable accessibilityRole="button" accessibilityLabel={`Azioni per ${recipe?.name ?? 'pasto'}`} onPress={onMenu} style={styles.more} hitSlop={4}>
           <Ionicons name="ellipsis-horizontal" size={20} color={colors.green} />
         </Pressable>
-      ) : null}
+      ) : (
+        <Ionicons name={meal.status === 'cooked' ? 'checkmark-circle' : 'remove-circle-outline'} size={22} color={meal.status === 'cooked' ? colors.green : colors.inkSoft} style={styles.doneIcon} />
+      )}
     </View>
   );
 }
 
-function Badge({ text, bg, fg, icon, onPress }: { text: string; bg: string; fg: string; icon?: keyof typeof Ionicons.glyphMap; onPress?: () => void }) {
-  const inner = (
-    <View style={[styles.badge, { backgroundColor: bg }]}>
-      {icon ? <Ionicons name={icon} size={14} color={fg} /> : null}
-      <Text variant="caption" color={fg}>
-        {text}
-      </Text>
-    </View>
-  );
-  if (!onPress) return inner;
+/** Vista "Settimana": l'agenda con 7 giorni × pasti in miniatura. Toccando un giorno si apre la vista Giorno. */
+function WeekGrid({ snap, days, tripDates, onOpenDay }: { snap: AppSnapshot; days: IsoDate[]; tripDates: Set<string>; onOpenDay: (d: IsoDate) => void }) {
   return (
-    <Pressable accessibilityRole="button" accessibilityLabel={`${text}: apri la lista`} onPress={onPress} hitSlop={8}>
-      {inner}
-    </Pressable>
+    <NotebookPage rings={6} contentStyle={styles.gridPage}>
+      <Text variant="hand" center>
+        {`${Number(days[0].slice(8))} – ${formatLongDate(days[days.length - 1]).split(' ').slice(1).join(' ')}`}
+      </Text>
+      {days.map((d) => {
+        const meals = snap.meals.filter((m) => m.date === d);
+        const isToday = d === snap.today;
+        return (
+          <Pressable
+            key={d}
+            accessibilityRole="button"
+            accessibilityLabel={`${formatLongDate(d)}: ${meals.map((m) => catalogIndex.recipe(m.recipeId)?.name).join(', ')}${tripDates.has(d) ? '. Giorno di spesa' : ''}`}
+            onPress={() => onOpenDay(d)}
+            style={({ pressed }) => [styles.gridRow, isToday && styles.gridToday, pressed && { opacity: 0.7 }]}
+          >
+            <View style={styles.gridDay}>
+              <Text variant="caption" color={colors.inkSoft}>
+                {weekdayShort(weekdayOf(d))}
+              </Text>
+              <Text variant="heading">{String(Number(d.slice(8)))}</Text>
+            </View>
+            <View style={styles.gridThumbs}>
+              {meals.map((m) => {
+                const r = catalogIndex.recipe(m.recipeId);
+                return (
+                  <View key={m.id} style={[styles.gridThumb, m.status !== 'planned' && { opacity: 0.5 }]}>
+                    {r ? <RecipeImage variant="thumb" recipe={r} rounded={0} aspectRatio={1} /> : null}
+                    <View style={[styles.gridDot, { backgroundColor: mealTone[m.mealType] }]} />
+                  </View>
+                );
+              })}
+            </View>
+            {tripDates.has(d) ? <HandLabel text="spesa" bg={colors.peachSoft} /> : null}
+          </Pressable>
+        );
+      })}
+      <View style={styles.legend}>
+        {(['colazione', 'pranzo', 'cena'] as const).map((k) => (
+          <View key={k} style={styles.legendItem}>
+            <View style={[styles.legendDot, { backgroundColor: mealTone[k] }]} />
+            <Text variant="caption" color={colors.inkSoft}>
+              {MEAL_LABELS[k]}
+            </Text>
+          </View>
+        ))}
+      </View>
+    </NotebookPage>
   );
 }
 
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', gap: space.md },
-  day: { flexDirection: 'row', gap: space.md, backgroundColor: colors.paper, borderRadius: radius.lg, borderWidth: 2, borderColor: colors.ink, padding: space.md },
-  dayToday: { borderBottomWidth: 5, backgroundColor: colors.paper },
-  dayPast: { opacity: 0.75 },
-  dateTab: { width: 54, alignItems: 'center', paddingVertical: space.sm, borderRadius: radius.md, backgroundColor: colors.ivory, alignSelf: 'flex-start', borderWidth: 2, borderColor: colors.ink },
-  dayBody: { flex: 1, gap: space.sm },
-  badges: { flexDirection: 'row', gap: space.xs, flexWrap: 'wrap' },
-  badge: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: space.sm, paddingVertical: 4, borderRadius: radius.pill, borderWidth: 1.5, borderColor: colors.ink },
-  mealRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
-  mealMain: { flex: 1, minHeight: TOUCH, flexDirection: 'row', alignItems: 'center', gap: space.sm },
-  mealText: { flex: 1, gap: 2 },
-  thumb: { width: 52, aspectRatio: 4 / 3 },
-  dayShopping: { borderLeftWidth: 5, borderLeftColor: colors.peach },
-  nameRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
-  more: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center' },
   flex: { flex: 1 },
+  iconBtn: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center' },
+  dayTabs: { flexDirection: 'row', gap: 5, marginTop: space.sm },
+  dtab: { flex: 1, minHeight: 58, borderRadius: 12, borderWidth: 2, borderColor: colors.ink, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center' },
+  dtabOn: { backgroundColor: colors.green, transform: [{ translateY: -3 }], borderBottomWidth: 5 },
+  dtabToday: { backgroundColor: colors.greenSoft },
+  dnum: { fontWeight: '800', fontSize: 18 },
+  shopDot: { position: 'absolute', top: -9, right: -5, width: 19, height: 19, borderRadius: 10, backgroundColor: colors.peach, borderWidth: 2, borderColor: colors.ink, alignItems: 'center', justifyContent: 'center' },
+  scene: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.sm },
+  sceneMina: { marginLeft: -space.sm },
+  noteBtn: { alignSelf: 'flex-start', marginTop: space.sm },
+  cards: { gap: space.md },
+  card: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.white, borderWidth: 2, borderColor: colors.ink, borderRadius: radius.md + 2, paddingLeft: space.md, paddingVertical: space.md, gap: space.xs },
+  cardDone: { backgroundColor: colors.paper },
+  cardMain: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: space.md, minHeight: TOUCH },
+  thumb: { width: 64 },
+  cardText: { flex: 1, gap: 4 },
+  more: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center' },
+  doneIcon: { marginRight: space.md },
   strike: { textDecorationLine: 'line-through' },
+  gridPage: { paddingHorizontal: 0, paddingBottom: space.sm, gap: 0 },
+  gridRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.md, paddingVertical: space.sm, borderTopWidth: 1.5, borderStyle: 'dashed', borderTopColor: 'rgba(36,51,44,0.25)', minHeight: TOUCH + 12 },
+  gridToday: { backgroundColor: 'rgba(201,218,195,0.55)' },
+  gridDay: { width: 36, alignItems: 'center' },
+  gridThumbs: { flex: 1, flexDirection: 'row', gap: 6 },
+  gridThumb: { width: 46, height: 46, borderRadius: 11, overflow: 'hidden', borderWidth: 1.8, borderColor: colors.ink },
+  gridDot: { position: 'absolute', left: 2, top: 2, width: 12, height: 12, borderRadius: 6, borderWidth: 1.5, borderColor: colors.ink },
+  legend: { flexDirection: 'row', justifyContent: 'center', gap: space.lg, paddingTop: space.sm },
+  legendItem: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  legendDot: { width: 12, height: 12, borderRadius: 6, borderWidth: 1.5, borderColor: colors.ink },
 });

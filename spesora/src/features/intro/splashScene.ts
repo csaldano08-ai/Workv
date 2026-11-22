@@ -30,6 +30,8 @@ export interface SplashFrame {
   bloom: { green: string; peach: string | null; core: { cx: number; cy: number; r: number } | null; highlight: { cx: number; cy: number; rx: number; ry: number } | null } | null;
   morph: { d: string; strokeWidth: number } | null;
   mark: { cx: number; cy: number; size: number; parts: MarkParts; scaleX: number; scaleY: number } | null;
+  /** Pagina del ricettario (stile B + C) che arriva sotto il logo. */
+  page: { cx: number; cy: number; w: number; h: number; scale: number; drop: number } | null;
   letters: { dy: number; sx: number; sy: number; a: number }[];
   minaPop: number;
   contentAlpha: number;
@@ -56,7 +58,7 @@ export function splashFrame(t: number, H: number, target?: { x: number; y: numbe
   const CX = INTRO_W / 2;
   const CY = H * 0.47;
   const T = target ?? { x: 330, y: H * 0.427 };
-  const out: SplashFrame = { holeD: null, wave: null, bgD: rectD(0, 0, INTRO_W, H), fall: null, drops: [], bloom: null, morph: null, mark: null, letters: [], minaPop: 0, contentAlpha: 1, done: t >= INTRO_DURATION };
+  const out: SplashFrame = { holeD: null, wave: null, bgD: rectD(0, 0, INTRO_W, H), fall: null, drops: [], bloom: null, morph: null, mark: null, page: null, letters: [], minaPop: 0, contentAlpha: 1, done: t >= INTRO_DURATION };
 
   /* 1 — caduta */
   if (t < TI) {
@@ -152,6 +154,8 @@ export function splashFrame(t: number, H: number, target?: { x: number; y: numbe
       out.letters.push({ dy: (1 - ease.inQuad(fr)) * -260, sx: (1 + w) * (1 + settle), sy: (1 - w) * (1 - settle), a: 1 });
     }
     out.minaPop = spring(t - 4.75, 15, 6);
+    const pg = spring(t - 4.05, 13, 6);
+    if (pg > 0.001) out.page = { cx: INTRO_W / 2, cy: T.y, w: 920, h: 330, scale: pg, drop: (1 - Math.min(1, pg)) * -120 };
   }
 
   /* 6 — onda verde che apre la schermata vera, sotto l'intro */

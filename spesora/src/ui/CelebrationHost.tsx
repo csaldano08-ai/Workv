@@ -26,7 +26,7 @@ export function CelebrationHost() {
         <Pressable accessibilityRole="alert" accessibilityLabel={`Mina: ${current.title}. ${current.text}`} onPress={() => setCurrent(null)} style={styles.card}>
           <MinaMascot pose={current.pose ?? 'success'} size={104} animated style={styles.mina} />
           <View style={styles.text}>
-            <Text variant="heading">{current.title}</Text>
+            <Text variant="hand">{current.title}</Text>
             <Text variant="small" color={colors.inkSoft}>
               {current.text}
             </Text>
@@ -43,8 +43,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: space.sm,
-    backgroundColor: colors.paper,
+    backgroundColor: colors.peachSoft,
     borderRadius: radius.lg,
+    borderTopLeftRadius: 6,
+    transform: [{ rotate: '-1deg' }],
     borderWidth: outline.width,
     borderBottomWidth: outline.width + 2,
     borderColor: outline.color,

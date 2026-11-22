@@ -4,6 +4,7 @@ import Svg, { Circle, Path } from 'react-native-svg';
 import { colors, space } from '../../theme/tokens';
 import { INGREDIENT_KINDS, Ingredient } from '../illustrations/Ingredient';
 import { illo } from '../illustrations/palette';
+import { NotebookPage } from '../notebook';
 import { Text } from '../Text';
 import { useReducedMotion } from '../useReducedMotion';
 import { minLoaderMs, setLoaderHandler, type LoaderText } from './loaderBus';
@@ -93,6 +94,7 @@ export function LoaderHost() {
   const shrink = v.gather.interpolate({ inputRange: [0, 1], outputRange: [1, 0] });
   return (
     <Animated.View style={[StyleSheet.absoluteFill, styles.overlay, { opacity: v.fade }]} accessibilityViewIsModal accessibilityLiveRegion="polite" accessible accessibilityLabel={`${gathering && text.done ? text.done : text.title}${text.subtitle ? `. ${text.subtitle}` : ''}`}>
+      <NotebookPage rings={6} style={styles.pageWrap} contentStyle={styles.pageInner}>
       <View style={styles.stage}>
         {/* scie del vortice durante la riunione */}
         <Animated.View
@@ -148,7 +150,7 @@ export function LoaderHost() {
           </Svg>
         </Animated.View>
       </View>
-      <Text variant="title" center>
+      <Text variant="hand" center>
         {gathering && text.done ? text.done : text.title}
       </Text>
       {text.subtitle && !gathering ? (
@@ -156,13 +158,16 @@ export function LoaderHost() {
           {text.subtitle}
         </Text>
       ) : null}
+      </NotebookPage>
     </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
-  overlay: { backgroundColor: colors.ivory, alignItems: 'center', justifyContent: 'center', gap: space.md, padding: space.xl, zIndex: 50 },
-  stage: { width: STAGE, height: STAGE, marginBottom: space.lg },
+  overlay: { backgroundColor: colors.desk, alignItems: 'center', justifyContent: 'center', gap: space.md, padding: space.xl, zIndex: 50 },
+  stage: { width: STAGE, height: STAGE, marginBottom: space.xs },
+  pageWrap: { width: '100%', maxWidth: 360 },
+  pageInner: { alignItems: 'center', paddingBottom: space.xl },
   fill: { position: 'absolute', left: 0, top: 0, width: STAGE, height: STAGE },
   item: { position: 'absolute', left: STAGE / 2, top: STAGE / 2 },
   plate: { position: 'absolute', left: STAGE / 2 - 48, top: STAGE / 2 - 48 },

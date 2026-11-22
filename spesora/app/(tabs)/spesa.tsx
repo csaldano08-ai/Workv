@@ -3,26 +3,23 @@ import { useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { Alert } from '../../src/ui/dialog';
-import { capitalize, formatLongDate, formatShortDate, weekdayOf, weekdayShort } from '../../src/core/domain/dates';
+import { formatLongDate, weekdayOf, weekdayShort } from '../../src/core/domain/dates';
 import { formatQtyWithUnit, parseUserQty, toMilli } from '../../src/core/domain/quantity';
 import { tripCost } from '../../src/core/domain/cost';
 import { formatCents } from '../../src/core/domain/prices';
-import type { ShoppingLine, ShoppingTripPlan } from '../../src/core/domain/shopping';
-import { SHOPPING_CATEGORIES } from '../../src/core/domain/types';
+import { WARN_BEFORE_FIRST, type ShoppingLine, type ShoppingTripPlan } from '../../src/core/domain/shopping';
+import { SHOPPING_CATEGORIES, type ShoppingCategory } from '../../src/core/domain/types';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { checkKey } from '../../src/features/app/SpesoraService';
 import { CATEGORY_LABELS } from '../../src/i18n/labels';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { CheckBox } from '../../src/ui/CheckBox';
-import { HeaderDecor } from '../../src/ui/Decor';
 import { celebrate } from '../../src/ui/celebration';
-import { AssistantBubble } from '../../src/ui/AssistantBubble';
 import { Button } from '../../src/ui/Button';
-import { EMPTY, shoppingDay } from '../../src/i18n/assistant';
-import { Card } from '../../src/ui/Card';
-import { Chip, ChipGroup } from '../../src/ui/Chip';
-import { Notice } from '../../src/ui/Notice';
-import { SectionTitle } from '../../src/ui/Row';
+import { EMPTY } from '../../src/i18n/assistant';
+import { CategoryIcon } from '../../src/ui/illustrations/CategoryIcon';
+import { MinaMascot } from '../../src/ui/mascot/Mina';
+import { LinkRow, NotebookPage, PaperTabs, ProgressRing, StickyNote } from '../../src/ui/notebook';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
 
@@ -37,72 +34,75 @@ export default function Shopping() {
   const selected = choice && choice.forTrip === trip ? choice.key : null;
   const setSelected = (key: string) => setChoice({ forTrip: trip, key });
   const fromParam = trip ? (trips.find((tr) => tr.date === trip && !tr.isInitial) ?? trips.find((tr) => tr.date === trip)) : undefined;
+  const [showCovered, setShowCovered] = useState(false);
 
   if (!snapshot?.profile) return <Screen>{null}</Screen>;
   const current = trips.find((tr) => tripKey(tr) === selected) ?? fromParam ?? trips[0];
+  const checkedCount = current ? current.lines.filter((l) => snapshot.checks.get(checkKey(current.date, l.ingredientId))).length : 0;
+  const nextOther = current ? trips.find((tr) => tr !== current && tr.date > current.date) : undefined;
 
   return (
-    <Screen
-      footer={current ? <ConfirmBar trip={current} /> : undefined}
-    >
+    <Screen footer={current ? <ConfirmBar trip={current} /> : undefined}>
       <View style={styles.titleRow}>
-        <Text variant="title" accessibilityRole="header" style={styles.flex}>
-          Spesa
-        </Text>
-        <HeaderDecor kinds={['carrot', 'tomato', 'leaf']} />
+        <View style={styles.flex}>
+          <Text variant="title" accessibilityRole="header">
+            La spesa
+          </Text>
+          {current ? (
+            <Text variant="small" color={colors.inkSoft}>
+              {`${current.date === snapshot.today ? 'oggi, ' : ''}${formatLongDate(current.date)}${nextOther ? ` · poi ${formatLongDate(nextOther.date)}` : ''}`}
+            </Text>
+          ) : null}
+        </View>
+        {current ? <ProgressRing done={checkedCount} total={current.lines.length} /> : null}
       </View>
       {trips.length === 0 ? (
-        <AssistantBubble pose="success" text={EMPTY.noShopping} />
-      ) : (        <>
-          <ChipGroup>
-            {trips.map((tr) => (
-              <Chip
-                key={tripKey(tr)}
-                tone="peach"
-                label={tr.isInitial ? 'Spesa iniziale' : `${weekdayShort(weekdayOf(tr.date))} ${formatShortDate(tr.date)}`}
-                selected={current ? tripKey(current) === tripKey(tr) : false}
-                onPress={() => setSelected(tripKey(tr))}
-              />
-            ))}
-          </ChipGroup>
-          {current ? (
-            current.date === snapshot.today ? (
-              <AssistantBubble pose="shopping" size={96} title={shoppingDay(current.lines.length, current.date).title} text="Spunta i prodotti mentre li metti nel carrello, poi conferma: solo allora entrano in dispensa." />
-            ) : (
-              <AssistantBubble pose="neutral" size={96} text={`Questa lista è per ${formatLongDate(current.date)}: ogni prodotto arriva prima della ricetta che lo usa.`} />
-            )
-          ) : null}
+        <View style={styles.empty}>
+          <MinaMascot pose="success" size={110} animated />
+          <StickyNote style={styles.flex}>
+            <Text variant="hand">Niente da comprare</Text>
+            <Text variant="small" color={colors.inkSoft}>
+              {EMPTY.noShopping}
+            </Text>
+          </StickyNote>
+        </View>
+      ) : (
+        <>
+          <PaperTabs
+            tabs={trips.map((tr) => ({ key: tripKey(tr), label: tr.isInitial ? 'Iniziale' : tr.date === snapshot.today ? 'Oggi' : `${weekdayShort(weekdayOf(tr.date))} ${Number(tr.date.slice(8))}` }))}
+            value={current ? tripKey(current) : ''}
+            onChange={setSelected}
+            style={styles.tabs}
+          />
           {current ? <TripView trip={current} /> : null}
         </>
       )}
 
       {snapshot.shopping.covered.length > 0 ? (
-        <>
-          <SectionTitle>Già in dispensa, non da comprare</SectionTitle>
-          <Card>
-            {snapshot.shopping.covered.map((c) => {
-              const ing = catalogIndex.ingredient(c.ingredientId);
-              return (
-                <View key={c.ingredientId} style={styles.coveredRow}>
-                  <Ionicons name="checkmark-circle" size={16} color={colors.green} />
-                  <Text variant="small" style={styles.flex}>
-                    {ing.name}
-                  </Text>
-                  <Text variant="small" color={colors.inkSoft}>
-                    {`${formatQtyWithUnit(c.qty, ing.unit)} previsti`}
-                  </Text>
-                </View>
-              );
-            })}
-          </Card>
-        </>
+        <View>
+          <LinkRow label={`Già in dispensa, non da comprare: ${snapshot.shopping.covered.length}`} onPress={() => setShowCovered((v) => !v)}>
+            <Ionicons name="checkmark-circle" size={18} color={colors.green} />
+            <Text variant="heading" style={styles.flex}>{`Già in dispensa · ${snapshot.shopping.covered.length}`}</Text>
+            <Ionicons name={showCovered ? 'chevron-up' : 'chevron-down'} size={18} color={colors.inkSoft} />
+          </LinkRow>
+          {showCovered
+            ? snapshot.shopping.covered.map((c) => {
+                const ing = catalogIndex.ingredient(c.ingredientId);
+                return (
+                  <View key={c.ingredientId} style={styles.coveredRow}>
+                    <Text variant="small" style={styles.flex}>
+                      {ing.name}
+                    </Text>
+                    <Text variant="small" color={colors.inkSoft}>
+                      {`${formatQtyWithUnit(c.qty, ing.unit)} previsti`}
+                    </Text>
+                  </View>
+                );
+              })
+            : null}
+        </View>
       ) : null}
 
-      {snapshot.profile.weeklyBudgetCents !== null ? (
-        <Text variant="small" color={colors.inkSoft}>
-          {`Budget indicato: ${(snapshot.profile.weeklyBudgetCents / 100).toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })} a settimana. Spesora non conosce i prezzi dei negozi e non stima il costo della lista.`}
-        </Text>
-      ) : null}
       {snapshot.confirmedTrips.length > 0 ? (
         <Text variant="small" color={colors.inkSoft}>
           {(() => {
@@ -116,80 +116,160 @@ export default function Shopping() {
   );
 }
 
+/** Prodotti che servono già il giorno stesso della spesa (prima ricetta quel giorno). */
+const isUrgent = (l: ShoppingLine, trip: ShoppingTripPlan) => !l.toTaste && l.uses.some((u) => u.date === trip.date);
+
 function TripView({ trip }: { trip: ShoppingTripPlan }) {
-  const { snapshot } = useApp();
-  const groups = SHOPPING_CATEGORIES.map((cat) => ({
-    cat,
-    lines: trip.lines.filter((l) => catalogIndex.ingredient(l.ingredientId).category === cat),
-  })).filter((g) => g.lines.length > 0);
+  const { snapshot, run } = useApp();
+  const urgent = trip.lines.filter((l) => isUrgent(l, trip));
+  const tiles = urgent.slice(0, 3);
+  const tileIds = new Set(tiles.map((l) => l.ingredientId));
+  const rest = trip.lines.filter((l) => !tileIds.has(l.ingredientId));
+  const groups = SHOPPING_CATEGORIES.map((cat) => ({ cat, lines: rest.filter((l) => catalogIndex.ingredient(l.ingredientId).category === cat) })).filter((g) => g.lines.length > 0);
+  const isChecked = (l: ShoppingLine) => snapshot?.checks.get(checkKey(trip.date, l.ingredientId)) ?? false;
+  const toggle = (l: ShoppingLine) => void run((s) => s.setChecked(trip.date, l.ingredientId, !isChecked(l)));
+  const isToday = trip.date === snapshot?.today;
   return (
-    <View style={styles.gap}>
-      <Text variant="heading">
-        {trip.isInitial ? `Spesa iniziale · ${formatLongDate(trip.date)}` : capitalize(formatLongDate(trip.date))}
-      </Text>
-      <TripCostLine trip={trip} />
-      {trip.isInitial ? (
-        <Notice tone="peach" text="Questi prodotti servono prima del tuo primo giorno di spesa programmato. Se preferisci non uscire, cambia le ricette interessate." />
+    <View style={styles.tripGap}>
+      <NotebookPage rings={0} contentStyle={styles.tripPage}>
+        <View style={styles.minaRow}>
+          <MinaMascot pose="shopping" size={84} style={styles.minaShop} />
+          <Text variant="hand" style={styles.flex}>
+            {urgent.length > 0 ? `${isToday ? 'Prima questi' : 'Per primi questi'} ${urgent.length}: ${isToday ? 'servono oggi!' : 'servono subito!'}` : `${trip.lines.length} ${trip.lines.length === 1 ? 'prodotto' : 'prodotti'} per i prossimi pasti`}
+          </Text>
+        </View>
+        {tiles.length > 0 ? (
+          <View style={styles.tiles}>
+            {tiles.map((l, i) => {
+              const ing = catalogIndex.ingredient(l.ingredientId);
+              const on = isChecked(l);
+              return (
+                <Pressable
+                  key={l.ingredientId}
+                  accessibilityRole="checkbox"
+                  accessibilityState={{ checked: on }}
+                  accessibilityLabel={`${ing.name}, ${qtyText(l)}, serve ${isToday ? 'oggi' : 'subito'}`}
+                  onPress={() => toggle(l)}
+                  style={[styles.tile, { transform: [{ rotate: `${[-1.5, 1, -0.5][i]}deg` }] }]}
+                >
+                  <CategoryIcon category={ing.category} size={40} />
+                  <Text variant="small" center style={styles.tileName} numberOfLines={2}>
+                    {ing.name}
+                  </Text>
+                  <Text variant="caption" color={colors.inkSoft}>
+                    {qtyText(l)}
+                  </Text>
+                  <CheckBox checked={on} />
+                </Pressable>
+              );
+            })}
+          </View>
+        ) : null}
+        {urgent.length > tiles.length ? (
+          <Text variant="handSmall" color={colors.greenDark} center>
+            {`+ altri ${urgent.length - tiles.length} ${isToday ? 'per oggi' : 'subito'}, segnati qui sotto`}
+          </Text>
+        ) : null}
+        {trip.isInitial ? (
+          <Text variant="small" color={colors.peachInk}>
+            Servono prima del tuo primo giorno di spesa. Se preferisci non uscire, cambia le ricette interessate.
+          </Text>
+        ) : null}
+        <TripCostLine trip={trip} />
+      </NotebookPage>
+
+      {groups.length > 0 ? (
+        <Text variant="hand" style={styles.restTitle}>
+          {tiles.length > 0 ? 'Il resto della lista' : 'La lista'}
+        </Text>
       ) : null}
       {groups.map((g) => (
-        <View key={g.cat} style={styles.gap}>
-          <SectionTitle>{CATEGORY_LABELS[g.cat]}</SectionTitle>
-          <Card style={styles.list}>
-            {g.lines.map((l) => (
-              <LineRow key={l.ingredientId} line={l} trip={trip} checked={snapshot?.checks.get(checkKey(trip.date, l.ingredientId)) ?? false} />
-            ))}
-          </Card>
-        </View>
+        <CategoryGroup key={g.cat} cat={g.cat} lines={g.lines} trip={trip} isChecked={isChecked} onToggle={toggle} urgentToday={isToday} />
       ))}
     </View>
   );
 }
 
-function LineRow({ line, trip, checked }: { line: ShoppingLine; trip: ShoppingTripPlan; checked: boolean }) {
-  const { run } = useApp();
+function CategoryGroup({ cat, lines, trip, isChecked, onToggle, urgentToday }: { cat: ShoppingCategory; lines: ShoppingLine[]; trip: ShoppingTripPlan; isChecked: (l: ShoppingLine) => boolean; onToggle: (l: ShoppingLine) => void; urgentToday: boolean }) {
+  const hasUrgent = lines.some((l) => isUrgent(l, trip));
+  const [open, setOpen] = useState<boolean | null>(null);
+  const isOpen = open ?? (hasUrgent || lines.length <= 3);
+  const done = lines.filter(isChecked).length;
+  return (
+    <View style={styles.group}>
+      <Pressable accessibilityRole="button" accessibilityState={{ expanded: isOpen }} accessibilityLabel={`${CATEGORY_LABELS[cat]}: ${lines.length} prodotti, ${done} nel carrello`} onPress={() => setOpen(!isOpen)} style={styles.groupHead}>
+        <CategoryIcon category={cat} size={30} />
+        <Text variant="heading" style={styles.flex}>
+          {CATEGORY_LABELS[cat]}
+        </Text>
+        <Text variant="caption" color={colors.inkSoft}>{done > 0 ? `${done}/${lines.length}` : `${lines.length}`}</Text>
+        <Ionicons name={isOpen ? 'chevron-up' : 'chevron-down'} size={18} color={colors.ink} />
+      </Pressable>
+      {isOpen ? lines.map((l) => <LineRow key={l.ingredientId} line={l} trip={trip} checked={isChecked(l)} onToggle={() => onToggle(l)} urgentToday={urgentToday} />) : null}
+    </View>
+  );
+}
+
+function qtyText(line: ShoppingLine): string {
+  const ing = catalogIndex.ingredient(line.ingredientId);
+  return line.toTaste ? 'q.b.' : line.packs ? `${line.packs.count} × ${formatQtyWithUnit(toMilli(line.packs.packSize), ing.unit)}` : formatQtyWithUnit(line.suggestedQty, ing.unit);
+}
+
+function LineRow({ line, trip, checked, onToggle, urgentToday }: { line: ShoppingLine; trip: ShoppingTripPlan; checked: boolean; onToggle: () => void; urgentToday: boolean }) {
+  const [info, setInfo] = useState(false);
+  // L'avviso "serve prima del primo giorno di spesa" è già scritto sopra, per tutta la spesa iniziale.
+  const warnings = trip.isInitial ? line.warnings.filter((w) => w !== WARN_BEFORE_FIRST) : line.warnings;
   const ing = catalogIndex.ingredient(line.ingredientId);
   const recipes = [...new Map(line.uses.map((u) => [u.recipeId + u.date, u])).values()]
     .map((u) => `${catalogIndex.recipe(u.recipeId)?.name ?? ''} (${weekdayShort(weekdayOf(u.date))})`)
     .join(', ');
-  const qtyText = line.toTaste
-    ? 'q.b. · verifica di averlo'
-    : line.packs
-      ? `${line.packs.count} × ${formatQtyWithUnit(toMilli(line.packs.packSize), ing.unit)}`
-      : formatQtyWithUnit(line.suggestedQty, ing.unit);
+  const urgent = isUrgent(line, trip);
   return (
-    <Pressable
-      accessibilityRole="checkbox"
-      accessibilityState={{ checked }}
-      accessibilityLabel={`${ing.name}, ${qtyText}`}
-      accessibilityHint="Segna come messo nel carrello. Diventa acquisto solo dopo la conferma."
-      onPress={() => void run((s) => s.setChecked(trip.date, line.ingredientId, !checked))}
-      style={({ pressed }) => [styles.line, pressed && { opacity: 0.7 }]}
-    >
-      <CheckBox checked={checked} />
-      <View style={styles.flex}>
-        <View style={styles.lineTop}>
-          <Text variant="body" style={[styles.flex, checked && styles.checked]}>
-            {ing.name}
-          </Text>
-          <Text variant="heading">{qtyText}</Text>
-        </View>
-        {line.packs ? (
-          <Text variant="small" color={colors.inkSoft}>
-            {`Servono ${formatQtyWithUnit(line.qty, ing.unit)} · formato comune indicativo, verifica in negozio`}
-          </Text>
-        ) : null}
-        {recipes ? (
-          <Text variant="small" color={colors.inkSoft} numberOfLines={2}>
-            {`Per: ${recipes}`}
-          </Text>
-        ) : null}
-        {line.warnings.map((w) => (
-          <Text key={w} variant="small" color={colors.peachInk}>
-            {w}
-          </Text>
-        ))}
+    <View style={styles.lineWrap}>
+      <View style={styles.line}>
+        <Pressable
+          accessibilityRole="checkbox"
+          accessibilityState={{ checked }}
+          accessibilityLabel={`${ing.name}, ${line.toTaste ? 'quanto basta, verifica di averlo' : qtyText(line)}${urgent ? `, serve ${urgentToday ? 'oggi' : 'subito'}` : ''}`}
+          accessibilityHint="Segna come messo nel carrello. Diventa acquisto solo dopo la conferma."
+          onPress={onToggle}
+          style={({ pressed }) => [styles.lineMain, pressed && { opacity: 0.7 }]}
+        >
+          <CheckBox checked={checked} size={24} />
+          <View style={styles.flex}>
+            <Text variant="body" style={checked && styles.checked}>
+              {ing.name}
+              {urgent && !checked ? <Text variant="handSmall" color={colors.danger}>{urgentToday ? '  oggi' : '  subito'}</Text> : null}
+            </Text>
+            {line.toTaste ? (
+              <Text variant="caption" color={colors.inkSoft}>
+                VERIFICA DI AVERLO
+              </Text>
+            ) : null}
+          </View>
+          {warnings.length > 0 ? <Ionicons name="alert-circle" size={18} color={colors.peachInk} accessibilityLabel="Avviso" /> : null}
+          <Text variant="heading">{qtyText(line)}</Text>
+        </Pressable>
+        <Pressable accessibilityRole="button" accessibilityLabel={`Perché serve ${ing.name}`} accessibilityState={{ expanded: info }} onPress={() => setInfo((v) => !v)} style={styles.infoBtn} hitSlop={4}>
+          <Ionicons name={info ? 'information-circle' : 'information-circle-outline'} size={22} color={colors.inkSoft} />
+        </Pressable>
       </View>
-    </Pressable>
+      {info ? (
+        <View style={styles.infoBox}>
+          {recipes ? <Text variant="small">{`Per: ${recipes}`}</Text> : null}
+          {line.packs ? (
+            <Text variant="small" color={colors.inkSoft}>
+              {`Servono ${formatQtyWithUnit(line.qty, ing.unit)} · formato comune indicativo, verifica in negozio`}
+            </Text>
+          ) : null}
+          {warnings.map((w) => (
+            <Text key={w} variant="small" color={colors.peachInk}>
+              {w}
+            </Text>
+          ))}
+        </View>
+      ) : null}
+    </View>
   );
 }
 
@@ -280,14 +360,27 @@ function ConfirmBar({ trip }: { trip: ShoppingTripPlan }) {
 
 const styles = StyleSheet.create({
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
+  empty: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
+  tabs: { marginTop: space.sm },
+  tripGap: { gap: space.md },
+  tripPage: { borderTopLeftRadius: 4, gap: space.md },
+  minaRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
+  minaShop: { marginVertical: -space.sm, marginLeft: -space.sm },
+  tiles: { flexDirection: 'row', gap: space.sm },
+  tile: { flex: 1, alignItems: 'center', gap: 4, paddingVertical: space.md, paddingHorizontal: 4, borderRadius: 16, borderWidth: 2, borderColor: colors.ink, backgroundColor: colors.white },
+  tileName: { fontWeight: '700', minHeight: 36 },
+  restTitle: { marginTop: space.sm },
+  group: { backgroundColor: colors.white, borderWidth: 2, borderColor: colors.ink, borderRadius: radius.md, overflow: 'hidden' },
+  groupHead: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.md, minHeight: TOUCH + 8 },
+  lineWrap: { borderTopWidth: 1.5, borderStyle: 'dashed', borderTopColor: 'rgba(36,51,44,0.22)' },
+  line: { flexDirection: 'row', alignItems: 'center', paddingLeft: space.md },
+  lineMain: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: space.md, minHeight: TOUCH + 4, paddingVertical: space.xs },
+  infoBtn: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center' },
+  infoBox: { gap: 4, marginHorizontal: space.md, marginBottom: space.sm, padding: space.sm, borderRadius: radius.sm, backgroundColor: colors.peachSoft, borderWidth: 1, borderColor: 'rgba(138,79,31,0.3)' },
   confirmWrap: { gap: space.sm },
   paid: { minHeight: TOUCH, borderWidth: 2, borderColor: colors.ink, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, color: colors.ink, backgroundColor: colors.paper },
-  gap: { gap: space.sm },
   flex: { flex: 1 },
-  list: { gap: 0, paddingVertical: space.xs },
-  line: { flexDirection: 'row', gap: space.md, alignItems: 'flex-start', paddingVertical: space.sm, minHeight: TOUCH },
-  lineTop: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
   checked: { textDecorationLine: 'line-through', color: colors.inkSoft },
-  coveredRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
+  coveredRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, paddingLeft: space.xl, paddingVertical: 2 },
   confirm: { flexDirection: 'row', alignItems: 'center', gap: space.md, borderRadius: radius.md },
 });
