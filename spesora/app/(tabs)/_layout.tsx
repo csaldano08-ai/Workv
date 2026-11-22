@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
 import type { ColorValue } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useApp } from '../../src/features/app/AppProvider';
 import { colors } from '../../src/theme/tokens';
 import { t } from '../../src/i18n/it';
@@ -13,6 +14,7 @@ const icon = (name: IconName) =>
 
 export default function TabsLayout() {
   const { snapshot } = useApp();
+  const insets = useSafeAreaInsets();
   const shoppingCount = snapshot?.shopping.trips.find((tr) => tr.date === snapshot.today)?.lines.length;
   return (
     <Tabs
@@ -21,7 +23,8 @@ export default function TabsLayout() {
         animation: 'fade',
         tabBarActiveTintColor: colors.green,
         tabBarInactiveTintColor: colors.inkSoft,
-        tabBarStyle: { backgroundColor: colors.paper, borderTopColor: colors.ink, borderTopWidth: 2 },
+        // 49 = altezza standard della barra; +4 per il bordo scuro, così le etichette non vengono tagliate
+        tabBarStyle: { backgroundColor: colors.paper, borderTopColor: colors.ink, borderTopWidth: 2, height: 53 + insets.bottom },
         tabBarLabelStyle: { fontSize: 12, fontWeight: '600' },
       }}
     >

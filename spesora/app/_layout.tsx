@@ -2,7 +2,7 @@ import { Stack, router, usePathname } from 'expo-router';
 import * as Notifications from 'expo-notifications';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef } from 'react';
-import { ActivityIndicator, Platform, StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { parseRouteFromNotification } from '../src/core/notifications/routing';
 import { AppProvider, useApp } from '../src/features/app/AppProvider';
@@ -48,14 +48,8 @@ function OnboardingGate() {
 
 function Shell() {
   const { status, retry } = useApp();
-  if (status.kind === 'loading') {
-    return (
-      <View style={styles.center}>
-        <LogoMark size={64} />
-        <ActivityIndicator color={colors.green} accessibilityLabel="Caricamento" />
-      </View>
-    );
-  }
+  // Nessun caricamento visibile all'avvio: solo il fondo, poi parte subito l'intro (o l'app).
+  if (status.kind === 'loading') return <View style={styles.blank} />;
   if (status.kind === 'error') {
     return (
       <View style={styles.center}>
@@ -111,7 +105,7 @@ function Shell() {
 export default function RootLayout() {
   // Caveat: la scrittura a mano delle annotazioni. Se non si carica, l'app usa il carattere di sistema.
   const [fontsLoaded, fontError] = useFonts({ Caveat: require('../assets/fonts/Caveat-Bold.ttf') });
-  if (!fontsLoaded && !fontError) return <View style={styles.center} />;
+  if (!fontsLoaded && !fontError) return <View style={styles.blank} />;
   return (
     <SafeAreaProvider>
       <StatusBar style="dark" />
@@ -123,5 +117,6 @@ export default function RootLayout() {
 }
 
 const styles = StyleSheet.create({
+  blank: { flex: 1, backgroundColor: colors.ivory },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: space.lg, padding: space.xl, backgroundColor: colors.desk },
 });
