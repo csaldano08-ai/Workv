@@ -57,8 +57,8 @@ Cycles su CPU (Eevee non disponibile in questo ambiente: senza GPU/EGL va in cra
 | Scena 16–24 s (240) | 1345,4 s |
 | Scena 24–32 s (240) | 1407,7 s |
 | Totale 960 fotogrammi | 5469,6 s (≈ 91 min, ≈ 5,7 s per fotogramma) |
-| Ri-render correzione 8–11 s (90 fotogrammi) | vedi `REGISTRO_RENDER.txt` |
-| Montaggio (interfaccia, sottotitoli, outro, 3 export) | ≈ 11 min |
+| Ri-render correzione 8–11 s (90 fotogrammi) | 593,1 s (≈ 6,6 s per fotogramma) |
+| Montaggio (interfaccia, sottotitoli, outro, 3 export) | 10 min 56 s da solo; 12 min 27 s in parallelo con la versione B |
 
 Stima per un render nativo 1080×1920 con 64 campioni sulla stessa CPU: circa 4×(pixel) × 4–6×(campioni) ≈ 25–35 h. Con una GPU il tempo scende a poche ore.
 

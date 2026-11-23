@@ -1,0 +1,140 @@
+{
+ "version": "B",
+ "lines": [
+  {
+   "chi": "PROTAGONISTA",
+   "testo": "Sono le otto e non so ancora cosa cucinare.",
+   "inizio": 2.7,
+   "fine": 4.8,
+   "emozione": "stanco, frustrato",
+   "traccia": "voice_protagonist"
+  },
+  {
+   "chi": "PROTAGONISTA",
+   "testo": "Non ditemi che succede solo a me.",
+   "inizio": 6.6,
+   "fine": 8.9,
+   "emozione": "complice, rivolto allo spettatore",
+   "traccia": "voice_protagonist"
+  },
+  {
+   "chi": "MINA",
+   "testo": "Se ti organizzassi prima, non saremmo qui ogni sera.",
+   "inizio": 13.9,
+   "fine": 16.8,
+   "emozione": "ironica ma gentile",
+   "traccia": "voice_mina"
+  },
+  {
+   "chi": "MINA",
+   "testo": "Guarda! Hai già i pasti della settimana,",
+   "inizio": 17.2,
+   "fine": 20.2,
+   "emozione": "entusiasta, chiara",
+   "traccia": "voice_mina"
+  },
+  {
+   "chi": "MINA",
+   "testo": "le ricette e la lista della spesa.",
+   "inizio": 20.5,
+   "fine": 22.6,
+   "emozione": "entusiasta, chiara",
+   "traccia": "voice_mina"
+  },
+  {
+   "chi": "PROTAGONISTA",
+   "testo": "Quindi domani so già cosa cucinare?",
+   "inizio": 27.3,
+   "fine": 29.3,
+   "emozione": "sorpreso, quasi incredulo",
+   "traccia": "voice_protagonist"
+  },
+  {
+   "chi": "MINA",
+   "testo": "Anche dopodomani.",
+   "inizio": 29.5,
+   "fine": 30.6,
+   "emozione": "soddisfatta, sorriso nella voce",
+   "traccia": "voice_mina"
+  }
+ ],
+ "shots": [
+  {
+   "nome": "c1a",
+   "inizio": 0.0,
+   "fine": 2.6
+  },
+  {
+   "nome": "c1b",
+   "inizio": 2.6,
+   "fine": 5.0
+  },
+  {
+   "nome": "c2a",
+   "inizio": 5.0,
+   "fine": 8.0
+  },
+  {
+   "nome": "c2b",
+   "inizio": 8.0,
+   "fine": 11.0
+  },
+  {
+   "nome": "c3a",
+   "inizio": 11.0,
+   "fine": 12.6
+  },
+  {
+   "nome": "c3b",
+   "inizio": 12.6,
+   "fine": 13.4
+  },
+  {
+   "nome": "c3c",
+   "inizio": 13.4,
+   "fine": 17.0
+  },
+  {
+   "nome": "c4a",
+   "inizio": 17.0,
+   "fine": 18.6
+  },
+  {
+   "nome": "c4b",
+   "inizio": 18.6,
+   "fine": 27.0
+  },
+  {
+   "nome": "c5a",
+   "inizio": 27.0,
+   "fine": 30.6
+  },
+  {
+   "nome": "c5b",
+   "inizio": 30.6,
+   "fine": 32.0
+  }
+ ],
+ "b_ranges": [
+  [
+   2.6,
+   5.0
+  ],
+  [
+   6.4,
+   9.1
+  ],
+  [
+   13.4,
+   17.0
+  ],
+  [
+   17.0,
+   18.6
+  ],
+  [
+   27.0,
+   32.0
+  ]
+ ]
+}

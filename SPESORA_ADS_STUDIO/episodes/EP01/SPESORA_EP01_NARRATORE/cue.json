@@ -1,0 +1,148 @@
+{
+ "version": "A",
+ "lines": [
+  {
+   "chi": "NARRATORE",
+   "testo": "Otto di sera. Frigo aperto. Idee per cena… nessuna.",
+   "inizio": 0.5,
+   "fine": 4.7,
+   "emozione": "ironico, asciutto",
+   "traccia": "voice_narrator"
+  },
+  {
+   "chi": "NARRATORE",
+   "testo": "Ogni sera la stessa domanda: cosa si mangia?",
+   "inizio": 5.6,
+   "fine": 9.0,
+   "emozione": "complice, leggermente divertito",
+   "traccia": "voice_narrator"
+  },
+  {
+   "chi": "MINA",
+   "testo": "Ehi! A questo ci penso io.",
+   "inizio": 14.1,
+   "fine": 15.8,
+   "emozione": "allegra, sicura",
+   "traccia": "voice_mina"
+  },
+  {
+   "chi": "NARRATORE",
+   "testo": "Spesora organizza i pasti della settimana,",
+   "inizio": 17.6,
+   "fine": 21.4,
+   "emozione": "chiaro, caldo, senza fretta",
+   "traccia": "voice_narrator"
+  },
+  {
+   "chi": "NARRATORE",
+   "testo": "ti mostra la ricetta del giorno",
+   "inizio": 22.4,
+   "fine": 24.3,
+   "emozione": "chiaro, caldo",
+   "traccia": "voice_narrator"
+  },
+  {
+   "chi": "NARRATORE",
+   "testo": "e prepara la lista della spesa.",
+   "inizio": 24.9,
+   "fine": 26.7,
+   "emozione": "chiaro, conclusivo",
+   "traccia": "voice_narrator"
+  },
+  {
+   "chi": "NARRATORE",
+   "testo": "E la cena di stasera… è già decisa.",
+   "inizio": 27.4,
+   "fine": 30.4,
+   "emozione": "soddisfatto, chiusura",
+   "traccia": "voice_narrator"
+  },
+  {
+   "chi": "NARRATORE",
+   "testo": "Spesora. Cosa cucini? Già deciso.",
+   "inizio": 32.3,
+   "fine": 34.9,
+   "emozione": "firma del brand",
+   "traccia": "voice_narrator"
+  }
+ ],
+ "shots": [
+  {
+   "nome": "c1a",
+   "inizio": 0.0,
+   "fine": 2.6
+  },
+  {
+   "nome": "c1b",
+   "inizio": 2.6,
+   "fine": 5.0
+  },
+  {
+   "nome": "c2a",
+   "inizio": 5.0,
+   "fine": 8.0
+  },
+  {
+   "nome": "c2b",
+   "inizio": 8.0,
+   "fine": 11.0
+  },
+  {
+   "nome": "c3a",
+   "inizio": 11.0,
+   "fine": 12.6
+  },
+  {
+   "nome": "c3b",
+   "inizio": 12.6,
+   "fine": 13.4
+  },
+  {
+   "nome": "c3c",
+   "inizio": 13.4,
+   "fine": 17.0
+  },
+  {
+   "nome": "c4a",
+   "inizio": 17.0,
+   "fine": 18.6
+  },
+  {
+   "nome": "c4b",
+   "inizio": 18.6,
+   "fine": 27.0
+  },
+  {
+   "nome": "c5a",
+   "inizio": 27.0,
+   "fine": 30.6
+  },
+  {
+   "nome": "c5b",
+   "inizio": 30.6,
+   "fine": 32.0
+  }
+ ],
+ "b_ranges": [
+  [
+   2.6,
+   5.0
+  ],
+  [
+   6.4,
+   9.1
+  ],
+  [
+   13.4,
+   17.0
+  ],
+  [
+   17.0,
+   18.6
+  ],
+  [
+   27.0,
+   32.0
+  ]
+ ]
+}
