@@ -1,0 +1,96 @@
+{
+ "frasi": [
+  {
+   "id": "F01",
+   "inizio": 0.745,
+   "fine": 6.36,
+   "durata": 5.615,
+   "testo": "Quest'uomo entrò al supermercato con una missione semplicissima: comprare quattro cipolle.",
+   "file": "voce/frasi/F01.wav",
+   "picco_db": -0.8999999761581421,
+   "rms_db": -16.799999237060547
+  },
+  {
+   "id": "F02",
+   "inizio": 6.775,
+   "fine": 7.48,
+   "durata": 0.705,
+   "testo": "Quattro.",
+   "file": "voce/frasi/F02.wav",
+   "picco_db": -2.4000000953674316,
+   "rms_db": -19.200000762939453
+  },
+  {
+   "id": "F03",
+   "inizio": 7.5,
+   "fine": 10.115,
+   "durata": 2.615,
+   "testo": "Aveva persino la lista pronta su Spesora,",
+   "file": "voce/frasi/F03.wav",
+   "picco_db": -2.0999999046325684,
+   "rms_db": -17.100000381469727
+  },
+  {
+   "id": "F04",
+   "inizio": 10.11,
+   "fine": 16.21,
+   "durata": 6.1,
+   "testo": "ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione.",
+   "file": "voce/frasi/F04.wav",
+   "picco_db": -2.4000000953674316,
+   "rms_db": -16.299999237060547
+  },
+  {
+   "id": "F05",
+   "inizio": 16.745,
+   "fine": 19.49,
+   "durata": 2.745,
+   "testo": "E lui non ebbe il coraggio di correggerlo.",
+   "file": "voce/frasi/F05.wav",
+   "picco_db": -2.9000000953674316,
+   "rms_db": -17.5
+  },
+  {
+   "id": "F06",
+   "inizio": 20.055,
+   "fine": 24.695,
+   "durata": 4.64,
+   "testo": "Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale.",
+   "file": "voce/frasi/F06.wav",
+   "picco_db": -2.0,
+   "rms_db": -17.299999237060547
+  },
+  {
+   "id": "F07",
+   "inizio": 24.72,
+   "fine": 26.0,
+   "durata": 1.28,
+   "testo": "Il problema?",
+   "file": "voce/frasi/F07.wav",
+   "picco_db": -3.0999999046325684,
+   "rms_db": -19.600000381469727
+  },
+  {
+   "id": "F08",
+   "inizio": 26.015,
+   "fine": 28.47,
+   "durata": 2.455,
+   "testo": "Non aveva ancora trovato le cipolle.",
+   "file": "voce/frasi/F08.wav",
+   "picco_db": -3.200000047683716,
+   "rms_db": -17.799999237060547
+  }
+ ],
+ "rimossi": [
+  {
+   "inizio": 0.03,
+   "fine": 0.42,
+   "nota": "soffio/verso prima di «Quest'uomo»"
+  },
+  {
+   "inizio": 19.62,
+   "fine": 19.9,
+   "nota": "verso estraneo tra «correggerlo» e «Così»"
+  }
+ ]
+}

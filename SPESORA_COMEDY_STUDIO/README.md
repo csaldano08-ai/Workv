@@ -12,6 +12,7 @@ Progetto separato dall'app (`spesora/`) e dagli spot (`SPESORA_ADS_STUDIO/`): no
 | 1 · Analisi del video di riferimento | ✅ `docs/01_ANALISI_REFERENCE.md`, `docs/reference/TAVOLA_analisi_reference.png` |
 | Skill realmente trovate | ✅ `docs/02_SKILL_UTILIZZATE.md` (il workflow di Rick è 2D: nessuna skill Blender installata) |
 | 2 · Personaggio base, variante femminile, rig, prove | ✅ in attesa di approvazione · `renders/tests/`, `docs/03_PERSONAGGI_E_RIG.md`, `docs/04_REPORT_TEST_FASE2.md` |
+| Narrazione con voce clonata | ✅ bozza completa da ascoltare · `audio/README_NARRAZIONE.md`, `audio/narrazione_clonata/` |
 | 3 · Approvazione | ⏳ serve il via dell'utente prima di proseguire |
 | 4 · Blockout del supermercato | non iniziato (dopo l'approvazione) |
 | 5 · Storyboard e animatic | non iniziato |

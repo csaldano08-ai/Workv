@@ -1,4 +1,8 @@
-# 05 · Copione delle voci EP01 (bozza temporizzata)
+# 05 · Copione delle voci EP01 (prima bozza, superata)
+
+> **Superata.** Il racconto ora è guidato dal narratore, con la voce clonata dal file fornito: testo in `audio/narrazione_ep01.json`, audio e misure in `audio/README_NARRAZIONE.md`.
+> Restano solo due battute di personaggi: il protagonista («Ma… le cipolle?») e il direttore («Avete sentito? Controllate subito le cipolle!»).
+> La tabella qui sotto resta come riferimento per i tempi delle scene.
 
 *L'uomo che diventò direttore del supermercato* · durata obiettivo 90 s · verticale 1080×1920, 30 fps.
 I tempi sono provvisori: l'animatic (fase 5) li verificherà, poi si adatteranno alle registrazioni reali.

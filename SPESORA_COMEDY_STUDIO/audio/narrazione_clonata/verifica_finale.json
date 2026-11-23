@@ -1,0 +1,191 @@
+{
+ "battute": {
+  "N01": {
+   "testo_riconosciuto": "Quest'uomo entrò al supermercato con una missione semplicissima, comprare quattro cipolle.",
+   "wer": 0.0,
+   "somiglianza": 0.968,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 6.8,
+   "durata_s": 5.02,
+   "f0_mediana_hz": 192.5,
+   "escursione_st": 4.17,
+   "salti_volume": 2.46
+  },
+  "N02": {
+   "testo_riconosciuto": "4",
+   "wer": 0.0,
+   "somiglianza": 0.898,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 7.89,
+   "durata_s": 0.48,
+   "f0_mediana_hz": 170.6,
+   "escursione_st": 2.84,
+   "salti_volume": 2.2
+  },
+  "N03": {
+   "testo_riconosciuto": "Aveva persino la lista pronta su Spesora.",
+   "wer": 0.0,
+   "somiglianza": 0.972,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 7.14,
+   "durata_s": 2.2,
+   "f0_mediana_hz": 189.8,
+   "escursione_st": 2.47,
+   "salti_volume": 1.62
+  },
+  "N04": {
+   "testo_riconosciuto": "Ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione.",
+   "wer": 0.0,
+   "somiglianza": 0.979,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 6.03,
+   "durata_s": 5.91,
+   "f0_mediana_hz": 193.7,
+   "escursione_st": 4.09,
+   "salti_volume": 2.24
+  },
+  "N05": {
+   "testo_riconosciuto": "E lui non ebbe il coraggio di correggerlo.",
+   "wer": 0.0,
+   "somiglianza": 0.923,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 6.67,
+   "durata_s": 2.46,
+   "f0_mediana_hz": 214.9,
+   "escursione_st": 2.67,
+   "salti_volume": 1.75
+  },
+  "N06": {
+   "testo_riconosciuto": "Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale.",
+   "wer": 0.0,
+   "somiglianza": 0.981,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 6.62,
+   "durata_s": 4.4,
+   "f0_mediana_hz": 174.5,
+   "escursione_st": 4.07,
+   "salti_volume": 2.53
+  },
+  "N07": {
+   "testo_riconosciuto": "Il problema?",
+   "wer": 0.0,
+   "somiglianza": 0.894,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 7.41,
+   "durata_s": 0.68,
+   "f0_mediana_hz": 154.2,
+   "escursione_st": 2.7,
+   "salti_volume": 1.91
+  },
+  "N08": {
+   "testo_riconosciuto": "Non aveva ancora trovato le cipolle?",
+   "wer": 0.0,
+   "somiglianza": 0.947,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 6.42,
+   "durata_s": 2.21,
+   "f0_mediana_hz": 200.5,
+   "escursione_st": 2.55,
+   "salti_volume": 1.7
+  },
+  "N09": {
+   "testo_riconosciuto": "Indicò le cipolle e spostarono un intero reparto.",
+   "wer": 0.0,
+   "somiglianza": 0.98,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 6.51,
+   "durata_s": 2.94,
+   "f0_mediana_hz": 192.5,
+   "escursione_st": 4.57,
+   "salti_volume": 1.95
+  },
+  "N10": {
+   "testo_riconosciuto": "Chiese dov'era l'uscita e aprirono una nuova cassa.",
+   "wer": 0.0,
+   "somiglianza": 0.965,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 7.14,
+   "durata_s": 3.02,
+   "f0_mediana_hz": 229.0,
+   "escursione_st": 3.57,
+   "salti_volume": 2.15
+  },
+  "N11": {
+   "testo_riconosciuto": "Riaprì la sua lista e qualcuno gli consegnò una cartellina.",
+   "wer": 0.0,
+   "somiglianza": 0.978,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 7.52,
+   "durata_s": 3.14,
+   "f0_mediana_hz": 212.4,
+   "escursione_st": 4.14,
+   "salti_volume": 2.25
+  },
+  "N12": {
+   "testo_riconosciuto": "Poi arrivò la notizia. Il direttore voleva incontrarlo.",
+   "wer": 0.0,
+   "somiglianza": 0.98,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 6.75,
+   "durata_s": 3.29,
+   "f0_mediana_hz": 212.4,
+   "escursione_st": 3.79,
+   "salti_volume": 2.02
+  },
+  "N13": {
+   "testo_riconosciuto": "A quel punto capì che forse avrebbe dovuto dire la verità.",
+   "wer": 0.0,
+   "somiglianza": 0.968,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 7.75,
+   "durata_s": 2.95,
+   "f0_mediana_hz": 192.5,
+   "escursione_st": 2.59,
+   "salti_volume": 1.83
+  },
+  "N14": {
+   "testo_riconosciuto": "Ma il direttore, invece di smascherarlo, gli offrì il suo posto.",
+   "wer": 0.0,
+   "somiglianza": 0.976,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 6.01,
+   "durata_s": 3.69,
+   "f0_mediana_hz": 180.7,
+   "escursione_st": 3.73,
+   "salti_volume": 2.48
+  },
+  "N15": {
+   "testo_riconosciuto": "E così, senza averlo mai chiesto, era diventato direttore del supermercato.",
+   "wer": 0.0,
+   "somiglianza": 0.968,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 6.39,
+   "durata_s": 4.63,
+   "f0_mediana_hz": 189.2,
+   "escursione_st": 2.15,
+   "salti_volume": 1.72
+  },
+  "N16": {
+   "testo_riconosciuto": "Alla fine non comprò nemmeno una cipolla.",
+   "wer": 0.0,
+   "somiglianza": 0.959,
+   "energia_fuori_parole_db": -60.0,
+   "sillabe_al_s": 6.58,
+   "durata_s": 2.43,
+   "f0_mediana_hz": 219.9,
+   "escursione_st": 2.71,
+   "salti_volume": 1.59
+  }
+ },
+ "traccia": {
+  "testo_riconosciuto": "Quest'uomo entrò al supermercato con una missione semplicissima, comprare quattro cipolle. Quattro. Aveva persino la lista pronta su spesora, ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione. E lui non ebbe il coraggio di correggerlo. Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale. Il problema? Non aveva ancora trovato le cipolle. Indicò le cipolle e spostarono un intero reparto. Chiese dov'era l'uscita e aprirono una nuova cassa. Riaprì la sua lista e qualcuno gli consegnò una cartellina. Poi arrivò la notizia. Il direttore voleva incontrarlo. A quel punto capì che forse avrebbe dovuto dire la verità. Ma il direttore, invece di smascherarlo, gli offrì il suo posto. E così, senza averlo mai chiesto, era diventato direttore del supermercato. Alla fine non comprò nemmeno una cipolla.",
+  "wer": 0.0,
+  "somiglianza": 0.986,
+  "energia_fuori_parole_db": -60.0,
+  "sillabe_al_s": 5.34,
+  "durata_s": 60.65,
+  "f0_mediana_hz": 197.0,
+  "escursione_st": 3.8,
+  "salti_volume": 2.13
+ }
+}
