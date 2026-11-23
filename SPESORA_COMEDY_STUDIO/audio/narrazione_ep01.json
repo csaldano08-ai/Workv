@@ -1,0 +1,25 @@
+{
+ "nota": "Narrazione EP01 nella voce del narratore clonata dal file ItalianoSpesora.mp3. N01-N08: il testo della registrazione originale, pulito. N09-N16: continuazione nello stesso stile. tono: calmo = enfasi ridotta (meno escursione, volume più costante); neutro = racconto; vivace = gag in accelerazione.",
+ "battute": [
+  {"id": "N01", "testo": "Quest'uomo entrò al supermercato con una missione semplicissima: comprare quattro cipolle.", "tono": "neutro", "pausa_dopo": 0.5},
+  {"id": "N02", "testo": "Quattro.", "tono": "calmo", "pausa_dopo": 0.6},
+  {"id": "N03", "testo": "Aveva persino la lista pronta su Spesora,", "tono": "calmo", "pausa_dopo": 0.25},
+  {"id": "N04", "testo": "ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione.", "tono": "neutro", "pausa_dopo": 0.6},
+  {"id": "N05", "testo": "E lui non ebbe il coraggio di correggerlo.", "tono": "calmo", "pausa_dopo": 0.8},
+  {"id": "N06", "testo": "Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale.", "tono": "neutro", "pausa_dopo": 0.5},
+  {"id": "N07", "testo": "Il problema?", "tono": "calmo", "pausa_dopo": 0.45},
+  {"id": "N08", "testo": "Non aveva ancora trovato le cipolle.", "tono": "calmo", "pausa_dopo": 1.0},
+  {"id": "N09", "testo": "Indicò le cipolle, e spostarono un intero reparto.", "tono": "vivace", "pausa_dopo": 0.6},
+  {"id": "N10", "testo": "Chiese dov'era l'uscita, e aprirono una nuova cassa.", "tono": "vivace", "pausa_dopo": 0.6},
+  {"id": "N11", "testo": "Riaprì la sua lista, e qualcuno gli consegnò una cartellina.", "tono": "vivace", "pausa_dopo": 1.0},
+  {"id": "N12", "testo": "Poi arrivò la notizia: il direttore voleva incontrarlo.", "tono": "neutro", "pausa_dopo": 0.7},
+  {"id": "N13", "testo": "A quel punto capì che forse avrebbe dovuto dire la verità.", "tono": "calmo", "pausa_dopo": 1.0},
+  {"id": "N14", "testo": "Ma il direttore, invece di smascherarlo, gli offrì il suo posto.", "tono": "neutro", "pausa_dopo": 1.2},
+  {"id": "N15", "testo": "E così, senza averlo mai chiesto, era diventato direttore del supermercato.", "tono": "calmo", "pausa_dopo": 1.4},
+  {"id": "N16", "testo": "Alla fine, non comprò nemmeno una cipolla.", "tono": "calmo", "pausa_dopo": 0.0}
+ ],
+ "altri_personaggi": [
+  {"chi": "PROTAGONISTA", "testo": "Ma… le cipolle?", "dove": "tra N15 e N16, sottovoce", "voce": "da definire (non clonata)"},
+  {"chi": "DIRETTORE", "testo": "Avete sentito? Controllate subito le cipolle!", "dove": "subito dopo, voltandosi verso un dipendente", "voce": "da definire (non clonata)"}
+ ]
+}

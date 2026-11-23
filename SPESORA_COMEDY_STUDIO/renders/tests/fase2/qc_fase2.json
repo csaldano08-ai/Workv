@@ -1,0 +1,866 @@
+{
+ "qc": {
+  "turn_protagonista_idle": {
+   "arm.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 48,
+    "worst": null
+   },
+   "hand.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.L_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.L_min_z_mm": 2.0,
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 48,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.R_min_z_mm": 2.0,
+   "leg.L_in_leg.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "foot.L_in_foot.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "turn_protagonista_f_idle": {
+   "arm.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 42,
+    "worst": null
+   },
+   "hand.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.L_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.L_min_z_mm": 2.0,
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 42,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.R_min_z_mm": 2.0,
+   "leg.L_in_leg.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "foot.L_in_foot.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "gomito_0": {
+   "angolo_gomito_gradi": 36.8,
+   "risolutore_gomito": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 15.0
+   },
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 52,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "gomito_1": {
+   "angolo_gomito_gradi": 47.1,
+   "risolutore_gomito": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 0.0
+   },
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 56,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "gomito_2": {
+   "angolo_gomito_gradi": 86.5,
+   "risolutore_gomito": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 0.0
+   },
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 52,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "gomito_3": {
+   "angolo_gomito_gradi": 132.0,
+   "risolutore_gomito": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 0.0
+   },
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 42,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "risolutori_Indica": {
+   "L": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 0.0
+   },
+   "R": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 0.0
+   }
+  },
+  "gesto_Indica": {
+   "arm.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "hand.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.L_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.L_min_z_mm": 2.0,
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 46,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.R_min_z_mm": 2.0,
+   "leg.L_in_leg.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "foot.L_in_foot.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "risolutori_Saluta": {
+   "L": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 0.0
+   },
+   "R": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 0.0
+   }
+  },
+  "gesto_Saluta": {
+   "arm.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "hand.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.L_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.L_min_z_mm": 2.0,
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 48,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.R_min_z_mm": 2.0,
+   "leg.L_in_leg.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "foot.L_in_foot.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "risolutori_Spallucce": {
+   "L": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 0.0
+   },
+   "R": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 0.0
+   }
+  },
+  "gesto_Spallucce": {
+   "arm.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 32,
+    "worst": null
+   },
+   "hand.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.L_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.L_min_z_mm": 2.0,
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 32,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.R_min_z_mm": 2.0,
+   "leg.L_in_leg.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "foot.L_in_foot.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "risolutori_Pensa": {
+   "L": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 0.0
+   },
+   "R": {
+    "compenetrazione_mm": 0.0,
+    "scarto_dalla_posa_gradi": 15.0
+   },
+   "contatto": {
+    "distanza_mm": 0.73
+   },
+   "contatto_finale": {
+    "distanza_mm": 0.73
+   }
+  },
+  "gesto_Pensa": {
+   "arm.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 48,
+    "worst": null
+   },
+   "hand.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.L_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.L_min_z_mm": 2.0,
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 52,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.R_min_z_mm": 2.0,
+   "leg.L_in_leg.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "foot.L_in_foot.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "gomito_telefono_read": {
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  "phone_read": {
+   "arm.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 46,
+    "worst": null
+   },
+   "hand.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.L_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.L_min_z_mm": 2.0,
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 58,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.R_min_z_mm": 2.0,
+   "leg.L_in_leg.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "foot.L_in_foot.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "telefono_read": {
+   "grip_curl_gradi": {
+    "index": {
+     "falange1": 84.0,
+     "falange2": 2.0,
+     "contatto_mm": 1.09,
+     "dentro_mm": 0.0,
+     "copre_schermo": 0
+    },
+    "middle": {
+     "falange1": 96.0,
+     "falange2": 2.0,
+     "contatto_mm": 0.18,
+     "dentro_mm": 0.0,
+     "copre_schermo": 0
+    },
+    "ring": {
+     "falange1": 84.0,
+     "falange2": 2.0,
+     "contatto_mm": 1.05,
+     "dentro_mm": 0.0,
+     "copre_schermo": 0
+    },
+    "thumb": {
+     "falange1": 10.0,
+     "falange2": 2.0,
+     "contatto_mm": 0.74,
+     "dentro_mm": 0.0,
+     "copre_schermo": 0
+    }
+   },
+   "mano_dentro_telefono": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "telefono_dentro_mano": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "distanza_palmo_telefono_mm": 1.5,
+   "vertici_mano_davanti_allo_schermo": 0,
+   "hand.L_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 58,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   }
+  },
+  "gomito_telefono_show": {
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  "phone_show": {
+   "arm.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 48,
+    "worst": null
+   },
+   "hand.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.L_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.L_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.L_min_z_mm": 2.0,
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 48,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   },
+   "foot.R_min_z_mm": 2.0,
+   "leg.L_in_leg.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "foot.L_in_foot.R": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   }
+  },
+  "telefono_show": {
+   "grip_curl_gradi": {
+    "index": {
+     "falange1": 84.0,
+     "falange2": 2.0,
+     "contatto_mm": 1.09,
+     "dentro_mm": 0.0,
+     "copre_schermo": 0
+    },
+    "middle": {
+     "falange1": 96.0,
+     "falange2": 2.0,
+     "contatto_mm": 0.18,
+     "dentro_mm": 0.0,
+     "copre_schermo": 0
+    },
+    "ring": {
+     "falange1": 84.0,
+     "falange2": 2.0,
+     "contatto_mm": 1.05,
+     "dentro_mm": 0.0,
+     "copre_schermo": 0
+    },
+    "thumb": {
+     "falange1": 10.0,
+     "falange2": 2.0,
+     "contatto_mm": 0.74,
+     "dentro_mm": 0.0,
+     "copre_schermo": 0
+    }
+   },
+   "mano_dentro_telefono": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "telefono_dentro_mano": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "distanza_palmo_telefono_mm": 1.5,
+   "vertici_mano_davanti_allo_schermo": 0,
+   "hand.L_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "arm.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 48,
+    "worst": null
+   },
+   "hand.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "hand.R_in_head": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 0,
+    "worst": null
+   },
+   "leg.R_in_torso": {
+    "depth_mm": 0.0,
+    "verts_inside": 0,
+    "tri_pairs": 28,
+    "worst": null
+   }
+  }
+ },
+ "tempi_render_s": {
+  "turn": [
+   8.26,
+   8.04,
+   5.61,
+   6.09,
+   8.61,
+   8.89,
+   5.66,
+   6.07
+  ],
+  "expr": [
+   4.79,
+   4.6,
+   4.6,
+   4.49,
+   4.56,
+   4.74,
+   4.58,
+   4.85,
+   4.74,
+   4.69,
+   4.6,
+   4.68,
+   4.64,
+   4.66
+  ],
+  "arms": [
+   6.22,
+   5.98,
+   6.31,
+   6.19,
+   5.95,
+   6.04,
+   5.97,
+   6.08
+  ],
+  "phone": [
+   10.74,
+   10.78,
+   12.75,
+   11.25
+  ]
+ }
+}

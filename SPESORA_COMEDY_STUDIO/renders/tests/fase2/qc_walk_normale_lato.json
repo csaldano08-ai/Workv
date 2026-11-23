@@ -1,0 +1,14 @@
+{
+ "slide_max_mm": 0.004,
+ "piede_sotto_pavimento_mm": 0.0,
+ "foot_min_z_mm": 1.98,
+ "gambe_contatto": [],
+ "braccia_nel_busto_mm": 0.0,
+ "mani_nel_busto_mm": 0.0,
+ "bake_s": 2.8,
+ "render_s": 424.8,
+ "render_s_per_frame": 3.06,
+ "fotogrammi": 139,
+ "passi": 7,
+ "distanza_m": 1.848
+}

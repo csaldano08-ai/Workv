@@ -30,17 +30,17 @@ os.makedirs(fdir, exist_ok=True)
 
 S.reset()
 S.render_setup(RES, SAMPLES)
-S.studio()
+S.studio(backdrop=(0.74, 0.72, 0.68))
 ch = Character("protagonista", os.path.join(OUT, "_wd_" + tag))
 n_steps = {"normale": 7, "imbarazzato": 9, "sicuro": 6}[STYLE]
 W = Walk(ch, start=(-1.3, 0.0), direction_deg=0.0, n_steps=n_steps, style=STYLE, anticip=0.4)
 DUR = W.t_end + 0.5
 NF = int(DUR * FPS)
 mid = W.distance / 2 - 1.3
-if CAMV == "lato":
-    cam = S.camera((mid, -5.6, 1.0), (mid, 0, 0.85), 35)
-else:
-    cam = S.camera((mid + 2.6, -4.6, 1.35), (mid, 0, 0.8), 35)
+# camera che segue il personaggio (carrellata laterale morbida): il personaggio resta grande nel quadro
+CAM_OFF = (0.0, -3.3, 0.95) if CAMV == "lato" else (1.7, -2.8, 1.25)
+cam = S.camera((-1.3 + CAM_OFF[0], CAM_OFF[1], CAM_OFF[2]), (-1.3, 0, 0.8), 32)
+cam_x = [None]
 
 # volto: espressione per stile, sguardi intenzionali, battiti di ciglia non regolari
 FACE = {"normale": "neutro", "imbarazzato": "imbarazzato", "sicuro": "falsa_sicurezza"}[STYLE]
@@ -91,6 +91,11 @@ for fi in range(NF):
     ch.rig.matrix_world = Wm
     ch.pose(P)
     ch.key_all(fi + 1)
+    bx = Wm.translation.x
+    cam_x[0] = bx if cam_x[0] is None else cam_x[0] + (bx - cam_x[0]) * 0.12
+    S.aim(cam, (cam_x[0] + CAM_OFF[0], CAM_OFF[1], CAM_OFF[2]), (cam_x[0] + 0.15, 0, 0.82))
+    cam.keyframe_insert("location", frame=fi + 1)
+    cam.keyframe_insert("rotation_euler", frame=fi + 1)
     for foot in ("L", "R"):
         s_, z_, pitch, air = W.foot_state(foot, t)
         pw = ch.rig.matrix_world @ ch.rig.pose.bones[f"foot.{foot}"].head

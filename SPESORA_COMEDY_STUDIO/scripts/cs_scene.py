@@ -100,7 +100,7 @@ def studio(floor_grid=True, backdrop=(0.86, 0.84, 0.8)):
         mix = nt.nodes.new("ShaderNodeMix")
         mix.data_type = "RGBA"
         mix.inputs["A"].default_value = (*backdrop, 1)
-        mix.inputs["B"].default_value = (backdrop[0] * 0.8, backdrop[1] * 0.8, backdrop[2] * 0.8, 1)
+        mix.inputs["B"].default_value = (backdrop[0] * 0.55, backdrop[1] * 0.55, backdrop[2] * 0.55, 1)
         nt.links.new(mm.outputs[0], mix.inputs["Factor"])
         nt.links.new(mix.outputs["Result"], b.inputs["Base Color"])
     me.materials.append(m)
