@@ -208,7 +208,7 @@ outro = sorted(os.listdir(a.outro))
 for i, o in enumerate(outro):
     n = N3D + 1 + i
     for d in (clean_dir, sub_dir):
-        os.symlink(os.path.join(a.outro, o), os.path.join(d, f"v_{n:04d}.png"))
+        os.symlink(os.path.abspath(os.path.join(a.outro, o)), os.path.join(d, f"v_{n:04d}.png"))
 total = (N3D + len(outro)) / FPS
 print(f"fotogrammi: {N3D} 3D + {len(outro)} outro = {total:.2f} s", flush=True)
 

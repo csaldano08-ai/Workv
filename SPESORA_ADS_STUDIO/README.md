@@ -5,7 +5,19 @@ Questa cartella è **separata** dal codice dell'app (`spesora/`): non modifica l
 
 ## Stato
 
-Fase attuale: **bozza animata continua di EP01** (`episodes/EP01/animazione/`). L'animatic a pose fisse (`episodes/EP01/animatic/`) è superato. Stato, tempi misurati e limiti in `docs/STATO_FASE_1.md`.
+Fase attuale: **EP01 in due versioni complete** (voci ancora provvisorie):
+
+- `episodes/EP01/SPESORA_EP01_NARRATORE/`: versione A, narratore + Mina, protagonista muto. Rapporto: `REPORT_SPESORA_EP01_NARRATORE.md`.
+- `episodes/EP01/SPESORA_EP01_DIALOGHI/`: versione B, protagonista parlante + Mina. Registro: `REGISTRO_CORREZIONI_SPESORA_EP01_DIALOGHI.md`, test: `REPORT_TEST_SPESORA_EP01_DIALOGHI.md`.
+
+Ogni cartella contiene: MP4 1080×1920 con sottotitoli provvisori, versione senza dialoghi, anteprima 540×960, file `.blend`, tracce audio separate
+(voci vuote da sostituire, SFX, musica, ambiente), copione temporizzato, guide di registrazione e timeline dei marcatori.
+
+Script della versione attuale: `scripts/ep01_v2.py` (scena, animazione e render; `ADS_VERSION=A|B`), `scripts/assemble_v2.py` (interfaccia reale sullo schermo,
+sottotitoli, outro, export), `scripts/outro.py`, `scripts/audio_ep01.py` (effetti, musica e ambiente originali sintetizzati in codice), `scripts/docs_v2.py` (copioni e guide).
+Il `.blend` legge l'interfaccia dell'app come sequenza di immagini registrata con `scripts/capture_ui_video.cjs` (non inclusa nel repository per peso: 108 MB).
+
+La bozza precedente (`episodes/EP01/animazione/`) e l'animatic a pose fisse (`episodes/EP01/animatic/`) sono superati.
 Il design scelto è quello **ricalcato dalla scheda di riferimento del cliente** (`scripts/hero.py`, `scripts/faces2.py`).
 Le prime tre varianti A/B/C (`scripts/characters.py`, `renders/previews/concept_protagonista/`) sono superate e restano solo come storico.
 Non è stato prodotto nessun video dell'episodio.

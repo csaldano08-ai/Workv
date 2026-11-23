@@ -427,6 +427,9 @@ def cam_at(t):
 
 # ====================================================================== bake
 regs = [hero.reg, mina.reg]
+door_shelf = bpy.data.objects["fr_door_shelf1"]
+vl = bpy.context.view_layer
+c2b_s = [None]
 t_bake = time.time()
 for fi in range(NFR):
     t = fi / FPS
@@ -453,10 +456,22 @@ for fi in range(NFR):
     phone.keyframe_insert("location", frame=f)
     n_on.outputs[0].default_value = phone_on(t)
     nt.keyframe_insert(data_path='nodes["on"].outputs[0].default_value', frame=f)
+    # c2b (8–11 s): il ripiano alto della porta entrava nell'inquadratura e "tagliava" la testa accanto al sopracciglio;
+    # fuori da questa inquadratura la porta non si vede da vicino, quindi lo nascondiamo solo qui.
+    shelf_hide = 8.0 - 0.001 <= t < 11.0
+    door_shelf.hide_render = shelf_hide
+    door_shelf.keyframe_insert("hide_render", frame=f)
     for cam, tg, t0, t1, tr, gr in cams:
         if t0 - 0.001 <= t <= t1 + 0.001:
             cam.location = Vector((tr[0](t), tr[1](t), tr[2](t)))
             tg.location = Vector((gr[0](t), gr[1](t), gr[2](t)))
+            if cam.name == "c2b":
+                # la camera segue con morbidezza la testa: il volto resta sempre nel quadro anche quando lui si sposta
+                vl.update()
+                hp = hero.head.matrix_world.translation
+                want = Vector((0.45 * tg.location.x + 0.55 * hp.x, tg.location.y, 0.45 * tg.location.z + 0.55 * (hp.z + 0.04)))
+                c2b_s[0] = want if c2b_s[0] is None else c2b_s[0].lerp(want, 0.2)
+                tg.location = c2b_s[0]
             cam.keyframe_insert("location", frame=f)
             tg.keyframe_insert("location", frame=f)
 print(f"bake {VERSION}: {time.time() - t_bake:.1f} s per {NFR} fotogrammi", flush=True)
