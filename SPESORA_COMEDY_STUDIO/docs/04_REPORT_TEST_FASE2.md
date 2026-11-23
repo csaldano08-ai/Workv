@@ -56,7 +56,8 @@ Cycles su CPU, 4 core, nessuna GPU; Eevee non è disponibile.
 | Espressioni 3D | 440×440 · 24 | 4,7 s |
 | Braccia e gesti | 480×800 · 24 | 6,1 s |
 | Telefono | 540×900 · 32 | 11,4 s |
-| Camminate (139–142 fotogrammi) | 960×540 · 10 | 2,9–3,1 s per fotogramma (≈ 7 min per camminata) |
+| Camminate (139–142 fotogrammi, camera che segue) | 960×540 · 10 | 3,1–3,3 s per fotogramma (≈ 7,5 min per camminata) |
+| Narrazione clonata (Qwen3-TTS 0.6B, CPU) | — | 930 s di calcolo per 136 s di prese (6,8× il tempo reale) |
 
 Stima per l'episodio da 90 s, 2700 fotogrammi:
 - **Anteprima o animatic** a 540×960 e circa 10 campioni: 2–3 ore.

@@ -5,9 +5,9 @@
  "gambe_contatto": [],
  "braccia_nel_busto_mm": 0.0,
  "mani_nel_busto_mm": 0.0,
- "bake_s": 3.0,
- "render_s": 423.5,
- "render_s_per_frame": 3.07,
+ "bake_s": 2.7,
+ "render_s": 457.7,
+ "render_s_per_frame": 3.32,
  "fotogrammi": 138,
  "passi": 6,
  "distanza_m": 1.904
