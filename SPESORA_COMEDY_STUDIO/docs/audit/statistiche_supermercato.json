@@ -1,0 +1,216 @@
+{
+ "protagonista": {
+  "frames": 2784,
+  "static_pct": 65.5,
+  "hold_pct": 80.0,
+  "longest_static_s": 4.63,
+  "runs_over_1s": 15,
+  "head_snaps_over_4deg_per_frame": 40,
+  "esempi_scatti": [
+   [
+    0.0333,
+    "01",
+    32.5,
+    "phone",
+    "phone"
+   ],
+   [
+    2.9,
+    "02",
+    54.0,
+    "phone",
+    "(0.6, 9.0, 3.2)"
+   ],
+   [
+    5.8667,
+    "02",
+    16.0,
+    "(0.6, 9.0, 3.2)",
+    "(0.6, 9.0, 3.2)"
+   ],
+   [
+    6.6,
+    "03",
+    17.0,
+    "(-2.4, 9.0, 1.2)",
+    "(-2.4, 9.0, 1.2)"
+   ],
+   [
+    9.2,
+    "03",
+    28.5,
+    "(-2.4, 9.0, 1.2)",
+    "phone"
+   ],
+   [
+    12.6,
+    "05",
+    20.1,
+    "phone",
+    "(-1.06, 5.6, 1.2)"
+   ]
+  ]
+ },
+ "dipendente": {
+  "frames": 1010,
+  "static_pct": 71.7,
+  "hold_pct": 78.6,
+  "longest_static_s": 1.83,
+  "runs_over_1s": 1,
+  "head_snaps_over_4deg_per_frame": 13,
+  "esempi_scatti": [
+   [
+    6.2333,
+    "03",
+    47.8,
+    "cartellina_luca",
+    "cartellina_luca"
+   ],
+   [
+    12.4,
+    "05",
+    21.0,
+    "cartellina_luca",
+    "protagonista"
+   ],
+   [
+    13.2,
+    "05",
+    21.1,
+    "protagonista",
+    "cartellina_luca"
+   ],
+   [
+    14.0,
+    "05",
+    21.1,
+    "cartellina_luca",
+    "protagonista"
+   ],
+   [
+    19.1333,
+    "07",
+    12.3,
+    "protagonista",
+    "protagonista"
+   ],
+   [
+    19.4,
+    "07",
+    20.1,
+    "protagonista",
+    "phone"
+   ]
+  ]
+ },
+ "responsabile": {
+  "frames": 877,
+  "static_pct": 56.2,
+  "hold_pct": 77.9,
+  "longest_static_s": 4.17,
+  "runs_over_1s": 3,
+  "head_snaps_over_4deg_per_frame": 22,
+  "esempi_scatti": [
+   [
+    38.2667,
+    "12",
+    14.0,
+    "protagonista",
+    "protagonista"
+   ],
+   [
+    39.3333,
+    "12",
+    4.2,
+    "protagonista",
+    "protagonista"
+   ],
+   [
+    39.3667,
+    "12",
+    5.0,
+    "protagonista",
+    "protagonista"
+   ],
+   [
+    39.4,
+    "12",
+    5.5,
+    "protagonista",
+    "protagonista"
+   ],
+   [
+    39.4333,
+    "12",
+    5.7,
+    "protagonista",
+    "protagonista"
+   ],
+   [
+    39.4667,
+    "12",
+    5.7,
+    "protagonista",
+    "protagonista"
+   ]
+  ]
+ },
+ "dipendente_b": {
+  "frames": 459,
+  "static_pct": 73.0,
+  "hold_pct": 71.0,
+  "longest_static_s": 4.17,
+  "runs_over_1s": 1,
+  "head_snaps_over_4deg_per_frame": 3,
+  "esempi_scatti": [
+   [
+    47.4667,
+    "13",
+    5.0,
+    "protagonista",
+    "protagonista"
+   ],
+   [
+    47.5,
+    "13",
+    4.7,
+    "protagonista",
+    "protagonista"
+   ],
+   [
+    47.5333,
+    "13",
+    4.1,
+    "protagonista",
+    "protagonista"
+   ]
+  ]
+ },
+ "cliente_felpa": {
+  "frames": 209,
+  "static_pct": 67.9,
+  "hold_pct": 68.4,
+  "longest_static_s": 4.73,
+  "runs_over_1s": 1,
+  "head_snaps_over_4deg_per_frame": 0,
+  "esempi_scatti": []
+ },
+ "cliente_signora": {
+  "frames": 209,
+  "static_pct": 100.0,
+  "hold_pct": 100.0,
+  "longest_static_s": 6.97,
+  "runs_over_1s": 1,
+  "head_snaps_over_4deg_per_frame": 0,
+  "esempi_scatti": []
+ },
+ "direttore": {
+  "frames": 517,
+  "static_pct": 88.2,
+  "hold_pct": 97.7,
+  "longest_static_s": 2.03,
+  "runs_over_1s": 4,
+  "head_snaps_over_4deg_per_frame": 0,
+  "esempi_scatti": []
+ }
+}
