@@ -141,6 +141,34 @@ Lo sguardo segue i bersagli reali (telefono, Luca, porta, direttore, camera) e i
 
 Limite dichiarato: il labiale è generico e va rifatto sulle voci registrate.
 
-### Test E · rendering (immagini)
+### Test E · rendering (immagini) · `scripts/test_e_flicker.py`
 
-_(misure dello sfarfallio sui fotogrammi renderizzati: completate a fine rendering)_
+Misura su **tutti i 1404 fotogrammi** renderizzati, inquadratura per inquadratura, senza attraversare gli stacchi.
+
+Cosa misura:
+- la differenza di luminanza tra un fotogramma e il successivo;
+- i pixel «A-B-A»: cambiano di più di 10/255 e al fotogramma dopo tornano dove erano (entro 5/255).
+
+Il movimento normale va in una direzione; lo sfarfallio (rumore, z-fighting, texture che saltano) va e torna.
+Anche un battito di ciglia o una linea sottile che attraversa un pixel fanno A-B-A, quindi la misura indica dove guardare e la decisione è visiva.
+Per ogni inquadratura è salvata la mappa del triplo di fotogrammi peggiore (`renders/animatic/qc/test_e/TAVOLA_sfarfallio.png`).
+
+| Risultato | Valore |
+|---|---|
+| Pixel A-B-A isolati (tipici di rumore e z-fighting), massimo nell'episodio | **0,53 %** dell'immagine (inq. 05, righe del pavimento in movimento) |
+| Inquadrature a camera ferma (19, 23, 24) | 0,009–0,022 % isolati, solo su occhi e mani (battiti, gesti) |
+| Muri, soffitto, scaffali, insegne fermi | nessun pixel segnalato in nessuna inquadratura (verifica visiva delle 24 mappe) |
+| Z-fighting | ✅ nessuno (dopo la correzione 20) |
+
+Esito della verifica visiva:
+- **rumore e z-fighting:** assenti;
+- **linee sottili in movimento:** le fughe del pavimento e la rete del carrello (inq. 03, 05, 08, 10) sono le zone più segnalate quando la camera o il carrello si muovono. A 432×768 con 6 campioni le linee sono larghe 1 pixel e «scattano»;
+- **parti animate:** tutto il resto sono parti che si muovono davvero (braccia, capelli, cartelline, palpebre), compreso il saltello del passo di Luca in primo piano nell'inq. 06;
+- **correzione 21:** controllando le mappe è emerso un problema di messa in scena (non di rendering) nell'inq. 07, corretto.
+
+**Prova a qualità finale.**
+- 4 fotogrammi consecutivi a 30 fps dell'inq. 03, la più critica: 1080×1920, 64 campioni con denoise.
+- **Risultato:** le linee del pavimento e la rete del carrello escono pulite e antialiasate.
+- **Pixel A-B-A:** dal 5,3 % al 4,5 % del totale, isolati dallo 0,51 % allo 0,35 %. Quelli rimasti sono le linee che attraversano i pixel mentre si muovono, cioè movimento vero.
+
+Limite dichiarato: l'effetto moiré della rete del carrello in movimento si giudica davvero solo guardando la sequenza definitiva a 30 fps. Va ricontrollato nella fase 7; se compare, si ispessisce il filo o si allarga la maglia.
