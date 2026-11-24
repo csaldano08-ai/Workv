@@ -307,8 +307,8 @@ def _door_pose(t, W):
     R = Wi.to_3x3()
     return {**phone_low_L(P.ch), "hand.R": (tuple(Wi @ wrist), tuple(R @ fd), tuple(R @ palm)), "fingers.R": (35, 38, 40, 20)}
 P.pose(69.2, _door_pose)
-P.pose(70.0, {**phone_low_L(P.ch), "hand.L": ((0.14, -0.36, 0.86), (0.2, -0.3, 1.0), (-0.6, 0.6, 0.0)), "hand.R": ((-0.14, -0.36, 0.86), (-0.2, -0.3, 1.0), (0.6, 0.6, 0.0)),
-              "elbow.R": (-0.5, 0.25, 0.75), "elbow.L": (0.28, 0.4, 0.72)})                       # passa la porta con le mani davanti (spalle strette)
+P.pose(70.0, {**phone_low_L(P.ch), "hand.L": ((0.14, -0.36, 0.86), (0.2, -0.3, 1.0), (-0.6, 0.6, 0.0)), "hand.R": ((-0.24, -0.42, 0.9), (-0.2, -0.3, 1.0), (0.6, 0.6, 0.0)),
+              "elbow.R": (-0.55, 0.2, 0.8), "elbow.L": (0.28, 0.4, 0.72)})                       # passa la porta con le mani davanti (spalle strette)
 P.walk(70.2, DOOR_POS, (-5.65, 11.45), "imbarazzato", overrides=dict(arm_sw=0.0))
 P.gaze(71.2, "direttore")
 P.face(71.2, "imbarazzato")
@@ -347,10 +347,10 @@ LU.pose(20.4, {"hand.R": ((-0.3, -0.42, 1.12), (0.0, -1.0, 0.1), (1.0, 0.0, 0.0)
 LU.face(20.4, "felice")
 LU.gaze(20.4, "protagonista")
 LU.pose(22.0, None)
-LU.pose(24.2, {"hand.L": ((0.08, -0.33, 1.0), (0.3, -0.2, 1.0), (-0.2, 0.9, 0.3)), "elbow.L": (0.5, 0.15, 0.7)})   # stringe la cartellina
+LU.pose(24.2, {"hand.L": ((0.18, -0.38, 0.95), (0.4, -0.3, 1.0), (-0.2, 0.9, 0.3)), "elbow.L": (0.55, 0.1, 0.7)})   # cartellina davanti a sé mentre si gira
 LU.walk(24.3, (-1.62, 5.22), (-1.42, 6.1), "normale")
 LU.pose(25.6, None)
-LU.turn(27.05, (-1.42, 6.1), 72.0, 160.0, 0.45)
+LU.turn(27.6, (-1.42, 6.1), 72.0, 160.0, 0.45)
 LU.pose(27.55, {"hand.R": ((-0.45, -0.25, 1.05), (-0.8, 0.3, 0.2), (0.0, 0.0, 1.0)), "elbow.R": (-0.6, 0.25, 0.8)})  # presenta lo scaffale
 LU.face(27.4, "felice")
 LU.pose(29.35, {"hand.R": ((-0.12, -0.2, 1.5), (0.2, 0.1, 1.0), (0.0, -1.0, 0.0)), "elbow.R": (-0.55, 0.0, 1.25)})  # «Subito!»: saluto
