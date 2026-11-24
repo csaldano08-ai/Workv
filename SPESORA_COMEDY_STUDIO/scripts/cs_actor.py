@@ -122,13 +122,31 @@ class Actor:
         self.last = None  # ultimo stato (per i controlli)
         self.busy_until = -1.0
         self.shifts = []  # movimenti spostati perché il precedente non era finito
+        self.auto_turns = []  # giri inseriti prima delle camminate
 
     # ---------------- costruzione della linea temporale
     def hold(self, t0, pos, facing):
-        """Sosta (anche un «salto» di posizione a un taglio di montaggio): interrompe ciò che è ancora in corso."""
+        """Sosta (anche un «salto» di posizione a un taglio di montaggio): interrompe ciò che è ancora in corso,
+        comprese le soste automatiche di fine movimento previste dopo t0 (altrimenti il personaggio tornerebbe indietro)."""
         self.busy_until = t0
+        self.loco = [s for s in self.loco if s.t0 < t0 - 1e-9]
         self.loco.append(Hold(self.ch, t0, pos, facing))
         return t0
+
+    def facing_at(self, t):
+        """Direzione del corpo (gradi) al tempo t, dalla linea temporale della locomozione."""
+        seg = None
+        for s in sorted(self.loco, key=lambda s: s.t0):
+            if s.t0 <= t:
+                seg = s
+        if seg is None:
+            return None
+        if isinstance(seg, Hold):
+            return seg.facing
+        if isinstance(seg, Turn):
+            u = max(0.0, min(1.0, (t - seg.t0) / (seg.t1 - seg.t0)))
+            return seg.f0 + (seg.f1 - seg.f0) * ease(u)
+        return seg.facing
 
     def _start(self, t0, what):
         if t0 < self.busy_until - 1e-6:
@@ -145,6 +163,16 @@ class Actor:
 
     def walk(self, t0, a, b, style="normale", anticip=0.3, overrides=None):
         t0 = self._start(t0, f"camminata verso {b}")
+        # prima di partire si gira verso la meta a piedi bloccati (niente piedi che «saltano» nella nuova direzione)
+        cur = self.facing_at(t0)
+        goal = math.degrees(math.atan2(b[1] - a[1], b[0] - a[0]))
+        if cur is not None:
+            d = (goal - cur + 180) % 360 - 180
+            if abs(d) > 8.0:
+                dur = 0.3 + 0.3 * abs(d) / 180.0
+                self.turn(t0, a, cur, cur + d, dur)
+                self.auto_turns.append(dict(t=round(t0, 2), gradi=round(d, 1), durata=round(dur, 2)))
+                t0 += dur
         w = WalkSeg(self.ch, t0, a, b, style, anticip, overrides)
         self.busy_until = w.t1
         self.loco.append(w)

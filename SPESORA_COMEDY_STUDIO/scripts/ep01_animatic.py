@@ -280,7 +280,7 @@ def _door_pose(t, W):
     return {**phone_low_L(P.ch), "hand.R": (tuple(Wi @ wrist), tuple(R @ fd), tuple(R @ palm)), "fingers.R": (35, 38, 40, 20)}
 P.pose(69.2, _door_pose)
 P.pose(70.0, {**phone_low_L(P.ch), "hand.L": ((0.14, -0.36, 0.86), (0.2, -0.3, 1.0), (-0.6, 0.6, 0.0)), "hand.R": ((-0.14, -0.36, 0.86), (-0.2, -0.3, 1.0), (0.6, 0.6, 0.0)),
-              "elbow.R": (-0.5, 0.25, 0.75), "elbow.L": (0.5, 0.25, 0.75)})                       # passa la porta con le mani davanti (spalle strette)
+              "elbow.R": (-0.28, 0.4, 0.72), "elbow.L": (0.28, 0.4, 0.72)})                       # passa la porta con le mani davanti (spalle strette)
 P.walk(70.2, DOOR_POS, (-5.65, 11.45), "imbarazzato", overrides=dict(arm_sw=0.0))
 P.gaze(71.2, "direttore")
 P.face(71.2, "imbarazzato")
@@ -364,8 +364,8 @@ RE.face(36.0, "felice")
 RE.pose(38.6, {"head_rot": (14, 0, 0)})                                                                    # annuisce: «scelta strategica»
 RE.face(38.6, "ironico")
 RE.turn(39.2, (-3.3, 8.45), -90.0, 180.0, 0.45)
-RE.pose(39.7, {"hand.L": ((0.2, -0.45, 0.8), (0.0, -1.0, 0.0), (0.0, -1.0, 0.0)), "hand.R": ((-0.2, -0.45, 0.8), (0.0, -1.0, 0.0), (0.0, -1.0, 0.0)),
-               "chest_rot": (20, 0, 0), "spine_rot": (10, 0, 0)})                                                     # si piega e spinge l'espositore
+RE.pose(39.7, {"hand.L": ((0.22, -0.52, 0.8), (0.0, -1.0, 0.0), (0.0, -1.0, 0.0)), "hand.R": ((-0.22, -0.52, 0.8), (0.0, -1.0, 0.0), (0.0, -1.0, 0.0)),
+               "elbow.L": (0.6, 0.1, 0.75), "elbow.R": (-0.6, 0.1, 0.75), "chest_rot": (20, 0, 0), "spine_rot": (10, 0, 0)})                                                     # si piega e spinge l'espositore
 RE.gaze(39.7, "espositore")
 RE.face(39.7, "falsa_sicurezza", sweat=0.0)
 PUSH = (40.0, 43.6)
@@ -389,7 +389,8 @@ RE.pose(53.6, None)
 RE.face(52.4, "felice")
 RE.gaze(52.4, "protagonista")
 RE.hold(55.0, (0.3, 4.45), 23.0)
-RE.walk(56.7, (0.3, 4.45), (0.55, 4.72), "sicuro")
+_t = RE.walk(56.7, (0.3, 4.45), (0.3, 4.9), "sicuro", overrides=dict(arm_out=0.53))   # busto più largo in basso: braccia più aperte
+RE.turn(_t, (0.3, 4.9), 90.0, 6.0, 0.45)
 RE.pose(58.8, point_at((-5.65, 10.7, 1.6)))                                  # «il direttore la aspetta»: indica l'ufficio
 RE.face(58.0, "falsa_sicurezza", sweat=0.0)
 RE.pose(60.2, None)
@@ -416,16 +417,24 @@ DI.face(88.0, "felice", mouth="grin")
 SI.hold(0.0, (3.3, 3.25), -90.0)
 SI.face(0.0, "neutro")
 SI.gaze(0.0, (3.3, 1.0, 1.2))
-FE.hold(0.0, (3.3, 4.1), -90.0)
+FE.hold(0.0, (3.45, 4.15), -90.0)
 FE.face(0.0, "esasperato")
 FE.gaze(0.0, "cliente_signora")
-FE.walk(47.4, (3.3, 4.1), (3.95, 3.35), "normale")
-FE.turn(48.8, (3.95, 3.35), -49.0, -90.0, 0.4)
+_t = FE.walk(47.4, (3.45, 4.15), (3.95, 3.45), "normale")
+FE.turn(_t, (3.95, 3.45), math.degrees(math.atan2(3.45 - 4.15, 3.95 - 3.45)), -90.0, 0.4)
 FE.face(47.4, "felice")
 
 # ====================================================================== gomiti risolti in anticipo
 # Per ogni posa della parte alta con le mani: il gomito viene scelto senza compenetrazioni con il busto (busto dritto, a riposo).
 ELBOW_LOG = []
+
+
+def place_world(t):
+    mk.set_entrance_open(0.0)
+    mk.door_angle(88.0 * ease((t - DOOR_T[0]) / (DOOR_T[1] - DOOR_T[0])) if t >= DOOR_T[0] else 0.0)
+    mk.set_cassa_open(1, True)
+    mk.set_cassa_open(2, t >= 47.7)
+    mk.set_cassa_open(3, False)
 
 
 def presolve_elbows():
@@ -437,6 +446,12 @@ def presolve_elbows():
             if isinstance(pk, AtPose):
                 ch.rig.matrix_world = Matrix.Identity(4)
                 pk = pk.fn(a.loco_at(tk)[0])
+            fn = None
+            if callable(pk) and not isinstance(pk, AtPose):
+                fn = pk
+                place_world(tk)
+                ch.rig.matrix_world = Matrix.Identity(4)
+                pk = fn(tk, a.loco_at(tk)[0])
             if pk is None or callable(pk):
                 continue
             Pk = dict(pk)
@@ -447,6 +462,10 @@ def presolve_elbows():
                     r = PO.solve_elbow(ch, full, side)
                     Pk[f"elbow.{side}"] = full[f"elbow.{side}"]
                     ELBOW_LOG.append(dict(attore=a.name, t=tk, lato=side, **r))
+            if fn is not None:
+                el = {k: v for k, v in Pk.items() if k.startswith("elbow.")}
+                a.upper[i] = (tk, (lambda fn=fn, el=el: (lambda t, W: {**fn(t, W), **el}))(), kk)
+                continue
             a.upper[i] = (tk, Pk, kk)
         ch.rig.matrix_world = keep
 
@@ -668,16 +687,9 @@ def apply_actor(a, t, f, faces=True):
 def place_props(t):
     global CART_START
     # telefono: sempre nella mano sinistra del protagonista
-    k = 0.0
-    if 18.75 <= t < 19.1:
-        k = ease((t - 18.75) / 0.35)
-    elif 19.1 <= t < 20.65:
-        k = 1.0
-    elif 20.65 <= t < 21.0:
-        k = 1.0 - ease((t - 20.65) / 0.35)
-    piv = SOCK_READ_L.translation
-    sock = Matrix.Translation(piv) @ Matrix.Rotation(math.pi * k, 4, "Z") @ Matrix.Translation(-piv) @ SOCK_READ_L
-    PO.place_prop(P.ch, phone, "L", sock)
+    # nessun capovolgimento del telefono nella mano: lo schermo guarda dalla parte del palmo, quindi nella posa «mostra»
+    # (palmo in avanti) è già rivolto a Luca; capovolgerlo metteva le dita davanti allo schermo (controllo F)
+    PO.place_prop(P.ch, phone, "L", SOCK_READ_L)
     # carrello: spinto dal protagonista finché lo tiene, poi resta dove l'ha lasciato
     W = P.ch.rig.matrix_world
     if t < 6.2:
@@ -701,14 +713,6 @@ def place_props(t):
         mk.onion_crate.location = (mk.onion_crate_home.x + (lx - (-3.3)), mk.onion_crate_home.y, 0.0)
     else:
         mk.onion_crate.location = mk.onion_crate_home
-
-
-def place_world(t):
-    mk.set_entrance_open(0.0)
-    mk.door_angle(88.0 * ease((t - DOOR_T[0]) / (DOOR_T[1] - DOOR_T[0])) if t >= DOOR_T[0] else 0.0)
-    mk.set_cassa_open(1, True)
-    mk.set_cassa_open(2, t >= 47.7)
-    mk.set_cassa_open(3, False)
 
 
 # ====================================================================== controlli (ogni 15 fotogrammi)
@@ -912,6 +916,11 @@ if MODE == "qc":
                 note("B", f"telefono_dentro_{part}_mm", sid, pen(phone, P.ch.parts[part]), t, pen(phone, P.ch.parts[part]) > 0)
             cov = QC.screen_cover(P.ch.parts["hand.L"], phone, sw, shh, S.PHONE_T) + QC.screen_cover(P.ch.parts["hand.R"], phone, sw, shh, S.PHONE_T)
             note("F", "vertici_mano_davanti_allo_schermo", sid, cov, t, cov > 0)
+            if 19.3 <= t <= 20.5:   # «mostra»: lo schermo deve essere rivolto verso Luca
+                nrm = (phone.matrix_world.to_3x3() @ Vector((0, -1, 0))).normalized()
+                to_l = (head_world(LU) - phone.matrix_world.translation).normalized()
+                c = round(nrm.dot(to_l), 3)
+                note("F", "schermo_non_rivolto_a_luca_(1-cos)", sid, round(1 - c, 3), t, c < 0.5)
         for cname, obs in clips.items():
             for ob in obs:
                 for an in vis:
@@ -936,7 +945,7 @@ if MODE == "qc":
             a_ = A[an]
             ft = feet_of(a_)
             pv = prev_feet.get(an)
-            if pv is not None and pv[0] == fi - STEP:
+            if pv is not None and pv[0] == fi - STEP and shot_at(pv[0] / FPS)[0] == sid:
                 for s in "LR":
                     (p0, z0), (p1, z1) = pv[1][s], ft[s]
                     if z0 < 0.006 and z1 < 0.006:
@@ -964,7 +973,8 @@ if MODE == "qc":
     summary = {}
     for (test, what, sid), (v, t) in sorted(agg.items()):
         summary.setdefault(test, {}).setdefault(what, {})[sid] = dict(massimo=v, t=t)
-    json.dump(dict(fotogrammi_controllati=nfr, passo=STEP, intervallo_s=[f0 / FPS, f1 / FPS], problemi=events, massimi_per_inquadratura=summary),
+    json.dump(dict(fotogrammi_controllati=nfr, passo=STEP, intervallo_s=[f0 / FPS, f1 / FPS], problemi=events, massimi_per_inquadratura=summary,
+                   movimenti_spostati={n: A[n].shifts for n in CAST}, giri_prima_delle_camminate={n: A[n].auto_turns for n in CAST}, gomiti=ELBOW_LOG),
               open(os.path.join(OUT, f"qc_completo_{f0}_{f1}.json"), "w"), ensure_ascii=False, indent=1)
     print("ok qc", nfr, "fotogrammi", len(events), "problemi", round(time.time() - t_start), "s")
     sys.exit(0)
