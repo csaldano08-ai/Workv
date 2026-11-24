@@ -165,7 +165,7 @@ Per arrivare a 0 il controllo ha trovato e fatto correggere:
 |---|---|---|
 | Immagini al secondo | 15, ognuna ripetuta | **30**, una per fotogramma |
 | Protagonista: testa e mani congelate | 45,3% dei fotogrammi, fino a 4,97 s di fila | **0%** |
-| Protagonista: quasi fermo (sotto 0,8 mm e 0,15° per fotogramma) | 65,6% | **19,8%** |
+| Protagonista: quasi fermo (sotto 0,8 mm e 0,15° per fotogramma) | 65,6% | **20,1%** |
 | Luca: congelato | 67,2%, fino a 4,17 s | **0,6%**, 2 fotogrammi |
 | Luca: quasi fermo | 73,6% | 55,5%: pause vive mentre ascolta (respiro e derive sotto la soglia) |
 | Scatti della testa (salto > 4° in un fotogramma, 2,5 volte i vicini) | protagonista 20/min, Luca 12,5/min | **0** |
@@ -177,7 +177,19 @@ Grafici:
 
 ### Immagine (test E) e verifica visiva
 
-_(dopo il rendering)_
+- **Fotogrammi:** 347 renderizzati a 540×960 con 6 campioni, montati a 1080×1920 e 30 fps. **Nessun fotogramma identico al precedente**: lo stop-motion è eliminato alla radice.
+- **Sfarfallio:** pixel «A-B-A» isolati al massimo 0,28% (nell'animatic 0,53%). Sono solo fughe del pavimento in movimento e bordi delle parti animate. Nessun rumore né z-fighting sulle superfici ferme (mappe in `renders/test_recitazione/qc/`).
+- **Verifica visiva della recitazione**, sulle tavole a fotogrammi consecutivi `renders/test_recitazione/TAVOLA_01…04.jpg`:
+  - camminata con appoggi credibili e braccio libero che oscilla, il telefono che segue;
+  - fermata con trasferimento del peso;
+  - telefono sollevato con anticipazione e piccolo superamento, poi porto girandolo;
+  - Luca che si sporge strizzando gli occhi, si contrae, sobbalza (occhi tondi, «o», cartellina che salta) e si assesta nel sorriso;
+  - saluto ad arco fino alla tempia, con due cenni;
+  - protagonista confuso, poi imbarazzato (rossore che sale, goccia, spalle su), sguardo in basso e poi in camera: prima gli occhi, poi la testa.
+- **Due correzioni dopo la prima visione**, entrambe ri-renderizzate e ricontrollate (0 problemi):
+  - nell'inquadratura 2 la testa del protagonista copriva il viso di Luca: camera 30 cm più di lato;
+  - nella 3 lo sguardo in basso nascondeva il viso: sguardo meno chinato.
+- **Tempo di rendering:** 61 min per 347 fotogrammi (9,3 s ciascuno, CPU a 4 core).
 
 ## 7 · Confronto visivo
 
@@ -186,4 +198,25 @@ _(dopo il rendering)_
 
 ## 8 · Problemi ancora presenti
 
-_(dopo il rendering)_
+1. **Manca il confronto con il matrimonio**: video non arrivati, nessun sorgente. È la verifica che la richiesta considera decisiva, e non l'ho fatta.
+2. Il metodo nuovo è applicato **solo al test**. L'episodio di 90 s usa ancora il sistema vecchio e va ricostruito con `cs_acting` dopo l'approvazione (come richiesto, non l'ho rifatto).
+3. **Pause di Luca:** è «quasi fermo» nel 55% dei fotogrammi. Non è congelato (0,6%), sono pause d'ascolto con respiro e derive lente sotto la soglia della misura. Va giudicato a occhio. La **mano con la cartellina** però resta ferma rispetto al corpo nelle pause: da animare con una piccola deriva.
+4. **Inquadratura 2:** per circa 0,6 s, mentre il protagonista china la testa sul telefono, metà del viso di Luca resta coperta (tipico del campo sopra la spalla, ma si può aprire di più).
+5. **Sorriso del saluto:** la bocca «denti in vista» può sembrare una smorfia più che orgoglio. Da valutare a occhio; in alternativa, sorriso aperto.
+6. **Schermo del telefono:** è la schermata vera di Spesora, che mostra «Cipolla 1,5 pz» e non «Cipolle — 4» (vedi l'animatic). Nel test, alla distanza del campo sopra la spalla, non si legge.
+7. **Qualità d'immagine da prova:** 540×960 con 6 campioni. Le fughe del pavimento tremolano un poco nei movimenti di camera. Il definitivo va a 1080×1920 (vedi `README`).
+8. **Labiale:** nessuno, perché il test è senza voci. Va fatto sulle voci registrate.
+9. **Narrazione v2:** scelta con misure, non con l'ascolto. Da ascoltare: N09–N10 più piatte; N03 che sale alla fine; pronuncia di «Spesora».
+
+## 9 · Consegna
+
+| File | Contenuto |
+|---|---|
+| `renders/test_recitazione/TEST_recitazione.mp4` | Il test, 11,6 s, 1080×1920, 30 fps, senza voce (ambiente e passi sincronizzati) |
+| `renders/test_recitazione/TEST_recitazione_etichette.mp4` | Uguale, con il numero dell'inquadratura, il tempo e i marcatori delle battute N04 e N05 |
+| `renders/test_recitazione/TEST_recitazione_ANTEPRIMA_narrazione_v2.mp4` | Anteprima con N04 e N05 della narrazione v2 (proposta) ai marcatori |
+| `renders/test_recitazione/CONFRONTO_prima_dopo.mp4` | Affiancato: la stessa azione nell'episodio rifiutato e nel test |
+| `renders/test_recitazione/TAVOLA_0x_*.jpg` | Fotogrammi consecutivi dei momenti chiave |
+| `renders/test_recitazione/qc/` | Controlli A–F per fotogramma, sfarfallio |
+| `docs/audit/` | Grafici delle curve (prima e dopo), statistiche, confronto del movimento |
+| `audio/narrazione_v2_PROPOSTA/` | Narrazione v2: traccia continua, battute, marcatori, misure |

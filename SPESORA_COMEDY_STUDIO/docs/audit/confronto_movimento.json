@@ -1,4 +1,5 @@
 {
+ "nota": "scatto = salto della testa > 4° in un fotogramma e 2,5 volte i vicini; congelato = mani < 0,05 mm, testa < 0,01°; quasi fermo = mani < 0,8 mm, rotazioni < 0,15° per fotogramma",
  "episodio_rifiutato": {
   "protagonista": {
    "fotogrammi": 2784,
@@ -20,7 +21,7 @@
  "test": {
   "protagonista": {
    "fotogrammi": 344,
-   "quasi_fermo_pct": 19.8,
+   "quasi_fermo_pct": 20.1,
    "testa_e_mani_congelate_pct": 0.0,
    "congelato_piu_lungo_s": 0.0,
    "scatti_testa": 0,

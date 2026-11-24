@@ -1,0 +1,53 @@
+{
+ "durata_s": 11.56,
+ "fps": 30,
+ "fine_camminata_s": 3.96,
+ "inquadrature": [
+  {
+   "n": "1",
+   "inizio": 0.0,
+   "fine": 4.06
+  },
+  {
+   "n": "2",
+   "inizio": 4.06,
+   "fine": 8.08
+  },
+  {
+   "n": "3",
+   "inizio": 8.08,
+   "fine": 11.56
+  }
+ ],
+ "marcatori_narrazione": [
+  {
+   "id": "N04",
+   "inizio": 5.56,
+   "testo": "ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione."
+  },
+  {
+   "id": "N05",
+   "inizio": 8.96,
+   "testo": "E lui non ebbe il coraggio di correggerlo."
+  }
+ ],
+ "passi": [
+  0.97,
+  1.41,
+  1.85,
+  2.29,
+  2.73,
+  3.17,
+  3.61
+ ],
+ "eventi": {
+  "telefono_su": 4.16,
+  "telefono_porto": 5.56,
+  "sobbalzo_luca": 6.71,
+  "saluto": 7.51,
+  "confuso": 7.88,
+  "imbarazzo": 8.46,
+  "sguardo_in_camera": 9.61
+ },
+ "nota": "nessun doppiaggio in questa fase: i marcatori indicano dove andranno le battute"
+}
