@@ -1,5 +1,5 @@
 {
- "costruzione_s": 106.0,
+ "costruzione_s": 84.2,
  "prodotti_dentro_scaffale_0": {
   "depth_mm": 0.0,
   "verts_inside": 0,
@@ -38,7 +38,7 @@
  },
  "porta_rotazione_0_88_contatti": [],
  "porta_ufficio_luce_libera_m": {
-  "larghezza": 0.784,
+  "larghezza": 0.984,
   "altezza": 2.04
  },
  "ingresso_luce_libera_m": {
@@ -59,11 +59,11 @@
   1.68
  ],
  "tempi_render_viste_s": [
-  35.4,
-  37.1,
-  35.0,
-  34.2,
-  36.8,
-  21.8
+  50.1,
+  54.0,
+  51.4,
+  53.9,
+  47.4,
+  21.3
  ]
 }

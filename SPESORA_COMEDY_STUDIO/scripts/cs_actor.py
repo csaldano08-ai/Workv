@@ -123,6 +123,7 @@ class Actor:
         self.busy_until = -1.0
         self.shifts = []  # movimenti spostati perché il precedente non era finito
         self.auto_turns = []  # giri inseriti prima delle camminate
+        self.turn_fixes = []  # giri il cui angolo di partenza scritto non coincideva con quello reale
 
     # ---------------- costruzione della linea temporale
     def hold(self, t0, pos, facing):
@@ -156,6 +157,10 @@ class Actor:
 
     def turn(self, t0, pos, f0, f1, dur=0.55):
         t0 = self._start(t0, f"giro a {f1:.0f}°")
+        cur = self.facing_at(t0)   # il giro parte sempre dalla direzione reale del corpo (altrimenti i piedi «saltano»)
+        if cur is not None and abs((cur - f0 + 180) % 360 - 180) > 0.5:
+            self.turn_fixes.append(dict(t=round(t0, 2), scritto=round(f0, 1), reale=round(cur, 1)))
+            f0 = cur
         self.busy_until = t0 + dur
         self.loco.append(Turn(self.ch, t0, pos, f0, f1, dur))
         self.loco.append(Hold(self.ch, t0 + dur, pos, f0 + ((f1 - f0 + 180) % 360 - 180)))

@@ -307,7 +307,8 @@ def _door_pose(t, W):
     R = Wi.to_3x3()
     return {**phone_low_L(P.ch), "hand.R": (tuple(Wi @ wrist), tuple(R @ fd), tuple(R @ palm)), "fingers.R": (35, 38, 40, 20)}
 P.pose(69.2, _door_pose)
-P.pose(70.0, {**phone_low_L(P.ch), "hand.L": ((0.14, -0.36, 0.86), (0.2, -0.3, 1.0), (-0.6, 0.6, 0.0)), "hand.R": ((-0.24, -0.42, 0.9), (-0.2, -0.3, 1.0), (0.6, 0.6, 0.0)),
+P.pose(69.7, {**phone_low_L(P.ch), "hand.R": ((-0.45, -0.35, 1.0), (-0.3, -0.5, 0.8), (0.8, 0.2, 0.0)), "elbow.R": (-0.7, 0.15, 0.9)})  # lascia la maniglia verso l'esterno
+P.pose(70.05, {**phone_low_L(P.ch), "hand.L": ((0.14, -0.36, 0.86), (0.2, -0.3, 1.0), (-0.6, 0.6, 0.0)), "hand.R": ((-0.24, -0.42, 0.9), (-0.2, -0.3, 1.0), (0.6, 0.6, 0.0)),
               "elbow.R": (-0.55, 0.2, 0.8), "elbow.L": (0.28, 0.4, 0.72)})                       # passa la porta con le mani davanti (spalle strette)
 P.walk(70.2, DOOR_POS, (-5.65, 11.45), "imbarazzato", overrides=dict(arm_sw=0.0))
 P.gaze(71.2, "direttore")
@@ -1007,7 +1008,8 @@ if MODE == "qc":
     for (test, what, sid), (v, t) in sorted(agg.items()):
         summary.setdefault(test, {}).setdefault(what, {})[sid] = dict(massimo=v, t=t)
     json.dump(dict(fotogrammi_controllati=nfr, passo=STEP, intervallo_s=[f0 / FPS, f1 / FPS], problemi=events, massimi_per_inquadratura=summary,
-                   movimenti_spostati={n: A[n].shifts for n in CAST}, giri_prima_delle_camminate={n: A[n].auto_turns for n in CAST}, gomiti=ELBOW_LOG),
+                   movimenti_spostati={n: A[n].shifts for n in CAST}, giri_prima_delle_camminate={n: A[n].auto_turns for n in CAST},
+                   giri_corretti={n: A[n].turn_fixes for n in CAST}, gomiti=ELBOW_LOG),
               open(os.path.join(OUT, f"qc_completo_{f0}_{f1}.json"), "w"), ensure_ascii=False, indent=1)
     print("ok qc", nfr, "fotogrammi", len(events), "problemi", round(time.time() - t_start), "s")
     sys.exit(0)

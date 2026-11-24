@@ -365,7 +365,8 @@ class Market:
         fw = 0.06
         for x in (o["door_x0"] + fw / 2 - 0.005, o["door_x1"] - fw / 2 + 0.005):
             add_box(bm, (x, y, o["door_h"] / 2), (fw, ti + 0.03, o["door_h"]))
-        add_box(bm, ((o["door_x0"] + o["door_x1"]) / 2, y, o["door_h"] - fw / 2 + 0.005), (o["door_x1"] - o["door_x0"], ti + 0.03, fw))
+        # traverso 2 mm più profondo dei montanti per lato: facce frontali non complanari (prima: quadratini scuri da z-fighting agli angoli)
+        add_box(bm, ((o["door_x0"] + o["door_x1"]) / 2, y, o["door_h"] - fw / 2 + 0.005), (o["door_x1"] - o["door_x0"], ti + 0.034, fw))
         self.put("porta_telaio", finish("porta_telaio", bm, [self.M["telaio"]]))
         # anta: cerniera sul montante sinistro, si apre verso l'interno dell'ufficio (+y)
         hx = o["door_x0"] + fw - 0.005 + 0.003      # 3 mm di gioco dal montante anche ad anta aperta
