@@ -18,6 +18,7 @@ Progetto separato dall'app (`spesora/`) e dagli spot (`SPESORA_ADS_STUDIO/`): no
 | 5 · Storyboard e animatic | ✅ `renders/animatic/EP01_animatic.mp4` (95 s, 1080×1920, narrazione), `shots/storyboard/STORYBOARD_EP01.jpg`, copione delle voci e piano di montaggio (`docs/07_COPIONE_VOCI_E_MONTAGGIO_EP01.md`) |
 | 6 · Prove critiche (carrello, porta, oggetti, camminate, telefono) | ✅ controlli A–F su tutti i 1404 fotogrammi dell'animatic: 0 problemi; test E sulle immagini (sfarfallio): nessun rumore né z-fighting (`renders/animatic/qc/`) |
 | 7–8 · Animazione e render definitivi | ⏳ **in attesa di approvazione dell'animatic** e della scelta di come renderizzare (vedi sotto) |
+| **Audit (25/11)** | ⛔ animatic **rifiutato** per animazione, recitazione e voce. Audit e test di recitazione di 11,6 s: `docs/08_AUDIT_ANIMAZIONE_E_AUDIO.md`, `renders/test_recitazione/`. Narrazione v2 come **proposta**: `audio/narrazione_v2_PROPOSTA/`. L'episodio **non** si rifà prima dell'approvazione del test. |
 
 ## Struttura
 
@@ -53,6 +54,15 @@ python scripts/assemble_ep01.py out audio/narrazione_clonata/battute out/montagg
 python scripts/storyboard_extract.py out && python scripts/storyboard_sheet.py out STORYBOARD_EP01.jpg 6
 python scripts/edit_plan.py out/cue.json audio/narrazione_clonata/battute docs/07_COPIONE_VOCI_E_MONTAGGIO_EP01.md
 python scripts/test_e_flicker.py out                                  # test E: sfarfallio sui fotogrammi renderizzati
+ADS_MODE=audit ADS_RANGE=0-93.6 python scripts/ep01_animatic.py out_audit                       # campionamento dei canali (curve) dell'episodio
+python scripts/audit_plot.py out_audit/audit_0_2808.json curve.png protagonista 0 30 titolo     # grafici stile Graph Editor
+# test di recitazione (metodo nuovo: scripts/cs_acting.py)
+TR_MODE=qc TR_STEP=1 python scripts/test_recitazione.py out_test                                 # controlli A, B, C, E, F per fotogramma
+TR_MODE=render TR_RES=540x960 TR_SAMPLES=6 python scripts/test_recitazione.py out_test           # 30 fps veri
+TR_MODE=curves python scripts/test_recitazione.py out_test                                       # canali campionati per i grafici
+python scripts/assemble_test.py out_test test.mp4 [--etichette] [--narrazione audio/narrazione_v2_PROPOSTA/battute]
+python scripts/compare_test.py renders/animatic/EP01_animatic_senza_etichette.mp4 test.mp4 confronto.mp4
+# voce: bloccata per default (serve VOCE_AUTORIZZATA=1, con il consenso del proprietario della voce)
 ```
 
 Render: Cycles su CPU. Eevee non è utilizzabile in questo ambiente, che non ha GPU.

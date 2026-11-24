@@ -116,14 +116,74 @@ Riassunto: il problema non era il rendering, ma **il metodo d'animazione**. Si t
 
   I risultati sono nella sezione 6.
 
-## 5 · Il test di recitazione (10–12 s)
+## 5 · Il test di recitazione (11,6 s)
 
-_(risultati nella sezione 6)_
+`scripts/test_recitazione.py`. Montaggio: `scripts/assemble_test.py`. File in `renders/test_recitazione/`.
+
+| Tempo | Azione (tutta animata, nessuna posa ferma con stacco) | Principi applicati |
+|---|---|---|
+| 0,0–4,0 s | Il protagonista cammina per 6 passi a impronte bloccate. Guarda il telefono, poi le cassette di verdura, poi di nuovo il telefono, poi nota Luca. | Occhi prima della testa; la mano col telefono oscilla meno di quella libera e la segue con una molla. |
+| 3,96 s | Si ferma davanti a Luca: ultimo passo corto, assestamento, peso sulla gamba destra. | Trasferimento del peso. |
+| 4,0–4,8 s | Solleva il telefono: prima abbassa la mano e porta il busto indietro, poi sale veloce, supera di poco e si posa. | Anticipazione, azione, superamento, assestamento. |
+| 4,6–5,4 s | Legge (inquadratura sopra la spalla: si vede lo schermo). | Pausa viva: piccole derive, respiro. |
+| 5,5–6,0 s | Ritira il telefono verso di sé, poi lo porge a Luca girandolo; con la destra fa «ecco», palmo in su; si sporge col busto. | Anticipazione del porgere, sovrapposizione mano, busto, testa. |
+| 5,6–6,6 s | Luca guarda il telefono (gli occhi in 2 fotogrammi, la testa dopo), si sporge a leggere e porta il bacino indietro. Strizza gli occhi. | Peso, sguardo, volto a parti. |
+| 6,6–7,3 s | La reazione di Luca: si contrae (spalle su, testa giù), poi sobbalza (occhi tondi, sopracciglia oltre la posa, bocca a «o», cartellina che salta), si assesta, capisce e sorride. | Contrazione e allungamento, superamento, assestamento. |
+| 7,4–8,1 s | Luca fa il saluto «sissignore»: la mano scende un attimo, sale ad arco lontano dal petto e si posa alla tempia con un piccolo superamento. Due cenni. | Anticipazione e arco. |
+| 8,1–9,3 s | Il protagonista passa da speranzoso a confuso (testa inclinata, sopracciglia asimmetriche) e poi a imbarazzato: spalle su, rossore che sale, goccia di sudore, telefono ritirato al petto, peso indietro. | Le sopracciglia partono prima, la bocca dopo; il corpo si chiude. |
+| 9,0–9,6 s | Abbassa lo sguardo, poi guarda in camera: prima gli occhi, poi la testa, con un leggero superamento. | Sguardo che guida. |
+| 9,6–11,6 s | Pausa comica in camera, voluta: respiro, battito lento, un sopracciglio che si alza e torna. | Pausa voluta, non animazione mancante. |
+
+Inquadrature: tutte dallo stesso lato della linea d'azione.
+- **1 · campo largo di 3/4:** la camera segue con ritardo (molla).
+- **2 · sopra la spalla sinistra del protagonista:** lo schermo del telefono e il viso di Luca.
+- **3 · primo piano pulito del protagonista:** lenta spinta in avanti.
+
+Audio: nessuna voce. Ci sono l'ambiente del negozio, i **passi sincronizzati agli appoggi reali dei piedi**, il fruscio del telefono, il sobbalzo e i tacchi del saluto. I marcatori delle battute N04 e N05 sono in `marcatori.json` e nella versione con etichette.
 
 ## 6 · Risultati
 
-_(in compilazione)_
+### Controlli geometrici per fotogramma (347 fotogrammi, tutti)
 
-## 7 · Problemi ancora presenti
+| Test | Cosa | Risultato |
+|---|---|---|
+| A · Intersezioni | Per ogni braccio e ogni mano di entrambi i personaggi: contro busto **e testa**. Busti contro l'ambiente, busti tra loro, teste tra loro, mano dentro il telefono. | ✅ **0 mm** |
+| B · Oggetti | telefono dentro busti, teste e altra mano; cartellina dentro i corpi; mani e braccia di Luca dentro il protagonista | ✅ **0 mm** |
+| C · Camminata | scivolamento del piede in appoggio tra due fotogrammi; suole rispetto al pavimento | ✅ max **0,64 mm**; suole a 2,0 mm |
+| E · Camera | distanza minima dai personaggi | ✅ **499 mm** |
+| F · Telefono | vertici della mano davanti allo schermo | ✅ **0** |
 
-_(in compilazione)_
+Per arrivare a 0 il controllo ha trovato e fatto correggere:
+- braccia del protagonista nel busto (254 fotogrammi, fino a 18,9 mm), risolte dal rig;
+- telefono nella pancia durante la camminata (10,4 mm): telefono più avanti, oscillazione ridotta;
+- braccio del saluto nella testa di Luca (52,8 mm): nuova posa del saluto, risolutore dei gomiti esteso alla testa;
+- mano di Luca nel petto mentre sale al saluto (60 mm): arco laterale e rotazione della mano solo sopra il petto. Inoltre la sua mano «di riposo», scritta a mano, toccava il busto ed è stata sostituita con quella del rig.
+
+### Movimento, misurato sulle curve (`docs/audit/confronto_movimento.json`)
+
+| Misura | Episodio rifiutato | Test |
+|---|---|---|
+| Immagini al secondo | 15, ognuna ripetuta | **30**, una per fotogramma |
+| Protagonista: testa e mani congelate | 45,3% dei fotogrammi, fino a 4,97 s di fila | **0%** |
+| Protagonista: quasi fermo (sotto 0,8 mm e 0,15° per fotogramma) | 65,6% | **19,8%** |
+| Luca: congelato | 67,2%, fino a 4,17 s | **0,6%**, 2 fotogrammi |
+| Luca: quasi fermo | 73,6% | 55,5%: pause vive mentre ascolta (respiro e derive sotto la soglia) |
+| Scatti della testa (salto > 4° in un fotogramma, 2,5 volte i vicini) | protagonista 20/min, Luca 12,5/min | **0** |
+| Transizioni | una sola curva di 0,35 s per tutto | curve diverse per canale, con anticipazioni e superamenti |
+
+Grafici:
+- `docs/audit/CURVE_supermercato_protagonista_0-30s.png` e `CURVE_supermercato_luca_12-31s.png`: gradini, salti verticali, fasce grigie di immobilità;
+- `CURVE_test_recitazione_protagonista.png` e `CURVE_test_recitazione_dipendente.png`: curve continue, sovrapposte, con superamenti e assestamenti.
+
+### Immagine (test E) e verifica visiva
+
+_(dopo il rendering)_
+
+## 7 · Confronto visivo
+
+- **Con il matrimonio: non eseguito** (video non arrivato). È la verifica più importante che manca.
+- **Con l'episodio rifiutato:** `renders/test_recitazione/CONFRONTO_prima_dopo.mp4` mette affiancate la stessa azione (12,0–23,6 s dell'episodio) e il test.
+
+## 8 · Problemi ancora presenti
+
+_(dopo il rendering)_

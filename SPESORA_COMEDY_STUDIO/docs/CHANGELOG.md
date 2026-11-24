@@ -1,5 +1,39 @@
 # Changelog · SPESORA COMEDY STUDIO
 
+## 2026-11-25 · audit critico e test di recitazione (animatic rifiutato)
+
+**Diagnosi** (`docs/08_AUDIT_ANIMAZIONE_E_AUDIO.md`, verificata nei sorgenti e misurata campionando i canali a 30 fps):
+- immagini a 15 al secondo tenute 2 fotogrammi;
+- pose a blocchi con un'unica transizione di 0,35 s per tutto il corpo;
+- teste che saltavano sul nuovo bersaglio in un fotogramma (20 scatti al minuto per il protagonista);
+- volti che cambiavano tutti insieme;
+- testa e mani congelate nel 45% (protagonista) e 67% (Luca) dei fotogrammi;
+- la mano del saluto di Luca era dentro la testa: il controllo guardava solo il busto.
+
+**Aggiunto**
+- `cs_acting.py`:
+  - curve per canale con interpolazione per chiave (ease, out, in, back, hold voluto);
+  - molle per il movimento secondario, ritardi per la sovrapposizione;
+  - pause vive;
+  - volto a parti (sopracciglia in anticipo, bocca in ritardo).
+- `test_recitazione.py`: test di 11,6 s a 30 fps veri.
+  - Azione: camminata, fermata, telefono, lista, reazione di Luca, imbarazzo, sguardo in camera.
+  - Sguardi con gli occhi che guidano la testa.
+  - Gomiti risolti contro busto e testa.
+  - Tre inquadrature dallo stesso lato della linea d'azione.
+  - Controlli A, B, C, E, F per fotogramma.
+- Modalità `audit` di `ep01_animatic.py` e `audit_plot.py` (grafici stile Graph Editor).
+- `assemble_test.py`: test senza voce, passi sincronizzati agli appoggi. `compare_test.py`: confronto affiancato prima/dopo.
+- Narrazione **v2 PROPOSTA** (`voice_narration_v2.py`, `audio/narrazione_v2_PROPOSTA/`):
+  - 1.7B, riferimento naturale, paragrafi interi;
+  - **nessuna compressione dell'intonazione** (era la causa della voce piatta).
+
+**Bloccato:** generazione delle voci senza `VOCE_AUTORIZZATA=1`; nessuna voce scelta come definitiva.
+
+**Non fatto:**
+- confronto con il video del matrimonio: i file `1000068463.mp4` e `1000068308.mp4` non sono arrivati nella sessione, e non ci sono sorgenti del matrimonio;
+- episodio non rifatto, in attesa dell'approvazione del test.
+
 ## 2026-11-24 · animatic EP01 renderizzato e verificato
 
 **Aggiunto**
