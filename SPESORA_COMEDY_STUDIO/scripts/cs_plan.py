@@ -117,7 +117,7 @@ def main(out):
     d.text((M, 30), "EP01 · Pianta del set (1 quadretto = 1 m)", font=fb, fill=(20, 20, 20))
     yL = H - 120
     d.text((M, yL), "Blu: percorso del protagonista per scena (linee chiare = stacchi di montaggio). Rosso: camere (punto) e direzione di ripresa (freccia) con il numero d'inquadratura.", font=fr, fill=(30, 30, 30))
-    d.text((M, yL + 32), "Porta dell'ufficio: vano 0,78 m, anta a battente verso l'interno (arco), apertura massima 88°. Ingresso: vano 2,6 m, ante scorrevoli.", font=fr, fill=(30, 30, 30))
+    d.text((M, yL + 32), "Porta dell'ufficio: luce libera {:.2f} m, anta a battente verso l'interno (arco), apertura massima 88°. Ingresso: vano 2,6 m, ante scorrevoli.".format(o["door_x1"] - o["door_x0"] - 0.11).replace(".", ","), font=fr, fill=(30, 30, 30))
     d.text((M, yL + 64), "Espositori: CIPOLLE (su ruote, spostato nella gag A) e PATATE. Corsie larghe 1,68 m. Soffitto a 3,6 m.", font=fr, fill=(30, 30, 30))
     # griglia
     for gx in range(int(x0), int(x1) + 1):

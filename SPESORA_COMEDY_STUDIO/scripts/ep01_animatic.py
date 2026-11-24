@@ -14,7 +14,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bpy  # noqa: E402
-from mathutils import Matrix, Vector  # noqa: E402
+from mathutils import Matrix, Quaternion, Vector  # noqa: E402
 
 import cs_pose as PO  # noqa: E402
 import cs_qc as QC  # noqa: E402
@@ -102,6 +102,32 @@ CLIP_SOCK = Matrix.Translation(Vector((0.0, 0.09, 0.03))) @ Matrix.Rotation(math
 def phone_read_L(ch, z=1.0):
     """Specchio della presa «legge» della mano destra: dita verso la sua destra, palmo verso il viso."""
     return {"hand.L": ((0.12, -0.4, z), (-1.0, 0.05, 0.18), (0.08, 0.5, 0.86)), "elbow.L": (0.55, 0.1, 0.7), "head_rot": (16, -6, 0)}
+
+
+_SCREEN_N = SOCK_READ_L.to_3x3() @ Vector((0, -1, 0))    # normale dello schermo nello spazio della mano
+_SCREEN_UP = SOCK_READ_L.to_3x3() @ Vector((0, 0, 1))
+
+
+def phone_show_to(target, k=1.0, pos=(0.26, -0.55, 1.14)):
+    """Mostra il telefono a un altro personaggio: la mano ruota (dalla presa «legge») finché la normale dello schermo
+    punta alla sua testa, con il lato lungo del telefono verso l'alto. k < 1: rotazione parziale (interpolazione sferica)."""
+    pr, fdr, pmr = phone_read_L(P.ch)["hand.L"]
+    Rr = P.ch.hand_matrix("L", pr, fdr, pmr).to_3x3()
+    nr, ur = Rr @ _SCREEN_N, Rr @ _SCREEN_UP
+
+    def basis(n, u):
+        n = n.normalized()
+        u = (u - n * u.dot(n)).normalized()
+        return Matrix((n, u, n.cross(u))).transposed()
+
+    def f(t, W):
+        p = Vector(pos)
+        d = (W.inverted() @ head_world(A[target]) - p).normalized()
+        Q = (basis(d, Vector((0, 0, 1))) @ basis(nr, ur).transposed()).to_quaternion()
+        Qk = Quaternion().slerp(Q, k).to_matrix()
+        pk = Vector(pr).lerp(p, k)
+        return {"hand.L": (tuple(pk), tuple(Qk @ Vector(fdr)), tuple(Qk @ Vector(pmr))), "elbow.L": (0.7, 0.05, 0.85), "head_rot": (-4 * k, 10 * k, 0)}
+    return f
 
 
 def phone_low_L(ch):
@@ -192,7 +218,9 @@ P.gaze(14.5, (-1.06, 6.2, 0.9))
 P.turn(16.9, (-2.4, 5.4), 0.0, -12.0, 0.45)                     # si gira verso Luca
 P.gaze(16.8, "dipendente")
 P.face(17.0, "sorpreso", eye_scale=0.85)
-P.pose(19.1, phone_show_L(P.ch))                                # mostra la lista
+P.pose(19.1, phone_show_to("dipendente", 0.5))                  # mostra la lista: gira il telefono verso Luca (in due tempi)
+P.pose(19.45, phone_show_to("dipendente", 1.0))
+P.pose(20.65, phone_show_to("dipendente", 0.5))
 P.face(19.2, "imbarazzato", blush=0.0, sweat=0.0)
 P.pose(21.0, phone_low_L(P.ch))
 P.face(21.3, "sorpreso")
@@ -280,7 +308,7 @@ def _door_pose(t, W):
     return {**phone_low_L(P.ch), "hand.R": (tuple(Wi @ wrist), tuple(R @ fd), tuple(R @ palm)), "fingers.R": (35, 38, 40, 20)}
 P.pose(69.2, _door_pose)
 P.pose(70.0, {**phone_low_L(P.ch), "hand.L": ((0.14, -0.36, 0.86), (0.2, -0.3, 1.0), (-0.6, 0.6, 0.0)), "hand.R": ((-0.14, -0.36, 0.86), (-0.2, -0.3, 1.0), (0.6, 0.6, 0.0)),
-              "elbow.R": (-0.28, 0.4, 0.72), "elbow.L": (0.28, 0.4, 0.72)})                       # passa la porta con le mani davanti (spalle strette)
+              "elbow.R": (-0.5, 0.25, 0.75), "elbow.L": (0.28, 0.4, 0.72)})                       # passa la porta con le mani davanti (spalle strette)
 P.walk(70.2, DOOR_POS, (-5.65, 11.45), "imbarazzato", overrides=dict(arm_sw=0.0))
 P.gaze(71.2, "direttore")
 P.face(71.2, "imbarazzato")
@@ -309,7 +337,7 @@ LU.gaze(13.2, "cartellina_luca")
 LU.face(13.2, "confuso")
 LU.gaze(14.0, "protagonista")
 LU.face(14.3, "sorpreso")
-LU.walk(16.6, (-0.7, 5.05), (-1.7, 5.25), "sicuro")
+LU.walk(16.6, (-0.7, 5.05), (-1.62, 5.22), "sicuro")
 LU.face(16.8, "felice")
 LU.gaze(16.8, "protagonista")
 LU.pose(19.4, {"chest_rot": (14, 0, 0), "head_rot": (10, 0, 0)})            # si sporge a guardare il telefono
@@ -319,7 +347,9 @@ LU.pose(20.4, {"hand.R": ((-0.3, -0.42, 1.12), (0.0, -1.0, 0.1), (1.0, 0.0, 0.0)
 LU.face(20.4, "felice")
 LU.gaze(20.4, "protagonista")
 LU.pose(22.0, None)
-LU.walk(24.3, (-1.7, 5.25), (-1.42, 6.1), "normale")
+LU.pose(24.2, {"hand.L": ((0.08, -0.33, 1.0), (0.3, -0.2, 1.0), (-0.2, 0.9, 0.3)), "elbow.L": (0.5, 0.15, 0.7)})   # stringe la cartellina
+LU.walk(24.3, (-1.62, 5.22), (-1.42, 6.1), "normale")
+LU.pose(25.6, None)
 LU.turn(27.05, (-1.42, 6.1), 72.0, 160.0, 0.45)
 LU.pose(27.55, {"hand.R": ((-0.45, -0.25, 1.05), (-0.8, 0.3, 0.2), (0.0, 0.0, 1.0)), "elbow.R": (-0.6, 0.25, 0.8)})  # presenta lo scaffale
 LU.face(27.4, "felice")
@@ -369,7 +399,7 @@ RE.pose(39.7, {"hand.L": ((0.22, -0.52, 0.8), (0.0, -1.0, 0.0), (0.0, -1.0, 0.0)
 RE.gaze(39.7, "espositore")
 RE.face(39.7, "falsa_sicurezza", sweat=0.0)
 PUSH = (40.0, 43.6)
-RE.walk(PUSH[0], (-3.3, 8.45), (-4.75, 8.45), "normale", overrides=dict(arm_sw=0.0))
+RE.walk(PUSH[0], (-3.3, 8.45), (-4.75, 8.45), "normale", overrides=dict(arm_sw=0.0, arm_out=0.53))
 PUSH_SEG = [s for s in RE.loco if s.__class__.__name__ == "WalkSeg"][-1]   # la spinta: l'espositore la segue anche fuori campo
 RE.pose(42.6, None)
 RE.hold(42.6, (1.25, 4.55), 20.0)
@@ -388,7 +418,7 @@ RE.pose(52.6, hand_to_world("R", MEET + Vector((0.08, 0, 0.0)), (0, 0, 1), (-1, 
 RE.pose(53.6, None)
 RE.face(52.4, "felice")
 RE.gaze(52.4, "protagonista")
-RE.hold(55.0, (0.3, 4.45), 23.0)
+RE.hold(56.6, (0.3, 4.45), 23.0)
 _t = RE.walk(56.7, (0.3, 4.45), (0.3, 4.9), "sicuro", overrides=dict(arm_out=0.53))   # busto più largo in basso: braccia più aperte
 RE.turn(_t, (0.3, 4.9), 90.0, 6.0, 0.45)
 RE.pose(58.8, point_at((-5.65, 10.7, 1.6)))                                  # «il direttore la aspetta»: indica l'ufficio
@@ -450,6 +480,9 @@ def presolve_elbows():
             if callable(pk) and not isinstance(pk, AtPose):
                 fn = pk
                 place_world(tk)
+                for b in A.values():
+                    if b is not a:
+                        b.ch.rig.matrix_world = b.loco_at(tk)[0]
                 ch.rig.matrix_world = Matrix.Identity(4)
                 pk = fn(tk, a.loco_at(tk)[0])
             if pk is None or callable(pk):

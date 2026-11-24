@@ -37,7 +37,7 @@ LAYOUT = dict(
     produce_tables=[dict(x=-6.6, y=4.6, rot=0, fruit=["mele", "arance"]), dict(x=-6.6, y=6.6, rot=0, fruit=["pomodori", "limoni"]),
                     dict(x=-4.4, y=5.6, rot=0, fruit=["insalata", "zucchine"])],
     displays=[dict(x=-4.2, y=8.4, kind="cipolle", label="CIPOLLE"), dict(x=-2.4, y=8.4, kind="patate", label="PATATE")],
-    office=dict(x0=-8.0, x1=-4.4, y0=10.8, y1=14.0, door_x0=-6.1, door_x1=-5.2, door_h=2.1),
+    office=dict(x0=-8.0, x1=-4.4, y0=10.8, y1=14.0, door_x0=-6.2, door_x1=-5.1, door_h=2.1),  # luce libera ≈ 0,98 m (personaggi larghi 0,7 m con le braccia)
 )
 
 PALETTE = [(0.85, 0.25, 0.2), (0.95, 0.75, 0.2), (0.2, 0.45, 0.75), (0.3, 0.65, 0.35), (0.95, 0.95, 0.9), (0.75, 0.35, 0.55),
