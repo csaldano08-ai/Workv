@@ -322,9 +322,9 @@ def cam_at(t, p_chest_w, p_head_w, l_head_w, phone_w):
         # sopra la spalla sinistra del protagonista, abbastanza di lato perché la sua testa resti sul bordo e Luca si veda intero
         k = max(0.0, min(1.0, (t - (s + 0.1)) / 4.0))
         k = k * k * (3 - 2 * k)
-        Ca = PE - U * 1.1 + NL * 1.2
+        Ca = PE - U * 1.0 + NL * 1.5
         Ca.z = 1.85
-        Cb = PE - U * 1.0 + NL * 1.1
+        Cb = PE - U * 0.92 + NL * 1.4
         Cb.z = 1.82
         return Ca.lerp(Cb, k), phone_w.lerp(l_head_w, 0.55), 27.0
     # primo piano pulito del protagonista, 3/4 dal suo lato sinistro (nessun primo piano davanti al viso); lenta spinta in avanti
@@ -455,7 +455,7 @@ def target_w(name, fr_, who):
     if name == "clip":
         return clip_w(fr_)
     if name == "down":
-        return fr_["W_P"] @ Vector((0.6, -0.95, 0.95))
+        return fr_["W_P"] @ Vector((0.55, -1.0, 1.15))
     if name == "camera":
         return fr_["cam"][0]
     raise KeyError(name)
