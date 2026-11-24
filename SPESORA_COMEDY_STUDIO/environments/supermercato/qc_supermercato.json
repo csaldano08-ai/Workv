@@ -1,5 +1,5 @@
 {
- "costruzione_s": 84.2,
+ "costruzione_s": 83.9,
  "prodotti_dentro_scaffale_0": {
   "depth_mm": 0.0,
   "verts_inside": 0,
@@ -59,11 +59,11 @@
   1.68
  ],
  "tempi_render_viste_s": [
-  50.1,
-  54.0,
-  51.4,
-  53.9,
-  47.4,
-  21.3
+  70.5,
+  72.6,
+  67.5,
+  62.6,
+  69.4,
+  41.9
  ]
 }

@@ -1,0 +1,1920 @@
+{
+ "fotogrammi_controllati": 444,
+ "passo": 2,
+ "intervallo_s": [
+  64.0,
+  93.6
+ ],
+ "problemi": [],
+ "massimi_per_inquadratura": {
+  "A": {
+   "busti_dipendente_b_responsabile_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "busti_dipendente_dipendente_b_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "busti_dipendente_responsabile_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "busti_direttore_dipendente_mm": {
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "busti_protagonista_dipendente_b_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "busti_protagonista_dipendente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "busti_protagonista_direttore_mm": {
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "busti_protagonista_responsabile_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "dipendente_b_braccia_busto_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "dipendente_b_busto_ambiente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "dipendente_braccia_busto_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "dipendente_busto_ambiente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "direttore_braccia_busto_mm": {
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "direttore_busto_ambiente_mm": {
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "mano_telefono_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "protagonista_braccia_busto_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "protagonista_busto_ambiente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "responsabile_braccia_busto_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "responsabile_busto_ambiente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   }
+  },
+  "B": {
+   "carrello_dentro_ambiente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "carrello_dentro_protagonista_leg.L_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "carrello_dentro_protagonista_leg.R_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "carrello_dentro_protagonista_torso_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "cartellina_luca_dentro_busto_dipendente_b_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "cartellina_luca_dentro_busto_dipendente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "cartellina_luca_dentro_busto_direttore_mm": {
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "cartellina_luca_dentro_busto_protagonista_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "cartellina_luca_dentro_busto_responsabile_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "cartellina_responsabile_dentro_busto_dipendente_b_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "cartellina_responsabile_dentro_busto_dipendente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "cartellina_responsabile_dentro_busto_direttore_mm": {
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "cartellina_responsabile_dentro_busto_protagonista_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "cartellina_responsabile_dentro_busto_responsabile_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "espositore_dentro_ambiente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "espositore_dentro_busto_protagonista_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "espositore_dentro_busto_responsabile_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "telefono_dentro_hand.R_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "telefono_dentro_head_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "telefono_dentro_torso_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   }
+  },
+  "C": {
+   "entrambi_i_piedi_sollevati_dipendente_b_mm": {
+    "16": {
+     "massimo": 2.0,
+     "t": 64.0
+    }
+   },
+   "entrambi_i_piedi_sollevati_dipendente_mm": {
+    "16": {
+     "massimo": 2.0,
+     "t": 64.0
+    },
+    "23": {
+     "massimo": 2.0,
+     "t": 87.8
+    }
+   },
+   "entrambi_i_piedi_sollevati_direttore_mm": {
+    "18": {
+     "massimo": 2.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 2.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 2.0,
+     "t": 79.0
+    },
+    "22": {
+     "massimo": 2.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 2.0,
+     "t": 87.8
+    }
+   },
+   "entrambi_i_piedi_sollevati_protagonista_mm": {
+    "16": {
+     "massimo": 2.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 2.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 2.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 2.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 2.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 2.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 2.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 2.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 2.0,
+     "t": 90.0
+    }
+   },
+   "entrambi_i_piedi_sollevati_responsabile_mm": {
+    "16": {
+     "massimo": 2.0,
+     "t": 64.0
+    }
+   },
+   "gambe_che_si_attraversano_dipendente_b_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "gambe_che_si_attraversano_dipendente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "gambe_che_si_attraversano_direttore_mm": {
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    }
+   },
+   "gambe_che_si_attraversano_protagonista_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.0
+    }
+   },
+   "gambe_che_si_attraversano_responsabile_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.0
+    }
+   },
+   "piede_sotto_pavimento_dipendente_b_mm": {
+    "16": {
+     "massimo": -2.0,
+     "t": 64.0
+    }
+   },
+   "piede_sotto_pavimento_dipendente_mm": {
+    "16": {
+     "massimo": -2.0,
+     "t": 64.0
+    },
+    "23": {
+     "massimo": -2.0,
+     "t": 87.8
+    }
+   },
+   "piede_sotto_pavimento_direttore_mm": {
+    "18": {
+     "massimo": -2.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": -2.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": -2.0,
+     "t": 79.0
+    },
+    "22": {
+     "massimo": -2.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": -2.0,
+     "t": 87.8
+    }
+   },
+   "piede_sotto_pavimento_protagonista_mm": {
+    "16": {
+     "massimo": -2.0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": -2.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": -2.0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": -2.0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": -2.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": -2.0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": -2.0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": -2.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": -2.0,
+     "t": 90.0
+    }
+   },
+   "piede_sotto_pavimento_responsabile_mm": {
+    "16": {
+     "massimo": -2.0,
+     "t": 64.0
+    }
+   },
+   "scivolamento_piede_dipendente_b_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.07
+    }
+   },
+   "scivolamento_piede_dipendente_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.07
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.87
+    }
+   },
+   "scivolamento_piede_direttore_mm": {
+    "18": {
+     "massimo": 0.0,
+     "t": 71.07
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.07
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.07
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.67
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.87
+    }
+   },
+   "scivolamento_piede_protagonista_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.07
+    },
+    "17": {
+     "massimo": 0.62,
+     "t": 67.47
+    },
+    "18": {
+     "massimo": 0.58,
+     "t": 72.67
+    },
+    "19": {
+     "massimo": 0.0,
+     "t": 74.07
+    },
+    "20": {
+     "massimo": 0.0,
+     "t": 79.07
+    },
+    "21": {
+     "massimo": 0.0,
+     "t": 84.07
+    },
+    "22": {
+     "massimo": 0.0,
+     "t": 85.67
+    },
+    "23": {
+     "massimo": 0.0,
+     "t": 87.87
+    },
+    "24": {
+     "massimo": 0.0,
+     "t": 90.07
+    }
+   },
+   "scivolamento_piede_responsabile_mm": {
+    "16": {
+     "massimo": 0.0,
+     "t": 64.07
+    }
+   }
+  },
+  "D": {
+   "protagonista_arm.L_dentro_muri_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_arm.L_dentro_porta_anta_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_arm.L_dentro_porta_telaio_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_arm.R_dentro_muri_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_arm.R_dentro_porta_anta_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_arm.R_dentro_porta_telaio_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_hand.L_dentro_muri_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_hand.L_dentro_porta_anta_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_hand.L_dentro_porta_telaio_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_hand.R_dentro_muri_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_hand.R_dentro_porta_anta_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_hand.R_dentro_porta_telaio_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_leg.L_dentro_muri_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_leg.L_dentro_porta_anta_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_leg.L_dentro_porta_telaio_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_leg.R_dentro_muri_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_leg.R_dentro_porta_anta_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_leg.R_dentro_porta_telaio_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_torso_dentro_muri_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_torso_dentro_porta_anta_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   },
+   "protagonista_torso_dentro_porta_telaio_mm": {
+    "17": {
+     "massimo": 0.0,
+     "t": 67.53
+    },
+    "18": {
+     "massimo": 0.0,
+     "t": 71.0
+    }
+   }
+  },
+  "E": {
+   "camera_vicina_ai_personaggi_mm": {
+    "16": {
+     "massimo": -774.5,
+     "t": 64.93
+    },
+    "17": {
+     "massimo": -9000.0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": -587.7,
+     "t": 72.07
+    },
+    "19": {
+     "massimo": -306.5,
+     "t": 78.93
+    },
+    "20": {
+     "massimo": -756.0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": -80.3,
+     "t": 85.27
+    },
+    "22": {
+     "massimo": -805.2,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": -9000.0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": -9000.0,
+     "t": 90.0
+    }
+   }
+  },
+  "F": {
+   "vertici_mano_davanti_allo_schermo": {
+    "16": {
+     "massimo": 0,
+     "t": 64.0
+    },
+    "17": {
+     "massimo": 0,
+     "t": 65.0
+    },
+    "18": {
+     "massimo": 0,
+     "t": 71.0
+    },
+    "19": {
+     "massimo": 0,
+     "t": 74.0
+    },
+    "20": {
+     "massimo": 0,
+     "t": 79.0
+    },
+    "21": {
+     "massimo": 0,
+     "t": 84.0
+    },
+    "22": {
+     "massimo": 0,
+     "t": 85.6
+    },
+    "23": {
+     "massimo": 0,
+     "t": 87.8
+    },
+    "24": {
+     "massimo": 0,
+     "t": 90.0
+    }
+   }
+  }
+ },
+ "movimenti_spostati": {
+  "protagonista": [
+   {
+    "cosa": "giro a -90°",
+    "richiesto": 44.3,
+    "effettivo": 44.45
+   }
+  ],
+  "dipendente": [],
+  "dipendente_b": [],
+  "responsabile": [],
+  "direttore": [],
+  "cliente_felpa": [],
+  "cliente_signora": []
+ },
+ "giri_prima_delle_camminate": {
+  "protagonista": [],
+  "dipendente": [
+   {
+    "t": 24.3,
+    "gradi": -92.3,
+    "durata": 0.45
+   },
+   {
+    "t": 30.2,
+    "gradi": -68.2,
+    "durata": 0.41
+   }
+  ],
+  "dipendente_b": [
+   {
+    "t": 43.2,
+    "gradi": 50.0,
+    "durata": 0.38
+   }
+  ],
+  "responsabile": [
+   {
+    "t": 56.7,
+    "gradi": 67.0,
+    "durata": 0.41
+   }
+  ],
+  "direttore": [],
+  "cliente_felpa": [
+   {
+    "t": 47.4,
+    "gradi": 35.5,
+    "durata": 0.36
+   }
+  ],
+  "cliente_signora": []
+ },
+ "giri_corretti": {
+  "protagonista": [],
+  "dipendente": [
+   {
+    "t": 27.6,
+    "scritto": 72.0,
+    "reale": 77.2
+   }
+  ],
+  "dipendente_b": [],
+  "responsabile": [],
+  "direttore": [],
+  "cliente_felpa": [],
+  "cliente_signora": []
+ },
+ "gomiti": [
+  {
+   "attore": "protagonista",
+   "t": 0.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 2.9,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 5.75,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 5.75,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 6.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 6.2,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 6.2,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 11.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 19.1,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 19.45,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 20.65,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 21.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 28.5,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 28.5,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 29.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 35.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 37.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 37.6,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 45.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 38.9,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 42.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 45.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 45.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 45.4,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 49.8,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 52.7,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 52.7,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 53.9,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 53.9,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 65.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 65.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 69.2,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 69.2,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 69.7,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 69.7,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 70.05,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 60.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 70.05,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 84.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 86.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 0.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 20.4,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 24.2,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 27.55,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 29.35,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 89.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 36.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 36.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 39.7,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 39.7,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 44.8,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 49.6,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 52.6,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 58.8,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "direttore",
+   "t": 71.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "direttore",
+   "t": 71.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "direttore",
+   "t": 74.6,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "direttore",
+   "t": 77.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "direttore",
+   "t": 88.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  }
+ ]
+}

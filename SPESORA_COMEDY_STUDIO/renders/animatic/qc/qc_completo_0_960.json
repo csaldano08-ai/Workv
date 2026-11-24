@@ -1,0 +1,1732 @@
+{
+ "fotogrammi_controllati": 480,
+ "passo": 2,
+ "intervallo_s": [
+  0.0,
+  32.0
+ ],
+ "problemi": [],
+ "massimi_per_inquadratura": {
+  "A": {
+   "busti_protagonista_dipendente_mm": {
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    }
+   },
+   "dipendente_braccia_busto_mm": {
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    }
+   },
+   "dipendente_busto_ambiente_mm": {
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    }
+   },
+   "mano_telefono_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "protagonista_braccia_busto_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "protagonista_busto_ambiente_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   }
+  },
+  "B": {
+   "carrello_dentro_ambiente_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "carrello_dentro_protagonista_leg.L_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "carrello_dentro_protagonista_leg.R_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "carrello_dentro_protagonista_torso_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "cartellina_luca_dentro_busto_dipendente_mm": {
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    }
+   },
+   "cartellina_luca_dentro_busto_protagonista_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "cartellina_responsabile_dentro_busto_dipendente_mm": {
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    }
+   },
+   "cartellina_responsabile_dentro_busto_protagonista_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "espositore_dentro_ambiente_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "espositore_dentro_busto_protagonista_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "espositore_dentro_busto_responsabile_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "telefono_dentro_hand.R_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "telefono_dentro_head_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "telefono_dentro_torso_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   }
+  },
+  "C": {
+   "entrambi_i_piedi_sollevati_dipendente_mm": {
+    "03": {
+     "massimo": 2.0,
+     "t": 6.2
+    },
+    "05": {
+     "massimo": 2.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 2.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 2.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 2.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 2.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 2.0,
+     "t": 29.0
+    }
+   },
+   "entrambi_i_piedi_sollevati_protagonista_mm": {
+    "01": {
+     "massimo": 2.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 2.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 2.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 2.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 2.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 2.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 2.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 2.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 2.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 2.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 2.0,
+     "t": 31.2
+    }
+   },
+   "gambe_che_si_attraversano_dipendente_mm": {
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    }
+   },
+   "gambe_che_si_attraversano_protagonista_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.2
+    }
+   },
+   "piede_sotto_pavimento_dipendente_mm": {
+    "03": {
+     "massimo": -2.0,
+     "t": 6.2
+    },
+    "05": {
+     "massimo": -2.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": -2.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": -2.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": -2.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": -2.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": -2.0,
+     "t": 29.0
+    }
+   },
+   "piede_sotto_pavimento_protagonista_mm": {
+    "01": {
+     "massimo": -2.0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": -2.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": -2.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": -2.0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": -2.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": -2.0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": -2.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": -2.0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": -2.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": -2.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": -2.0,
+     "t": 31.2
+    }
+   },
+   "scivolamento_piede_dipendente_mm": {
+    "03": {
+     "massimo": 0.0,
+     "t": 6.27
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.07
+    },
+    "06": {
+     "massimo": 0.01,
+     "t": 17.27
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.07
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.27
+    },
+    "09": {
+     "massimo": 0.01,
+     "t": 25.47
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.07
+    }
+   },
+   "scivolamento_piede_protagonista_mm": {
+    "01": {
+     "massimo": 0.0,
+     "t": 0.07
+    },
+    "02": {
+     "massimo": 0.0,
+     "t": 2.67
+    },
+    "03": {
+     "massimo": 0.0,
+     "t": 6.27
+    },
+    "04": {
+     "massimo": 0.0,
+     "t": 10.47
+    },
+    "05": {
+     "massimo": 0.0,
+     "t": 12.07
+    },
+    "06": {
+     "massimo": 0.0,
+     "t": 16.67
+    },
+    "07": {
+     "massimo": 0.0,
+     "t": 19.07
+    },
+    "08": {
+     "massimo": 0.0,
+     "t": 21.27
+    },
+    "09": {
+     "massimo": 0.0,
+     "t": 25.07
+    },
+    "10": {
+     "massimo": 0.0,
+     "t": 29.07
+    },
+    "11": {
+     "massimo": 0.0,
+     "t": 31.27
+    }
+   }
+  },
+  "E": {
+   "camera_vicina_ai_personaggi_mm": {
+    "01": {
+     "massimo": -80.1,
+     "t": 2.0
+    },
+    "02": {
+     "massimo": -9000.0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": -9000.0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": -80.0,
+     "t": 11.27
+    },
+    "05": {
+     "massimo": -9000.0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": -748.2,
+     "t": 16.8
+    },
+    "07": {
+     "massimo": -9000.0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": -643.6,
+     "t": 24.33
+    },
+    "09": {
+     "massimo": -9000.0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": -9000.0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": -9000.0,
+     "t": 31.2
+    }
+   }
+  },
+  "F": {
+   "schermo_non_rivolto_a_luca_(1-cos)": {
+    "07": {
+     "massimo": 0.124,
+     "t": 20.47
+    }
+   },
+   "vertici_mano_davanti_allo_schermo": {
+    "01": {
+     "massimo": 0,
+     "t": 0.0
+    },
+    "02": {
+     "massimo": 0,
+     "t": 2.6
+    },
+    "03": {
+     "massimo": 0,
+     "t": 6.2
+    },
+    "04": {
+     "massimo": 0,
+     "t": 10.4
+    },
+    "05": {
+     "massimo": 0,
+     "t": 12.0
+    },
+    "06": {
+     "massimo": 0,
+     "t": 16.6
+    },
+    "07": {
+     "massimo": 0,
+     "t": 19.0
+    },
+    "08": {
+     "massimo": 0,
+     "t": 21.2
+    },
+    "09": {
+     "massimo": 0,
+     "t": 25.0
+    },
+    "10": {
+     "massimo": 0,
+     "t": 29.0
+    },
+    "11": {
+     "massimo": 0,
+     "t": 31.2
+    }
+   }
+  }
+ },
+ "movimenti_spostati": {
+  "protagonista": [
+   {
+    "cosa": "giro a -90°",
+    "richiesto": 44.3,
+    "effettivo": 44.45
+   }
+  ],
+  "dipendente": [],
+  "dipendente_b": [],
+  "responsabile": [],
+  "direttore": [],
+  "cliente_felpa": [],
+  "cliente_signora": []
+ },
+ "giri_prima_delle_camminate": {
+  "protagonista": [],
+  "dipendente": [
+   {
+    "t": 24.3,
+    "gradi": -92.3,
+    "durata": 0.45
+   },
+   {
+    "t": 30.2,
+    "gradi": -68.2,
+    "durata": 0.41
+   }
+  ],
+  "dipendente_b": [
+   {
+    "t": 43.2,
+    "gradi": 50.0,
+    "durata": 0.38
+   }
+  ],
+  "responsabile": [
+   {
+    "t": 56.7,
+    "gradi": 67.0,
+    "durata": 0.41
+   }
+  ],
+  "direttore": [],
+  "cliente_felpa": [
+   {
+    "t": 47.4,
+    "gradi": 35.5,
+    "durata": 0.36
+   }
+  ],
+  "cliente_signora": []
+ },
+ "giri_corretti": {
+  "protagonista": [],
+  "dipendente": [
+   {
+    "t": 27.6,
+    "scritto": 72.0,
+    "reale": 77.2
+   }
+  ],
+  "dipendente_b": [],
+  "responsabile": [],
+  "direttore": [],
+  "cliente_felpa": [],
+  "cliente_signora": []
+ },
+ "gomiti": [
+  {
+   "attore": "protagonista",
+   "t": 0.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 2.9,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 5.75,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 5.75,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 6.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 6.2,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 6.2,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 11.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 19.1,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 19.45,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 20.65,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 21.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 28.5,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 28.5,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 29.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 35.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 37.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 37.6,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 45.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 38.9,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 42.6,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 45.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 45.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 45.4,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 49.8,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 52.7,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 52.7,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 53.9,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 53.9,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 65.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 65.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 69.2,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 69.2,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 69.7,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 69.7,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 70.05,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 60.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 70.05,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 84.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "protagonista",
+   "t": 86.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 0.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 20.4,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 24.2,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 27.55,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 29.35,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "dipendente",
+   "t": 89.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 36.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 36.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 39.7,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 39.7,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 44.8,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 49.6,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 15.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 52.6,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "responsabile",
+   "t": 58.8,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "direttore",
+   "t": 71.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "direttore",
+   "t": 71.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "direttore",
+   "t": 74.6,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "direttore",
+   "t": 77.0,
+   "lato": "R",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  },
+  {
+   "attore": "direttore",
+   "t": 88.0,
+   "lato": "L",
+   "compenetrazione_mm": 0.0,
+   "scarto_dalla_posa_gradi": 0.0
+  }
+ ]
+}
