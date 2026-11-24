@@ -559,6 +559,7 @@ def presolve_elbows():
 if ACTING:
     for a_ in A.values():
         a_.finalize_blinks()
+    P.plain_windows = [(67.9, 70.5)]   # porta: contatti mano-maniglia-anta al millimetro, si tiene l'animazione verificata
 t_pre = time.time()
 presolve_elbows()
 print(f"gomiti risolti in {time.time() - t_pre:.0f} s", flush=True)
@@ -729,7 +730,7 @@ def set_visible(name, vis):
 CART_START = None
 
 
-def keep_arms_out(a, Pf, iters=3):
+def keep_arms_out(a, Pf, iters=6):
     """Modalità recitazione: se braccio o mano toccano il busto (torace che guida, respiro), la mano si sposta verso l'esterno
     della profondità misurata + 1 mm. Correzione continua di pochi millimetri: il gomito non salta."""
     ch = a.ch
@@ -746,7 +747,7 @@ def keep_arms_out(a, Pf, iters=3):
                 break
             p0 = Vector(Pf[f"hand.{side}"][0])
             Pf = dict(Pf)
-            Pf[f"hand.{side}"] = (tuple(p0 + Vector((out * (pen * 1.5 + 1.0) / 1000.0, 0.0, 0.0))),) + tuple(Pf[f"hand.{side}"][1:])
+            Pf[f"hand.{side}"] = (tuple(p0 + Vector((out * (pen * 2.0 + 2.0) / 1000.0, 0.0, 0.0))),) + tuple(Pf[f"hand.{side}"][1:])
             ch.pose(Pf)
     return Pf
 

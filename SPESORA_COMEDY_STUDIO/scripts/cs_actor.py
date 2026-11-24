@@ -214,7 +214,7 @@ class Actor:
         for sg in sorted(self.loco, key=lambda sg: sg.t0):
             if sg.t0 <= t:
                 seg = sg
-        if not isinstance(seg, Hold):
+        if not isinstance(seg, Hold) or self.in_plain(t):
             return P
         if not hasattr(self, "_life"):
             self._life = Life(abs(hash(self.name)) % 1000, breath_s=3.2 + (abs(hash(self.name)) % 7) * 0.12)
@@ -285,7 +285,17 @@ class Actor:
               ("hands", ("hand.L", "hand.R", "elbow.L", "elbow.R", "fingers.L", "fingers.R", "spread.L", "spread.R", "shrug.L", "shrug.R"), 0.0, "back_small"),
               ("head", ("head_rot",), 0.07, "out"))
 
+    def in_plain(self, t):
+        """Finestre in cui si usa l'animazione semplice già verificata (es. la porta: contatti al millimetro)."""
+        return any(a <= t <= b for a, b in getattr(self, "plain_windows", []))
+
     def upper_at_acting(self, t, P, trans=0.38):
+        if self.in_plain(t):
+            ACTING["on"] = False
+            try:
+                return self.upper_at(t, P)
+            finally:
+                ACTING["on"] = True
         keys = sorted(self.upper, key=lambda k: k[0])
         cur, prev = None, None
         for k in keys:
@@ -302,7 +312,7 @@ class Actor:
         target = resolve(cur)
         base = resolve(prev) if prev is not None else P
         out = dict(base)
-        contact = callable(cur[1])     # pose di contatto (maniglia, passaggio della cartellina, telefono verso Luca): nessun superamento né anticipazione
+        contact = callable(cur[1]) or (prev is not None and callable(prev[1]))     # pose di contatto (maniglia, passaggio della cartellina, telefono verso Luca): nessun superamento né anticipazione
         for gname, gkeys, off, interp in self.GROUPS:
             u = max(0.0, min(1.0, (t - (cur[0] - trans + off)) / trans))
             k = EASE["ease" if (contact and gname == "hands") else interp](u)
