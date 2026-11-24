@@ -1013,6 +1013,46 @@ if MODE == "qc":
               open(os.path.join(OUT, f"qc_completo_{f0}_{f1}.json"), "w"), ensure_ascii=False, indent=1)
     print("ok qc", nfr, "fotogrammi", len(events), "problemi", round(time.time() - t_start), "s")
     sys.exit(0)
+if MODE == "audit":
+    # campionamento dei canali animati (come le curve del Graph Editor) a 30 fps, senza render né volti:
+    # per ogni personaggio in scena: segmento di locomozione, mani nello spazio del corpo, testa (dopo lo sguardo), torace,
+    # espressione, bersaglio dello sguardo, palpebra
+    f0, f1 = int(RANGE[0] * FPS), min(int(93.6 * FPS), int(RANGE[1] * FPS))
+    rows = []
+    for fi in range(f0, f1):
+        t = frame_time(fi)
+        shot = shot_at(t)
+        place_world(t)
+        for n in CAST:
+            set_visible(n, n in shot[3])
+        for n in CAST:
+            if n in shot[3]:
+                apply_actor(A[n], t, fi, faces=False)
+        place_props(t)
+        bpy.context.view_layer.update()
+        for n in shot[3]:
+            a_ = A[n]
+            W, Pf = a_.last
+            seg = None
+            for sg in sorted(a_.loco, key=lambda sg: sg.t0):
+                if sg.t0 <= t:
+                    seg = sg
+            Wi = W.inverted()
+            hands = {sd: tuple(round(v, 5) for v in (Wi @ (a_.ch.rig.matrix_world @ a_.ch.rig.pose.bones[f"hand.{sd}"].head))) for sd in "LR"}
+            fk = None
+            for k in sorted(a_.faces, key=lambda k: k[0]):
+                if k[0] <= t:
+                    fk = k[1]
+            rows.append(dict(f=fi, t=round(t, 4), shot=shot[0], n=n, loco=type(seg).__name__ if seg else None,
+                             pos=tuple(round(v, 4) for v in W.translation), yaw=round(math.degrees(W.to_euler().z), 3),
+                             hand_L=hands["L"], hand_R=hands["R"], head=tuple(round(v, 3) for v in Pf.get("head_rot", (0, 0, 0))),
+                             chest=tuple(round(v, 3) for v in Pf.get("chest_rot", (0, 0, 0))), face=fk, gaze=str(a_.gaze_target(t)),
+                             blink=round(a_.blink_at(t), 3)))
+        if fi % 300 == 0:
+            print("audit", fi, flush=True)
+    json.dump(rows, open(os.path.join(OUT, f"audit_{f0}_{f1}.json"), "w"))
+    print("ok audit", len(rows), round(time.time() - t_start), "s")
+    sys.exit(0)
 if MODE == "probe":
     # ricerca di una posizione di camera libera: raggi verso una griglia attorno al bersaglio, si scartano i candidati coperti
     dg = None

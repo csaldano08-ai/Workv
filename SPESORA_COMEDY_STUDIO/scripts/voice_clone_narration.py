@@ -22,6 +22,10 @@ import torch
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import voice_eval as V  # noqa: E402
 
+# BLOCCO (audit 25/11): nessuna voce si genera senza autorizzazione esplicita di chi possiede la voce di riferimento.
+# Le voci prodotte sono PROPOSTE, non definitive: la voce definitiva la sceglie l'utente.
+if os.environ.get("VOCE_AUTORIZZATA") != "1":
+    sys.exit("Generazione della voce bloccata: serve l'autorizzazione esplicita del proprietario della voce (VOCE_AUTORIZZATA=1).")
 FRASI, COPIONE, OUT = sys.argv[1], sys.argv[2], os.path.abspath(sys.argv[3])
 MODEL = sys.argv[4] if len(sys.argv) > 4 else "Qwen/Qwen3-TTS-12Hz-1.7B-Base"
 TAKES = int(sys.argv[5]) if len(sys.argv) > 5 else 3
