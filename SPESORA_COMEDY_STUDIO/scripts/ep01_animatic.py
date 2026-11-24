@@ -314,7 +314,7 @@ def _door_pose(t, W):
     R = Wi.to_3x3()
     return {**phone_low_L(P.ch), "hand.R": (tuple(Wi @ wrist), tuple(R @ fd), tuple(R @ palm)), "fingers.R": (35, 38, 40, 20)}
 P.pose(69.2, _door_pose)
-P.pose(69.7, {**phone_low_L(P.ch), "hand.R": ((-0.45, -0.35, 1.0), (-0.3, -0.5, 0.8), (0.8, 0.2, 0.0)), "elbow.R": (-0.7, 0.15, 0.9)})  # lascia la maniglia verso l'esterno
+P.pose(69.7, {**phone_low_L(P.ch), "hand.R": ((-0.41, -0.29, 0.99), (-0.3, -0.5, 0.8), (0.8, 0.2, 0.0)), "elbow.R": (-0.7, 0.15, 0.9)})  # lascia la maniglia verso l'esterno (5 cm più lontano dal telaio: a 30 fps toccava di 0,85 mm)
 P.pose(70.05, {**phone_low_L(P.ch), "hand.L": ((0.14, -0.36, 0.86), (0.2, -0.3, 1.0), (-0.6, 0.6, 0.0)), "hand.R": ((-0.24, -0.42, 0.9), (-0.2, -0.3, 1.0), (0.6, 0.6, 0.0)),
               "elbow.R": (-0.55, 0.2, 0.8), "elbow.L": (0.28, 0.4, 0.72)})                       # passa la porta con le mani davanti (spalle strette)
 P.walk(70.2, DOOR_POS, (-5.65, 11.45), "imbarazzato", overrides=dict(arm_sw=0.0))
@@ -776,7 +776,7 @@ def apply_actor(a, t, f, faces=True):
     if ACTING:
         Pf = a.alive(t, Pf)
         a.ch.pose(Pf)
-        if faces and not a.ch.parts["torso"].hide_render:   # solo nel passaggio finale e per chi è in scena (costo)
+        if faces and not a.ch.parts["torso"].hide_render and not a.in_plain(t):   # solo passaggio finale, chi è in scena, fuori dalle finestre verificate
             Pf = keep_arms_out(a, Pf)
         g_prev, g_cur, g_ts = a.gaze_state(t)
         tgt = actor_target(g_cur)
