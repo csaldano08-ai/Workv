@@ -1,5 +1,23 @@
 # Changelog · SPESORA COMEDY STUDIO
 
+## 2026-11-25 (sera) · nuova voce e episodio con il metodo di recitazione
+
+- **Voce:**
+  - narrazione completa con `LUCASPESORA.mp3` come riferimento, senza nessuna elaborazione del tono (`voice_narration_ref.py`);
+  - consegnata fuori dal repository pubblico.
+- **Modalità recitazione** (`ADS_ACTING=1`) nel sistema degli attori:
+  - transizioni sfalsate con anticipazione e superamento;
+  - pause vive;
+  - volto a parti;
+  - sguardo con gli occhi che guidano;
+  - braccia che seguono il passo;
+  - pose di contatto pulite.
+- **EP01:**
+  - 20 battute di recitazione nuove;
+  - saluti di Luca corretti (la mano era dentro la testa);
+  - rilascio della maniglia corretto (difetto a 30 fps che il controllo a 15 fps non vedeva).
+- **Controlli A–F** su tutti i 2808 fotogrammi a 30 fps: 0 problemi.
+
 ## 2026-11-25 · audit critico e test di recitazione (animatic rifiutato)
 
 **Diagnosi** (`docs/08_AUDIT_ANIMAZIONE_E_AUDIO.md`, verificata nei sorgenti e misurata campionando i canali a 30 fps):

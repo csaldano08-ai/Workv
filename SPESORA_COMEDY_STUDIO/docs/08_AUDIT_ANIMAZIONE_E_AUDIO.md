@@ -220,3 +220,60 @@ Grafici:
 | `renders/test_recitazione/qc/` | Controlli A–F per fotogramma, sfarfallio |
 | `docs/audit/` | Grafici delle curve (prima e dopo), statistiche, confronto del movimento |
 | `audio/narrazione_v2_PROPOSTA/` | Narrazione v2: traccia continua, battute, marcatori, misure |
+
+
+## 10 · Aggiornamento: nuova voce e episodio completo con il metodo nuovo
+
+### Voce del narratore: `LUCASPESORA.mp3`
+
+Richiesta: usare questa voce come base **senza comprimere emozioni o stile di parlata**; il tono è già quello giusto.
+Script: `scripts/voice_narration_ref.py`, eseguito con `VOCE_AUTORIZZATA=1` perché l'utente l'ha chiesto esplicitamente.
+
+- **Riferimento:** la registrazione intera (27,6 s, il testo di N01–N08), senza tagli né filtri.
+  - Lo spettrogramma delle pause non mostra versi estranei: c'è solo un respiro naturale, lasciato com'è.
+  - L'energia nelle pause è la coda delle parole, che Whisper chiude in anticipo.
+- **Elaborazioni:** nessuna su intonazione e dinamica. Solo il taglio dei silenzi agli estremi e lo stesso guadagno per tutte le battute. Il testo è identico al copione.
+- **Scelta delle prese:**
+  - testo esatto;
+  - nessun verso fuori dal parlato;
+  - timbro, intonazione e velocità più **vicini** alla registrazione (né più piatti né più enfatici).
+- **Risultato:** 16 battute, 61,5 s. Ogni battuta ha il testo esatto dopo il taglio.
+
+| Misura | Valore |
+|---|---|
+| Somiglianza con la registrazione | 0,965–0,988 |
+| Deviazione dell'intonazione | 3,2–4,2 semitoni (la registrazione ha 3,6) |
+| Velocità | 5,6–6,5 sillabe/s (la registrazione 5,4) |
+
+- **Tempi:** tutte le battute stanno nei marcatori dell'episodio. I margini minimi sono 0,2 s dopo N01 e 0,28 s dopo «Il problema?».
+- **Riservatezza:** la registrazione e la narrazione generata **non sono nel repository**, che è pubblico. Sono consegnate direttamente all'utente.
+
+### Episodio con il metodo del test (`ADS_ACTING=1`)
+
+Il metodo del test è stato portato nel sistema degli attori (`cs_actor.py`, `cs_walk.py`). Tutto è calcolato dal tempo, quindi il rendering a blocchi resta identico.
+- **Transizioni sfalsate:** il torace guida, le mani seguono con superamento (solo verso l'esterno) e anticipazione sui gesti grandi, la testa arriva per ultima.
+- **Pose di contatto:** maniglia, cartellina e telefono senza superamento né derive. Alla porta si usa l'animazione già verificata.
+- **Pause vive:** respiro e derive lente. Le derive delle mani vanno solo verso l'esterno.
+- **Volto a parti** e **sguardo** con gli occhi che guidano la testa (superamento e assestamento), più i battiti sui cambi di sguardo.
+- **Braccia che seguono il passo**, con 0,06 s di ritardo.
+- **Correzione continua:** se un braccio tocca il busto, la mano si sposta all'esterno di pochi millimetri.
+- **20 nuove battute di recitazione:**
+  - i sobbalzi di Luca;
+  - la lettura e il pollice in su;
+  - i cenni del saluto;
+  - le spalle su e la finta sicurezza del protagonista;
+  - la sorpresa del personale;
+  - il panico;
+  - la sorpresa davanti al direttore;
+  - il finale.
+- **Saluti di Luca corretti:** i due saluti dell'episodio avevano la mano dentro la testa.
+- **30 fps veri.**
+
+**Controlli A–F su tutti i 2808 fotogrammi a 30 fps.** Il controllo intero è stato fatto, poi ripetuto sui tratti corretti: **0 problemi**. Per arrivarci si sono corretti:
+- braccia del protagonista nel busto fino a 4,6 mm, dovute al torace che guida e al respiro;
+- mano nel telaio della porta fino a 12,7 mm al rilascio della maniglia;
+- un contatto di 0,85 mm a 69,7 s che **c'era già nell'animatic** ma non era stato visto, perché il controllo a 15 fps saltava quel fotogramma.
+
+**Limiti noti:**
+- Le inquadrature sono ancora quelle dell'animatic. Nelle inquadrature 05, 09 e 10 Luca è di spalle e le sue reazioni non si leggono bene. Rifare la regia come nel test, cioè sopra la spalla e in controcampo, è il passo successivo.
+- Il confronto con il video del matrimonio non c'è ancora.

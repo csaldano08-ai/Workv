@@ -19,6 +19,7 @@ Progetto separato dall'app (`spesora/`) e dagli spot (`SPESORA_ADS_STUDIO/`): no
 | 6 · Prove critiche (carrello, porta, oggetti, camminate, telefono) | ✅ controlli A–F su tutti i 1404 fotogrammi dell'animatic: 0 problemi; test E sulle immagini (sfarfallio): nessun rumore né z-fighting (`renders/animatic/qc/`) |
 | 7–8 · Animazione e render definitivi | ⏳ **in attesa di approvazione dell'animatic** e della scelta di come renderizzare (vedi sotto) |
 | **Audit (25/11)** | ⛔ animatic **rifiutato** per animazione, recitazione e voce. Audit e test di recitazione di 11,6 s: `docs/08_AUDIT_ANIMAZIONE_E_AUDIO.md`, `renders/test_recitazione/`. Narrazione v2 come **proposta**: `audio/narrazione_v2_PROPOSTA/`. L'episodio **non** si rifà prima dell'approvazione del test. |
+| **EP01 v2 (25/11)** | ⏳ rendering a 30 fps in corso con il metodo di recitazione (`ADS_ACTING=1`). Controlli A–F su 2808 fotogrammi: 0 problemi. Narrazione con la voce `LUCASPESORA.mp3`, senza elaborazioni, **fuori dal repository pubblico**. |
 
 ## Struttura
 
