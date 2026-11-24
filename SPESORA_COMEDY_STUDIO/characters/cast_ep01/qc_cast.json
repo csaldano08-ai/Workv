@@ -1,0 +1,57 @@
+{
+ "protagonista": {
+  "braccio.L": 0.0,
+  "mano.L": 0.0,
+  "piede.L_z_mm": 2.0,
+  "braccio.R": 0.0,
+  "mano.R": 0.0,
+  "piede.R_z_mm": 2.0,
+  "altezza_m": 1.82
+ },
+ "dipendente": {
+  "braccio.L": 0.0,
+  "mano.L": 0.0,
+  "piede.L_z_mm": 2.0,
+  "braccio.R": 0.0,
+  "mano.R": 0.0,
+  "piede.R_z_mm": 2.0,
+  "altezza_m": 1.69
+ },
+ "responsabile": {
+  "braccio.L": 0.0,
+  "mano.L": 0.0,
+  "piede.L_z_mm": 2.0,
+  "braccio.R": 0.0,
+  "mano.R": 0.0,
+  "piede.R_z_mm": 2.0,
+  "altezza_m": 1.62
+ },
+ "direttore": {
+  "braccio.L": 0.0,
+  "mano.L": 0.0,
+  "piede.L_z_mm": 2.0,
+  "braccio.R": 0.0,
+  "mano.R": 0.0,
+  "piede.R_z_mm": 2.0,
+  "altezza_m": 1.82
+ },
+ "cliente_felpa": {
+  "braccio.L": 0.0,
+  "mano.L": 0.0,
+  "piede.L_z_mm": 2.0,
+  "braccio.R": 0.0,
+  "mano.R": 0.0,
+  "piede.R_z_mm": 2.0,
+  "altezza_m": 1.76
+ },
+ "cliente_signora": {
+  "braccio.L": 0.0,
+  "mano.L": 0.0,
+  "piede.L_z_mm": 2.0,
+  "braccio.R": 0.0,
+  "mano.R": 0.0,
+  "piede.R_z_mm": 2.0,
+  "altezza_m": 1.62
+ },
+ "tempo_render_s": 32.1
+}

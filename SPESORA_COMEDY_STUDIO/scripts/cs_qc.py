@@ -10,6 +10,9 @@ import bpy
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 
+ARM_ROOT = 0.12   # m: tratto del braccio che nasce dentro il busto per costruzione (attacco alla spalla)
+LEG_ROOT = 0.16   # m: idem per la gamba all'anca
+
 
 def world_mesh(ob):
     dg = bpy.context.evaluated_depsgraph_get()

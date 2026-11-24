@@ -112,7 +112,7 @@ for fi in range(NF):
             qc["gambe_contatto"].append(fi + 1)
         for s in "LR":
             shw = ch.rig.matrix_world @ ch.rig.pose.bones[f"upperarm.{s}"].head  # giunto della spalla IN POSA
-            a = QC.penetration(ch.parts[f"arm.{s}"], ch.parts["torso"], ignore=lambda v, g, shw=shw: (v - shw).length < 0.11)
+            a = QC.penetration(ch.parts[f"arm.{s}"], ch.parts["torso"], ignore=lambda v, g, shw=shw: (v - shw).length < QC.ARM_ROOT)
             qc["braccia_nel_busto_mm"] = max(qc["braccia_nel_busto_mm"], a["depth_mm"])
             h = QC.penetration(ch.parts[f"hand.{s}"], ch.parts["torso"])
             qc["mani_nel_busto_mm"] = max(qc["mani_nel_busto_mm"], h["depth_mm"])

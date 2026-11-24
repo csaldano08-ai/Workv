@@ -1,0 +1,69 @@
+{
+ "costruzione_s": 106.0,
+ "prodotti_dentro_scaffale_0": {
+  "depth_mm": 0.0,
+  "verts_inside": 0,
+  "tri_pairs": 0,
+  "worst": null
+ },
+ "prodotti_dentro_scaffale_1": {
+  "depth_mm": 0.0,
+  "verts_inside": 0,
+  "tri_pairs": 0,
+  "worst": null
+ },
+ "prodotti_dentro_scaffale_2": {
+  "depth_mm": 0.0,
+  "verts_inside": 0,
+  "tri_pairs": 0,
+  "worst": null
+ },
+ "prodotti_muro_dentro_scaffale": {
+  "depth_mm": 0.0,
+  "verts_inside": 0,
+  "tri_pairs": 0,
+  "worst": null
+ },
+ "frutta_dentro_cassette": {
+  "depth_mm": 0.0,
+  "verts_inside": 0,
+  "tri_pairs": 0,
+  "worst": null
+ },
+ "cassette_dentro_tavoli": {
+  "depth_mm": 0.0,
+  "verts_inside": 0,
+  "tri_pairs": 0,
+  "worst": null
+ },
+ "porta_rotazione_0_88_contatti": [],
+ "porta_ufficio_luce_libera_m": {
+  "larghezza": 0.784,
+  "altezza": 2.04
+ },
+ "ingresso_luce_libera_m": {
+  "larghezza": 2.44,
+  "altezza": 2.32
+ },
+ "zoccolini_nei_vani_vertici": {
+  "ufficio": 0,
+  "ingresso": 0
+ },
+ "ante_scorrevoli_aperte_nei_muri": [
+  0.0,
+  0.0
+ ],
+ "carrelli_fila_contatti": 0,
+ "corsie_larghezza_m": [
+  1.68,
+  1.68
+ ],
+ "tempi_render_viste_s": [
+  35.4,
+  37.1,
+  35.0,
+  34.2,
+  36.8,
+  21.8
+ ]
+}

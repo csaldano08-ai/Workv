@@ -56,9 +56,13 @@ def pchip(xs, ys):
 
 
 class Walk:
-    def __init__(self, ch, start, direction_deg, n_steps, t0=0.0, style="normale", anticip=0.35, first="R"):
+    def __init__(self, ch, start, direction_deg, n_steps, t0=0.0, style="normale", anticip=0.35, first="R", step=None, overrides=None):
         self.ch = ch
-        self.st = STYLES[style]
+        self.st = dict(STYLES[style])
+        if step:
+            self.st["step"] = step
+        if overrides:
+            self.st.update(overrides)
         self.start = Vector((start[0], start[1], 0.0))
         self.yaw = math.radians(direction_deg)
         self.d = Vector((math.cos(self.yaw), math.sin(self.yaw), 0.0))
@@ -210,3 +214,13 @@ class Walk:
         if extra:
             P.update(extra(t, P) or {})
         return W, P
+
+
+def walk_between(ch, a, b, t0, style="normale", anticip=0.3, overrides=None):
+    """Camminata da a a b (x, y): numero di passi e lunghezza scelti per arrivare esattamente in b."""
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    dist = math.hypot(dx, dy)
+    L0 = STYLES[style]["step"]
+    n = max(2, int(round(dist / L0 + 0.4)))
+    L = dist / (n - 0.4)
+    return Walk(ch, start=a, direction_deg=math.degrees(math.atan2(dy, dx)), n_steps=n, t0=t0, style=style, anticip=anticip, step=L, overrides=overrides)

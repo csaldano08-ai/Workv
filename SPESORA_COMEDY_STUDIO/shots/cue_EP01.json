@@ -1,0 +1,361 @@
+{
+ "durata": 95.0,
+ "fps": 30,
+ "narrazione": [
+  {
+   "id": "N01",
+   "inizio": 0.5
+  },
+  {
+   "id": "N02",
+   "inizio": 5.9
+  },
+  {
+   "id": "N03",
+   "inizio": 7.2
+  },
+  {
+   "id": "N04",
+   "inizio": 10.2
+  },
+  {
+   "id": "N05",
+   "inizio": 21.8
+  },
+  {
+   "id": "N06",
+   "inizio": 25.4
+  },
+  {
+   "id": "N07",
+   "inizio": 32.0
+  },
+  {
+   "id": "N08",
+   "inizio": 33.1
+  },
+  {
+   "id": "N09",
+   "inizio": 38.2
+  },
+  {
+   "id": "N10",
+   "inizio": 45.2
+  },
+  {
+   "id": "N11",
+   "inizio": 52.2
+  },
+  {
+   "id": "N12",
+   "inizio": 57.2
+  },
+  {
+   "id": "N13",
+   "inizio": 61.8
+  },
+  {
+   "id": "N14",
+   "inizio": 74.6
+  },
+  {
+   "id": "N15",
+   "inizio": 79.4
+  },
+  {
+   "id": "N16",
+   "inizio": 90.6
+  }
+ ],
+ "battute": [
+  {
+   "id": "P01",
+   "chi": "PROTAGONISTA",
+   "testo": "Ma… le cipolle?",
+   "inizio": 86.0,
+   "fine": 87.3
+  },
+  {
+   "id": "D01",
+   "chi": "DIRETTORE",
+   "testo": "Avete sentito? Controllate subito le cipolle!",
+   "inizio": 88.0,
+   "fine": 89.9
+  }
+ ],
+ "inquadrature": [
+  {
+   "n": "01",
+   "inizio": 0.0,
+   "fine": 2.6,
+   "cast": [
+    "protagonista"
+   ],
+   "lente": 38,
+   "descrizione": "Dettaglio: la lista su Spesora"
+  },
+  {
+   "n": "02",
+   "inizio": 2.6,
+   "fine": 6.2,
+   "cast": [
+    "protagonista"
+   ],
+   "lente": 26,
+   "descrizione": "Campo medio dal basso: il supermercato è enorme. «Quattro.»"
+  },
+  {
+   "n": "03",
+   "inizio": 6.2,
+   "fine": 10.4,
+   "cast": [
+    "protagonista",
+    "dipendente"
+   ],
+   "lente": 26,
+   "descrizione": "Campo largo: spinge il carrello con la lista in mano"
+  },
+  {
+   "n": "04",
+   "inizio": 10.4,
+   "fine": 12.0,
+   "cast": [
+    "protagonista"
+   ],
+   "lente": 38,
+   "descrizione": "Dettaglio: controlla di nuovo la lista"
+  },
+  {
+   "n": "05",
+   "inizio": 12.0,
+   "fine": 16.6,
+   "cast": [
+    "protagonista",
+    "dipendente"
+   ],
+   "lente": 26,
+   "descrizione": "Luca nota l'uomo in giacca blu che controlla gli scaffali col telefono"
+  },
+  {
+   "n": "06",
+   "inizio": 16.6,
+   "fine": 19.0,
+   "cast": [
+    "protagonista",
+    "dipendente"
+   ],
+   "lente": 22,
+   "descrizione": "Luca si avvicina, entusiasta"
+  },
+  {
+   "n": "07",
+   "inizio": 19.0,
+   "fine": 21.2,
+   "cast": [
+    "protagonista",
+    "dipendente"
+   ],
+   "lente": 24,
+   "descrizione": "Mostra la lista a Luca: lui la scambia per i controlli"
+  },
+  {
+   "n": "08",
+   "inizio": 21.2,
+   "fine": 25.0,
+   "cast": [
+    "protagonista",
+    "dipendente"
+   ],
+   "lente": 24,
+   "descrizione": "Primo piano: non lo corregge"
+  },
+  {
+   "n": "09",
+   "inizio": 25.0,
+   "fine": 29.0,
+   "cast": [
+    "protagonista",
+    "dipendente"
+   ],
+   "lente": 22,
+   "descrizione": "Luca chiede un parere sugli scaffali; lui indica verso le cipolle"
+  },
+  {
+   "n": "10",
+   "inizio": 29.0,
+   "fine": 31.2,
+   "cast": [
+    "protagonista",
+    "dipendente"
+   ],
+   "lente": 24,
+   "descrizione": "«Subito!»: Luca parte per riorganizzare la corsia"
+  },
+  {
+   "n": "11",
+   "inizio": 31.2,
+   "fine": 35.6,
+   "cast": [
+    "protagonista"
+   ],
+   "lente": 26,
+   "descrizione": "Primo piano: guarda in camera. «Il problema?»"
+  },
+  {
+   "n": "12",
+   "inizio": 35.6,
+   "fine": 42.6,
+   "cast": [
+    "protagonista",
+    "responsabile"
+   ],
+   "lente": 20,
+   "descrizione": "Gag A: indica le cipolle, gli spostano l'intero espositore"
+  },
+  {
+   "n": "13",
+   "inizio": 42.6,
+   "fine": 49.6,
+   "cast": [
+    "protagonista",
+    "responsabile",
+    "dipendente_b",
+    "cliente_felpa",
+    "cliente_signora"
+   ],
+   "lente": 22,
+   "descrizione": "Gag B: chiede l'uscita, aprono una nuova cassa"
+  },
+  {
+   "n": "14",
+   "inizio": 49.6,
+   "fine": 56.6,
+   "cast": [
+    "protagonista",
+    "responsabile"
+   ],
+   "lente": 24,
+   "descrizione": "Gag C: riapre la lista, gli consegnano una cartellina"
+  },
+  {
+   "n": "15",
+   "inizio": 56.6,
+   "fine": 60.8,
+   "cast": [
+    "protagonista",
+    "dipendente",
+    "dipendente_b",
+    "responsabile"
+   ],
+   "lente": 22,
+   "descrizione": "Tutto il personale aspetta istruzioni. Il direttore vuole vederlo"
+  },
+  {
+   "n": "16",
+   "inizio": 60.8,
+   "fine": 65.0,
+   "cast": [
+    "protagonista",
+    "dipendente",
+    "dipendente_b",
+    "responsabile"
+   ],
+   "lente": 26,
+   "descrizione": "Primo piano: panico. Persone, telefono, porta dell'ufficio"
+  },
+  {
+   "n": "17",
+   "inizio": 65.0,
+   "fine": 71.0,
+   "cast": [
+    "protagonista"
+   ],
+   "lente": 26,
+   "descrizione": "Va lentamente all'ufficio, apre la porta"
+  },
+  {
+   "n": "18",
+   "inizio": 71.0,
+   "fine": 74.0,
+   "cast": [
+    "protagonista",
+    "direttore"
+   ],
+   "lente": 24,
+   "descrizione": "Il direttore lo accoglie sorridendo"
+  },
+  {
+   "n": "19",
+   "inizio": 74.0,
+   "fine": 79.0,
+   "cast": [
+    "protagonista",
+    "direttore"
+   ],
+   "lente": 28,
+   "descrizione": "Primo piano del direttore: gli offre il suo posto"
+  },
+  {
+   "n": "20",
+   "inizio": 79.0,
+   "fine": 84.0,
+   "cast": [
+    "protagonista",
+    "direttore"
+   ],
+   "lente": 26,
+   "descrizione": "Primo piano: silenzio, bocca aperta"
+  },
+  {
+   "n": "21",
+   "inizio": 84.0,
+   "fine": 85.6,
+   "cast": [
+    "protagonista"
+   ],
+   "lente": 38,
+   "descrizione": "Dettaglio: la lista è ancora aperta"
+  },
+  {
+   "n": "22",
+   "inizio": 85.6,
+   "fine": 87.8,
+   "cast": [
+    "protagonista",
+    "direttore"
+   ],
+   "lente": 26,
+   "descrizione": "«Ma… le cipolle?»"
+  },
+  {
+   "n": "23",
+   "inizio": 87.8,
+   "fine": 90.0,
+   "cast": [
+    "protagonista",
+    "direttore",
+    "dipendente"
+   ],
+   "lente": 20,
+   "descrizione": "«Avete sentito? Controllate subito le cipolle!»"
+  },
+  {
+   "n": "24",
+   "inizio": 90.0,
+   "fine": 93.6,
+   "cast": [
+    "protagonista"
+   ],
+   "lente": 26,
+   "descrizione": "Finale: guarda in camera, esasperato"
+  },
+  {
+   "n": "25",
+   "inizio": 93.6,
+   "fine": 95.0,
+   "cast": [],
+   "lente": 30,
+   "descrizione": "Marchio Spesora (breve, dopo la battuta)"
+  }
+ ]
+}

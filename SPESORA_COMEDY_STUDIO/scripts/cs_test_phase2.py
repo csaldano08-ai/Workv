@@ -46,10 +46,10 @@ def body_qc(ch, label):
     hip = {s: ch.rig.matrix_world @ ch.rest[f"thigh.{s}"][0] for s in "LR"}
     for s in "LR":
         # la radice del braccio è innestata di proposito nel busto (attacco alla spalla): esclusi gli 11 cm vicini al giunto
-        r[f"arm.{s}_in_torso"] = QC.penetration(ch.parts[f"arm.{s}"], ch.parts["torso"], ignore=lambda v, g, s=s: (v - sh[s]).length < 0.11)
+        r[f"arm.{s}_in_torso"] = QC.penetration(ch.parts[f"arm.{s}"], ch.parts["torso"], ignore=lambda v, g, s=s: (v - sh[s]).length < QC.ARM_ROOT)
         r[f"hand.{s}_in_torso"] = QC.penetration(ch.parts[f"hand.{s}"], ch.parts["torso"])
         r[f"hand.{s}_in_head"] = QC.penetration(ch.parts[f"hand.{s}"], ch.parts["head"])
-        r[f"leg.{s}_in_torso"] = QC.penetration(ch.parts[f"leg.{s}"], ch.parts["torso"], ignore=lambda v, g, s=s: (v - hip[s]).length < 0.16)
+        r[f"leg.{s}_in_torso"] = QC.penetration(ch.parts[f"leg.{s}"], ch.parts["torso"], ignore=lambda v, g, s=s: (v - hip[s]).length < QC.LEG_ROOT)
         r[f"foot.{s}_min_z_mm"] = round(QC.min_z(ch.parts[f"foot.{s}"]) * 1000, 2)
     r["leg.L_in_leg.R"] = QC.penetration(ch.parts["leg.L"], ch.parts["leg.R"])
     r["foot.L_in_foot.R"] = QC.penetration(ch.parts["foot.L"], ch.parts["foot.R"])

@@ -26,7 +26,7 @@ SWEAT = (150, 205, 240, 240)
 BASE = dict(eyes="dot", eye_scale=1.0, pupil=1.0, eye_asym=0.0,
             brow_lift=0.0, brow_tilt=0.0, brow_curve=0.25, brow_asym=0.0,
             mouth="line", mouth_w=1.0, mouth_open=0.5, mouth_dx=0.0,
-            blush=0.0, tears=0.0, sweat=0.0, lashes=False)
+            blush=0.0, tears=0.0, sweat=0.0, lashes=False, glasses=False, mustache=False)
 
 EXPRESSIONS = {
     "neutro": dict(),
@@ -193,6 +193,21 @@ def draw_face(p, gaze=(0.0, 0.0), blink=0.0, size=1024, talk=None):
         pen.line(pts + [pts[0]], LW * 0.45, (70, 140, 200, 255))
     # bocca
     _mouth(pen, p, fx, fy, talk)
+    if p.get("mustache"):
+        # baffi a inchiostro sopra la bocca (2D, nello stile del volto)
+        mx, my = p["mouth_dx"] + fx, MOUTH_Y + fy + 0.1
+        pts = []
+        for i in range(41):
+            t = i / 40 * 2 - 1
+            pts.append((mx + t * 0.24, my + 0.035 - 0.05 * abs(t) ** 1.5))
+        for i in range(41):
+            t = 1 - i / 40 * 2
+            pts.append((mx + t * 0.24, my - 0.03 - 0.02 * (1 - t * t) + 0.04 * abs(t) ** 2))
+        pen.poly(pts, (60, 55, 55, 255))
+    if p.get("glasses"):
+        for side in (-1, 1):
+            pen.ellipse(side * EYE_X + fx, EYE_Y + fy, 0.15, 0.13, outline=INK, w=LW * 0.85)
+        pen.line([(-EYE_X + 0.15 + fx, EYE_Y + 0.02 + fy), (EYE_X - 0.15 + fx, EYE_Y + 0.02 + fy)], LW * 0.8)
     return pen.done()
 
 

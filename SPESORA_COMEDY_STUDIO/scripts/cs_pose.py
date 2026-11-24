@@ -6,13 +6,15 @@ import math
 
 from mathutils import Matrix, Vector
 
-FEET = {"foot.L": ((0.115, 0.0, 0.05), 5, 0), "foot.R": ((-0.115, 0.0, 0.05), -5, 0)}
+FEET = {"foot.L": ((0.115, 0.0, 0.05), 5, 0), "foot.R": ((-0.115, 0.0, 0.05), -5, 0)}  # caviglia a 5 cm: suola a 2 mm dal pavimento
 
 
 def idle(ch, relax=1.0):
     P = dict(FEET)
     for side, sg in (("L", 1), ("R", -1)):
-        P[f"hand.{side}"] = ((sg * 0.46, -0.05, 0.6), (sg * 0.15, -0.2, -1.0), (-sg, 0.0, 0.0))
+        hx = ch.spec["torso_bot"] + 0.2           # le mani stanno fuori dal busto qualunque sia la corporatura
+        hz = ch.z_tb + 0.16
+        P[f"hand.{side}"] = ((sg * hx, -0.05, hz), (sg * 0.15, -0.2, -1.0), (-sg, 0.0, 0.0))
         P[f"elbow.{side}"] = (sg * 0.7, 0.18, 0.85)  # gomito verso fuori e appena indietro: braccio rilassato
         P[f"fingers.{side}"] = (22, 26, 30, 10)
     return P
@@ -214,7 +216,8 @@ def solve_elbow(ch, P, side, prefer=None, steps=24, radius=0.45):
         Q[f"elbow.{side}"] = tuple(mid + dvec * radius)
         ch.pose(Q)
         shw = ch.rig.matrix_world @ ch.rig.pose.bones[f"upperarm.{side}"].head
-        ra = penetration(ch.parts[f"arm.{side}"], ch.parts["torso"], ignore=lambda v, g: (v - shw).length < 0.11)
+        from cs_qc import ARM_ROOT
+        ra = penetration(ch.parts[f"arm.{side}"], ch.parts["torso"], ignore=lambda v, g: (v - shw).length < ARM_ROOT)
         rh = penetration(ch.parts[f"hand.{side}"], ch.parts["torso"])
         pen = ra["depth_mm"] + rh["depth_mm"]
         ang = math.degrees(min(a, 2 * math.pi - a))

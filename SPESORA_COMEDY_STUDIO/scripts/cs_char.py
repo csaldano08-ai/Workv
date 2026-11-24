@@ -31,7 +31,7 @@ BASE_SPEC = dict(
     hand_scale=1.35,
     head_col=(0.95, 0.95, 0.93), hand_col=(0.97, 0.93, 0.89), limb_col=(0.09, 0.085, 0.09),
     shoe_col=(0.1, 0.1, 0.11), hair_col=(0.28, 0.18, 0.12),
-    outfit="blazer", outfit_cols={}, hair="quiff", lashes=False,
+    outfit="blazer", outfit_cols={}, hair="quiff", lashes=False, glasses=False, mustache=False,
     outline=0.0085,
 )
 
@@ -45,6 +45,25 @@ CAST = {
                            head_r=0.29, arm_upper=0.26, arm_fore=0.25, outfit="dress",
                            outfit_cols=dict(main=(0.9, 0.5, 0.4), collar=(0.98, 0.96, 0.92), belt=(0.45, 0.3, 0.22)),
                            hair="bob", hair_col=(0.55, 0.28, 0.16), lashes=True, shoe_col=(0.75, 0.35, 0.3)),
+    # personale del supermercato e comparse (stesso telaio, proporzioni e caratteri diversi)
+    "dipendente": dict(name="dipendente", torso_h=0.72, torso_top=0.25, torso_bot=0.315, leg_len=0.42, head_r=0.29,
+                       outfit="polo_apron", outfit_cols=dict(main=(0.8, 0.22, 0.36), apron=(0.26, 0.28, 0.31), badge="LUCA"),
+                       hair="short", hair_col=(0.78, 0.42, 0.2), shoe_col=(0.92, 0.92, 0.9)),
+    "dipendente_b": dict(name="dipendente_b", torso_h=0.7, torso_top=0.22, torso_bot=0.3, leg_len=0.41, head_r=0.285,
+                         outfit="polo_apron", outfit_cols=dict(main=(0.8, 0.22, 0.36), apron=(0.26, 0.28, 0.31), badge="ANNA"),
+                         hair="bob", hair_col=(0.2, 0.14, 0.1), lashes=True, shoe_col=(0.92, 0.92, 0.9)),
+    "responsabile": dict(name="responsabile", torso_h=0.84, torso_top=0.232, torso_bot=0.28, leg_len=0.5, head_r=0.285,
+                         outfit="vest", outfit_cols=dict(main=(0.95, 0.95, 0.93), vest=(0.8, 0.22, 0.36), tie=(0.2, 0.26, 0.42)),
+                         hair="sides", hair_col=(0.5, 0.45, 0.4), glasses=True, shoe_col=(0.15, 0.13, 0.12)),
+    "direttore": dict(name="direttore", torso_h=0.8, torso_top=0.27, torso_bot=0.37, leg_len=0.44, head_r=0.31,
+                      outfit="suit", outfit_cols=dict(main=(0.45, 0.47, 0.5), lapel=(0.36, 0.38, 0.41), shirt=(0.97, 0.97, 0.95), tie=(0.82, 0.16, 0.22)),
+                      hair="slick", hair_col=(0.74, 0.74, 0.76), mustache=True, shoe_col=(0.08, 0.08, 0.09)),
+    "cliente_felpa": dict(name="cliente_felpa", torso_h=0.76, torso_top=0.24, torso_bot=0.3, leg_len=0.45, head_r=0.29,
+                          outfit="hoodie", outfit_cols=dict(main=(0.35, 0.6, 0.46)), hair="short", hair_col=(0.86, 0.72, 0.38),
+                          shoe_col=(0.25, 0.3, 0.55)),
+    "cliente_signora": dict(name="cliente_signora", torso_h=0.7, torso_top=0.22, torso_bot=0.32, leg_len=0.4, head_r=0.285,
+                            outfit="dress", outfit_cols=dict(main=(0.55, 0.4, 0.65), collar=(0.98, 0.96, 0.92), belt=(0.35, 0.25, 0.4)),
+                            hair="bun", hair_col=(0.82, 0.82, 0.84), lashes=True, glasses=True, shoe_col=(0.3, 0.2, 0.15)),
 }
 
 
@@ -294,6 +313,61 @@ def paint_outfit(spec, path, W=2048, H=1024):
             u = (k + 0.5) / 12
             d.line([(X(u), Y(0.48)), (X(u + 0.01), Y(0.02))], fill=tuple(max(0, x - 18) for x in main), width=5)
         d.rectangle([0, 0, W, Y(0.985)], fill=collar)
+    elif spec["outfit"] == "polo_apron":
+        main, apron = C(c["main"]), C(c["apron"])
+        dark = tuple(max(0, x - 40) for x in main)
+        # colletto della polo e abbottonatura
+        d.rectangle([0, 0, W, Y(0.975)], fill=dark)
+        d.polygon([(X(0.47), Y(0.98)), (X(0.53), Y(0.98)), (X(0.515), Y(0.86)), (X(0.485), Y(0.86))], fill=dark)
+        for v in (0.95, 0.9):
+            d.ellipse([X(0.5) - 7, Y(v) - 7, X(0.5) + 7, Y(v) + 7], fill=(240, 240, 235))
+        # grembiule: pettorina + spalline + laccio in vita
+        d.polygon([(X(0.37), Y(0.0)), (X(0.63), Y(0.0)), (X(0.62), Y(0.7)), (X(0.38), Y(0.7))], fill=apron)
+        for u in (0.395, 0.605):
+            d.rectangle([X(u) - 10, Y(0.98), X(u) + 10, Y(0.7)], fill=apron)
+        d.rectangle([0, Y(0.47), W, Y(0.44)], fill=apron)
+        d.rectangle([X(0.43), Y(0.3), X(0.57), Y(0.18)], outline=tuple(min(255, x + 30) for x in apron), width=5)  # tasca
+        # cartellino con il nome
+        d.rectangle([X(0.535), Y(0.66), X(0.6), Y(0.6)], fill=(250, 250, 245), outline=(60, 60, 60), width=3)
+        from PIL import ImageFont as _F
+        f = _F.truetype("/usr/share/fonts/opentype/inter/Inter-Bold.otf", 30)
+        d.text(((X(0.535) + X(0.6)) / 2, (Y(0.66) + Y(0.6)) / 2), c.get("badge", ""), font=f, fill=(40, 40, 40), anchor="mm")
+    elif spec["outfit"] in ("vest", "suit"):
+        shirt = C(c.get("shirt", c["main"])) if spec["outfit"] == "suit" else C(c["main"])
+        over = C(c["main"]) if spec["outfit"] == "suit" else C(c["vest"])
+        tie = C(c["tie"])
+        im.paste(over, [0, 0, W, H])
+        top_open = 0.1 if spec["outfit"] == "suit" else 0.075
+        def half_open(v, v0=0.42 if spec["outfit"] == "suit" else 0.5):
+            return 0.0 if v < v0 else top_open * smoothstep(v0, 0.95, v)
+        poly_l = [(X(0.5 - half_open(0.4 + 0.6 * i / 60)), Y(0.4 + 0.6 * i / 60)) for i in range(61)]
+        poly_r = [(X(0.5 + half_open(0.4 + 0.6 * i / 60)), Y(0.4 + 0.6 * i / 60)) for i in range(61)]
+        d.polygon(poly_l + poly_r[::-1], fill=shirt)
+        d.rectangle([0, 0, W, Y(0.98)], fill=shirt)  # colletto
+        # cravatta
+        d.polygon([(X(0.49), Y(0.97)), (X(0.51), Y(0.97)), (X(0.517), Y(0.6)), (X(0.5), Y(0.54)), (X(0.483), Y(0.6))], fill=tie)
+        if spec["outfit"] == "suit":
+            lapel = C(c["lapel"])
+            for sgn in (-1, 1):
+                pts = [(X(0.5 + sgn * half_open(v)), Y(v)) for v in [0.44 + 0.5 * i / 30 for i in range(31)]]
+                outer = [(X(0.5 + sgn * (half_open(v) + 0.04 * smoothstep(0.44, 0.62, v))), Y(v)) for v in [0.44 + 0.5 * i / 30 for i in range(31)]]
+                d.polygon(pts + outer[::-1], fill=lapel)
+            d.rectangle([X(0.6), Y(0.8), X(0.65), Y(0.77)], fill=(250, 250, 245))  # fazzoletto nel taschino
+            d.line([(X(0.5), Y(0.42)), (X(0.5), Y(0.0))], fill=lapel, width=6)
+            for v in (0.34, 0.22):
+                d.ellipse([X(0.5) - 12, Y(v) - 12, X(0.5) + 12, Y(v) + 12], fill=(30, 30, 35))
+        else:
+            for v in (0.44, 0.35, 0.26, 0.17):
+                d.ellipse([X(0.5) - 9, Y(v) - 9, X(0.5) + 9, Y(v) + 9], fill=(245, 240, 230))
+            d.rectangle([0, Y(0.08), W, H], fill=shirt)  # la camicia esce sotto il gilet
+    elif spec["outfit"] == "hoodie":
+        main = C(c["main"])
+        dark = tuple(max(0, x - 35) for x in main)
+        d.rectangle([0, Y(0.08), W, H], fill=dark)                                     # polsino in fondo
+        d.polygon([(X(0.38), Y(0.12)), (X(0.62), Y(0.12)), (X(0.58), Y(0.4)), (X(0.42), Y(0.4))], outline=dark, width=6)  # tascone
+        for u in (0.47, 0.53):
+            d.line([(X(u), Y(0.97)), (X(u), Y(0.75))], fill=(245, 245, 240), width=6)  # cordini
+        d.rectangle([0, 0, W, Y(0.965)], fill=dark)                                    # bordo del cappuccio
     # trama leggera del tessuto
     rnd = random.Random(3)
     px = im.load()
@@ -579,7 +653,7 @@ class Character:
                 l[uvl].uv = (0.5 + p.x / (2 * span), 0.5 + p.z / (2 * span))
         face_png = os.path.join(wd, f"{self.name}_face.png")
         from cs_face import draw_face, expr
-        draw_face(expr("neutro", lashes=s["lashes"]), size=1024).save(face_png)
+        draw_face(expr("neutro", lashes=s["lashes"], glasses=s["glasses"], mustache=s["mustache"]), size=1024).save(face_png)
         headm = face_material(self.name + "_headmat", lin(s["head_col"]), face_png)
         head = mesh_object(self.name + "_head", bm, [headm], self.coll)
         # attributo "front" come float sul punto
@@ -656,6 +730,12 @@ class Character:
             if style == "bob":
                 front = 0.5 * smoothstep(math.radians(60), math.radians(30), abs(az))
                 return front * max(0.0, c) - (0.5 + 0.3 * max(0.0, -c)) * (1 - max(0.0, c))
+            if style in ("short", "bun"):
+                return 0.5 * max(0.0, c) ** 1.3 - 0.58 * max(0.0, -c) ** 0.8 - 0.1 * (1 - abs(c))
+            if style == "slick":
+                return 0.64 * max(0.0, c) ** 1.2 - 0.5 * max(0.0, -c) ** 0.8 + 0.02 * (1 - abs(c))
+            if style == "sides":
+                return -0.42
             return 0.3
 
         def radius_k(az, zn):
@@ -666,36 +746,68 @@ class Character:
                 # ciuffo spazzolato all'insù, leggermente di lato: un rilievo morbido sopra la fronte
                 da = (az - 0.35) / 0.75
                 return 1.0 + 0.2 * math.exp(-da * da) * smoothstep(0.5, 0.82, zn) * (1 - smoothstep(0.9, 1.0, zn) * 0.6)
+            if style == "slick":
+                return 1.0 + 0.04 * max(0.0, -math.cos(az)) * smoothstep(-0.3, 0.4, zn)
+            if style == "short":
+                da = az / 0.6
+                return 1.0 + 0.07 * math.exp(-da * da) * smoothstep(0.45, 0.75, zn)
             return 1.0
+
+        def top_of(az):
+            """Quota alta della calotta: per «sides» (calvo in cima) i capelli sono solo una fascia ai lati e dietro."""
+            if style == "sides":
+                return -0.42 + 0.72 * smoothstep(1.0, 1.55, abs(az))
+            return 0.985
 
         rr = R * 1.04
         N, M = 96, 26
         bm = bmesh.new()
-        rows = []
-        for j in range(M):
-            ring = []
+        if style == "sides":
+            # fascia aperta solo ai lati e dietro (da az = +1.05 a az = 2π − 1.05 passando per la nuca), estremità affusolate
+            a0, a1 = 1.05, 2 * math.pi - 1.05
+            rows = []
+            for j in range(M):
+                ring = []
+                for i in range(N + 1):
+                    az = a0 + (a1 - a0) * i / N
+                    taper = smoothstep(0.0, 0.18, min(i, N - i) / N)
+                    zlo = -0.42
+                    zhi = zlo + (0.06 + 0.6 * taper)
+                    zn = zlo + (zhi - zlo) * j / (M - 1)
+                    rxy = math.sqrt(max(0.0, 1 - zn * zn))
+                    k = 1.008 + 0.022 * smoothstep(0.0, 0.3, j / (M - 1)) * taper
+                    dirv = Vector((math.sin(az) * rxy, -math.cos(az) * rxy, zn))
+                    ring.append(bm.verts.new(self.head_surface(dirv) * k + self.head_c))
+                rows.append(ring)
+            for j in range(M - 1):
+                for i in range(N):
+                    bm.faces.new((rows[j][i], rows[j][i + 1], rows[j + 1][i + 1], rows[j + 1][i]))
+        else:
+            rows = []
+            for j in range(M):
+                ring = []
+                for i in range(N):
+                    az = 2 * math.pi * i / N - math.pi
+                    z0 = hairline(az)
+                    zn = z0 + (0.985 - z0) * (j / (M - 1)) ** 0.85
+                    rxy = math.sqrt(max(0.0, 1 - zn * zn))
+                    # spessore sopra la testa: 0,8% al bordo (≈2 mm, niente z-fighting) → 4% in alto; segue la forma vera della testa
+                    k = radius_k(az, zn) * (1.008 + 0.032 * smoothstep(0.0, 0.22, j / (M - 1)))
+                    dirv = Vector((math.sin(az) * rxy, -math.cos(az) * rxy, zn))
+                    ring.append(bm.verts.new(self.head_surface(dirv) * k + self.head_c))
+                rows.append(ring)
+            for j in range(M - 1):
+                for i in range(N):
+                    bm.faces.new((rows[j][i], rows[j][(i + 1) % N], rows[j + 1][(i + 1) % N], rows[j + 1][i]))
+            pole = bm.verts.new(self.head_c + self.head_surface(Vector((0, 0, 1))) * 1.04)
             for i in range(N):
-                az = 2 * math.pi * i / N - math.pi
-                z0 = hairline(az)
-                zn = z0 + (0.985 - z0) * (j / (M - 1)) ** 0.85
-                rxy = math.sqrt(max(0.0, 1 - zn * zn))
-                # spessore sopra la testa: 0,8% al bordo (≈2 mm, niente z-fighting) → 4% in alto; segue la forma vera della testa
-                k = radius_k(az, zn) * (1.008 + 0.032 * smoothstep(0.0, 0.22, j / (M - 1)))
-                dirv = Vector((math.sin(az) * rxy, -math.cos(az) * rxy, zn))
-                ring.append(bm.verts.new(self.head_surface(dirv) * k + self.head_c))
-            rows.append(ring)
-        pole = bm.verts.new(self.head_c + self.head_surface(Vector((0, 0, 1))) * 1.04)
-        for j in range(M - 1):
-            for i in range(N):
-                bm.faces.new((rows[j][i], rows[j][(i + 1) % N], rows[j + 1][(i + 1) % N], rows[j + 1][i]))
-        for i in range(N):
-            bm.faces.new((rows[-1][i], rows[-1][(i + 1) % N], pole))
+                bm.faces.new((rows[-1][i], rows[-1][(i + 1) % N], pole))
         bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
         ob = mesh_object(self.name + "_hair", bm, [hair], self.coll)
         sol = ob.modifiers.new("thick", "SOLIDIFY")
-        sol.thickness = R * 0.075
+        sol.thickness = R * (0.035 if style == "sides" else 0.075)
         sol.offset = -1.0
-        sol.use_even_offset = True
+        sol.use_even_offset = style != "sides"
         sol.use_rim = True
         self.parts["hair"] = ob
         if style == "quiff":
@@ -716,6 +828,22 @@ class Character:
             rot = ax.to_track_quat("Z", "Y").to_matrix()
             ellipsoid_bm(crown + ax * R * 0.07, (R * 0.07, R * 0.05, R * 0.14), seg=16, rings=10, bm=bm, rot=rot)
             self.parts["tuft"] = mesh_object(self.name + "_tufts", bm, [hair], self.coll)
+        if style == "bun":
+            bm = bmesh.new()
+            p = self.head_c + self.head_surface(Vector((0, 0.55, 0.83)).normalized()) * 1.02
+            ellipsoid_bm(p + Vector((0, 0.06, 0.07)), (R * 0.34, R * 0.3, R * 0.3), seg=24, rings=14, bm=bm)
+            self.parts["tuft"] = mesh_object(self.name + "_crocchia", bm, [hair], self.coll)
+        if style == "short":
+            bm = bmesh.new()
+            for az in (-0.4, 0.0, 0.4):
+                zn = hairline(az) + 0.04
+                rxy = math.sqrt(1 - zn * zn)
+                n = Vector((math.sin(az) * rxy, -math.cos(az) * rxy, zn)).normalized()
+                p = self.head_c + self.head_surface(n) * 1.035
+                tang = Vector((math.cos(az), math.sin(az), 0.0))
+                rot = Matrix((tang, n.cross(tang).normalized(), n)).transposed()
+                ellipsoid_bm(p, (R * 0.16, R * 0.1, R * 0.06), seg=16, rings=10, bm=bm, rot=rot)
+            self.parts["tuft"] = mesh_object(self.name + "_frangia", bm, [hair], self.coll)
 
     # ---------------- skinning
     def _skin(self):
@@ -836,6 +964,11 @@ class Character:
             if f:
                 self.set_bone_matrix(f"ik_foot.{side}", self.foot_matrix(side, *f))
         self.update()
+
+    def face_expr(self, name, **over):
+        """Parametri del volto con gli accessori fissi del personaggio (ciglia, occhiali, baffi)."""
+        from cs_face import expr
+        return expr(name, lashes=self.spec["lashes"], glasses=self.spec["glasses"], mustache=self.spec["mustache"], **over)
 
     def set_face(self, img_path):
         img = bpy.data.images.load(img_path, check_existing=False)
