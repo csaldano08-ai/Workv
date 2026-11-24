@@ -24,6 +24,9 @@ STYLES = {
 }
 
 
+ARM_DRAG = {"s": 0.0}   # ritardo delle braccia rispetto al passo (0 = come prima; la modalità recitazione usa 0,06 s)
+
+
 def ease(u):
     u = max(0.0, min(1.0, u))
     return 0.5 - 0.5 * math.cos(math.pi * u)
@@ -203,8 +206,9 @@ class Walk:
         # braccia: in opposizione alle gambe (destro in volo → braccio sinistro avanti); seguono la rotazione del torace
         chest_yaw = math.radians((-st["pel_yaw"] + st["chest_yaw"]) * ph)
         Rc = Matrix.Rotation(chest_yaw, 3, "Z")
+        ph_arm = self.phase_amount(t - ARM_DRAG["s"])   # le braccia seguono il passo con un piccolo ritardo (trascinamento)
         for side, sg in (("L", 1), ("R", -1)):
-            swing = st["arm_sw"] * ph * (1 if side == "L" else -1)
+            swing = st["arm_sw"] * ph_arm * (1 if side == "L" else -1)
             hx = sg * st["arm_out"]
             hy = -0.02 - swing
             hz = 0.6 + 0.08 * max(0.0, swing / max(1e-6, st["arm_sw"])) * st["arm_sw"] / 0.13 + (st["shrug"] * 0.002)

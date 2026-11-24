@@ -19,7 +19,9 @@ from mathutils import Matrix, Quaternion, Vector  # noqa: E402
 import cs_pose as PO  # noqa: E402
 import cs_qc as QC  # noqa: E402
 import cs_scene as S  # noqa: E402
-from cs_actor import Actor, body_matrix, head_world, look, resolve_target  # noqa: E402
+import cs_actor  # noqa: E402
+import cs_walk  # noqa: E402
+from cs_actor import Actor, body_matrix, head_world, look, look_acting, resolve_target  # noqa: E402
 from cs_char import Character  # noqa: E402
 from cs_face import draw_face  # noqa: E402
 from cs_market import LAYOUT, Market  # noqa: E402
@@ -33,6 +35,11 @@ SAMPLES = int(os.environ.get("ADS_SAMPLES", "6"))
 RANGE = tuple(float(v) for v in os.environ.get("ADS_RANGE", "0-95").split("-"))
 FPS = 30
 DUR = 95.0
+# ADS_ACTING=1: metodo del test di recitazione (transizioni sfalsate con anticipazione e superamento, pause vive, volto a parti,
+# occhi che guidano la testa, braccia che seguono il passo). Vedi docs/08_AUDIT_ANIMAZIONE_E_AUDIO.md.
+ACTING = os.environ.get("ADS_ACTING") == "1"
+cs_actor.ACTING["on"] = ACTING
+cs_walk.ARM_DRAG["s"] = 0.06 if ACTING else 0.0
 os.makedirs(os.path.join(OUT, "frames"), exist_ok=True)
 WD = os.path.join(OUT, "_wd")
 os.makedirs(WD, exist_ok=True)
@@ -504,6 +511,9 @@ def presolve_elbows():
         ch.rig.matrix_world = keep
 
 
+if ACTING:
+    for a_ in A.values():
+        a_.finalize_blinks()
 t_pre = time.time()
 presolve_elbows()
 print(f"gomiti risolti in {time.time() - t_pre:.0f} s", flush=True)
@@ -694,12 +704,21 @@ def apply_actor(a, t, f, faces=True):
         if tk <= t:
             Pf[f"fingers.{side}"] = {"index": (60, 50), "middle": (62, 52), "ring": (64, 54), "thumb": (30, 10)}
     # sguardo e testa
-    tgt = actor_target(a.gaze_target(t))
     gaze = (0.0, 0.0)
-    a.ch.pose(Pf)
-    if tgt is not None:
-        Pf, gaze = look(a, Pf, tgt)
+    if ACTING:
+        Pf = a.alive(t, Pf)
         a.ch.pose(Pf)
+        g_prev, g_cur, g_ts = a.gaze_state(t)
+        tgt = actor_target(g_cur)
+        if tgt is not None:
+            Pf, gaze = look_acting(a, Pf, actor_target(g_prev) if g_prev is not None else None, tgt, g_ts, t)
+            a.ch.pose(Pf)
+    else:
+        tgt = actor_target(a.gaze_target(t))
+        a.ch.pose(Pf)
+        if tgt is not None:
+            Pf, gaze = look(a, Pf, tgt)
+            a.ch.pose(Pf)
     a.last = (W, Pf)
     if not faces:
         return
