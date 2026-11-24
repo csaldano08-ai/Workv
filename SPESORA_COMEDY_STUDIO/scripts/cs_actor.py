@@ -231,7 +231,9 @@ class Actor:
         for i, sd in enumerate("LR"):
             h = P.get(f"hand.{sd}")
             if h:
-                d = (k * L.drift(t, 6 + i, 0.003), k * L.drift(t, 8 + i, 0.003), k * L.drift(t, 10 - i, 0.003))
+                # derive piccole e solo verso l'esterno (mai verso il busto: il controllo trovava braccia a 2 mm nel busto)
+                out = 1.0 if sd == "L" else -1.0
+                d = (out * k * abs(L.drift(t, 6 + i, 0.0018)), k * abs(L.drift(t, 8 + i, 0.0015)) * -1.0, k * L.drift(t, 10 - i, 0.0015))
                 P[f"hand.{sd}"] = (tuple(a + b_ for a, b_ in zip(h[0], d)),) + tuple(h[1:])
         return P
 
@@ -305,7 +307,9 @@ class Actor:
                 if key.startswith("hand.") and va is not None and vb is not None:
                     pa, pb = Vector(va[0]), Vector(vb[0])
                     d = pb - pa
-                    pos = pa.lerp(pb, k)
+                    # superamento solo se la mano si allontana dal corpo; verso il corpo si posa senza superare (niente mani nel busto)
+                    kh = k if pb.xy.length >= pa.xy.length else EASE["ease"](u)
+                    pos = pa.lerp(pb, kh)
                     if d.length > 0.12 and u < 0.3:              # anticipazione: 2,5 cm all'indietro prima del gesto grande
                         pos -= d.normalized() * 0.025 * math.sin(math.pi * u / 0.3)
                     out[key] = (tuple(pos),) + tuple(lerp(a, b, min(1.0, k)) for a, b in zip(va[1:], vb[1:]))
