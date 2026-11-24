@@ -129,6 +129,7 @@ class Life:
     """Moving hold: respiro + derive lente e piccole (somma di sinusoidi lente con fasi casuali, nessun rumore a scatti)."""
 
     def __init__(self, seed, breath_s=3.6):
+        self.seed = seed
         rng = np.random.default_rng(seed)
         self.ph = rng.uniform(0, 2 * math.pi, 12)
         self.fr = rng.uniform(0.11, 0.33, 12)
@@ -138,7 +139,14 @@ class Life:
         return math.sin(2 * math.pi * t / self.breath_s)
 
     def drift(self, t, i, amp):
-        return amp * (0.6 * math.sin(2 * math.pi * self.fr[i] * t + self.ph[i]) + 0.4 * math.sin(2 * math.pi * self.fr[i + 6] * t * 1.7 + self.ph[i + 6]))
+        if i < 6:   # canali 0-5: identici a prima (il test di recitazione già renderizzato non cambia)
+            return amp * (0.6 * math.sin(2 * math.pi * self.fr[i] * t + self.ph[i]) + 0.4 * math.sin(2 * math.pi * self.fr[i + 6] * t * 1.7 + self.ph[i + 6]))
+        if not hasattr(self, "ph2"):
+            rng = np.random.default_rng(self.seed + 7919)
+            self.ph2 = rng.uniform(0, 2 * math.pi, 32)
+            self.fr2 = rng.uniform(0.11, 0.33, 32)
+        j = (i - 6) % 16
+        return amp * (0.6 * math.sin(2 * math.pi * self.fr2[j] * t + self.ph2[j]) + 0.4 * math.sin(2 * math.pi * self.fr2[j + 16] * t * 1.7 + self.ph2[j + 16]))
 
 
 class Face:

@@ -335,6 +335,9 @@ P.face(90.0, "esasperato")
 P.gaze(90.0, "camera")
 
 # --- Luca (dipendente): aspetta l'ispettore con la cartellina
+# saluto verificato nel test di recitazione: polso 12 cm fuori dalla testa (centro 1,352 m, raggio 0,29), dita verso il sopracciglio
+LU_SALUTE = {"hand.R": ((-0.30, -0.26, 1.47), (0.84, 0.52, 0.19), (0.0, -0.4, -0.9)), "elbow.R": (-0.62, -0.1, 1.25), "fingers.R": (2, 2, 4, 8)}
+LU_CLIP = {"hand.L": ((0.18, -0.38, 0.95), (0.4, -0.3, 1.0), (-0.2, 0.9, 0.3)), "elbow.L": (0.55, 0.1, 0.7)}
 LU.hold(0.0, (-0.7, 5.05), 168.0)
 LU.hold_prop(0.0, clip_luca, "L", CLIP_SOCK)
 LU.pose(0.0, {"hand.L": ((0.18, -0.38, 0.95), (0.4, -0.3, 1.0), (-0.2, 0.9, 0.3)), "elbow.L": (0.55, 0.1, 0.7)})
@@ -361,7 +364,7 @@ LU.pose(25.6, None)
 LU.turn(27.6, (-1.42, 6.1), 72.0, 160.0, 0.45)
 LU.pose(27.55, {"hand.R": ((-0.45, -0.25, 1.05), (-0.8, 0.3, 0.2), (0.0, 0.0, 1.0)), "elbow.R": (-0.6, 0.25, 0.8)})  # presenta lo scaffale
 LU.face(27.4, "felice")
-LU.pose(29.35, {"hand.R": ((-0.12, -0.2, 1.5), (0.2, 0.1, 1.0), (0.0, -1.0, 0.0)), "elbow.R": (-0.55, 0.0, 1.25)})  # «Subito!»: saluto
+LU.pose(29.35, LU_SALUTE)  # «Subito!»: saluto (polso fuori dalla testa: la posa vecchia era dentro la testa)
 LU.face(29.3, "felice", mouth="grin")
 LU.pose(30.2, None)
 LU.walk(30.2, (-1.42, 6.1), (-1.5, 8.6), "sicuro")
@@ -377,7 +380,7 @@ LU.face(57.4, "sorpreso")
 LU.hold(80.0, (-5.65, 10.35), 90.0)
 LU.gaze(80.0, "direttore")
 LU.face(80.0, "neutro")
-LU.pose(89.0, {"hand.R": ((-0.12, -0.2, 1.5), (0.2, 0.1, 1.0), (0.0, -1.0, 0.0)), "elbow.R": (-0.55, 0.0, 1.25)})
+LU.pose(89.0, LU_SALUTE)
 LU.face(89.0, "felice", mouth="grin")
 
 # --- Anna (seconda dipendente)
@@ -461,6 +464,48 @@ FE.gaze(0.0, "cliente_signora")
 _t = FE.walk(47.4, (3.45, 4.15), (3.95, 3.45), "normale")
 FE.turn(_t, (3.95, 3.45), math.degrees(math.atan2(3.45 - 4.15, 3.95 - 3.45)), -90.0, 0.4)
 FE.face(47.4, "felice")
+
+# ====================================================================== battute di recitazione (metodo del test, docs/08)
+# Contrazione → allungamento → assestamento sulle reazioni; il corpo si chiude nell'imbarazzo. Le transizioni (anticipo del torace,
+# superamento delle mani, testa in ritardo) le aggiunge la modalità recitazione; qui ci sono le pose chiave in più.
+if ACTING:
+    # Luca nota il protagonista: piccolo sobbalzo con la cartellina
+    LU.pose(14.12, {**LU_CLIP, "chest_rot": (7, 0, 0), "head_rot": (5, 0, 0), "shrug.L": 8, "shrug.R": 8})
+    LU.pose(14.34, {**LU_CLIP, "chest_rot": (-7, 0, 0), "head_rot": (-9, 0, 2), "shrug.L": -3, "shrug.R": -3})
+    LU.pose(14.75, {**LU_CLIP, "chest_rot": (-2.5, 0, 0)})
+    LU.pose(16.4, LU_CLIP)
+    # Luca legge la lista e capisce (prima si avvicina di più, poi il pollice in su arriva con il busto che si raddrizza)
+    LU.pose(20.12, {"chest_rot": (9, 0, 0), "head_rot": (17, 0, 0), "shrug.L": 6, "shrug.R": 6})
+    LU.pose(20.55, {"hand.R": ((-0.3, -0.42, 1.12), (0.0, -1.0, 0.1), (1.0, 0.0, 0.0)), "elbow.R": (-0.6, 0.1, 0.9), "fingers.R": (95, 100, 105, -10),
+                    "chest_rot": (-5, 0, 0), "head_rot": (-6, 0, 3)})
+    LU.pose(21.0, {"hand.R": ((-0.3, -0.42, 1.12), (0.0, -1.0, 0.1), (1.0, 0.0, 0.0)), "elbow.R": (-0.6, 0.1, 0.9), "fingers.R": (95, 100, 105, -10),
+                   "chest_rot": (-2, 0, 0)})
+    # «Subito!»: due cenni durante il saluto
+    LU.pose(29.6, {**LU_SALUTE, "head_rot": (5, 0, 0)})
+    LU.pose(29.8, {**LU_SALUTE, "head_rot": (-4, 0, 0)})
+    LU.pose(30.0, {**LU_SALUTE, "head_rot": (4, 0, 0)})
+    # protagonista: guarda in camera, spalle su (non lo corregge); poi finta sicurezza, petto in fuori
+    P.pose(21.3, {**phone_low_L(P.ch), "shrug.L": 15, "shrug.R": 13, "chest_rot": (3, 0, 0)})
+    P.pose(21.9, {**phone_low_L(P.ch), "shrug.L": 8, "shrug.R": 7})
+    P.pose(22.9, {**phone_low_L(P.ch), "chest_rot": (-5, 0, 0), "head_rot": (-4, 0, 0), "shrug.L": -3, "shrug.R": -3})
+    P.pose(24.4, phone_low_L(P.ch))
+    # il personale scopre che il direttore vuole incontrarlo
+    LU.pose(57.25, {"chest_rot": (6, 0, 0), "shrug.L": 7, "shrug.R": 7})
+    LU.pose(57.5, {"chest_rot": (-6, 0, 0), "head_rot": (-6, 0, 0)})
+    LU.pose(58.0, {"chest_rot": (-2, 0, 0)})
+    AN.pose(57.45, {"chest_rot": (6, 0, 0), "shrug.L": 7, "shrug.R": 7})
+    AN.pose(57.7, {"chest_rot": (-6, 0, 0), "head_rot": (-6, 0, -3)})
+    AN.pose(58.2, {"chest_rot": (-2, 0, 0)})
+    # panico del protagonista: si contrae, poi esplode (spalle su, busto indietro), poi resta rigido
+    P.pose(63.1, {**phone_low_L(P.ch), "chest_rot": (8, 0, 0), "shrug.L": 10, "shrug.R": 10})
+    P.pose(63.38, {**phone_low_L(P.ch), "chest_rot": (-9, 0, 0), "head_rot": (-7, 0, 0), "shrug.L": 22, "shrug.R": 20})
+    P.pose(64.0, {**phone_low_L(P.ch), "chest_rot": (-4, 0, 0), "shrug.L": 16, "shrug.R": 15})
+    # il direttore gli offre il posto: sorpresa con il corpo
+    P.pose(78.85, {**phone_low_L(P.ch), "chest_rot": (6, 0, 0), "shrug.L": 6, "shrug.R": 6})
+    P.pose(79.1, {**phone_low_L(P.ch), "chest_rot": (-8, 0, 0), "head_rot": (-6, 0, 0), "shrug.L": 14, "shrug.R": 13})
+    P.pose(79.7, {**phone_low_L(P.ch), "chest_rot": (-3, 0, 0), "shrug.L": 6, "shrug.R": 6})
+    # finale: esasperato in camera, spalle che cadono
+    P.pose(90.0, {**phone_low_L(P.ch), "shrug.L": -4, "shrug.R": -4, "chest_rot": (4, 0, 0)})
 
 # ====================================================================== gomiti risolti in anticipo
 # Per ogni posa della parte alta con le mani: il gomito viene scelto senza compenetrazioni con il busto (busto dritto, a riposo).
