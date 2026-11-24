@@ -63,7 +63,8 @@ La pianta `environments/supermercato/PIANTA_set_EP01.png` mostra il percorso del
 - **Rendering:**
   - Cycles a 432×768, 6 campioni con denoise, poi ingrandito;
   - **15 immagini al secondo**, ognuna tenuta per 2 fotogrammi (prassi da animatic);
-  - il rendering definitivo della fase 7 sarà a 30 fps veri.
+  - il rendering definitivo della fase 7 sarà a 30 fps veri;
+  - tempo misurato: **1404 immagini in 2 h 45 min**, in media 7,05 s ciascuna (da 5,8 s nell'inq. 02 a 7,8 s nei primi piani), CPU a 4 core, più il montaggio (4 min 20 s).
 - **Audio:**
   - narrazione clonata (16 battute) ai tempi del copione;
   - ambiente ed effetti sintetizzati nel codice;
@@ -103,6 +104,7 @@ Gomiti: 57 pose risolte in anticipo, tutte a **0 mm** di compenetrazione.
 ### Problemi trovati e corretti (in ordine)
 
 I controlli su fotogrammi singoli (storyboard) non bastavano: il controllo fotogramma per fotogramma ha trovato 47 problemi che le immagini fisse non mostravano.
+La correzione 21 è venuta dalle mappe del test E, dopo il rendering.
 
 | # | Dove | Problema | Causa | Correzione | Verifica |
 |---|---|---|---|---|---|
@@ -126,6 +128,7 @@ I controlli su fotogrammi singoli (storyboard) non bastavano: il controllo fotog
 | 18 | Inq. 17 | Braccio nel busto (26 mm) lasciando la maniglia | Transizione diretta dalla leva al davanti del corpo | Posa intermedia: la mano esce di lato | ✅ 0 mm |
 | 19 | Inq. 18 | Braccio sinistro nell'anta aperta (20 mm) entrando nell'ufficio | Porta da 0,78 m per un personaggio largo 0,70 m con le braccia | Porta da 0,98 m; gomiti raccolti nel passaggio | ✅ 0 mm |
 | 20 | Porta | Quadratini scuri agli angoli del telaio | Facce frontali di traverso e montanti complanari (z-fighting) | Traverso 2 mm più profondo per lato | ✅ visiva |
+| 21 | Inq. 07 | Mostrando il telefono, Luca finiva col viso sul telefono e quasi sulla testa del protagonista: di profilo il telefono sembrava un bastoncino puntato in faccia | Luca si sporgeva di 24° (busto 14°, testa 10°) e il telefono era a 55 cm dal protagonista, cioè a 25 cm dal centro di Luca | Luca si sporge di 12° (5° + 7°), telefono a 40 cm; inquadratura ri-renderizzata | ✅ 0 problemi su 37 fotogrammi (test A, B, E, F); schermo verso Luca entro 29°; verifica visiva |
 
 ### Test G · espressioni (verifica visiva)
 
