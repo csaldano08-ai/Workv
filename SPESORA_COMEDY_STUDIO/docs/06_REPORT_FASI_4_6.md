@@ -88,6 +88,7 @@ Se un movimento parte prima che il precedente sia finito, non si sovrappone: vie
 
 La modalità `ADS_MODE=qc` di `scripts/ep01_animatic.py` ricostruisce ogni fotogramma renderizzato, senza fare il render, e misura le mesh valutate.
 Copertura: **1404 fotogrammi**, cioè tutti quelli dell'animatic. Dati in `renders/animatic/qc/qc_completo_*.json`: per ogni voce e inquadratura c'è il valore massimo, e c'è l'elenco dei fotogrammi con problemi.
+Dopo la correzione 21 le inquadrature 06–07 (18,7–21,2 s) sono state ricontrollate: `qc_completo_561_636_inq07_ricontrollo.json`.
 
 | Test | Cosa misura | Risultato finale |
 |---|---|---|
@@ -96,7 +97,7 @@ Copertura: **1404 fotogrammi**, cioè tutti quelli dell'animatic. Dati in `rende
 | C · Camminata | scivolamento del piede in appoggio, piedi sotto il pavimento, entrambi i piedi sollevati, gambe che si attraversano | ✅ scivolamento max **0,87 mm** (soglia 1 mm), suole sempre a 2 mm dal pavimento, gambe mai a contatto |
 | D · Porte e passaggi | busto, braccia, mani e gambe del protagonista contro anta, telaio e muro, mentre apre e attraversa la porta | ✅ **0 mm**; luce libera 0,98 m; rotazione dell'anta 0–88° senza contatti |
 | E · Rendering (geometria) | camera dentro o troppo vicina ai personaggi (piano di taglio a 5 cm) | ✅ distanza minima **80 mm**, nei dettagli del telefono |
-| F · Telefono | dita davanti allo schermo; nella scena in cui mostra la lista, schermo rivolto verso Luca | ✅ **0 vertici** della mano davanti allo schermo; schermo verso Luca con scarto massimo di 29°, solo durante la rotazione di ritorno |
+| F · Telefono | dita davanti allo schermo; nella scena in cui mostra la lista, schermo rivolto verso Luca | ✅ **0 vertici** della mano davanti allo schermo; schermo verso Luca con scarto massimo di 28° (dopo la correzione 21), solo durante la rotazione di ritorno |
 | G · Espressioni | — | verifica visiva (vedi sotto) |
 
 Gomiti: 57 pose risolte in anticipo, tutte a **0 mm** di compenetrazione.
@@ -128,7 +129,7 @@ La correzione 21 è venuta dalle mappe del test E, dopo il rendering.
 | 18 | Inq. 17 | Braccio nel busto (26 mm) lasciando la maniglia | Transizione diretta dalla leva al davanti del corpo | Posa intermedia: la mano esce di lato | ✅ 0 mm |
 | 19 | Inq. 18 | Braccio sinistro nell'anta aperta (20 mm) entrando nell'ufficio | Porta da 0,78 m per un personaggio largo 0,70 m con le braccia | Porta da 0,98 m; gomiti raccolti nel passaggio | ✅ 0 mm |
 | 20 | Porta | Quadratini scuri agli angoli del telaio | Facce frontali di traverso e montanti complanari (z-fighting) | Traverso 2 mm più profondo per lato | ✅ visiva |
-| 21 | Inq. 07 | Mostrando il telefono, Luca finiva col viso sul telefono e quasi sulla testa del protagonista: di profilo il telefono sembrava un bastoncino puntato in faccia | Luca si sporgeva di 24° (busto 14°, testa 10°) e il telefono era a 55 cm dal protagonista, cioè a 25 cm dal centro di Luca | Luca si sporge di 12° (5° + 7°), telefono a 40 cm; inquadratura ri-renderizzata | ✅ 0 problemi su 37 fotogrammi (test A, B, E, F); schermo verso Luca entro 29°; verifica visiva |
+| 21 | Inq. 07 | Mostrando il telefono, Luca finiva col viso sul telefono e quasi sulla testa del protagonista: di profilo il telefono sembrava un bastoncino puntato in faccia | Luca si sporgeva di 24° (busto 14°, testa 10°) e il telefono era a 55 cm dal protagonista, cioè a 25 cm dal centro di Luca | Telefono tenuto all'altezza del petto, a 32 cm dal protagonista; Luca guarda in giù (busto 6°, testa 14°). Un primo tentativo (telefono a 40 cm, all'altezza del viso) non bastava: di profilo la mano sembrava sulla bocca di Luca. Inquadratura ri-renderizzata | ✅ 0 problemi su 37 fotogrammi (test A, B, E, F); schermo verso Luca entro 28°; verifica visiva |
 
 ### Test G · espressioni (verifica visiva)
 

@@ -53,10 +53,10 @@
   },
   "07": {
    "coppie": 32,
-   "diff_media_lum_255": 2.98,
-   "diff_p99_lum_255_max": 111.6,
-   "pixel_aba_percento_max": 1.04,
-   "pixel_aba_isolati_percento_max": 0.1805,
+   "diff_media_lum_255": 3.01,
+   "diff_p99_lum_255_max": 112.8,
+   "pixel_aba_percento_max": 1.066,
+   "pixel_aba_isolati_percento_max": 0.1784,
    "t_peggiore": 20.2
   },
   "08": {
@@ -237,7 +237,7 @@
   {
    "inquadratura": "07",
    "t": 20.2,
-   "pixel_aba_percento": 1.04,
+   "pixel_aba_percento": 1.066,
    "mappa": "aba_inq07_t20.20.png"
   },
   {
