@@ -111,11 +111,11 @@ PS = PE - U * 1.45                                   # da dove parte
 T_WALK = 0.35
 wk = walk_between(PC, (PS.x, PS.y), (PE.x, PE.y), T_WALK, "normale", anticip=0.3)
 s = wk.t_end                                         # fine della camminata (assestamento compreso): tutti i tempi dopo sono relativi
-END = round(s + 7.3, 2)
+END = round(s + 7.6, 2)
 NF = int(round(END * FPS))
 W_LU = body_matrix((LU0.x, LU0.y), TH + 180.0)
 W_PE = body_matrix((PE.x, PE.y), TH)
-SHOTS = [("1", 0.0, s + 0.1), ("2", s + 0.1, s + 3.3), ("3", s + 3.3, END + 1)]   # campo largo · sopra la spalla del protagonista · controcampo sopra la spalla di Luca
+SHOTS = [("1", 0.0, s + 0.1), ("2", s + 0.1, s + 4.12), ("3", s + 4.12, END + 1)]   # campo largo · sopra la spalla del protagonista · primo piano del protagonista
 
 
 def shot_at(t):
@@ -186,13 +186,13 @@ P_hL.key(s + 1.56, (0.11, -0.34, 1.0), "ease")             # ritira il telefono 
 P_hL.key(s + 2.0, tuple(SHOW_POS), "back")                 # lo porge a Luca
 P_qL.key(s + 1.5, q_read, "hold").key(s + 1.98, q_show, "out")
 P_eL.key(s + 1.5, (0.55, 0.1, 0.7), "hold").key(s + 1.98, (0.7, 0.05, 0.85), "out")
-P_hL.key(s + 3.0, (0.205, -0.37, 1.055), "ease")           # tiene il telefono verso Luca (tenuta viva)
-P_hL.key(s + 3.6, (0.19, -0.35, 1.04), "ease")             # confuso: il braccio cede appena
-P_hL.key(s + 3.9, (0.19, -0.35, 1.04), "hold")
-P_hL.key(s + 4.6, CHEST[0], "ease")                        # imbarazzo: ritira il telefono al petto
-P_qL.key(s + 3.9, q_show, "hold").key(s + 4.6, q_chest, "ease")
-P_eL.key(s + 3.9, (0.7, 0.05, 0.85), "hold").key(s + 4.6, (0.6, 0.18, 0.72), "ease")
-P_hL.key(s + 7.3, (0.125, -0.315, 0.935), "ease")
+P_hL.key(s + 3.6, (0.205, -0.37, 1.055), "ease")           # tiene il telefono verso Luca (tenuta viva)
+P_hL.key(s + 4.2, (0.19, -0.35, 1.04), "ease")             # confuso: il braccio cede appena
+P_hL.key(s + 4.5, (0.19, -0.35, 1.04), "hold")
+P_hL.key(s + 5.2, CHEST[0], "ease")                        # imbarazzo: ritira il telefono al petto
+P_qL.key(s + 4.5, q_show, "hold").key(s + 5.2, q_chest, "ease")
+P_eL.key(s + 4.5, (0.7, 0.05, 0.85), "hold").key(s + 5.2, (0.6, 0.18, 0.72), "ease")
+P_hL.key(s + 7.9, (0.125, -0.315, 0.935), "ease")
 
 WREST = wk.pose_at(s)[1]                 # mano destra a fine camminata: le curve partono da lì (nessun salto)
 P_hR = Curve(WREST["hand.R"][0])
@@ -205,30 +205,30 @@ P_hR.key(s + 1.62, WREST["hand.R"][0], "hold").key(s + 2.05, (-0.36, -0.3, 0.96)
 P_qR.key(s + 1.62, P_qR.at(0), "hold").key(s + 2.05, q_open, "out")
 P_eR.key(s + 1.62, WREST["elbow.R"], "hold").key(s + 2.05, (-0.68, 0.12, 0.8), "out")
 P_fR.key(s + 1.62, WREST["fingers.R"], "hold").key(s + 2.0, (6, 6, 8, 12), "out")
-P_hR.key(s + 3.5, (-0.34, -0.12, 0.86), "ease")            # confuso: la mano ricade
-P_qR.key(s + 3.1, q_open, "hold").key(s + 3.55, P_qR.at(0), "ease")
-P_fR.key(s + 3.1, (6, 6, 8, 12), "hold").key(s + 3.55, (30, 34, 38, 14), "ease")
-P_hR.key(s + 3.95, (-0.34, -0.12, 0.86), "hold").key(s + 4.4, (-0.3, -0.1, 0.86), "out")    # si chiude un po' su se stesso
-P_hR.key(s + 7.3, (-0.305, -0.1, 0.858), "ease")
+P_hR.key(s + 4.1, (-0.34, -0.12, 0.86), "ease")            # confuso: la mano ricade
+P_qR.key(s + 3.7, q_open, "hold").key(s + 4.15, P_qR.at(0), "ease")
+P_fR.key(s + 3.7, (6, 6, 8, 12), "hold").key(s + 4.15, (30, 34, 38, 14), "ease")
+P_hR.key(s + 4.55, (-0.34, -0.12, 0.86), "hold").key(s + 5.0, (-0.3, -0.1, 0.86), "out")    # si chiude un po' su se stesso
+P_hR.key(s + 7.9, (-0.305, -0.1, 0.858), "ease")
 
 P_pel = Curve((0.0, 0.0, 0.0))           # spostamento del bacino (peso) aggiunto alla camminata
 P_pel.key(s, (0, 0, 0), "hold").key(s + 0.12, (0.0, 0.012, -0.006), "ease")           # anticipazione del telefono: indietro
 P_pel.key(s + 0.55, (-0.006, -0.008, 0.004), "out").key(s + 1.0, (-0.012, -0.004, 0.0), "ease")   # peso sulla gamba destra
 P_pel.key(s + 1.56, (-0.012, 0.006, -0.003), "ease").key(s + 2.0, (-0.006, -0.018, 0.0), "back")    # porge: peso avanti
-P_pel.key(s + 3.9, (-0.006, -0.018, 0.0), "ease").key(s + 4.3, (0.004, 0.022, -0.014), "out")      # imbarazzo: indietro e giù
-P_pel.key(s + 5.1, (0.008, 0.02, -0.012), "ease").key(s + 7.3, (0.01, 0.018, -0.011), "ease")
+P_pel.key(s + 4.5, (-0.006, -0.018, 0.0), "ease").key(s + 4.9, (0.004, 0.022, -0.014), "out")      # imbarazzo: indietro e giù
+P_pel.key(s + 5.7, (0.008, 0.02, -0.012), "ease").key(s + 7.9, (0.01, 0.018, -0.011), "ease")
 P_chest = Curve((0.0, 0.0, 0.0))
 P_chest.key(s, (0, 0, 0), "hold").key(s + 0.12, (-3.0, 2.0, 0.0), "ease").key(s + 0.55, (3.0, -1.0, 0.0), "out").key(s + 0.9, (2.0, 0.0, 0.0), "ease")
-P_chest.key(s + 1.56, (-1.5, 3.0, 0.0), "ease").key(s + 2.0, (5.0, -4.0, 0.0), "back").key(s + 3.0, (4.0, -3.0, 0.0), "ease")
-P_chest.key(s + 3.6, (2.0, -2.0, 1.5), "ease")
-P_chest.key(s + 3.9, (2.0, -2.0, 1.5), "hold").key(s + 4.25, (-3.0, 0.0, 0.0), "out").key(s + 4.7, (7.0, 1.0, 0.0), "ease")   # si irrigidisce, poi si incurva
-P_chest.key(s + 7.3, (6.5, 1.5, 0.5), "ease")
+P_chest.key(s + 1.56, (-1.5, 3.0, 0.0), "ease").key(s + 2.0, (5.0, -4.0, 0.0), "back").key(s + 3.6, (4.0, -3.0, 0.0), "ease")
+P_chest.key(s + 4.2, (2.0, -2.0, 1.5), "ease")
+P_chest.key(s + 4.5, (2.0, -2.0, 1.5), "hold").key(s + 4.85, (-3.0, 0.0, 0.0), "out").key(s + 5.3, (7.0, 1.0, 0.0), "ease")   # si irrigidisce, poi si incurva
+P_chest.key(s + 7.9, (6.5, 1.5, 0.5), "ease")
 P_head = Curve((0.0, 0.0, 0.0))         # testa (oltre allo sguardo): inclinazioni d'espressione
-P_head.key(s + 3.3, (0, 0, 0), "hold").key(s + 3.6, (0.0, 0.0, 9.0), "out").key(s + 3.9, (0.0, 0.0, 7.0), "ease")   # confuso: testa inclinata
-P_head.key(s + 4.25, (3.0, 0.0, -2.0), "out").key(s + 5.0, (6.0, 0.0, -3.0), "ease")
-P_head.key(s + 5.6, (4.0, 0.0, 5.0), "ease").key(s + 6.3, (4.0, 0.0, 5.0), "ease").key(s + 6.45, (1.5, 0.0, 6.0), "out").key(s + 6.9, (4.0, 0.0, 5.0), "ease")
+P_head.key(s + 3.9, (0, 0, 0), "hold").key(s + 4.2, (0.0, 0.0, 9.0), "out").key(s + 4.5, (0.0, 0.0, 7.0), "ease")   # confuso: testa inclinata
+P_head.key(s + 4.85, (3.0, 0.0, -2.0), "out").key(s + 5.6, (6.0, 0.0, -3.0), "ease")
+P_head.key(s + 6.2, (4.0, 0.0, 5.0), "ease").key(s + 6.9, (4.0, 0.0, 5.0), "ease").key(s + 7.05, (1.5, 0.0, 6.0), "out").key(s + 7.5, (4.0, 0.0, 5.0), "ease")
 P_shr = Curve(0.0)
-P_shr.key(s + 3.9, 0.0, "hold").key(s + 4.2, 16.0, "out").key(s + 4.7, 11.0, "ease").key(s + 6.3, 10.0, "ease").key(s + 6.45, 14.0, "out").key(s + 6.9, 10.0, "ease")
+P_shr.key(s + 4.5, 0.0, "hold").key(s + 4.8, 16.0, "out").key(s + 5.3, 11.0, "ease").key(s + 6.9, 10.0, "ease").key(s + 7.05, 14.0, "out").key(s + 7.5, 10.0, "ease")
 
 # ====================================================================== curve di Luca
 CLIP_H = ((0.18, -0.38, 0.95), (0.4, -0.3, 1.0), (-0.2, 0.9, 0.3))
@@ -236,19 +236,21 @@ L_hL = Curve(CLIP_H[0])
 L_hL.key(s - 1.2, CLIP_H[0], "hold").key(s - 0.8, (0.2, -0.33, 0.9), "ease")            # abbassa la cartellina vedendolo arrivare
 L_hL.key(s + 2.6, (0.2, -0.33, 0.9), "hold").key(s + 2.72, (0.2, -0.31, 0.88), "ease")   # anticipazione
 L_hL.key(s + 2.9, (0.21, -0.38, 0.98), "back").key(s + 3.2, (0.2, -0.35, 0.93), "ease")  # sobbalzo: la cartellina salta su
-L_hR = Curve((-0.33, -0.05, 0.83))
-L_qR = Curve(q_of((-0.15, -0.2, -1.0), (-1, 0, 0)))
+L_IDLE_R = PO.idle(LC)["hand.R"]          # riposo vero del rig (la mano a -0,33 che usavo prima toccava il busto)
+L_hR = Curve(L_IDLE_R[0])
+L_qR = Curve(q_of(L_IDLE_R[1], L_IDLE_R[2]))   # orientamento di riposo del rig (palmo verso il corpo)
 L_eR = Curve((-0.7, 0.18, 0.85))
 L_fR = Curve((22, 26, 30, 10))
 # saluto: il polso resta 12 cm fuori dalla testa (centro (0, 0, 1,352), raggio 0,29) e le dita puntano al sopracciglio destro.
 # Nell'episodio la mano del saluto era a 27,6 cm dal centro, cioè DENTRO la testa (il controllo guardava solo il busto).
 SALUTE = ((-0.30, -0.26, 1.47), (0.84, 0.52, 0.19), (0.0, -0.4, -0.9))
 q_sal = fix_hemi(q_of(*SALUTE[1:]), L_qR.at(0))
-L_hR.key(s + 3.45, (-0.33, -0.05, 0.83), "hold").key(s + 3.53, (-0.35, -0.04, 0.79), "ease")    # anticipazione del saluto
+L_hR.key(s + 3.45, L_IDLE_R[0], "hold").key(s + 3.53, tuple(Vector(L_IDLE_R[0]) + Vector((-0.01, 0.015, -0.03))), "ease")    # anticipazione del saluto
+L_hR.key(s + 3.67, (-0.52, -0.27, 1.1), "in2")                                           # arco: la mano passa di lato, lontana dal petto
 L_hR.key(s + 3.85, SALUTE[0], "back").key(s + 5.4, (-0.3, -0.265, 1.465), "ease")
-L_hR.key(s + 5.9, (-0.33, -0.05, 0.83), "ease")
-L_qR.key(s + 3.53, L_qR.at(0), "hold").key(s + 3.8, q_sal, "out").key(s + 5.4, q_sal, "hold").key(s + 5.9, L_qR.at(0), "ease")
-L_eR.key(s + 3.53, (-0.7, 0.18, 0.85), "hold").key(s + 3.8, (-0.62, -0.1, 1.25), "out").key(s + 5.4, (-0.62, -0.1, 1.25), "hold").key(s + 5.9, (-0.7, 0.18, 0.85), "ease")
+L_hR.key(s + 5.9, L_IDLE_R[0], "ease")
+L_qR.key(s + 3.66, L_qR.at(0), "hold").key(s + 3.86, q_sal, "out").key(s + 5.4, q_sal, "hold").key(s + 5.9, L_qR.at(0), "ease")   # la mano si gira solo sopra il petto
+L_eR.key(s + 3.53, (-0.7, 0.18, 0.85), "hold").key(s + 3.67, (-0.72, 0.0, 1.05), "in2").key(s + 3.8, (-0.62, -0.1, 1.25), "out").key(s + 5.4, (-0.62, -0.1, 1.25), "hold").key(s + 5.9, (-0.7, 0.18, 0.85), "ease")
 L_fR.key(s + 3.53, (22, 26, 30, 10), "hold").key(s + 3.8, (2, 2, 4, 8), "out").key(s + 5.4, (2, 2, 4, 8), "hold").key(s + 5.9, (22, 26, 30, 10), "ease")
 L_chest = Curve((0.0, 0.0, 0.0))
 L_chest.key(s - 1.3, (0, 0, 0), "hold").key(s - 0.7, (-2.5, 0, 0), "ease")                 # si raddrizza vedendolo arrivare
@@ -278,12 +280,12 @@ PF.to(s - 0.85, dict(brow_lift=0.1, brow_tilt=0.0, eye_scale=1.06), 0.25, "out")
 PF.to(s - 0.4, dict(mouth="smile", mouth_w=0.9, brow_lift=0.06), 0.35, "ease")
 PF.to(s + 0.6, dict(brow_tilt=0.15, brow_lift=0.0, eye_scale=1.0, mouth="line", mouth_w=0.8), 0.3, "ease")   # legge
 PF.to(s + 1.55, dict(brow_lift=0.16, brow_tilt=-0.05, mouth="grin", mouth_w=1.0, mouth_open=0.5, eye_scale=1.06), 0.3, "out")   # «ecco!»
-PF.to(s + 3.32, dict(brow_asym=0.65, brow_lift=0.06, eye_asym=0.22, mouth="wobble", mouth_w=0.6, mouth_dx=0.07), 0.3, "out")    # confuso
-PF.to(s + 3.9, dict(brow_asym=0.0, eye_asym=0.0, brow_tilt=0.45, brow_lift=0.03, mouth_w=0.72, mouth_dx=0.0, blush=1.0), 0.8, "ease")  # imbarazzo
-PF.to(s + 4.35, dict(sweat=1.0), 0.35, "out")
-PF.to(s + 5.05, dict(eyes="half", brow_tilt=0.33, brow_lift=-0.02, mouth="line", mouth_w=1.05, blush=0.85), 0.3, "ease")      # in camera
-PF.to(s + 6.3, dict(brow_lift=0.07), 0.15, "out")
-PF.to(s + 6.5, dict(brow_lift=-0.02), 0.4, "ease")
+PF.to(s + 3.92, dict(brow_asym=0.65, brow_lift=0.06, eye_asym=0.22, mouth="wobble", mouth_w=0.6, mouth_dx=0.07), 0.3, "out")    # confuso
+PF.to(s + 4.5, dict(brow_asym=0.0, eye_asym=0.0, brow_tilt=0.45, brow_lift=0.03, mouth_w=0.72, mouth_dx=0.0, blush=1.0), 0.8, "ease")  # imbarazzo
+PF.to(s + 4.95, dict(sweat=1.0), 0.35, "out")
+PF.to(s + 5.65, dict(eyes="half", brow_tilt=0.33, brow_lift=-0.02, mouth="line", mouth_w=1.05, blush=0.85), 0.3, "ease")      # in camera
+PF.to(s + 6.9, dict(brow_lift=0.07), 0.15, "out")
+PF.to(s + 7.1, dict(brow_lift=-0.02), 0.4, "ease")
 LF = Face(LC.face_expr("neutro"))
 LF.to(0.0, dict(brow_tilt=-0.1, mouth_w=0.8), 0.1, "ease")
 LF.to(s - 1.25, dict(brow_lift=0.1, brow_tilt=0.0, eye_scale=1.05), 0.25, "out")
@@ -297,9 +299,9 @@ LF.to(s + 3.6, dict(eyes="happy", mouth="teeth_smile", mouth_w=1.1, brow_lift=0.
 
 # ====================================================================== sguardi: gli occhi arrivano in 2 fotogrammi, la testa segue dopo con una molla
 P_GAZE = [(0.0, "phone"), (1.35, "produce"), (2.15, "phone"), (s - 0.9, "luca"), (s + 0.3, "phone"), (s + 1.52, "luca"),
-          (s + 4.45, "down"), (s + 5.05, "camera")]
+          (s + 5.05, "down"), (s + 5.65, "camera")]
 L_GAZE = [(0.0, "clip"), (s - 1.3, "p_head"), (s + 0.35, "phone"), (s + 1.1, "p_head"), (s + 1.62, "phone"), (s + 3.05, "p_head")]
-P_BLINKS = [0.9, 3.0, s - 0.88, s + 1.5, s + 3.8, s + 5.02, s + 6.15]
+P_BLINKS = [0.9, 3.0, s - 0.88, s + 1.5, s + 4.4, s + 5.62, s + 6.75]
 L_BLINKS = [0.6, 2.6, s - 1.28, s + 1.6, s + 3.5, s + 5.2, s + 6.6]
 P_LIFE, L_LIFE = Life(11), Life(23, breath_s=3.2)
 
@@ -317,20 +319,22 @@ def cam_at(t, p_chest_w, p_head_w, l_head_w, phone_w):
         two = (p_head_w + l_head_w) * 0.5 - Vector((0, 0, 0.45))
         return C, p_chest_w.lerp(two, k), 22.0
     if sh == "2":
-        k = max(0.0, min(1.0, (t - (s + 0.1)) / 3.2))
+        # sopra la spalla sinistra del protagonista, abbastanza di lato perché la sua testa resti sul bordo e Luca si veda intero
+        k = max(0.0, min(1.0, (t - (s + 0.1)) / 4.0))
         k = k * k * (3 - 2 * k)
-        Ca = PE - U * 0.95 + NL * 0.55
-        Ca.z = 1.8
-        Cb = PE - U * 0.82 + NL * 0.5
-        Cb.z = 1.76
-        return Ca.lerp(Cb, k), phone_w.lerp(l_head_w, 0.55), 26.0
-    k = max(0.0, min(1.0, (t - (s + 3.3)) / 4.0))
+        Ca = PE - U * 1.1 + NL * 1.2
+        Ca.z = 1.85
+        Cb = PE - U * 1.0 + NL * 1.1
+        Cb.z = 1.82
+        return Ca.lerp(Cb, k), phone_w.lerp(l_head_w, 0.55), 27.0
+    # primo piano pulito del protagonista, 3/4 dal suo lato sinistro (nessun primo piano davanti al viso); lenta spinta in avanti
+    k = max(0.0, min(1.0, (t - (s + 4.12)) / 3.5))
     k = k * k * (3 - 2 * k)
-    Ca = LU0 + U * 0.8 + NL * 0.52
-    Ca.z = 1.62
-    Cb = LU0 + U * 0.68 + NL * 0.5
-    Cb.z = 1.6
-    return Ca.lerp(Cb, k), p_head_w - Vector((0, 0, 0.18)), 30.0
+    Ca = PE + U * 1.0 + NL * 0.85
+    Ca.z = 1.5
+    Cb = PE + U * 0.9 + NL * 0.78
+    Cb.z = 1.48
+    return Ca.lerp(Cb, k), p_head_w - Vector((0, 0, 0.22)), 24.0
 
 
 # ====================================================================== precalcolo di tutti i fotogrammi
@@ -401,7 +405,7 @@ for key, f, z in (("hand.L", 4.5, 0.62), ("hand.R", 3.2, 0.55)):
     sm = spring(arr, DT, f=f, z=z)
     for fr_, v in zip(frames, sm):
         fr_["P"][key] = (tuple(v),) + tuple(fr_["P"][key][1:])
-for key, f, z in (("hand.L", 4.0, 0.6), ("hand.R", 3.6, 0.5)):
+for key, f, z in (("hand.L", 4.0, 0.6), ("hand.R", 3.8, 0.68)):
     arr = np.array([fr_["L"][key][0] for fr_ in frames])
     sm = spring(arr, DT, f=f, z=z)
     for fr_, v in zip(frames, sm):
@@ -574,7 +578,7 @@ def apply(i, faces=True):
     if faces:
         for who, ch, F, bl in (("P", PC, PF, P_BLINKS), ("L", LC, LF, L_BLINKS)):
             img = os.path.join(WD, f"face_{who}_{i:05d}.png")
-            dur = 0.3 if (who == "P" and abs(t - (s + 6.15)) < 0.4) else 0.14     # un battito lento, voluto, mentre guarda in camera
+            dur = 0.3 if (who == "P" and abs(t - (s + 6.75)) < 0.4) else 0.14     # un battito lento, voluto, mentre guarda in camera
             draw_face(F.at(t), gaze=fr_["gaze_" + who], blink=blink_curve(bl, t, dur), size=768).save(img)
             ch.set_face(img)
             face_files[who].append(img)
@@ -588,10 +592,10 @@ def apply(i, faces=True):
 json.dump(dict(durata_s=END, fps=FPS, fine_camminata_s=round(s, 3),
                inquadrature=[dict(n=n, inizio=round(a, 3), fine=round(min(b, END), 3)) for n, a, b in SHOTS],
                marcatori_narrazione=[dict(id="N04", inizio=round(s + 1.6, 2), testo="ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione."),
-                                     dict(id="N05", inizio=round(s + 4.6, 2), testo="E lui non ebbe il coraggio di correggerlo.")],
+                                     dict(id="N05", inizio=round(s + 5.0, 2), testo="E lui non ebbe il coraggio di correggerlo.")],
                passi=[round(tb, 3) for (_, ta, tb, sa, sb) in wk.swings],
                eventi=dict(telefono_su=round(s + 0.2, 2), telefono_porto=round(s + 1.6, 2), sobbalzo_luca=round(s + 2.75, 2), saluto=round(s + 3.55, 2),
-                           imbarazzo=round(s + 3.9, 2), sguardo_in_camera=round(s + 5.05, 2)),
+                           confuso=round(s + 3.92, 2), imbarazzo=round(s + 4.5, 2), sguardo_in_camera=round(s + 5.65, 2)),
                nota="nessun doppiaggio in questa fase: i marcatori indicano dove andranno le battute"),
           open(os.path.join(OUT, "marcatori.json"), "w"), ensure_ascii=False, indent=1)
 print(f"preparazione {time.time() - t_start:.0f} s · fine camminata {s:.2f} s · durata {END:.2f} s · {NF} fotogrammi", flush=True)

@@ -1,0 +1,473 @@
+{
+ "modello": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+ "riferimento": [
+  "F01",
+  "F06",
+  "F04"
+ ],
+ "deviazione_minima_st": 3.06,
+ "sillabe_al_s_originale": 5.74,
+ "paragrafi": [
+  {
+   "paragrafo": [
+    "N01",
+    "N02",
+    "N03",
+    "N04"
+   ],
+   "testo": "Quest'uomo entrò al supermercato con una missione semplicissima: comprare quattro cipolle. Quattro. Aveva persino la lista pronta su Spesora, ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione.",
+   "scelta": 1,
+   "tutte_scartate": false,
+   "diviso": true,
+   "prese": [
+    {
+     "presa": 1,
+     "file": "N01_N02_N03_N04_presa1.wav",
+     "valida": true,
+     "punteggio": 9.842,
+     "secondi_calcolo": 0.0,
+     "testo_riconosciuto": "Quest'uomo entrò al supermercato con una missione semplicissima, comprare quattro cipolle. Quattro, aveva persino la lista pronta su spesora, ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione.",
+     "wer": 0.0,
+     "somiglianza": 0.993,
+     "energia_fuori_parole_db": -14.5,
+     "sillabe_al_s": 5.59,
+     "durata_s": 15.84,
+     "f0_mediana_hz": 208.8,
+     "escursione_st": 4.23,
+     "salti_volume": 2.34,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 2,
+     "file": "N01_N02_N03_N04_presa2.wav",
+     "valida": true,
+     "punteggio": 9.82,
+     "secondi_calcolo": 0.0,
+     "testo_riconosciuto": "Quest'uomo entrò al supermercato con una missione semplicissima. Comprare quattro cipolle. Quattro. Aveva persino la lista pronta su spesora, ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione.",
+     "wer": 0.0,
+     "somiglianza": 0.986,
+     "energia_fuori_parole_db": -16.8,
+     "sillabe_al_s": 5.67,
+     "durata_s": 15.6,
+     "f0_mediana_hz": 211.2,
+     "escursione_st": 3.97,
+     "salti_volume": 2.24,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 3,
+     "file": "N01_N02_N03_N04_presa3.wav",
+     "valida": true,
+     "punteggio": 9.808,
+     "secondi_calcolo": 0.0,
+     "testo_riconosciuto": "Quest'uomo entrò al supermercato con una missione semplicissima, comprare quattro cipolle. Quattro. Aveva persino la lista pronta su spesora, ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione.",
+     "wer": 0.0,
+     "somiglianza": 0.989,
+     "energia_fuori_parole_db": -20.0,
+     "sillabe_al_s": 5.6,
+     "durata_s": 15.84,
+     "f0_mediana_hz": 200.5,
+     "escursione_st": 4.23,
+     "salti_volume": 2.34,
+     "energia_fuori_parlato_db": -60.0
+    }
+   ]
+  },
+  {
+   "paragrafo": [
+    "N05",
+    "N06"
+   ],
+   "testo": "E lui non ebbe il coraggio di correggerlo. Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale.",
+   "scelta": 3,
+   "tutte_scartate": false,
+   "diviso": true,
+   "prese": [
+    {
+     "presa": 1,
+     "file": "N05_N06_presa1.wav",
+     "valida": true,
+     "punteggio": 9.762,
+     "secondi_calcolo": 76.3,
+     "testo_riconosciuto": "E lui non ebbe il coraggio di correggerlo. Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale.",
+     "wer": 0.0,
+     "somiglianza": 0.982,
+     "energia_fuori_parole_db": -40.1,
+     "sillabe_al_s": 5.64,
+     "durata_s": 8.24,
+     "f0_mediana_hz": 193.7,
+     "escursione_st": 4.44,
+     "salti_volume": 2.35,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 2,
+     "file": "N05_N06_presa2.wav",
+     "valida": true,
+     "punteggio": 9.812,
+     "secondi_calcolo": 100.7,
+     "testo_riconosciuto": "E lui non ebbe il coraggio di correggerlo. Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale.",
+     "wer": 0.0,
+     "somiglianza": 0.985,
+     "energia_fuori_parole_db": -25.7,
+     "sillabe_al_s": 5.8,
+     "durata_s": 8.0,
+     "f0_mediana_hz": 211.8,
+     "escursione_st": 5.28,
+     "salti_volume": 2.56,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 3,
+     "file": "N05_N06_presa3.wav",
+     "valida": true,
+     "punteggio": 9.838,
+     "secondi_calcolo": 115.3,
+     "testo_riconosciuto": "E lui non ebbe il coraggio di correggerlo. Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale.",
+     "wer": 0.0,
+     "somiglianza": 0.99,
+     "energia_fuori_parole_db": -60.0,
+     "sillabe_al_s": 5.84,
+     "durata_s": 7.84,
+     "f0_mediana_hz": 198.2,
+     "escursione_st": 4.36,
+     "salti_volume": 2.62,
+     "energia_fuori_parlato_db": -60.0
+    }
+   ]
+  },
+  {
+   "paragrafo": [
+    "N07",
+    "N08"
+   ],
+   "testo": "Il problema? Non aveva ancora trovato… le cipolle.",
+   "scelta": 1,
+   "tutte_scartate": false,
+   "diviso": true,
+   "prese": [
+    {
+     "presa": 1,
+     "file": "N07_N08_presa1.wav",
+     "valida": true,
+     "punteggio": 9.252,
+     "secondi_calcolo": 64.7,
+     "testo_riconosciuto": "Il problema, non aveva ancora trovato le cipolle.",
+     "wer": 0.0,
+     "somiglianza": 0.988,
+     "energia_fuori_parole_db": -60.0,
+     "sillabe_al_s": 4.69,
+     "durata_s": 4.0,
+     "f0_mediana_hz": 189.2,
+     "escursione_st": 4.92,
+     "salti_volume": 2.37,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 2,
+     "file": "N07_N08_presa2.wav",
+     "valida": true,
+     "punteggio": 8.708,
+     "secondi_calcolo": 75.1,
+     "testo_riconosciuto": "Il problema? Non aveva ancora trovato le cipolle.",
+     "wer": 0.0,
+     "somiglianza": 0.966,
+     "energia_fuori_parole_db": -60.0,
+     "sillabe_al_s": 4.15,
+     "durata_s": 4.48,
+     "f0_mediana_hz": 231.6,
+     "escursione_st": 4.94,
+     "salti_volume": 2.34,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 3,
+     "file": "N07_N08_presa3.wav",
+     "valida": true,
+     "punteggio": 8.564,
+     "secondi_calcolo": 55.8,
+     "testo_riconosciuto": "Il problema? Non aveva ancora trovato le cipolle?",
+     "wer": 0.0,
+     "somiglianza": 0.969,
+     "energia_fuori_parole_db": -60.0,
+     "sillabe_al_s": 3.86,
+     "durata_s": 4.72,
+     "f0_mediana_hz": 225.0,
+     "escursione_st": 4.03,
+     "salti_volume": 2.18,
+     "energia_fuori_parlato_db": -60.0
+    }
+   ]
+  },
+  {
+   "paragrafo": [
+    "N09",
+    "N10",
+    "N11"
+   ],
+   "testo": "Indicò le cipolle, e spostarono un intero reparto. Chiese dov'era l'uscita, e aprirono una nuova cassa. Riaprì la sua lista, e qualcuno gli consegnò una cartellina.",
+   "scelta": 3,
+   "tutte_scartate": false,
+   "diviso": true,
+   "prese": [
+    {
+     "presa": 1,
+     "file": "N09_N10_N11_presa1.wav",
+     "valida": true,
+     "punteggio": 9.588,
+     "secondi_calcolo": 157.6,
+     "testo_riconosciuto": "Indicò le cipolle e spostarono un intero reparto. Chiese dov'era l'uscita e aprirono una nuova cassa. Riaprì la sua lista e qualcuno gli consegnò una cartellina.",
+     "wer": 0.0,
+     "somiglianza": 0.989,
+     "energia_fuori_parole_db": -27.1,
+     "sillabe_al_s": 6.24,
+     "durata_s": 10.88,
+     "f0_mediana_hz": 216.1,
+     "escursione_st": 3.51,
+     "salti_volume": 2.1,
+     "energia_fuori_parlato_db": -76.5
+    },
+    {
+     "presa": 2,
+     "file": "N09_N10_N11_presa2.wav",
+     "valida": true,
+     "punteggio": 9.78,
+     "secondi_calcolo": 190.0,
+     "testo_riconosciuto": "Indicò le cipolle e spostarono un intero reparto. Chiese dov'era l'uscita e aprirono una nuova cassa. Riaprì la sua lista e qualcuno gli consegnò una cartellina.",
+     "wer": 0.0,
+     "somiglianza": 0.982,
+     "energia_fuori_parole_db": -32.3,
+     "sillabe_al_s": 5.67,
+     "durata_s": 11.44,
+     "f0_mediana_hz": 212.4,
+     "escursione_st": 3.47,
+     "salti_volume": 2.19,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 3,
+     "file": "N09_N10_N11_presa3.wav",
+     "valida": true,
+     "punteggio": 9.806,
+     "secondi_calcolo": 149.2,
+     "testo_riconosciuto": "Indicò le cipolle e spostarono un intero reparto. Chiese dov'era l'uscita e aprirono una nuova cassa. Riaprì la sua lista e qualcuno gli consegnò una cartellina.",
+     "wer": 0.0,
+     "somiglianza": 0.984,
+     "energia_fuori_parole_db": -37.0,
+     "sillabe_al_s": 5.68,
+     "durata_s": 11.36,
+     "f0_mediana_hz": 206.4,
+     "escursione_st": 3.81,
+     "salti_volume": 2.14,
+     "energia_fuori_parlato_db": -60.0
+    }
+   ]
+  },
+  {
+   "paragrafo": [
+    "N12",
+    "N13"
+   ],
+   "testo": "Poi arrivò la notizia: il direttore voleva incontrarlo. A quel punto capì che forse avrebbe dovuto dire la verità.",
+   "scelta": 1,
+   "tutte_scartate": false,
+   "diviso": true,
+   "prese": [
+    {
+     "presa": 1,
+     "file": "N12_N13_presa1.wav",
+     "valida": true,
+     "punteggio": 9.724,
+     "secondi_calcolo": 149.2,
+     "testo_riconosciuto": "Poi arrivò la notizia. Il direttore voleva incontrarlo. A quel punto capì che forse avrebbe dovuto dire la verità.",
+     "wer": 0.0,
+     "somiglianza": 0.99,
+     "energia_fuori_parole_db": -60.0,
+     "sillabe_al_s": 6.03,
+     "durata_s": 7.44,
+     "f0_mediana_hz": 213.6,
+     "escursione_st": 4.71,
+     "salti_volume": 2.1,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 2,
+     "file": "N12_N13_presa2.wav",
+     "valida": true,
+     "punteggio": 9.526,
+     "secondi_calcolo": 113.9,
+     "testo_riconosciuto": "Poi arrivò la notizia. Il direttore voleva incontrarlo. A quel punto capì che forse avrebbe dovuto dire la verità.",
+     "wer": 0.0,
+     "somiglianza": 0.99,
+     "energia_fuori_parole_db": -60.0,
+     "sillabe_al_s": 6.36,
+     "durata_s": 7.04,
+     "f0_mediana_hz": 212.4,
+     "escursione_st": 3.73,
+     "salti_volume": 2.41,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 3,
+     "file": "N12_N13_presa3.wav",
+     "valida": true,
+     "punteggio": 9.632,
+     "secondi_calcolo": 91.5,
+     "testo_riconosciuto": "Poi arrivò la notizia. Il direttore voleva incontrarlo. A quel punto capì che forse avrebbe dovuto dire la verità.",
+     "wer": 0.0,
+     "somiglianza": 0.988,
+     "energia_fuori_parole_db": -60.0,
+     "sillabe_al_s": 6.15,
+     "durata_s": 7.28,
+     "f0_mediana_hz": 200.5,
+     "escursione_st": 3.41,
+     "salti_volume": 2.27,
+     "energia_fuori_parlato_db": -60.0
+    }
+   ]
+  },
+  {
+   "paragrafo": [
+    "N14",
+    "N15"
+   ],
+   "testo": "Ma il direttore, invece di smascherarlo, gli offrì il suo posto. E così, senza averlo mai chiesto, era diventato direttore del supermercato.",
+   "scelta": 1,
+   "tutte_scartate": false,
+   "diviso": true,
+   "prese": [
+    {
+     "presa": 1,
+     "file": "N14_N15_presa1.wav",
+     "valida": true,
+     "punteggio": 9.866,
+     "secondi_calcolo": 77.3,
+     "testo_riconosciuto": "Ma il direttore, invece di smascherarlo, gli offrì il suo posto e così, senza averlo mai chiesto, era diventato direttore del supermercato.",
+     "wer": 0.0,
+     "somiglianza": 0.99,
+     "energia_fuori_parole_db": -27.8,
+     "sillabe_al_s": 5.68,
+     "durata_s": 9.2,
+     "f0_mediana_hz": 188.1,
+     "escursione_st": 3.36,
+     "salti_volume": 2.25,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 2,
+     "file": "N14_N15_presa2.wav",
+     "valida": true,
+     "punteggio": 9.305,
+     "secondi_calcolo": 130.2,
+     "testo_riconosciuto": "Ma il direttore, invece di smascherarlo, gli offrì il suo posto. E così, senza averlo mai chiesto, era diventato direttore del supermercato.",
+     "wer": 0.0,
+     "somiglianza": 0.989,
+     "energia_fuori_parole_db": -60.0,
+     "sillabe_al_s": 4.9,
+     "durata_s": 10.56,
+     "f0_mediana_hz": 189.2,
+     "escursione_st": 3.01,
+     "salti_volume": 2.41,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 3,
+     "file": "N14_N15_presa3.wav",
+     "valida": true,
+     "punteggio": 9.568,
+     "secondi_calcolo": 139.3,
+     "testo_riconosciuto": "Ma il direttore, invece di smascherarlo, gli offrì il suo posto e così, senza averlo mai chiesto, era diventato direttore del supermercato.",
+     "wer": 0.0,
+     "somiglianza": 0.992,
+     "energia_fuori_parole_db": -31.2,
+     "sillabe_al_s": 5.15,
+     "durata_s": 10.08,
+     "f0_mediana_hz": 197.0,
+     "escursione_st": 3.32,
+     "salti_volume": 2.54,
+     "energia_fuori_parlato_db": -60.0
+    }
+   ]
+  },
+  {
+   "paragrafo": [
+    "N16"
+   ],
+   "testo": "Alla fine… non comprò nemmeno una cipolla.",
+   "scelta": 4,
+   "tutte_scartate": false,
+   "diviso": true,
+   "prese": [
+    {
+     "presa": 1,
+     "file": "N16_presa1.wav",
+     "valida": true,
+     "punteggio": 9.068,
+     "secondi_calcolo": 61.7,
+     "testo_riconosciuto": "Alla fine, non comprò nemmeno una cipolla.",
+     "wer": 0.0,
+     "somiglianza": 0.978,
+     "energia_fuori_parole_db": -21.1,
+     "sillabe_al_s": 4.55,
+     "durata_s": 3.52,
+     "f0_mediana_hz": 189.2,
+     "escursione_st": 4.59,
+     "salti_volume": 1.91,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 2,
+     "file": "N16_presa2.wav",
+     "valida": true,
+     "punteggio": 7.162,
+     "secondi_calcolo": 65.4,
+     "testo_riconosciuto": "Alla fine non comprò nemmeno una cipolla.",
+     "wer": 0.0,
+     "somiglianza": 0.985,
+     "energia_fuori_parole_db": -28.1,
+     "sillabe_al_s": 4.87,
+     "durata_s": 3.28,
+     "f0_mediana_hz": 249.7,
+     "escursione_st": 1.62,
+     "salti_volume": 1.88,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 3,
+     "file": "N16_presa3.wav",
+     "valida": true,
+     "punteggio": 9.126,
+     "secondi_calcolo": 66.5,
+     "testo_riconosciuto": "Alla fine, non comprò nemmeno una cipolla.",
+     "wer": 0.0,
+     "somiglianza": 0.979,
+     "energia_fuori_parole_db": -26.1,
+     "sillabe_al_s": 4.63,
+     "durata_s": 3.44,
+     "f0_mediana_hz": 163.8,
+     "escursione_st": 4.43,
+     "salti_volume": 1.82,
+     "energia_fuori_parlato_db": -60.0
+    },
+    {
+     "presa": 4,
+     "file": "N16_presa4.wav",
+     "valida": true,
+     "punteggio": 9.148,
+     "secondi_calcolo": 72.3,
+     "testo_riconosciuto": "Alla fine non comprò nemmeno una cipolla.",
+     "wer": 0.0,
+     "somiglianza": 0.986,
+     "energia_fuori_parole_db": -21.8,
+     "sillabe_al_s": 4.55,
+     "durata_s": 3.52,
+     "f0_mediana_hz": 194.8,
+     "escursione_st": 5.41,
+     "salti_volume": 1.69,
+     "energia_fuori_parlato_db": -60.0
+    }
+   ]
+  }
+ ],
+ "rtf": 14.32
+}

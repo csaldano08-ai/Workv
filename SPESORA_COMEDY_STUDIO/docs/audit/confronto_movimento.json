@@ -1,0 +1,38 @@
+{
+ "episodio_rifiutato": {
+  "protagonista": {
+   "fotogrammi": 2784,
+   "quasi_fermo_pct": 65.6,
+   "testa_e_mani_congelate_pct": 45.3,
+   "congelato_piu_lungo_s": 4.97,
+   "scatti_testa": 31,
+   "scatti_al_minuto": 20.0
+  },
+  "dipendente": {
+   "fotogrammi": 1010,
+   "quasi_fermo_pct": 73.6,
+   "testa_e_mani_congelate_pct": 67.2,
+   "congelato_piu_lungo_s": 4.17,
+   "scatti_testa": 7,
+   "scatti_al_minuto": 12.5
+  }
+ },
+ "test": {
+  "protagonista": {
+   "fotogrammi": 344,
+   "quasi_fermo_pct": 19.8,
+   "testa_e_mani_congelate_pct": 0.0,
+   "congelato_piu_lungo_s": 0.0,
+   "scatti_testa": 0,
+   "scatti_al_minuto": 0.0
+  },
+  "dipendente": {
+   "fotogrammi": 344,
+   "quasi_fermo_pct": 55.5,
+   "testa_e_mani_congelate_pct": 0.6,
+   "congelato_piu_lungo_s": 0.07,
+   "scatti_testa": 0,
+   "scatti_al_minuto": 0.0
+  }
+ }
+}

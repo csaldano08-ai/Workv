@@ -1,0 +1,162 @@
+[
+ {
+  "id": "N01",
+  "wer_v1": 0.0,
+  "st_v1": 4.17,
+  "dur_v1": 5.02,
+  "wer_v2": 0.0,
+  "st_v2": 4.53,
+  "dur_v2": 5.43,
+  "testo_v2": "Quest'uomo entrò al supermercato con una missione semplicissima, comprare quattro cipolle."
+ },
+ {
+  "id": "N02",
+  "wer_v1": 0.0,
+  "st_v1": 2.84,
+  "dur_v1": 0.48,
+  "wer_v2": 0.0,
+  "st_v2": 0.0,
+  "dur_v2": 0.64,
+  "testo_v2": "4"
+ },
+ {
+  "id": "N03",
+  "wer_v1": 0.0,
+  "st_v1": 2.47,
+  "dur_v1": 2.2,
+  "wer_v2": 0.0,
+  "st_v2": 2.21,
+  "dur_v2": 2.25,
+  "testo_v2": "Aveva persino la lista pronta su spesora?"
+ },
+ {
+  "id": "N04",
+  "wer_v1": 0.0,
+  "st_v1": 4.09,
+  "dur_v1": 5.91,
+  "wer_v2": 0.0,
+  "st_v2": 4.28,
+  "dur_v2": 5.85,
+  "testo_v2": "ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione."
+ },
+ {
+  "id": "N05",
+  "wer_v1": 0.0,
+  "st_v1": 2.67,
+  "dur_v1": 2.46,
+  "wer_v2": 0.0,
+  "st_v2": 4.98,
+  "dur_v2": 2.15,
+  "testo_v2": "E lui non ebbe il coraggio di correggerlo."
+ },
+ {
+  "id": "N06",
+  "wer_v1": 0.0,
+  "st_v1": 4.07,
+  "dur_v1": 4.4,
+  "wer_v2": 0.0,
+  "st_v2": 4.26,
+  "dur_v2": 4.82,
+  "testo_v2": "Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale."
+ },
+ {
+  "id": "N07",
+  "wer_v1": 0.0,
+  "st_v1": 2.7,
+  "dur_v1": 0.68,
+  "wer_v2": 0.0,
+  "st_v2": 4.62,
+  "dur_v2": 0.72,
+  "testo_v2": "il problema"
+ },
+ {
+  "id": "N08",
+  "wer_v1": 0.0,
+  "st_v1": 2.55,
+  "dur_v1": 2.21,
+  "wer_v2": 0.0,
+  "st_v2": 4.54,
+  "dur_v2": 2.79,
+  "testo_v2": "Non aveva ancora trovato le cipolle."
+ },
+ {
+  "id": "N09",
+  "wer_v1": 0.0,
+  "st_v1": 4.57,
+  "dur_v1": 2.94,
+  "wer_v2": 0.0,
+  "st_v2": 2.71,
+  "dur_v2": 3.12,
+  "testo_v2": "Indicò le cipolle e spostarono un intero reparto."
+ },
+ {
+  "id": "N10",
+  "wer_v1": 0.0,
+  "st_v1": 3.57,
+  "dur_v1": 3.02,
+  "wer_v2": 0.0,
+  "st_v2": 2.29,
+  "dur_v2": 3.13,
+  "testo_v2": "chiese dov'era l'uscita e aprirono una nuova cassa."
+ },
+ {
+  "id": "N11",
+  "wer_v1": 0.0,
+  "st_v1": 4.14,
+  "dur_v1": 3.14,
+  "wer_v2": 0.0,
+  "st_v2": 4.93,
+  "dur_v2": 3.6,
+  "testo_v2": "Riaprì la sua lista e qualcuno gli consegnò una cartellina."
+ },
+ {
+  "id": "N12",
+  "wer_v1": 0.0,
+  "st_v1": 3.79,
+  "dur_v1": 3.29,
+  "wer_v2": 0.0,
+  "st_v2": 4.33,
+  "dur_v2": 3.55,
+  "testo_v2": "Poi arrivò la notizia. Il direttore voleva incontrarlo."
+ },
+ {
+  "id": "N13",
+  "wer_v1": 0.0,
+  "st_v1": 2.59,
+  "dur_v1": 2.95,
+  "wer_v2": 0.0,
+  "st_v2": 3.21,
+  "dur_v2": 2.98,
+  "testo_v2": "A quel punto capì che forse avrebbe dovuto dire la verità."
+ },
+ {
+  "id": "N14",
+  "wer_v1": 0.0,
+  "st_v1": 3.73,
+  "dur_v1": 3.69,
+  "wer_v2": 0.0,
+  "st_v2": 3.58,
+  "dur_v2": 3.75,
+  "testo_v2": "Ma il direttore, invece di smascherarlo, gli offrì il suo posto."
+ },
+ {
+  "id": "N15",
+  "wer_v1": 0.0,
+  "st_v1": 2.15,
+  "dur_v1": 4.63,
+  "wer_v2": 0.0,
+  "st_v2": 2.7,
+  "dur_v2": 4.92,
+  "testo_v2": "e così, senza averlo mai chiesto, era diventato direttore del supermercato."
+ },
+ {
+  "id": "N16",
+  "wer_v1": 0.0,
+  "st_v1": 2.71,
+  "dur_v1": 2.43,
+  "wer_v2": 0.0,
+  "st_v2": 5.61,
+  "dur_v2": 3.33,
+  "testo_v2": "Alla fine non comprò nemmeno una cipolla."
+ }
+]
