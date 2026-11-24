@@ -228,9 +228,14 @@ class Actor:
         P["chest_rot"] = (cr[0] + k * 1.1 * b, cr[1] + k * L.drift(t, 1, 1.2), cr[2] + k * L.drift(t, 2, 0.8))
         hr = P.get("head_rot", (0, 0, 0))
         P["head_rot"] = (hr[0] + k * L.drift(t, 3, 1.2), hr[1] + k * L.drift(t, 4, 1.4), hr[2] + k * L.drift(t, 5, 0.8))
+        cur_key = None
+        for kk in sorted(self.upper, key=lambda kk: kk[0]):
+            if kk[0] <= t + 0.38:
+                cur_key = kk
+        in_contact = cur_key is not None and callable(cur_key[1])
         for i, sd in enumerate("LR"):
             h = P.get(f"hand.{sd}")
-            if h:
+            if h and not in_contact:
                 # derive piccole e solo verso l'esterno (mai verso il busto: il controllo trovava braccia a 2 mm nel busto)
                 out = 1.0 if sd == "L" else -1.0
                 d = (out * k * abs(L.drift(t, 6 + i, 0.0018)), k * abs(L.drift(t, 8 + i, 0.0015)) * -1.0, k * L.drift(t, 10 - i, 0.0015))
@@ -297,9 +302,10 @@ class Actor:
         target = resolve(cur)
         base = resolve(prev) if prev is not None else P
         out = dict(base)
+        contact = callable(cur[1])     # pose di contatto (maniglia, passaggio della cartellina, telefono verso Luca): nessun superamento né anticipazione
         for gname, gkeys, off, interp in self.GROUPS:
             u = max(0.0, min(1.0, (t - (cur[0] - trans + off)) / trans))
-            k = EASE[interp](u)
+            k = EASE["ease" if (contact and gname == "hands") else interp](u)
             for key in gkeys:
                 if key not in target and key not in base:
                     continue
@@ -310,7 +316,7 @@ class Actor:
                     # superamento solo se la mano si allontana dal corpo; verso il corpo si posa senza superare (niente mani nel busto)
                     kh = k if pb.xy.length >= pa.xy.length else EASE["ease"](u)
                     pos = pa.lerp(pb, kh)
-                    if d.length > 0.12 and u < 0.3:              # anticipazione: 2,5 cm all'indietro prima del gesto grande
+                    if d.length > 0.12 and u < 0.3 and not contact:   # anticipazione: 2,5 cm all'indietro prima del gesto grande
                         pos -= d.normalized() * 0.025 * math.sin(math.pi * u / 0.3)
                     out[key] = (tuple(pos),) + tuple(lerp(a, b, min(1.0, k)) for a, b in zip(va[1:], vb[1:]))
                 elif va is not None and vb is not None:
