@@ -729,6 +729,28 @@ def set_visible(name, vis):
 CART_START = None
 
 
+def keep_arms_out(a, Pf, iters=3):
+    """Modalità recitazione: se braccio o mano toccano il busto (torace che guida, respiro), la mano si sposta verso l'esterno
+    della profondità misurata + 1 mm. Correzione continua di pochi millimetri: il gomito non salta."""
+    ch = a.ch
+    for side in ("L", "R"):
+        h = Pf.get(f"hand.{side}")
+        if not h:
+            continue
+        out = 1.0 if side == "L" else -1.0
+        for _ in range(iters):
+            shw = ch.rig.matrix_world @ ch.rig.pose.bones[f"upperarm.{side}"].head
+            pen = QC.penetration(ch.parts[f"arm.{side}"], ch.parts["torso"], ignore=lambda v, g: (v - shw).length < QC.ARM_ROOT)["depth_mm"]
+            pen = max(pen, QC.penetration(ch.parts[f"hand.{side}"], ch.parts["torso"])["depth_mm"])
+            if pen <= 0:
+                break
+            p0 = Vector(Pf[f"hand.{side}"][0])
+            Pf = dict(Pf)
+            Pf[f"hand.{side}"] = (tuple(p0 + Vector((out * (pen * 1.5 + 1.0) / 1000.0, 0.0, 0.0))),) + tuple(Pf[f"hand.{side}"][1:])
+            ch.pose(Pf)
+    return Pf
+
+
 def apply_actor(a, t, f, faces=True):
     W, Pb = a.loco_at(t)
     a.ch.rig.matrix_world = W
@@ -753,6 +775,8 @@ def apply_actor(a, t, f, faces=True):
     if ACTING:
         Pf = a.alive(t, Pf)
         a.ch.pose(Pf)
+        if faces and not a.ch.parts["torso"].hide_render:   # solo nel passaggio finale e per chi è in scena (costo)
+            Pf = keep_arms_out(a, Pf)
         g_prev, g_cur, g_ts = a.gaze_state(t)
         tgt = actor_target(g_cur)
         if tgt is not None:
