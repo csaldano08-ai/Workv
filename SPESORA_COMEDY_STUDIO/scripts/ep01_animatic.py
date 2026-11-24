@@ -108,7 +108,7 @@ _SCREEN_N = SOCK_READ_L.to_3x3() @ Vector((0, -1, 0))    # normale dello schermo
 _SCREEN_UP = SOCK_READ_L.to_3x3() @ Vector((0, 0, 1))
 
 
-def phone_show_to(target, k=1.0, pos=(0.24, -0.4, 1.16)):
+def phone_show_to(target, k=1.0, pos=(0.2, -0.32, 1.04)):
     """Mostra il telefono a un altro personaggio: la mano ruota (dalla presa «legge») finché la normale dello schermo
     punta alla sua testa, con il lato lungo del telefono verso l'alto. k < 1: rotazione parziale (interpolazione sferica)."""
     pr, fdr, pmr = phone_read_L(P.ch)["hand.L"]
@@ -341,7 +341,7 @@ LU.face(14.3, "sorpreso")
 LU.walk(16.6, (-0.7, 5.05), (-1.62, 5.22), "sicuro")
 LU.face(16.8, "felice")
 LU.gaze(16.8, "protagonista")
-LU.pose(19.4, {"chest_rot": (5, 0, 0), "head_rot": (7, 0, 0)})              # si sporge appena a guardare il telefono (a 14° finiva col viso sul telefono)
+LU.pose(19.4, {"chest_rot": (6, 0, 0), "head_rot": (14, 0, 0)})             # guarda in giù il telefono tenuto all'altezza del petto (prima: viso sul telefono)
 LU.gaze(19.4, "phone")
 LU.pose(20.4, {"hand.R": ((-0.3, -0.42, 1.12), (0.0, -1.0, 0.1), (1.0, 0.0, 0.0)), "elbow.R": (-0.6, 0.1, 0.9), "fingers.R": (95, 100, 105, -10),
                "chest_rot": (0, 0, 0)})                                                         # pollice su

@@ -1,5 +1,28 @@
 # Changelog · SPESORA COMEDY STUDIO
 
+## 2026-11-24 · animatic EP01 renderizzato e verificato
+
+**Aggiunto**
+- Animatic completo (`renders/animatic/`):
+  - `EP01_animatic.mp4` con etichette e `EP01_animatic_senza_etichette.mp4`;
+  - stem audio (ambiente, narratore, effetti);
+  - `timeline_voci.json`.
+- Storyboard preso dall'animatic: 24 fotogrammi e una tavola (`shots/storyboard/`).
+- Test E sulle immagini (`scripts/test_e_flicker.py`):
+  - sfarfallio «A-B-A» su tutti i 1404 fotogrammi;
+  - mappe per inquadratura in `renders/animatic/qc/test_e/`.
+- Prova a qualità finale (`renders/prova_qualita_finale/`): tre impostazioni con tempi misurati.
+
+**Corretto**
+- 21 · inq. 07: mostrando il telefono, Luca finiva col viso sul telefono. Ora il telefono è all'altezza del petto e Luca guarda in giù. Inquadratura ricontrollata (test A, B, E, F) e ri-renderizzata.
+- Report: luce della porta dell'ufficio 0,984 m (riportava ancora 0,784).
+- Audio del montaggio normalizzato a −16 LUFS (era −21): `loudnorm` in `assemble_ep01.py`.
+
+**Misurato**
+- Animatic: 1404 immagini in 2 h 45 min (7,05 s ciascuna).
+- Definitivo a 1080×1920: 5 min 7 s per fotogramma a 64 campioni, 1 min 24 s a 16 campioni.
+- La stima precedente di 30–40 h per il definitivo era sbagliata: a 16 campioni servono circa 72 h su questa CPU.
+
 ## 2026-11-24 · fasi 4–6 (blockout, storyboard, animatic, prove critiche)
 
 **Aggiunto**

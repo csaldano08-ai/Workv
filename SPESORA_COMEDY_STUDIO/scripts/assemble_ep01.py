@@ -118,6 +118,7 @@ def render_video(labels, audio, out):
     n = int(round(DUR * FPS))
     p = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
                           "-i", audio, "-c:v", "libx264", "-crf", "20", "-preset", "medium", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
+                          "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",  # volume da telefono (-16 LUFS); gli stem WAV restano non normalizzati
                           "-shortest", "-movflags", "+faststart", out], stdin=subprocess.PIPE)
     cache = {}
     for fi in range(n):

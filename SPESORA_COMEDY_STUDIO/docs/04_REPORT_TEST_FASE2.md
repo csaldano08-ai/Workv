@@ -62,3 +62,5 @@ Cycles su CPU, 4 core, nessuna GPU; Eevee non è disponibile.
 Stima per l'episodio da 90 s, 2700 fotogrammi:
 - **Anteprima o animatic** a 540×960 e circa 10 campioni: 2–3 ore.
 - **Finale nativo** a 1080×1920 e 32 campioni: 30–40 ore su questa CPU, molto meno con una GPU.
+
+> **Correzione (24/11):** misurata sul set vero del supermercato, questa stima era troppo bassa: 1 min 24 s per fotogramma a 16 campioni (≈ 72 h l'episodio), 5 min 7 s a 64 campioni (≈ 265 h). Le prove di questa fase erano su sfondo da studio, molto più leggero. Dettagli nel README e in `renders/prova_qualita_finale/`.

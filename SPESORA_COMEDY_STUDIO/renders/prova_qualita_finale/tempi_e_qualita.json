@@ -1,0 +1,33 @@
+{
+ "inquadratura": "03",
+ "t": 9.43,
+ "cpu": "4 core",
+ "nota": "tempi del fotogramma dell'inq. 03; la media dell'animatic è il 10% più alta di quella dell'inq. 03, già inclusa nella stima per l'episodio (2808 fotogrammi)",
+ "configurazioni": [
+  {
+   "risoluzione": "1080x1920",
+   "campioni": 64,
+   "s_per_fotogramma": 307,
+   "ore_episodio_stimate": 265,
+   "differenza_media_da_64_su_255": 0
+  },
+  {
+   "risoluzione": "1080x1920",
+   "campioni": 16,
+   "s_per_fotogramma": 84,
+   "ore_episodio_stimate": 72,
+   "differenza_media_da_64_su_255": 1.28
+  },
+  {
+   "risoluzione": "720x1280 ingrandito",
+   "campioni": 32,
+   "s_per_fotogramma": 72,
+   "ore_episodio_stimate": 61,
+   "differenza_media_da_64_su_255": 2.18
+  }
+ ],
+ "sfarfallio_4_fotogrammi_consecutivi_64_campioni": {
+  "pixel_aba_percento": 4.454,
+  "pixel_aba_isolati_percento": 0.3488
+ }
+}

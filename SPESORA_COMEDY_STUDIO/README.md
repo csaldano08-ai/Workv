@@ -15,9 +15,9 @@ Progetto separato dall'app (`spesora/`) e dagli spot (`SPESORA_ADS_STUDIO/`): no
 | Narrazione con voce clonata | ✅ `audio/README_NARRAZIONE.md`, `audio/narrazione_clonata/` |
 | 3 · Approvazione | ✅ via libera dell'utente («vabene dai continua») |
 | 4 · Blockout del supermercato + personaggi secondari | ✅ `environments/supermercato/`, `characters/cast_ep01/`, `docs/06_REPORT_FASI_4_6.md` |
-| 5 · Storyboard e animatic | ⏳ rendering dell'animatic in corso; copione delle voci e piano di montaggio pronti (`docs/07_COPIONE_VOCI_E_MONTAGGIO_EP01.md`) |
-| 6 · Prove critiche (carrello, porta, oggetti, camminate, telefono) | ✅ controlli su tutti i 1404 fotogrammi dell'animatic: 0 problemi (`renders/animatic/qc/`) |
-| 7–8 · Animazione e render definitivi | ⏳ **in attesa di approvazione dell'animatic** |
+| 5 · Storyboard e animatic | ✅ `renders/animatic/EP01_animatic.mp4` (95 s, 1080×1920, narrazione), `shots/storyboard/STORYBOARD_EP01.jpg`, copione delle voci e piano di montaggio (`docs/07_COPIONE_VOCI_E_MONTAGGIO_EP01.md`) |
+| 6 · Prove critiche (carrello, porta, oggetti, camminate, telefono) | ✅ controlli A–F su tutti i 1404 fotogrammi dell'animatic: 0 problemi; test E sulle immagini (sfarfallio): nessun rumore né z-fighting (`renders/animatic/qc/`) |
+| 7–8 · Animazione e render definitivi | ⏳ **in attesa di approvazione dell'animatic** e della scelta di come renderizzare (vedi sotto) |
 
 ## Struttura
 
@@ -52,6 +52,22 @@ ADS_MODE=render ADS_STEP=2 ADS_RANGE=0-95 ADS_RES=432x768 ADS_SAMPLES=6 python s
 python scripts/assemble_ep01.py out audio/narrazione_clonata/battute out/montaggio              # video 1080×1920 con audio
 python scripts/storyboard_extract.py out && python scripts/storyboard_sheet.py out STORYBOARD_EP01.jpg 6
 python scripts/edit_plan.py out/cue.json audio/narrazione_clonata/battute docs/07_COPIONE_VOCI_E_MONTAGGIO_EP01.md
+python scripts/test_e_flicker.py out                                  # test E: sfarfallio sui fotogrammi renderizzati
 ```
 
 Render: Cycles su CPU. Eevee non è utilizzabile in questo ambiente, che non ha GPU.
+
+## Rendering definitivo: tempi misurati
+
+Misure su un fotogramma dell'inquadratura 03, con CPU a 4 core. I dati sono in `renders/prova_qualita_finale/`.
+Il calcolo per l'episodio tiene conto che la media dell'animatic è del 10% più alta di quella dell'inq. 03.
+
+| Impostazione | Per fotogramma | Episodio (2808 fotogrammi a 30 fps) | Qualità |
+|---|---|---|---|
+| 1080×1920, 64 campioni | 5 min 7 s | ≈ 265 h | riferimento |
+| 1080×1920, 16 campioni + denoise | 1 min 24 s | ≈ 72 h | quasi identica (differenza media 1,3/255) |
+| 720×1280, 32 campioni, ingrandito | 1 min 12 s | ≈ 61 h | contorni e linee più morbidi |
+
+In questo ambiente il definitivo è lento.
+Con una GPU (Cycles con CUDA/OptiX) o una macchina con più core i tempi si riducono di molto, ma qui non è stato misurato.
+Con 16 campioni il denoise può cambiare un po' da un fotogramma all'altro: va verificato con il test E su una sequenza vera prima di renderizzare tutto.
