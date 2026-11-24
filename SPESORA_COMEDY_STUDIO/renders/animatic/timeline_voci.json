@@ -1,0 +1,132 @@
+{
+ "narrazione": [
+  {
+   "id": "N01",
+   "inizio": 0.5,
+   "fine": 5.52,
+   "testo": "Quest'uomo entrò al supermercato con una missione semplicissima: comprare quattro cipolle.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N01_narratore.wav"
+  },
+  {
+   "id": "N02",
+   "inizio": 5.9,
+   "fine": 6.380000000000001,
+   "testo": "Quattro.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N02_narratore.wav"
+  },
+  {
+   "id": "N03",
+   "inizio": 7.2,
+   "fine": 9.4,
+   "testo": "Aveva persino la lista pronta su Spesora,",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N03_narratore.wav"
+  },
+  {
+   "id": "N04",
+   "inizio": 10.2,
+   "fine": 16.11,
+   "testo": "ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N04_narratore.wav"
+  },
+  {
+   "id": "N05",
+   "inizio": 21.8,
+   "fine": 24.26,
+   "testo": "E lui non ebbe il coraggio di correggerlo.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N05_narratore.wav"
+  },
+  {
+   "id": "N06",
+   "inizio": 25.4,
+   "fine": 29.799999999999997,
+   "testo": "Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N06_narratore.wav"
+  },
+  {
+   "id": "N07",
+   "inizio": 32.0,
+   "fine": 32.68,
+   "testo": "Il problema?",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N07_narratore.wav"
+  },
+  {
+   "id": "N08",
+   "inizio": 33.1,
+   "fine": 35.31,
+   "testo": "Non aveva ancora trovato le cipolle.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N08_narratore.wav"
+  },
+  {
+   "id": "N09",
+   "inizio": 38.2,
+   "fine": 41.14,
+   "testo": "Indicò le cipolle, e spostarono un intero reparto.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N09_narratore.wav"
+  },
+  {
+   "id": "N10",
+   "inizio": 45.2,
+   "fine": 48.220000000000006,
+   "testo": "Chiese dov'era l'uscita, e aprirono una nuova cassa.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N10_narratore.wav"
+  },
+  {
+   "id": "N11",
+   "inizio": 52.2,
+   "fine": 55.34,
+   "testo": "Riaprì la sua lista, e qualcuno gli consegnò una cartellina.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N11_narratore.wav"
+  },
+  {
+   "id": "N12",
+   "inizio": 57.2,
+   "fine": 60.49,
+   "testo": "Poi arrivò la notizia: il direttore voleva incontrarlo.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N12_narratore.wav"
+  },
+  {
+   "id": "N13",
+   "inizio": 61.8,
+   "fine": 64.75,
+   "testo": "A quel punto capì che forse avrebbe dovuto dire la verità.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N13_narratore.wav"
+  },
+  {
+   "id": "N14",
+   "inizio": 74.6,
+   "fine": 78.28999999999999,
+   "testo": "Ma il direttore, invece di smascherarlo, gli offrì il suo posto.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N14_narratore.wav"
+  },
+  {
+   "id": "N15",
+   "inizio": 79.4,
+   "fine": 84.03,
+   "testo": "E così, senza averlo mai chiesto, era diventato direttore del supermercato.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N15_narratore.wav"
+  },
+  {
+   "id": "N16",
+   "inizio": 90.6,
+   "fine": 93.03,
+   "testo": "Alla fine, non comprò nemmeno una cipolla.",
+   "file": "/home/user/Workv/SPESORA_COMEDY_STUDIO/audio/narrazione_clonata/battute/EP01_N16_narratore.wav"
+  }
+ ],
+ "battute": [
+  {
+   "id": "P01",
+   "chi": "PROTAGONISTA",
+   "testo": "Ma… le cipolle?",
+   "inizio": 86.0,
+   "fine": 87.3
+  },
+  {
+   "id": "D01",
+   "chi": "DIRETTORE",
+   "testo": "Avete sentito? Controllate subito le cipolle!",
+   "inizio": 88.0,
+   "fine": 89.9
+  }
+ ]
+}
