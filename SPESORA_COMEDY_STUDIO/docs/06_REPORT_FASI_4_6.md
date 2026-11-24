@@ -25,7 +25,7 @@ Nome del negozio: **SUPER LAMPONE**, segnaposto inventato e sostituibile.
 | Prodotti dentro gli scaffali (3 gondole + muro) | ✅ 0 vertici, 0 mm |
 | Frutta dentro le cassette, cassette dentro i tavoli | ✅ 0 mm |
 | Porta: rotazione 0→88° contro telaio, muro e architrave | ✅ nessun contatto (3 mm di gioco su ogni lato, 8 mm da terra) |
-| Luce libera della porta dell'ufficio | 0,784 × 2,04 m |
+| Luce libera della porta dell'ufficio | 0,984 × 2,04 m (allargata da 0,78 m: correzione 19) |
 | Luce libera dell'ingresso | 2,44 × 2,32 m |
 | Zoccolini dentro i vani (ufficio, ingresso) | ✅ 0 vertici |
 | Ante scorrevoli aperte dentro i muri | ✅ 0 mm |
