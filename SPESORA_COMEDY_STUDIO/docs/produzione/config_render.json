@@ -1,0 +1,4 @@
+{"fotogrammi": 2808, "risoluzione": [1080, 1920], "chunk": 90,
+ "preset": "Cycles CPU 4 core, 1080x1920 nativi, 1 campione/pixel, OIDN qualità BALANCED con prefiltro FAST, percorsi di luce originali (max 3 rimbalzi), volto 1024 px, recitazione attiva",
+ "env": {"ADS_ACTING": "1", "ADS_MODE": "render", "ADS_STEP": "1", "ADS_RES": "1080x1920", "ADS_SAMPLES": "1", "ADS_DQ": "BALANCED", "ADS_PREFILTER": "FAST", "ADS_FACE": "1024"},
+ "comando": ["/tmp/claude-0/-home-user-Workv/95095b02-e9c9-511e-ad4d-4826e079b638/scratchpad/ads/venv/bin/python", "/home/user/Workv/SPESORA_COMEDY_STUDIO/scripts/ep01_animatic.py"]}
