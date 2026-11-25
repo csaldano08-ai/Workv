@@ -59,6 +59,7 @@ sc = bpy.context.scene
 sc.cycles.adaptive_threshold = float(os.environ.get("ADS_THRESH", sc.cycles.adaptive_threshold))
 sc.cycles.adaptive_min_samples = int(os.environ.get("ADS_MINSAMP", sc.cycles.adaptive_min_samples))
 sc.cycles.denoising_prefilter = os.environ.get("ADS_PREFILTER", "ACCURATE")
+sc.cycles.denoising_quality = os.environ.get("ADS_DQ", "HIGH")
 sc.cycles.use_denoising = os.environ.get("ADS_DENOISE", "1") == "1"
 if os.environ.get("ADS_CULL") == "1":
     os.environ["ADS_CULL_ON"] = "1"
@@ -1164,11 +1165,13 @@ if MODE == "audit":
         place_world(t)
         for n in CAST:
             set_visible(n, n in shot[3])
-        for n in CAST:
-            if n in shot[3]:
-                apply_actor(A[n], t, fi, faces=False)
-        place_props(t)
-        bpy.context.view_layer.update()
+        for k_ in range(2):      # due passaggi come nel render: sguardi su telefono e cartellina con le posizioni di questo fotogramma
+            PASS[0] = (fi, k_)
+            for n in CAST:
+                if n in shot[3]:
+                    apply_actor(A[n], t, fi, faces=False)
+            place_props(t)
+            bpy.context.view_layer.update()
         for n in shot[3]:
             a_ = A[n]
             W, Pf = a_.last
