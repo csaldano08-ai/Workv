@@ -12,6 +12,11 @@ from cs_char import _link, clay, lin
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 UI_SPESA = os.path.join(REPO, "SPESORA_ADS_STUDIO", "props", "ui", "ui_spesa.png")
+# Schermata VERA dell'app con «Cipolla 4 pz» come primo prodotto (catturata con scripts/capture_spesa.cjs dall'esportazione web in
+# spesora/dist, data simulata 22/11 e 3 persone nell'onboarding; l'app non viene modificata). Se c'è, vale per l'episodio.
+_UI_COMEDY = os.path.join(REPO, "SPESORA_COMEDY_STUDIO", "assets", "ui", "ui_spesa_cipolla4.png")
+if os.path.exists(_UI_COMEDY):
+    UI_SPESA = _UI_COMEDY
 
 
 def reset():

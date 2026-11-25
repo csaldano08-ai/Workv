@@ -47,12 +47,27 @@ os.makedirs(WD, exist_ok=True)
 # ====================================================================== narrazione e battute (tempi di partenza)
 NARR = [("N01", 0.5), ("N02", 5.9), ("N03", 7.2), ("N04", 10.2), ("N05", 21.8), ("N06", 25.4), ("N07", 32.0), ("N08", 33.1),
         ("N09", 38.2), ("N10", 45.2), ("N11", 52.2), ("N12", 57.2), ("N13", 61.8), ("N14", 74.6), ("N15", 79.4), ("N16", 90.6)]
-CHAR_LINES = [("P01", "PROTAGONISTA", "Ma… le cipolle?", 86.0, 87.3), ("D01", "DIRETTORE", "Avete sentito? Controllate subito le cipolle!", 88.0, 89.9)]
+CHAR_LINES = [("L01", "LUCA", "Lei è quello mandato dalla direzione?", 17.0, 19.1), ("L02", "LUCA", "Ah, ha già iniziato i controlli!", 19.6, 21.3),
+              ("D00", "DIRETTORE", "Mi hanno raccontato tutto.", 72.2, 74.2),
+              ("P01", "PROTAGONISTA", "Ma… le cipolle?", 86.0, 87.3), ("D01", "DIRETTORE", "Avete sentito? Controllate subito le cipolle!", 88.0, 89.9)]
 
 # ====================================================================== scena
 S.reset()
 S.render_setup(RES, SAMPLES)
 sc = bpy.context.scene
+# manopole del preset di rendering (benchmark e produzione): soglia del campionamento adattivo, campioni minimi, qualità del denoise
+sc.cycles.adaptive_threshold = float(os.environ.get("ADS_THRESH", sc.cycles.adaptive_threshold))
+sc.cycles.adaptive_min_samples = int(os.environ.get("ADS_MINSAMP", sc.cycles.adaptive_min_samples))
+sc.cycles.denoising_prefilter = os.environ.get("ADS_PREFILTER", "ACCURATE")
+sc.cycles.use_denoising = os.environ.get("ADS_DENOISE", "1") == "1"
+if os.environ.get("ADS_CULL") == "1":
+    os.environ["ADS_CULL_ON"] = "1"
+FACE_SIZE = int(os.environ.get("ADS_FACE", "768"))
+NAMING = os.environ.get("ADS_NAMING", "f")   # f → f_00001.png (animatic), ep → EP01_000001.png (produzione)
+
+
+def frame_path(out, fi):
+    return os.path.join(out, "frames", (f"EP01_{fi + 1:06d}.png" if NAMING == "ep" else f"f_{fi + 1:05d}.png"))
 sc.cycles.max_bounces = 3
 sc.cycles.diffuse_bounces = 2
 sc.cycles.glossy_bounces = 1
@@ -357,6 +372,8 @@ LU.pose(20.4, {"hand.R": ((-0.3, -0.42, 1.12), (0.0, -1.0, 0.1), (1.0, 0.0, 0.0)
                "chest_rot": (0, 0, 0)})                                                         # pollice su
 LU.face(20.4, "felice")
 LU.gaze(20.4, "protagonista")
+LU.talk(17.0, 19.1)    # «Lei è quello mandato dalla direzione?» (solo labiale: voce da registrare)
+LU.talk(19.6, 21.3)    # «Ah, ha già iniziato i controlli!»
 LU.pose(22.0, None)
 LU.pose(24.2, {"hand.L": ((0.18, -0.38, 0.95), (0.4, -0.3, 1.0), (-0.2, 0.9, 0.3)), "elbow.L": (0.55, 0.1, 0.7)})   # cartellina davanti a sé mentre si gira
 LU.walk(24.3, (-1.62, 5.22), (-1.42, 6.1), "normale")
@@ -440,6 +457,7 @@ RE.pose(60.2, None)
 DI.hold(0.0, (-6.4, 12.99), -90.0)
 DI.face(0.0, "felice")
 DI.gaze(0.0, "protagonista")
+DI.talk(72.2, 74.2)    # «Mi hanno raccontato tutto.»
 DI.pose(71.0, {"hand.L": ((0.55, -0.3, 1.25), (0.6, -0.2, 0.8), (0, -1, 0.2)), "hand.R": ((-0.55, -0.3, 1.25), (-0.6, -0.2, 0.8), (0, -1, 0.2)),
                "elbow.L": (0.7, 0.2, 0.95), "elbow.R": (-0.7, 0.2, 0.95), "fingers.L": (5, 5, 5, 5), "fingers.R": (5, 5, 5, 5)})  # benvenuto
 DI.face(71.0, "felice", mouth="grin")
@@ -797,7 +815,7 @@ def apply_actor(a, t, f, faces=True):
     # file diverso a ogni fotogramma: con i dati persistenti Cycles riconosce le texture dal percorso/indirizzo e non
     # ricaricherebbe un'immagine «uguale» (volto rimasto fermo all'espressione precedente)
     img = os.path.join(WD, f"face_{a.name}_{f:05d}.png")
-    draw_face(p, gaze=gaze, blink=a.blink_at(t), size=768, talk=a.talk_at(t)).save(img)
+    draw_face(p, gaze=gaze, blink=a.blink_at(t), size=FACE_SIZE, talk=a.talk_at(t)).save(img)
     a.ch.set_face(img)
     a.face_files = getattr(a, "face_files", []) + [img]
     while len(a.face_files) > 3:
@@ -884,6 +902,7 @@ def frame_time(fi):
 
 
 def render_frame(fi, path, do_qc=False):
+    t_in = time.time()
     t = frame_time(fi)
     shot = shot_at(t)
     place_world(t)
@@ -914,7 +933,38 @@ def render_frame(fi, path, do_qc=False):
         hit = sc.ray_cast(dg, o, d)
         QCLOG[-1]["centro_inquadratura"] = hit[4].name if hit[0] else "niente"
         QCLOG[-1]["distanza_centro_m"] = round((hit[1] - o).length, 2) if hit[0] else None
-    S.render(path)
+    t_set = time.time() - t_in
+    if os.environ.get("ADS_VARIANTS"):
+        # misura di varianti di preset sullo STESSO fotogramma, nello stesso processo già caldo: "RISxRIS:campioni:denoise,…"
+        for v in os.environ["ADS_VARIANTS"].split(","):
+            parts_ = v.split(":")
+            res_, spp_, dn_ = parts_[:3]
+            extra_ = parts_[3] if len(parts_) > 3 else ""     # «chiave=valore+chiave=valore» su sc.cycles, ripristinati dopo la misura
+            rx, ry = (int(x) for x in res_.split("x"))
+            sc.render.resolution_x, sc.render.resolution_y = rx, ry
+            sc.cycles.samples = int(spp_)
+            sc.cycles.use_denoising = dn_ == "1"
+            old_ = {}
+            for kv in [e for e in extra_.split("+") if e]:
+                k_, v_ = kv.split("=")
+                old_[k_] = getattr(sc.cycles, k_)
+                cur_ = old_[k_]
+                setattr(sc.cycles, k_, (v_ == "1") if isinstance(cur_, bool) else int(v_) if isinstance(cur_, int) else float(v_) if isinstance(cur_, float) else v_)
+            t_v = time.time()
+            S.render(os.path.join(OUT, "variante.png"))
+            with open(os.path.join(OUT, "varianti.jsonl"), "a") as fh:
+                fh.write(json.dumps(dict(f=fi, variante=v, render_s=round(time.time() - t_v, 2))) + "\n")
+            if os.environ.get("ADS_VARIANT_KEEP"):
+                os.replace(os.path.join(OUT, "variante.png"), os.path.join(OUT, f"v_{fi}_{v.replace(':', '_').replace('=', '-').replace('+', '_')}.png"))
+            for k_, o_ in old_.items():
+                setattr(sc.cycles, k_, o_)
+        return
+    t_r0 = time.time()
+    tmp = path + ".part.png"           # scrittura atomica: un frame è valido solo se il file finale esiste (un crash non lascia frame a metà)
+    S.render(tmp)
+    os.replace(tmp, path)
+    with open(os.path.join(OUT, "timing.jsonl"), "a") as fh:
+        fh.write(json.dumps(dict(f=fi, shot=shot[0], setup_s=round(t_set, 2), render_s=round(time.time() - t_r0, 2))) + "\n")
 
 
 # stati calcolati in anticipo (deterministici, anche rendendo a blocchi o fuori ordine)
@@ -1143,6 +1193,44 @@ if MODE == "audit":
     json.dump(rows, open(os.path.join(OUT, f"audit_{f0}_{f1}.json"), "w"))
     print("ok audit", len(rows), round(time.time() - t_start), "s")
     sys.exit(0)
+if MODE == "events":
+    # Eventi sonori motivati dall'animazione (nessun letto di rumore): appoggi dei piedi dai piani delle impronte e dai giri,
+    # velocità del carrello e dell'espositore spinti, più gli eventi di scena. Dati per assemble_film.py.
+    import cs_actor as _ca
+    ev_steps = []
+    for n in CAST:
+        for sg in A[n].loco:
+            if sg.__class__.__name__ == "WalkSeg":
+                for (foot, ta, tb, sa, sb) in sg.w.swings:
+                    W_, _ = A[n].loco_at(tb)
+                    ev_steps.append(dict(t=round(tb, 3), a=n, foot=foot, kind="walk", x=round(W_.translation.x, 2), y=round(W_.translation.y, 2)))
+            elif sg.__class__.__name__ == "Turn":
+                W_, _ = A[n].loco_at(sg.t0)
+                for k_, off in enumerate((0.5, 1.0)):
+                    ev_steps.append(dict(t=round(sg.t0 + (sg.t1 - sg.t0) * off, 3), a=n, foot="R" if k_ == 0 else "L", kind="turn",
+                                         x=round(W_.translation.x, 2), y=round(W_.translation.y, 2)))
+    ev_steps.sort(key=lambda e: e["t"])
+
+    def speed_track(actor, t0, t1):
+        out, prev = [], None
+        for i in range(int(t0 * FPS), int(t1 * FPS) + 1):
+            tt = i / FPS
+            p_ = actor.loco_at(tt)[0].translation.copy()
+            out.append(round((p_ - prev).length * FPS, 3) if prev is not None else 0.0)
+            prev = p_
+        return dict(t0=t0, fps=FPS, v=out)
+    scene = dict(
+        carrello=speed_track(P, CART_PUSH[0], CART_PUSH[1]),
+        espositore=speed_track(RE, PUSH[0], PUSH[1]),
+        porta=dict(click=DOOR_T[0], apertura=list(DOOR_T)),
+        cassa2_si_accende=47.7, passaggio_cartellina=HANDOFF,
+        sobbalzi_luca=[14.34, 20.55, 57.5],
+        cenni_saluto=[29.6, 29.8, 30.0],
+        gong_annuncio=58.4,
+    )
+    json.dump(dict(passi=ev_steps, scena=scene, durata=DUR, fps=FPS), open(os.path.join(OUT, "eventi_audio.json"), "w"), ensure_ascii=False, indent=1)
+    print("ok events", len(ev_steps), "appoggi", round(time.time() - t_start), "s")
+    sys.exit(0)
 if MODE == "probe":
     # ricerca di una posizione di camera libera: raggi verso una griglia attorno al bersaglio, si scartano i candidati coperti
     dg = None
@@ -1198,12 +1286,13 @@ if MODE == "storyboard":
 else:
     f0, f1 = int(RANGE[0] * FPS), min(int(DUR * FPS), int(RANGE[1] * FPS))
     STEP = int(os.environ.get("ADS_STEP", "1"))  # 2 = animatic a 15 fps (ogni immagine tenuta 2 fotogrammi nel montaggio a 30 fps)
-    for fi in range(f0, f1):
+    sel = [int(v) for v in os.environ["ADS_FRAMES"].split(",")] if os.environ.get("ADS_FRAMES") else None
+    for fi in (sel if sel is not None else range(f0, f1)):
         if fi >= int(93.6 * FPS):
             break  # il marchio finale si monta a parte
         if fi % STEP:
             continue
-        p = os.path.join(OUT, "frames", f"f_{fi + 1:05d}.png")
+        p = frame_path(OUT, fi)
         if os.path.exists(p):
             continue
         render_frame(fi, p, do_qc=((fi // STEP) % 8 == 0))
