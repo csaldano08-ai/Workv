@@ -21,7 +21,7 @@ import cs_qc as QC  # noqa: E402
 import cs_scene as S  # noqa: E402
 import cs_actor  # noqa: E402
 import cs_walk  # noqa: E402
-from cs_actor import Actor, body_matrix, head_world, look, look_acting, resolve_target  # noqa: E402
+from cs_actor import Actor, body_matrix, head_world, look, look_acting, look_chain, resolve_target  # noqa: E402
 from cs_char import Character  # noqa: E402
 from cs_face import draw_face  # noqa: E402
 from cs_market import LAYOUT, Market  # noqa: E402
@@ -778,10 +778,10 @@ def apply_actor(a, t, f, faces=True):
         a.ch.pose(Pf)
         if faces and not a.ch.parts["torso"].hide_render and not a.in_plain(t):   # solo passaggio finale, chi è in scena, fuori dalle finestre verificate
             Pf = keep_arms_out(a, Pf)
-        g_prev, g_cur, g_ts = a.gaze_state(t)
-        tgt = actor_target(g_cur)
-        if tgt is not None:
-            Pf, gaze = look_acting(a, Pf, actor_target(g_prev) if g_prev is not None else None, tgt, g_ts, t)
+        chain = [(ts_, actor_target(g_)) for ts_, g_ in a.gaze_chain(t)]
+        chain = [c for c in chain if c[1] is not None]
+        if chain:
+            Pf, gaze = look_chain(a, Pf, chain, t)
             a.ch.pose(Pf)
     else:
         tgt = actor_target(a.gaze_target(t))
@@ -1136,7 +1136,8 @@ if MODE == "audit":
                              pos=tuple(round(v, 4) for v in W.translation), yaw=round(math.degrees(W.to_euler().z), 3),
                              hand_L=hands["L"], hand_R=hands["R"], head=tuple(round(v, 3) for v in Pf.get("head_rot", (0, 0, 0))),
                              chest=tuple(round(v, 3) for v in Pf.get("chest_rot", (0, 0, 0))), face=fk, gaze=str(a_.gaze_target(t)),
-                             blink=round(a_.blink_at(t), 3)))
+                             blink=round(a_.blink_at(t), 3),
+                             volto={k_: (round(v_, 4) if isinstance(v_, float) else v_) for k_, v_ in a_.face_at(t).items() if k_ in ("brow_lift", "brow_tilt", "brow_asym", "eye_scale", "pupil", "mouth_w", "mouth_open", "blush", "sweat", "eyes", "mouth")}))
         if fi % 300 == 0:
             print("audit", fi, flush=True)
     json.dump(rows, open(os.path.join(OUT, f"audit_{f0}_{f1}.json"), "w"))

@@ -1,0 +1,104 @@
+{
+ "episodio_rifiutato": {
+  "protagonista": {
+   "fotogrammi": 2784,
+   "quasi_fermo_pct": 65.6,
+   "congelato_pct": 45.3,
+   "congelato_max_s": 4.97,
+   "scatti_al_minuto": 20.0
+  },
+  "dipendente": {
+   "fotogrammi": 1010,
+   "quasi_fermo_pct": 73.6,
+   "congelato_pct": 67.2,
+   "congelato_max_s": 4.17,
+   "scatti_al_minuto": 12.5
+  },
+  "responsabile": {
+   "fotogrammi": 877,
+   "quasi_fermo_pct": 56.2,
+   "congelato_pct": 20.5,
+   "congelato_max_s": 0.77,
+   "scatti_al_minuto": 8.2
+  },
+  "dipendente_b": {
+   "fotogrammi": 459,
+   "quasi_fermo_pct": 75.2,
+   "congelato_pct": 70.6,
+   "congelato_max_s": 4.17,
+   "scatti_al_minuto": 0.0
+  },
+  "cliente_felpa": {
+   "fotogrammi": 209,
+   "quasi_fermo_pct": 67.9,
+   "congelato_pct": 68.4,
+   "congelato_max_s": 4.77,
+   "scatti_al_minuto": 0.0
+  },
+  "cliente_signora": {
+   "fotogrammi": 209,
+   "quasi_fermo_pct": 100.0,
+   "congelato_pct": 100.0,
+   "congelato_max_s": 6.97,
+   "scatti_al_minuto": 0.0
+  },
+  "direttore": {
+   "fotogrammi": 517,
+   "quasi_fermo_pct": 88.2,
+   "congelato_pct": 31.1,
+   "congelato_max_s": 0.7,
+   "scatti_al_minuto": 0.0
+  }
+ },
+ "episodio_v2": {
+  "protagonista": {
+   "fotogrammi": 2784,
+   "quasi_fermo_pct": 58.6,
+   "congelato_pct": 1.1,
+   "congelato_max_s": 0.23,
+   "scatti_al_minuto": 7.8
+  },
+  "dipendente": {
+   "fotogrammi": 1010,
+   "quasi_fermo_pct": 64.5,
+   "congelato_pct": 2.4,
+   "congelato_max_s": 0.27,
+   "scatti_al_minuto": 16.0
+  },
+  "responsabile": {
+   "fotogrammi": 877,
+   "quasi_fermo_pct": 55.2,
+   "congelato_pct": 0.9,
+   "congelato_max_s": 0.17,
+   "scatti_al_minuto": 4.1
+  },
+  "dipendente_b": {
+   "fotogrammi": 459,
+   "quasi_fermo_pct": 68.2,
+   "congelato_pct": 2.8,
+   "congelato_max_s": 0.2,
+   "scatti_al_minuto": 3.9
+  },
+  "cliente_felpa": {
+   "fotogrammi": 209,
+   "quasi_fermo_pct": 67.9,
+   "congelato_pct": 0.0,
+   "congelato_max_s": 0.0,
+   "scatti_al_minuto": 0.0
+  },
+  "cliente_signora": {
+   "fotogrammi": 209,
+   "quasi_fermo_pct": 100.0,
+   "congelato_pct": 0.0,
+   "congelato_max_s": 0.0,
+   "scatti_al_minuto": 0.0
+  },
+  "direttore": {
+   "fotogrammi": 517,
+   "quasi_fermo_pct": 87.2,
+   "congelato_pct": 0.0,
+   "congelato_max_s": 0.0,
+   "scatti_al_minuto": 0.0
+  }
+ }
+}

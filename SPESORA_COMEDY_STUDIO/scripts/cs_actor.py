@@ -193,6 +193,11 @@ class Actor:
         """Posa della parte alta che vale da t (transizione di 0,35 s prima). P=None: torna alla locomozione."""
         self.upper.append((t, P, keys))
 
+    def gaze_chain(self, t, n=4):
+        """Ultimi n cambi di sguardo fino a t: [(istante, bersaglio), ...]."""
+        ks = [k for k in sorted(self.gazes, key=lambda k: k[0]) if k[0] <= t]
+        return ks[-n:]
+
     def gaze_state(self, t):
         """(bersaglio precedente, bersaglio attuale, istante del cambio)."""
         prev, cur, ts = None, None, -99.0
@@ -290,6 +295,9 @@ class Actor:
         return any(a <= t <= b for a, b in getattr(self, "plain_windows", []))
 
     def upper_at_acting(self, t, P, trans=0.38):
+        """Fusione a catena per gruppo: ogni transizione parte dal valore che il gruppo ha davvero in quel momento
+        (anche se la precedente non era finita) e comincia al suo istante per gruppo (torace prima, testa dopo).
+        Nessun salto né quando due pose sono vicine né quando il torace guida."""
         if self.in_plain(t):
             ACTING["on"] = False
             try:
@@ -297,43 +305,52 @@ class Actor:
             finally:
                 ACTING["on"] = True
         keys = sorted(self.upper, key=lambda k: k[0])
-        cur, prev = None, None
-        for k in keys:
-            if k[0] <= t + trans - 0.07:
-                prev, cur = cur, k
-        if cur is None:
-            return P
+        cache = {}
 
         def resolve(k):
             if k is None or k[1] is None:
                 return P
-            return blend_pose(P, k[1](t) if callable(k[1]) else k[1], 1.0, k[2])
+            if id(k) not in cache:
+                cache[id(k)] = blend_pose(P, k[1](t) if callable(k[1]) else k[1], 1.0, k[2])
+            return cache[id(k)]
 
-        target = resolve(cur)
-        base = resolve(prev) if prev is not None else P
-        out = dict(base)
-        contact = callable(cur[1]) or (prev is not None and callable(prev[1]))     # pose di contatto (maniglia, passaggio della cartellina, telefono verso Luca): nessun superamento né anticipazione
+        out = dict(P)
+        conv = lambda v: v if isinstance(v, dict) else {f: (v[i] * 0.9, v[i] * 1.1) for i, f in enumerate(("index", "middle", "ring", "thumb"))}
         for gname, gkeys, off, interp in self.GROUPS:
-            u = max(0.0, min(1.0, (t - (cur[0] - trans + off)) / trans))
-            k = EASE["ease" if (contact and gname == "hands") else interp](u)
-            for key in gkeys:
-                if key not in target and key not in base:
-                    continue
-                va, vb = base.get(key, target.get(key)), target.get(key, base.get(key))
-                if key.startswith("hand.") and va is not None and vb is not None:
-                    pa, pb = Vector(va[0]), Vector(vb[0])
-                    d = pb - pa
-                    # superamento solo se la mano si allontana dal corpo; verso il corpo si posa senza superare (niente mani nel busto)
-                    kh = k if pb.xy.length >= pa.xy.length else EASE["ease"](u)
-                    pos = pa.lerp(pb, kh)
-                    if d.length > 0.12 and u < 0.3 and not contact:   # anticipazione: 2,5 cm all'indietro prima del gesto grande
-                        pos -= d.normalized() * 0.025 * math.sin(math.pi * u / 0.3)
-                    out[key] = (tuple(pos),) + tuple(lerp(a, b, min(1.0, k)) for a, b in zip(va[1:], vb[1:]))
-                elif va is not None and vb is not None:
-                    if isinstance(va, dict) != isinstance(vb, dict):
-                        conv = lambda v: v if isinstance(v, dict) else {f: (v[i] * 0.9, v[i] * 1.1) for i, f in enumerate(("index", "middle", "ring", "thumb"))}
-                        va, vb = conv(va), conv(vb)
-                    out[key] = lerp(va, vb, k)
+            started = [k for k in keys if k[0] - trans + off <= t]
+            if not started:
+                continue
+            chain = started[-5:]
+            first = chain[0]
+            # valore di partenza: la posa (piena) della chiave più vecchia della catena
+            vals = {key: resolve(first).get(key) for key in gkeys}
+            prevk = first
+            for k in chain[1:]:
+                u = max(0.0, min(1.0, (t - (k[0] - trans + off)) / trans))
+                contact = callable(k[1]) or callable(prevk[1])
+                e = EASE["ease" if (contact and gname == "hands") else interp]
+                tgt = resolve(k)
+                for key in gkeys:
+                    va, vb = vals.get(key), tgt.get(key)
+                    if va is None or vb is None:
+                        vals[key] = vb if va is None else va
+                        continue
+                    if key.startswith("hand."):
+                        pa, pb = Vector(va[0]), Vector(vb[0])
+                        d = pb - pa
+                        kh = e(u) if pb.xy.length >= pa.xy.length else EASE["ease"](u)
+                        pos = pa.lerp(pb, kh)
+                        if d.length > 0.12 and u < 0.3 and not contact:     # anticipazione sui gesti grandi
+                            pos -= d.normalized() * 0.025 * math.sin(math.pi * u / 0.3)
+                        vals[key] = (tuple(pos),) + tuple(lerp(a, b, min(1.0, e(u))) for a, b in zip(va[1:], vb[1:]))
+                    else:
+                        if isinstance(va, dict) != isinstance(vb, dict):
+                            va, vb = conv(va), conv(vb)
+                        vals[key] = lerp(va, vb, e(u))
+                prevk = k
+            for key, v in vals.items():
+                if v is not None:
+                    out[key] = v
         return out
 
     def face_at(self, t):
@@ -351,26 +368,23 @@ class Actor:
         return a
 
     def face_at_acting(self, t, dur=0.28):
-        """Volto a parti: sopracciglia 0,08 s prima, occhi e guance al tempo, bocca 0,06 s dopo; forme (occhi, bocca) a metà."""
+        """Volto a parti, a catena: sopracciglia 0,08 s prima, occhi e guance al tempo, bocca 0,06 s dopo; forme a metà.
+        Ogni cambio parte dal valore che il volto ha davvero in quel momento."""
         keys = sorted(self.faces, key=lambda k: k[0])
-        cur, prev = keys[0], None
-        for k in keys:
-            if k[0] <= t + 0.08:
-                prev, cur = cur, k
-        a = self.ch.face_expr(cur[1], **cur[2])
-        if prev is None or t - cur[0] > dur + 0.1:
-            return a
-        b = self.ch.face_expr(prev[1], **prev[2])
-        out = {}
-        for key in a:
-            off = -0.08 if key.startswith("brow") else (0.06 if key.startswith("mouth") else 0.0)
-            u = max(0.0, min(1.0, (t - (cur[0] + off)) / dur))
-            va, vb = b.get(key, a[key]), a[key]
-            if isinstance(vb, (int, float)) and not isinstance(vb, bool):
-                out[key] = va + (vb - va) * EASE["out"](u)
-            else:
-                out[key] = vb if u >= (0.35 if key == "mouth" else 0.4) else va
-        return out
+        started = [k for k in keys if k[0] - 0.08 <= t] or keys[:1]
+        chain = started[-5:]
+        vals = dict(self.ch.face_expr(chain[0][1], **chain[0][2]))
+        for k in chain[1:]:
+            a = self.ch.face_expr(k[1], **k[2])
+            for key in a:
+                off = -0.08 if key.startswith("brow") else (0.06 if key.startswith("mouth") else 0.0)
+                u = max(0.0, min(1.0, (t - (k[0] + off)) / dur))
+                va, vb = vals.get(key, a[key]), a[key]
+                if isinstance(vb, (int, float)) and not isinstance(vb, bool):
+                    vals[key] = va + (vb - va) * EASE["out"](u)
+                else:
+                    vals[key] = vb if u >= (0.35 if key == "mouth" else 0.4) else va
+        return vals
 
     def blink_at(self, t):
         b = 0.0
@@ -435,6 +449,37 @@ def look_acting(actor, P, prev_w, cur_w, t_switch, t, amount=0.55):
     ey, ep = y0 + (y1 - y0) * ue, p0 + (p1 - p0) * ue
     hy = max(-40, min(40, (y0 + (y1 - y0) * uh) * amount))
     hp = max(-25, min(30, (p0 + (p1 - p0) * uh) * amount))
+    hr = P.get("head_rot", (0, 0, 0))
+    P = dict(P)
+    P["head_rot"] = (hr[0] + hp, hr[1] + hy, hr[2])
+    gx = max(-1.0, min(1.0, (ey - hy) / 30.0))
+    gy = max(-1.0, min(1.0, -(ep - hp) / 25.0))
+    return P, (gx, gy)
+
+
+def look_chain(actor, P, chain_w, t, amount=0.55):
+    """Sguardo a catena: chain_w = [(istante, punto mondo)] in ordine. Gli occhi e la testa passano da un bersaglio
+    all'altro partendo dall'angolo che hanno davvero (nessun salto se lo sguardo cambia due volte di fila)."""
+    ch = actor.ch
+    hw = ch.rig.matrix_world @ Vector((0, 0, ch.head_c.z))
+    Ri = ch.rig.matrix_world.inverted().to_3x3()
+
+    def ang(w):
+        d = Ri @ (w - hw)
+        if d.length < 1e-4:
+            return 0.0, 0.0
+        return math.degrees(math.atan2(d.x, -d.y)), math.degrees(math.atan2(-d.z, math.hypot(d.x, d.y)))
+    ey, ep = ang(chain_w[0][1])
+    hy0, hp0 = ey, ep
+    for ts, w in chain_w[1:]:
+        y1, p1 = ang(w)
+        ue = max(0.0, min(1.0, (t - ts) / 0.07))
+        ue = 1 - (1 - ue) ** 2
+        uh = EASE["back_small"](max(0.0, min(1.0, (t - ts - 0.07) / 0.32)))
+        ey, ep = ey + (y1 - ey) * ue, ep + (p1 - ep) * ue
+        hy0, hp0 = hy0 + (y1 - hy0) * uh, hp0 + (p1 - hp0) * uh
+    hy = max(-40, min(40, hy0 * amount))
+    hp = max(-25, min(30, hp0 * amount))
     hr = P.get("head_rot", (0, 0, 0))
     P = dict(P)
     P["head_rot"] = (hr[0] + hp, hr[1] + hy, hr[2])
