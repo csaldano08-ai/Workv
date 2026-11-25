@@ -8,6 +8,7 @@ Attore: linea temporale di un personaggio (riutilizzabile negli episodi).
 """
 import math
 import random
+import zlib
 
 from mathutils import Matrix, Vector
 
@@ -51,6 +52,10 @@ def blend_pose(A, B, k, keys=None):
             out[key] = lerp(va, vb, k)
     return out
 
+
+NEUTRAL = {"head_rot": (0.0, 0.0, 0.0), "chest_rot": (0.0, 0.0, 0.0), "spine_rot": (0.0, 0.0, 0.0),
+           "shrug.L": 0.0, "shrug.R": 0.0, "spread.L": 0.0, "spread.R": 0.0}
+LOCO_BLEND_KEYS = ("hand.L", "hand.R", "elbow.L", "elbow.R", "fingers.L", "fingers.R", "head_rot", "chest_rot", "spine_rot", "shrug.L", "shrug.R")
 
 UPPER = ("hand.L", "hand.R", "elbow.L", "elbow.R", "fingers.L", "fingers.R", "spread.L", "spread.R", "shrug.L", "shrug.R",
          "head_rot", "chest_rot", "spine_rot")
@@ -196,6 +201,7 @@ class Actor:
     def gaze_chain(self, t, n=4):
         """Ultimi n cambi di sguardo fino a t: [(istante, bersaglio), ...]."""
         ks = [k for k in sorted(self.gazes, key=lambda k: k[0]) if k[0] <= t]
+        self._first_gaze_t = min(k[0] for k in self.gazes) if self.gazes else None
         return ks[-n:]
 
     def gaze_state(self, t):
@@ -221,10 +227,15 @@ class Actor:
                 seg = sg
         if not isinstance(seg, Hold) or self.in_plain(t):
             return P
+        nxt = min((sg.t0 for sg in self.loco if sg.t0 > t + 1e-6), default=None)
         if not hasattr(self, "_life"):
-            self._life = Life(abs(hash(self.name)) % 1000, breath_s=3.2 + (abs(hash(self.name)) % 7) * 0.12)
+            # seme deterministico (hash() di Python cambia a ogni processo: rendering a blocchi con derive diverse)
+            h = zlib.crc32(self.name.encode())
+            self._life = Life(h % 1000, breath_s=3.2 + (h % 7) * 0.12)
         L = self._life
         k = min(1.0, max(0.0, (t - seg.t0) / 0.5))   # entra piano dopo la fine di un movimento
+        if nxt is not None:
+            k = min(k, max(0.0, (nxt - t) / 0.4))       # ed esce piano prima del movimento successivo (niente salto)
         b = L.breath(t)
         P = dict(P)
         pl = P.get("pelvis_loc", (0, 0, 0))
@@ -260,13 +271,30 @@ class Actor:
         self.props.append((t, prop, side, socket))
 
     # ---------------- valutazione al tempo t
-    def loco_at(self, t):
-        seg = None
-        for s in sorted(self.loco, key=lambda s: s.t0):
+    def loco_at(self, t, _depth=0):
+        segs = sorted(self.loco, key=lambda s: s.t0)
+        seg, prev = None, None
+        for s in segs:
             if s.t0 <= t:
-                seg = s
-        seg = seg or sorted(self.loco, key=lambda s: s.t0)[0]
-        return seg.at(t)
+                prev, seg = seg, s
+        seg = seg or segs[0]
+        W, P = seg.at(t)
+        # modalità recitazione: nei primi 0,3 s di un segmento (camminata, giro, sosta) la parte alta passa con dolcezza
+        # dalla posa con cui finiva il segmento precedente (prima: braccia che saltavano di 6-8 cm in un fotogramma).
+        # Piedi e bacino non si toccano: il foot locking resta esatto.
+        if ACTING["on"] and prev is not None and t - seg.t0 < 0.3:
+            # a catena: si parte dal valore davvero raggiunto alla fine del segmento precedente (anche se era ancora in transizione)
+            Pp = self.loco_at(seg.t0 - 1e-4, _depth + 1)[1] if _depth < 4 else prev.at(seg.t0)[1]
+            u = ease((t - seg.t0) / 0.3)
+            P = dict(P)
+            for key in LOCO_BLEND_KEYS:
+                va, vb = Pp.get(key, NEUTRAL.get(key)), P.get(key, NEUTRAL.get(key))
+                if va is None or vb is None:
+                    continue
+                if isinstance(va, dict) != isinstance(vb, dict):
+                    continue
+                P[key] = lerp(va, vb, u)
+        return W, P
 
     def upper_at(self, t, P, trans=0.35):
         if ACTING["on"]:
@@ -286,9 +314,10 @@ class Actor:
         return blend_pose(base, target, ease(max(0.0, min(1.0, u))))
 
     # gruppi della parte alta: il torace guida, le mani seguono (con anticipazione e superamento), la testa arriva per ultima
+    # curve che partono da ferme: la testa accelera dolcemente (con «out» partiva a velocità piena = scatto al primo fotogramma)
     GROUPS = (("torso", ("chest_rot", "spine_rot"), -0.06, "ease"),
-              ("hands", ("hand.L", "hand.R", "elbow.L", "elbow.R", "fingers.L", "fingers.R", "spread.L", "spread.R", "shrug.L", "shrug.R"), 0.0, "back_small"),
-              ("head", ("head_rot",), 0.07, "out"))
+              ("hands", ("hand.L", "hand.R", "elbow.L", "elbow.R", "fingers.L", "fingers.R", "spread.L", "spread.R", "shrug.L", "shrug.R"), 0.0, "ease_back"),
+              ("head", ("head_rot",), 0.07, "ease"))
 
     def in_plain(self, t):
         """Finestre in cui si usa l'animazione semplice già verificata (es. la porta: contatti al millimetro)."""
@@ -320,18 +349,26 @@ class Actor:
             started = [k for k in keys if k[0] - trans + off <= t]
             if not started:
                 continue
-            chain = started[-5:]
-            first = chain[0]
-            # valore di partenza: la posa (piena) della chiave più vecchia della catena
-            vals = {key: resolve(first).get(key) for key in gkeys}
-            prevk = first
-            for k in chain[1:]:
+            if len(started) > 5:
+                chain = started[-5:]
+                first = chain[0]          # chiave più vecchia della catena: la sua transizione è finita da tempo
+                vals = {key: resolve(first).get(key) for key in gkeys}
+                prevk, rest = first, chain[1:]
+            else:
+                # nessuna chiave prima: si parte dalla posa di base (locomozione/riposo), anche per la prima transizione
+                vals = {key: P.get(key) for key in gkeys}
+                prevk, rest = (0.0, None, None), started
+            for k in rest:
                 u = max(0.0, min(1.0, (t - (k[0] - trans + off)) / trans))
                 contact = callable(k[1]) or callable(prevk[1])
                 e = EASE["ease" if (contact and gname == "hands") else interp]
                 tgt = resolve(k)
                 for key in gkeys:
                     va, vb = vals.get(key), tgt.get(key)
+                    if va is None and vb is not None:
+                        va = NEUTRAL.get(key)          # valore mancante = posa neutra (prima: salto diretto alla posa nuova)
+                    if vb is None and va is not None:
+                        vb = NEUTRAL.get(key, va)
                     if va is None or vb is None:
                         vals[key] = vb if va is None else va
                         continue
@@ -469,9 +506,14 @@ def look_chain(actor, P, chain_w, t, amount=0.55):
         if d.length < 1e-4:
             return 0.0, 0.0
         return math.degrees(math.atan2(d.x, -d.y)), math.degrees(math.atan2(-d.z, math.hypot(d.x, d.y)))
-    ey, ep = ang(chain_w[0][1])
+    if chain_w[0][0] > 0.05 and getattr(actor, "_first_gaze_t", None) == chain_w[0][0]:
+        ey, ep = 0.0, 0.0                 # primo sguardo del personaggio: parte da «dritto davanti», non dal bersaglio
+        rest = chain_w
+    else:
+        ey, ep = ang(chain_w[0][1])
+        rest = chain_w[1:]
     hy0, hp0 = ey, ep
-    for ts, w in chain_w[1:]:
+    for ts, w in rest:
         y1, p1 = ang(w)
         ue = max(0.0, min(1.0, (t - ts) / 0.07))
         ue = 1 - (1 - ue) ** 2

@@ -41,6 +41,20 @@ EASE = {
 }
 
 
+def _ease_back(u):
+    """Parte da ferma (velocità zero), supera del 4% all'80% del tempo e si assesta: superamento senza scatto iniziale."""
+    if u <= 0:
+        return 0.0
+    if u < 0.8:
+        return 1.04 * _cubic_io(u / 0.8)
+    if u < 1:
+        return 1.04 - 0.04 * _cubic_io((u - 0.8) / 0.2)
+    return 1.0
+
+
+EASE["ease_back"] = _ease_back
+
+
 def lerp(a, b, k):
     if isinstance(a, (int, float)):
         return a + (b - a) * k
