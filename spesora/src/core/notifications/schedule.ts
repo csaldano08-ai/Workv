@@ -1,5 +1,5 @@
 import { CatalogIndex } from '../domain/catalog';
-import { addDays, localInstant, minutesToHHMM } from '../domain/dates';
+import { addDays, formatLongDate, localInstant, minutesToHHMM } from '../domain/dates';
 import { hashString } from '../domain/random';
 import type { IsoDate, MealType, PlannedMeal } from '../domain/types';
 import { PREP_AHEAD_MINUTES, prepAheadOf, prepAheadShort } from '../domain/prepAhead';
@@ -134,7 +134,7 @@ export function computeNotifications(input: ScheduleInput): DesiredNotification[
         kind: 'plan_end',
         fireAt,
         title: 'La settimana è quasi finita',
-        body: `Apri Spesora quando vuoi: preparo io il menù da ${addDays(input.planEnd, 1)} in poi.`,
+        body: `Apri Spesora quando vuoi: preparo io il menù da ${formatLongDate(addDays(input.planEnd, 1))} in poi.`,
         url: '/',
       });
     }

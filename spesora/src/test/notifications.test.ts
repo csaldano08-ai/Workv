@@ -145,3 +145,21 @@ describe('Festeggiamenti di Mina', () => {
     expect(seen).toEqual(['Pasto completato']);
   });
 });
+
+describe('Testo dell’avviso di fine settimana', () => {
+  it('mostra la data in italiano, mai in formato tecnico', async () => {
+    const { computeNotifications } = await import('../core/notifications/schedule');
+    const { catalog } = await import('./helpers');
+    const out = computeNotifications({
+      settings: { mealReminders: false, shoppingReminders: false, planEndReminder: true, mealTypes: [], leadMinutes: 0, shoppingTimeMinutes: 540, quietStartMinutes: 1320, quietEndMinutes: 420 },
+      now: new Date(2026, 10, 23, 9, 0),
+      catalog,
+      meals: [],
+      shoppingTripDates: [],
+      planEnd: '2026-11-29',
+    } as never);
+    const end = out.find((n) => n.kind === 'plan_end');
+    expect(end?.body).toContain('lunedì 30 novembre');
+    expect(end?.body).not.toMatch(/\d{4}-\d{2}-\d{2}/);
+  });
+});

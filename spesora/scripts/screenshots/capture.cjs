@@ -81,11 +81,20 @@ const DATA = '2026-11-23T09:00:00'; // lunedì mattina
   await btn(/Inizia la settimana/).click();
   await w(3000);
   await shot('home');
-  await shot('home_intera', true);
+  // la pagina scorre dentro la ScrollView: si scende con la rotella per vedere settimana e spesa
+  await p.mouse.move(+W / 2, +H / 2);
+  await p.mouse.wheel(0, 1400);
+  await w(900);
+  await shot('home_sotto');
+  await p.mouse.wheel(0, -3000);
+  await w(500);
   await btn(/^Cucina$/).click();
   await w(2200);
   await shot('ricetta');
-  await shot('ricetta_intera', true);
+  await p.mouse.move(+W / 2, +H / 2);
+  await p.mouse.wheel(0, 1600);
+  await w(700);
+  await shot('ricetta_sotto');
   await p.goBack();
   await w(1200);
   await tab(/Settimana/);
@@ -114,6 +123,11 @@ const DATA = '2026-11-23T09:00:00'; // lunedì mattina
   await p.goto(url.replace(/\/$/, '') + '/notifiche');
   await w(2500);
   await shot('notifiche');
+  for (const route of ['plus', 'prezzi', 'storico', 'aggiungi', 'privacy']) {
+    await p.goto(url.replace(/\/$/, '') + '/' + route);
+    await w(2500);
+    await shot(route);
+  }
   fs.writeFileSync(path.join(out, 'errori.json'), JSON.stringify(errs, null, 2));
   await b.close();
   process.stdout.write(`${n} schermate, ${errs.length} errori JS\n`);

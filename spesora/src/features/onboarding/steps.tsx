@@ -512,10 +512,11 @@ export function NotificationSettingsEditor({
 export function ToggleRow({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void }) {
   return (
     <Pressable style={styles.toggle} onPress={() => onChange(!value)} accessibilityRole="switch" accessibilityState={{ checked: value }} accessibilityLabel={label}>
-      <Text variant="body" style={styles.dayName}>
+      <Text variant="body" style={styles.toggleLabel}>
         {label}
       </Text>
-      <Switch value={value} onValueChange={onChange} trackColor={{ true: colors.green, false: colors.line }} thumbColor={colors.white} accessible={false} />
+      {/* activeThumbColor: solo web (altrimenti il pallino acceso diventa verde acqua) */}
+      <Switch value={value} onValueChange={onChange} trackColor={{ true: colors.green, false: colors.lineStrong }} thumbColor={colors.white} {...({ activeThumbColor: colors.white } as object)} accessible={false} />
     </Pressable>
   );
 }
@@ -534,6 +535,7 @@ const styles = StyleSheet.create({
   },
   dayRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: space.md, flexWrap: 'wrap' },
   dayName: { flex: 1, minWidth: 100, textTransform: 'capitalize' },
+  toggleLabel: { flex: 1, minWidth: 100 },
   pantryRow: { gap: space.sm, flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' },
   toggle: { minHeight: TOUCH, flexDirection: 'row', alignItems: 'center', gap: space.md },
 });

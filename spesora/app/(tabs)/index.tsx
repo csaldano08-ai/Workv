@@ -96,6 +96,9 @@ export default function Today() {
         <MinaMascot pose={minaPose} size={96} animated idle interactive style={styles.greetMina} />
       </View>
 
+      {/* nei giorni di spesa la lista viene prima della ricetta (serve subito) */}
+      {todayTrip ? <ShoppingCard snap={snap} todayTrip={todayTrip} nextTrip={nextTrip ?? null} /> : null}
+
       {prepTonight.map(({ meal, recipe }) => (
         <Pressable key={meal.id} accessibilityRole="button" onPress={() => router.push(`/ricetta/${recipe!.id}?mealId=${encodeURIComponent(meal.id)}`)}>
           <StickyNote tone="sage" style={styles.prep}>
@@ -146,9 +149,11 @@ export default function Today() {
         <WeekStrip snap={snap} />
       </Reveal>
 
-      <Reveal index={2}>
-        <ShoppingCard snap={snap} todayTrip={todayTrip ?? null} nextTrip={nextTrip ?? null} />
-      </Reveal>
+      {todayTrip ? null : (
+        <Reveal index={2}>
+          <ShoppingCard snap={snap} todayTrip={null} nextTrip={nextTrip ?? null} />
+        </Reveal>
+      )}
 
       {snap.economics && snap.economics.shopping.completeness === 'completa' && snap.economics.shopping.knownCents > 0 ? (
         <Text variant="small" color={colors.inkSoft}>

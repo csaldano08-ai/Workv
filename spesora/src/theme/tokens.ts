@@ -70,7 +70,7 @@ export const type = {
 /** Colore per tipo di pasto (etichette e puntini): toni chiari e distinti, testo sempre scuro. */
 export const mealTone = { colazione: '#FFE9D6', pranzo: '#DCEEDF', spuntino: '#FFF3C4', cena: '#E6E3F7' } as const;
 /** Colore del testo/puntino per tipo di pasto (più saturo del fondo). */
-export const mealInk = { colazione: '#B3591B', pranzo: '#2F7F57', spuntino: '#8A6A00', cena: '#5B4FA8' } as const;
+export const mealInk = { colazione: '#9A4A14', pranzo: '#276B49', spuntino: '#725600', cena: '#4F4398' } as const;
 
 /** Area minima di tocco consigliata (Apple HIG: 44pt). */
 export const TOUCH = 44;
