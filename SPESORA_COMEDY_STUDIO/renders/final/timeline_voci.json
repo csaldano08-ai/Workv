@@ -1,0 +1,147 @@
+{
+ "durata_s": 95.0,
+ "fps": 30,
+ "fotogrammi": 2850,
+ "narrazione": [
+  {
+   "id": "N01",
+   "inizio": 0.5,
+   "fine": 5.698,
+   "testo": "Quest'uomo entrò al supermercato con una missione semplicissima: comprare quattro cipolle."
+  },
+  {
+   "id": "N02",
+   "inizio": 5.9,
+   "fine": 6.493,
+   "testo": "Quattro."
+  },
+  {
+   "id": "N03",
+   "inizio": 7.2,
+   "fine": 9.447,
+   "testo": "Aveva persino la lista pronta su Spesora,"
+  },
+  {
+   "id": "N04",
+   "inizio": 10.2,
+   "fine": 16.083,
+   "testo": "ma un dipendente, vedendolo controllare gli scaffali, lo scambiò per un ispettore della direzione."
+  },
+  {
+   "id": "N05",
+   "inizio": 21.8,
+   "fine": 24.117,
+   "testo": "E lui non ebbe il coraggio di correggerlo."
+  },
+  {
+   "id": "N06",
+   "inizio": 25.4,
+   "fine": 30.249,
+   "testo": "Così, nel giro di pochi minuti, si ritrovò a dare ordini a tutto il personale."
+  },
+  {
+   "id": "N07",
+   "inizio": 32.0,
+   "fine": 32.82,
+   "testo": "Il problema?"
+  },
+  {
+   "id": "N08",
+   "inizio": 33.1,
+   "fine": 35.384,
+   "testo": "Non aveva ancora trovato le cipolle."
+  },
+  {
+   "id": "N09",
+   "inizio": 38.2,
+   "fine": 41.453,
+   "testo": "Indicò le cipolle, e spostarono un intero reparto."
+  },
+  {
+   "id": "N10",
+   "inizio": 45.2,
+   "fine": 48.671,
+   "testo": "Chiese dov'era l'uscita, e aprirono una nuova cassa."
+  },
+  {
+   "id": "N11",
+   "inizio": 52.2,
+   "fine": 55.89,
+   "testo": "Riaprì la sua lista, e qualcuno gli consegnò una cartellina."
+  },
+  {
+   "id": "N12",
+   "inizio": 57.2,
+   "fine": 60.831,
+   "testo": "Poi arrivò la notizia: il direttore voleva incontrarlo."
+  },
+  {
+   "id": "N13",
+   "inizio": 61.8,
+   "fine": 64.788,
+   "testo": "A quel punto capì che forse avrebbe dovuto dire la verità."
+  },
+  {
+   "id": "N14",
+   "inizio": 74.6,
+   "fine": 78.303,
+   "testo": "Ma il direttore, invece di smascherarlo, gli offrì il suo posto."
+  },
+  {
+   "id": "N15",
+   "inizio": 79.4,
+   "fine": 84.336,
+   "testo": "E così, senza averlo mai chiesto, era diventato direttore del supermercato."
+  },
+  {
+   "id": "N16",
+   "inizio": 90.6,
+   "fine": 93.292,
+   "testo": "Alla fine, non comprò nemmeno una cipolla."
+  }
+ ],
+ "dialoghi_da_registrare": [
+  {
+   "id": "L01",
+   "chi": "LUCA",
+   "testo": "Lei è quello mandato dalla direzione?",
+   "inizio": 17.0,
+   "fine": 19.1
+  },
+  {
+   "id": "L02",
+   "chi": "LUCA",
+   "testo": "Ah, ha già iniziato i controlli!",
+   "inizio": 19.6,
+   "fine": 21.3
+  },
+  {
+   "id": "D00",
+   "chi": "DIRETTORE",
+   "testo": "Mi hanno raccontato tutto.",
+   "inizio": 72.2,
+   "fine": 74.2
+  },
+  {
+   "id": "P01",
+   "chi": "PROTAGONISTA",
+   "testo": "Ma… le cipolle?",
+   "inizio": 86.0,
+   "fine": 87.3
+  },
+  {
+   "id": "D01",
+   "chi": "DIRETTORE",
+   "testo": "Avete sentito? Controllate subito le cipolle!",
+   "inizio": 88.0,
+   "fine": 89.9
+  }
+ ],
+ "stem": [
+  "NARRATOR",
+  "DIALOGUE",
+  "SFX",
+  "MUSIC",
+  "AMBIENCE"
+ ]
+}

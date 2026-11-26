@@ -82,4 +82,23 @@ La narrazione è quella già generata con `LUCASPESORA.mp3` su autorizzazione es
 
 ## 6 · Risultati finali
 
-_(compilati a render concluso)_
+**Render:** 2808 fotogrammi validi su 2808, nessun buco, **nessun fotogramma duplicato** (hash di tutti i consecutivi). Tempo misurato ≈ 7 s a fotogramma, come previsto dal benchmark.
+
+**Perché ci sono voluti due giorni:** il container viene spento quando la sessione resta inattiva, e il render staccato (`setsid nohup`) moriva con lui. Avanzava solo nei pochi minuti di attività di ogni ora (≈ 20 fotogrammi l'ora invece di ≈ 450). Risolto facendo girare il supervisore come attività seguita dalla sessione (limite 2 ore, poi rilancio): da lì il render è andato a ≈ 420–470 fotogrammi l'ora fino alla fine.
+
+**Video** (verificato con ffprobe e ebur128):
+
+| File | Contenuto |
+|---|---|
+| `EP01_FINALE.mp4` | narrazione + sottotitoli (consegnato direttamente, non nel repository) |
+| `EP01_FINALE_senza_sottotitoli.mp4` | narrazione, senza sottotitoli (consegnato direttamente) |
+| `renders/final/EP01_senza_voce_narratore.mp4` | solo effetti sonori, versione per il repository pubblico (ricodificato CRF 23) |
+| `renders/final/EP01.srt`, `timeline_voci.json` | sottotitoli e tempi delle battute |
+
+H.264 1080×1920, **30/1 fps reali**, **2850 fotogrammi** (2808 + 42 del cartello finale), **95,0 s**, AAC 48 kHz, loudness integrata **−16,5 LUFS**. Stem separati (NARRATOR, DIALOGUE, SFX, MUSIC, AMBIENCE, mix) consegnati fuori dal repository.
+
+**Controlli sui fotogrammi:**
+- I soli salti di luminosità grandi (fotogrammi 79, 187, 2521, 2569) cadono esattamente sugli stacchi di inquadratura.
+- Test di sfarfallio (A-B-A) su tutti i 2808 fotogrammi: pixel A-B-A **isolati** (rumore) al massimo **0,29%** in un singolo triplo.
+- Pixel A-B-A **in gruppo** fino al 7,8% (inquadratura 03, 7,77 s) e 4–6% nelle inquadrature 04, 05, 10: la mappa mostra che sono le **fughe delle piastrelle e la rete dei carrelli** durante i movimenti di camera. È aliasing di linee sottili (un campione per pixel), non rumore del denoiser: a velocità normale si vede come un leggero tremolio del pavimento nelle inquadrature con camera in movimento. Correggerlo richiede di ri-renderizzare quelle inquadrature con più campioni o una texture del pavimento più morbida.
+- Fotogrammi consecutivi guardati a occhio (es. 1000–1003): movimento continuo, nessun salto.
