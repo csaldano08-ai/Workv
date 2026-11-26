@@ -16,6 +16,9 @@ import { colors, radius, space } from '../src/theme/tokens';
 import { Reveal } from '../src/ui/Reveal';
 import { LOADER_TEXT, withLoader } from '../src/ui/loader/loaderBus';
 import { AssistantBubble } from '../src/ui/AssistantBubble';
+import { MinaMascot } from '../src/ui/mascot/Mina';
+import { ProgressBar } from '../src/ui/ProgressBar';
+import { PaywallSlot } from '../src/features/paywall/PaywallSlot';
 import { Button } from '../src/ui/Button';
 import { Card } from '../src/ui/Card';
 import { Notice } from '../src/ui/Notice';
@@ -100,12 +103,14 @@ export default function Onboarding() {
         </View>
       }
     >
-      <View style={styles.progressTrack} accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: STEPS.length, now: step + 1 }}>
-        <View style={[styles.progressFill, { width: `${((step + 1) / (STEPS.length + 1)) * 100}%` }]} />
+      <View style={styles.progressRow}>
+        <View style={styles.flex}>
+          <ProgressBar value={step + 1} max={STEPS.length + 1} label={`Passo ${step + 1} di ${STEPS.length}`} />
+        </View>
+        <Text variant="caption" color={colors.inkSoft}>
+          {`${step + 1}/${STEPS.length}`}
+        </Text>
       </View>
-      <Text variant="caption" color={colors.inkSoft}>
-        {`PASSO ${step + 1} DI ${STEPS.length}`}
-      </Text>
       {mina ? <AssistantBubble pose={mina.pose} text={mina.tip} size={96} /> : null}
       <Text variant="title" accessibilityRole="header">
         {def.title}
@@ -160,7 +165,17 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
       <Text variant="title" accessibilityRole="header">
         La tua prima settimana
       </Text>
-      <AssistantBubble pose="success" size={96} text="È pronta! L’ho preparata con le tue risposte. Puoi cambiare ogni pasto quando vuoi." />
+      <View style={styles.party}>
+        <MinaMascot pose="success" size={150} animated idle interactive accessibilityLabel="Mina festeggia: la tua settimana è pronta" />
+        <View style={styles.partyText}>
+          <Text variant="hand">È pronta!</Text>
+          <Text variant="small" color={colors.inkSoft}>
+            L’ho preparata con le tue risposte. Puoi cambiare ogni pasto quando vuoi.
+          </Text>
+        </View>
+      </View>
+      {/* punto di inserimento della futura schermata di abbonamento: oggi spento (paywallMode 'off') */}
+      <PaywallSlot placement="onboarding_end" />
       <Text variant="body" color={colors.inkSoft}>
         {`Dal ${formatLongDate(today)} al ${formatLongDate(addDays(today, PLAN_DAYS - 1))}. Potrai cambiare ogni pasto in qualsiasi momento.`}
       </Text>
@@ -212,8 +227,9 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
 const styles = StyleSheet.create({
   footerRow: { flexDirection: 'row', gap: space.sm },
   flex: { flex: 1 },
-  progressTrack: { height: 6, borderRadius: radius.pill, backgroundColor: colors.line, overflow: 'hidden', marginTop: space.sm },
-  progressFill: { height: 6, backgroundColor: colors.green },
+  progressRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginTop: space.sm },
+  party: { alignItems: 'center', gap: space.sm, paddingVertical: space.md, borderRadius: radius.xl, backgroundColor: colors.greenSoft },
+  partyText: { alignItems: 'center', gap: 2, paddingHorizontal: space.lg },
   mealRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
   mealType: { width: 84 },
 });

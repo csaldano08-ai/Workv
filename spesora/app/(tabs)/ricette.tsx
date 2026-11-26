@@ -11,7 +11,7 @@ import { MEAL_LABELS } from '../../src/i18n/labels';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { AssistantBubble } from '../../src/ui/AssistantBubble';
 import { Chip } from '../../src/ui/Chip';
-import { HeaderDecor } from '../../src/ui/Decor';
+import { MinaMascot } from '../../src/ui/mascot/Mina';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { SectionTitle } from '../../src/ui/Row';
 import { Text } from '../../src/ui/Text';
@@ -55,7 +55,7 @@ export default function Recipes() {
         <Text variant="title" accessibilityRole="header" style={styles.titleFlex}>
           Ricettario
         </Text>
-        <HeaderDecor kinds={['mushroom', 'leaf', 'peas']} />
+        <MinaMascot pose="cooking" size={54} style={styles.chef} />
       </View>
       <View style={styles.searchRow}>
         <TextInput
@@ -213,16 +213,17 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.ivory },
   content: { padding: space.lg, paddingBottom: space.xxl, width: '100%', maxWidth: 640, alignSelf: 'center' },
   header: { gap: space.md, marginBottom: space.md },
+  chef: { marginVertical: -space.md },
   searchRow: { flexDirection: 'row', gap: space.sm, alignItems: 'center' },
-  filterBtn: { width: TOUCH + 4, height: TOUCH + 4, borderRadius: radius.md, borderWidth: 2, borderColor: colors.ink, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.paper },
+  filterBtn: { width: TOUCH + 4, height: TOUCH + 4, borderRadius: radius.md, borderWidth: 1.5, borderColor: colors.lineStrong, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.paper },
   filters: { gap: space.sm },
   filterRow: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   resultBar: { flexDirection: 'row', alignItems: 'center' },
   input: {
     flex: 1,
     minHeight: TOUCH + 4,
-    borderWidth: 2,
-    borderColor: colors.ink,
+    borderWidth: 1.5,
+    borderColor: colors.lineStrong,
     borderRadius: radius.md,
     paddingHorizontal: space.md,
     fontSize: 16,

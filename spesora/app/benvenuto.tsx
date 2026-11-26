@@ -1,9 +1,9 @@
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 import { useApp } from '../src/features/app/AppProvider';
-import { colors, space } from '../src/theme/tokens';
+import { colors, radius, space } from '../src/theme/tokens';
 import { MinaMascot } from '../src/ui/mascot/Mina';
-import { Floaty, OrnamentDivider, PetalBloom } from '../src/ui/Decor';
+import { Floaty } from '../src/ui/Decor';
 import { Ingredient } from '../src/ui/illustrations/Ingredient';
 import { Reveal } from '../src/ui/Reveal';
 import { StickyNote } from '../src/ui/notebook';
@@ -38,7 +38,8 @@ export default function Welcome() {
         </Reveal>
         <Reveal>
           <View style={styles.stage}>
-            <PetalBloom size={310} style={styles.blob} />
+            <View style={styles.blob} />
+            <View style={styles.blobInner} />
             <Floaty style={styles.ingTL}>
               <Ingredient kind="leaf" size={46} />
             </Floaty>
@@ -51,11 +52,11 @@ export default function Welcome() {
             <Floaty delay={1200} style={styles.ingBR}>
               <Ingredient kind="carrot" size={48} />
             </Floaty>
-            <MinaMascot pose="welcome" size={260} animated accessibilityLabel="Mina, il ricettario vivente di Spesora, che ti saluta" />
+            <MinaMascot pose="welcome" size={220} animated idle interactive accessibilityLabel="Mina, la borsetta della spesa di Spesora, che ti saluta" />
           </View>
         </Reveal>
         <Reveal index={1}>
-          <StickyNote style={styles.speech}>
+          <StickyNote tone="sage" style={styles.speech}>
             <Text variant="hand" center accessibilityLabel="Mina: Ciao, sono Mina!">Ciao, sono Mina!</Text>
             <Text variant="body" color={colors.inkSoft}>
               Ti aiuto a decidere cosa cucinare, cosa comprare e quando. Tu pensi solo a goderti il pasto.
@@ -71,7 +72,6 @@ export default function Welcome() {
           </Text>
         </Reveal>
       </View>
-      <OrnamentDivider />
       <View style={styles.points}>
         {POINTS.map((p, i) => (
           <View key={p.title} style={styles.point}>
@@ -100,14 +100,15 @@ const styles = StyleSheet.create({
   hero: { gap: space.md, marginTop: space.md },
   brand: { alignItems: 'center' },
   stage: { alignItems: 'center', justifyContent: 'center', height: 290 },
-  blob: { position: 'absolute' },
+  blob: { position: 'absolute', width: 270, height: 270, borderRadius: 135, backgroundColor: colors.greenSoft },
+  blobInner: { position: 'absolute', width: 200, height: 200, borderRadius: 100, backgroundColor: colors.greenMist },
   ingTL: { position: 'absolute', left: 8, top: 18 },
   ingTR: { position: 'absolute', right: 10, top: 30 },
   ingBL: { position: 'absolute', left: 22, bottom: 10 },
   ingBR: { position: 'absolute', right: 26, bottom: 4 },
-  speech: { padding: space.lg, alignItems: 'center' },
+  speech: { padding: space.lg, alignItems: 'center', gap: space.xs },
   slogan: { marginTop: space.sm },
-  points: { gap: space.lg, marginTop: space.md },
+  points: { gap: space.lg, marginTop: space.md, padding: space.lg, borderRadius: radius.xl, backgroundColor: colors.white, borderWidth: 1, borderColor: colors.line },
   point: { flexDirection: 'row', gap: space.md, alignItems: 'flex-start' },
   num: { width: 32, height: 32, borderRadius: 16, backgroundColor: colors.peach, alignItems: 'center', justifyContent: 'center' },
   pointText: { flex: 1, gap: 2 },

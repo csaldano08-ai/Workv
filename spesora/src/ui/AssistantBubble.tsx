@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
-import type { MinaPose } from './mascot/minaSvg';
+import type { MinaPose } from './mascot/Mina';
 import { MinaMascot } from './mascot/Mina';
-import { colors, outline, radius, space } from '../theme/tokens';
+import { colors, radius, space } from '../theme/tokens';
 import { StickyNote } from './notebook';
 import { Text } from './Text';
 
@@ -27,7 +27,8 @@ export function AssistantBubble({
   return (
     <View style={styles.row} accessible accessibilityLabel={`Mina: ${title ? `${title}. ` : ''}${text}`}>
       <MinaMascot pose={pose} size={size} animated={animated} />
-      <StickyNote style={styles.bubble}>
+      <StickyNote tone="sage" style={styles.bubble}>
+        <View style={styles.tail} />
         {title ? <Text variant="hand">{title}</Text> : null}
         <Text variant={title ? 'small' : 'body'} color={title ? colors.inkSoft : colors.ink}>
           {text}
@@ -38,7 +39,7 @@ export function AssistantBubble({
   );
 }
 
-/** Piccolo richiamo di Mina (dimensione piccola) accanto a un testo breve, senza nuvoletta. */
+/** Piccolo richiamo di Mina (Mina Chef nelle ricette) accanto a un testo breve, senza nuvoletta. */
 export function MinaNote({ pose = 'neutral', title, text, size = 64 }: { pose?: MinaPose | string; title?: string; text: string; size?: number }) {
   return (
     <View style={styles.note} accessible accessibilityLabel={`Mina: ${title ? `${title}. ` : ''}${text}`}>
@@ -54,20 +55,10 @@ export function MinaNote({ pose = 'neutral', title, text, size = 64 }: { pose?: 
 }
 
 const styles = StyleSheet.create({
-  row: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
-  bubble: { flex: 1 },
-  tail: {
-    position: 'absolute',
-    left: -8,
-    bottom: 12,
-    width: 14,
-    height: 14,
-    backgroundColor: colors.paper,
-    borderLeftWidth: outline.width,
-    borderBottomWidth: outline.width,
-    borderColor: outline.color,
-    transform: [{ rotate: '45deg' }],
-  },
-  note: { flexDirection: 'row', alignItems: 'center', gap: space.sm, backgroundColor: colors.greenSoft, borderRadius: radius.lg, borderWidth: outline.width, borderColor: outline.color, padding: space.sm, paddingRight: space.md },
+  row: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
+  bubble: { flex: 1, padding: space.md, paddingLeft: space.lg },
+  // punta della nuvoletta verso Mina
+  tail: { position: 'absolute', left: -6, top: '50%', marginTop: -7, width: 14, height: 14, backgroundColor: colors.greenSoft, borderRadius: 3, transform: [{ rotate: '45deg' }] },
+  note: { flexDirection: 'row', alignItems: 'center', gap: space.sm, backgroundColor: colors.greenSoft, borderRadius: radius.lg, padding: space.sm, paddingRight: space.md },
   noteText: { flex: 1, gap: 2 },
 });

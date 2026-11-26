@@ -12,7 +12,7 @@ import { SHOPPING_CATEGORIES, type ShoppingCategory } from '../../src/core/domai
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { checkKey } from '../../src/features/app/SpesoraService';
 import { CATEGORY_LABELS } from '../../src/i18n/labels';
-import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
+import { colors, TOUCH, font, radius, shadow, space } from '../../src/theme/tokens';
 import { CheckBox } from '../../src/ui/CheckBox';
 import { celebrate } from '../../src/ui/celebration';
 import { Button } from '../../src/ui/Button';
@@ -74,6 +74,17 @@ export default function Shopping() {
             onChange={setSelected}
             style={styles.tabs}
           />
+          {current && current.lines.length > 0 && checkedCount === current.lines.length ? (
+            <View style={styles.done} accessible accessibilityRole="alert" accessibilityLabel="Mina: lista completata! Conferma gli acquisti per aggiornare la dispensa.">
+              <MinaMascot pose="success" size={84} animated replayKey={tripKey(current)} />
+              <View style={styles.flex}>
+                <Text variant="hand">Lista completata!</Text>
+                <Text variant="small" color={colors.inkSoft}>
+                  Conferma gli acquisti qui sotto: aggiorno io la dispensa.
+                </Text>
+              </View>
+            </View>
+          ) : null}
           {current ? <TripView trip={current} /> : null}
         </>
       )}
@@ -140,7 +151,7 @@ function TripView({ trip }: { trip: ShoppingTripPlan }) {
         </View>
         {tiles.length > 0 ? (
           <View style={styles.tiles}>
-            {tiles.map((l, i) => {
+            {tiles.map((l) => {
               const ing = catalogIndex.ingredient(l.ingredientId);
               const on = isChecked(l);
               return (
@@ -150,7 +161,7 @@ function TripView({ trip }: { trip: ShoppingTripPlan }) {
                   accessibilityState={{ checked: on }}
                   accessibilityLabel={`${ing.name}, ${qtyText(l)}, serve ${isToday ? 'oggi' : 'subito'}`}
                   onPress={() => toggle(l)}
-                  style={[styles.tile, { transform: [{ rotate: `${[-1.5, 1, -0.5][i]}deg` }] }]}
+                  style={[styles.tile, on && styles.tileOn]}
                 >
                   <CategoryIcon category={ing.category} size={40} />
                   <Text variant="small" center style={styles.tileName} numberOfLines={2}>
@@ -329,7 +340,7 @@ function ConfirmBar({ trip }: { trip: ShoppingTripPlan }) {
               );
               return true;
             }).then((ok) => {
-              if (ok) celebrate({ title: 'Spesa registrata', text: `${checked.length} ${checked.length === 1 ? 'prodotto è' : 'prodotti sono'} in dispensa.`, pose: 'shopping' });
+              if (ok) celebrate({ title: 'Spesa registrata', text: `${checked.length} ${checked.length === 1 ? 'prodotto è' : 'prodotti sono'} in dispensa.`, pose: 'success' });
             }),
         },
       ],
@@ -363,22 +374,24 @@ const styles = StyleSheet.create({
   empty: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   tabs: { marginTop: space.sm },
   tripGap: { gap: space.md },
-  tripPage: { borderTopLeftRadius: 4, gap: space.md },
+  tripPage: { gap: space.md },
+  done: { flexDirection: 'row', alignItems: 'center', gap: space.sm, padding: space.md, paddingLeft: space.xs, borderRadius: radius.xl, backgroundColor: colors.greenSoft },
   minaRow: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   minaShop: { marginVertical: -space.sm, marginLeft: -space.sm },
   tiles: { flexDirection: 'row', gap: space.sm },
-  tile: { flex: 1, alignItems: 'center', gap: 4, paddingVertical: space.md, paddingHorizontal: 4, borderRadius: 16, borderWidth: 2, borderColor: colors.ink, backgroundColor: colors.white },
+  tile: { flex: 1, alignItems: 'center', gap: 4, paddingVertical: space.md, paddingHorizontal: 4, borderRadius: radius.lg, borderWidth: 1.5, borderColor: colors.line, backgroundColor: colors.greenMist },
+  tileOn: { backgroundColor: colors.greenSoft, borderColor: colors.green },
   tileName: { fontWeight: '700', minHeight: 36 },
   restTitle: { marginTop: space.sm },
-  group: { backgroundColor: colors.white, borderWidth: 2, borderColor: colors.ink, borderRadius: radius.md, overflow: 'hidden' },
+  group: { backgroundColor: colors.white, borderWidth: 1, borderColor: colors.line, borderRadius: radius.lg, overflow: 'hidden', ...shadow.card },
   groupHead: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.md, minHeight: TOUCH + 8 },
-  lineWrap: { borderTopWidth: 1.5, borderStyle: 'dashed', borderTopColor: 'rgba(36,51,44,0.22)' },
+  lineWrap: { borderTopWidth: 1, borderTopColor: colors.line },
   line: { flexDirection: 'row', alignItems: 'center', paddingLeft: space.md },
   lineMain: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: space.md, minHeight: TOUCH + 4, paddingVertical: space.xs },
   infoBtn: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center' },
-  infoBox: { gap: 4, marginHorizontal: space.md, marginBottom: space.sm, padding: space.sm, borderRadius: radius.sm, backgroundColor: colors.peachSoft, borderWidth: 1, borderColor: 'rgba(138,79,31,0.3)' },
+  infoBox: { gap: 4, marginHorizontal: space.md, marginBottom: space.sm, padding: space.sm, borderRadius: radius.md, backgroundColor: colors.peachSoft },
   confirmWrap: { gap: space.sm },
-  paid: { minHeight: TOUCH, borderWidth: 2, borderColor: colors.ink, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, color: colors.ink, backgroundColor: colors.paper },
+  paid: { minHeight: TOUCH, borderWidth: 1.5, borderColor: colors.lineStrong, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, color: colors.ink, backgroundColor: colors.white, fontFamily: font.regular },
   flex: { flex: 1 },
   checked: { textDecorationLine: 'line-through', color: colors.inkSoft },
   coveredRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, paddingLeft: space.xl, paddingVertical: 2 },

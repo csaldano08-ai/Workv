@@ -525,7 +525,7 @@ const styles = StyleSheet.create({
   input: {
     minHeight: TOUCH + 4,
     borderWidth: 1.5,
-    borderColor: colors.line,
+    borderColor: colors.lineStrong,
     borderRadius: radius.md,
     paddingHorizontal: space.md,
     fontSize: 16,

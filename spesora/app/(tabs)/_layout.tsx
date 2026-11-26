@@ -3,7 +3,7 @@ import { Tabs } from 'expo-router';
 import type { ColorValue } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useApp } from '../../src/features/app/AppProvider';
-import { colors } from '../../src/theme/tokens';
+import { colors, font } from '../../src/theme/tokens';
 import { t } from '../../src/i18n/it';
 
 type IconName = keyof typeof Ionicons.glyphMap;
@@ -23,9 +23,9 @@ export default function TabsLayout() {
         animation: 'fade',
         tabBarActiveTintColor: colors.green,
         tabBarInactiveTintColor: colors.inkSoft,
-        // 49 = altezza standard della barra; +4 per il bordo scuro, così le etichette non vengono tagliate
-        tabBarStyle: { backgroundColor: colors.paper, borderTopColor: colors.ink, borderTopWidth: 2, height: 53 + insets.bottom },
-        tabBarLabelStyle: { fontSize: 12, fontWeight: '600' },
+        // 49 = altezza standard della barra; +6 di respiro, così le etichette non vengono tagliate
+        tabBarStyle: { backgroundColor: colors.white, borderTopColor: colors.line, borderTopWidth: 1, height: 55 + insets.bottom, paddingTop: 2 },
+        tabBarLabelStyle: { fontSize: 12, fontFamily: font.bold },
       }}
     >
       <Tabs.Screen name="index" options={{ title: t('tabs.today'), tabBarIcon: icon('sunny-outline') }} />
@@ -36,7 +36,7 @@ export default function TabsLayout() {
           title: t('tabs.shopping'),
           tabBarIcon: icon('basket-outline'),
           tabBarBadge: shoppingCount ? shoppingCount : undefined,
-          tabBarBadgeStyle: { backgroundColor: colors.peach, color: colors.ink },
+          tabBarBadgeStyle: { backgroundColor: colors.peach, color: colors.ink, fontFamily: font.extrabold, fontSize: 11 },
         }}
       />
       <Tabs.Screen name="dispensa" options={{ title: t('tabs.pantry'), tabBarIcon: icon('file-tray-stacked-outline') }} />

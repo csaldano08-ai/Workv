@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     minHeight: TOUCH + 4,
-    borderWidth: 2,
-    borderColor: colors.ink,
+    borderWidth: 1.5,
+    borderColor: colors.lineStrong,
     borderRadius: radius.md,
     paddingHorizontal: space.md,
     fontSize: 17,

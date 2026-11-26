@@ -121,12 +121,12 @@ export default function RecipeScreen() {
       </View>
       {prepAhead ? (
         <MinaNote
-          pose="thinking"
+          pose="cooking"
           title={prepAhead.kind === 'scongelamento' ? (prepAhead.conditional ? 'Se usi un prodotto surgelato: la sera prima' : 'Da scongelare la sera prima') : 'Da preparare la sera prima'}
           text={`${prepAhead.step}${meal && meal.status === 'planned' ? ' Con i promemoria attivi te lo ricordo io la sera prima.' : ''}`}
         />
       ) : null}
-      {missingCount > 0 && planned ? <MinaNote pose="missing" text={`Mancano ${missingCount} ${missingCount === 1 ? 'ingrediente' : 'ingredienti'} in dispensa: ${missingCount === 1 ? 'è già' : 'sono già'} nella lista della spesa.`} /> : null}
+      {missingCount > 0 && planned ? <MinaNote pose="shopping" text={`Mancano ${missingCount} ${missingCount === 1 ? 'ingrediente' : 'ingredienti'} in dispensa: ${missingCount === 1 ? 'è già' : 'sono già'} nella lista della spesa.`} /> : null}
 
       <Card>
         <View style={styles.servingsRow}>

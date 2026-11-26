@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { minutesToHHMM } from '../core/domain/dates';
-import { colors, radius, space, TOUCH, outline } from '../theme/tokens';
+import { colors, radius, space, TOUCH } from '../theme/tokens';
 import { Text } from './Text';
 
 export interface StepperProps {
@@ -62,10 +62,11 @@ const styles = StyleSheet.create({
     width: TOUCH,
     height: TOUCH,
     borderRadius: radius.pill,
-    borderWidth: outline.width,
-    borderColor: outline.color,
+    borderWidth: 1.5,
+    borderBottomWidth: 3,
+    borderColor: colors.lineStrong,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.paper,
+    backgroundColor: colors.white,
   },
 });

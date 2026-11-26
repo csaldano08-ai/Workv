@@ -3,7 +3,7 @@ import { Image, StyleSheet, View, type ViewStyle } from 'react-native';
 import type { Recipe } from '../core/domain/types';
 import { RECIPE_IMAGE_CARDS } from '../data/recipe-image-cards';
 import { RECIPE_IMAGE_THUMBS } from '../data/recipe-image-thumbs';
-import { colors, outline } from '../theme/tokens';
+import { colors } from '../theme/tokens';
 import { DishArt } from './DishArt';
 
 /**
@@ -31,7 +31,7 @@ export const RecipeImage = memo(function RecipeImage({
     return <DishArt category={recipe.dishCategory} recipeId={recipe.id} rounded={rounded} style={{ aspectRatio, ...style }} />;
   }
   return (
-    <View style={[styles.frame, { aspectRatio, borderRadius: rounded, borderWidth: variant === 'thumb' ? outline.thin : outline.width }, style]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <View style={[styles.frame, { aspectRatio, borderRadius: rounded }, style]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
       <Image source={source} style={styles.image} resizeMode="cover" onError={() => setFailed(true)} fadeDuration={0} />
     </View>
   );
@@ -42,6 +42,6 @@ export function hasRecipeImage(id: string): boolean {
 }
 
 const styles = StyleSheet.create({
-  frame: { overflow: 'hidden', backgroundColor: colors.peachSoft, width: '100%', borderColor: outline.color },
+  frame: { overflow: 'hidden', backgroundColor: colors.greenMist, width: '100%' },
   image: { width: '100%', height: '100%' },
 });

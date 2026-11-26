@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text as RNText, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Circle, Ellipse, G, Line, Path } from 'react-native-svg';
-import { colors, radius, space } from '../../theme/tokens';
+import { colors, font, radius, space } from '../../theme/tokens';
 import { LogoMarkSvg } from '../../ui/illustrations/LogoMarkSvg';
 import { illo } from '../../ui/illustrations/palette';
 import { MinaMascot } from '../../ui/mascot/Mina';
@@ -61,7 +61,7 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
     if (!row || row.x !== x || row.y !== rowTop + y) setRow({ x, y: rowTop + y, w, h });
   };
 
-  const minaSize = 640 * k;
+  const minaSize = 430 * k; // Mina 2.0 ha un riquadro più stretto della vecchia illustrazione: stessa altezza visibile
   const pop = f.minaPop;
   const feet = { x: 540 * k, y: H * 0.8125 * k };
 
@@ -129,10 +129,11 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
           pointerEvents="none"
           style={{
             position: 'absolute',
-            left: feet.x - minaSize * 0.5176,
-            top: feet.y - minaSize * 0.8838,
+            // Mina 2.0: piedi al 50% della larghezza e a 1,07 × la larghezza dall'alto del disegno
+            left: feet.x - minaSize * 0.5,
+            top: feet.y - minaSize * 1.07,
             opacity: f.contentAlpha,
-            transform: [{ translateY: minaSize * 0.3838 * (1 - pop) }, { scaleX: Math.min(pop, 1.2) * (1 + 0.1 * (1 - Math.min(pop, 1))) }, { scaleY: pop }],
+            transform: [{ translateY: minaSize * 0.53 * (1 - pop) }, { scaleX: Math.min(pop, 1.2) * (1 + 0.1 * (1 - Math.min(pop, 1))) }, { scaleY: pop }],
           }}
         >
           <MinaMascot pose="wave" size={minaSize} animated />
@@ -162,14 +163,14 @@ export function SplashIntro({ onDone }: { onDone: () => void }) {
 const styles = StyleSheet.create({
   rowWrap: { position: 'absolute', left: 0, right: 0, alignItems: 'center' },
   row: { flexDirection: 'row', alignItems: 'center' },
-  letter: { color: colors.green, fontWeight: '700', letterSpacing: -1 },
+  letter: { color: colors.green, fontFamily: font.extrabold, letterSpacing: -1 },
   skip: {
     position: 'absolute',
     paddingHorizontal: space.lg,
     paddingVertical: space.sm,
     borderRadius: radius.pill,
-    borderWidth: 2,
-    borderColor: colors.ink,
-    backgroundColor: colors.paper,
+    borderWidth: 1,
+    borderColor: colors.line,
+    backgroundColor: colors.white,
   },
 });

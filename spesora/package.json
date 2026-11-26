@@ -48,7 +48,7 @@
     "check:config": "node scripts/check-config.mjs",
     "images": "tsx scripts/images/pipeline.ts",
     "images:check": "tsx scripts/images/check.ts",
-    "mascot:export": "node scripts/mascot/export-mascot.mjs",
+    "mascot:export": "tsx scripts/mascot/sheet-mina2.ts docs/restyling/mina2_tavola.png assets/mascot/mina2",
     "catalog:report": "tsx scripts/catalog/report.ts",
     "catalog:export-images": "tsx scripts/images/export-list.ts"
   },

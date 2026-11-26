@@ -17,7 +17,7 @@ import {
   type StepProps,
 } from './steps';
 import { PortionProfileStep, QuantitiesStep, TastesStep } from './stepsPersonal';
-import type { MinaPose } from '../../ui/mascot/minaSvg';
+import type { MinaPose } from '../../ui/mascot/Mina';
 
 export interface StepDef {
   id: string;

@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { StyleSheet, View } from 'react-native';
-import { colors, outline, radius, space } from '../theme/tokens';
+import { colors, radius, space } from '../theme/tokens';
 import { Text } from './Text';
 
 const tones = {
@@ -32,7 +32,7 @@ export function Notice({ text, tone = 'info', title, children }: { text?: string
 }
 
 const styles = StyleSheet.create({
-  box: { flexDirection: 'row', gap: space.sm, padding: space.md, borderRadius: radius.md, borderWidth: outline.width, borderColor: outline.color },
+  box: { flexDirection: 'row', gap: space.sm, padding: space.md, borderRadius: radius.lg },
   icon: { marginTop: 1 },
   body: { flex: 1, gap: space.xs },
 });

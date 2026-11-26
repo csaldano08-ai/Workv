@@ -6,7 +6,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { parseRouteFromNotification } from '../src/core/notifications/routing';
 import { AppProvider, useApp } from '../src/features/app/AppProvider';
-import { colors, space } from '../src/theme/tokens';
+import { colors, font, space } from '../src/theme/tokens';
 import { useFonts } from 'expo-font';
 import { CelebrationHost } from '../src/ui/CelebrationHost';
 import { IntroGate } from '../src/features/intro/IntroGate';
@@ -40,7 +40,7 @@ function OnboardingGate() {
   const pathname = usePathname();
   useEffect(() => {
     if (status.kind !== 'ready' || !snapshot) return;
-    const open = ['/benvenuto', '/onboarding', '/privacy'].some((p) => pathname.startsWith(p));
+    const open = ['/benvenuto', '/onboarding', '/privacy', '/mina'].some((p) => pathname.startsWith(p));
     if (!snapshot.profile && !open) router.replace('/benvenuto');
   }, [status, snapshot, pathname]);
   return null;
@@ -69,7 +69,7 @@ function Shell() {
         screenOptions={{
           headerTintColor: colors.green,
           headerStyle: { backgroundColor: colors.desk },
-          headerTitleStyle: { color: colors.ink },
+          headerTitleStyle: { color: colors.ink, fontFamily: font.extrabold, fontSize: 17 },
           headerShadowVisible: false,
           contentStyle: { backgroundColor: colors.desk },
           headerBackButtonDisplayMode: 'minimal',
@@ -94,6 +94,7 @@ function Shell() {
         <Stack.Screen name="storico" options={{ title: 'Storico dei pasti' }} />
         <Stack.Screen name="prezzi" options={{ title: 'Prezzi' }} />
         <Stack.Screen name="economica" options={{ title: 'Settimana più economica', presentation: 'modal' }} />
+        <Stack.Screen name="mina" options={{ title: 'Mina 2.0' }} />
       </Stack>
       <CelebrationHost />
       <LoaderHost />
@@ -103,8 +104,13 @@ function Shell() {
 }
 
 export default function RootLayout() {
-  // Caveat: la scrittura a mano delle annotazioni. Se non si carica, l'app usa il carattere di sistema.
-  const [fontsLoaded, fontError] = useFonts({ Caveat: require('../assets/fonts/Caveat-Bold.ttf') });
+  // Nunito (SIL OFL, assets/fonts): un file per peso. Se non si carica, l'app usa il carattere di sistema.
+  const [fontsLoaded, fontError] = useFonts({
+    [font.regular]: require('../assets/fonts/Nunito_400Regular.ttf'),
+    [font.semibold]: require('../assets/fonts/Nunito_600SemiBold.ttf'),
+    [font.bold]: require('../assets/fonts/Nunito_700Bold.ttf'),
+    [font.extrabold]: require('../assets/fonts/Nunito_800ExtraBold.ttf'),
+  });
   if (!fontsLoaded && !fontError) return <View style={styles.blank} />;
   return (
     <SafeAreaProvider>

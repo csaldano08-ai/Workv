@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, View, type ScrollViewProps } from 'react-native';
 import { SafeAreaView, type Edge } from 'react-native-safe-area-context';
-import { colors, outline, space } from '../theme/tokens';
+import { colors, space } from '../theme/tokens';
 
 export interface ScreenProps extends ScrollViewProps {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ export interface ScreenProps extends ScrollViewProps {
   scroll?: boolean;
 }
 
-/** Contenitore standard: fondo avorio, area sicura, larghezza massima leggibile. */
+/** Contenitore standard: fondo chiaro, area sicura, larghezza massima leggibile. */
 export function Screen({ children, edges = ['top'], footer, scroll = true, contentContainerStyle, ...rest }: ScreenProps) {
   return (
     <SafeAreaView style={styles.safe} edges={edges}>
@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.lg,
     paddingTop: space.md,
     paddingBottom: space.lg,
-    borderTopWidth: outline.width,
-    borderTopColor: outline.color,
-    backgroundColor: colors.desk,
+    borderTopWidth: 1,
+    borderTopColor: colors.line,
+    backgroundColor: colors.white,
     gap: space.sm,
   },
 });

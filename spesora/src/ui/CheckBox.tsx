@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Animated, Platform, StyleSheet, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { colors, outline } from '../theme/tokens';
+import { colors } from '../theme/tokens';
 import { useReducedMotion } from './useReducedMotion';
 
 const native = Platform.OS !== 'web';
 
-/** Casella illustrata: contorno scuro; spuntandola il riempimento verde e la spunta compaiono con un rimbalzo. */
+/** Casella con bordo chiaro e ben visibile; spuntandola il riempimento verde e la spunta compaiono con un rimbalzo. */
 export function CheckBox({ checked, size = 28 }: { checked: boolean; size?: number }) {
   const reduced = useReducedMotion();
   const [v] = useState(() => new Animated.Value(checked ? 1 : 0));
@@ -28,6 +28,6 @@ export function CheckBox({ checked, size = 28 }: { checked: boolean; size?: numb
 }
 
 const styles = StyleSheet.create({
-  box: { borderWidth: outline.width, borderColor: outline.color, backgroundColor: colors.paper, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  box: { borderWidth: 2, borderColor: colors.lineStrong, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   fill: { backgroundColor: colors.green },
 });

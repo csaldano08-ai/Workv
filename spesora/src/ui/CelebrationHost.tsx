@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, outline, radius, space } from '../theme/tokens';
+import { colors, radius, shadow, space } from '../theme/tokens';
 import { onCelebrate, type Celebration } from './celebration';
 import { MinaMascot } from './mascot/Mina';
 import { Reveal } from './Reveal';
@@ -24,7 +24,7 @@ export function CelebrationHost() {
     <View pointerEvents="box-none" style={[styles.wrap, { bottom: insets.bottom + 84 }]}>
       <Reveal key={current.id}>
         <Pressable accessibilityRole="alert" accessibilityLabel={`Mina: ${current.title}. ${current.text}`} onPress={() => setCurrent(null)} style={styles.card}>
-          <MinaMascot pose={current.pose ?? 'success'} size={104} animated style={styles.mina} />
+          <MinaMascot pose={current.pose ?? 'success'} size={96} animated style={styles.mina} />
           <View style={styles.text}>
             <Text variant="hand">{current.title}</Text>
             <Text variant="small" color={colors.inkSoft}>
@@ -43,19 +43,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: space.sm,
-    backgroundColor: colors.peachSoft,
-    borderRadius: radius.lg,
-    borderTopLeftRadius: 6,
-    transform: [{ rotate: '-1deg' }],
-    borderWidth: outline.width,
-    borderBottomWidth: outline.width + 2,
-    borderColor: outline.color,
+    backgroundColor: colors.white,
+    borderRadius: radius.xl,
+    borderWidth: 1,
+    borderColor: colors.line,
     paddingRight: space.lg,
-    shadowColor: colors.ink,
-    shadowOpacity: 0.14,
-    shadowRadius: 14,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 6,
+    ...shadow.float,
   },
   mina: { marginLeft: space.xs, marginVertical: -space.sm },
   text: { flex: 1, gap: 2, paddingVertical: space.md },

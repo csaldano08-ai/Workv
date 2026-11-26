@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { StyleSheet, View } from 'react-native';
 import { Squish } from './Squish';
-import { colors, outline, radius, space, TOUCH } from '../theme/tokens';
+import { colors, radius, space, TOUCH } from '../theme/tokens';
 import { Text } from './Text';
 
 export interface ChipProps {
@@ -21,10 +21,10 @@ export function Chip({ label, selected, onPress, tone = 'green', accessibilityHi
       accessibilityLabel={label}
       accessibilityHint={accessibilityHint}
       onPress={onPress}
-      style={[styles.chip, { backgroundColor: selected ? active : colors.paper }]}
+      style={[styles.chip, { backgroundColor: selected ? active : colors.white, borderColor: selected ? active : colors.lineStrong }]}
     >
       {selected ? <Ionicons name="checkmark" size={16} color={colors.white} /> : null}
-      <Text variant="body" color={selected ? colors.white : colors.ink}>
+      <Text variant="body" color={selected ? colors.white : colors.ink} style={{ fontWeight: '600' }}>
         {label}
       </Text>
     </Squish>
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: space.lg,
     paddingVertical: space.sm,
     borderRadius: radius.pill,
-    borderWidth: outline.thin,
-    borderColor: outline.color,
+    borderWidth: 1.5,
+    borderBottomWidth: 3,
   },
   group: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
 });

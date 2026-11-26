@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ActivityIndicator, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
-import { colors, outline, radius, space, TOUCH } from '../theme/tokens';
+import { colors, radius, space, TOUCH } from '../theme/tokens';
 import { Squish } from './Squish';
 import { Text } from './Text';
 
@@ -18,15 +18,16 @@ export interface ButtonProps {
   accessibilityHint?: string;
 }
 
-const palette: Record<Kind, { bg: string; fg: string; border: string }> = {
-  primary: { bg: colors.green, fg: colors.white, border: outline.color },
-  secondary: { bg: colors.paper, fg: colors.green, border: outline.color },
-  ghost: { bg: 'transparent', fg: colors.green, border: 'transparent' },
-  danger: { bg: colors.paper, fg: colors.danger, border: colors.danger },
-  peach: { bg: colors.peach, fg: colors.ink, border: outline.color },
+/** `border` = bordo sottile, `base` = bordo inferiore più spesso: il pulsante sembra in rilievo e si schiaccia al tocco. */
+const palette: Record<Kind, { bg: string; fg: string; border: string; base: string }> = {
+  primary: { bg: colors.green, fg: colors.white, border: colors.green, base: colors.greenDeep },
+  secondary: { bg: colors.white, fg: colors.green, border: colors.lineStrong, base: colors.lineStrong },
+  ghost: { bg: 'transparent', fg: colors.green, border: 'transparent', base: 'transparent' },
+  danger: { bg: colors.white, fg: colors.danger, border: colors.danger, base: colors.danger },
+  peach: { bg: colors.peach, fg: colors.ink, border: colors.peach, base: '#E8894F' },
 };
 
-/** Pulsante con contorno scuro e "base" più spessa, che si schiaccia elasticamente al tocco. */
+/** Pulsante arrotondato in leggero rilievo, che si schiaccia elasticamente al tocco. */
 export function Button({ label, onPress, kind = 'primary', icon, disabled, loading, compact, style, accessibilityHint }: ButtonProps) {
   const p = palette[kind];
   const inactive = disabled || loading;
@@ -42,13 +43,13 @@ export function Button({ label, onPress, kind = 'primary', icon, disabled, loadi
         styles.base,
         compact && styles.compact,
         kind === 'ghost' ? styles.ghost : null,
-        { backgroundColor: p.bg, borderColor: p.border, opacity: inactive ? 0.45 : 1 },
+        { backgroundColor: p.bg, borderColor: p.border, borderBottomColor: p.base, opacity: inactive ? 0.45 : 1 },
         style,
       ]}
     >
       <View style={styles.row}>
         {loading ? <ActivityIndicator color={p.fg} /> : icon ? <Ionicons name={icon} size={18} color={p.fg} /> : null}
-        <Text variant="heading" color={p.fg} style={styles.label}>
+        <Text variant="heading" color={p.fg} style={[styles.label, { fontWeight: '800' }]}>
           {label}
         </Text>
       </View>
@@ -60,8 +61,8 @@ const styles = StyleSheet.create({
   base: {
     minHeight: TOUCH + 4,
     borderRadius: radius.pill,
-    borderWidth: outline.width,
-    borderBottomWidth: outline.width + 2,
+    borderWidth: 1.5,
+    borderBottomWidth: 4,
     paddingHorizontal: space.xl,
     paddingVertical: space.md,
     justifyContent: 'center',
