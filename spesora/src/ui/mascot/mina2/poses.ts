@@ -2,20 +2,20 @@ import { armTo, type ArmPose, type MinaLook } from './art';
 
 /** Pose del braccio, descritte dalla posizione della mano (cinematica inversa in `armTo`). */
 export const ARM = {
-  restL: armTo('L', 40, 168),
-  restR: armTo('R', 161, 166),
-  hipL: armTo('L', 54, 156),
-  waveR: armTo('R', 178, 80),
-  waveRLow: armTo('R', 186, 98),
-  cheerL: armTo('L', 22, 84),
-  cheerR: armTo('R', 179, 82),
-  openL: armTo('L', 18, 140),
-  openR: armTo('R', 184, 138),
-  chinR: armTo('R', 133, 146),
-  raiseR: armTo('R', 172, 84),
-  holdR: armTo('R', 142, 160),
-  upL: armTo('L', 24, 108),
-  upR: armTo('R', 177, 106),
+  // braccia corte come nel foglio: spalle sui bordi della borsa, mani a guanto
+  restL: armTo('L', 28, 150),
+  restR: armTo('R', 173, 146),
+  hipL: armTo('L', 42, 141),
+  waveR: armTo('R', 173, 90),
+  cheerL: armTo('L', 26, 94),
+  cheerR: armTo('R', 173, 89),
+  openL: armTo('L', 16, 128),
+  openR: armTo('R', 185, 128),
+  chinR: armTo('R', 147, 141),
+  raiseR: armTo('R', 179, 106),
+  holdR: armTo('R', 165, 141),
+  upL: armTo('L', 24, 106),
+  upR: armTo('R', 175, 102),
 } as const satisfies Record<string, ArmPose>;
 
 /** Pose pubbliche della mascotte. I nomi delle pose precedenti restano validi (stesse schermate, nuovo personaggio). */
@@ -70,23 +70,24 @@ export interface PoseSpec {
   action: MinaAction;
 }
 
-const classic = (look: Omit<MinaLook, 'variant'>): MinaLook => ({ variant: 'classic', ...look });
-const chef = (look: Omit<MinaLook, 'variant'>): MinaLook => ({ variant: 'chef', ...look });
+// nel foglio Mina è sempre un po' inclinata: −3° di base, −6° e a passo nel saluto (il disegno principale)
+const classic = (look: Omit<MinaLook, 'variant'>): MinaLook => ({ variant: 'classic', lean: -3, ...look });
+const chef = (look: Omit<MinaLook, 'variant'>): MinaLook => ({ variant: 'chef', lean: -3, ...look });
 
 /**
  * Ogni posa: l'aspetto finale (quello mostrato anche da fermo, con "Riduci movimento") e il gesto.
  * Mina 2.0 per casa, calendario, spesa e promemoria; Mina Chef solo per ricette e cucina.
  */
 export const POSES: Record<MinaPose, PoseSpec> = {
-  neutral: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: ARM.restR }), action: 'none' },
-  welcome: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: ARM.waveR }), action: 'greet' },
-  wave: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: ARM.waveR }), action: 'greet' },
+  neutral: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: ARM.restR }), action: 'none' },
+  welcome: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: ARM.waveR, legs: 'walk', lean: -6, emote: 'sparkles' }), action: 'greet' },
+  wave: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: ARM.waveR, legs: 'walk', lean: -6 }), action: 'greet' },
   explaining: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: ARM.openR }), action: 'none' },
   thinking: { look: classic({ eyes: 'open', mouth: 'hmm', armL: ARM.hipL, armR: ARM.chinR, emote: 'question' }), action: 'think' },
-  calendar: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: { ...ARM.holdR, prop: 'phone', propTilt: -8 } }), action: 'none' },
-  shopping: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.holdR, prop: 'list', propTilt: -10 } }), action: 'none' },
-  cooking: { look: chef({ eyes: 'wink', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.raiseR, prop: 'spoon', propTilt: 12 } }), action: 'recipe' },
-  recipe: { look: chef({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.raiseR, prop: 'spoon', propTilt: 12 } }), action: 'recipe' },
+  calendar: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: { ...ARM.holdR, prop: 'phone', propTilt: 6 } }), action: 'none' },
+  shopping: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.holdR, prop: 'list', propTilt: 8 } }), action: 'none' },
+  cooking: { look: chef({ eyes: 'wink', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.raiseR, prop: 'spoon', propTilt: 4 }, emote: 'sparkles' }), action: 'recipe' },
+  recipe: { look: chef({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.raiseR, prop: 'spoon', propTilt: 4 } }), action: 'recipe' },
   pantry: { look: classic({ eyes: 'open', mouth: 'small', armL: ARM.restL, armR: ARM.openR }), action: 'none' },
   missing: { look: classic({ eyes: 'surprised', mouth: 'o', armL: ARM.upL, armR: ARM.upR }), action: 'none' },
   savings: { look: classic({ eyes: 'star', mouth: 'grin', armL: ARM.hipL, armR: ARM.cheerR, emote: 'sparkles' }), action: 'happy' },

@@ -88,7 +88,7 @@ const DATA = '2026-11-23T09:00:00'; // lunedì mattina
   await shot('home_sotto');
   await p.mouse.wheel(0, -3000);
   await w(500);
-  await btn(/^Cucina$/).click();
+  await btn(/^Cucina( ora)?$/).click();
   await w(2200);
   await shot('ricetta');
   await p.mouse.move(+W / 2, +H / 2);

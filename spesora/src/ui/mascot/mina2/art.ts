@@ -1,46 +1,56 @@
 /**
  * Mina 2.0 — la borsetta della spesa di Spesora (e la variante Mina Chef).
- * Disegno vettoriale fedele al foglio approvato (docs/restyling/riferimenti/mina2_foglio_approvato.webp),
- * diviso in parti separate per l'animazione: ombra, gambe, corpo (borsa, manico, verdure, foglia),
- * volto (occhi e bocca separati), cappello e grembiule dello chef, braccia in due segmenti con gomito.
+ * Disegno vettoriale ricalcato sul foglio approvato (docs/restyling/riferimenti/mina2_foglio_approvato.webp):
+ * misure, proporzioni, colori e dettagli presi dal foglio (vedi docs/MASCOT.md, «Fedeltà al riferimento»).
+ * Diviso in parti separate per l'animazione: ombra, gambe, corpo (verdure, manico, borsa, foglia o grembiule),
+ * occhi, bocca, cappello, braccio e avambraccio con mano a dita, oggetti, segni.
  *
  * Funzioni pure che producono SVG (nessuna dipendenza da React Native): le usano il componente animato,
  * la versione statica, i test e l'esportazione delle immagini.
- * Coordinate nel riquadro VIEWBOX (x 0…200, y −12…220); i piedi poggiano a y ≈ 202.
+ * Coordinate nel riquadro VIEWBOX (x 0…200, y −12…220); i piedi poggiano a y ≈ 204.
  */
 
 export const VIEW = { x: 0, y: -12, w: 200, h: 232 } as const;
 export const VIEWBOX = `${VIEW.x} ${VIEW.y} ${VIEW.w} ${VIEW.h}`;
 
+/** Colori campionati dal foglio di riferimento. */
 export const C = {
-  line: '#1E4A34', // contorno (verde scuro, come nel foglio)
-  ivory: '#F8EDD5',
-  ivoryShade: '#EEDCB8',
-  crease: '#C99E66',
-  green: '#2F7D50',
-  greenLight: '#5AA574',
-  leaf: '#8DC63F',
-  leafDark: '#5E9E3A',
-  lettuce: '#86C255',
-  cheek: '#F5A3A0',
-  eye: '#1C2A22',
-  mouth: '#7E2B26',
-  tongue: '#EE7768',
-  tomato: '#E9573F',
-  tomatoLight: '#F7957D',
+  line: '#1D4A32', // contorno verde scuro
+  ivory: '#F8EDD6', // fronte della borsa
+  ivoryLow: '#F2E2C2', // fronte, parte bassa (sfumatura leggera)
+  ivoryShade: '#EEDDBB', // fianco sinistro
+  crease: '#B78550', // piega tra fianco e fronte
+  green: '#2E7D4E', // manico, braccia, gambe, grembiule
+  greenDeep: '#266B42', // fianco del grembiule
+  greenLight: '#4E9E6A',
+  leaf: '#8DC63F', // foglia sul davanti, foglie della carota
+  lettuce: '#8BC152',
+  leafDark: '#5A9A36',
+  spinach: '#3A8743',
+  cheek: '#F6B0A7',
+  eye: '#17302A',
+  mouth: '#7C2B22',
+  tongue: '#F2846A',
+  tomato: '#EE5B2B',
+  tomatoLight: '#FBB49A',
+  radish: '#E14B2C',
   calyx: '#3F9A4E',
-  bread: '#E9A43B',
-  breadDark: '#C27F22',
-  carrot: '#F28C28',
-  carrotDark: '#D46E12',
+  bread: '#F3B13A',
+  breadMark: '#FCE2A2',
+  carrot: '#F6A01E',
+  carrotDark: '#D9800E',
+  lemon: '#F6C343',
   white: '#FFFFFF',
-  hatShade: '#E1E9EC',
-  spoon: '#C98A4B',
-  spoonDark: '#9A6230',
+  hatShade: '#E4EAEC',
+  spoon: '#CE8641',
+  spoonLine: '#7A4A22',
+  spoonDark: '#A8652F',
   star: '#F6C343',
-  heart: '#E84A5F',
+  heart: '#EE5050',
+  question: '#58A845',
   paper: '#FFFFFF',
-  shadow: 'rgba(30,74,52,0.13)',
+  paperLine: '#C9D3CB',
+  shadow: '#E2EDD4', // ombra a terra verde chiaro, come nel foglio
 } as const;
 
 export type Variant = 'classic' | 'chef';
@@ -48,83 +58,132 @@ export type Eyes = 'open' | 'happy' | 'closed' | 'wink' | 'laugh' | 'star' | 'he
 export type Mouth = 'smile' | 'grin' | 'small' | 'o' | 'hmm';
 export type Prop = 'none' | 'spoon' | 'phone' | 'list' | 'clipboard';
 export type Emote = 'question' | 'sparkles' | 'hearts' | 'bang';
+export type Legs = 'stand' | 'walk';
 export type Side = 'L' | 'R';
 
-const sw = (w: number) => `stroke="${C.line}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"`;
+const LW = 3.2; // contorno del corpo
+const sw = (w: number, color: string = C.line) => `stroke="${color}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"`;
 
 /** Avvolge un frammento in un SVG a tutto riquadro (stesse coordinate per tutti i livelli). */
 export function svg(inner: string, viewBox = VIEWBOX): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}">${inner}</svg>`;
 }
 
-// ───────────────────────────── corpo ─────────────────────────────
+/** Gruppo di cerchi fusi in una forma riccia (lattuga, foglie della carota, cappello): contorno sotto, riempimento sopra. */
+function puffs(circles: [number, number, number][], fill: string, stroke = 2.8): string {
+  return circles.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" ${sw(stroke)}/>`).join('') + circles.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${(r - stroke / 2 - 0.2).toFixed(2)}" fill="${fill}"/>`).join('');
+}
 
-export const FEET_Y = 202;
+/**
+ * Foglia riccia (lattuga, ciuffo della carota): ellisse con il bordo ondulato a «smerli», come nel foglio.
+ * (cx, cy) centro, rx/ry semiassi, rot rotazione in gradi, n smerli, depth profondità degli smerli.
+ */
+function frilly(cx: number, cy: number, rx: number, ry: number, rot: number, n: number, depth: number, fill: string): string {
+  const pts: string[] = [];
+  const a = (rot * Math.PI) / 180;
+  for (let i = 0; i < 96; i++) {
+    const t = (i / 96) * Math.PI * 2;
+    const k = 1 - depth * (0.5 - 0.5 * Math.cos(n * t));
+    const x = rx * k * Math.cos(t);
+    const y = ry * k * Math.sin(t);
+    pts.push(`${(cx + x * Math.cos(a) - y * Math.sin(a)).toFixed(1)},${(cy + x * Math.sin(a) + y * Math.cos(a)).toFixed(1)}`);
+  }
+  return `<polygon points="${pts.join(' ')}" fill="${fill}" ${sw(2.6)}/>`;
+}
+
+// ───────────────────────────── a terra e gambe ─────────────────────────────
+
+export const FEET_Y = 204;
+/** Perno di tutto il corpo (tra i piedi): inclinazioni e schiacciamenti. */
+export const BODY_PIVOT = { x: 104, y: FEET_Y } as const;
 
 export function shadowPart(): string {
-  return `<ellipse cx="100" cy="${FEET_Y + 3}" rx="54" ry="7.5" fill="${C.shadow}"/>`;
+  return `<ellipse cx="104" cy="${FEET_Y + 2}" rx="66" ry="6.5" fill="${C.shadow}"/>`;
 }
 
-export function legsPart(): string {
-  const leg = (x1: number, x2: number, fx: number, dir: number) =>
-    `<path d="M${x1},178 L${x2},197" ${sw(16)} fill="none"/>` +
-    `<path d="M${x1},178 L${x2},197" stroke="${C.green}" stroke-width="9.5" stroke-linecap="round" fill="none"/>` +
-    `<path d="M${fx - 12 * dir},${FEET_Y} C${fx - 12 * dir},${FEET_Y - 9} ${fx + 13 * dir},${FEET_Y - 9} ${fx + 14 * dir},${FEET_Y - 1} C${fx + 14 * dir},${FEET_Y + 4} ${fx - 12 * dir},${FEET_Y + 5} ${fx - 12 * dir},${FEET_Y} Z" fill="${C.green}" ${sw(3)}/>`;
-  return leg(83, 80, 77, -1) + leg(118, 121, 124, 1);
+export function legsPart(legs: Legs = 'stand'): string {
+  const leg = (x1: number, x2: number, y2: number, fx: number, dir: number) =>
+    `<path d="M${x1},166 L${x2},${y2}" ${sw(15.5)} fill="none"/>` +
+    `<path d="M${x1},166 L${x2},${y2}" stroke="${C.green}" stroke-width="10.5" stroke-linecap="round" fill="none"/>` +
+    // scarponcino arrotondato che punta verso l'esterno
+    `<path d="M${fx - 10 * dir},${FEET_Y - 1} C${fx - 11 * dir},${FEET_Y - 11} ${fx + 7 * dir},${FEET_Y - 12} ${fx + 13 * dir},${FEET_Y - 4} C${fx + 15 * dir},${FEET_Y + 1} ${fx - 9 * dir},${FEET_Y + 4} ${fx - 10 * dir},${FEET_Y - 1} Z" fill="${C.green}" ${sw(2.8)}/>`;
+  return legs === 'walk' ? leg(85, 81, 196, 77, -1) + leg(123, 135, 194, 139, 1) : leg(86, 85, 197, 81, -1) + leg(122, 123, 197, 127, 1);
 }
 
-const HANDLE = 'M69,86 C61,42 78,10 101,10 C124,10 141,42 133,84';
+// ───────────────────────────── borsa ─────────────────────────────
 
-function veggiesBack(): string {
+/** Scatola vista di tre quarti: più larga che alta, angoli arrotondati, fianco sinistro visibile. */
+const BOX = 'M43,80 L155,79 Q161,79 161,85 L157.5,160 Q157,172 145,172 L55,173 Q43.5,173 43,161 L37,86 Q37,80 43,80 Z';
+const SIDE = 'M43,80 L58,80 L60,173 L55,173 Q43.5,173 43,161 L37,86 Q37,80 43,80 Z';
+const HANDLE = 'M71,88 L71,50 A32,32 0 0 1 135,50 L135,88';
+
+function veggiesBack(variant: Variant): string {
+  const vein = (d: string, color: string = C.leafDark) => `<path d="${d}" stroke="${color}" stroke-width="1.8" fill="none" stroke-linecap="round"/>`;
+  if (variant === 'chef') {
+    // nel foglio di Mina Chef: lattuga grande a sinistra, frutti gialli e arancio sotto il cappello
+    return (
+      frilly(30, 82, 17, 15, -18, 10, 0.16, C.lettuce) +
+      frilly(22, 98, 11, 9, 10, 8, 0.18, C.lettuce) +
+      vein('M47,92 C39,86 31,82 20,80 M33,84 L24,94') +
+      frilly(152, 66, 10, 8, 20, 8, 0.2, C.lettuce) +
+      `<circle cx="128" cy="74" r="10" fill="${C.lemon}" ${sw(2.6)}/>`
+    );
+  }
   return (
-    `<path d="M60,84 C40,78 34,58 43,48 C48,41 57,43 59,50 C63,42 73,45 71,57 C74,64 70,74 66,84 Z" fill="${C.lettuce}" ${sw(3)}/>` +
-    `<path d="M62,82 C57,70 53,60 49,52" stroke="${C.leafDark}" stroke-width="2.2" fill="none" stroke-linecap="round"/>` +
-    `<path d="M140,84 C155,78 166,64 161,53 C158,46 148,49 146,56 C142,50 134,56 136,66 Z" fill="${C.lettuce}" ${sw(3)}/>`
+    // lattuga riccia che esce dall'angolo in alto a sinistra
+    frilly(29, 88, 14, 13, -25, 9, 0.17, C.lettuce) +
+    frilly(23, 103, 10, 8.5, 15, 8, 0.18, C.lettuce) +
+    vein('M43,96 C35,92 28,88 19,86 M31,90 L26,81 M29,99 L23,106') +
+    // foglie scure (spinaci) dietro al pane
+    `<path d="M62,88 C55,74 57,56 64,46 C68,55 72,67 71,84 Z" fill="${C.spinach}" ${sw(2.4)}/>` +
+    `<path d="M69,88 C67,72 71,59 78,52 C78,65 76,77 75,88 Z" fill="${C.spinach}" ${sw(2.4)}/>` +
+    // ciuffo della carota: foglie ricce verde chiaro
+    frilly(151, 45, 11, 17, -20, 8, 0.15, C.leaf) +
+    frilly(167, 44, 11, 16, 30, 8, 0.15, C.leaf) +
+    frilly(160, 59, 10, 10, 0, 8, 0.15, C.leaf) +
+    vein('M150,72 L156,32 M154,64 L170,32 M152,62 L161,52') +
+    `<path d="M137,90 C135,75 140,63 148,59 C155,56 161,61 160,68 C158,79 152,87 150,91 Z" fill="${C.carrot}" ${sw(2.6)}/>` +
+    `<path d="M143,70 L150,71 M141,79 L148,80" stroke="${C.carrotDark}" stroke-width="2" stroke-linecap="round"/>` +
+    `<circle cx="69" cy="79" r="6" fill="${C.radish}" ${sw(2.2)}/>`
   );
 }
 
 function handlePart(): string {
-  return (
-    `<path d="${HANDLE}" stroke="${C.line}" stroke-width="19" fill="none" stroke-linecap="round"/>` +
-    `<path d="${HANDLE}" stroke="${C.green}" stroke-width="12" fill="none" stroke-linecap="round"/>` +
-    `<path d="M85,22 C90,16 97,14 105,14" stroke="${C.greenLight}" stroke-width="3.2" fill="none" stroke-linecap="round"/>`
-  );
+  return `<path d="${HANDLE}" stroke="${C.line}" stroke-width="13.5" fill="none" stroke-linecap="round"/>` + `<path d="${HANDLE}" stroke="${C.green}" stroke-width="8.4" fill="none" stroke-linecap="round"/>`;
 }
 
-function veggiesFront(): string {
-  const bread =
-    `<g transform="rotate(-24 64 54)">` +
-    `<rect x="52" y="18" width="24" height="74" rx="12" fill="${C.bread}" ${sw(3.5)}/>` +
-    `<path d="M57,33 L71,29 M57,48 L71,44 M57,63 L71,59" stroke="${C.breadDark}" stroke-width="2.8" stroke-linecap="round"/>` +
-    `</g>`;
+function veggiesFront(variant: Variant): string {
+  const calyx = Array.from({ length: 10 }, (_, i) => {
+    const a = (i * Math.PI) / 5 - Math.PI / 2;
+    const r = i % 2 === 0 ? 11 : 4.2;
+    return `${(101 + r * Math.cos(a)).toFixed(1)},${(58 + r * Math.sin(a) * 0.6).toFixed(1)}`;
+  }).join(' ');
   const tomato =
-    `<circle cx="101" cy="62" r="19" fill="${C.tomato}" ${sw(3.5)}/>` +
-    `<ellipse cx="93" cy="56" rx="5.5" ry="3.8" fill="${C.tomatoLight}"/>` +
-    `<path d="M88,46 Q95,40 101,45 Q107,39 114,46 Q107,49 101,47 Q95,50 88,46 Z" fill="${C.calyx}" ${sw(2.5)}/>` +
-    `<path d="M101,45 L103,36" ${sw(3)}/>`;
-  const carrot =
-    `<path d="M146,42 C141,30 143,19 149,14 C152,24 152,33 150,42 Z" fill="${C.leaf}" ${sw(2.5)}/>` +
-    `<path d="M150,43 C154,31 162,25 169,25 C165,33 158,41 152,45 Z" fill="${C.leaf}" ${sw(2.5)}/>` +
-    `<path d="M147,43 C137,37 131,29 131,22 C140,24 146,32 150,40 Z" fill="${C.leaf}" ${sw(2.5)}/>` +
-    `<path d="M129,84 C129,64 135,50 144,42 C150,39 154,43 153,49 C151,61 146,74 144,84 Z" fill="${C.carrot}" ${sw(3.5)}/>` +
-    `<path d="M137,60 L145,62 M133,71 L143,73" stroke="${C.carrotDark}" stroke-width="2.3" stroke-linecap="round"/>`;
-  return bread + tomato + carrot;
+    `<ellipse cx="103" cy="76" rx="24" ry="19" fill="${C.tomato}" ${sw(2.8)}/>` +
+    `<ellipse cx="115" cy="66" rx="5.2" ry="2.8" fill="${C.tomatoLight}" transform="rotate(-25 115 66)"/>` +
+    `<path d="M101,58 L102,49" ${sw(2.6)}/>` +
+    `<polygon points="${calyx}" fill="${C.calyx}" ${sw(2)}/>`;
+  if (variant === 'chef') return `<ellipse cx="103" cy="78" rx="22" ry="16" fill="${C.carrot}" ${sw(2.8)}/>` + `<ellipse cx="112" cy="70" rx="5" ry="2.6" fill="${C.lemon}" transform="rotate(-20 112 70)"/>`;
+  const bread =
+    `<g transform="rotate(-30 52 64)">` +
+    `<rect x="40" y="30" width="24" height="70" rx="12" fill="${C.bread}" ${sw(2.8)}/>` +
+    `<path d="M45,46 Q52,42 59,44 M45,61 Q52,57 59,59 M45,76 Q52,72 59,74" stroke="${C.breadMark}" stroke-width="2.8" fill="none" stroke-linecap="round"/>` +
+    `</g>`;
+  return tomato + bread;
 }
-
-/** Pannello frontale: forma compatta e arrotondata, più larga che alta, con la piega laterale. */
-const PANEL = 'M56,82 L145,78 Q157,78 156,90 L151,170 Q150,185 135,185 L68,187 Q53,187 52,173 L45,94 Q44,82 56,82 Z';
 
 function panelPart(variant: Variant): string {
   const panel =
-    `<path d="${PANEL}" fill="${C.ivory}" ${sw(4.6)}/>` +
-    `<path d="M144,85 L139,178 Q148,178 149,168 L153,92 Q152,84 144,85 Z" fill="${C.ivoryShade}"/>` +
-    `<path d="M60,92 C59,118 60,148 63,178" stroke="${C.crease}" stroke-width="3.2" fill="none" stroke-linecap="round"/>` +
-    `<path d="${PANEL}" fill="none" ${sw(4.6)}/>`;
+    `<defs><linearGradient id="mina2-front" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.ivory}"/><stop offset="1" stop-color="${C.ivoryLow}"/></linearGradient></defs>` +
+    `<path d="${BOX}" fill="url(#mina2-front)"/>` +
+    `<path d="${SIDE}" fill="${C.ivoryShade}"/>` +
+    `<path d="M58,85 C58.5,110 59,140 60.5,166" stroke="${C.crease}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
+  // foglia del foglio: verde chiaro, senza contorno, una sola venatura bianca curva che esce come picciolo
   const leaf =
     variant === 'classic'
-      ? `<g transform="translate(116 164) rotate(-40) scale(0.92)">` +
-        `<path d="M0,-17 C12,-11 13,5 0,17 C-13,5 -12,-11 0,-17 Z" fill="${C.leaf}" ${sw(2.8)}/>` +
-        `<path d="M0,13 L0,-11 M0,3 L6,-3 M0,8 L-6,2" stroke="${C.white}" stroke-width="2.3" stroke-linecap="round" fill="none"/>` +
+      ? `<g transform="translate(112 151) scale(1.12)">` +
+        `<path d="M-12,10 C-15,-4 -2,-13 14,-11 C13,4 2,13 -12,10 Z" fill="${C.leaf}"/>` +
+        `<path d="M-17,15 Q-4,4 9,-7" stroke="${C.white}" stroke-width="2.3" fill="none" stroke-linecap="round"/>` +
         `</g>`
       : '';
   return panel + leaf;
@@ -132,86 +191,103 @@ function panelPart(variant: Variant): string {
 
 function apronPart(): string {
   return (
-    `<path d="M48,154 C35,144 27,151 33,159 C37,164 45,160 48,154 Z" fill="${C.green}" ${sw(3)}/>` +
-    `<path d="M48,154 C36,164 32,173 40,174 C46,173 48,163 48,154 Z" fill="${C.green}" ${sw(3)}/>` +
-    `<path d="M48,150 Q100,141 155,146 L151,170 Q150,185 135,185 L68,187 Q53,187 52,173 Z" fill="${C.green}" ${sw(4.2)}/>` +
-    `<circle cx="49" cy="154" r="4.8" fill="${C.green}" ${sw(2.6)}/>` +
-    `<g transform="translate(116 168) rotate(-40) scale(0.88)">` +
-    `<path d="M0,-17 C12,-11 13,5 0,17 C-13,5 -12,-11 0,-17 Z" fill="${C.white}"/>` +
-    `<path d="M0,13 L0,-11 M0,3 L6,-3 M0,8 L-6,2" stroke="${C.green}" stroke-width="2.3" stroke-linecap="round" fill="none"/>` +
-    `</g>`
+    `<path d="M40.4,128.5 L159.1,126 L157.5,160 Q157,172 145,172 L55,173 Q43.5,173 43,161 Z" fill="${C.green}"/>` +
+    `<path d="M40.4,128.5 L59.2,128.1 L60,173 L55,173 Q43.5,173 43,161 Z" fill="${C.greenDeep}"/>` +
+    `<path d="M59.2,129 L60.2,168" stroke="${C.line}" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.6"/>` +
+    `<path d="M40.4,128.5 L159.1,126" ${sw(2.8)} fill="none"/>` +
+    // foglia bianca con venatura verde
+    `<g transform="translate(114 151) scale(1.02)">` +
+    `<path d="M-12,10 C-15,-4 -2,-13 14,-11 C13,4 2,13 -12,10 Z" fill="${C.white}"/>` +
+    `<path d="M-17,15 Q-4,4 9,-7" stroke="${C.green}" stroke-width="2.3" fill="none" stroke-linecap="round"/>` +
+    `</g>` +
+    // fiocco sul fianco sinistro
+    `<path d="M37,131 C24,121 16,128 22,136 C26,141 34,137 37,131 Z" fill="${C.green}" ${sw(2.6)}/>` +
+    `<path d="M37,131 C25,140 21,149 28,151 C34,150 36,140 37,131 Z" fill="${C.green}" ${sw(2.6)}/>` +
+    `<path d="M38,133 L34,154 M39,133 L44,153" ${sw(5)} fill="none"/>` +
+    `<path d="M38,133 L34,154 M39,133 L44,153" stroke="${C.green}" stroke-width="2.4" fill="none" stroke-linecap="round"/>` +
+    `<circle cx="38" cy="132" r="4.4" fill="${C.green}" ${sw(2.4)}/>`
   );
 }
 
-export const CHEEK_L = { x: 66, y: 133 } as const;
-export const CHEEK_R = { x: 136, y: 131 } as const;
+export const CHEEK_L = { x: 77, y: 124 } as const;
+export const CHEEK_R = { x: 143, y: 123 } as const;
 
-/** Corpo completo: lattuga, manico, verdure, pannello, foglia (o grembiule), guance. */
+/** Corpo completo: verdure dietro, manico, verdure davanti, borsa (fianco, piega, foglia o grembiule), guance, contorno. */
 export function bodyPart(variant: Variant): string {
   return (
-    veggiesBack() +
+    veggiesBack(variant) +
     handlePart() +
-    veggiesFront() +
+    veggiesFront(variant) +
     panelPart(variant) +
     (variant === 'chef' ? apronPart() : '') +
-    `<ellipse cx="${CHEEK_L.x}" cy="${CHEEK_L.y}" rx="10" ry="6" fill="${C.cheek}" opacity="0.85"/>` +
-    `<ellipse cx="${CHEEK_R.x}" cy="${CHEEK_R.y}" rx="10" ry="6" fill="${C.cheek}" opacity="0.85"/>`
+    `<ellipse cx="${CHEEK_L.x}" cy="${CHEEK_L.y}" rx="8.6" ry="5.4" fill="${C.cheek}" opacity="0.9"/>` +
+    `<ellipse cx="${CHEEK_R.x}" cy="${CHEEK_R.y}" rx="8.6" ry="5.4" fill="${C.cheek}" opacity="0.9"/>` +
+    `<path d="${BOX}" fill="none" ${sw(LW)}/>`
   );
 }
 
-/** Perno del cappello (base): oscilla quando Mina salta. */
-export const HAT_PIVOT = { x: 101, y: 48 } as const;
+/** Perno del cappello (base della fascia): oscilla quando Mina salta. */
+export const HAT_PIVOT = { x: 101, y: 70 } as const;
 
-/** Cappello da chef, grande e morbido come nel foglio; poggia sopra il manico. */
+/** Cappello da chef grande e morbido (quasi largo quanto la borsa), poggiato sopra il manico. */
 export function hatPart(): string {
-  const puffs = [
-    [76, 26, 17],
-    [126, 26, 17],
-    [101, 12, 22],
-  ];
   return (
-    puffs.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${C.white}" ${sw(3.6)}/>`).join('') +
-    puffs.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r - 1.9}" fill="${C.white}"/>`).join('') +
-    `<rect x="66" y="20" width="70" height="16" fill="${C.white}"/>` +
-    `<path d="M88,26 Q89,15 95,8 M113,27 Q115,18 120,14" stroke="${C.hatShade}" stroke-width="3.2" fill="none" stroke-linecap="round"/>` +
-    `<rect x="64" y="32" width="74" height="18" rx="6" fill="${C.white}" ${sw(3.6)}/>` +
-    `<path d="M70,44 L132,44" stroke="${C.hatShade}" stroke-width="3" stroke-linecap="round"/>`
+    `<g transform="rotate(-5 101 70)">` +
+    puffs(
+      [
+        [69, 36, 15],
+        [80, 17, 17],
+        [101, 8, 19.5],
+        [122, 15, 17.5],
+        [134, 34, 14],
+        [101, 30, 18],
+      ],
+      C.white,
+      3,
+    ) +
+    `<path d="M82,32 Q83,22 90,15 M115,30 Q118,21 125,17" stroke="${C.hatShade}" stroke-width="3" fill="none" stroke-linecap="round"/>` +
+    `<path d="M64,48 L138,48 L133,70 L69,70 Z" fill="${C.white}" ${sw(3)}/>` +
+    `<path d="M66.5,59 L135.5,59 L133,70 L69,70 Z" fill="${C.hatShade}"/>` +
+    `<path d="M64,48 L138,48 L133,70 L69,70 Z" fill="none" ${sw(3)}/>` +
+    `</g>`
   );
 }
 
 // ───────────────────────────── volto ─────────────────────────────
 
-export const EYE_L = { x: 81, y: 115 } as const;
-export const EYE_R = { x: 121, y: 113 } as const;
-export const MOUTH = { x: 101, y: 135 } as const;
+/** Il viso sta al centro del fronte (a destra della piega), come nel foglio. */
+export const EYE_L = { x: 90, y: 108 } as const;
+export const EYE_R = { x: 130, y: 107 } as const;
+export const MOUTH = { x: 110, y: 125 } as const;
 /** Centro degli occhi (perno del battito di ciglia). */
-export const EYES_CENTER = { x: 101, y: 114 } as const;
+export const EYES_CENTER = { x: 110, y: 107.5 } as const;
 
 function eye(kind: Eyes, x: number, y: number, side: Side): string {
-  const s = `stroke="${C.eye}" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round" fill="none"`;
+  const s = `stroke="${C.eye}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"`;
   switch (kind) {
     case 'open':
-      return `<ellipse cx="${x}" cy="${y}" rx="7.8" ry="10.6" fill="${C.eye}"/><circle cx="${x - 2.6}" cy="${y - 4.4}" r="3" fill="${C.white}"/><circle cx="${x + 2.6}" cy="${y + 3.6}" r="1.3" fill="${C.white}"/>`;
+      // ovali scuri senza riflessi, come nel foglio
+      return `<ellipse cx="${x}" cy="${y}" rx="5.4" ry="8" fill="${C.eye}"/>`;
     case 'surprised':
-      return `<ellipse cx="${x}" cy="${y}" rx="8.6" ry="11.4" fill="${C.eye}"/><circle cx="${x - 2.8}" cy="${y - 4.6}" r="3.3" fill="${C.white}"/><circle cx="${x + 2.8}" cy="${y + 3.8}" r="1.4" fill="${C.white}"/>`;
+      return `<ellipse cx="${x}" cy="${y}" rx="4.6" ry="6.4" fill="${C.eye}"/>`;
     case 'happy':
-      return `<path d="M${x - 8},${y + 3} Q${x},${y - 10} ${x + 8},${y + 3}" ${s}/>`;
+      return `<path d="M${x - 6.5},${y + 3} Q${x},${y - 7} ${x + 6.5},${y + 3}" ${s}/>`;
     case 'closed':
-      return `<path d="M${x - 8},${y - 1} Q${x},${y + 7} ${x + 8},${y - 1}" ${s}/>`;
+      return `<path d="M${x - 6.5},${y - 1} Q${x},${y + 5.5} ${x + 6.5},${y - 1}" ${s}/>`;
     case 'wink':
-      return side === 'L' ? eye('open', x, y, side) : `<path d="M${x + 7},${y - 7} L${x - 5},${y} L${x + 7},${y + 7}" ${s}/>`;
+      return side === 'L' ? eye('open', x, y, side) : `<path d="M${x + 6},${y - 6} L${x - 4.5},${y} L${x + 6},${y + 6}" ${s}/>`;
     case 'laugh':
-      return side === 'L' ? `<path d="M${x - 7},${y - 7} L${x + 5},${y} L${x - 7},${y + 7}" ${s}/>` : `<path d="M${x + 7},${y - 7} L${x - 5},${y} L${x + 7},${y + 7}" ${s}/>`;
+      return side === 'L' ? `<path d="M${x - 6},${y - 6} L${x + 4.5},${y} L${x - 6},${y + 6}" ${s}/>` : `<path d="M${x + 6},${y - 6} L${x - 4.5},${y} L${x + 6},${y + 6}" ${s}/>`;
     case 'star': {
       const pts = Array.from({ length: 8 }, (_, i) => {
         const a = (i * Math.PI) / 4 - Math.PI / 2;
-        const r = i % 2 === 0 ? 12 : 4.3;
+        const r = i % 2 === 0 ? 10 : 3.4;
         return `${(x + r * Math.cos(a)).toFixed(1)},${(y + r * Math.sin(a)).toFixed(1)}`;
       }).join(' ');
-      return `<polygon points="${pts}" fill="${C.star}" ${sw(2.4)}/>`;
+      return `<polygon points="${pts}" fill="${C.star}" ${sw(2.2)}/>`;
     }
     case 'heart':
-      return `<path d="M${x},${y + 9} C${x - 13},${y} ${x - 11},${y - 11} ${x - 4.5},${y - 10} C${x - 1},${y - 10} ${x},${y - 7} ${x},${y - 6} C${x},${y - 7} ${x + 1},${y - 10} ${x + 4.5},${y - 10} C${x + 11},${y - 11} ${x + 13},${y} ${x},${y + 9} Z" fill="${C.heart}" ${sw(2.4)}/>`;
+      return `<path d="M${x},${y + 8} C${x - 11},${y} ${x - 10},${y - 9} ${x - 4},${y - 8.5} C${x - 1},${y - 8.5} ${x},${y - 6} ${x},${y - 5} C${x},${y - 6} ${x + 1},${y - 8.5} ${x + 4},${y - 8.5} C${x + 10},${y - 9} ${x + 11},${y} ${x},${y + 8} Z" fill="${C.heart}"/>`;
   }
 }
 
@@ -224,29 +300,29 @@ export function mouthPart(kind: Mouth): string {
   switch (kind) {
     case 'smile':
       return (
-        `<path d="M${x - 13},${y - 4} Q${x},${y - 2} ${x + 13},${y - 4} Q${x + 12},${y + 11} ${x},${y + 12} Q${x - 12},${y + 11} ${x - 13},${y - 4} Z" fill="${C.mouth}" ${sw(2.7)}/>` +
-        `<path d="M${x - 7.5},${y + 8} Q${x},${y + 1.5} ${x + 7.5},${y + 8} Q${x + 4},${y + 11.5} ${x},${y + 11.5} Q${x - 4},${y + 11.5} ${x - 7.5},${y + 8} Z" fill="${C.tongue}"/>`
+        `<path d="M${x - 14},${y - 6} Q${x},${y - 4} ${x + 14},${y - 6} Q${x + 13},${y + 10} ${x},${y + 10.5} Q${x - 13},${y + 10} ${x - 14},${y - 6} Z" fill="${C.mouth}" ${sw(2.4)}/>` +
+        `<path d="M${x - 9},${y + 5.5} Q${x},${y - 1.5} ${x + 9},${y + 5.5} Q${x + 5},${y + 9.5} ${x},${y + 9.5} Q${x - 5},${y + 9.5} ${x - 9},${y + 5.5} Z" fill="${C.tongue}"/>`
       );
     case 'grin':
       return (
-        `<path d="M${x - 16},${y - 5} Q${x},${y - 2} ${x + 16},${y - 5} Q${x + 15},${y + 16} ${x},${y + 16} Q${x - 15},${y + 16} ${x - 16},${y - 5} Z" fill="${C.mouth}" ${sw(2.7)}/>` +
-        `<path d="M${x - 9.5},${y + 11} Q${x},${y + 2.5} ${x + 9.5},${y + 11} Q${x + 5},${y + 15.5} ${x},${y + 15.5} Q${x - 5},${y + 15.5} ${x - 9.5},${y + 11} Z" fill="${C.tongue}"/>`
+        `<path d="M${x - 16},${y - 7} Q${x},${y - 4} ${x + 16},${y - 7} Q${x + 15},${y + 13} ${x},${y + 13.5} Q${x - 15},${y + 13} ${x - 16},${y - 7} Z" fill="${C.mouth}" ${sw(2.4)}/>` +
+        `<path d="M${x - 10.5},${y + 7.5} Q${x},${y - 1} ${x + 10.5},${y + 7.5} Q${x + 6},${y + 12.5} ${x},${y + 12.5} Q${x - 6},${y + 12.5} ${x - 10.5},${y + 7.5} Z" fill="${C.tongue}"/>`
       );
     case 'small':
-      return `<path d="M${x - 9},${y - 1} Q${x},${y + 8} ${x + 9},${y - 1}" stroke="${C.mouth}" stroke-width="3.6" fill="none" stroke-linecap="round"/>`;
+      return `<path d="M${x - 7},${y - 2} Q${x},${y + 5} ${x + 7},${y - 2}" stroke="${C.eye}" stroke-width="3" fill="none" stroke-linecap="round"/>`;
     case 'o':
-      return `<ellipse cx="${x}" cy="${y + 3}" rx="5.5" ry="6.5" fill="${C.mouth}" ${sw(2.7)}/>`;
+      return `<ellipse cx="${x}" cy="${y + 1}" rx="4" ry="5.4" fill="${C.mouth}" ${sw(2.2)}/>`;
     case 'hmm':
-      return `<path d="M${x - 6},${y + 3} Q${x + 1},${y} ${x + 8},${y + 2}" stroke="${C.mouth}" stroke-width="3.6" fill="none" stroke-linecap="round"/>`;
+      return `<ellipse cx="${x + 1}" cy="${y + 1}" rx="2.8" ry="3.4" fill="${C.eye}"/>`;
   }
 }
 
-// ───────────────────────────── braccia ─────────────────────────────
+// ───────────────────────────── braccia e mani ─────────────────────────────
 
-/** Spalle (sul bordo del corpo) e lunghezze dei segmenti; a riposo il braccio pende verso il basso. */
-export const SHOULDER: Record<Side, { x: number; y: number }> = { L: { x: 50, y: 124 }, R: { x: 151, y: 122 } };
-export const UPPER = 24;
-export const FORE = 22;
+/** Spalle sui bordi della borsa e lunghezze dei segmenti (braccia corte come nel foglio). */
+export const SHOULDER: Record<Side, { x: number; y: number }> = { L: { x: 40, y: 120 }, R: { x: 159.5, y: 116 } };
+export const UPPER = 16;
+export const FORE = 17;
 
 export function elbowRest(side: Side) {
   const s = SHOULDER[side];
@@ -257,38 +333,49 @@ export function handRest(side: Side) {
   return { x: s.x, y: s.y + UPPER + FORE };
 }
 
+const ARM_OUT = 14;
+const ARM_IN = 9.4;
+
 /** Segmento superiore (spalla → gomito). `pass` = contorno o riempimento: i due passaggi non lasciano giunture. */
 export function upperArmPart(side: Side, pass: 'outline' | 'fill'): string {
   const s = SHOULDER[side];
   const e = elbowRest(side);
-  return pass === 'outline'
-    ? `<path d="M${s.x},${s.y} L${e.x},${e.y}" stroke="${C.line}" stroke-width="15" stroke-linecap="round" fill="none"/>`
-    : `<path d="M${s.x},${s.y} L${e.x},${e.y}" stroke="${C.green}" stroke-width="8.6" stroke-linecap="round" fill="none"/>`;
+  return `<path d="M${s.x},${s.y} L${e.x},${e.y}" stroke="${pass === 'outline' ? C.line : C.green}" stroke-width="${pass === 'outline' ? ARM_OUT : ARM_IN}" stroke-linecap="round" fill="none"/>`;
 }
 
-/** Avambraccio con la mano a manopola (pollice verso il corpo) ed eventuale oggetto tenuto in mano. */
+/**
+ * Mano a guanto con tre dita e pollice (aperta) o a pugno (quando tiene un oggetto), nel verso del braccio a riposo
+ * (le dita continuano oltre il polso). Contorno e riempimento in due passaggi, come il braccio.
+ */
+function handShape(side: Side, pass: 'outline' | 'fill', fist: boolean): string {
+  const h = handRest(side);
+  const t = side === 'L' ? 1 : -1; // il pollice punta verso il corpo
+  const color = pass === 'outline' ? C.line : C.green;
+  const grow = pass === 'outline' ? 2.4 : 0;
+  const palm = `<circle cx="${h.x}" cy="${h.y + 3}" r="${(fist ? 8 : 7.2) + grow}" fill="${color}"/>`;
+  const capsule = (x1: number, y1: number, x2: number, y2: number, w: number) => `<path d="M${x1},${y1} L${x2},${y2}" stroke="${color}" stroke-width="${w + grow * 2}" stroke-linecap="round"/>`;
+  if (fist) {
+    const knuckles = pass === 'fill' ? `<path d="M${h.x - 3},${h.y + 5} L${h.x - 3},${h.y + 8} M${h.x + 1},${h.y + 5.5} L${h.x + 1},${h.y + 8.5}" stroke="${C.line}" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>` : '';
+    return palm + capsule(h.x, h.y + 3, h.x + t * 8, h.y - 0.5, 5.4) + knuckles;
+  }
+  return (
+    palm +
+    capsule(h.x - 3.8, h.y + 6, h.x - 5.6, h.y + 13, 5) +
+    capsule(h.x, h.y + 7, h.x, h.y + 15, 5) +
+    capsule(h.x + 3.8, h.y + 6, h.x + 5.6, h.y + 13, 5) +
+    capsule(h.x, h.y + 3, h.x + t * 9, h.y + 0.5, 5.2)
+  );
+}
+
+/** Avambraccio con la mano ed eventuale oggetto tenuto in mano. */
 export function foreArmPart(side: Side, pass: 'outline' | 'fill', prop: Prop = 'none', propRotate = 0): string {
   const e = elbowRest(side);
   const h = handRest(side);
-  const hy = h.y + 3;
-  const t = side === 'L' ? 1 : -1; // il pollice punta verso il corpo
-  if (pass === 'outline') {
-    return (
-      `<path d="M${e.x},${e.y} L${h.x},${h.y}" stroke="${C.line}" stroke-width="15" stroke-linecap="round" fill="none"/>` +
-      `<circle cx="${h.x}" cy="${hy}" r="12" fill="${C.line}"/>` +
-      `<ellipse cx="${h.x + t * 8}" cy="${hy - 4}" rx="6" ry="7" fill="${C.line}"/>`
-    );
-  }
-  const held = prop === 'none' ? '' : propPart(prop, h.x, hy, propRotate);
-  const grip = prop === 'none' ? '' : `<circle cx="${h.x}" cy="${hy}" r="10.4" fill="none" stroke="${C.line}" stroke-width="3.2"/>`;
-  return (
-    `<path d="M${e.x},${e.y} L${h.x},${h.y}" stroke="${C.green}" stroke-width="8.6" stroke-linecap="round" fill="none"/>` +
-    held +
-    `<ellipse cx="${h.x + t * 8}" cy="${hy - 4}" rx="3.6" ry="4.6" fill="${C.green}"/>` +
-    `<circle cx="${h.x}" cy="${hy}" r="8.8" fill="${C.green}"/>` +
-    grip +
-    `<path d="M${h.x - t * 3},${hy + 5} Q${h.x + t * 2},${hy + 7.5} ${h.x + t * 6},${hy + 3}" stroke="${C.greenLight}" stroke-width="2.2" fill="none" stroke-linecap="round"/>`
-  );
+  const fist = prop !== 'none';
+  const arm = `<path d="M${e.x},${e.y} L${h.x},${h.y}" stroke="${pass === 'outline' ? C.line : C.green}" stroke-width="${pass === 'outline' ? ARM_OUT : ARM_IN}" stroke-linecap="round" fill="none"/>`;
+  if (pass === 'outline') return arm + handShape(side, 'outline', fist);
+  const held = fist ? propPart(prop, h.x, h.y + 3, propRotate) : '';
+  return arm + held + handShape(side, 'outline', fist) + handShape(side, 'fill', fist);
 }
 
 /** Oggetti tenuti in mano, disegnati attorno al centro della mano (hx, hy), ruotati di `rot` gradi. */
@@ -296,30 +383,30 @@ export function propPart(prop: Prop, hx: number, hy: number, rot: number): strin
   const g = (inner: string) => `<g transform="rotate(${rot.toFixed(1)} ${hx} ${hy})">${inner}</g>`;
   switch (prop) {
     case 'spoon':
-      // cucchiaio di legno: il manico passa nel pugno, la paletta sta in alto
+      // grande cucchiaio di legno con bordo marrone: il manico passa nel pugno, la paletta sta in alto
       return g(
-        `<path d="M${hx},${hy + 15} L${hx},${hy - 32}" stroke="${C.line}" stroke-width="8.5" stroke-linecap="round"/>` +
-          `<path d="M${hx},${hy + 15} L${hx},${hy - 32}" stroke="${C.spoon}" stroke-width="4.2" stroke-linecap="round"/>` +
-          `<ellipse cx="${hx}" cy="${hy - 44}" rx="10" ry="13.5" fill="${C.spoon}" ${sw(3)}/>` +
-          `<ellipse cx="${hx - 1}" cy="${hy - 46}" rx="5.5" ry="8.5" fill="${C.spoonDark}" opacity="0.35"/>`,
+        `<path d="M${hx},${hy + 26} L${hx},${hy - 30}" stroke="${C.spoonLine}" stroke-width="9" stroke-linecap="round"/>` +
+          `<path d="M${hx},${hy + 26} L${hx},${hy - 30}" stroke="${C.spoon}" stroke-width="5" stroke-linecap="round"/>` +
+          `<ellipse cx="${hx}" cy="${hy - 48}" rx="14" ry="19" fill="${C.spoon}" ${sw(2.8, C.spoonLine)}/>` +
+          `<path d="M${hx - 7},${hy - 58} Q${hx - 9},${hy - 42} ${hx + 1},${hy - 34}" stroke="${C.spoonDark}" stroke-width="2.6" fill="none" stroke-linecap="round"/>`,
       );
     case 'phone':
       return g(
-        `<rect x="${hx - 12}" y="${hy - 34}" width="24" height="42" rx="5" fill="${C.green}" ${sw(3)}/>` +
-          `<rect x="${hx - 8}" y="${hy - 29}" width="16" height="28" rx="2.5" fill="${C.white}"/>` +
-          `<path d="M${hx - 1},${hy - 8} C${hx - 6},${hy - 13} ${hx - 3},${hy - 22} ${hx + 5},${hy - 22} C${hx + 6},${hy - 14} ${hx + 3},${hy - 9} ${hx - 1},${hy - 8} Z" fill="${C.leaf}"/>`,
+        `<rect x="${hx - 12}" y="${hy - 38}" width="24" height="42" rx="5" fill="${C.green}" ${sw(2.6)}/>` +
+          `<rect x="${hx - 8.5}" y="${hy - 33.5}" width="17" height="31" rx="3" fill="${C.greenLight}"/>` +
+          `<path d="M${hx - 5},${hy - 11} C${hx - 7},${hy - 20} ${hx},${hy - 26} ${hx + 6},${hy - 26} C${hx + 6},${hy - 18} ${hx + 2},${hy - 12} ${hx - 5},${hy - 11} Z M${hx - 6},${hy - 9} L${hx + 3},${hy - 21}" fill="${C.white}" stroke="${C.white}" stroke-width="1.2" stroke-linecap="round"/>`,
       );
     case 'list':
     case 'clipboard': {
       const board = prop === 'clipboard';
       const tick = (yy: number) =>
-        `<path d="M${hx - 9},${yy} l3,3 l5,-6" stroke="${C.green}" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M${hx + 1},${yy} L${hx + 10},${yy}" stroke="${C.ivoryShade}" stroke-width="2.8" stroke-linecap="round"/>`;
+        `<path d="M${hx - 9},${yy} l3,3 l5,-6" stroke="${C.green}" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M${hx + 1},${yy} L${hx + 10},${yy}" stroke="${C.paperLine}" stroke-width="2.6" stroke-linecap="round"/>`;
       return g(
-        `<rect x="${hx - 15}" y="${hy - 42}" width="30" height="42" rx="${board ? 4 : 3}" fill="${board ? C.green : C.paper}" ${sw(3)}/>` +
-          (board ? `<rect x="${hx - 11}" y="${hy - 37}" width="22" height="32" rx="2" fill="${C.paper}"/><rect x="${hx - 6}" y="${hy - 46}" width="12" height="7" rx="2" fill="${C.ivoryShade}" ${sw(2.4)}/>` : '') +
-          tick(hy - 30) +
-          tick(hy - 21) +
-          tick(hy - 12),
+        `<rect x="${hx - 15}" y="${hy - 44}" width="30" height="44" rx="${board ? 4 : 3}" fill="${board ? C.green : C.paper}" ${sw(2.6)}/>` +
+          (board ? `<rect x="${hx - 11}" y="${hy - 39}" width="22" height="34" rx="2" fill="${C.paper}"/><rect x="${hx - 6}" y="${hy - 48}" width="12" height="7" rx="2" fill="${C.green}" ${sw(2.2)}/>` : '') +
+          tick(hy - 32) +
+          tick(hy - 23) +
+          tick(hy - 14),
       );
     }
     default:
@@ -330,25 +417,21 @@ export function propPart(prop: Prop, hx: number, hy: number, rot: number): strin
 // ───────────────────────────── segni (emote) ─────────────────────────────
 
 /** Perno dei segni (si accendono con una piccola scala). */
-export const EMOTE_PIVOT = { x: 160, y: 34 } as const;
+export const EMOTE_PIVOT = { x: 172, y: 40 } as const;
 
 export function emotePart(kind: Emote): string {
   switch (kind) {
     case 'question':
-      return (
-        `<path d="M152,24 C152,12 172,11 172,23 C172,31 162,31 162,39" stroke="${C.line}" stroke-width="9" fill="none" stroke-linecap="round"/>` +
-        `<path d="M152,24 C152,12 172,11 172,23 C172,31 162,31 162,39" stroke="${C.leaf}" stroke-width="4.5" fill="none" stroke-linecap="round"/>` +
-        `<circle cx="162" cy="49" r="4.6" fill="${C.leaf}" ${sw(2.4)}/>`
-      );
+      return `<path d="M163,26 C163,15 182,14 182,25 C182,32 173,32 173,40" stroke="${C.question}" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="173" cy="49" r="3.4" fill="${C.question}"/>`;
     case 'sparkles':
       return (
-        `<path d="M162,34 L167,26 M171,44 L180,42 M166,53 L173,58" stroke="${C.star}" stroke-width="4.2" stroke-linecap="round"/>` +
-        `<path d="M40,36 L35,28 M31,46 L22,44 M36,55 L29,60" stroke="${C.star}" stroke-width="4.2" stroke-linecap="round"/>`
+        `<path d="M172,40 L177,31 M180,50 L190,47 M175,60 L183,64" stroke="${C.star}" stroke-width="4" stroke-linecap="round"/>` +
+        `<path d="M30,40 L25,32 M22,50 L13,48 M27,59 L20,64" stroke="${C.star}" stroke-width="4" stroke-linecap="round"/>`
       );
     case 'hearts':
-      return `<path d="M164,44 C152,36 154,25 161,25 C165,25 166,28 166,29 C166,28 167,25 171,25 C178,25 180,36 168,44 Z" fill="${C.heart}" ${sw(2.2)}/>`;
+      return `<path d="M176,48 C164,40 166,29 173,29 C177,29 178,32 178,33 C178,32 179,29 183,29 C190,29 192,40 180,48 L178,56 Z" fill="${C.heart}"/>`;
     case 'bang':
-      return `<path d="M168,28 L173,19 M176,40 L186,38 M171,51 L179,56" stroke="${C.star}" stroke-width="4.2" stroke-linecap="round"/>`;
+      return `<path d="M176,74 L181,65 M184,84 L194,82 M178,95 L186,99" stroke="${C.star}" stroke-width="4" stroke-linecap="round"/>`;
   }
 }
 
@@ -425,13 +508,19 @@ export interface MinaLook {
   armL: ArmPose;
   armR: ArmPose;
   emote?: Emote;
+  /** Gambe ferme o a passo (come nel disegno principale del foglio). */
+  legs?: Legs;
+  /** Inclinazione di tutto il corpo attorno ai piedi, in gradi (nel foglio Mina è leggermente inclinata). */
+  lean?: number;
 }
 
 /** Mina intera in un solo SVG (versione statica: righe piccole, "Riduci movimento", esportazioni). */
 export function minaStaticSvg(look: MinaLook, opts: { shadow?: boolean; viewBox?: string } = {}): string {
+  const lean = look.lean ?? 0;
   return svg(
     (opts.shadow === false ? '' : shadowPart()) +
-      legsPart() +
+      `<g transform="rotate(${lean} ${BODY_PIVOT.x} ${BODY_PIVOT.y})">` +
+      legsPart(look.legs) +
       bodyPart(look.variant) +
       (look.variant === 'chef' ? hatPart() : '') +
       eyesPart(look.eyes) +
@@ -440,7 +529,8 @@ export function minaStaticSvg(look: MinaLook, opts: { shadow?: boolean; viewBox?
       armStatic('R', look.armR, 'outline') +
       armStatic('L', look.armL, 'fill') +
       armStatic('R', look.armR, 'fill') +
-      (look.emote ? emotePart(look.emote) : ''),
+      (look.emote ? emotePart(look.emote) : '') +
+      `</g>`,
     opts.viewBox,
   );
 }

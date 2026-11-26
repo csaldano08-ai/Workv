@@ -11,6 +11,9 @@ Branch: `claude/spesora-restyling-mina2`. La versione precedente è confrontabil
 | `riferimenti/mina2_foglio_approvato.webp` | Il foglio di Mina 2.0 e Mina Chef fornito dall'utente (riferimento principale) |
 | `mina2_tavola.png` | Le 17 pose e le espressioni di Mina 2.0 come sono nel codice |
 | `mina2_animazioni.mp4` | Video (40 s, 30 fps) dei gesti animati, registrato dalla demo web reale |
+| `mina2_confronto_riferimento.jpg` | Mina 2.0 e Mina Chef dell'app accanto al foglio approvato |
+| `home_v3_navigazione.mp4` | Video (13 s) della Home V3: saluto di Mina, card che entrano, preferito, calendario, spesa, tocco su Mina |
+| `prima_dopo/home_v3.jpg` | La Home in tre versioni: originale, restyling, Home V3 (sopra e dopo lo scorrimento) |
 | `prima_dopo/` | Confronto prima/dopo di 13 schermate, più `00_panoramica.jpg` |
 | `screenshot/` | Schermate pulite (PNG, 780×1688) delle pagine principali, per i futuri video |
 | `ABBONAMENTI.md` | Cosa è pronto e cosa servirà per collegare App Store e Google Play |
@@ -29,6 +32,22 @@ I PNG trasparenti delle singole pose (1024 px) sono in `assets/mascot/mina2/`. D
 - **Intro e onboarding**: stesse domande; barra di avanzamento animata, Mina 2.0 che accompagna, festa finale, punto di inserimento (spento) per il futuro abbonamento.
 - **Notifiche**: stessi avvisi e stesse impostazioni; corretto l'avviso di fine settimana, che mostrava la data in formato tecnico.
 
+## Home V3 (seconda richiesta)
+
+La Home non è più una pila di riquadri uguali ma un percorso: **saluto → pasto di oggi → cosa serve → settimana**.
+
+- **Intestazione compatta**: marchio, data, avvisi (apre Notifiche) e impostazioni.
+- **Saluto con Mina integrata**: titolo grande con un tratto verde sotto la domanda; Mina in piedi a destra si affaccia sopra la card del pasto (i piedi spariscono dietro la card), su una forma verde tenue di sfondo che la lega alla pagina. Un solo gesto all'apertura, contestuale: saluto, promemoria quando si cucina a breve, festa a giornata finita, pensierosa se mancano ricette. Nessun movimento continuo; toccandola fa un saltello.
+- **Pasto di oggi protagonista**: foto grande 16:9 in alto senza cornici, etichette leggibili su fondo bianco (pasto e orario), cuore dei preferiti a cavallo della foto, titolo grande, durata · persone · orario d'inizio in una riga, **«Ti mancano N ingredienti»** calcolato dalla dispensa reale e collegato alla spesa giusta (oppure «Hai tutto in casa»), pulsante **«Cucina ora»** e un pulsante «…» con tutte le azioni di prima (cambia ricetta, sposta, cucinato, mangio fuori…).
+- **Spesa contestuale**: la grande card della spesa in cima non c'è più; resta la riga sotto la ricetta e una tessera piccola più in basso.
+- **Settimana compatta**: sette tessere con giorno, data e la foto del pasto principale; oggi in verde, i giorni passati più tenui, cestino nei giorni di spesa, spunta sui giorni completati. Accanto, «Calendario».
+- **Spesa e dispensa**: due tessere di colore diverso (pesca, verde) con dati reali (prodotti per oggi, prodotti che potrebbero non bastare).
+- **Microanimazioni**: card che entrano scaglionate, pulsanti e tessere che si schiacciano al tocco, cuore che rimbalza quando si aggiunge ai preferiti, saluto di Mina; tutto fermo con "Riduci movimento".
+- **Stati**: scheletro della pagina mentre i dati non sono pronti, card dedicata quando non ci sono pasti, avvisi e conferme dei pasti invariati.
+- **Telefoni bassi** (altezza < 720 pt, es. iPhone SE): foto e Mina più compatte. Su 375×667, 390×844 e 430×932 «Cucina ora» è interamente visibile sopra la barra delle schede senza scorrere.
+
+Le altre schermate usano già gli stessi componenti e la stessa palette; non sono state rifatte (come richiesto). I prossimi passi naturali, con lo stesso linguaggio: intestazioni con l'icona in cerchio verde tenue come «La tua settimana», tessere colorate al posto delle liste nella Dispensa.
+
 ## Test eseguiti
 
 | Controllo | Esito |
@@ -37,7 +56,8 @@ I PNG trasparenti delle singole pose (1024 px) sono in `assets/mascot/mina2/`. D
 | Nuovi test: Mina 2.0 (SVG validi, nessun colore della vecchia Mina, Chef solo in cucina, cinematica delle braccia, nessuna immagine di rete) | 6/6 |
 | Nuovi test: contrasto WCAG AA della palette (11 coppie testo/fondo + etichette dei pasti) | 12/12 |
 | Nuovo test: avviso di fine settimana con data in italiano | 1/1 |
-| Giro completo della demo web (intro → benvenuto → 16 passi del questionario → anteprima → Oggi → Ricetta → Settimana → Ricette → Spesa → lista completata → Dispensa → Impostazioni → Notifiche → Plus, Prezzi, Storico, Aggiungi, Privacy) | 22 schermate, **0 errori JavaScript** |
+| Giro completo della demo web (intro → benvenuto → 16 passi del questionario → anteprima → Oggi → Ricetta → Settimana → Ricette → Spesa → lista completata → Dispensa → Impostazioni → Notifiche → Plus, Prezzi, Storico, Aggiungi, Privacy), ripetuto dopo la Home V3 | 22 schermate, **0 errori JavaScript** |
+| Home V3 su 375×667, 390×844, 430×932 | «Cucina ora» visibile sopra la barra senza scorrere; titoli su due righe senza tagli; scorrimento fino a settimana e tessere |
 | Stesso giro a 375×667 (iPhone SE), 390×844 e 430×932 (iPhone Pro Max) | Nessun testo tagliato o elemento sovrapposto trovato a vista |
 | Persistenza: dopo il questionario si ricarica la pagina (Impostazioni, Notifiche, Plus…) | Profilo e piano restano (database locale invariato) |
 | Navigazione: schede, ricetta e ritorno, rotte modali e secondarie | Funzionano |
@@ -60,7 +80,7 @@ node scripts/screenshots/record-mina.cjs http://localhost:PORTA cartella-out/min
 - **Nessuna prova su iPhone o Android reali**: in questo ambiente cloud non ci sono simulatori né Expo Go. Tutte le prove visive sono sulla demo web (Chromium). Le animazioni di Mina su iOS/Android usano il driver nativo e lo stesso codice, ma vanno guardate su un dispositivo prima del rilascio (in particolare fluidità con più Mina sullo schermo).
 - **Notifiche**: sul web non esistono, quindi sono verificate solo dai test automatici (calcolo, testi, orari, fasce di silenzio). Permessi e consegna vanno provati su iPhone.
 - **"Riduci movimento"** verificato nel codice (ogni animazione lo controlla) ma non attivato in un browser durante le catture.
-- **Mina 2.0 è un nuovo disegno vettoriale** fedele al foglio approvato (forme, colori, proporzioni, varianti), non una copia pixel per pixel: è ciò che permette di animarla a parti separate. Le pose con il carrello del foglio non sono state realizzate (non servono in nessuna schermata attuale).
+- **Mina 2.0 è ricalcata sul foglio approvato** (proporzioni, verdure, viso, mani, colori: vedi «Fedeltà al riferimento» in `docs/MASCOT.md`), ma resta un disegno vettoriale: niente grana da acquerello, e la stessa borsa per Mina e Mina Chef. Le pose con il carrello e con la cloche del foglio non sono state realizzate (non servono in nessuna schermata attuale).
 - Restano dello stile precedente due elementi neutri: le illustrazioni degli ingredienti (caricamento, benvenuto, icone dei reparti) e l'onda verde dell'animazione iniziale. Sono coerenti con la palette ma hanno ancora il contorno scuro.
 - La pagina `/mina` (vetrina delle animazioni) esiste solo nella demo web; su telefono rimanda all'app.
 - I 7 avvisi di configurazione di `npm run verify` (URL legali, bundle id, EAS, RevenueCat) sono precedenti al restyling e restano da completare per la pubblicazione.

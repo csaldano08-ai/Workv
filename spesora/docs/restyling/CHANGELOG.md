@@ -1,5 +1,13 @@
 # Changelog tecnico — restyling Mina 2.0
 
+## Seconda iterazione: Mina fedele al riferimento e Home V3
+
+- `src/ui/mascot/mina2/art.ts` ridisegnato sulle misure del foglio: scatola di tre quarti con fianco e piega, manico alto, verdure ricce (`frilly`), viso sul fronte senza riflessi, foglia senza contorno, mani a guanto con dita (aperte o a pugno), braccia e gambe corte e spesse, ombra verde, gambe ferme o a passo (`legs`), inclinazione del corpo (`lean`), cappello da chef grande, cucchiaio grande con bordo marrone; colori campionati dal foglio. `poses.ts`: nuove posizioni delle mani, saluto a passo e inclinato. `Mina2.tsx`: perno del corpo tra i piedi, gambe e inclinazione per posa.
+- `app/(tabs)/index.tsx` riscritto (Home V3): `Header`, `Greeting` (Mina che si affaccia sulla card, forma di sfondo), `TodayHero` (foto 16:9, «Ti mancano N ingredienti», «Cucina ora» + menu azioni, `FavoriteButton`), `EmptyHero`, `WeekSection` (tessere con foto del pasto), `QuickTiles` (spesa e dispensa), `HomeSkeleton`; modalità compatta per telefoni bassi. Stessi dati, servizi e azioni.
+- **Nuovi** `scripts/screenshots/record-home.cjs` (video della Home); `capture.cjs` riconosce «Cucina ora».
+- Test di Mina aggiornati (posizioni delle mani, riconoscimento del cappello).
+
+
 ## Mascotte
 
 - **Nuovo** `src/ui/mascot/mina2/art.ts`: disegno di Mina 2.0 e Mina Chef in SVG puro, diviso in parti (ombra, gambe, corpo, cappello, occhi, bocca, braccio, avambraccio, oggetti, segni). 8 espressioni degli occhi, 5 della bocca, 4 oggetti in mano. Cinematica inversa a due segmenti (`armTo`) per descrivere le braccia con la posizione della mano.

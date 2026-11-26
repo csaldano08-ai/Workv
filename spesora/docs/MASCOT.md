@@ -6,12 +6,12 @@ Riferimento approvato: `docs/restyling/riferimenti/mina2_foglio_approvato.webp`.
 
 ## Com'è fatta (non cambiare)
 
-- Borsa in 2D, **corpo avorio** compatto e arrotondato, con la piega laterale color sabbia.
+- Borsa in 2D vista di tre quarti, **corpo avorio** compatto e arrotondato, con il fianco sinistro e la piega color sabbia.
 - **Grande manico verde ad arco**.
 - Dall'apertura spuntano **pane, pomodoro, carota con le foglie e lattuga**.
-- Viso semplice: **occhi neri ovali con due riflessi, guance rosa, sorriso**.
-- **Braccia verdi** con mani a manopola, **piccoli piedi verdi**.
-- **Fogliolina** verde chiaro con nervature bianche sul davanti.
+- Viso semplice: **occhi scuri ovali (senza riflessi), guance rosa, sorriso aperto**.
+- **Braccia verdi** corte con mani a guanto (tre dita e pollice), **piccoli piedi verdi**.
+- **Fogliolina** verde chiaro senza contorno, con una venatura bianca curva, sul davanti.
 - Contorno verde scuro (`#1E4A34`), stile cartoon pulito.
 - Personalità femminile, dolce, simpatica ed espressiva.
 
@@ -20,6 +20,21 @@ Riferimento approvato: `docs/restyling/riferimenti/mina2_foglio_approvato.webp`.
 ### Mina Chef
 
 È la stessa Mina con **cappello da chef bianco, grembiule verde** (con la foglia bianca e il fiocco sul fianco) e **cucchiaio di legno**. Si usa **solo** per ricette, preparazione e consigli di cucina. Un test (`src/test/mina2.test.ts`) verifica che cappello e grembiule compaiano soltanto nelle pose `cooking` e `recipe`.
+
+## Fedeltà al riferimento
+
+Il disegno è ricalcato sul foglio approvato, misura per misura (confronto affiancato: `docs/restyling/mina2_confronto_riferimento.jpg`):
+
+- **borsa vista di tre quarti**, più larga che alta, con il **fianco sinistro** visibile e la **piega marrone** tra fianco e fronte; leggera inclinazione di tutto il corpo (−3°, −6° e a passo nel saluto, come nel disegno principale);
+- **manico** ad arco alto e stretto, tubo verde con contorno scuro;
+- verdure come nel foglio: **filone di pane** inclinato a sinistra, **foglie scure** dietro al pane, **lattuga riccia** che esce dall'angolo in alto a sinistra, **pomodoro** arancio-rosso grande con il calice a stella, mezzo dentro la borsa, **carota** con il **ciuffo riccio** verde chiaro, un piccolo frutto rosso dietro al pane;
+- **viso al centro del fronte** (a destra della piega): occhi ovali scuri **senza riflessi**, bocca aperta con lingua, guance rosa;
+- **foglia** verde chiaro **senza contorno**, con una sola venatura bianca curva che esce come picciolo;
+- **braccia e gambe corte e spesse**, **mani a guanto con tre dita e pollice** (a pugno quando tengono un oggetto), scarponcini arrotondati;
+- **ombra a terra verde chiaro**;
+- Mina Chef: **cappello grande e morbido** (quasi largo quanto la borsa) inclinato, che lascia vedere il manico sotto la fascia; lattuga grande e frutti gialli e arancio; **grembiule** con foglia bianca e **fiocco** sul fianco; **grande cucchiaio di legno** con bordo marrone.
+
+Differenze che restano, volute: il foglio ha una grana da acquerello che un disegno vettoriale per l'app non riproduce (colori pieni con una leggera sfumatura sul fronte); nel foglio la borsa di Mina Chef è un po' più alta di quella di Mina 2.0, qui è la stessa borsa per tenere coerenti le animazioni.
 
 ## Dove vive nel codice
 

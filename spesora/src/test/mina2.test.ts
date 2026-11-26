@@ -46,17 +46,17 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
     expect(CHEF_POSES.sort()).toEqual(['cooking', 'recipe']);
     for (const p of MINA_POSES) {
       const s = minaStaticSvg(POSES[p].look);
-      const hasHat = s.includes(`x="64" y="32" width="74"`);
+      const hasHat = s.includes(C.hatShade);
       expect(hasHat, p).toBe(CHEF_POSES.includes(p));
     }
   });
 
   it('le pose delle braccia portano davvero la mano dove indicato (cinematica inversa)', () => {
     const targets: [Side, number, number][] = [
-      ['R', 170, 88],
-      ['L', 54, 156],
-      ['R', 133, 146],
-      ['L', 30, 92],
+      ['R', 173, 90],
+      ['L', 28, 150],
+      ['R', 147, 141],
+      ['L', 42, 141],
     ];
     for (const [side, x, y] of targets) {
       const pose = armTo(side, x, y);

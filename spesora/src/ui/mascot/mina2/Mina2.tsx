@@ -3,9 +3,9 @@ import { Animated, AppState, Easing, Platform, Pressable, StyleSheet, View, type
 import { SvgXml } from 'react-native-svg';
 import { useReducedMotion } from '../../useReducedMotion';
 import {
+  BODY_PIVOT,
   EMOTE_PIVOT,
   EYES_CENTER,
-  FEET_Y,
   HAT_PIVOT,
   SHOULDER,
   VIEW,
@@ -396,7 +396,7 @@ function AnimatedMina({
   const variant = look.variant;
   const xml = {
     shadow: cached('shadow', shadowPart),
-    legs: cached('legs', legsPart),
+    legs: cached(`legs-${look.legs ?? 'stand'}`, () => legsPart(look.legs)),
     body: cached(`body-${variant}`, () => bodyPart(variant)),
     hat: variant === 'chef' ? cached('hat', hatPart) : null,
     eyes: cached(`eyes-${eyes}`, () => eyesPart(eyes)),
@@ -438,7 +438,13 @@ function AnimatedMina({
       style={[
         fill,
         {
-          transform: around(100, FEET_Y, [{ translateY: Animated.multiply(vals.hop, k) }, { rotate: deg(vals.tilt) }, { scaleY: vals.squash }, { scaleX: vals.squash.interpolate({ inputRange: [0.8, 1, 1.2], outputRange: [1.1, 1, 0.92] }) }]),
+          transform: around(BODY_PIVOT.x, BODY_PIVOT.y, [
+            { translateY: Animated.multiply(vals.hop, k) },
+            { rotate: deg(vals.tilt) },
+            { rotate: `${look.lean ?? 0}deg` },
+            { scaleY: vals.squash },
+            { scaleX: vals.squash.interpolate({ inputRange: [0.8, 1, 1.2], outputRange: [1.1, 1, 0.92] }) },
+          ]),
         },
       ]}
     >
@@ -470,7 +476,7 @@ function AnimatedMina({
         transform: [{ translateY: vals.enter.interpolate({ inputRange: [0, 1], outputRange: [12, 0] }) }, { scale: vals.enter.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1] }) }],
       }}
     >
-      <Animated.View style={[fill, { transform: around(100, FEET_Y + 3, [{ scaleX: vals.shadow }]) }]}>{layer(xml.shadow)}</Animated.View>
+      <Animated.View style={[fill, { transform: around(BODY_PIVOT.x, BODY_PIVOT.y + 2, [{ scaleX: vals.shadow }]) }]}>{layer(xml.shadow)}</Animated.View>
       {body}
     </Animated.View>
   );
@@ -494,7 +500,7 @@ const styles = StyleSheet.create({ clip: { overflow: 'visible' } });
 /** Mina piccola, statica, ritagliata sul viso (righe, badge). */
 export const Mina2Badge = memo(function Mina2Badge({ size = 36, variant = 'classic', style }: { size?: number; variant?: 'classic' | 'chef'; style?: StyleProp<ViewStyle> }) {
   const xml = useMemo(
-    () => minaStaticSvg({ ...POSES.neutral.look, variant, armL: ARM.restL, armR: ARM.restR }, { shadow: false, viewBox: variant === 'chef' ? '30 -10 140 140' : '36 4 128 128' }),
+    () => minaStaticSvg({ ...POSES.neutral.look, variant, armL: ARM.restL, armR: ARM.restR }, { shadow: false, viewBox: variant === 'chef' ? '28 -10 148 148' : '30 22 140 140' }),
     [variant],
   );
   return (

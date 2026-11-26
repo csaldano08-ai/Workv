@@ -13,7 +13,7 @@ const CELL = 300;
 
 async function cell(svgText: string, label: string): Promise<OverlayOptions[]> {
   void label;
-  const png = await sharp(Buffer.from(svgText), { density: 300 }).resize(CELL - 20, Math.round((CELL - 20) * 1.1)).png().toBuffer();
+  const png = await sharp(Buffer.from(svgText), { density: 300 }).resize(CELL - 20, Math.round((CELL - 20) * 1.16)).png().toBuffer();
   return [{ input: png }];
 }
 
@@ -25,7 +25,7 @@ async function main() {
   eyes.forEach((e, i) => items.push({ svg: minaStaticSvg({ variant: i % 2 ? 'chef' : 'classic', eyes: e, mouth: mouths[i], armL: ARM.restL, armR: ARM.restR }), label: `${e}/${mouths[i]}` }));
   const cols = 6;
   const rows = Math.ceil(items.length / cols);
-  const H = Math.round(CELL * 1.1);
+  const H = Math.round(CELL * 1.16);
   const comps: OverlayOptions[] = [];
   for (let i = 0; i < items.length; i++) {
     const [c] = await cell(items[i].svg, items[i].label);
