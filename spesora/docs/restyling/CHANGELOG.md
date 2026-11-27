@@ -1,5 +1,13 @@
 # Changelog tecnico — restyling Mina 2.0
 
+## Terza iterazione: Mina Chef dal suo foglio
+
+- `src/ui/mascot/mina2/art.ts`: scheletro per variante (`RIG`: spalle, lunghezze delle braccia, centro degli occhi, perni del corpo, del cappello e dell'inclinazione). Mina Chef ridisegnata dal foglio «Mina Chef — Style Reference»: borsa alta e inclinata con fianco caldo, cappello a nuvola con fascia curva, arco del manico con frutto arancio, limone e lattuga a lobi, grembiule sul terzo basso con foglia e fiocco (`bow`), viso più piccolo con occhiolino a «<» e sorriso chiuso marrone, braccia e gambe più sottili. Oggetti nuovi o rifatti: cucchiaio grande a sagoma unica, ciotola con zuppa e frusta tenuta in su, cloche su vassoio con vapore ondeggiante, cartellina con molletta e tre spunte; segni `shine` e `shineUp` (tratti gialli del foglio). Lunghezze delle braccia per posa (`ArmPose.len`), gomito invertibile (`flip`), pugno con pollice in su (`fist`), spostamento della figura (`shift`).
+- `src/ui/mascot/mina2/poses.ts`: braccia di Mina Chef (`CHEF_ARM`) date con i punti misurati sul foglio (`chefAt`, che tiene conto dell'inclinazione della posa); braccia a riposo e in festa per variante (`REST`, `CHEER`); nuovo gesto `present` per le pose con oggetti grandi.
+- `src/ui/mascot/mina2/Mina2.tsx`: livelli e perni presi dallo scheletro della variante; inclinazione della posa in un livello a parte (attorno al centro della borsa per Mina Chef); spostamento della figura; margine ai livelli che ruotano con un oggetto (prima la cloche e il vapore venivano tagliati durante il gesto); i tratti gialli compaiono anche nel gesto della ricetta (prima restavano invisibili); al tocco Mina Chef con un oggetto in mano non alza le braccia. `Mina2Badge` di Mina Chef ritagliato sul nuovo viso.
+- `app/mina.tsx`: le quattro pose di Mina Chef nella vetrina. `scripts/screenshots/record-mina.cjs`: le stesse nel video. `scripts/mascot/sheet-mina2.ts`: espressioni di Mina Chef con le sue braccia.
+- Test: scheletro di Mina Chef (cinematica con lunghezze proprie), le quattro pose del foglio, borsa propria di Mina Chef.
+
 ## Seconda iterazione: Mina fedele al riferimento e Home V3
 
 - `src/ui/mascot/mina2/art.ts` ridisegnato sulle misure del foglio: scatola di tre quarti con fianco e piega, manico alto, verdure ricce (`frilly`), viso sul fronte senza riflessi, foglia senza contorno, mani a guanto con dita (aperte o a pugno), braccia e gambe corte e spesse, ombra verde, gambe ferme o a passo (`legs`), inclinazione del corpo (`lean`), cappello da chef grande, cucchiaio grande con bordo marrone; colori campionati dal foglio. `poses.ts`: nuove posizioni delle mani, saluto a passo e inclinato. `Mina2.tsx`: perno del corpo tra i piedi, gambe e inclinazione per posa.

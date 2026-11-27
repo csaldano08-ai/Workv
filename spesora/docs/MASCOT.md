@@ -19,7 +19,16 @@ Riferimento approvato: `docs/restyling/riferimenti/mina2_foglio_approvato.webp`.
 
 ### Mina Chef
 
-È la stessa Mina con **cappello da chef bianco, grembiule verde** (con la foglia bianca e il fiocco sul fianco) e **cucchiaio di legno**. Si usa **solo** per ricette, preparazione e consigli di cucina. Un test (`src/test/mina2.test.ts`) verifica che cappello e grembiule compaiano soltanto nelle pose di Mina Chef.
+È Mina vestita da cuoca, disegnata dal suo foglio (`docs/restyling/riferimenti/mina_chef_style_reference.png`): **cappello da chef bianco** a nuvola, **borsa più alta e inclinata** con il fianco sinistro caldo, **grembiule verde** sul terzo basso (foglia bianca al centro, fiocco sul fianco), viso più piccolo, braccia e gambe corte. Si usa **solo** per ricette, preparazione e consigli di cucina. Un test (`src/test/mina2.test.ts`) verifica che cappello e grembiule compaiano soltanto nelle pose di Mina Chef.
+
+Le quattro pose del foglio, ricalcate misura per misura (confronto: `docs/restyling/mina2_confronto_chef.jpg`):
+
+| Posa | Nel foglio |
+| --- | --- |
+| `cooking` (e `recipe` senza occhiolino) | grande cucchiaio di legno alzato, occhiolino a «<», sorriso aperto, la sinistra a pugno sul fiocco, tre tratti gialli |
+| `mixing` | occhi felici ^ ^, sorriso chiuso, ciotola verde chiaro con la zuppa, frusta d'acciaio tenuta col manico in su |
+| `serving` | cloche d'argento sul vassoio tenuta in alto da sotto, vapore verde che sale, sorriso aperto |
+| `checklist` | cartellina verde con tre spunte, tenuta dal bordo destro, sorriso chiuso, tre tratti gialli sopra |
 
 ## Fedeltà al riferimento
 
@@ -32,17 +41,17 @@ Il disegno è ricalcato sul foglio approvato, misura per misura (confronto affia
 - **foglia** verde chiaro **senza contorno**, con una sola venatura bianca curva che esce come picciolo;
 - **braccia e gambe corte e spesse**, **mani a guanto con tre dita e pollice** (a pugno quando tengono un oggetto), scarponcini arrotondati;
 - **ombra a terra verde chiaro**;
-- Mina Chef: **cappello grande e morbido** (tre ciuffi che si allargano oltre una fascia stretta, appoggiata sul bordo della borsa); lattuga grande a sinistra e limone che sbuca a destra; **grembiule** come nel foglio: un pannello a metà corpo che parte un po' dentro il fianco sinistro (si vede il lato ivorio sotto il fiocco), con una **gonna che sporge** in basso e a destra oltre il profilo della borsa, un bordo superiore netto, la **foglia bianca** al centro e un **fiocco grande** sul bordo sinistro con anse e code che scendono; **grande cucchiaio di legno** con bordo marrone. Il contorno della borsa sta sotto il grembiule, altrimenti sembrerebbe una maglietta.
-- Mina Chef negli usi del foglio: **mescola** una ciotola verde chiaro con la frusta (`mixing`), **serve** una cloche d'argento con il vapore (`serving`), **controlla** una checklist verde (`checklist`), oltre a `cooking` e `recipe` con il cucchiaio.
+- Mina Chef ha **uno scheletro proprio** (`RIG.chef` in `art.ts`), ricalcato sul suo foglio: borsa alta inclinata di circa −11° con il bordo superiore leggermente arcuato e il fianco sinistro giallo caldo; **cappello** a nuvola di tre lobi con l'ombra grigio-azzurra in basso e una **fascia curva** che poggia sull'apertura; sotto la fascia l'**arco verde del manico** con l'interno scuro e un **frutto arancio**, a destra un **limone**, a sinistra la **lattuga a lobi** e un pezzetto di carota; **grembiule** verde sul terzo basso con la foglia bianca e il **fiocco** sul bordo sinistro (si vede solo dove il braccio non lo copre, come nel foglio); occhi più piccoli (il destro un po' più piccolo, la borsa è di tre quarti), sorriso chiuso marrone scuro nelle pose `mixing` e `checklist`; braccia e gambe corte, mani a guanto.
+- Le pose del foglio sono un po' inclinate e con le braccia di lunghezza diversa: l'inclinazione (`lean`) per Mina Chef ruota attorno al centro della borsa, le braccia possono avere lunghezze proprie (`ArmPose.len`) e le pose con oggetti larghi si spostano a sinistra per restare nel riquadro (`shift`).
 
-Differenze che restano, volute: il foglio ha una grana da acquerello che un disegno vettoriale per l'app non riproduce (colori pieni con una leggera sfumatura sul fronte); nel foglio la borsa di Mina Chef è un po' più alta di quella di Mina 2.0, qui è la stessa borsa per tenere coerenti le animazioni.
+Differenze che restano, volute: il foglio ha una grana da acquerello che un disegno vettoriale per l'app non riproduce (colori pieni con una leggera sfumatura sul fronte); nel foglio di Mina Chef le proporzioni cambiano un poco da una posa all'altra (per esempio il viso più largo nella posa che mescola): nell'app Mina Chef è sempre lo stesso personaggio, con la stessa borsa in tutte le pose.
 
 ## Dove vive nel codice
 
 | File | Contenuto |
 | --- | --- |
-| `src/ui/mascot/mina2/art.ts` | Il disegno, in SVG puro, diviso in parti: ombra, gambe, corpo (lattuga, manico, verdure, pannello, foglia o grembiule, guance), cappello, occhi, bocca, braccio e avambraccio (contorno e riempimento separati, così il gomito non lascia giunture), oggetti in mano (cucchiaio, telefono, lista, cartellina), segni (punto di domanda, scintille, cuore). |
-| `src/ui/mascot/mina2/poses.ts` | Le 17 pose: aspetto finale (occhi, bocca, braccia, segno) e gesto animato. Le braccia si descrivono con la posizione della mano (cinematica inversa `armTo`). |
+| `src/ui/mascot/mina2/art.ts` | Il disegno, in SVG puro, diviso in parti: ombra, gambe, corpo (lattuga, manico, verdure, pannello, foglia o grembiule, guance), cappello, occhi, bocca, braccio e avambraccio (contorno e riempimento separati, così il gomito non lascia giunture), oggetti in mano (cucchiaio, telefono, lista, cartellina, ciotola con frusta, cloche), segni (punto di domanda, scintille, tratti gialli, cuore). Uno scheletro per variante (`RIG`): spalle, lunghezze delle braccia, perni. |
+| `src/ui/mascot/mina2/poses.ts` | Le 20 pose: aspetto finale (occhi, bocca, braccia, segno) e gesto animato. Le braccia si descrivono con la posizione della mano (cinematica inversa `armTo`); quelle di Mina Chef con il punto misurato sul suo foglio (`chefAt`). |
 | `src/ui/mascot/mina2/Mina2.tsx` | Il componente: statico (un solo SVG) o animato a livelli. |
 | `src/ui/mascot/Mina.tsx` | `MinaMascot` e `MinaBadge`: l'interfaccia usata dalle schermate (stessi nomi di prima). |
 
@@ -50,7 +59,7 @@ Tutto è vettoriale e locale: niente immagini raster nell'app, niente rete.
 
 ## Pose
 
-`neutral`, `welcome`, `wave`, `explaining`, `thinking`, `calendar` (telefono), `shopping` (lista), `cooking` e `recipe` (Mina Chef), `pantry`, `missing`, `savings`, `happy`, `success`, `sleepy`, `empty`, `reminder`. I vecchi nomi italiani (`saluto`, `spesa`, `promemoria`…) sono ancora risolti.
+`neutral`, `welcome`, `wave`, `explaining`, `thinking`, `calendar` (telefono), `shopping` (lista), `cooking`, `recipe`, `mixing`, `serving` e `checklist` (Mina Chef), `pantry`, `missing`, `savings`, `happy`, `success`, `sleepy`, `empty`, `reminder`. I vecchi nomi italiani (`saluto`, `spesa`, `promemoria`…) sono ancora risolti.
 
 ## Espressioni
 
@@ -67,9 +76,10 @@ Ogni parte ruota attorno al proprio perno: spalla, gomito, base del cappello, ce
 | Felice (`happy`, `savings`) | Chiude gli occhi felici, braccia in alto, salto con anticipo, schiacciamento all'atterraggio e ritorno elastico. |
 | Pensierosa (`thinking`, `empty`) | Guarda in alto, porta la mano al viso, inclina il corpo; compare il punto di domanda. |
 | Lista completata (`success`) | Braccia in alto, salto più alto, pugno di vittoria, scintille. |
-| Ricetta (`recipe`, `cooking`) | Mina Chef alza il cucchiaio con un piccolo svolazzo; il cappello oscilla; in `cooking` strizza l'occhio. |
+| Ricetta (`recipe`, `cooking`) | Mina Chef alza il cucchiaio con un piccolo svolazzo; il cappello oscilla; in `cooking` strizza l'occhio e compaiono i tratti gialli. |
+| Presenta (`mixing`, `serving`, `checklist`) | Mina Chef tiene fermo l'oggetto grande (ciotola, cloche, cartellina): si piega appena, fa un saltello, il cappello ondeggia, compaiono i segni. |
 | Promemoria (`reminder`) | Si sporge, alza la mano, due piccoli rimbalzi, poi torna a riposo. |
-| Tocco (`interactive`) | Un saltello felice, poi torna alla posa di partenza. |
+| Tocco (`interactive`) | Un saltello felice, poi torna alla posa di partenza (Mina Chef con un oggetto in mano non alza le braccia). |
 
 Regole tecniche:
 

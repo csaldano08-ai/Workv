@@ -1,20 +1,21 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { C, FORE, SHOULDER, UPPER, armRotations, armTo, minaStaticSvg, type Side } from '../ui/mascot/mina2/art';
+import { C, FORE, RIG, SHOULDER, UPPER, armRotations, armTo, minaStaticSvg, type ArmLen, type Side, type Variant } from '../ui/mascot/mina2/art';
 import { CHEF_POSES, MINA_POSES, POSES, resolvePose } from '../ui/mascot/mina2/poses';
 
 const ROOT = join(__dirname, '..', '..');
 
 /** Posizione della mano per una posa del braccio (stessa geometria del disegno). */
-function hand(side: Side, out: number, bend: number) {
+function hand(side: Side, out: number, bend: number, variant: Variant = 'classic', len?: ArmLen) {
   const r = armRotations(side, { out, bend });
-  const s = SHOULDER[side];
+  const s = variant === 'classic' ? SHOULDER[side] : RIG[variant].shoulder[side];
+  const [a, b] = len ?? (variant === 'classic' ? [UPPER, FORE] : [RIG[variant].upper, RIG[variant].fore]);
   const rad = (d: number) => (d * Math.PI) / 180;
-  const ex = s.x - UPPER * Math.sin(rad(r.upper));
-  const ey = s.y + UPPER * Math.cos(rad(r.upper));
+  const ex = s.x - a * Math.sin(rad(r.upper));
+  const ey = s.y + a * Math.cos(rad(r.upper));
   const t = r.upper + r.fore;
-  return { x: ex - FORE * Math.sin(rad(t)), y: ey + FORE * Math.cos(rad(t)) };
+  return { x: ex - b * Math.sin(rad(t)), y: ey + b * Math.cos(rad(t)) };
 }
 
 describe('Mina 2.0 — la borsetta della spesa', () => {
@@ -66,6 +67,37 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
     // bersaglio troppo lontano: il braccio si distende (quasi dritto) verso di lui
     const far = armTo('R', 200, 40);
     expect(Math.abs(far.bend)).toBeLessThan(20);
+  });
+
+  it('Mina Chef ha il suo scheletro: le braccia (anche con lunghezze proprie) arrivano dove indicato', () => {
+    const cases: [Side, number, number, ArmLen | undefined][] = [
+      ['R', 162.5, 118, [12, 16]],
+      ['R', 168, 104, [20, 23]],
+      ['L', 54, 176, [14, 15]],
+      ['R', 148, 154, undefined],
+    ];
+    for (const [side, x, y, len] of cases) {
+      const pose = armTo(side, x, y, { len }, 'chef');
+      const h = hand(side, pose.out, pose.bend, 'chef', len);
+      expect(Math.hypot(h.x - x, h.y - (y - 3)), `${side} ${x},${y}`).toBeLessThan(0.6);
+    }
+  });
+
+  it('Mina Chef nelle quattro pose del foglio: cucchiaio e occhiolino, ciotola, cloche, cartellina', () => {
+    const chef = (p: keyof typeof POSES) => POSES[p].look;
+    expect(chef('cooking').armR.prop).toBe('spoon');
+    expect(chef('cooking').eyes).toBe('wink');
+    expect(chef('mixing').armR.prop).toBe('bowl');
+    expect(chef('mixing').eyes).toBe('happy');
+    expect(chef('serving').armR.prop).toBe('cloche');
+    expect(chef('checklist').armR.prop).toBe('clipboard');
+    // gli oggetti larghi restano dentro il riquadro: la figura si sposta a sinistra
+    expect(chef('serving').shift ?? 0).toBeLessThan(0);
+    for (const p of CHEF_POSES) {
+      const s = minaStaticSvg(POSES[p].look);
+      expect(s, p).toContain(C.chefSide); // fianco caldo della borsa di Mina Chef
+      expect(s, p).not.toContain(C.ivoryShade); // non è la borsa di Mina 2.0 con il cappello sopra
+    }
   });
 
   it('i vecchi nomi delle pose restano validi e un nome ignoto usa la posa neutra', () => {

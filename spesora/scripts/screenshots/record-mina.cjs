@@ -17,8 +17,11 @@ const SEQUENCE = [
   ['happy', 'Felice', 3600],
   ['thinking', 'Pensierosa', 3600],
   ['success', 'Lista completata', 4200],
-  ['recipe', 'Ricetta (Mina Chef)', 3800],
   ['reminder', 'Promemoria', 4200],
+  ['cooking', 'Mina Chef: cucchiaio e occhiolino', 3800],
+  ['mixing', 'Mina Chef: mescola', 3400],
+  ['serving', 'Mina Chef: serve', 3400],
+  ['checklist', 'Mina Chef: checklist', 3400],
 ];
 
 (async () => {

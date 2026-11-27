@@ -7,7 +7,7 @@ import { mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import sharp, { type OverlayOptions } from 'sharp';
 import { minaStaticSvg, type Eyes, type Mouth } from '../../src/ui/mascot/mina2/art';
-import { ARM, MINA_POSES, POSES } from '../../src/ui/mascot/mina2/poses';
+import { MINA_POSES, POSES, REST } from '../../src/ui/mascot/mina2/poses';
 
 const CELL = 300;
 
@@ -22,7 +22,10 @@ async function main() {
   const items: { svg: string; label: string }[] = MINA_POSES.map((p) => ({ svg: minaStaticSvg(POSES[p].look), label: p }));
   const eyes: Eyes[] = ['open', 'happy', 'closed', 'wink', 'laugh', 'star', 'heart', 'surprised'];
   const mouths: Mouth[] = ['smile', 'grin', 'small', 'o', 'hmm', 'smile', 'grin', 'o'];
-  eyes.forEach((e, i) => items.push({ svg: minaStaticSvg({ variant: i % 2 ? 'chef' : 'classic', eyes: e, mouth: mouths[i], armL: ARM.restL, armR: ARM.restR }), label: `${e}/${mouths[i]}` }));
+  eyes.forEach((e, i) => {
+    const variant = i % 2 ? 'chef' : 'classic';
+    items.push({ svg: minaStaticSvg({ variant, eyes: e, mouth: mouths[i], armL: REST[variant].l, armR: REST[variant].r }), label: `${e}/${mouths[i]}` });
+  });
   const cols = 6;
   const rows = Math.ceil(items.length / cols);
   const H = Math.round(CELL * 1.16);

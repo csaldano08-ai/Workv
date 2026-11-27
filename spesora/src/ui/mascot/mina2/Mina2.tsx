@@ -3,11 +3,8 @@ import { Animated, AppState, Easing, Platform, Pressable, StyleSheet, View, type
 import { SvgXml } from 'react-native-svg';
 import { useReducedMotion } from '../../useReducedMotion';
 import {
-  BODY_PIVOT,
   EMOTE_PIVOT,
-  EYES_CENTER,
-  HAT_PIVOT,
-  SHOULDER,
+  RIG,
   VIEW,
   armRotations,
   bodyPart,
@@ -30,18 +27,27 @@ import {
   type Mouth,
   type Side,
 } from './art';
-import { ARM, POSES, resolvePose, type MinaAction, type MinaPose } from './poses';
+import { ARM, CHEER, POSES, REST, resolvePose, type MinaAction, type MinaPose } from './poses';
 
 const native = Platform.OS !== 'web';
 const RATIO = VIEW.h / VIEW.w;
 
+/**
+ * Margine (in unità del disegno) dei livelli che durante il gesto escono dal riquadro: l'avambraccio con l'oggetto
+ * è disegnato a riposo e poi ruotato, quindi la cloche, il vapore o la ciotola possono stare fuori dal riquadro
+ * prima della rotazione; senza margine verrebbero tagliati.
+ */
+const PAD = 70;
+const PAD_VIEWBOX = `${VIEW.x - PAD} ${VIEW.y - PAD} ${VIEW.w + 2 * PAD} ${VIEW.h + 2 * PAD}`;
+
 /** Cache delle stringhe SVG: le stesse parti servono a tutte le istanze. */
 const xmlCache = new Map<string, string>();
-function cached(key: string, make: () => string): string {
-  let v = xmlCache.get(key);
+function cached(key: string, make: () => string, pad = false): string {
+  const id = pad ? `${key}|pad` : key;
+  let v = xmlCache.get(id);
   if (!v) {
-    v = svg(make());
-    xmlCache.set(key, v);
+    v = pad ? svg(make(), PAD_VIEWBOX) : svg(make());
+    xmlCache.set(id, v);
   }
   return v;
 }
@@ -132,7 +138,7 @@ interface Timeline {
 
 /** Il gesto di ogni azione, dal suo stato iniziale all'aspetto finale della posa. */
 function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
-  const rest = { l: ARM.restL, r: ARM.restR };
+  const rest = REST[look.variant];
   switch (action) {
     case 'greet': {
       // Mina appare, sorride e saluta con la mano destra (due oscillazioni dal gomito), poi la abbassa
@@ -185,7 +191,7 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
       };
     }
     case 'recipe': {
-      // Mina Chef alza il cucchiaio con un piccolo svolazzo, strizza l'occhio
+      // Mina Chef alza il cucchiaio con un piccolo svolazzo, strizza l'occhio, poi si accendono i tratti gialli
       const r = armRotations('R', look.armR);
       return {
         start: { ...rest, eyes: 'open', mouth: 'smile' },
@@ -194,8 +200,21 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
           Animated.parallel([armTo(vals, 'R', look.armR, 460, back), armTo(vals, 'L', look.armL, 480), tween(vals.tilt, -2.5, 460)]),
           tween(vals.rF, r.fore - 18, 170, Easing.inOut(Easing.sin)),
           tween(vals.rF, r.fore + 10, 200, Easing.inOut(Easing.sin)),
-          Animated.parallel([tween(vals.rF, r.fore, 220, back), tween(vals.tilt, 0, 300), tween(vals.hat, 3, 150)]),
+          Animated.parallel([tween(vals.rF, r.fore, 220, back), tween(vals.tilt, 0, 300), tween(vals.hat, 3, 150), tween(vals.emote, 1, 260, back)]),
           tween(vals.hat, 0, 260, back),
+        ]),
+      };
+    }
+    case 'present': {
+      // Mina Chef con un oggetto grande (ciotola, cloche, cartellina): le braccia restano dove sono (l'oggetto non
+      // vola), lei si piega appena, fa un saltello, il cappello ondeggia e compaiono i segni
+      return {
+        start: { l: look.armL, r: look.armR, eyes: 'open', mouth: look.mouth },
+        cues: look.eyes !== 'open' ? [[380, look.eyes, null]] : [],
+        anim: Animated.sequence([
+          tween(vals.tilt, 2, 220, easeOut),
+          Animated.parallel([tween(vals.tilt, -1.5, 260), hop(vals, 6)]),
+          Animated.parallel([tween(vals.tilt, 0, 300, back), tween(vals.emote, 1, 260, back)]),
         ]),
       };
     }
@@ -375,8 +394,12 @@ function AnimatedMina({
   /** Tocco: un saltello felice, poi torna alla posa di partenza. */
   const onTap = () => {
     stopAll();
-    const tl = timeline('happy', { ...look, eyes: 'happy', mouth: 'grin', armL: ARM.cheerL, armR: ARM.cheerR, emote: 'sparkles' }, vals);
-    setEmote('sparkles');
+    // Mina Chef con un oggetto in mano non alza le braccia (l'oggetto resta dritto): solo il saltello felice
+    const holds = look.variant === 'chef' && (look.armR.prop ?? 'none') !== 'none';
+    const cheer = holds ? { l: look.armL, r: look.armR } : CHEER[look.variant];
+    const tapEmote = look.variant === 'chef' ? (look.emote ?? 'shine') : 'sparkles';
+    const tl = timeline('happy', { ...look, eyes: 'happy', mouth: 'grin', armL: cheer.l, armR: cheer.r, emote: tapEmote }, vals);
+    setEmote(tapEmote);
     vals.emote.setValue(0);
     for (const v of [vals.hop, vals.tilt, vals.gazeX, vals.gazeY, vals.hat]) v.setValue(0);
     for (const v of [vals.squash, vals.shadow, vals.blink]) v.setValue(1);
@@ -394,41 +417,49 @@ function AnimatedMina({
   };
 
   const variant = look.variant;
+  const rig = RIG[variant];
+  const lean = look.lean ?? 0;
+  const bow = look.bow !== false;
   const xml = {
-    shadow: cached('shadow', shadowPart),
-    legs: cached(`legs-${look.legs ?? 'stand'}`, () => legsPart(look.legs)),
-    body: cached(`body-${variant}`, () => bodyPart(variant)),
+    shadow: cached(`shadow-${variant}`, () => shadowPart(variant)),
+    legs: cached(`legs-${variant}-${look.legs ?? 'stand'}`, () => legsPart(look.legs, variant)),
+    body: cached(`body-${variant}-${bow}`, () => bodyPart(variant, { bow })),
     hat: variant === 'chef' ? cached('hat', hatPart) : null,
-    eyes: cached(`eyes-${eyes}`, () => eyesPart(eyes)),
-    mouth: cached(`mouth-${mouth}`, () => mouthPart(mouth)),
-    emote: emote ? cached(`emote-${emote}`, () => emotePart(emote)) : null,
+    eyes: cached(`eyes-${variant}-${eyes}`, () => eyesPart(eyes, variant)),
+    mouth: cached(`mouth-${variant}-${mouth}`, () => mouthPart(mouth, variant)),
+    emote: emote ? cached(`emote-${variant}-${emote}-${lean}`, () => emotePart(emote, lean, variant), true) : null,
   };
   const armXml = (side: Side, pass: 'outline' | 'fill', p: ArmPose) => {
     const prop = p.prop ?? 'none';
     const rot = Math.round(propLocalRotation(side, p));
+    const len = p.len?.join('/') ?? '';
     return {
-      upper: cached(`u-${side}-${pass}`, () => upperArmPart(side, pass)),
-      fore: cached(`f-${side}-${pass}-${prop}-${rot}`, () => foreArmPart(side, pass, prop, rot)),
+      upper: cached(`u-${variant}-${side}-${pass}-${len}`, () => upperArmPart(side, pass, variant, p.len)),
+      fore: cached(`f-${variant}-${side}-${pass}-${prop}-${rot}-${len}`, () => foreArmPart(side, pass, prop, rot, variant, p.len), true),
     };
   };
   const fill: ViewStyle = { position: 'absolute', left: 0, top: 0, width: W, height: H };
   // ogni livello occupa tutto il riquadro, sovrapposto agli altri (stesse coordinate per tutte le parti)
-  const layer = (x: string) => (
+  const layer = (x: string, pad = false) => (
     <View style={fill} pointerEvents="none">
-      <SvgXml xml={x} width={W} height={H} />
+      {pad ? (
+        <SvgXml xml={x} width={W + 2 * PAD * k} height={H + 2 * PAD * k} style={{ position: 'absolute', left: -PAD * k, top: -PAD * k }} />
+      ) : (
+        <SvgXml xml={x} width={W} height={H} />
+      )}
     </View>
   );
 
   const arm = (side: Side, pass: 'outline' | 'fill') => {
     const p = side === 'L' ? look.armL : look.armR;
     const x = armXml(side, pass, p);
-    const s = SHOULDER[side];
-    const e = elbowRest(side);
+    const s = rig.shoulder[side];
+    const e = elbowRest(side, variant, p.len);
     const [u, f] = side === 'L' ? [vals.lU, vals.lF] : [vals.rU, vals.rF];
     return (
       <Animated.View key={`${side}${pass}`} style={[fill, { transform: around(s.x, s.y, [{ rotate: deg(u) }]) }]}>
         {layer(x.upper)}
-        <Animated.View style={[fill, { transform: around(e.x, e.y, [{ rotate: deg(f) }]) }]}>{layer(x.fore)}</Animated.View>
+        <Animated.View style={[fill, { transform: around(e.x, e.y, [{ rotate: deg(f) }]) }]}>{layer(x.fore, true)}</Animated.View>
       </Animated.View>
     );
   };
@@ -438,21 +469,22 @@ function AnimatedMina({
       style={[
         fill,
         {
-          transform: around(BODY_PIVOT.x, BODY_PIVOT.y, [
+          transform: around(rig.bodyPivot.x, rig.bodyPivot.y, [
             { translateY: Animated.multiply(vals.hop, k) },
             { rotate: deg(vals.tilt) },
-            { rotate: `${look.lean ?? 0}deg` },
             { scaleY: vals.squash },
             { scaleX: vals.squash.interpolate({ inputRange: [0.8, 1, 1.2], outputRange: [1.1, 1, 0.92] }) },
           ]),
         },
       ]}
     >
+      {/* inclinazione della posa: attorno ai piedi per Mina 2.0, attorno al centro della borsa per Mina Chef */}
+      <View style={[fill, { transform: around(rig.leanPivot.x, rig.leanPivot.y, [{ rotate: `${lean}deg` }]) }]} pointerEvents="none">
       {layer(xml.legs)}
       {layer(xml.body)}
-      {xml.hat ? <Animated.View style={[fill, { transform: around(HAT_PIVOT.x, HAT_PIVOT.y, [{ rotate: deg(vals.hat) }]) }]}>{layer(xml.hat)}</Animated.View> : null}
+      {xml.hat ? <Animated.View style={[fill, { transform: around(rig.hatPivot.x, rig.hatPivot.y, [{ rotate: deg(vals.hat) }]) }]}>{layer(xml.hat)}</Animated.View> : null}
       <Animated.View
-        style={[fill, { transform: around(EYES_CENTER.x, EYES_CENTER.y, [{ translateX: Animated.multiply(vals.gazeX, k) }, { translateY: Animated.multiply(vals.gazeY, k) }, { scaleY: vals.blink }]) }]}
+        style={[fill, { transform: around(rig.eyesCenter.x, rig.eyesCenter.y, [{ translateX: Animated.multiply(vals.gazeX, k) }, { translateY: Animated.multiply(vals.gazeY, k) }, { scaleY: vals.blink }]) }]}
       >
         {layer(xml.eyes)}
       </Animated.View>
@@ -462,8 +494,9 @@ function AnimatedMina({
       {arm('L', 'fill')}
       {arm('R', 'fill')}
       {xml.emote ? (
-        <Animated.View style={[fill, { opacity: vals.emote, transform: around(EMOTE_PIVOT.x, EMOTE_PIVOT.y, [{ scale: vals.emote.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1] }) }]) }]}>{layer(xml.emote)}</Animated.View>
+        <Animated.View style={[fill, { opacity: vals.emote, transform: around(EMOTE_PIVOT.x, EMOTE_PIVOT.y, [{ scale: vals.emote.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1] }) }]) }]}>{layer(xml.emote, true)}</Animated.View>
       ) : null}
+      </View>
     </Animated.View>
   );
 
@@ -476,8 +509,11 @@ function AnimatedMina({
         transform: [{ translateY: vals.enter.interpolate({ inputRange: [0, 1], outputRange: [12, 0] }) }, { scale: vals.enter.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1] }) }],
       }}
     >
-      <Animated.View style={[fill, { transform: around(BODY_PIVOT.x, BODY_PIVOT.y + 2, [{ scaleX: vals.shadow }]) }]}>{layer(xml.shadow)}</Animated.View>
-      {body}
+      {/* spostamento della figura (pose con oggetti larghi, es. la cloche) */}
+      <View style={[fill, { transform: [{ translateX: (look.shift ?? 0) * k }] }]} pointerEvents="none">
+        <Animated.View style={[fill, { transform: around(rig.bodyPivot.x, rig.bodyPivot.y + 2, [{ scaleX: vals.shadow }]) }]}>{layer(xml.shadow)}</Animated.View>
+        {body}
+      </View>
     </Animated.View>
   );
 
@@ -500,7 +536,13 @@ const styles = StyleSheet.create({ clip: { overflow: 'visible' } });
 /** Mina piccola, statica, ritagliata sul viso (righe, badge). */
 export const Mina2Badge = memo(function Mina2Badge({ size = 36, variant = 'classic', style }: { size?: number; variant?: 'classic' | 'chef'; style?: StyleProp<ViewStyle> }) {
   const xml = useMemo(
-    () => minaStaticSvg({ ...POSES.neutral.look, variant, armL: ARM.restL, armR: ARM.restR }, { shadow: false, viewBox: variant === 'chef' ? '28 -10 148 148' : '30 22 140 140' }),
+    () =>
+      minaStaticSvg(
+        variant === 'chef'
+          ? { variant, eyes: 'open', mouth: 'smile', armL: REST.chef.l, armR: REST.chef.r }
+          : { ...POSES.neutral.look, armL: ARM.restL, armR: ARM.restR },
+        { shadow: false, viewBox: variant === 'chef' ? '18 2 150 150' : '30 22 140 140' },
+      ),
     [variant],
   );
   return (

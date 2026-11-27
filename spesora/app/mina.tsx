@@ -18,7 +18,10 @@ const SHOWCASE: { pose: MinaPose; label: string }[] = [
   { pose: 'success', label: 'Lista completata' },
   { pose: 'recipe', label: 'Ricetta (Mina Chef)' },
   { pose: 'reminder', label: 'Promemoria' },
-  { pose: 'cooking', label: 'Mina Chef' },
+  { pose: 'cooking', label: 'Mina Chef: cucchiaio' },
+  { pose: 'mixing', label: 'Mina Chef: mescola' },
+  { pose: 'serving', label: 'Mina Chef: serve' },
+  { pose: 'checklist', label: 'Mina Chef: checklist' },
 ];
 
 export default function MinaShowcase() {

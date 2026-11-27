@@ -9,9 +9,11 @@ Branch: `claude/spesora-restyling-mina2`. La versione precedente è confrontabil
 | File | Contenuto |
 | --- | --- |
 | `riferimenti/mina2_foglio_approvato.webp` | Il foglio di Mina 2.0 e Mina Chef fornito dall'utente (riferimento principale) |
-| `mina2_tavola.png` | Le 17 pose e le espressioni di Mina 2.0 come sono nel codice |
-| `mina2_animazioni.mp4` | Video (40 s, 30 fps) dei gesti animati, registrato dalla demo web reale |
+| `mina2_tavola.png` | Le 20 pose e le espressioni di Mina 2.0 e Mina Chef come sono nel codice |
+| `mina2_animazioni.mp4` | Video (52 s, 30 fps) dei gesti animati, comprese le quattro pose di Mina Chef, registrato dalla demo web reale |
+| `riferimenti/mina_chef_style_reference.png` | Il foglio di Mina Chef con le quattro pose (cucchiaio, mescola, serve, checklist) |
 | `mina2_confronto_riferimento.jpg` | Mina 2.0 e Mina Chef dell'app accanto al foglio approvato |
+| `mina2_confronto_chef.jpg` | Le quattro pose di Mina Chef: foglio sopra, app sotto |
 | `home_v3_navigazione.mp4` | Video (13 s) della Home V3: saluto di Mina, card che entrano, preferito, calendario, spesa, tocco su Mina |
 | `prima_dopo/home_v3.jpg` | La Home in tre versioni: originale, restyling, Home V3 (sopra e dopo lo scorrimento) |
 | `prima_dopo/` | Confronto prima/dopo di 13 schermate, più `00_panoramica.jpg` |
@@ -80,7 +82,8 @@ node scripts/screenshots/record-mina.cjs http://localhost:PORTA cartella-out/min
 - **Nessuna prova su iPhone o Android reali**: in questo ambiente cloud non ci sono simulatori né Expo Go. Tutte le prove visive sono sulla demo web (Chromium). Le animazioni di Mina su iOS/Android usano il driver nativo e lo stesso codice, ma vanno guardate su un dispositivo prima del rilascio (in particolare fluidità con più Mina sullo schermo).
 - **Notifiche**: sul web non esistono, quindi sono verificate solo dai test automatici (calcolo, testi, orari, fasce di silenzio). Permessi e consegna vanno provati su iPhone.
 - **"Riduci movimento"** verificato nel codice (ogni animazione lo controlla) ma non attivato in un browser durante le catture.
-- **Mina 2.0 è ricalcata sul foglio approvato** (proporzioni, verdure, viso, mani, colori: vedi «Fedeltà al riferimento» in `docs/MASCOT.md`), ma resta un disegno vettoriale: niente grana da acquerello, e la stessa borsa per Mina e Mina Chef. Le pose con il carrello e con la cloche del foglio non sono state realizzate (non servono in nessuna schermata attuale).
+- **Mina 2.0 e Mina Chef sono ricalcate sui loro fogli** (proporzioni, verdure, viso, mani, colori: vedi «Fedeltà al riferimento» in `docs/MASCOT.md`), ma restano disegni vettoriali: niente grana da acquerello. Mina Chef è lo stesso personaggio in tutte le pose (nel foglio le proporzioni variano un poco da una posa all'altra). La posa con il carrello del primo foglio non è stata realizzata (non serve in nessuna schermata attuale).
+- Le nuove pose di Mina Chef (`mixing`, `serving`, `checklist`) sono pronte nel codice, nella vetrina `/mina` e nei PNG per i video, ma non sono ancora usate in una schermata: dove metterle è una scelta da fare.
 - Restano dello stile precedente due elementi neutri: le illustrazioni degli ingredienti (caricamento, benvenuto, icone dei reparti) e l'onda verde dell'animazione iniziale. Sono coerenti con la palette ma hanno ancora il contorno scuro.
 - La pagina `/mina` (vetrina delle animazioni) esiste solo nella demo web; su telefono rimanda all'app.
 - I 7 avvisi di configurazione di `npm run verify` (URL legali, bundle id, EAS, RevenueCat) sono precedenti al restyling e restano da completare per la pubblicazione.
