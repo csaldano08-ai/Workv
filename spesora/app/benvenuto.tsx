@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { useEffect, useRef, type RefObject } from 'react';
+import { StyleSheet, View, type HostInstance } from 'react-native';
 import { useApp } from '../src/features/app/AppProvider';
 import { colors, radius, space } from '../src/theme/tokens';
 import { MinaMascot } from '../src/ui/mascot/Mina';
@@ -12,6 +13,7 @@ import { Logo } from '../src/ui/Logo';
 import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
 import { t } from '../src/i18n/it';
+import { registerIntroAnchor, useIntroState, type IntroAnchor } from '../src/features/intro/introBus';
 
 const POINTS = [
   { title: 'Cosa cucinare', text: 'Colazione, pranzo e cena per tutta la settimana, nel tempo che hai.' },
@@ -19,9 +21,32 @@ const POINTS = [
   { title: 'Cosa resta in dispensa', text: 'Le quantità si aggiornano solo quando confermi di aver cucinato.' },
 ];
 
+/** Registra dove si trova un elemento, perché l'intro possa arrivarci esattamente (passaggio senza tagli). */
+function useIntroAnchor(name: IntroAnchor, ref: RefObject<HostInstance | null>) {
+  useEffect(
+    () =>
+      registerIntroAnchor(
+        name,
+        () =>
+          new Promise((resolve) => {
+            const node = ref.current;
+            if (!node) return resolve(null);
+            node.measureInWindow((x, y, w, h) => resolve({ x, y, w, h }));
+          }),
+      ),
+    [name, ref],
+  );
+}
+
 export default function Welcome() {
   const { snapshot } = useApp();
   const resuming = !!snapshot?.onboarding && !snapshot.onboarding.completed;
+  // dopo l'intro Mina è già qui e ha già salutato: resta nella posa del saluto, viva, senza ripetere il gesto
+  const intro = useIntroState();
+  const logoRef = useRef<HostInstance>(null);
+  const minaRef = useRef<HostInstance>(null);
+  useIntroAnchor('logo', logoRef);
+  useIntroAnchor('mina', minaRef);
   return (
     <Screen
       edges={['top', 'bottom']}
@@ -35,7 +60,9 @@ export default function Welcome() {
     >
       <View style={styles.hero}>
         <Reveal style={styles.brand}>
-          <Logo size={36} />
+          <View ref={logoRef} collapsable={false}>
+            <Logo size={36} />
+          </View>
         </Reveal>
         <Reveal>
           <View style={styles.stage}>
@@ -53,7 +80,9 @@ export default function Welcome() {
             <Floaty delay={1200} style={styles.ingBR}>
               <Ingredient kind="carrot" size={48} />
             </Floaty>
-            <MinaMascot pose="welcome" size={220} animated idle interactive accessibilityLabel="Mina, la borsetta della spesa di Spesora, che ti saluta" />
+            <View ref={minaRef} collapsable={false}>
+              <MinaMascot pose="welcome" size={220} animated={intro === 'none'} idle interactive accessibilityLabel="Mina, la borsetta della spesa di Spesora, che ti saluta" />
+            </View>
           </View>
         </Reveal>
         <Reveal index={1}>

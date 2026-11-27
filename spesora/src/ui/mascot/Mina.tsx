@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { Mina2, Mina2Badge } from './mina2/Mina2';
-import type { Eyes, Mouth } from './mina2/art';
-import type { MinaPose } from './mina2/poses';
+import type { Brows, Eyes, Mouth } from './mina2/art';
+import type { MinaAction, MinaPose } from './mina2/poses';
 
 export type { MinaPose } from './mina2/poses';
 export { MINA_POSES, resolvePose } from './mina2/poses';
@@ -24,9 +24,14 @@ export interface MinaMascotProps {
   accessibilityLabel?: string;
   style?: StyleProp<ViewStyle>;
   replayKey?: string | number;
-  /** Espressioni al posto di quelle della posa (occhi, bocca). */
+  /** Espressioni al posto di quelle della posa (occhi, bocca, sopracciglia). */
   eyes?: Eyes;
   mouth?: Mouth;
+  brows?: Brows;
+  /** Ripete il gesto ogni volta che la schermata torna in primo piano (altrimenti solo la prima volta). */
+  replayOnFocus?: boolean;
+  /** Gesto al posto di quello della posa (es. `emerge` nell'intro). */
+  gesture?: MinaAction;
   /** Chiamata alla fine del gesto della posa. */
   onDone?: () => void;
   /** Quando cambia, Mina dà un'occhiata breve al contenuto accanto. */

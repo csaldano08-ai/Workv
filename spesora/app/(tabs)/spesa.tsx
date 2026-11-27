@@ -13,6 +13,7 @@ import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { checkKey } from '../../src/features/app/SpesoraService';
 import { CATEGORY_LABELS } from '../../src/i18n/labels';
 import { colors, TOUCH, font, radius, shadow, space } from '../../src/theme/tokens';
+import { Burst } from '../../src/ui/Burst';
 import { CheckBox } from '../../src/ui/CheckBox';
 import { Hop } from '../../src/ui/Hop';
 import { Strike } from '../../src/ui/Strike';
@@ -78,7 +79,11 @@ export default function Shopping() {
           />
           {current && current.lines.length > 0 && checkedCount === current.lines.length ? (
             <View style={styles.done} accessible accessibilityRole="alert" accessibilityLabel="Mina: lista completata! Conferma gli acquisti per aggiornare la dispensa.">
-              <MinaMascot pose="success" size={84} animated replayKey={tripKey(current)} />
+              {/* la festa: braccia in alto, occhi felici, salto e pugno di vittoria, con foglioline e scintille */}
+              <View style={styles.doneMina}>
+                <Burst play={tripKey(current)} size={190} style={styles.burst} />
+                <MinaMascot pose="success" size={84} animated replayKey={tripKey(current)} />
+              </View>
               <View style={styles.flex}>
                 <Text variant="hand">Lista completata!</Text>
                 <Text variant="small" color={colors.inkSoft}>
@@ -195,9 +200,14 @@ function TripView({ trip }: { trip: ShoppingTripPlan }) {
       </NotebookPage>
 
       {groups.length > 0 ? (
-        <Text variant="hand" style={styles.restTitle}>
-          {tiles.length > 0 ? 'Il resto della lista' : 'La lista'}
-        </Text>
+        <View style={styles.restHead}>
+          <Text variant="hand" style={styles.flex}>
+            {tiles.length > 0 ? 'Il resto della lista' : 'La lista'}
+          </Text>
+          <Text variant="caption" color={colors.inkSoft}>
+            {`${rest.length} ${rest.length === 1 ? 'PRODOTTO' : 'PRODOTTI'}`}
+          </Text>
+        </View>
       ) : null}
       {groups.map((g) => (
         <CategoryGroup key={g.cat} cat={g.cat} lines={g.lines} trip={trip} isChecked={isChecked} onToggle={toggle} urgentToday={isToday} />
@@ -269,7 +279,12 @@ function LineRow({ line, trip, checked, onToggle, urgentToday }: { line: Shoppin
             ) : null}
           </View>
           {warnings.length > 0 ? <Ionicons name="alert-circle" size={18} color={colors.peachInk} accessibilityLabel="Avviso" /> : null}
-          <Text variant="heading">{qtyText(line)}</Text>
+          {/* quantità in evidenza, in colonna: si legge a colpo d'occhio anche mentre si cammina tra gli scaffali */}
+          <View style={[styles.qtyPill, checked && styles.qtyPillDone]}>
+            <Text variant="heading" style={styles.qtyText} color={checked ? colors.inkSoft : colors.ink}>
+              {qtyText(line)}
+            </Text>
+          </View>
         </Pressable>
         <Pressable accessibilityRole="button" accessibilityLabel={`Perché serve ${ing.name}`} accessibilityState={{ expanded: info }} onPress={() => setInfo((v) => !v)} style={styles.infoBtn} hitSlop={4}>
           <Ionicons name={info ? 'information-circle' : 'information-circle-outline'} size={22} color={colors.inkSoft} />
@@ -392,7 +407,12 @@ const styles = StyleSheet.create({
   tile: { flex: 1, alignItems: 'center', gap: 4, paddingVertical: space.md, paddingHorizontal: 4, borderRadius: radius.lg, borderWidth: 1.5, borderColor: colors.line, backgroundColor: colors.greenMist },
   tileOn: { backgroundColor: colors.greenSoft, borderColor: colors.green },
   tileName: { fontWeight: '700', minHeight: 36 },
-  restTitle: { marginTop: space.sm },
+  restHead: { flexDirection: 'row', alignItems: 'baseline', gap: space.sm, marginTop: space.md, paddingTop: space.md, borderTopWidth: 1, borderTopColor: colors.line },
+  doneMina: { alignItems: 'center', justifyContent: 'center' },
+  burst: { left: 42 - 95, top: 48 - 95 },
+  qtyPill: { minWidth: 58, alignItems: 'center', paddingHorizontal: space.sm, paddingVertical: 3, borderRadius: radius.pill, backgroundColor: colors.greenMist },
+  qtyPillDone: { backgroundColor: colors.tab },
+  qtyText: { fontVariant: ['tabular-nums'], fontSize: 15 },
   group: { backgroundColor: colors.white, borderWidth: 1, borderColor: colors.line, borderRadius: radius.lg, overflow: 'hidden', ...shadow.card },
   groupHead: { flexDirection: 'row', alignItems: 'center', gap: space.md, paddingHorizontal: space.md, minHeight: TOUCH + 8 },
   lineWrap: { borderTopWidth: 1, borderTopColor: colors.line },

@@ -26,7 +26,10 @@ import { Notice } from '../../src/ui/Notice';
 import { SectionTitle } from '../../src/ui/Row';
 import { Screen } from '../../src/ui/Screen';
 import { Stepper } from '../../src/ui/Stepper';
-import { StepTimer } from '../../src/ui/StepTimer';
+import { StepTimer, type TimerPhase } from '../../src/ui/StepTimer';
+import { MinaMascot } from '../../src/ui/mascot/Mina';
+import { emitMina } from '../../src/ui/mascot/director';
+import { useMinaScope } from '../../src/ui/mascot/useMinaScope';
 import { Text } from '../../src/ui/Text';
 
 const AVAILABILITY: Record<IngredientAvailability, { label: string; color: string; icon: keyof typeof Ionicons.glyphMap }> = {
@@ -217,7 +220,7 @@ export default function RecipeScreen() {
           </View>
           <View style={styles.stepBody}>
             <Text variant="body">{s.text}</Text>
-            {s.timerMinutes ? <StepTimer minutes={s.timerMinutes} label={`passaggio ${i + 1}`} /> : null}
+            {s.timerMinutes ? <TimerStep minutes={s.timerMinutes} label={`passaggio ${i + 1}`} /> : null}
           </View>
         </View>
       ))}
@@ -238,6 +241,39 @@ export default function RecipeScreen() {
       <Button kind="ghost" icon="repeat-outline" label="Aggiungi a un altro giorno" onPress={() => router.push(`/ripeti/${recipe.id}`)} />
       {actions.sheet}
     </Screen>
+  );
+}
+
+/**
+ * Timer del passaggio con Mina Chef accanto, piccola e nella riga del timer (non copre mai il testo):
+ * mentre il tempo scorre mescola nella ciotola; a tempo scaduto alza il cucchiaio e strizza l'occhio.
+ * Le reazioni passano dalla regia di Mina: avvii e pause ravvicinati non le fanno ripartire ogni volta.
+ */
+function TimerStep({ minutes, label }: { minutes: number; label: string }) {
+  const [phase, setPhase] = useState<TimerPhase>('idle');
+  const reaction = useMinaScope('cooking');
+  const mine = reaction?.key === label ? reaction : undefined;
+  const onPhase = (p: TimerPhase) => {
+    setPhase(p);
+    if (p === 'running') emitMina({ scope: 'cooking', kind: 'timerStarted', key: label });
+    if (p === 'done') emitMina({ scope: 'cooking', kind: 'timerDone', key: label });
+  };
+  const show = phase === 'running' || phase === 'done';
+  return (
+    <View style={styles.timerRow}>
+      <View style={styles.flex}>
+        <StepTimer minutes={minutes} label={label} onPhase={onPhase} />
+      </View>
+      {show ? (
+        <MinaMascot
+          pose={phase === 'done' ? 'cooking' : 'mixing'}
+          size={56}
+          animated
+          replayKey={mine?.id}
+          accessibilityLabel={phase === 'done' ? 'Mina Chef: tempo scaduto, si passa al prossimo passaggio' : 'Mina Chef mescola mentre il tempo scorre'}
+        />
+      ) : null}
+    </View>
   );
 }
 
@@ -263,6 +299,7 @@ const styles = StyleSheet.create({
   step: { flexDirection: 'row', gap: space.md },
   stepNum: { width: 32, height: 32, borderRadius: 16, backgroundColor: colors.green, alignItems: 'center', justifyContent: 'center' },
   stepBody: { flex: 1, gap: space.sm, paddingTop: 4 },
+  timerRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: 64 },
 });
 
 /** Costo indicativo e informazioni alimentari con stato esplicito: nessun claim non verificato. */

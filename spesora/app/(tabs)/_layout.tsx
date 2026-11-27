@@ -1,5 +1,6 @@
 import type Ionicons from '@expo/vector-icons/Ionicons';
-import { Tabs } from 'expo-router';
+import { Tabs, router } from 'expo-router';
+import { useEffect } from 'react';
 import type { ColorValue } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useApp } from '../../src/features/app/AppProvider';
@@ -14,10 +15,44 @@ const icon = (name: IconName, route: string) =>
     return <TabIcon name={name} route={route} color={color} size={size} focused={focused} />;
   };
 
+/** Esegue `f` quando il thread di JavaScript è libero (o al più tardi dopo 1,5 s). */
+function whenIdle(f: () => void) {
+  if (typeof requestIdleCallback === 'function') requestIdleCallback(() => f(), { timeout: 1500 });
+  else setTimeout(f, 0);
+}
+
+/** Schede già preparate in questa sessione. */
+const preloaded = new Set<string>();
+const PRELOAD = ['/settimana', '/spesa', '/dispensa', '/ricette'] as const;
+
+/**
+ * Niente schermate vuote al primo tocco di una scheda: quando l'app è pronta e Home è ferma, le altre schede
+ * vengono preparate in sottofondo, una alla volta e solo a interazioni finite (Home resta reattiva).
+ * Le schede preparate non recitano nulla finché non vengono aperte: i gesti di Mina partono solo in primo piano.
+ */
+function useTabPreload(ready: boolean) {
+  useEffect(() => {
+    if (!ready) return;
+    const timers = PRELOAD.filter((r) => !preloaded.has(r)).map((r, i) =>
+      setTimeout(
+        () =>
+          whenIdle(() => {
+            if (preloaded.has(r)) return;
+            preloaded.add(r);
+            router.prefetch(r);
+          }),
+        1600 + i * 650,
+      ),
+    );
+    return () => timers.forEach(clearTimeout);
+  }, [ready]);
+}
+
 export default function TabsLayout() {
   const { snapshot } = useApp();
   const insets = useSafeAreaInsets();
   const reduced = useReducedMotion();
+  useTabPreload(!!snapshot?.profile);
   const shoppingCount = snapshot?.shopping.trips.find((tr) => tr.date === snapshot.today)?.lines.length;
   return (
     <Tabs

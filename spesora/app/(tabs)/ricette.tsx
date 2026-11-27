@@ -14,6 +14,8 @@ import { Chip } from '../../src/ui/Chip';
 import { Reveal } from '../../src/ui/Reveal';
 import { Squish } from '../../src/ui/Squish';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
+import { MinaChefTransform } from '../../src/ui/mascot/MinaChefTransform';
+import { firstTimeThisSession, markSeenThisSession } from '../../src/ui/mascot/director';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { SectionTitle } from '../../src/ui/Row';
 import { Text } from '../../src/ui/Text';
@@ -34,9 +36,16 @@ const DIETS = [
 
 export default function Recipes() {
   const { snapshot } = useApp();
-  // a ogni apertura della scheda Mina Chef rifà il suo ingresso (solleva il cucchiaio, strizza l'occhio)
+  // la prima volta in questa sessione Mina indossa cappello e grembiule (trasformazione in Mina Chef);
+  // alle aperture successive Mina Chef fa solo il suo ingresso breve (solleva il cucchiaio, strizza l'occhio)
+  const [chefMode, setChefMode] = useState<'transform' | 'chef'>(() => (firstTimeThisSession('chef-transform') ? 'transform' : 'chef'));
   const [visit, setVisit] = useState(0);
-  useFocusEffect(useCallback(() => setVisit((n) => n + 1), []));
+  useFocusEffect(
+    useCallback(() => {
+      setVisit((n) => n + 1);
+      if (!firstTimeThisSession('chef-transform')) setChefMode('chef');
+    }, []),
+  );
   const [filter, setFilter] = useState<RecipeFilter>({ onlyCompatible: true });
   const [showFilters, setShowFilters] = useState(false);
   const [browseAll, setBrowseAll] = useState(false);
@@ -60,7 +69,11 @@ export default function Recipes() {
         <Text variant="title" accessibilityRole="header" style={styles.titleFlex}>
           Ricettario
         </Text>
-        <MinaMascot pose="cooking" size={54} animated replayKey={visit} style={styles.chef} />
+        {chefMode === 'transform' ? (
+          <MinaChefTransform size={72} play onDone={() => markSeenThisSession('chef-transform')} style={styles.chef} />
+        ) : (
+          <MinaMascot pose="cooking" size={72} animated replayKey={visit} style={styles.chef} />
+        )}
       </View>
       <View style={styles.searchRow}>
         <TextInput
@@ -77,6 +90,19 @@ export default function Recipes() {
           <Ionicons name="options-outline" size={22} color={colors.green} />
         </Pressable>
       </View>
+      {!showFilters ? (
+        // filtri rapidi sempre a portata (gli stessi del pannello completo, che resta dietro il pulsante accanto)
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.quick} keyboardShouldPersistTaps="handled">
+          {COURSES.slice(0, 3).map((c) => (
+            <Chip key={c.id} label={c.label} selected={filter.course === c.id} onPress={() => set({ course: filter.course === c.id ? null : c.id })} />
+          ))}
+          <Chip label="≤ 30 min" selected={filter.maxMinutes === 30} onPress={() => set({ maxMinutes: filter.maxMinutes === 30 ? null : 30 })} />
+          <Chip tone="peach" label="Preferite" selected={!!filter.onlyFavorites} onPress={() => set({ onlyFavorites: !filter.onlyFavorites })} />
+          {COURSES.slice(3).map((c) => (
+            <Chip key={c.id} label={c.label} selected={filter.course === c.id} onPress={() => set({ course: filter.course === c.id ? null : c.id })} />
+          ))}
+        </ScrollView>
+      ) : null}
       {showFilters ? (
         <View style={styles.filters}>
           <FilterRow>
@@ -140,6 +166,10 @@ export default function Recipes() {
                 keyExtractor={(r) => r.id}
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.carousel}
+                // si vedono 2-3 card per riga: le altre si preparano scorrendo (apertura della scheda più rapida)
+                initialNumToRender={4}
+                maxToRenderPerBatch={4}
+                windowSize={3}
                 renderItem={({ item, index }) =>
                   index < 4 ? (
                     <Reveal from="right" index={si + 1 + index}>
@@ -188,7 +218,8 @@ function FilterRow({ children }: { children: React.ReactNode }) {
 function RecipeCard({ recipe, favorite }: { recipe: Recipe; favorite: boolean }) {
   return (
     <Squish accessibilityRole="button" accessibilityLabel={`${recipe.name}, ${recipe.totalMinutes} minuti`} onPress={() => router.push(`/ricetta/${recipe.id}`)} style={styles.card}>
-      <RecipeImage recipe={recipe} rounded={12} />
+      {/* miniatura 320×240: nitida a questa misura e molto più leggera da decodificare dell'immagine grande */}
+      <RecipeImage variant="thumb" recipe={recipe} rounded={14} />
       <Text variant="small" numberOfLines={2} style={styles.cardTitle}>
         {recipe.name}
       </Text>
@@ -227,10 +258,11 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.ivory },
   content: { padding: space.lg, paddingBottom: space.xxl, width: '100%', maxWidth: 640, alignSelf: 'center' },
   header: { gap: space.md, marginBottom: space.md },
-  chef: { marginVertical: -space.md },
+  chef: { marginTop: -18, marginBottom: -14 },
   searchRow: { flexDirection: 'row', gap: space.sm, alignItems: 'center' },
   filterBtn: { width: TOUCH + 4, height: TOUCH + 4, borderRadius: radius.md, borderWidth: 1.5, borderColor: colors.lineStrong, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.paper },
   filters: { gap: space.sm },
+  quick: { gap: space.sm, paddingRight: space.lg },
   filterRow: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   resultBar: { flexDirection: 'row', alignItems: 'center' },
   input: {
@@ -246,7 +278,7 @@ const styles = StyleSheet.create({
   },
   section: { gap: space.sm, marginBottom: space.md },
   carousel: { gap: space.md, paddingRight: space.lg },
-  card: { width: 150, gap: 4 },
+  card: { width: 164, gap: 4 },
   cardTitle: { fontWeight: '600' },
   allBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: space.xs, minHeight: TOUCH, marginTop: space.sm },
   row: { flexDirection: 'row', alignItems: 'center', gap: space.md, minHeight: 72 },

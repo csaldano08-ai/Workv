@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
-import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Animated, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { Alert } from '../../src/ui/dialog';
 import { diffDays, formatLongDate, minutesToHHMM, rangeDays, weekdayOf, weekdayShort, capitalize } from '../../src/core/domain/dates';
 import type { IsoDate, PlannedMeal } from '../../src/core/domain/types';
@@ -14,6 +14,9 @@ import { colors, mealInk, mealTone, radius, shadow, space, TOUCH } from '../../s
 import { Button } from '../../src/ui/Button';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
+import { emitMina, type MinaReaction } from '../../src/ui/mascot/director';
+import { useMinaScope } from '../../src/ui/mascot/useMinaScope';
+import { useReducedMotion } from '../../src/ui/useReducedMotion';
 import { HandLabel, NotebookPage, PaperTabs, StickyNote, TapedPhoto } from '../../src/ui/notebook';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
@@ -24,6 +27,32 @@ import { Text } from '../../src/ui/Text';
 
 type View_ = 'giorno' | 'settimana';
 
+const native = Platform.OS !== 'web';
+const TAB_GAP = 5;
+const EMPTY_MEALS: PlannedMeal[] = [];
+
+/** Pasti programmati: ricetta, giorno e ora di ognuno (per capire quando un pasto viene aggiunto, cambiato o spostato). */
+function plannedMap(meals: PlannedMeal[]): Map<string, string> {
+  return new Map(meals.filter((m) => m.status === 'planned').map((m) => [m.id, `${m.recipeId}|${m.date}|${m.timeMinutes}`]));
+}
+
+/**
+ * Quando un pasto viene programmato (aggiunto, cambiato o spostato: dalle finestre Cambia, Sposta, Ripeti o con la
+ * rigenerazione) Mina fa il gesto della soddisfazione. Cucinare o saltare un pasto non conta. Il gesto parte solo
+ * con la pagina in primo piano, cioè appena si chiude la finestra da cui è arrivata la modifica.
+ */
+function useMealPlannedReaction(meals: PlannedMeal[]) {
+  const prev = useRef<Map<string, string> | null>(null);
+  useEffect(() => {
+    const now = plannedMap(meals);
+    const before = prev.current;
+    prev.current = now;
+    if (!before) return;
+    const changed = [...now].filter(([id, v]) => before.get(id) !== v).map(([id]) => id);
+    if (changed.length > 0) emitMina({ scope: 'week', kind: 'mealPlanned', key: changed.sort().join(',') });
+  }, [meals]);
+}
+
 export default function Week() {
   const { snapshot, run } = useApp();
   const actions = useMealActions();
@@ -31,6 +60,8 @@ export default function Week() {
   const [picked, setPicked] = useState<IsoDate | null>(null);
   // direzione del cambio di giorno: un giorno dopo entra da destra, uno prima da sinistra
   const [dir, setDir] = useState<'left' | 'right'>('right');
+  const reaction = useMinaScope('week');
+  useMealPlannedReaction(snapshot?.meals ?? EMPTY_MEALS);
   if (!snapshot?.profile || !snapshot.plan) return <Screen>{null}</Screen>;
   const snap = snapshot;
   const plan = snapshot.plan;
@@ -75,7 +106,7 @@ export default function Week() {
       {/* Giorno ⇄ Settimana: la vista nuova scivola dal lato della linguetta scelta */}
       <Reveal key={view} from={view === 'giorno' ? 'left' : 'right'} style={styles.viewBody}>
         {view === 'giorno' ? (
-          <DayView snap={snap} days={days} selected={selected} onSelect={pick} from={dir} tripDates={tripDates} onMenu={actions.openMenu} />
+          <DayView snap={snap} days={days} selected={selected} onSelect={pick} from={dir} tripDates={tripDates} onMenu={actions.openMenu} reaction={reaction} />
         ) : (
           <WeekGrid
             snap={snap}
@@ -96,8 +127,36 @@ export default function Week() {
 }
 
 /** Vista "Giorno": linguette dei giorni, riassunto di Mina, schede dei pasti. */
-function DayView({ snap, days, selected, onSelect, from, tripDates, onMenu }: { snap: AppSnapshot; days: IsoDate[]; selected: IsoDate; onSelect: (d: IsoDate) => void; from: 'left' | 'right'; tripDates: Set<string>; onMenu: (m: PlannedMeal) => void }) {
+function DayView({
+  snap,
+  days,
+  selected,
+  onSelect,
+  from,
+  tripDates,
+  onMenu,
+  reaction,
+}: {
+  snap: AppSnapshot;
+  days: IsoDate[];
+  selected: IsoDate;
+  onSelect: (d: IsoDate) => void;
+  from: 'left' | 'right';
+  tripDates: Set<string>;
+  onMenu: (m: PlannedMeal) => void;
+  reaction?: MinaReaction;
+}) {
+  const reduced = useReducedMotion();
   const meals = snap.meals.filter((m) => m.date === selected);
+  // evidenziazione del giorno scelto: una sola forma verde che scivola sulla linguetta nuova (la pagina non si ricrea)
+  const idx = Math.max(0, days.indexOf(selected));
+  const [rowW, setRowW] = useState(0);
+  const [slide] = useState(() => new Animated.Value(idx));
+  useEffect(() => {
+    if (reduced) slide.setValue(idx);
+    else Animated.spring(slide, { toValue: idx, speed: 24, bounciness: 5, useNativeDriver: native }).start();
+  }, [idx, reduced, slide]);
+  const tabW = rowW > 0 ? (rowW - TAB_GAP * (days.length - 1)) / days.length : 0;
   const toCook = meals.filter((m) => m.status === 'planned');
   const shopping = tripDates.has(selected);
   const last = toCook[toCook.length - 1];
@@ -110,7 +169,14 @@ function DayView({ snap, days, selected, onSelect, from, tripDates, onMenu }: { 
         : `${dayName}: ${toCook.length} ${toCook.length === 1 ? 'pasto' : 'pasti'}${shopping ? ' e la spesa' : ''}`;
   return (
     <>
-      <View style={styles.dayTabs} accessibilityRole="tablist">
+      <View style={styles.dayTabs} accessibilityRole="tablist" onLayout={(e) => setRowW(e.nativeEvent.layout.width)}>
+        {/* fondi delle linguette, poi la forma verde che scivola, poi i testi (sopra la forma) */}
+        <View style={styles.slots} pointerEvents="none">
+          {days.map((d) => (
+            <View key={d} style={[styles.slot, d === snap.today && styles.slotToday]} />
+          ))}
+        </View>
+        {tabW > 0 ? <Animated.View pointerEvents="none" style={[styles.highlight, { width: tabW, transform: [{ translateX: Animated.multiply(slide, tabW + TAB_GAP) }] }]} /> : null}
         {days.map((d) => {
           const on = d === selected;
           return (
@@ -121,7 +187,7 @@ function DayView({ snap, days, selected, onSelect, from, tripDates, onMenu }: { 
               accessibilityState={{ selected: on }}
               accessibilityLabel={`${formatLongDate(d)}${d === snap.today ? ', oggi' : ''}${tripDates.has(d) ? ', giorno di spesa' : ''}`}
               onPress={() => onSelect(d)}
-              style={[styles.dtab, on && styles.dtabOn, d === snap.today && !on && styles.dtabToday]}
+              style={[styles.dtab, on && tabW === 0 && styles.dtabOn]}
             >
               <Text variant="caption" color={on ? colors.greenSoft : colors.inkSoft}>
                 {weekdayShort(weekdayOf(d))}
@@ -140,7 +206,15 @@ function DayView({ snap, days, selected, onSelect, from, tripDates, onMenu }: { 
       </View>
 
       <View style={styles.scene}>
-        <MinaMascot pose={toCook.length === 0 && meals.length > 0 ? 'success' : 'calendar'} size={92} animated glance={selected} style={styles.sceneMina} />
+        {/* segue il cambio di giorno con lo sguardo; quando un pasto viene programmato fa il gesto della soddisfazione */}
+        <MinaMascot
+          pose={reaction?.kind === 'mealPlanned' ? 'satisfied' : toCook.length === 0 && meals.length > 0 ? 'success' : 'calendar'}
+          replayKey={reaction?.id}
+          size={92}
+          animated
+          glance={selected}
+          style={styles.sceneMina}
+        />
         <Reveal key={selected} from={from} style={styles.flex}>
           <StickyNote>
             <Text variant="hand">{summary}</Text>
@@ -270,10 +344,13 @@ const styles = StyleSheet.create({
   viewBody: { gap: space.lg },
   flex: { flex: 1 },
   iconBtn: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center' },
-  dayTabs: { flexDirection: 'row', gap: 5, marginTop: space.sm },
-  dtab: { flex: 1, minHeight: 60, borderRadius: radius.md, backgroundColor: colors.greenMist, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: 'transparent' },
+  dayTabs: { flexDirection: 'row', gap: TAB_GAP, marginTop: space.sm },
+  slots: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, flexDirection: 'row', gap: TAB_GAP },
+  slot: { flex: 1, borderRadius: radius.md, backgroundColor: colors.greenMist, borderWidth: 2, borderColor: 'transparent' },
+  slotToday: { borderColor: colors.green, backgroundColor: colors.white },
+  highlight: { position: 'absolute', top: 0, bottom: 0, left: 0, borderRadius: radius.md, backgroundColor: colors.green, ...shadow.card },
+  dtab: { flex: 1, minHeight: 60, borderRadius: radius.md, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: 'transparent' },
   dtabOn: { backgroundColor: colors.green, ...shadow.card },
-  dtabToday: { borderColor: colors.green, backgroundColor: colors.white },
   dnum: { fontWeight: '800', fontSize: 18 },
   shopDot: { position: 'absolute', top: -8, right: -5, width: 19, height: 19, borderRadius: 10, backgroundColor: colors.peach, borderWidth: 2, borderColor: colors.white, alignItems: 'center', justifyContent: 'center' },
   scene: { flexDirection: 'row', alignItems: 'center', gap: space.xs, marginTop: space.sm },

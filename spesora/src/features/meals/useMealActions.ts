@@ -29,7 +29,8 @@ export function useMealActions() {
       Alert.alert('Pasto registrato', `In dispensa non risultavano: ${list}. Se li avevi, aggiungili dalla Dispensa per tenerla allineata.`);
       return;
     }
-    celebrate({ title: 'Pasto completato', text: recipeCompleted(meal.id) });
+    // il piatto è pronto: festeggia Mina Chef, che lo serve con la cloche (gesto breve)
+    celebrate({ title: 'Pasto completato', text: recipeCompleted(meal.id), pose: 'serving' });
   };
 
   const notFollowed = async (meal: PlannedMeal, outcome: Exclude<MealStatus, 'planned' | 'cooked'>) => {

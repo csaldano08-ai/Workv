@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { C, FORE, RIG, SHOULDER, UPPER, armRotations, armTo, minaStaticSvg, type ArmLen, type Side, type Variant } from '../ui/mascot/mina2/art';
+import { C, FORE, RIG, SHOULDER, UPPER, apronPart, armFrame, armRotations, armTo, bodyPart, browsPart, minaStaticSvg, poseFrame, type ArmLen, type Side, type Variant } from '../ui/mascot/mina2/art';
 import { CHEF_POSES, MINA_POSES, POSES, resolvePose } from '../ui/mascot/mina2/poses';
 import { MINA_STATE_POSE } from '../ui/mascot/mina2/states';
 
@@ -21,7 +21,7 @@ function hand(side: Side, out: number, bend: number, variant: Variant = 'classic
 
 describe('Mina 2.0 — la borsetta della spesa', () => {
   it('ogni posa è un SVG valido e chiuso, con l’identità fissa della borsa', () => {
-    expect(MINA_POSES).toHaveLength(23);
+    expect(MINA_POSES).toHaveLength(27);
     for (const p of MINA_POSES) {
       const s = minaStaticSvg(POSES[p].look);
       expect(s.startsWith('<svg')).toBe(true);
@@ -88,7 +88,7 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
     const chef = (p: keyof typeof POSES) => POSES[p].look;
     expect(chef('cooking').armR.prop).toBe('spoon');
     expect(chef('cooking').eyes).toBe('wink');
-    expect(chef('mixing').armR.prop).toBe('bowl');
+    expect(chef('mixing').armR.prop).toBe('whisk');
     expect(chef('mixing').eyes).toBe('happy');
     expect(chef('serving').armR.prop).toBe('cloche');
     expect(chef('checklist').armR.prop).toBe('clipboard');
@@ -110,6 +110,65 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
         if (variant === 'chef') expect(POSES[pose].look.variant, String(state)).toBe('chef');
       }
     }
+  });
+
+  it('braccia curve ma collegate: la curva parte dalla spalla, passa dal gomito e arriva al polso', () => {
+    for (const variant of ['classic', 'chef'] as const) {
+      for (const [upper, fore] of [
+        [10, 20],
+        [-40, 60],
+        [120, -30],
+        [170, 15],
+      ]) {
+        for (const side of ['L', 'R'] as const) {
+          const f = armFrame(side, upper, fore, variant);
+          // l'attacco è la spalla dello scheletro: il braccio non si stacca mai dal corpo
+          expect(f.s).toEqual(RIG[variant].shoulder[side]);
+          // Bézier quadratica: a metà passa esattamente dal gomito (il gomito guida la curva)
+          const mid = { x: (f.s.x + 2 * f.c.x + f.w.x) / 4, y: (f.s.y + 2 * f.c.y + f.w.y) / 4 };
+          expect(Math.hypot(mid.x - f.e.x, mid.y - f.e.y)).toBeLessThan(1e-9);
+          // la mano sta sul polso, orientata come la fine del braccio
+          expect(Math.hypot(f.palm.x - f.w.x, f.palm.y - f.w.y)).toBeCloseTo(3, 6);
+        }
+      }
+    }
+  });
+
+  it('nessuna posa fa passare il braccio davanti al viso', () => {
+    // occhi e bocca di Mina 2.0 e di Mina Chef (riquadri del viso nel disegno)
+    const face: Record<Variant, { x0: number; x1: number; y0: number; y1: number }> = {
+      classic: { x0: 82, x1: 138, y0: 100, y1: 130 },
+      chef: { x0: 86, x1: 130, y0: 100, y1: 128 },
+    };
+    for (const p of MINA_POSES) {
+      const look = POSES[p].look;
+      for (const side of ['L', 'R'] as const) {
+        const f = poseFrame(side, side === 'L' ? look.armL : look.armR, look.variant);
+        const box = face[look.variant];
+        for (let i = 0; i <= 20; i++) {
+          const t = i / 20;
+          const x = (1 - t) * (1 - t) * f.s.x + 2 * (1 - t) * t * f.c.x + t * t * f.w.x;
+          const y = (1 - t) * (1 - t) * f.s.y + 2 * (1 - t) * t * f.c.y + t * t * f.w.y;
+          const inside = x > box.x0 && x < box.x1 && y > box.y0 && y < box.y1;
+          expect(inside, `${p} ${side} t=${t}`).toBe(false);
+        }
+      }
+    }
+  });
+
+  it('sopracciglia e grembiule sono livelli a parte (espressioni e trasformazione in Mina Chef)', () => {
+    expect(browsPart('none')).toBe('');
+    for (const b of ['soft', 'worried', 'raised', 'focus'] as const) {
+      expect(browsPart(b), b).toContain(C.eye);
+      expect(browsPart(b, 'chef'), b).toContain(C.eye);
+    }
+    expect(POSES.concerned.look.brows).toBe('worried');
+    expect(POSES.thinking.look.brows).toBe('focus');
+    // il corpo di Mina Chef senza grembiule è la base della trasformazione; con il grembiule è identico a prima
+    const apron = apronPart(true);
+    expect(bodyPart('chef')).toContain(apron);
+    expect(bodyPart('chef', { apron: false })).not.toContain(apron.slice(0, 40));
+    expect(bodyPart('chef', { apron: false }).length).toBe(bodyPart('chef').length - apron.length);
   });
 
   it('i vecchi nomi delle pose restano validi e un nome ignoto usa la posa neutra', () => {

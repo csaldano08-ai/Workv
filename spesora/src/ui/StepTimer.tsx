@@ -4,12 +4,21 @@ import { colors, space } from '../theme/tokens';
 import { Button } from './Button';
 import { Text } from './Text';
 
-/** Timer di un passaggio. Usa l'orario di fine, quindi resta preciso anche se lo schermo si blocca brevemente. */
-export function StepTimer({ minutes, label }: { minutes: number; label: string }) {
+export type TimerPhase = 'idle' | 'running' | 'paused' | 'done';
+
+/**
+ * Timer di un passaggio. Usa l'orario di fine, quindi resta preciso anche se lo schermo si blocca brevemente.
+ * `onPhase` avvisa quando parte, va in pausa, finisce o viene azzerato (es. per la reazione di Mina Chef).
+ */
+export function StepTimer({ minutes, label, onPhase }: { minutes: number; label: string; onPhase?: (p: TimerPhase) => void }) {
   const total = minutes * 60;
   const [endAt, setEndAt] = useState<number | null>(null);
   const [left, setLeft] = useState(total);
   const announced = useRef(false);
+  const onPhaseRef = useRef(onPhase);
+  useEffect(() => {
+    onPhaseRef.current = onPhase;
+  }, [onPhase]);
 
   useEffect(() => {
     if (endAt === null) return;
@@ -21,6 +30,7 @@ export function StepTimer({ minutes, label }: { minutes: number; label: string }
         Vibration.vibrate(600);
         AccessibilityInfo.announceForAccessibility(`Tempo scaduto: ${label}`);
         setEndAt(null);
+        onPhaseRef.current?.('done');
       }
     };
     tick();
@@ -44,16 +54,26 @@ export function StepTimer({ minutes, label }: { minutes: number; label: string }
         onPress={() => {
           if (running) {
             setEndAt(null);
+            onPhase?.('paused');
             return;
           }
           announced.current = false;
           const base = left === 0 ? total : left;
           setLeft(base);
           setEndAt(Date.now() + base * 1000);
+          onPhase?.('running');
         }}
       />
       {left !== total && !running ? (
-        <Button compact kind="ghost" label="Azzera" onPress={() => setLeft(total)} />
+        <Button
+          compact
+          kind="ghost"
+          label="Azzera"
+          onPress={() => {
+            setLeft(total);
+            onPhase?.('idle');
+          }}
+        />
       ) : null}
     </View>
   );

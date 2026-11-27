@@ -19,6 +19,7 @@ import { Button } from '../../src/ui/Button';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
 import { LogoMark } from '../../src/ui/Logo';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
+import { emitMina } from '../../src/ui/mascot/director';
 import { LinkRow, StickyNote } from '../../src/ui/notebook';
 import { Notice } from '../../src/ui/Notice';
 import { RecipeImage } from '../../src/ui/RecipeImage';
@@ -86,11 +87,13 @@ export default function Today() {
         : 'Ecco il prossimo pasto.';
   // reazione contestuale di Mina: un solo gesto all'apertura, poi resta ferma (toccandola fa un saltello)
   const minaPose = finished ? 'success' : !next ? 'thinking' : cookingSoon ? 'reminder' : 'welcome';
+  // al pasto di oggi manca qualcosa in dispensa: dopo il saluto Mina guarda la card preoccupata e la indica
+  const missingToday = next && next.date === snap.today ? mealIngredientStatus(next, catalogIndex, toStock(snap.pantry), snap.staples, snap.profile?.portions).filter((x) => x.status === 'da_comprare' || x.status === 'parziale').length : 0;
 
   return (
     <Screen contentContainerStyle={styles.content} reveal={false}>
       <Header snap={snap} />
-      <Greeting hello={hello} subtitle={subtitle} pose={minaPose} compact={compact} />
+      <Greeting hello={hello} subtitle={subtitle} pose={minaPose} compact={compact} missing={next && missingToday > 0 ? { key: `${next.id}|${missingToday}`, count: missingToday } : null} />
       <Reveal>{next ? <TodayHero meal={next} snap={snap} todayTrip={todayTrip} compact={compact} onMore={() => actions.openMenu(next)} /> : <EmptyHero snap={snap} />}</Reveal>
 
       {later.length > 0 ? (
@@ -188,9 +191,17 @@ function IconButton({ icon, label, onPress }: { icon: keyof typeof Ionicons.glyp
  * Saluto con Mina integrata: Mina sta in piedi a destra e i suoi piedi spariscono dietro la card del pasto,
  * come se ci si affacciasse sopra. Saluta una volta all'apertura, poi resta ferma; toccandola fa un saltello.
  */
-function Greeting({ hello, subtitle, pose, compact }: { hello: string; subtitle: string; pose: string; compact: boolean }) {
-  // finito il gesto d'ingresso, Mina dà un'occhiata al pasto di oggi (la card sotto di lei)
+function Greeting({ hello, subtitle, pose, compact, missing }: { hello: string; subtitle: string; pose: string; compact: boolean; missing: { key: string; count: number } | null }) {
+  // finito il gesto d'ingresso, Mina dà un'occhiata al pasto di oggi (la card sotto di lei); se al pasto manca
+  // qualcosa, invece, lo guarda preoccupata e lo indica (una volta: la regia ignora le ripetizioni ravvicinate)
   const [peek, setPeek] = useState(0);
+  const [worry, setWorry] = useState<number | null>(null);
+  const worried = worry !== null && !!missing;
+  const afterGreeting = () => {
+    const r = missing ? emitMina({ scope: 'home', kind: 'missingIngredients', key: missing.key }) : null;
+    if (r) setWorry(r.id);
+    else setPeek(1);
+  };
   const mina = compact ? 104 : 136;
   const tall = mina * 1.16;
   const tuck = compact ? 22 : 28; // quanto Mina scende dietro la card: solo i piedi
@@ -213,7 +224,16 @@ function Greeting({ hello, subtitle, pose, compact }: { hello: string; subtitle:
         </Svg>
       </View>
       <View pointerEvents="box-none" style={[styles.minaSpot, { width: mina + 20, height: tall, bottom: -(tuck + space.lg) }]}>
-        <MinaMascot pose={pose} size={mina} animated interactive glance={peek} onDone={() => setPeek(1)} accessibilityLabel="Mina, la tua borsetta della spesa" />
+        <MinaMascot
+          pose={worried ? 'concerned' : pose}
+          gesture={worried ? 'worry' : undefined}
+          size={mina}
+          animated
+          interactive
+          glance={peek}
+          onDone={worried ? undefined : afterGreeting}
+          accessibilityLabel={worried ? `Mina guarda il pasto di oggi: ${missing!.count === 1 ? 'manca un ingrediente' : `mancano ${missing!.count} ingredienti`}` : 'Mina, la tua borsetta della spesa'}
+        />
       </View>
     </View>
   );

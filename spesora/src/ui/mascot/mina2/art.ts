@@ -75,7 +75,7 @@ export const C = {
 export type Variant = 'classic' | 'chef';
 export type Eyes = 'open' | 'happy' | 'closed' | 'wink' | 'laugh' | 'star' | 'heart' | 'surprised';
 export type Mouth = 'smile' | 'grin' | 'small' | 'o' | 'hmm';
-export type Prop = 'none' | 'fist' | 'spoon' | 'phone' | 'list' | 'clipboard' | 'bowl' | 'cloche';
+export type Prop = 'none' | 'fist' | 'spoon' | 'phone' | 'list' | 'clipboard' | 'whisk' | 'bowl' | 'cloche';
 export type Emote = 'question' | 'sparkles' | 'hearts' | 'bang' | 'shine' | 'shineUp';
 export type Legs = 'stand' | 'walk';
 export type Side = 'L' | 'R';
@@ -131,7 +131,8 @@ export interface Rig {
 }
 
 export const RIG: Record<Variant, Rig> = {
-  classic: { shoulder: { L: { x: 40, y: 120 }, R: { x: 159.5, y: 116 } }, upper: 16, fore: 17, eyesCenter: { x: 110, y: 107.5 }, bodyPivot: { x: 104, y: FEET_Y }, hatPivot: { x: 101, y: 80 }, leanPivot: { x: 104, y: FEET_Y } },
+  // spalle 2 unità dentro il bordo della borsa: il braccio esce dal corpo e non sembra appoggiato sopra
+  classic: { shoulder: { L: { x: 42, y: 121 }, R: { x: 157.5, y: 117 } }, upper: 17, fore: 18, eyesCenter: { x: 110, y: 107.5 }, bodyPivot: { x: 104, y: FEET_Y }, hatPivot: { x: 101, y: 80 }, leanPivot: { x: 104, y: FEET_Y } },
   // Mina Chef (foglio «Mina Chef — Style Reference»): braccia corte attaccate ai lati, sotto il viso
   chef: { shoulder: { L: { x: 57, y: 145 }, R: { x: 143, y: 131 } }, upper: 12, fore: 12, eyesCenter: { x: 106.8, y: 109.8 }, bodyPivot: { x: 105, y: FEET_Y }, hatPivot: { x: 90, y: 66 }, leanPivot: { x: 98, y: 135 } },
 };
@@ -246,7 +247,7 @@ const CHEF_OPENING = 'M61,96 C61,78 73,64.5 95,63 C114,62.3 122.5,68 123.8,85 Z'
 const CHEF_INSIDE = 'M68,94 C68,80 78,70.5 95,69.8 C110,69.3 117,73.5 118,86 Z';
 const CHEF_APRON = 'M70.2,155.4 L143,141.8 Q144.9,141.5 145,143.5 L145.4,167 Q145.6,174.5 139,177 Q112,186 82,185 Q77.2,184.8 77,180.5 L76.3,166 Z';
 
-function chefBodyPart(bow: boolean): string {
+function chefBodyPart(bow: boolean, apron = true): string {
   const vein = (d: string) => `<path d="${d}" stroke="${C.leafDark}" stroke-width="1.9" fill="none" stroke-linecap="round"/>`;
   return (
     // lattuga a lobi grandi dietro l'angolo in alto a sinistra, limone che sbuca a destra
@@ -276,20 +277,32 @@ function chefBodyPart(bow: boolean): string {
     `<path d="${CHEF_SIDE}" fill="${C.chefSide}"/>` +
     `<path d="M59.5,97 L84,170" stroke="${C.crease}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.35"/>` +
     `<path d="${CHEF_BOX}" fill="none" ${sw(2.7)}/>` +
-    // grembiule verde sul terzo basso, con il suo contorno e la foglia bianca
-    `<path d="${CHEF_APRON}" fill="${C.green}" ${sw(2.5)}/>` +
-    `<g transform="translate(112.5 165.2) rotate(-7) scale(0.9)">` +
-    `<path d="M-12,10 C-15,-4 -2,-13 14,-11 C13,4 2,13 -12,10 Z" fill="${C.white}"/>` +
-    `<path d="M-17,15 Q-4,4 9,-7" stroke="${C.green}" stroke-width="2.6" fill="none" stroke-linecap="round"/>` +
-    `</g>` +
-    // fiocco sul bordo sinistro: un'ansa verso sinistra, la coda a coda di rondine che scende, il nodo
-    // (nelle pose in cui il braccio sinistro lo copre, nel foglio non si vede)
-    (bow ? chefBow() : '') +
+    // grembiule verde sul terzo basso (livello a parte nella trasformazione, dove compare con una maschera)
+    (apron ? apronPart(bow) : '') +
     // guance
     `<ellipse cx="82.9" cy="126.4" rx="6.4" ry="5" transform="rotate(-10 82.9 126.4)" fill="${C.cheek}" opacity="0.85"/>` +
     `<ellipse cx="132.4" cy="120.4" rx="6.4" ry="5" transform="rotate(-10 132.4 120.4)" fill="${C.cheek}" opacity="0.85"/>`
   );
 }
+
+/**
+ * Grembiule di Mina Chef: il telo verde sul terzo basso con il suo contorno e la foglia bianca, e il fiocco sul
+ * bordo sinistro (un'ansa verso sinistra, la coda a coda di rondine che scende, il nodo; nelle pose in cui il
+ * braccio sinistro lo copre, nel foglio non si vede).
+ */
+export function apronPart(bow = true): string {
+  return (
+    `<path d="${CHEF_APRON}" fill="${C.green}" ${sw(2.5)}/>` +
+    `<g transform="translate(112.5 165.2) rotate(-7) scale(0.9)">` +
+    `<path d="M-12,10 C-15,-4 -2,-13 14,-11 C13,4 2,13 -12,10 Z" fill="${C.white}"/>` +
+    `<path d="M-17,15 Q-4,4 9,-7" stroke="${C.green}" stroke-width="2.6" fill="none" stroke-linecap="round"/>` +
+    `</g>` +
+    (bow ? chefBow() : '')
+  );
+}
+
+/** Area occupata dal grembiule (fiocco compreso), per la maschera che lo rivela. */
+export const APRON_BOX = { top: 140, bottom: 187, left: 45, right: 147 } as const;
 
 function chefBow(): string {
   return (
@@ -301,8 +314,8 @@ function chefBow(): string {
 }
 
 /** Corpo completo. Mina 2.0: verdure, manico, borsa con la foglia, guance, contorno. Mina Chef: vedi chefBodyPart. */
-export function bodyPart(variant: Variant, opts: { bow?: boolean } = {}): string {
-  if (variant === 'chef') return chefBodyPart(opts.bow ?? true);
+export function bodyPart(variant: Variant, opts: { bow?: boolean; apron?: boolean } = {}): string {
+  if (variant === 'chef') return chefBodyPart(opts.bow ?? true, opts.apron ?? true);
   return (
     veggiesBack() +
     handlePart() +
@@ -451,7 +464,7 @@ export function handRest(side: Side, variant: Variant = 'classic', len?: ArmLen)
 }
 
 /** Spessore del braccio (contorno, riempimento): Mina Chef ha braccia un po' più sottili e più lunghe. */
-const armWidth = (variant: Variant): [number, number] => (variant === 'chef' ? [9.2, 5.8] : [14, 9.4]);
+const armWidth = (variant: Variant): [number, number] => (variant === 'chef' ? [9.2, 5.8] : [12.2, 7.8]);
 
 /** Segmento superiore (spalla → gomito). `pass` = contorno o riempimento: i due passaggi non lasciano giunture. */
 export function upperArmPart(side: Side, pass: 'outline' | 'fill', variant: Variant = 'classic', len?: ArmLen): string {
@@ -470,7 +483,7 @@ function handShape(side: Side, pass: 'outline' | 'fill', fist: boolean, variant:
   const t = side === 'L' ? 1 : -1; // il pollice punta verso il corpo
   const color = pass === 'outline' ? C.line : C.green;
   const grow = pass === 'outline' ? 2.4 : 0;
-  const k = variant === 'chef' ? 0.8 : 1;
+  const k = variant === 'chef' ? 0.8 : 0.92;
   const palm = `<circle cx="${h.x}" cy="${h.y + 3}" r="${((thumbUp ? 5.6 : fist ? 8 : 7.2) * k + grow).toFixed(2)}" fill="${color}"/>`;
   const capsule = (x1: number, y1: number, x2: number, y2: number, w: number) => `<path d="M${x1},${y1} L${x2},${y2}" stroke="${color}" stroke-width="${(w * k + grow * 2).toFixed(2)}" stroke-linecap="round"/>`;
   if (thumbUp) return palm;
@@ -552,10 +565,9 @@ export function propPart(prop: Prop, hx: number, hy: number, rot: number): strin
           tick(hy + 15),
       );
     }
+    case 'whisk':
     case 'bowl': {
-      // ciotola verde chiaro grande quasi quanto la borsa, con la zuppa; la frusta d'acciaio tenuta col manico in su
-      const cx = hx - 9;
-      const ry = hy + 34; // bordo
+      // frusta d'acciaio tenuta col manico in su; i fili scendono nella ciotola (ferma, disegnata a parte)
       const wires = [
         [-21, 38],
         [-13, 41],
@@ -563,13 +575,7 @@ export function propPart(prop: Prop, hx: number, hy: number, rot: number): strin
         [2, 35],
       ];
       return g(
-        `<ellipse cx="${cx}" cy="${ry + 46}" rx="16" ry="4" fill="${C.bowlDark}" ${sw(2.4)}/>` +
-          `<path d="M${cx - 43},${ry} C${cx - 43},${ry + 66} ${cx + 43},${ry + 66} ${cx + 43},${ry} Z" fill="${C.bowl}" ${sw(2.8)}/>` +
-          `<ellipse cx="${cx}" cy="${ry}" rx="43" ry="9.5" fill="${C.bowl}" ${sw(2.8)}/>` +
-          `<ellipse cx="${cx}" cy="${ry + 1.2}" rx="37" ry="6.6" fill="${C.soup}"/>` +
-          `<circle cx="${cx - 26}" cy="${ry + 3}" r="3" fill="${C.carrot}"/><circle cx="${cx + 4}" cy="${ry + 3.5}" r="2.8" fill="${C.carrot}"/><circle cx="${cx + 20}" cy="${ry + 1}" r="2.6" fill="${C.tomato}"/><circle cx="${cx - 11}" cy="${ry + 2}" r="3" fill="${C.leafDark}"/><circle cx="${cx + 13}" cy="${ry - 2}" r="2.4" fill="${C.bowlDark}"/>` +
-          // frusta: fili che entrano nella ciotola, manico in alto (il pugno lo copre a metà)
-          wires.map(([x, y]) => `<path d="M${hx - 8},${hy + 5} Q${hx - 8 + x * 0.3},${hy + 5 + y * 0.6} ${hx + x},${hy + y}" stroke="${C.line}" stroke-width="3.6" fill="none" stroke-linecap="round"/>`).join('') +
+        wires.map(([x, y]) => `<path d="M${hx - 8},${hy + 5} Q${hx - 8 + x * 0.3},${hy + 5 + y * 0.6} ${hx + x},${hy + y}" stroke="${C.line}" stroke-width="3.6" fill="none" stroke-linecap="round"/>`).join('') +
           wires.map(([x, y]) => `<path d="M${hx - 8},${hy + 5} Q${hx - 8 + x * 0.3},${hy + 5 + y * 0.6} ${hx + x},${hy + y}" stroke="${C.steel}" stroke-width="1.6" fill="none" stroke-linecap="round"/>`).join('') +
           `<path d="M${hx + 1},${hy - 33} L${hx - 8},${hy + 5}" stroke="${C.line}" stroke-width="6.4" stroke-linecap="round"/>` +
           `<path d="M${hx + 1},${hy - 33} L${hx - 8},${hy + 5}" stroke="${C.steel}" stroke-width="3" stroke-linecap="round"/>`,
@@ -641,6 +647,8 @@ export interface ArmPose {
   len?: ArmLen;
   /** Gomito verso il corpo invece che verso l'esterno (solo per `armTo`). */
   flip?: boolean;
+  /** Il punto (centro del palmo) chiesto ad `armTo`: i gesti calcolano le traiettorie della mano da qui. */
+  at?: { x: number; y: number };
 }
 
 /** Rotazioni SVG/RN (positivo = orario) di braccio e avambraccio per un lato. */
@@ -681,17 +689,186 @@ export function armTo(side: Side, x: number, y: number, extra: Partial<ArmPose> 
   const fore = deg(Math.atan2(-(s.x + dx - ex), s.y + dy - ey)) - upper;
   const norm = (v: number) => ((((v + 180) % 360) + 360) % 360) - 180;
   const pose = side === 'L' ? { out: norm(upper), bend: norm(-fore) } : { out: norm(-upper), bend: norm(fore) };
-  return { ...pose, ...extra };
+  return { ...pose, at: { x, y }, ...extra };
 }
 
-export function armStatic(side: Side, pose: ArmPose, pass: 'outline' | 'fill', variant: Variant = 'classic'): string {
+// ───────────────────────────── braccio curvo (rubber hose) ─────────────────────────────
+
+export interface Pt {
+  x: number;
+  y: number;
+}
+
+/**
+ * Un fotogramma del braccio: spalla, gomito e polso dallo scheletro (due segmenti), più il punto di controllo
+ * della curva e la direzione della mano. Il braccio è disegnato come un tubo curvo che passa ESATTAMENTE per il
+ * gomito (controllo = 2E − (S+W)/2): piegandosi resta morbido come nel foglio, senza spigoli né giunture.
+ */
+export interface ArmFrame {
+  s: Pt;
+  e: Pt;
+  w: Pt;
+  c: Pt;
+  /** Rotazione della mano (gradi, orari, 0 = rivolta in giù) lungo la tangente finale della curva. */
+  hand: number;
+  /** Centro del palmo (dove si tengono gli oggetti). */
+  palm: Pt;
+}
+
+const rad = (d: number) => (d * Math.PI) / 180;
+
+export function armFrame(side: Side, upper: number, fore: number, variant: Variant, len?: ArmLen): ArmFrame {
   const s = RIG[variant].shoulder[side];
-  const e = elbowRest(side, variant, pose.len);
+  const [a, b] = segs(variant, len);
+  const e = { x: s.x - a * Math.sin(rad(upper)), y: s.y + a * Math.cos(rad(upper)) };
+  const t = upper + fore;
+  const w = { x: e.x - b * Math.sin(rad(t)), y: e.y + b * Math.cos(rad(t)) };
+  const c = { x: 2 * e.x - (s.x + w.x) / 2, y: 2 * e.y - (s.y + w.y) / 2 };
+  let dx = w.x - c.x;
+  let dy = w.y - c.y;
+  if (Math.hypot(dx, dy) < 0.01) {
+    dx = w.x - e.x;
+    dy = w.y - e.y;
+  }
+  const hand = (Math.atan2(-dx, dy) * 180) / Math.PI;
+  const palm = { x: w.x - 3 * Math.sin(rad(hand)), y: w.y + 3 * Math.cos(rad(hand)) };
+  return { s, e, w, c, hand, palm };
+}
+
+/** Fotogramma della posa finale di un braccio. */
+export function poseFrame(side: Side, pose: ArmPose, variant: Variant): ArmFrame {
   const r = armRotations(side, pose);
+  return armFrame(side, r.upper, r.fore, variant, pose.len);
+}
+
+/** Tracciato del tubo del braccio. */
+export function tubeD(f: ArmFrame): string {
+  const n = (v: number) => v.toFixed(2);
+  return `M${n(f.s.x)},${n(f.s.y)} Q${n(f.c.x)},${n(f.c.y)} ${n(f.w.x)},${n(f.w.y)}`;
+}
+
+export function tubeStyle(variant: Variant, pass: 'outline' | 'fill') {
+  const [wo, wi] = armWidth(variant);
+  return pass === 'outline' ? { stroke: C.line, width: wo } : { stroke: C.green, width: wi };
+}
+
+function tubeSvg(f: ArmFrame, variant: Variant, pass: 'outline' | 'fill'): string {
+  const st = tubeStyle(variant, pass);
+  return `<path d="${tubeD(f)}" stroke="${st.stroke}" stroke-width="${st.width}" stroke-linecap="round" fill="none"/>`;
+}
+
+/**
+ * Dove sta l'oggetto rispetto al braccio:
+ * - `under`: sotto tutto (il manico passa dietro il pugno: cucchiaio, frusta, lista, telefono, pollice);
+ * - `between`: sopra il braccio e sotto la mano (la cartellina copre il braccio, la mano la stringe dal bordo);
+ * - `over`: sopra la mano (il vassoio della cloche, tenuto da sotto).
+ */
+export function propLayer(prop: Prop): 'under' | 'between' | 'over' {
+  if (prop === 'clipboard') return 'between';
+  if (prop === 'cloche') return 'over';
+  return 'under';
+}
+
+/** La mano disegnata a riposo (polso nel punto di riposo, rivolta in giù): si sposta e si ruota per ogni fotogramma. */
+export function handRestSvg(side: Side, pass: 'outline' | 'fill', prop: Prop, variant: Variant, len?: ArmLen): string {
+  const fist = prop !== 'none';
+  return handShape(side, pass, fist, variant, len, prop === 'fist');
+}
+
+/** L'oggetto disegnato dritto nel centro del palmo a riposo: si sposta col palmo e ruota solo della sua inclinazione. */
+export function propRestSvg(prop: Prop, side: Side, variant: Variant, len?: ArmLen): string {
+  const h = handRest(side, variant, len);
+  return propPart(prop, h.x, h.y + 3, 0);
+}
+
+/** Trasformazione SVG che porta la mano dal riposo al fotogramma. */
+export function handPlacement(f: ArmFrame, side: Side, variant: Variant, len?: ArmLen): string {
+  const h = handRest(side, variant, len);
+  return `translate(${(f.w.x - h.x).toFixed(2)} ${(f.w.y - h.y).toFixed(2)}) rotate(${f.hand.toFixed(2)} ${h.x} ${h.y})`;
+}
+
+/** Trasformazione SVG che porta l'oggetto dal palmo a riposo al palmo del fotogramma, dritto più la sua inclinazione. */
+export function propPlacement(f: ArmFrame, tilt: number, side: Side, variant: Variant, len?: ArmLen): string {
+  const h = handRest(side, variant, len);
+  return `translate(${(f.palm.x - h.x).toFixed(2)} ${(f.palm.y - h.y - 3).toFixed(2)}) rotate(${tilt.toFixed(2)} ${h.x} ${h.y + 3})`;
+}
+
+/** Un braccio completo (tubo, mano, oggetto) nell'ordine giusto per il suo oggetto. */
+export function armSvg(side: Side, pose: ArmPose, variant: Variant): string {
+  const f = poseFrame(side, pose, variant);
+  const prop = pose.prop ?? 'none';
+  const hand = (pass: 'outline' | 'fill') => `<g transform="${handPlacement(f, side, variant, pose.len)}">${handRestSvg(side, pass, prop, variant, pose.len)}</g>`;
+  const held = prop === 'none' ? '' : `<g transform="${propPlacement(f, pose.propTilt ?? 0, side, variant, pose.len)}">${propRestSvg(prop, side, variant, pose.len)}</g>`;
+  const layer = propLayer(prop);
+  if (layer === 'between') return tubeSvg(f, variant, 'outline') + tubeSvg(f, variant, 'fill') + held + hand('outline') + hand('fill');
+  if (layer === 'over') return tubeSvg(f, variant, 'outline') + hand('outline') + tubeSvg(f, variant, 'fill') + hand('fill') + held;
+  return held + tubeSvg(f, variant, 'outline') + hand('outline') + tubeSvg(f, variant, 'fill') + hand('fill');
+}
+
+/** Compatibilità: il braccio intero in un solo passaggio (il vecchio disegno a due passaggi non serve più). */
+export function armStatic(side: Side, pose: ArmPose, pass: 'outline' | 'fill', variant: Variant = 'classic'): string {
+  return pass === 'fill' ? armSvg(side, pose, variant) : '';
+}
+
+// ───────────────────────────── sopracciglia ─────────────────────────────
+
+/**
+ * Sopracciglia: nel foglio il viso è senza sopracciglia, quindi a riposo non si vedono (`none`). Compaiono solo per
+ * recitare: `worried` (preoccupata: interni in alto), `raised` (sorpresa, contenta), `focus` (pensierosa, decisa:
+ * interni in basso), `soft` (attenta).
+ */
+export type Brows = 'none' | 'soft' | 'worried' | 'raised' | 'focus';
+
+function brow(kind: Brows, x: number, y: number, side: Side): string {
+  const s = `stroke="${C.eye}" stroke-width="2.7" stroke-linecap="round" fill="none"`;
+  const m = side === 'L' ? 1 : -1; // l'estremo interno è verso il centro del viso
+  const outer = { x: x - 6.5 * m, y };
+  const inner = { x: x + 5.5 * m, y };
+  switch (kind) {
+    case 'worried':
+      return `<path d="M${outer.x},${y + 1.5} Q${x},${y - 1.5} ${inner.x},${y - 4}" ${s}/>`;
+    case 'raised':
+      return `<path d="M${outer.x},${y - 2} Q${x},${y - 7} ${inner.x},${y - 3}" ${s}/>`;
+    case 'focus':
+      // pensierosa: un sopracciglio quasi dritto e appena abbassato, l'altro alzato (aria interrogativa, non arrabbiata)
+      return side === 'L' ? `<path d="M${outer.x},${y - 0.5} Q${x},${y - 2} ${inner.x},${y + 0.5}" ${s}/>` : `<path d="M${outer.x},${y - 3} Q${x},${y - 8.5} ${inner.x},${y - 4.5}" ${s}/>`;
+    case 'soft':
+      return `<path d="M${outer.x},${y} Q${x},${y - 3.5} ${inner.x},${y}" ${s}/>`;
+    default:
+      return '';
+  }
+}
+
+export function browsPart(kind: Brows, variant: Variant = 'classic'): string {
+  if (kind === 'none') return '';
+  if (variant === 'chef') {
+    const at = (p: { x: number; y: number }, side: Side) =>
+      `<g transform="translate(${p.x} ${p.y - 11}) rotate(${CHEF_FACE.tilt}) scale(0.85)">${brow(kind, 0, 0, side)}</g>`;
+    return at(CHEF_FACE.eyeL, 'L') + at(CHEF_FACE.eyeR, 'R');
+  }
+  return brow(kind, EYE_L.x, EYE_L.y - 13, 'L') + brow(kind, EYE_R.x, EYE_R.y - 13, 'R');
+}
+
+// ───────────────────────────── ciotola (oggetto fermo davanti a Mina Chef) ─────────────────────────────
+
+/** La ciotola verde con la zuppa, ferma nel corpo (la frusta in mano la mescola). (cx, ry) = centro del bordo. */
+export function bowlPart(cx: number, ry: number, tilt = 0): string {
   return (
-    `<g transform="rotate(${r.upper.toFixed(1)} ${s.x} ${s.y})">` +
-    upperArmPart(side, pass, variant, pose.len) +
-    `<g transform="rotate(${r.fore.toFixed(1)} ${e.x} ${e.y})">${foreArmPart(side, pass, pose.prop ?? 'none', propLocalRotation(side, pose), variant, pose.len)}</g>` +
+    `<g transform="rotate(${tilt} ${cx} ${ry})">` +
+    `<ellipse cx="${cx}" cy="${ry + 46}" rx="16" ry="4" fill="${C.bowlDark}" ${sw(2.4)}/>` +
+    `<path d="M${cx - 43},${ry} C${cx - 43},${ry + 66} ${cx + 43},${ry + 66} ${cx + 43},${ry} Z" fill="${C.bowl}" ${sw(2.8)}/>` +
+    `<ellipse cx="${cx}" cy="${ry}" rx="43" ry="9.5" fill="${C.bowl}" ${sw(2.8)}/>` +
+    `<ellipse cx="${cx}" cy="${ry + 1.2}" rx="37" ry="6.6" fill="${C.soup}"/>` +
+    `<circle cx="${cx - 26}" cy="${ry + 3}" r="3" fill="${C.carrot}"/><circle cx="${cx + 4}" cy="${ry + 3.5}" r="2.8" fill="${C.carrot}"/><circle cx="${cx + 20}" cy="${ry + 1}" r="2.6" fill="${C.tomato}"/><circle cx="${cx - 11}" cy="${ry + 2}" r="3" fill="${C.leafDark}"/><circle cx="${cx + 13}" cy="${ry - 2}" r="2.4" fill="${C.bowlDark}"/>` +
+    `</g>`
+  );
+}
+
+/** Il bordo anteriore della ciotola, disegnato sopra la frusta: i fili sembrano dentro la zuppa. */
+export function bowlFrontPart(cx: number, ry: number, tilt = 0): string {
+  return (
+    `<g transform="rotate(${tilt} ${cx} ${ry})">` +
+    `<path d="M${cx - 43},${ry} C${cx - 43},${ry + 66} ${cx + 43},${ry + 66} ${cx + 43},${ry} C${cx + 43},${ry + 6.5} ${cx + 20},${ry + 9.5} ${cx},${ry + 9.5} C${cx - 20},${ry + 9.5} ${cx - 43},${ry + 6.5} ${cx - 43},${ry} Z" fill="${C.bowl}" ${sw(2.8)}/>` +
     `</g>`
   );
 }
@@ -711,6 +888,10 @@ export interface MinaLook {
   shift?: number;
   /** Mina Chef: fiocco del grembiule visibile (nel foglio si vede solo quando il braccio sinistro non lo copre). */
   bow?: boolean;
+  /** Sopracciglia della posa (a riposo nessuna, come nel foglio). */
+  brows?: Brows;
+  /** Ciotola ferma davanti a Mina Chef (posa «mescola»): centro del bordo e inclinazione. */
+  bowl?: { cx: number; ry: number; tilt: number };
 }
 
 /** Mina intera in un solo SVG (versione statica: righe piccole, "Riduci movimento", esportazioni). */
@@ -718,19 +899,23 @@ export function minaStaticSvg(look: MinaLook, opts: { shadow?: boolean; viewBox?
   const v = look.variant;
   const pivot = RIG[v].leanPivot;
   const lean = look.lean ?? 0;
+  const bowl = look.bowl;
+  // con la ciotola: braccio destro (frusta), poi la ciotola, poi il braccio sinistro che la tiene dal bordo
+  const arms = bowl
+    ? armSvg('R', look.armR, v) + bowlFrontPart(bowl.cx, bowl.ry, bowl.tilt) + armSvg('L', look.armL, v)
+    : armSvg('L', look.armL, v) + armSvg('R', look.armR, v);
   return svg(
     `<g transform="translate(${look.shift ?? 0} 0)">` +
       (opts.shadow === false ? '' : shadowPart(v)) +
       `<g transform="rotate(${lean} ${pivot.x} ${pivot.y})">` +
       legsPart(look.legs, v) +
       bodyPart(v, { bow: look.bow }) +
+      (bowl ? bowlPart(bowl.cx, bowl.ry, bowl.tilt) : '') +
       (v === 'chef' ? hatPart() : '') +
       eyesPart(look.eyes, v) +
+      browsPart(look.brows ?? 'none', v) +
       mouthPart(look.mouth, v) +
-      armStatic('L', look.armL, 'outline', v) +
-      armStatic('R', look.armR, 'outline', v) +
-      armStatic('L', look.armL, 'fill', v) +
-      armStatic('R', look.armR, 'fill', v) +
+      arms +
       (look.emote ? emotePart(look.emote, lean, v) : '') +
       `</g></g>`,
     opts.viewBox,

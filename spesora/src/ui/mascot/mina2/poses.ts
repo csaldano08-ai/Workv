@@ -3,9 +3,11 @@ import { RIG, armTo, type ArmPose, type MinaLook, type Variant } from './art';
 /** Pose del braccio, descritte dalla posizione della mano (cinematica inversa in `armTo`). */
 export const ARM = {
   // braccia corte come nel foglio: spalle sui bordi della borsa, mani a guanto
-  restL: armTo('L', 28, 150),
-  restR: armTo('R', 173, 146),
-  hipL: armTo('L', 42, 141),
+  // a riposo le braccia pendono appena piegate (nel foglio sono morbide, non a parentesi)
+  restL: armTo('L', 28, 154),
+  restR: armTo('R', 173, 150),
+  // braccio sinistro rilassato e appena aperto, come nel disegno principale del foglio (non sull'anca)
+  hipL: armTo('L', 25, 149),
   waveR: armTo('R', 173, 90),
   cheerL: armTo('L', 26, 94),
   cheerR: armTo('R', 173, 89),
@@ -17,7 +19,13 @@ export const ARM = {
   upL: armTo('L', 24, 106),
   upR: armTo('R', 175, 102),
   // indica il contenuto accanto (braccio disteso verso destra)
-  pointR: armTo('R', 185, 116),
+  pointR: armTo('R', 191, 113),
+  // saluto con la mano sinistra (specchio del destro)
+  waveL: armTo('L', 25, 90),
+  // solleva un oggetto sopra la spalla
+  liftR: armTo('R', 178, 96),
+  // pugno di soddisfazione davanti al corpo
+  pumpR: armTo('R', 178, 101),
   // braccia un po' aperte in basso, da preoccupata
   worryL: armTo('L', 26, 146),
   worryR: armTo('R', 175, 142),
@@ -89,6 +97,10 @@ export const MINA_POSES = [
   'concerned',
   'pointing',
   'goodbye',
+  'waveLeft',
+  'lifting',
+  'jumping',
+  'satisfied',
 ] as const;
 export type MinaPose = (typeof MINA_POSES)[number];
 
@@ -115,7 +127,7 @@ export function resolvePose(pose: string): MinaPose {
 }
 
 /** Gesto animato associato a una posa (eseguito una volta all'ingresso). */
-export type MinaAction = 'greet' | 'happy' | 'think' | 'done' | 'recipe' | 'present' | 'remind' | 'concern' | 'point' | 'none';
+export type MinaAction = 'greet' | 'greetL' | 'happy' | 'think' | 'done' | 'recipe' | 'present' | 'remind' | 'concern' | 'worry' | 'point' | 'lift' | 'jump' | 'pump' | 'stir' | 'emerge' | 'none';
 
 export interface PoseSpec {
   look: MinaLook;
@@ -136,13 +148,25 @@ export const POSES: Record<MinaPose, PoseSpec> = {
   welcome: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: ARM.waveR, legs: 'walk', lean: -6, emote: 'sparkles' }), action: 'greet' },
   wave: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: ARM.waveR, legs: 'walk', lean: -6 }), action: 'greet' },
   explaining: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: ARM.openR }), action: 'none' },
-  thinking: { look: classic({ eyes: 'open', mouth: 'hmm', armL: ARM.hipL, armR: ARM.chinR, emote: 'question' }), action: 'think' },
+  thinking: { look: classic({ eyes: 'open', mouth: 'hmm', brows: 'focus', armL: ARM.hipL, armR: ARM.chinR, emote: 'question' }), action: 'think' },
   calendar: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: { ...ARM.holdR, prop: 'phone', propTilt: 6 } }), action: 'none' },
   shopping: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.holdR, prop: 'list', propTilt: 8 } }), action: 'none' },
   // le quattro pose del foglio di Mina Chef: cucchiaio e occhiolino, mescola, serve, controlla la lista
   cooking: { look: chef({ eyes: 'wink', mouth: 'smile', armL: CHEF_ARM.bowL, armR: { ...CHEF_ARM.spoonR, prop: 'spoon', propTilt: -7 }, emote: 'shine' }), action: 'recipe' },
   recipe: { look: chef({ eyes: 'open', mouth: 'smile', armL: CHEF_ARM.bowL, armR: { ...CHEF_ARM.spoonR, prop: 'spoon', propTilt: -7 } }), action: 'recipe' },
-  mixing: { look: chef({ eyes: 'happy', mouth: 'small', lean: LEAN.mixing, bow: false, armL: CHEF_ARM.bowlL, armR: { ...CHEF_ARM.whiskR, prop: 'bowl', propTilt: -LEAN.mixing } }), action: 'present' },
+  // la ciotola è ferma davanti a lei e la frusta in mano la mescola (gesto `stir`)
+  mixing: {
+    look: chef({
+      eyes: 'happy',
+      mouth: 'small',
+      lean: LEAN.mixing,
+      bow: false,
+      armL: CHEF_ARM.bowlL,
+      armR: { ...CHEF_ARM.whiskR, prop: 'whisk', propTilt: -LEAN.mixing },
+      bowl: { cx: CHEF_ARM.whiskR.at!.x - 9, ry: CHEF_ARM.whiskR.at!.y + 34, tilt: -LEAN.mixing },
+    }),
+    action: 'stir',
+  },
   serving: { look: chef({ eyes: 'open', mouth: 'smile', lean: LEAN.serving, bow: false, armL: CHEF_ARM.sideL, armR: { ...CHEF_ARM.clocheR, prop: 'cloche', propTilt: -LEAN.serving }, shift: -19 }), action: 'present' },
   checklist: { look: chef({ eyes: 'open', mouth: 'small', lean: LEAN.checklist, bow: false, armL: CHEF_ARM.sideL4, armR: { ...CHEF_ARM.boardR, prop: 'clipboard', propTilt: 10.1 - LEAN.checklist }, emote: 'shineUp', shift: -10 }), action: 'present' },
   pantry: { look: classic({ eyes: 'open', mouth: 'small', armL: ARM.restL, armR: ARM.openR }), action: 'none' },
@@ -154,9 +178,14 @@ export const POSES: Record<MinaPose, PoseSpec> = {
   empty: { look: classic({ eyes: 'open', mouth: 'hmm', armL: ARM.hipL, armR: ARM.chinR }), action: 'think' },
   reminder: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: ARM.raiseR, emote: 'bang' }), action: 'remind' },
   // recitazione contestuale: vede un problema e lo indica; indica un contenuto; saluta andando via
-  concerned: { look: classic({ eyes: 'open', mouth: 'hmm', armL: ARM.worryL, armR: ARM.worryR, lean: 2 }), action: 'concern' },
+  concerned: { look: classic({ eyes: 'open', mouth: 'hmm', brows: 'worried', armL: ARM.worryL, armR: ARM.worryR, lean: 2 }), action: 'concern' },
   pointing: { look: classic({ eyes: 'open', mouth: 'small', armL: ARM.hipL, armR: ARM.pointR, lean: -2 }), action: 'point' },
   goodbye: { look: classic({ eyes: 'happy', mouth: 'smile', armL: ARM.restL, armR: ARM.waveR, legs: 'walk', lean: -5 }), action: 'greet' },
+  // gesti di prova del rig (e reazioni brevi nelle pagine)
+  waveLeft: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.waveL, armR: ARM.restR, lean: 4 }), action: 'greetL' },
+  lifting: { look: classic({ eyes: 'happy', mouth: 'grin', brows: 'raised', armL: ARM.hipL, armR: { ...ARM.liftR, prop: 'list', propTilt: 8 } }), action: 'lift' },
+  jumping: { look: classic({ eyes: 'happy', mouth: 'grin', armL: ARM.restL, armR: ARM.restR }), action: 'jump' },
+  satisfied: { look: classic({ eyes: 'happy', mouth: 'grin', armL: ARM.hipL, armR: { ...ARM.pumpR, prop: 'fist' } }), action: 'pump' },
 };
 
 /** Le pose dello chef (per i test e la documentazione). */

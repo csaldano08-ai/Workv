@@ -99,29 +99,43 @@ export default function Pantry() {
           {quantified.map((i, idx) => {
             const ing = catalogIndex.ingredient(i.ingredientId);
             const st = stateOf(i);
-            const parts = [
-              i.available > 0 ? `${formatQtyWithUnit(i.available, ing.unit)}${i.estimated ? ' (stima)' : ''}` : null,
-              i.reserved > 0 ? `previsti ${formatQtyWithUnit(i.reserved, ing.unit)}` : null,
-              i.expiryDate ? `scade ${formatShortDate(i.expiryDate)}` : null,
-            ].filter(Boolean);
+            const qty = i.available > 0 ? formatQtyWithUnit(i.available, ing.unit) : null;
+            // sotto il nome solo ciò che cambia le decisioni (quanto è già previsto, quando scade)
+            const parts = [i.reserved > 0 ? `previsti ${formatQtyWithUnit(i.reserved, ing.unit)}` : null, i.expiryDate ? `scade ${formatShortDate(i.expiryDate)}` : null].filter(Boolean);
+            const s = STATE[st];
             return (
               <Pressable
                 key={i.ingredientId}
                 accessibilityRole="button"
-                accessibilityLabel={`${ing.name}: ${STATE[st].label}. ${parts.join(', ')}`}
+                accessibilityLabel={`${ing.name}: ${s.label}. ${[qty ? `${qty}${i.estimated ? ' stimati' : ''}` : null, ...parts].filter(Boolean).join(', ')}`}
                 onPress={() => router.push(`/voce/${i.ingredientId}`)}
                 style={({ pressed }) => [styles.item, idx > 0 && styles.itemLine, pressed && { opacity: 0.7 }]}
               >
                 <CategoryIcon category={ing.category} size={30} />
                 <View style={styles.flex}>
-                  <Text variant="body">{ing.name}</Text>
+                  <Text variant="body" numberOfLines={2}>
+                    {ing.name}
+                  </Text>
                   {parts.length ? (
-                    <Text variant="small" color={colors.inkSoft}>
+                    <Text variant="small" color={colors.inkSoft} numberOfLines={1}>
                       {parts.join(' · ')}
                     </Text>
                   ) : null}
                 </View>
-                <StatePill state={st} />
+                {/* quantità in evidenza a destra; lo stato è il colore dell'icona (legenda in alto) */}
+                <View style={styles.qtyCol}>
+                  <Text variant="heading" style={styles.qty} color={st === 'out' ? colors.inkSoft : colors.ink}>
+                    {qty ?? '—'}
+                  </Text>
+                  {i.estimated && qty ? (
+                    <Text variant="caption" color={s.fg}>
+                      STIMA
+                    </Text>
+                  ) : null}
+                </View>
+                <View style={[styles.stateDot, { backgroundColor: s.bg }]}>
+                  <Ionicons name={s.icon} size={16} color={s.fg} />
+                </View>
                 <Ionicons name="chevron-forward" size={16} color={colors.inkSoft} />
               </Pressable>
             );
@@ -237,6 +251,9 @@ const styles = StyleSheet.create({
   noteBtn: { alignSelf: 'flex-start', marginTop: space.sm },
   page: { paddingHorizontal: space.md, gap: 0 },
   item: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: TOUCH + 8, paddingVertical: space.sm },
+  qtyCol: { alignItems: 'flex-end', minWidth: 64 },
+  qty: { fontVariant: ['tabular-nums'] },
+  stateDot: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   itemLine: { borderTopWidth: 1, borderTopColor: colors.line },
   section: { marginTop: space.sm },
   staples: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
