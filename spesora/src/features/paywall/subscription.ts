@@ -44,7 +44,7 @@ export function useEntitlement(): EntitlementStatus | null {
 }
 
 /** Pagine sempre raggiungibili anche quando l'abbonamento è obbligatorio (testi legali, l'abbonamento stesso). */
-const ALWAYS_OPEN = ['/abbonamento', '/privacy', '/termini'];
+const ALWAYS_OPEN = ['/abbonamento', '/privacy', '/termini', '/legale', '/licenze', '/aiuto'];
 
 /**
  * Abbonamento obbligatorio dopo il questionario (`paywallMode = "required"`): porta alla schermata dell'abbonamento

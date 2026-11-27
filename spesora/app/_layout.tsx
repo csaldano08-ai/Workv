@@ -9,6 +9,7 @@ import { AppProvider, useApp } from '../src/features/app/AppProvider';
 import { colors, font, space } from '../src/theme/tokens';
 import { useFonts } from 'expo-font';
 import { CelebrationHost } from '../src/ui/CelebrationHost';
+import { ToastHost } from '../src/ui/toast';
 import { IntroGate } from '../src/features/intro/IntroGate';
 import { SubscriptionGate } from '../src/features/paywall/subscription';
 import { LoaderHost } from '../src/ui/loader/LoaderHost';
@@ -42,7 +43,7 @@ function OnboardingGate() {
   const pathname = usePathname();
   useEffect(() => {
     if (status.kind !== 'ready' || !snapshot) return;
-    const open = ['/benvenuto', '/onboarding', '/privacy', '/termini', '/mina'].some((p) => pathname.startsWith(p));
+    const open = ['/benvenuto', '/onboarding', '/privacy', '/termini', '/legale', '/licenze', '/mina'].some((p) => pathname.startsWith(p));
     if (!snapshot.profile && !open) router.replace('/benvenuto');
   }, [status, snapshot, pathname]);
   return null;
@@ -93,7 +94,10 @@ function Shell() {
         <Stack.Screen name="ripeti/[recipeId]" options={{ title: 'Ripeti la ricetta', presentation: 'modal' }} />
         <Stack.Screen name="voce/[ingredientId]" options={{ title: 'Dispensa', presentation: 'modal' }} />
         <Stack.Screen name="aggiungi" options={{ title: 'Aggiungi in dispensa', presentation: 'modal' }} />
-        <Stack.Screen name="impostazioni" options={{ title: 'Impostazioni' }} />
+        <Stack.Screen name="impostazioni" options={{ title: 'Profilo', headerShown: false }} />
+        <Stack.Screen name="aiuto" options={{ title: 'Aiuto e supporto' }} />
+        <Stack.Screen name="legale" options={{ title: 'Informazioni legali' }} />
+        <Stack.Screen name="licenze" options={{ title: 'Licenze e attribuzioni' }} />
         <Stack.Screen name="preferenze/[section]" options={{ title: 'Modifica' }} />
         <Stack.Screen name="notifiche" options={{ title: 'Notifiche' }} />
         <Stack.Screen name="plus" options={{ title: 'Abbonamento' }} />
@@ -106,6 +110,7 @@ function Shell() {
         <Stack.Screen name="cucina/[id]" options={{ title: 'Modalità Cucina' }} />
       </Stack>
       <CelebrationHost />
+      <ToastHost />
       <LoaderHost />
       <IntroGate />
     </>

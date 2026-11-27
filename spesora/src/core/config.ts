@@ -5,7 +5,7 @@ import type { PaywallMode, PurchaseMode } from './purchases/types';
 interface Extra {
   purchasesMode?: PurchaseMode;
   paywallMode?: PaywallMode;
-  legal?: { privacyPolicyUrl?: string; termsUrl?: string; supportUrl?: string; supportEmail?: string };
+  legal?: { privacyPolicyUrl?: string; termsUrl?: string; supportUrl?: string; supportEmail?: string; publisher?: string };
   revenuecat?: { iosApiKey?: string; androidApiKey?: string; entitlementId?: string; offeringId?: string };
 }
 
@@ -19,6 +19,8 @@ export const appConfig = {
     termsUrl: extra.legal?.termsUrl ?? '',
     supportUrl: extra.legal?.supportUrl ?? '',
     supportEmail: extra.legal?.supportEmail ?? '',
+    /** Chi pubblica l'app (nome o ragione sociale, indirizzo, contatti): obbligatorio prima della vendita. */
+    publisher: extra.legal?.publisher ?? '',
   },
   version: Constants.expoConfig?.version ?? '0.0.0',
   /** Chiavi PUBBLICHE dell'SDK RevenueCat per iOS e Android (non sono segreti, ma non vanno inventate). */

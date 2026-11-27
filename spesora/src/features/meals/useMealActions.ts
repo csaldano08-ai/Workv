@@ -6,6 +6,7 @@ import { formatQtyWithUnit } from '../../core/domain/quantity';
 import type { MealStatus, PlannedMeal } from '../../core/domain/types';
 import { catalogIndex, useApp } from '../app/AppProvider';
 import { useActionSheet } from '../../ui/ActionSheet';
+import { toast } from '../../ui/toast';
 
 /** Azioni sui pasti condivise da Oggi, Settimana e Ricetta. La logica resta nel servizio. */
 export function useMealActions() {
@@ -16,7 +17,7 @@ export function useMealActions() {
     const res = await run((s) => s.markCooked(meal.id));
     if (!res) return;
     if (!res.ok) {
-      if (res.reason === 'already_done') Alert.alert('Già registrato', 'Questo pasto risulta già confermato: gli ingredienti non sono stati sottratti di nuovo.');
+      if (res.reason === 'already_done') toast('Pasto già registrato: gli ingredienti non sono stati sottratti di nuovo.', 'info');
       return;
     }
     if (res.shortfalls.length > 0) {
@@ -26,7 +27,7 @@ export function useMealActions() {
           return `${ing.name} (${formatQtyWithUnit(sf.missing, ing.unit)})`;
         })
         .join(', ');
-      Alert.alert('Pasto registrato', `In dispensa non risultavano: ${list}. Se li avevi, aggiungili dalla Dispensa per tenerla allineata.`);
+      toast(`Pasto registrato. In dispensa non risultavano: ${list}.`, 'warning');
       return;
     }
     // il piatto è pronto: festeggia Mina Chef, che lo serve con la cloche (gesto breve)
@@ -47,7 +48,7 @@ export function useMealActions() {
           onPress: () =>
             void run(async (s) => {
               const next = await s.reproposeLater(meal.id);
-              if (!next) Alert.alert('Nessuno spazio libero', 'Non ci sono altri pasti dello stesso tipo in questo calendario.');
+              if (!next) toast('Nessun pasto dello stesso tipo libero in questo calendario.', 'info');
             }),
         },
       ],

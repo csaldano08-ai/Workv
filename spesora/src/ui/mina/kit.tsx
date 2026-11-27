@@ -69,7 +69,23 @@ export interface PillOption<K extends string> {
  * Pillole di scelta (filtri e linguette): la scelta è verde piena con testo bianco, le altre salvia chiara.
  * Ruolo «tab» per gli screen reader, stato selezionato annunciato.
  */
-export function Pills<K extends string>({ options, value, onChange, style, fill }: { options: PillOption<K>[]; value: K; onChange: (k: K) => void; style?: StyleProp<ViewStyle>; fill?: boolean }) {
+export function Pills<K extends string>({
+  options,
+  value,
+  onChange,
+  style,
+  fill,
+  soft,
+}: {
+  options: PillOption<K>[];
+  value: K;
+  onChange: (k: K) => void;
+  style?: StyleProp<ViewStyle>;
+  /** Le pillole occupano tutta la riga (larghezza proporzionale al testo, niente etichette tagliate). */
+  fill?: boolean;
+  /** Variante leggera (selettori secondari, es. il giorno di spesa): bianca, scelta in salvia con bordo verde. */
+  soft?: boolean;
+}) {
   return (
     <View style={[styles.pills, style]} accessibilityRole="tablist">
       {options.map((o) => {
@@ -82,11 +98,11 @@ export function Pills<K extends string>({ options, value, onChange, style, fill 
             accessibilityState={{ selected: on }}
             accessibilityLabel={text}
             onPress={() => onChange(o.key)}
-            outerStyle={fill ? styles.flex : undefined}
-            style={[styles.pill, on ? styles.pillOn : styles.pillOff]}
+            outerStyle={fill ? styles.grow : undefined}
+            style={[styles.pill, fill && styles.pillFill, soft ? (on ? styles.softOn : styles.softOff) : on ? styles.pillOn : styles.pillOff]}
           >
-            {o.icon ? <Ionicons name={o.icon} size={16} color={on ? colors.white : colors.greenDark} /> : null}
-            <Text variant="small" color={on ? colors.white : colors.ink} style={styles.pillText} numberOfLines={1}>
+            {o.icon ? <Ionicons name={o.icon} size={16} color={on && !soft ? colors.white : colors.greenDark} /> : null}
+            <Text variant="small" color={on && !soft ? colors.white : colors.ink} style={styles.pillText} numberOfLines={1}>
               {text}
             </Text>
           </Squish>
@@ -240,6 +256,10 @@ const styles = StyleSheet.create({
   pill: { minHeight: TOUCH, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, paddingHorizontal: space.lg, borderRadius: radius.pill },
   pillOn: { backgroundColor: colors.green, ...shadow.card },
   pillOff: { backgroundColor: colors.tab },
+  pillFill: { paddingHorizontal: space.md },
+  softOn: { minHeight: 38, backgroundColor: colors.greenSoft, borderWidth: 1.5, borderColor: colors.green },
+  softOff: { minHeight: 38, backgroundColor: colors.white, borderWidth: 1.5, borderColor: colors.line },
+  grow: { flexGrow: 1 },
   pillText: { fontWeight: '800', fontSize: 15 },
   dayBadge: { borderRadius: radius.lg, alignItems: 'center', justifyContent: 'center', paddingVertical: space.sm },
   dayBadgeOff: { backgroundColor: colors.greenSoft },

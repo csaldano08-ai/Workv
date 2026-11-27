@@ -74,24 +74,29 @@ function sparkles(mono: string | null): string {
  * SVG del logo. `mono`: un solo colore (per sfondi scuri o la notifica di Android).
  * `viewBox` personalizzabile per ritagli; di norma il riquadro del disegno.
  */
-export function minaLogoSvg(opts: { mono?: string } = {}): string {
+export function minaLogoSvg(opts: { mono?: string; uid?: string } = {}): string {
   const l = minaLogoLayers(opts);
   return wrap(l.defs + l.word + l.basket + l.sparkles);
 }
 
 const wrap = (inner: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${LOGO_BOX.x} ${LOGO_BOX.y} ${LOGO_BOX.w} ${LOGO_BOX.h}">${inner}</svg>`;
 
-/** Parti del logo (stesso riquadro): servono all'intro per farle entrare una alla volta. */
-export function minaLogoLayers(opts: { mono?: string } = {}) {
+/**
+ * Parti del logo (stesso riquadro): servono all'intro per farle entrare una alla volta.
+ * `uid` rende unico l'id della sfumatura: sul web un id ripetuto in una schermata nascosta (schede precaricate)
+ * fa sparire la sfumatura in tutte le copie.
+ */
+export function minaLogoLayers(opts: { mono?: string; uid?: string } = {}) {
   const mono = opts.mono ?? null;
+  const id = `mina-word${opts.uid ? `-${opts.uid}` : ''}`;
   const defs = mono
     ? ''
-    : `<defs><linearGradient id="mina-word" x1="0" y1="80" x2="0" y2="316" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${brand.wordTop}"/><stop offset="1" stop-color="${brand.wordBottom}"/></linearGradient></defs>`;
-  return { defs, word: word(mono ?? 'url(#mina-word)'), basket: basket(mono), sparkles: sparkles(mono) };
+    : `<defs><linearGradient id="${id}" x1="0" y1="80" x2="0" y2="316" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${brand.wordTop}"/><stop offset="1" stop-color="${brand.wordBottom}"/></linearGradient></defs>`;
+  return { defs, word: word(mono ?? `url(#${id})`), basket: basket(mono), sparkles: sparkles(mono) };
 }
 
 /** Le tre parti come SVG separati e sovrapponibili (parola, cestino, trattini). */
-export function minaLogoPartsSvg(): { word: string; basket: string; sparkles: string } {
-  const l = minaLogoLayers();
+export function minaLogoPartsSvg(uid = 'intro'): { word: string; basket: string; sparkles: string } {
+  const l = minaLogoLayers({ uid });
   return { word: wrap(l.defs + l.word), basket: wrap(l.basket), sparkles: wrap(l.sparkles) };
 }

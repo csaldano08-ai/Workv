@@ -65,6 +65,12 @@ const DATA = '2026-11-23T09:00:00';
   // tutte le altre domande con le risposte predefinite
   for (let i = 0; i < 40; i++) {
     if (await p.getByText('Ecco un’anteprima del tuo piano.').count()) break;
+    // passo «Cosa hai già in casa?»: qualche prodotto in dispensa, così la Dispensa non è vuota
+    if (await p.getByText('Cosa hai già in casa?').count()) {
+      const chips = p.getByRole('checkbox').filter({ visible: true });
+      for (let k = 0; k < Math.min(5, await chips.count()); k++) await chips.nth(k).click().catch(() => {});
+      await wait(400);
+    }
     const next = btn(/^(Avanti|Salta|Continua)/);
     if (!(await next.count())) break;
     await next.click();
@@ -110,7 +116,7 @@ const DATA = '2026-11-23T09:00:00';
   // profilo: dall'ingranaggio in Oggi
   await p.goto(root + '/');
   await wait(3000);
-  await btn(/^(Profilo|Impostazioni)$/).click().catch(() => {});
+  await btn(/^Profilo/).click().catch(() => {});
   await wait(2200);
   await shot('13_profilo');
   await shot('13_profilo_intera', true);

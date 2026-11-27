@@ -1,7 +1,6 @@
 import { useLocalSearchParams } from 'expo-router';
 import { goBack } from '../../src/features/navigation';
 import { View } from 'react-native';
-import { Alert } from '../../src/ui/dialog';
 import { formatLongDate } from '../../src/core/domain/dates';
 import { checkHardConstraints } from '../../src/core/domain/planner';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
@@ -12,6 +11,7 @@ import { Notice } from '../../src/ui/Notice';
 import { Divider, Row } from '../../src/ui/Row';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
+import { toast } from '../../src/ui/toast';
 
 /** Ripete una ricetta in un altro giorno, sostituendo il pasto scelto. */
 export default function RepeatRecipe() {
@@ -40,7 +40,7 @@ export default function RepeatRecipe() {
                   subtitle={`Ora: ${catalogIndex.recipe(m.recipeId)?.name ?? ''}`}
                   onPress={async () => {
                     await run((s) => s.replaceRecipe(m.id, recipe.id, 'repeat'));
-                    Alert.alert('Fatto', `${recipe.name} aggiunta a ${formatLongDate(m.date)}.`);
+                    toast(`${recipe.name} aggiunta a ${formatLongDate(m.date)}.`);
                     goBack('/settimana');
                   }}
                 />

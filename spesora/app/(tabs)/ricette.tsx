@@ -8,16 +8,15 @@ import { MEAL_TYPES, type Recipe } from '../../src/core/domain/types';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { filterRecipes, recipeSections, type CourseFilter, type RecipeFilter } from '../../src/features/recipes/search';
 import { MEAL_LABELS } from '../../src/i18n/labels';
-import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
-import { AssistantBubble } from '../../src/ui/AssistantBubble';
+import { colors, font, radius, shadow, space } from '../../src/theme/tokens';
 import { Chip } from '../../src/ui/Chip';
-import { Reveal } from '../../src/ui/Reveal';
 import { Squish } from '../../src/ui/Squish';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
 import { MinaChefTransform } from '../../src/ui/mascot/MinaChefTransform';
 import { firstTimeThisSession, markSeenThisSession } from '../../src/ui/mascot/director';
 import { RecipeImage } from '../../src/ui/RecipeImage';
-import { SectionTitle } from '../../src/ui/Row';
+import { AppHeader, ScreenTitle } from '../../src/ui/mina/kit';
+import { ChoiceArt, type ChoiceArtName } from '../../src/ui/mina/ChoiceArt';
 import { Text } from '../../src/ui/Text';
 
 const COURSES: { id: CourseFilter; label: string }[] = [
@@ -34,8 +33,24 @@ const DIETS = [
   { id: 'pescetariano', label: 'Pescetariane' },
 ] as const;
 
+/** Tessere delle categorie (le prime quattro come nel riferimento; le altre sono funzioni già esistenti). */
+type TileId = 'tutte' | CourseFilter | 'veg' | 'veloci' | 'dispensa' | 'idee' | 'preferite';
+const TILES: { id: TileId; label: string; icon: keyof typeof Ionicons.glyphMap; art?: ChoiceArtName }[] = [
+  { id: 'tutte', label: 'Tutte', icon: 'grid-outline' },
+  { id: 'primi', label: 'Primi', icon: 'restaurant-outline', art: 'pranzo' },
+  { id: 'secondi', label: 'Secondi', icon: 'flame-outline', art: 'onnivoro' },
+  { id: 'veg', label: 'Veg', icon: 'leaf-outline', art: 'vegano' },
+  { id: 'idee', label: 'Per te', icon: 'sparkles-outline' },
+  { id: 'dispensa', label: 'Dispensa', icon: 'file-tray-stacked-outline' },
+  { id: 'veloci', label: '15 min', icon: 'timer-outline' },
+  { id: 'preferite', label: 'Preferite', icon: 'heart-outline' },
+  { id: 'piatti_unici', label: 'Unici', icon: 'pizza-outline' },
+  { id: 'colazioni_dolci', label: 'Colazioni', icon: 'cafe-outline' },
+  { id: 'spuntini', label: 'Spuntini', icon: 'nutrition-outline' },
+];
+
 export default function Recipes() {
-  const { snapshot } = useApp();
+  const { snapshot, run } = useApp();
   // la prima volta in questa sessione Mina indossa cappello e grembiule (trasformazione in Mina Chef);
   // alle aperture successive Mina Chef fa solo il suo ingresso breve (solleva il cucchiaio, strizza l'occhio)
   const [chefMode, setChefMode] = useState<'transform' | 'chef'>(() => (firstTimeThisSession('chef-transform') ? 'transform' : 'chef'));
@@ -46,70 +61,74 @@ export default function Recipes() {
       if (!firstTimeThisSession('chef-transform')) setChefMode('chef');
     }, []),
   );
+  const [tile, setTile] = useState<TileId>('tutte');
   const [filter, setFilter] = useState<RecipeFilter>({ onlyCompatible: true });
   const [showFilters, setShowFilters] = useState(false);
-  const [browseAll, setBrowseAll] = useState(false);
   const profile = snapshot?.profile ?? null;
   const favorites = useMemo(() => snapshot?.favorites ?? new Set<string>(), [snapshot?.favorites]);
   const set = (patch: Partial<RecipeFilter>) => setFilter((f) => ({ ...f, ...patch }));
-  const active = !!(filter.query?.trim() || filter.meal || filter.diet || filter.maxMinutes || filter.course || filter.onlyFavorites || browseAll);
-
-  const list = useMemo(() => (active ? filterRecipes(filter, { catalog: catalogIndex, profile, favorites }) : []), [active, filter, profile, favorites]);
+  // le sezioni «Idee per questa settimana» e «Con ciò che hai in dispensa» diventano tessere (stessi dati di prima)
   const sections = useMemo(
-    () =>
-      active || !snapshot
-        ? []
-        : recipeSections({ catalog: catalogIndex, profile, favorites, pantry: toStock(snapshot.pantry), plannedIds: new Set(snapshot.meals.map((m) => m.recipeId)), today: snapshot.today }),
-    [active, snapshot, profile, favorites],
+    () => (snapshot ? recipeSections({ catalog: catalogIndex, profile, favorites, pantry: toStock(snapshot.pantry), plannedIds: new Set(snapshot.meals.map((m) => m.recipeId)), today: snapshot.today }) : []),
+    [snapshot, profile, favorites],
   );
+  const list = useMemo(() => {
+    const tileFilter: Partial<RecipeFilter> =
+      tile === 'veg'
+        ? { diet: 'vegetariano' }
+        : tile === 'veloci'
+          ? { maxMinutes: 15 }
+          : tile === 'preferite'
+            ? { onlyFavorites: true }
+            : tile === 'tutte' || tile === 'dispensa' || tile === 'idee'
+              ? {}
+              : { course: tile };
+    const merged = { ...filter, ...tileFilter };
+    const all = filterRecipes(merged, { catalog: catalogIndex, profile, favorites });
+    if (tile === 'dispensa' || tile === 'idee') {
+      const ids = new Set((sections.find((x) => x.id === tile)?.recipes ?? []).map((r) => r.id));
+      return all.filter((r) => ids.has(r.id));
+    }
+    return all;
+  }, [tile, filter, profile, favorites, sections]);
+  const servings = profile?.servings ?? 2;
+  const toggleFav = (id: string) => void run((s) => s.toggleFavorite(id, !favorites.has(id)));
+  const filtersOn = !!(filter.meal || filter.diet || filter.maxMinutes || filter.course || filter.onlyFavorites || !filter.onlyCompatible);
 
   const header = (
     <View style={styles.header}>
-      <View style={styles.titleRow}>
-        <Text variant="title" accessibilityRole="header" style={styles.titleFlex}>
-          Ricettario
-        </Text>
-        {chefMode === 'transform' ? (
-          <MinaChefTransform size={72} play onDone={() => markSeenThisSession('chef-transform')} style={styles.chef} />
-        ) : (
-          <MinaMascot pose="cooking" size={72} animated replayKey={visit} style={styles.chef} />
-        )}
-      </View>
+      <AppHeader />
+      <ScreenTitle
+        title="Ricette"
+        right={
+          chefMode === 'transform' ? (
+            <MinaChefTransform size={72} play onDone={() => markSeenThisSession('chef-transform')} style={styles.chef} />
+          ) : (
+            <MinaMascot pose="cooking" size={72} animated replayKey={visit} style={styles.chef} />
+          )
+        }
+      />
       <View style={styles.searchRow}>
-        <TextInput
-          value={filter.query ?? ''}
-          onChangeText={(v) => set({ query: v })}
-          placeholder="Cerca per nome, ingrediente o regione"
-          placeholderTextColor={colors.inkSoft}
-          style={styles.input}
-          accessibilityLabel="Cerca ricette"
-          autoCorrect={false}
-          clearButtonMode="while-editing"
-        />
-        <Pressable accessibilityRole="button" accessibilityLabel={showFilters ? 'Nascondi filtri' : 'Mostra filtri'} onPress={() => setShowFilters(!showFilters)} style={[styles.filterBtn, showFilters && { backgroundColor: colors.greenSoft }]}>
-          <Ionicons name="options-outline" size={22} color={colors.green} />
-        </Pressable>
+        <View style={styles.search}>
+          <Ionicons name="search" size={22} color={colors.ink} />
+          <TextInput
+            value={filter.query ?? ''}
+            onChangeText={(v) => set({ query: v })}
+            placeholder="Cerca una ricetta..."
+            placeholderTextColor={colors.inkSoft}
+            style={styles.input}
+            accessibilityLabel="Cerca ricette per nome, ingrediente o regione"
+            autoCorrect={false}
+            clearButtonMode="while-editing"
+          />
+        </View>
+        <Squish accessibilityRole="button" accessibilityLabel={showFilters ? 'Nascondi filtri' : 'Mostra filtri'} accessibilityState={{ expanded: showFilters }} onPress={() => setShowFilters(!showFilters)} style={[styles.filterBtn, (showFilters || filtersOn) && styles.filterBtnOn]}>
+          <Ionicons name="funnel-outline" size={22} color={colors.greenDark} />
+          {filtersOn ? <View style={styles.filterDot} /> : null}
+        </Squish>
       </View>
-      {!showFilters ? (
-        // filtri rapidi sempre a portata (gli stessi del pannello completo, che resta dietro il pulsante accanto)
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.quick} keyboardShouldPersistTaps="handled">
-          {COURSES.slice(0, 3).map((c) => (
-            <Chip key={c.id} label={c.label} selected={filter.course === c.id} onPress={() => set({ course: filter.course === c.id ? null : c.id })} />
-          ))}
-          <Chip label="≤ 30 min" selected={filter.maxMinutes === 30} onPress={() => set({ maxMinutes: filter.maxMinutes === 30 ? null : 30 })} />
-          <Chip tone="peach" label="Preferite" selected={!!filter.onlyFavorites} onPress={() => set({ onlyFavorites: !filter.onlyFavorites })} />
-          {COURSES.slice(3).map((c) => (
-            <Chip key={c.id} label={c.label} selected={filter.course === c.id} onPress={() => set({ course: filter.course === c.id ? null : c.id })} />
-          ))}
-        </ScrollView>
-      ) : null}
       {showFilters ? (
         <View style={styles.filters}>
-          <FilterRow>
-            {COURSES.map((c) => (
-              <Chip key={c.id} label={c.label} selected={filter.course === c.id} onPress={() => set({ course: filter.course === c.id ? null : c.id })} />
-            ))}
-          </FilterRow>
           <FilterRow>
             {MEAL_TYPES.map((m) => (
               <Chip key={m} label={MEAL_LABELS[m]} selected={filter.meal === m} onPress={() => set({ meal: filter.meal === m ? null : m })} />
@@ -124,88 +143,73 @@ export default function Recipes() {
             ))}
           </FilterRow>
           <FilterRow>
+            {COURSES.map((c) => (
+              <Chip key={c.id} label={c.label} selected={filter.course === c.id} onPress={() => set({ course: filter.course === c.id ? null : c.id })} />
+            ))}
+          </FilterRow>
+          <FilterRow>
             <Chip tone="peach" label="Preferite" selected={!!filter.onlyFavorites} onPress={() => set({ onlyFavorites: !filter.onlyFavorites })} />
             <Chip label="Rispetta le mie esclusioni" selected={!!filter.onlyCompatible} onPress={() => set({ onlyCompatible: !filter.onlyCompatible })} />
           </FilterRow>
         </View>
       ) : null}
-      {active ? (
-        <View style={styles.resultBar}>
-          <Text variant="small" color={colors.inkSoft} style={styles.flex}>
-            {`${list.length} ricette${filter.onlyCompatible ? ' adatte a te' : ''}`}
-          </Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tiles} style={styles.tilesScroll} keyboardShouldPersistTaps="handled" accessibilityRole="tablist">
+        {TILES.map((t) => {
+          const on = t.id === tile;
+          return (
+            <Squish key={t.id} accessibilityRole="tab" accessibilityState={{ selected: on }} accessibilityLabel={t.label} onPress={() => setTile(t.id)} style={[styles.tile, on ? styles.tileOn : styles.tileOff]}>
+              {t.art ? <ChoiceArt name={t.art} size={36} /> : <Ionicons name={on ? (t.icon.replace('-outline', '') as keyof typeof Ionicons.glyphMap) : t.icon} size={26} color={on ? colors.white : colors.green} />}
+              <Text variant="small" color={on ? colors.white : colors.ink} style={styles.tileText} numberOfLines={1}>
+                {t.label}
+              </Text>
+            </Squish>
+          );
+        })}
+      </ScrollView>
+      <View style={styles.resultBar}>
+        <Text variant="small" color={colors.inkSoft} style={styles.flex}>
+          {`${list.length} ${list.length === 1 ? 'ricetta' : 'ricette'}${filter.onlyCompatible ? ' adatte a te' : ''}`}
+        </Text>
+        {filtersOn || filter.query ? (
           <Pressable
             accessibilityRole="button"
             onPress={() => {
               setFilter({ onlyCompatible: true });
-              setBrowseAll(false);
+              setTile('tutte');
             }}
             hitSlop={8}
           >
-            <Text variant="small" color={colors.green}>
+            <Text variant="small" color={colors.green} style={styles.bold}>
               Azzera
             </Text>
           </Pressable>
-        </View>
-      ) : null}
+        ) : null}
+      </View>
     </View>
   );
-
-  if (!active) {
-    return (
-      <SafeAreaView style={styles.safe} edges={['top']}>
-        <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-          <Reveal>{header}</Reveal>
-          {/* le sezioni salgono a cascata; le prime card di ogni carosello entrano da destra */}
-          {sections.map((s, si) => (
-            <Reveal key={s.id} index={si + 1} style={styles.section}>
-              <SectionTitle>{s.title}</SectionTitle>
-              <FlatList
-                horizontal
-                data={s.recipes}
-                keyExtractor={(r) => r.id}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.carousel}
-                // si vedono 2-3 card per riga: le altre si preparano scorrendo (apertura della scheda più rapida)
-                initialNumToRender={4}
-                maxToRenderPerBatch={4}
-                windowSize={3}
-                renderItem={({ item, index }) =>
-                  index < 4 ? (
-                    <Reveal from="right" index={si + 1 + index}>
-                      <RecipeCard recipe={item} favorite={favorites.has(item.id)} />
-                    </Reveal>
-                  ) : (
-                    <RecipeCard recipe={item} favorite={favorites.has(item.id)} />
-                  )
-                }
-              />
-            </Reveal>
-          ))}
-          <Pressable accessibilityRole="button" onPress={() => setBrowseAll(true)} style={styles.allBtn}>
-            <Text variant="heading" color={colors.green}>
-              {`Tutte le ricette (${catalogIndex.catalog.recipes.length})`}
-            </Text>
-            <Ionicons name="chevron-forward" size={18} color={colors.green} />
-          </Pressable>
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
       <FlatList
         data={list}
         keyExtractor={(r) => r.id}
+        numColumns={2}
+        ListHeaderComponent={header}
+        columnWrapperStyle={styles.gridRow}
         contentContainerStyle={styles.content}
         keyboardShouldPersistTaps="handled"
-        ListHeaderComponent={header}
-        initialNumToRender={12}
-        windowSize={7}
-        ListEmptyComponent={<AssistantBubble pose="empty" text="Nessuna ricetta con questi filtri. Prova a toglierne uno." />}
-        renderItem={({ item }) => <RecipeRow recipe={item} favorite={favorites.has(item.id)} />}
-        ItemSeparatorComponent={() => <View style={styles.sep} />}
+        initialNumToRender={6}
+        maxToRenderPerBatch={6}
+        windowSize={5}
+        ListEmptyComponent={
+          <View style={styles.empty}>
+            <MinaMascot pose="thinking" size={100} />
+            <Text variant="body" color={colors.inkSoft} center>
+              Nessuna ricetta con questi filtri.
+            </Text>
+          </View>
+        }
+        renderItem={({ item }) => <RecipeCard recipe={item} favorite={favorites.has(item.id)} servings={servings} onFavorite={() => toggleFav(item.id)} />}
       />
     </SafeAreaView>
   );
@@ -215,74 +219,61 @@ function FilterRow({ children }: { children: React.ReactNode }) {
   return <View style={styles.filterRow}>{children}</View>;
 }
 
-function RecipeCard({ recipe, favorite }: { recipe: Recipe; favorite: boolean }) {
+/** Card della griglia: foto con il cuore, nome, tempo e persone (come nel riferimento). */
+function RecipeCard({ recipe, favorite, servings, onFavorite }: { recipe: Recipe; favorite: boolean; servings: number; onFavorite: () => void }) {
   return (
-    <Squish accessibilityRole="button" accessibilityLabel={`${recipe.name}, ${recipe.totalMinutes} minuti`} onPress={() => router.push(`/ricetta/${recipe.id}`)} style={styles.card}>
-      {/* miniatura 320×240: nitida a questa misura e molto più leggera da decodificare dell'immagine grande */}
-      <RecipeImage variant="thumb" recipe={recipe} rounded={14} />
-      <Text variant="small" numberOfLines={2} style={styles.cardTitle}>
-        {recipe.name}
-      </Text>
-      <Text variant="caption" color={colors.inkSoft}>
-        {`${recipe.totalMinutes} MIN${favorite ? ' · PREFERITA' : ''}`}
-      </Text>
+    <Squish accessibilityRole="button" accessibilityLabel={`${recipe.name}, ${recipe.totalMinutes} minuti${favorite ? ', preferita' : ''}`} onPress={() => router.push(`/ricetta/${recipe.id}`)} outerStyle={styles.cardOuter} style={styles.card}>
+      <View>
+        {/* miniatura 320×240: nitida a questa misura e molto più leggera da decodificare dell'immagine grande */}
+        <RecipeImage variant="thumb" recipe={recipe} rounded={0} aspectRatio={1.2} />
+        <Pressable accessibilityRole="button" accessibilityLabel={favorite ? `Togli ${recipe.name} dai preferiti` : `Aggiungi ${recipe.name} ai preferiti`} accessibilityState={{ selected: favorite }} onPress={onFavorite} hitSlop={6} style={styles.heart}>
+          <Ionicons name={favorite ? 'heart' : 'heart-outline'} size={19} color={colors.danger} />
+        </Pressable>
+      </View>
+      <View style={styles.cardBody}>
+        <Text variant="heading" numberOfLines={2} style={styles.cardTitle}>
+          {recipe.name}
+        </Text>
+        <View style={styles.cardMeta}>
+          <Ionicons name="time-outline" size={15} color={colors.ink} />
+          <Text variant="small">{`${recipe.totalMinutes} min`}</Text>
+          <Ionicons name="people-outline" size={15} color={colors.ink} style={styles.metaGap} />
+          <Text variant="small">{String(servings)}</Text>
+        </View>
+      </View>
     </Squish>
   );
 }
 
-function RecipeRow({ recipe, favorite }: { recipe: Recipe; favorite: boolean }) {
-  return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityLabel={`${recipe.name}, ${recipe.totalMinutes} minuti${favorite ? ', preferita' : ''}`}
-      onPress={() => router.push(`/ricetta/${recipe.id}`)}
-      style={({ pressed }) => [styles.row, pressed && { opacity: 0.7 }]}
-    >
-      <RecipeImage variant="thumb" recipe={recipe} style={styles.thumb} rounded={12} />
-      <View style={styles.flex}>
-        <Text variant="heading" numberOfLines={2}>
-          {recipe.name}
-        </Text>
-        <Text variant="small" color={colors.inkSoft}>
-          {`${recipe.totalMinutes} min · ${recipe.mealTypes.map((m) => MEAL_LABELS[m]).join(', ')}`}
-        </Text>
-      </View>
-      {favorite ? <Ionicons name="heart" size={18} color={colors.peach} /> : null}
-    </Pressable>
-  );
-}
-
 const styles = StyleSheet.create({
-  titleRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
-  titleFlex: { flex: 1 },
-  safe: { flex: 1, backgroundColor: colors.ivory },
-  content: { padding: space.lg, paddingBottom: space.xxl, width: '100%', maxWidth: 640, alignSelf: 'center' },
-  header: { gap: space.md, marginBottom: space.md },
-  chef: { marginTop: -18, marginBottom: -14 },
-  searchRow: { flexDirection: 'row', gap: space.sm, alignItems: 'center' },
-  filterBtn: { width: TOUCH + 4, height: TOUCH + 4, borderRadius: radius.md, borderWidth: 1.5, borderColor: colors.lineStrong, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.paper },
+  safe: { flex: 1, backgroundColor: colors.desk },
+  content: { padding: space.lg, paddingTop: 0, paddingBottom: space.xxl, width: '100%', maxWidth: 640, alignSelf: 'center' },
+  header: { gap: space.lg, marginBottom: space.md },
+  flex: { flex: 1 },
+  bold: { fontWeight: '800' },
+  chef: { marginTop: -18, marginBottom: -10 },
+  searchRow: { flexDirection: 'row', gap: space.md, alignItems: 'center' },
+  search: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: 54, paddingHorizontal: space.lg, borderRadius: radius.pill, backgroundColor: colors.white, ...shadow.card },
+  input: { flex: 1, minHeight: 50, fontSize: 17, color: colors.ink, fontFamily: font.regular },
+  filterBtn: { width: 54, height: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.greenSoft },
+  filterBtnOn: { backgroundColor: colors.sage },
+  filterDot: { position: 'absolute', top: 12, right: 12, width: 9, height: 9, borderRadius: 5, backgroundColor: colors.peach },
   filters: { gap: space.sm },
-  quick: { gap: space.sm, paddingRight: space.lg },
   filterRow: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
-  resultBar: { flexDirection: 'row', alignItems: 'center' },
-  input: {
-    flex: 1,
-    minHeight: TOUCH + 4,
-    borderWidth: 1.5,
-    borderColor: colors.lineStrong,
-    borderRadius: radius.md,
-    paddingHorizontal: space.md,
-    fontSize: 16,
-    color: colors.ink,
-    backgroundColor: colors.paper,
-  },
-  section: { gap: space.sm, marginBottom: space.md },
-  carousel: { gap: space.md, paddingRight: space.lg },
-  card: { width: 164, gap: 4 },
-  cardTitle: { fontWeight: '600' },
-  allBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: space.xs, minHeight: TOUCH, marginTop: space.sm },
-  row: { flexDirection: 'row', alignItems: 'center', gap: space.md, minHeight: 72 },
-  thumb: { width: 88, aspectRatio: 4 / 3 },
-  flex: { flex: 1, gap: 2 },
-  sep: { height: 1, backgroundColor: colors.line, marginVertical: space.sm },
+  tilesScroll: { marginHorizontal: -space.lg },
+  tiles: { gap: space.md, paddingHorizontal: space.lg, paddingVertical: space.xs },
+  tile: { width: 76, height: 84, borderRadius: radius.lg, alignItems: 'center', justifyContent: 'center', gap: 4 },
+  tileOn: { backgroundColor: colors.green, ...shadow.float },
+  tileOff: { backgroundColor: colors.white, ...shadow.card },
+  tileText: { fontWeight: '800', fontSize: 14 },
+  resultBar: { flexDirection: 'row', alignItems: 'center', marginTop: -space.xs },
+  gridRow: { gap: space.md, marginBottom: space.md },
+  cardOuter: { flex: 1, maxWidth: '50%' },
+  card: { borderRadius: radius.xl, backgroundColor: colors.white, overflow: 'hidden', ...shadow.card },
+  heart: { position: 'absolute', top: 8, right: 8, width: 34, height: 34, borderRadius: 17, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center' },
+  cardBody: { padding: space.md, gap: 6 },
+  cardTitle: { fontWeight: '800', fontSize: 16, lineHeight: 21 },
+  cardMeta: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  metaGap: { marginLeft: space.sm },
+  empty: { alignItems: 'center', gap: space.md, paddingVertical: space.xl },
 });

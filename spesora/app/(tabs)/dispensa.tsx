@@ -15,7 +15,8 @@ import { MinaAnimated } from '../../src/ui/mascot/MinaAnimated';
 import { emitMina } from '../../src/ui/mascot/director';
 import { useMinaScope } from '../../src/ui/mascot/useMinaScope';
 import { Reveal } from '../../src/ui/Reveal';
-import { LinkRow, NotebookPage, StickyNote } from '../../src/ui/notebook';
+import { StickyNote } from '../../src/ui/notebook';
+import { AppHeader, HeaderIcon, InfoToggle, ListCard, ListRow, Pills, ScreenTitle } from '../../src/ui/mina/kit';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
 import { Button } from '../../src/ui/Button';
 import { Screen } from '../../src/ui/Screen';
@@ -23,7 +24,7 @@ import { Text } from '../../src/ui/Text';
 
 export default function Pantry() {
   const { snapshot, run } = useApp();
-  const [info, setInfo] = useState(false);
+  const [filter, setFilter] = useState<'all' | 'expiry' | 'attention'>('all');
   if (!snapshot?.profile) return <Screen>{null}</Screen>;
   const items = [...snapshot.outlook].sort((a, b) =>
     a.insufficient === b.insufficient ? catalogIndex.ingredient(a.ingredientId).name.localeCompare(catalogIndex.ingredient(b.ingredientId).name) : a.insufficient ? -1 : 1,
@@ -56,28 +57,36 @@ export default function Pantry() {
   const counts = { ok: 0, check: 0, short: 0, out: 0 } as Record<PantryState, number>;
   for (const i of quantified) counts[stateOf(i)]++;
 
+  const filtered = quantified.filter((i) => (filter === 'expiry' ? !!i.expiryDate : filter === 'attention' ? stateOf(i) !== 'ok' : true));
+  const withExpiry = quantified.filter((i) => !!i.expiryDate).length;
+  const attention = quantified.length - counts.ok;
+
   return (
     <Screen>
-      <View style={styles.header}>
-        <Text variant="title" accessibilityRole="header" style={styles.flex}>
-          Dispensa
-        </Text>
-        <Button compact label="Aggiungi" icon="add" onPress={() => router.push('/aggiungi')} />
-      </View>
-
+      <AppHeader right={<HeaderIcon icon="add-circle-outline" label="Aggiungi in dispensa" onPress={() => router.push('/aggiungi')} />} />
+      <ScreenTitle title="Dispensa" />
       {quantified.length > 0 ? (
-        <View style={styles.legend} accessibilityLabel={`${counts.ok} disponibili, ${counts.check} da verificare, ${counts.short} potrebbero non bastare, ${counts.out} esauriti`}>
-          {(['ok', 'check', 'short', 'out'] as const).map((k) => (counts[k] > 0 ? <StatePill key={k} state={k} count={counts[k]} /> : null))}
-        </View>
+        <Pills
+          fill
+          options={[
+            { key: 'all', label: 'Tutti' },
+            { key: 'expiry', label: 'Scadenze', count: withExpiry > 0 ? withExpiry : undefined },
+            { key: 'attention', label: 'Da controllare', count: attention > 0 ? attention : undefined },
+          ]}
+          value={filter}
+          onChange={setFilter}
+        />
       ) : null}
 
       <ShortageScene names={warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name)} />
 
       {expiring.length > 0 ? (
         <View style={styles.scene}>
-          <MinaMascot pose="thinking" size={92} style={styles.sceneMina} />
+          <MinaMascot pose="thinking" size={84} style={styles.sceneMina} />
           <StickyNote tone="sage" style={styles.flex}>
-            <Text variant="hand">In scadenza a breve</Text>
+            <Text variant="heading" style={styles.bold}>
+              In scadenza a breve
+            </Text>
             <Text variant="small" color={colors.inkSoft}>
               {`${expiring.map((e) => `${catalogIndex.ingredient(e.ingredientId).name} (${formatShortDate(e.expiryDate!)})`).join(', ')}: non ancora previsti in un pasto.`}
             </Text>
@@ -87,73 +96,66 @@ export default function Pantry() {
       ) : null}
 
       {quantified.length === 0 ? (
-        <View style={styles.scene}>
-          <MinaMascot pose="empty" size={110} animated style={styles.sceneMina} />
-          <StickyNote style={styles.flex}>
-            <Text variant="hand">La dispensa è vuota</Text>
-            <Text variant="small" color={colors.inkSoft}>
-              Quando confermi una spesa, i prodotti compaiono qui. Puoi anche aggiungere ciò che hai già.
-            </Text>
-          </StickyNote>
+        <View style={styles.emptyState}>
+          <MinaMascot pose="empty" size={120} animated />
+          <Text variant="title" center>
+            La dispensa è vuota
+          </Text>
+          <Text variant="body" color={colors.inkSoft} center>
+            Quando confermi una spesa, i prodotti compaiono qui. Puoi anche aggiungere ciò che hai già.
+          </Text>
+          <Button label="Aggiungi in dispensa" icon="add" onPress={() => router.push('/aggiungi')} />
         </View>
+      ) : filtered.length === 0 ? (
+        <Text variant="body" color={colors.inkSoft} center style={styles.emptyFilter}>
+          {filter === 'expiry' ? 'Nessuna scadenza inserita. Puoi aggiungerla toccando un prodotto.' : 'Tutto a posto: niente da controllare.'}
+        </Text>
       ) : (
-        <NotebookPage rings={5} contentStyle={styles.page}>
-          {quantified.map((i, idx) => {
+        <ListCard>
+          {filtered.map((i) => {
             const ing = catalogIndex.ingredient(i.ingredientId);
             const st = stateOf(i);
             const avail = i.available > 0 ? formatQtyWithUnit(i.available, ing.unit) : null;
             const need = i.reserved > 0 ? formatQtyWithUnit(i.reserved, ing.unit) : null;
             const s = STATE[st];
-            // quantità subito leggibili: «550 g disponibili / 940 g necessari» e lo stato a parole; i dettagli
-            // (stima, scadenza, correzioni) toccando il prodotto
+            // quantità subito leggibili («550 g · servono 940 g») e lo stato con icona e parola (mai solo colore);
+            // i dettagli (stima, scadenza, correzioni) toccando il prodotto
             return (
-              <Pressable
+              <ListRow
                 key={i.ingredientId}
-                accessibilityRole="button"
-                accessibilityLabel={`${ing.name}: ${avail ? `${avail} disponibili${i.estimated ? ', stima' : ''}` : 'esaurito'}${need ? `, ${need} necessari` : ''}. Stato: ${s.row}${i.expiryDate ? `. Scade il ${formatShortDate(i.expiryDate)}` : ''}`}
-                onPress={() => router.push(`/voce/${i.ingredientId}`)}
-                style={({ pressed }) => [styles.item, idx > 0 && styles.itemLine, pressed && { opacity: 0.7 }]}
-              >
-                <CategoryIcon category={ing.category} size={30} />
-                <View style={styles.flex}>
-                  <Text variant="body" numberOfLines={2} style={styles.itemName}>
-                    {ing.name}
-                  </Text>
-                  <Text variant="small" color={colors.inkSoft}>
-                    <Text variant="small" color={st === 'out' ? colors.inkSoft : colors.ink} style={styles.bold}>
-                      {avail ?? '0'}
+                left={<CategoryIcon category={ing.category} size={42} />}
+                title={ing.name}
+                subtitle={
+                  <View style={styles.sub}>
+                    <Text variant="small" color={colors.inkSoft}>
+                      {`${avail ?? '0'}${i.estimated && avail ? ' (stima)' : ''}${need ? ` · servono ${need}` : ''}`}
                     </Text>
-                    {` disponibili${i.estimated && avail ? ' (stima)' : ''}`}
-                    {need ? (
-                      <>
-                        {' / '}
-                        <Text variant="small" color={colors.ink} style={styles.bold}>
-                          {need}
+                    <View style={styles.stateRow}>
+                      {st !== 'ok' ? (
+                        <>
+                          <Ionicons name={s.icon} size={14} color={s.fg} />
+                          <Text variant="small" color={s.fg} style={styles.bold}>
+                            {s.row}
+                          </Text>
+                        </>
+                      ) : null}
+                      {i.expiryDate ? (
+                        <Text variant="small" color={colors.inkSoft}>
+                          {`${st !== 'ok' ? ' · ' : ''}scade ${formatShortDate(i.expiryDate)}`}
                         </Text>
-                        {' necessari'}
-                      </>
-                    ) : null}
-                  </Text>
-                  {i.expiryDate ? (
-                    <Text variant="caption" color={colors.inkSoft}>
-                      {`SCADE ${formatShortDate(i.expiryDate).toUpperCase()}`}
-                    </Text>
-                  ) : null}
-                </View>
-                <View style={[styles.rowTag, { backgroundColor: s.bg }]}>
-                  <Ionicons name={s.icon} size={14} color={s.fg} />
-                  <Text variant="caption" color={s.fg}>
-                    {s.row.toUpperCase()}
-                  </Text>
-                </View>
-                <Ionicons name="chevron-forward" size={16} color={colors.inkSoft} />
-              </Pressable>
+                      ) : null}
+                    </View>
+                  </View>
+                }
+                onPress={() => router.push(`/voce/${i.ingredientId}`)}
+                accessibilityLabel={`${ing.name}: ${avail ? `${avail} disponibili${i.estimated ? ', stima' : ''}` : 'esaurito'}${need ? `, ${need} necessari` : ''}. Stato: ${s.row}${i.expiryDate ? `. Scade il ${formatShortDate(i.expiryDate)}` : ''}`}
+              />
             );
           })}
-        </NotebookPage>
+        </ListCard>
       )}
 
-      <Text variant="hand" style={styles.section}>
+      <Text variant="title" style={styles.section} accessibilityRole="header">
         Basi in casa
       </Text>
       <View style={styles.staples}>
@@ -170,20 +172,7 @@ export default function Pantry() {
           ))
         )}
       </View>
-
-      <LinkRow label="Come funziona la dispensa" onPress={() => setInfo((v) => !v)}>
-        <Ionicons name="information-circle-outline" size={20} color={colors.green} />
-        <Text variant="heading" color={colors.green} style={styles.flex}>
-          Come funziona la dispensa
-        </Text>
-        <Ionicons name={info ? 'chevron-up' : 'chevron-down'} size={18} color={colors.green} />
-      </LinkRow>
-      {info ? (
-        <View style={styles.infoBox}>
-          <Text variant="small">Le quantità arrivano dalle spese confermate e dalle tue correzioni. I pasti programmati non sottraggono nulla finché non confermi di averli cucinati.</Text>
-          <Text variant="small">{t('estimate.note')}</Text>
-        </View>
-      ) : null}
+      <InfoToggle label="Come funziona la dispensa" text={`Le quantità arrivano dalle spese confermate e dalle tue correzioni. I pasti programmati non sottraggono nulla finché non confermi di averli cucinati. ${t('estimate.note')}`} />
     </Screen>
   );
 }
@@ -281,36 +270,20 @@ function ShortageScene({ names }: { names: string[] }) {
   );
 }
 
-function StatePill({ state, count }: { state: PantryState; count?: number }) {
-  const s = STATE[state];
-  return (
-    <View style={[styles.pill, { backgroundColor: s.bg }]}>
-      <Ionicons name={s.icon} size={14} color={s.fg} />
-      <Text variant="caption" color={s.fg}>
-        {count !== undefined ? `${count} · ${s.label.replace(' (stima)', '')}` : s.label.replace(' (stima)', '')}
-      </Text>
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
-  header: { flexDirection: 'row', alignItems: 'center', gap: space.md },
   flex: { flex: 1 },
-  legend: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
-  pill: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 10, paddingVertical: 5, borderRadius: radius.pill },
   scene: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   sceneWrap: { gap: space.sm },
   sceneMina: { marginLeft: -space.sm },
   noteBtn: { alignSelf: 'flex-start', marginTop: space.sm },
-  page: { paddingHorizontal: space.md, gap: 0 },
-  item: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: TOUCH + 8, paddingVertical: space.sm },
-  itemName: { fontWeight: '600' },
   bold: { fontWeight: '800', fontVariant: ['tabular-nums'] },
-  rowTag: { flexDirection: 'row', alignItems: 'center', gap: 3, paddingHorizontal: 8, paddingVertical: 4, borderRadius: radius.pill },
   minaTap: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
-  itemLine: { borderTopWidth: 1, borderTopColor: colors.line },
-  section: { marginTop: space.sm },
+  sub: { gap: 1 },
+  stateRow: { flexDirection: 'row', alignItems: 'center', gap: 4, flexWrap: 'wrap' },
+  emptyState: { alignItems: 'center', gap: space.md, paddingVertical: space.lg },
+  emptyFilter: { paddingVertical: space.lg },
+  section: { marginTop: space.sm, fontSize: 22, lineHeight: 28 },
   staples: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   staple: { flexDirection: 'row', alignItems: 'center', gap: 4, minHeight: TOUCH - 8, paddingHorizontal: space.md, borderRadius: radius.pill, borderWidth: 1.5, borderBottomWidth: 3, borderColor: colors.lineStrong, backgroundColor: colors.white },
-  infoBox: { gap: space.sm, padding: space.md, borderRadius: radius.lg, backgroundColor: colors.greenMist },
 });

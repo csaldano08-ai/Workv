@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Linking } from 'react-native';
-import { Alert } from '../src/ui/dialog';
 import { countScheduled, getPermission, requestPermission, sendTestNotification, type PermissionState } from '../src/core/notifications/NotificationScheduler';
 import type { NotificationSettings } from '../src/core/notifications/schedule';
 import { useApp } from '../src/features/app/AppProvider';
@@ -11,6 +10,7 @@ import { Card } from '../src/ui/Card';
 import { Notice } from '../src/ui/Notice';
 import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
+import { toast } from '../src/ui/toast';
 
 const PERMISSION_TEXT: Record<PermissionState, string> = {
   granted: 'Permesso concesso: i promemoria sono programmati su questo iPhone.',
@@ -60,7 +60,7 @@ export default function NotificationsScreen() {
         disabled={permission !== 'granted'}
         onPress={async () => {
           const p = await sendTestNotification();
-          if (p === 'granted') Alert.alert('Notifica di prova', 'Arriverà tra circa 5 secondi. Blocca il telefono o torna alla schermata Home per vederla.');
+          if (p === 'granted') toast('Notifica di prova in arrivo tra circa 5 secondi.', 'info');
         }}
       />
       <Text variant="small" color={colors.inkSoft}>

@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Animated, Platform, Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Animated, Platform, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { addDays, capitalize, formatLongDate, formatShortDate, minutesToHHMM, weekdayOf, weekdayShort } from '../../src/core/domain/dates';
 import { mealIngredientStatus, toStock } from '../../src/core/domain/pantry';
@@ -14,14 +14,13 @@ import { useMealActions } from '../../src/features/meals/useMealActions';
 import { EMPTY } from '../../src/i18n/assistant';
 import { t } from '../../src/i18n/it';
 import { MEAL_LABELS } from '../../src/i18n/labels';
-import { colors, radius, shadow, space, TOUCH } from '../../src/theme/tokens';
+import { colors, radius, shadow, space } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
-import { LogoMark } from '../../src/ui/Logo';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
 import { emitMina } from '../../src/ui/mascot/director';
-import { LinkRow, StickyNote } from '../../src/ui/notebook';
-import { Notice } from '../../src/ui/Notice';
+import { LinkRow } from '../../src/ui/notebook';
+import { AppHeader, Banner, HeaderIcon, InfoNote, PhotoButton } from '../../src/ui/mina/kit';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Reveal } from '../../src/ui/Reveal';
 import { Screen } from '../../src/ui/Screen';
@@ -55,9 +54,9 @@ type Trip = AppSnapshot['shopping']['trips'][number];
 export default function Today() {
   const { snapshot } = useApp();
   const actions = useMealActions();
-  const { height } = useWindowDimensions();
-  // telefoni bassi (es. iPhone SE): foto e Mina più compatte, così «Cucina ora» resta sopra la barra
-  const compact = height < 720;
+  const { height, width } = useWindowDimensions();
+  // telefoni bassi (es. iPhone SE): Mina e card più compatte, così «Cucina ora» e la settimana restano visibili
+  const compact = height < 720 || width < 370;
   if (!snapshot?.profile) return <HomeSkeleton />;
   const snap = snapshot;
   const next = pickNextMeal(snap);
@@ -87,14 +86,52 @@ export default function Today() {
         : 'Ecco il prossimo pasto.';
   // reazione contestuale di Mina: un solo gesto all'apertura, poi resta ferma (toccandola fa un saltello)
   const minaPose = finished ? 'success' : !next ? 'thinking' : cookingSoon ? 'reminder' : 'welcome';
-  // al pasto di oggi manca qualcosa in dispensa: dopo il saluto Mina guarda la card preoccupata e la indica
-  const missingToday = next && next.date === snap.today ? mealIngredientStatus(next, catalogIndex, toStock(snap.pantry), snap.staples, snap.profile?.portions).filter((x) => x.status === 'da_comprare' || x.status === 'parziale').length : 0;
+  // stato degli ingredienti del pasto protagonista (stima dalla dispensa)
+  const statuses = next ? mealIngredientStatus(next, catalogIndex, toStock(snap.pantry), snap.staples, snap.profile?.portions) : [];
+  const toBuy = statuses.filter((x) => x.status === 'da_comprare' || x.status === 'parziale').length;
+  const toCheck = statuses.filter((x) => x.status === 'qb_mancante').length;
+  const missingToday = next && next.date === snap.today ? toBuy : 0;
+  // gli ingredienti mancanti sono già nella spesa che arriva prima del pasto
+  const trip = next ? (snap.shopping.trips.find((tr) => tr.date <= next.date && tr.lines.length > 0 && tr.lines.some((l) => l.uses.some((u) => u.date === next.date))) ?? todayTrip) : todayTrip;
 
   return (
     <Screen contentContainerStyle={styles.content} reveal={false}>
-      <Header snap={snap} />
-      <Greeting hello={hello} subtitle={subtitle} pose={minaPose} compact={compact} missing={next && missingToday > 0 ? { key: `${next.id}|${missingToday}`, count: missingToday } : null} />
-      <Reveal>{next ? <TodayHero meal={next} snap={snap} todayTrip={todayTrip} compact={compact} onMore={() => actions.openMenu(next)} /> : <EmptyHero snap={snap} />}</Reveal>
+      <AppHeader
+        right={
+          <>
+            <HeaderIcon icon="notifications-outline" label="Notifiche" onPress={() => router.push('/notifiche')} />
+            <HeaderIcon icon="settings-outline" label="Profilo e impostazioni" onPress={() => router.push('/impostazioni')} />
+          </>
+        }
+      />
+      <Greeting
+        date={capitalize(formatLongDate(snap.today))}
+        hello={hello}
+        subtitle={subtitle}
+        pose={minaPose}
+        compact={compact}
+        missing={next && missingToday > 0 ? { key: `${next.id}|${missingToday}`, count: missingToday } : null}
+      />
+      <Reveal>{next ? <TodayHero meal={next} snap={snap} compact={compact} onMore={() => actions.openMenu(next)} /> : <EmptyHero snap={snap} />}</Reveal>
+
+      {next ? (
+        <Reveal index={1}>
+          {toBuy > 0 ? (
+            <Banner
+              icon={<BasketMark />}
+              text={`Ti ${toBuy === 1 ? 'manca 1 ingrediente' : `mancano ${toBuy} ingredienti`}`}
+              accessibilityLabel={`Ti ${toBuy === 1 ? 'manca 1 ingrediente' : `mancano ${toBuy} ingredienti`}${toCheck ? `, più ${toCheck} da controllare quanto basta` : ''}. Apri la lista della spesa`}
+              onPress={() => router.push(trip ? `/spesa?trip=${trip.date}` : '/spesa')}
+            />
+          ) : (
+            <Banner tone="green" icon={<Ionicons name="checkmark-circle" size={26} color={colors.green} />} text={toCheck ? `Hai tutto · controlla ${toCheck} q.b.` : 'Hai tutto in casa (stima)'} />
+          )}
+        </Reveal>
+      ) : null}
+
+      <Reveal index={2}>
+        <WeekSection snap={snap} />
+      </Reveal>
 
       {later.length > 0 ? (
         <LinkRow label={`Poi: ${later.map((m) => catalogIndex.recipe(m.recipeId)?.name).join(', ')}. Apri la settimana`} onPress={() => router.push('/settimana')}>
@@ -109,25 +146,23 @@ export default function Today() {
         </LinkRow>
       ) : null}
 
-      {issuesToday.length > 0 ? <Notice tone="warning" title="Alcuni pasti non hanno una ricetta" text={issuesToday[0].message} /> : null}
+      {issuesToday.length > 0 ? <InfoNote tone="warning" text={`Alcuni pasti non hanno una ricetta: ${issuesToday[0].message}`} /> : null}
 
       {prepTonight.map(({ meal, recipe }) => (
-        <Pressable key={meal.id} accessibilityRole="button" onPress={() => router.push(`/ricetta/${recipe!.id}?mealId=${encodeURIComponent(meal.id)}`)}>
-          <StickyNote tone="sage" style={styles.prep}>
-            <View style={styles.prepIcon}>
-              <Ionicons name="moon-outline" size={18} color={colors.green} />
-            </View>
-            <View style={styles.flex}>
-              <Text variant="handSmall">{`Stasera, per ${MEAL_LABELS[meal.mealType].toLowerCase()} di domani`}</Text>
-              <Text variant="small" color={colors.inkSoft}>{`${recipe!.name}: ${prepAheadShort(prepAheadOf(recipe!)!)}.`}</Text>
-            </View>
-          </StickyNote>
-        </Pressable>
+        <Banner
+          key={meal.id}
+          tone="green"
+          icon={<Ionicons name="moon-outline" size={22} color={colors.green} />}
+          text={`Stasera, per ${MEAL_LABELS[meal.mealType].toLowerCase()} di domani: ${prepAheadShort(prepAheadOf(recipe!)!)}`}
+          onPress={() => router.push(`/ricetta/${recipe!.id}?mealId=${encodeURIComponent(meal.id)}`)}
+        />
       ))}
 
       {pending.length > 0 ? (
         <View style={styles.pending}>
-          <Text variant="handSmall">Com’è andata?</Text>
+          <Text variant="heading" style={styles.bold}>
+            Com’è andata?
+          </Text>
           <Text variant="small" color={colors.inkSoft}>
             La dispensa si aggiorna solo per i pasti che confermi.
           </Text>
@@ -143,12 +178,7 @@ export default function Today() {
         </View>
       ) : null}
 
-      <Reveal index={1}>
-        <WeekSection snap={snap} />
-      </Reveal>
-      <Reveal index={2}>
-        <QuickTiles snap={snap} todayTrip={todayTrip} nextTrip={nextTrip} />
-      </Reveal>
+      <QuickTiles snap={snap} todayTrip={todayTrip} nextTrip={nextTrip} />
 
       {snap.economics && snap.economics.shopping.completeness === 'completa' && snap.economics.shopping.knownCents > 0 ? (
         <Text variant="small" color={colors.inkSoft} center>
@@ -160,40 +190,23 @@ export default function Today() {
   );
 }
 
-/** Intestazione compatta: marchio, data, avvisi e impostazioni. */
-function Header({ snap }: { snap: AppSnapshot }) {
+/** Cestino pesca del banner «Ti mancano…» (come nel riferimento). */
+function BasketMark() {
   return (
-    <View style={styles.header}>
-      <LogoMark size={36} />
-      <View style={styles.flex}>
-        <Text variant="heading" color={colors.greenDark} style={styles.brand}>
-          Mina
-        </Text>
-        <Text variant="small" color={colors.inkSoft}>
-          {capitalize(formatLongDate(snap.today))}
-        </Text>
-      </View>
-      <IconButton icon="notifications-outline" label="Notifiche" onPress={() => router.push('/notifiche')} />
-      <IconButton icon="settings-outline" label="Impostazioni" onPress={() => router.push('/impostazioni')} />
-    </View>
-  );
-}
-
-function IconButton({ icon, label, onPress }: { icon: keyof typeof Ionicons.glyphMap; label: string; onPress: () => void }) {
-  return (
-    <Squish accessibilityRole="button" accessibilityLabel={label} onPress={onPress} style={styles.iconBtn} hitSlop={6}>
-      <Ionicons name={icon} size={23} color={colors.greenDark} />
-    </Squish>
+    <Svg width={30} height={28} viewBox="0 0 30 28" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+      <Path d="M9 11 Q10 3 15 3 Q20 3 21 11" stroke={colors.peachInk} strokeWidth={2.2} fill="none" strokeLinecap="round" />
+      <Path d="M3 11 H27 L24 24 Q23.5 26 21.5 26 H8.5 Q6.5 26 6 24 Z" fill={colors.peach} stroke={colors.peachInk} strokeWidth={1.8} strokeLinejoin="round" />
+      <Path d="M11 15 V21 M15 15 V21 M19 15 V21" stroke={colors.white} strokeWidth={2} strokeLinecap="round" />
+    </Svg>
   );
 }
 
 /**
- * Saluto con Mina integrata: Mina sta in piedi a destra e i suoi piedi spariscono dietro la card del pasto,
- * come se ci si affacciasse sopra. Saluta una volta all'apertura, poi resta ferma; toccandola fa un saltello.
+ * Saluto: data piccola, «Buongiorno! 👋» grande e la domanda del giorno, con Mina piccola a destra (nel riferimento
+ * lo spazio è vuoto: il brief chiede Mina 2.0 in Home). Mina saluta una volta all'apertura; se al pasto di oggi manca
+ * qualcosa, dopo il saluto guarda la card preoccupata e la indica (una volta: la regia ignora le ripetizioni).
  */
-function Greeting({ hello, subtitle, pose, compact, missing }: { hello: string; subtitle: string; pose: string; compact: boolean; missing: { key: string; count: number } | null }) {
-  // finito il gesto d'ingresso, Mina dà un'occhiata al pasto di oggi (la card sotto di lei); se al pasto manca
-  // qualcosa, invece, lo guarda preoccupata e lo indica (una volta: la regia ignora le ripetizioni ravvicinate)
+function Greeting({ date, hello, subtitle, pose, compact, missing }: { date: string; hello: string; subtitle: string; pose: string; compact: boolean; missing: { key: string; count: number } | null }) {
   const [peek, setPeek] = useState(0);
   const [worry, setWorry] = useState<number | null>(null);
   const worried = worry !== null && !!missing;
@@ -202,130 +215,89 @@ function Greeting({ hello, subtitle, pose, compact, missing }: { hello: string; 
     if (r) setWorry(r.id);
     else setPeek(1);
   };
-  const mina = compact ? 104 : 136;
-  const tall = mina * 1.16;
-  const tuck = compact ? 22 : 28; // quanto Mina scende dietro la card: solo i piedi
+  const mina = compact ? 84 : 100;
   return (
-    <View style={[styles.greeting, { paddingRight: mina - 10, minHeight: tall - tuck - space.lg + 4 }]}>
-      {/* forma morbida di sfondo: lega Mina alla pagina invece di farla sembrare un adesivo */}
-      <Svg width={240} height={170} viewBox="0 0 240 170" style={styles.hill} pointerEvents="none">
-        <Path d="M40,170 C30,120 60,70 110,52 C160,34 205,10 240,0 L240,170 Z" fill={colors.greenSoft} />
-        <Path d="M120,170 C118,138 150,112 190,104 C212,100 230,92 240,84 L240,170 Z" fill={colors.greenMist} />
-      </Svg>
-      <View accessible accessibilityRole="header" accessibilityLabel={`${hello} ${subtitle}`}>
-        <Text variant="display" color={colors.greenDark} style={compact ? styles.helloCompact : styles.hello}>
-          {hello}
+    <View style={styles.greeting}>
+      <View style={styles.flex} accessible accessibilityRole="header" accessibilityLabel={`${hello} ${subtitle} ${date}`}>
+        <Text variant="small" color={colors.green} style={styles.date}>
+          {date}
         </Text>
-        <Text variant="heading" color={colors.inkSoft} style={styles.subtitle}>
+        <Text variant="display" style={compact ? styles.helloCompact : styles.hello}>
+          {`${hello} 👋`}
+        </Text>
+        <Text variant="body" color={colors.inkSoft} style={styles.subtitle}>
           {subtitle}
         </Text>
-        <Svg width={84} height={10} viewBox="0 0 84 10" style={styles.swoosh}>
-          <Path d="M3,7 C24,2 56,1 81,5" stroke={colors.greenBright} strokeOpacity={0.45} strokeWidth={4} fill="none" strokeLinecap="round" />
-        </Svg>
       </View>
-      <View pointerEvents="box-none" style={[styles.minaSpot, { width: mina + 20, height: tall, bottom: -(tuck + space.lg) }]}>
-        <MinaMascot
-          pose={worried ? 'concerned' : pose}
-          gesture={worried ? 'worry' : undefined}
-          size={mina}
-          animated
-          interactive
-          glance={peek}
-          onDone={worried ? undefined : afterGreeting}
-          accessibilityLabel={worried ? `Mina guarda il pasto di oggi: ${missing!.count === 1 ? 'manca un ingrediente' : `mancano ${missing!.count} ingredienti`}` : 'Mina, la tua borsetta della spesa'}
-        />
-      </View>
+      <MinaMascot
+        pose={worried ? 'concerned' : pose}
+        gesture={worried ? 'worry' : undefined}
+        size={mina}
+        animated
+        interactive
+        glance={peek}
+        onDone={worried ? undefined : afterGreeting}
+        style={styles.greetMina}
+        accessibilityLabel={worried ? `Mina guarda il pasto di oggi: ${missing!.count === 1 ? 'manca un ingrediente' : `mancano ${missing!.count} ingredienti`}` : 'Mina, la tua borsetta della spesa'}
+      />
     </View>
   );
 }
 
-/** Il pasto di oggi: la sezione protagonista. Foto grande in alto, contenuto pulito sotto, «Cucina ora» sempre visibile. */
-function TodayHero({ meal, snap, todayTrip, compact, onMore }: { meal: PlannedMeal; snap: AppSnapshot; todayTrip: Trip | null; compact: boolean; onMore: () => void }) {
+/**
+ * Il pasto protagonista (card orizzontale del riferimento): foto a sinistra con il cuore, a destra pasto e ora,
+ * nome, tempi e persone, «Cucina ora». Le altre azioni (cambia, sposta, cucinato) dal pulsante «…» sulla foto.
+ */
+function TodayHero({ meal, snap, compact, onMore }: { meal: PlannedMeal; snap: AppSnapshot; compact: boolean; onMore: () => void }) {
   const { run } = useApp();
   const recipe = catalogIndex.recipe(meal.recipeId);
   if (!recipe) return null;
-  const statuses = mealIngredientStatus(meal, catalogIndex, toStock(snap.pantry), snap.staples, snap.profile?.portions);
-  const quantified = statuses.filter((s) => s.status !== 'qb_presente' && s.status !== 'qb_mancante');
-  const toBuy = quantified.filter((s) => s.status !== 'in_dispensa').length;
-  const toCheck = statuses.filter((s) => s.status === 'qb_mancante').length;
-  const when = meal.date === snap.today ? 'oggi' : meal.date === addDays(snap.today, 1) ? 'domani' : formatShortDate(meal.date);
+  const when = meal.date === snap.today ? null : meal.date === addDays(snap.today, 1) ? 'domani' : formatShortDate(meal.date);
   const open = () => router.push(`/ricetta/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`);
   // «Cucina ora» apre la Modalità Cucina: un passaggio alla volta
   const cook = () => router.push(`/cucina/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`);
   const favorite = snap.favorites.has(recipe.id);
-  // gli ingredienti mancanti sono già nella spesa che arriva prima del pasto
-  const trip = snap.shopping.trips.find((tr) => tr.date <= meal.date && tr.lines.length > 0 && tr.lines.some((l) => l.uses.some((u) => u.date === meal.date))) ?? todayTrip;
   const startAt = minutesToHHMM(Math.max(0, meal.timeMinutes - recipe.totalMinutes));
   return (
-    <View style={styles.hero}>
-      <Pressable accessibilityRole="button" accessibilityLabel={`Apri la ricetta ${recipe.name}`} onPress={open}>
-        <RecipeImage recipe={recipe} rounded={0} aspectRatio={compact ? 2.15 : 16 / 9} style={styles.photo} />
-      </Pressable>
-      <View style={styles.photoPills} pointerEvents="box-none">
-        <View style={styles.pill}>
-          <Ionicons name="restaurant-outline" size={13} color={colors.greenDark} />
-          <Text variant="caption" color={colors.greenDark}>
-            {`${MEAL_LABELS[meal.mealType]} di ${when}`}
-          </Text>
+    <View style={[styles.hero, compact && styles.heroCompact]}>
+      <View style={styles.photoCol}>
+        <Pressable accessibilityRole="button" accessibilityLabel={`Apri la ricetta ${recipe.name}`} onPress={open} style={styles.photoPress}>
+          <RecipeImage recipe={recipe} rounded={0} aspectRatio={0.82} style={styles.photo} />
+        </Pressable>
+        <View style={styles.heartSpot}>
+          <FavoriteButton on={favorite} name={recipe.name} onToggle={() => void run((s) => s.toggleFavorite(recipe.id, !favorite))} />
         </View>
-        <View style={styles.pill}>
-          <Text variant="caption" color={colors.greenDark}>
-            {minutesToHHMM(meal.timeMinutes)}
-          </Text>
-        </View>
+        <PhotoButton icon="ellipsis-horizontal" label="Altre azioni: cambia ricetta, sposta, segna come cucinato" onPress={onMore} color={colors.green} style={styles.moreSpot} />
       </View>
-
       <View style={styles.heroBody}>
-        <FavoriteButton on={favorite} name={recipe.name} onToggle={() => void run((s) => s.toggleFavorite(recipe.id, !favorite))} />
-        <Text variant="title" style={styles.dish} numberOfLines={3}>
-          {recipe.name}
-        </Text>
+        <View style={styles.heroTop}>
+          <View style={styles.mealChip}>
+            <Text variant="small" color={colors.greenDark} style={styles.bold}>
+              {MEAL_LABELS[meal.mealType]}
+            </Text>
+          </View>
+          <Text variant="heading" style={styles.time}>
+            {when ? `${when} ${minutesToHHMM(meal.timeMinutes)}` : minutesToHHMM(meal.timeMinutes)}
+          </Text>
+        </View>
+        <Pressable accessibilityRole="button" accessibilityLabel={`Apri la ricetta ${recipe.name}`} onPress={open} style={styles.flex}>
+          <Text variant="title" style={[styles.dish, compact && styles.dishCompact]} numberOfLines={compact ? 3 : 4} adjustsFontSizeToFit minimumFontScale={0.8}>
+            {recipe.name}
+          </Text>
+        </Pressable>
         <View style={styles.meta} accessible accessibilityLabel={`${recipe.totalMinutes} minuti, ${meal.servings} ${meal.servings === 1 ? 'persona' : 'persone'}, inizia alle ${startAt}`}>
-          <Ionicons name="time-outline" size={16} color={colors.inkSoft} />
-          <Text variant="small" color={colors.ink} style={styles.bold}>{`${recipe.totalMinutes} min`}</Text>
+          <Ionicons name="time-outline" size={17} color={colors.ink} />
+          <Text variant="small" style={styles.bold}>{`${recipe.totalMinutes} min`}</Text>
           <View style={styles.metaSep} />
-          <Ionicons name="people-outline" size={16} color={colors.inkSoft} />
-          <Text variant="small" color={colors.ink} style={styles.bold}>{`${meal.servings} ${meal.servings === 1 ? 'persona' : 'persone'}`}</Text>
-          <View style={styles.metaSep} />
-          <Text variant="small" color={colors.inkSoft}>{`dalle ${startAt}`}</Text>
+          <Ionicons name="people-outline" size={17} color={colors.ink} />
+          <Text variant="small" style={styles.bold}>{String(meal.servings)}</Text>
         </View>
-
-        {toBuy > 0 ? (
-          <Squish accessibilityRole="button" accessibilityLabel={`Ti mancano ${toBuy} ingredienti. Apri la lista della spesa`} onPress={() => router.push(trip ? `/spesa?trip=${trip.date}` : '/spesa')} style={[styles.need, styles.needMissing]}>
-            <Ionicons name="basket-outline" size={19} color={colors.peachInk} />
-            <Text variant="small" color={colors.peachInk} style={[styles.flex, styles.bold]} numberOfLines={1}>
-              {`Ti ${toBuy === 1 ? 'manca 1 ingrediente' : `mancano ${toBuy} ingredienti`}`}
-            </Text>
-            {toCheck ? (
-              <Text variant="caption" color={colors.peachInk}>
-                {`+${toCheck} q.b.`}
-              </Text>
-            ) : null}
-            <Ionicons name="chevron-forward" size={17} color={colors.peachInk} />
-          </Squish>
-        ) : (
-          <View style={[styles.need, styles.needOk]} accessible accessibilityLabel={toCheck ? `Hai tutto, controlla ${toCheck} ingredienti quanto basta` : 'Hai tutto in casa, secondo la dispensa'}>
-            <Ionicons name="checkmark-circle" size={19} color={colors.green} />
-            <Text variant="small" color={colors.greenDark} style={[styles.flex, styles.bold]}>
-              {toCheck ? `Hai tutto · controlla ${toCheck} q.b.` : 'Hai tutto in casa (stima)'}
-            </Text>
-          </View>
-        )}
-
-        <View style={styles.row}>
-          <View style={styles.flex}>
-            <Button label="Cucina ora" icon="restaurant-outline" onPress={cook} />
-          </View>
-          <Squish accessibilityRole="button" accessibilityLabel="Altre azioni: cambia ricetta, sposta, segna come cucinato" onPress={onMore} style={styles.more}>
-            <Ionicons name="ellipsis-horizontal" size={22} color={colors.green} />
-          </Squish>
-        </View>
+        <Button label="Cucina ora" iconRight="arrow-forward" compact onPress={cook} style={styles.cook} />
       </View>
     </View>
   );
 }
-
-/** Cuore a cavallo della foto: preferita sì/no, con un piccolo rimbalzo quando si aggiunge (fermo con "Riduci movimento"). */
+/** Cuore sulla foto: preferita sì/no, con un piccolo rimbalzo quando si aggiunge (fermo con "Riduci movimento"). */
 function FavoriteButton({ on, name, onToggle }: { on: boolean; name: string; onToggle: () => void }) {
   const reduced = useReducedMotion();
   const [pop] = useState(() => new Animated.Value(1));
@@ -345,7 +317,7 @@ function FavoriteButton({ on, name, onToggle }: { on: boolean; name: string; onT
       hitSlop={6}
     >
       <Animated.View style={{ transform: [{ scale: pop }] }}>
-        <Ionicons name={on ? 'heart' : 'heart-outline'} size={21} color={on ? '#E0464E' : colors.greenDark} />
+        <Ionicons name={on ? 'heart' : 'heart-outline'} size={22} color={colors.danger} />
       </Animated.View>
     </Pressable>
   );
@@ -355,7 +327,7 @@ function EmptyHero({ snap }: { snap: AppSnapshot }) {
   const { run } = useApp();
   const done = snap.meals.some((m) => m.date === snap.today && m.status !== 'planned');
   return (
-    <View style={[styles.hero, styles.emptyHero]}>
+    <View style={[styles.heroCard, styles.emptyHero]}>
       <View style={styles.emptyIcon}>
         <Ionicons name={done ? 'checkmark-done' : 'restaurant-outline'} size={28} color={colors.green} />
       </View>
@@ -370,38 +342,22 @@ function EmptyHero({ snap }: { snap: AppSnapshot }) {
   );
 }
 
-/** La settimana in una riga: un giorno per tessera, con la foto del pasto principale; il cestino nei giorni di spesa. */
+/**
+ * «La tua settimana»: un chip per giorno (giorno breve e numero), oggi in verde. Dati veri: spunta sui giorni
+ * completati, cestino pesca nei giorni di spesa. Toccando un giorno si apre il calendario.
+ */
 function WeekSection({ snap }: { snap: AppSnapshot }) {
   const start = snap.plan?.startDate ?? snap.today;
   const days = Array.from({ length: 7 }, (_, i) => addDays(start, i));
   const tripDates = new Set(snap.shopping.trips.filter((tr) => tr.lines.length > 0).map((tr) => tr.date));
-  const toCook = snap.meals.filter((m) => m.status === 'planned' && m.date >= snap.today).length;
   return (
     <View style={styles.section}>
-      <View style={styles.sectionHead}>
-        <View style={styles.sectionIcon}>
-          <Ionicons name="calendar-outline" size={18} color={colors.green} />
-        </View>
-        <View style={styles.flex}>
-          <Text variant="heading" accessibilityRole="header">
-            La tua settimana
-          </Text>
-          <Text variant="small" color={colors.inkSoft}>
-            {toCook === 0 ? 'Tutti i pasti sono fatti' : `${toCook} ${toCook === 1 ? 'pasto' : 'pasti'} ancora da cucinare`}
-          </Text>
-        </View>
-        <Squish accessibilityRole="button" accessibilityLabel="Vedi il calendario" onPress={() => router.push('/settimana')} style={styles.linkPill}>
-          <Text variant="small" color={colors.greenDark} style={styles.bold}>
-            Calendario
-          </Text>
-          <Ionicons name="chevron-forward" size={15} color={colors.greenDark} />
-        </Squish>
-      </View>
-      <View style={styles.week}>
+      <Text variant="title" accessibilityRole="header" style={styles.sectionTitle}>
+        La tua settimana
+      </Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.week} style={styles.weekScroll}>
         {days.map((d) => {
           const meals = snap.meals.filter((m) => m.date === d);
-          const main = meals.find((m) => m.mealType === 'cena') ?? meals.find((m) => m.mealType === 'pranzo') ?? meals[0];
-          const recipe = main ? catalogIndex.recipe(main.recipeId) : null;
           const today = d === snap.today;
           const past = d < snap.today;
           const allDone = meals.length > 0 && meals.every((m) => m.status !== 'planned');
@@ -410,37 +366,34 @@ function WeekSection({ snap }: { snap: AppSnapshot }) {
               key={d}
               accessibilityRole="button"
               accessibilityLabel={`${formatLongDate(d)}${today ? ', oggi' : ''}: ${meals.length} pasti${tripDates.has(d) ? ', giorno di spesa' : ''}${allDone ? ', completato' : ''}`}
+              accessibilityHint="Apre il calendario della settimana"
               onPress={() => router.push('/settimana')}
-              style={[styles.day, today && styles.dayToday, past && !today && styles.dayPast]}
+              style={[styles.day, today ? styles.dayToday : styles.dayOther, past && !today && styles.dayPast]}
             >
-              <Text variant="caption" color={today ? colors.greenSoft : colors.inkSoft}>
+              <Text variant="small" color={today ? colors.white : colors.ink} style={styles.dayWeek}>
                 {capitalize(weekdayShort(weekdayOf(d)))}
               </Text>
               <Text variant="heading" color={today ? colors.white : colors.ink} style={styles.dayNum}>
                 {String(Number(d.slice(8)))}
               </Text>
-              <View style={[styles.dayThumb, today && styles.dayThumbToday]}>
-                {recipe ? <RecipeImage variant="thumb" recipe={recipe} rounded={0} aspectRatio={1} style={styles.dayThumbImg} /> : null}
-                {allDone ? (
-                  <View style={styles.dayDone}>
-                    <Ionicons name="checkmark" size={14} color={colors.white} />
-                  </View>
-                ) : null}
-              </View>
-              {tripDates.has(d) ? (
-                <View style={styles.basket}>
+              {allDone ? (
+                <View style={[styles.dayMark, styles.dayMarkDone]}>
+                  <Ionicons name="checkmark" size={11} color={colors.white} />
+                </View>
+              ) : tripDates.has(d) ? (
+                <View style={[styles.dayMark, styles.dayMarkShop]}>
                   <Ionicons name="basket" size={10} color={colors.ink} />
                 </View>
               ) : null}
             </Squish>
           );
         })}
-      </View>
+      </ScrollView>
     </View>
   );
 }
 
-/** Spesa e dispensa: due accessi piccoli e diversi per colore, senza competere con il pasto. */
+/** Spesa e dispensa: due accessi piccoli, sotto la settimana (non competono con il pasto). */
 function QuickTiles({ snap, todayTrip, nextTrip }: { snap: AppSnapshot; todayTrip: Trip | null; nextTrip: Trip | null }) {
   const trip = todayTrip ?? nextTrip;
   const shopSub = todayTrip
@@ -453,35 +406,26 @@ function QuickTiles({ snap, todayTrip, nextTrip }: { snap: AppSnapshot; todayTri
   const pantrySub = short > 0 ? `${short} ${short === 1 ? 'prodotto potrebbe' : 'prodotti potrebbero'} non bastare` : inStock > 0 ? `${inStock} prodotti in casa` : 'Ancora vuota';
   return (
     <View style={styles.tiles}>
-      <Tile tone="peach" icon="basket-outline" title="Lista della spesa" sub={shopSub} badge={todayTrip ? todayTrip.lines.length : undefined} onPress={() => router.push(trip ? `/spesa?trip=${trip.date}` : '/spesa')} />
-      <Tile tone="green" icon="file-tray-stacked-outline" title="Dispensa" sub={pantrySub} onPress={() => router.push('/dispensa')} />
+      <Tile icon="basket-outline" title="Lista della spesa" sub={shopSub} onPress={() => router.push(trip ? `/spesa?trip=${trip.date}` : '/spesa')} />
+      <Tile icon="file-tray-stacked-outline" title="Dispensa" sub={pantrySub} onPress={() => router.push('/dispensa')} />
     </View>
   );
 }
 
-function Tile({ tone, icon, title, sub, badge, onPress }: { tone: 'peach' | 'green'; icon: keyof typeof Ionicons.glyphMap; title: string; sub: string; badge?: number; onPress: () => void }) {
-  const peach = tone === 'peach';
+function Tile({ icon, title, sub, onPress }: { icon: keyof typeof Ionicons.glyphMap; title: string; sub: string; onPress: () => void }) {
   return (
-    <Squish accessibilityRole="button" accessibilityLabel={`${title}: ${sub}`} onPress={onPress} style={[styles.tile, peach ? styles.tilePeach : styles.tileGreen]}>
-      <View style={styles.tileTop}>
-        <View style={styles.tileIcon}>
-          <Ionicons name={icon} size={20} color={peach ? colors.peachInk : colors.green} />
-          {badge ? (
-            <View style={styles.tileBadge}>
-              <Text variant="caption" color={colors.ink} style={styles.tileBadgeText}>
-                {String(badge)}
-              </Text>
-            </View>
-          ) : null}
-        </View>
-        <Ionicons name="chevron-forward" size={16} color={peach ? colors.peachInk : colors.green} />
+    <Squish accessibilityRole="button" accessibilityLabel={`${title}: ${sub}`} onPress={onPress} outerStyle={styles.flex} style={styles.tile}>
+      <View style={styles.tileIcon}>
+        <Ionicons name={icon} size={20} color={colors.green} />
       </View>
-      <Text variant="heading" numberOfLines={1}>
-        {title}
-      </Text>
-      <Text variant="small" color={colors.inkSoft} numberOfLines={2}>
-        {sub}
-      </Text>
+      <View style={styles.flex}>
+        <Text variant="heading" numberOfLines={1} style={styles.bold}>
+          {title}
+        </Text>
+        <Text variant="small" color={colors.inkSoft} numberOfLines={2}>
+          {sub}
+        </Text>
+      </View>
     </Squish>
   );
 }
@@ -492,74 +436,68 @@ function HomeSkeleton() {
     <Screen contentContainerStyle={styles.content} reveal={false}>
       <Pulse style={styles.skelStack}>
         <View style={styles.header}>
-          <View style={[styles.skel, { width: 36, height: 36, borderRadius: 10 }]} />
-          <View style={[styles.skel, { width: 140, height: 18 }]} />
+          <View style={[styles.skel, { width: 120, height: 34, borderRadius: 10 }]} />
         </View>
-        <View style={[styles.skel, { width: 200, height: 34, marginTop: space.md }]} />
-        <View style={[styles.skel, { width: '100%', height: 360, borderRadius: radius.xl }]} />
-        <View style={[styles.skel, { width: '100%', height: 110, borderRadius: radius.xl }]} />
+        <View style={[styles.skel, { width: 220, height: 34, marginTop: space.md }]} />
+        <View style={[styles.skel, { width: '100%', height: 250, borderRadius: radius.xl }]} />
+        <View style={[styles.skel, { width: '100%', height: 56, borderRadius: radius.lg }]} />
+        <View style={[styles.skel, { width: '100%', height: 80, borderRadius: radius.lg }]} />
       </Pulse>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  content: { paddingTop: space.sm },
+  content: { paddingTop: space.xs },
   skelStack: { gap: space.lg },
   flex: { flex: 1 },
-  bold: { fontWeight: '700' },
+  bold: { fontWeight: '800' },
   row: { flexDirection: 'row', gap: space.sm, alignItems: 'center' },
   header: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
-  brand: { fontWeight: '800', fontSize: 19, lineHeight: 22 },
-  iconBtn: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center', borderRadius: radius.pill },
-  greeting: { justifyContent: 'center', zIndex: 0 },
-  hill: { position: 'absolute', right: -space.lg - 8, bottom: -space.lg - 30 },
-  hello: { fontSize: 34, lineHeight: 40, letterSpacing: -0.6 },
-  helloCompact: { fontSize: 30, lineHeight: 35, letterSpacing: -0.5 },
-  subtitle: { fontSize: 18, lineHeight: 24 },
-  swoosh: { marginTop: 2 },
-  minaSpot: { position: 'absolute', right: -space.sm, alignItems: 'center', justifyContent: 'flex-start' },
-  hero: { backgroundColor: colors.white, borderRadius: radius.xl, borderWidth: 1, borderColor: colors.line, overflow: 'hidden', zIndex: 1, ...shadow.card },
-  photo: { width: '100%' },
-  photoPills: { position: 'absolute', left: space.md, right: space.md, top: space.md, flexDirection: 'row', justifyContent: 'space-between' },
-  pill: { flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: 'rgba(255,255,255,0.95)', paddingHorizontal: 11, paddingVertical: 6, borderRadius: radius.pill },
-  heart: { position: 'absolute', right: space.lg, top: -22, zIndex: 2, width: 44, height: 44, borderRadius: 22, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center', ...shadow.card },
-  heroBody: { padding: space.lg, paddingTop: space.md, gap: space.md },
-  dish: { fontSize: 24, lineHeight: 29, paddingRight: 44 },
-  meta: { flexDirection: 'row', alignItems: 'center', gap: 5, flexWrap: 'wrap', marginTop: -space.xs },
-  metaSep: { width: 1, height: 14, backgroundColor: colors.lineStrong, marginHorizontal: 5 },
-  need: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: TOUCH, paddingHorizontal: space.md, borderRadius: radius.lg },
-  needMissing: { backgroundColor: colors.peachSoft },
-  needOk: { backgroundColor: colors.greenSoft },
-  more: { width: TOUCH + 8, height: TOUCH + 8, borderRadius: radius.pill, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.white, borderWidth: 1.5, borderBottomWidth: 4, borderColor: colors.lineStrong },
+  greeting: { flexDirection: 'row', alignItems: 'flex-end', gap: space.sm, marginTop: space.sm },
+  date: { fontWeight: '800', letterSpacing: 0.2 },
+  hello: { fontSize: 32, lineHeight: 39, letterSpacing: -0.6 },
+  helloCompact: { fontSize: 28, lineHeight: 34, letterSpacing: -0.5 },
+  subtitle: { fontSize: 18, lineHeight: 24, marginTop: 2 },
+  greetMina: { marginBottom: -space.sm },
+  hero: { flexDirection: 'row', backgroundColor: colors.white, borderRadius: radius.xl, overflow: 'hidden', minHeight: 250, ...shadow.card },
+  heroCompact: { minHeight: 214 },
+  heroCard: { backgroundColor: colors.white, borderRadius: radius.xl, ...shadow.card },
+  photoCol: { width: '47%' },
+  photoPress: { flex: 1 },
+  photo: { width: '100%', height: '100%' },
+  heartSpot: { position: 'absolute', left: space.md, bottom: space.md },
+  moreSpot: { position: 'absolute', right: space.sm, top: space.sm },
+  heart: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center', ...shadow.card },
+  heroBody: { flex: 1, padding: space.md, paddingLeft: space.md + 2, gap: space.sm },
+  heroTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: space.xs },
+  mealChip: { backgroundColor: colors.sage, borderRadius: radius.pill, paddingHorizontal: 12, paddingVertical: 4 },
+  time: { fontWeight: '700', fontSize: 16 },
+  dish: { fontSize: 21, lineHeight: 26 },
+  dishCompact: { fontSize: 19, lineHeight: 23 },
+  meta: { flexDirection: 'row', alignItems: 'center', gap: 5 },
+  metaSep: { width: 1, height: 16, backgroundColor: colors.lineStrong, marginHorizontal: 6 },
+  cook: { marginTop: space.xs },
   emptyHero: { alignItems: 'center', gap: space.md, padding: space.xl },
   emptyIcon: { width: 56, height: 56, borderRadius: 28, backgroundColor: colors.greenSoft, alignItems: 'center', justifyContent: 'center' },
   laterDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.greenBright, marginLeft: space.xs },
-  prep: { flexDirection: 'row', alignItems: 'center', gap: space.md },
-  prepIcon: { width: 36, height: 36, borderRadius: 18, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center' },
-  pending: { gap: space.xs, padding: space.lg, borderRadius: radius.xl, backgroundColor: colors.white, borderWidth: 1, borderColor: colors.line },
+  pending: { gap: space.xs, padding: space.lg, borderRadius: radius.xl, backgroundColor: colors.white, ...shadow.card },
   pendingRow: { gap: space.sm, paddingVertical: space.xs },
-  section: { gap: space.md, marginTop: space.sm },
-  sectionHead: { flexDirection: 'row', alignItems: 'center', gap: space.md },
-  sectionIcon: { width: 38, height: 38, borderRadius: 12, backgroundColor: colors.greenSoft, alignItems: 'center', justifyContent: 'center' },
-  linkPill: { flexDirection: 'row', alignItems: 'center', gap: 2, paddingLeft: space.md, paddingRight: space.sm, minHeight: 36, borderRadius: radius.pill, backgroundColor: colors.greenSoft },
-  week: { flexDirection: 'row', gap: 6 },
-  day: { flex: 1, alignItems: 'center', gap: 2, paddingTop: space.sm, paddingBottom: space.sm, borderRadius: radius.lg, backgroundColor: colors.white, borderWidth: 1, borderColor: colors.line },
-  dayToday: { backgroundColor: colors.green, borderColor: colors.green, ...shadow.card },
+  section: { gap: space.md, marginTop: space.xs },
+  sectionTitle: { fontSize: 22, lineHeight: 28 },
+  weekScroll: { marginHorizontal: -space.lg },
+  week: { flexDirection: 'row', gap: space.sm + 2, paddingHorizontal: space.lg, paddingVertical: space.sm },
+  day: { width: 64, minHeight: 78, alignItems: 'center', justifyContent: 'center', gap: 2, borderRadius: radius.lg },
+  dayOther: { backgroundColor: colors.white, ...shadow.card },
+  dayToday: { backgroundColor: colors.green, ...shadow.float },
   dayPast: { opacity: 0.55 },
-  dayNum: { fontSize: 18, lineHeight: 22, fontWeight: '800' },
-  dayThumb: { width: 30, height: 30, borderRadius: 15, overflow: 'hidden', backgroundColor: colors.greenMist, marginTop: 4 },
-  dayThumbToday: { borderWidth: 2, borderColor: colors.white },
-  dayThumbImg: { width: '100%', height: '100%' },
-  dayDone: { position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, backgroundColor: 'rgba(47,127,87,0.78)', alignItems: 'center', justifyContent: 'center' },
-  basket: { position: 'absolute', top: -6, right: -4, width: 19, height: 19, borderRadius: 10, backgroundColor: colors.peach, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: colors.white },
+  dayWeek: { fontWeight: '700', fontSize: 15, lineHeight: 19 },
+  dayNum: { fontSize: 22, lineHeight: 27, fontWeight: '800' },
+  dayMark: { position: 'absolute', top: -5, right: -4, width: 20, height: 20, borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: colors.desk },
+  dayMarkDone: { backgroundColor: colors.green },
+  dayMarkShop: { backgroundColor: colors.peach },
   tiles: { flexDirection: 'row', gap: space.md },
-  tile: { flex: 1, gap: 2, padding: space.md, borderRadius: radius.xl, minHeight: 116 },
-  tilePeach: { backgroundColor: colors.peachSoft },
-  tileGreen: { backgroundColor: colors.greenSoft },
-  tileTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: space.xs },
-  tileIcon: { width: 40, height: 40, borderRadius: 20, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center' },
-  tileBadge: { position: 'absolute', top: -5, right: -8, minWidth: 20, height: 20, paddingHorizontal: 5, borderRadius: 10, backgroundColor: colors.peach, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: colors.peachSoft },
-  tileBadgeText: { fontWeight: '800', fontSize: 11, lineHeight: 13 },
+  tile: { flexDirection: 'row', alignItems: 'center', gap: space.sm, padding: space.md, borderRadius: radius.lg, backgroundColor: colors.white, minHeight: 76, ...shadow.card },
+  tileIcon: { width: 38, height: 38, borderRadius: 19, backgroundColor: colors.greenSoft, alignItems: 'center', justifyContent: 'center' },
   skel: { backgroundColor: colors.greenMist, borderRadius: 8 },
 });
