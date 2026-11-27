@@ -24,6 +24,7 @@ import { Notice } from '../../src/ui/Notice';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Reveal } from '../../src/ui/Reveal';
 import { Screen } from '../../src/ui/Screen';
+import { Pulse } from '../../src/ui/Pulse';
 import { Squish } from '../../src/ui/Squish';
 import { Text } from '../../src/ui/Text';
 import { useReducedMotion } from '../../src/ui/useReducedMotion';
@@ -87,7 +88,7 @@ export default function Today() {
   const minaPose = finished ? 'success' : !next ? 'thinking' : cookingSoon ? 'reminder' : 'welcome';
 
   return (
-    <Screen contentContainerStyle={styles.content}>
+    <Screen contentContainerStyle={styles.content} reveal={false}>
       <Header snap={snap} />
       <Greeting hello={hello} subtitle={subtitle} pose={minaPose} compact={compact} />
       <Reveal>{next ? <TodayHero meal={next} snap={snap} todayTrip={todayTrip} compact={compact} onMore={() => actions.openMenu(next)} /> : <EmptyHero snap={snap} />}</Reveal>
@@ -464,20 +465,23 @@ function Tile({ tone, icon, title, sub, badge, onPress }: { tone: 'peach' | 'gre
 /** Dati non ancora caricati: la stessa forma della pagina, in grigio-verde tenue (niente salti quando arrivano). */
 function HomeSkeleton() {
   return (
-    <Screen contentContainerStyle={styles.content}>
-      <View style={styles.header}>
-        <View style={[styles.skel, { width: 36, height: 36, borderRadius: 10 }]} />
-        <View style={[styles.skel, { width: 140, height: 18 }]} />
-      </View>
-      <View style={[styles.skel, { width: 200, height: 34, marginTop: space.md }]} />
-      <View style={[styles.skel, { width: '100%', height: 360, borderRadius: radius.xl }]} />
-      <View style={[styles.skel, { width: '100%', height: 110, borderRadius: radius.xl }]} />
+    <Screen contentContainerStyle={styles.content} reveal={false}>
+      <Pulse style={styles.skelStack}>
+        <View style={styles.header}>
+          <View style={[styles.skel, { width: 36, height: 36, borderRadius: 10 }]} />
+          <View style={[styles.skel, { width: 140, height: 18 }]} />
+        </View>
+        <View style={[styles.skel, { width: 200, height: 34, marginTop: space.md }]} />
+        <View style={[styles.skel, { width: '100%', height: 360, borderRadius: radius.xl }]} />
+        <View style={[styles.skel, { width: '100%', height: 110, borderRadius: radius.xl }]} />
+      </Pulse>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   content: { paddingTop: space.sm },
+  skelStack: { gap: space.lg },
   flex: { flex: 1 },
   bold: { fontWeight: '700' },
   row: { flexDirection: 'row', gap: space.sm, alignItems: 'center' },

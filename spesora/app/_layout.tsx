@@ -11,6 +11,7 @@ import { useFonts } from 'expo-font';
 import { CelebrationHost } from '../src/ui/CelebrationHost';
 import { IntroGate } from '../src/features/intro/IntroGate';
 import { LoaderHost } from '../src/ui/loader/LoaderHost';
+import { useReducedMotion } from '../src/ui/useReducedMotion';
 import { Button } from '../src/ui/Button';
 import { LogoMark } from '../src/ui/Logo';
 import { Text } from '../src/ui/Text';
@@ -48,6 +49,7 @@ function OnboardingGate() {
 
 function Shell() {
   const { status, retry } = useApp();
+  const reduced = useReducedMotion();
   // Nessun caricamento visibile all'avvio: solo il fondo, poi parte subito l'intro (o l'app).
   if (status.kind === 'loading') return <View style={styles.blank} />;
   if (status.kind === 'error') {
@@ -73,8 +75,10 @@ function Shell() {
           headerShadowVisible: false,
           contentStyle: { backgroundColor: colors.desk },
           headerBackButtonDisplayMode: 'minimal',
-          animation: 'slide_from_right',
-          animationDuration: 220,
+          // pagine nuove: lo scorrimento di iOS (anche su Android, con la pagina sotto che arretra appena);
+          // con "Riduci movimento" una dissolvenza breve
+          animation: reduced ? 'fade' : 'ios_from_right',
+          animationDuration: reduced ? 150 : 260,
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

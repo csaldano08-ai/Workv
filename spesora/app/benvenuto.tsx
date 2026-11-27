@@ -25,6 +25,7 @@ export default function Welcome() {
   return (
     <Screen
       edges={['top', 'bottom']}
+      reveal={false}
       footer={
         <>
           <Button label={resuming ? 'Riprendi da dove eri rimasto' : t('welcome.start')} onPress={() => router.push('/onboarding')} />

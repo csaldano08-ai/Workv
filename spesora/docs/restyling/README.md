@@ -14,6 +14,8 @@ Branch: `claude/spesora-restyling-mina2`. La versione precedente è confrontabil
 | `riferimenti/mina_chef_style_reference.png` | Il foglio di Mina Chef con le quattro pose (cucchiaio, mescola, serve, checklist) |
 | `mina2_confronto_riferimento.jpg` | Mina 2.0 e Mina Chef dell'app accanto al foglio approvato |
 | `mina2_confronto_chef.jpg` | Le quattro pose di Mina Chef: foglio sopra, app sotto |
+| `movimento_app.mp4` | Video (39 s) del movimento in tutta l'app, dalla demo web reale: passi del questionario, schede, giorni, ricettario, ricetta, spesa, festeggiamento, foglio delle azioni |
+| `movimento_fotogrammi.jpg` | 13 fotogrammi del video, con il nome di ogni animazione |
 | `home_v3_navigazione.mp4` | Video (13 s) della Home V3: saluto di Mina, card che entrano, preferito, calendario, spesa, tocco su Mina |
 | `prima_dopo/home_v3.jpg` | La Home in tre versioni: originale, restyling, Home V3 (sopra e dopo lo scorrimento) |
 | `prima_dopo/` | Confronto prima/dopo di 13 schermate, più `00_panoramica.jpg` |
@@ -50,6 +52,23 @@ La Home non è più una pila di riquadri uguali ma un percorso: **saluto → pas
 
 Le altre schermate usano già gli stessi componenti e la stessa palette; non sono state rifatte (come richiesto). I prossimi passi naturali, con lo stesso linguaggio: intestazioni con l'icona in cerchio verde tenue come «La tua settimana», tessere colorate al posto delle liste nella Dispensa.
 
+## Movimento (quarta richiesta)
+
+Tutta l'app si muove come Mina: entrate morbide con un piccolo rimbalzo finale, schiacciamenti elastici, nessun movimento continuo che distrae. Con "Riduci movimento" (iOS) o `prefers-reduced-motion` (web) tutto compare subito al suo posto.
+
+- **Comparsa a cascata in ogni pagina**: i blocchi entrano uno dopo l'altro (55 ms l'uno, al massimo 7), salgono di poco e si posano con il «back» dei gesti di Mina. È automatica in `Screen`, quindi vale per tutte le pagine e i fogli modali; Oggi, Benvenuto e il questionario hanno la loro regia.
+- **Passi del questionario**: il passo nuovo scivola da destra andando avanti, da sinistra tornando indietro; la barra di avanzamento resta ferma.
+- **Schede**: la pagina nuova scivola appena dal lato e si dissolve; l'icona della scheda toccata si riempie e fa un saltello.
+- **Pagine nuove** (ricetta, impostazioni, prezzi…): lo scorrimento di iOS, anche su Android; la foto della ricetta si appoggia con un leggero zoom.
+- **Settimana**: cambiando giorno i pasti e la nota di Mina arrivano dal lato giusto (giorno dopo da destra, prima da sinistra); Giorno ⇄ Settimana scivola dal lato della linguetta; le pastiglie dei giorni si schiacciano al tocco.
+- **Ricettario**: le sezioni salgono a cascata e le prime card di ogni carosello entrano da destra; le card si schiacciano al tocco.
+- **Spesa**: quando un prodotto va nel carrello la riga si disegna sopra il nome da sinistra a destra; le tessere «servono oggi» fanno un saltello.
+- **Festeggiamento di Mina**: la card sboccia dal basso e, invece di sparire di colpo, scende e si dissolve.
+- **Nuvoletta di Mina**: sboccia subito dopo di lei, come se fosse lei a parlare.
+- **Foglio delle azioni**: il fondo si scurisce e il foglio sale dal basso.
+- **Numeri** (porzioni, quantità): il numero nuovo arriva dal basso se cresce, dall'alto se cala.
+- **Caricamento della Home**: i segnaposto respirano lentamente.
+
 ## Test eseguiti
 
 | Controllo | Esito |
@@ -61,6 +80,8 @@ Le altre schermate usano già gli stessi componenti e la stessa palette; non son
 | Giro completo della demo web (intro → benvenuto → 16 passi del questionario → anteprima → Oggi → Ricetta → Settimana → Ricette → Spesa → lista completata → Dispensa → Impostazioni → Notifiche → Plus, Prezzi, Storico, Aggiungi, Privacy), ripetuto dopo la Home V3 | 22 schermate, **0 errori JavaScript** |
 | Home V3 su 375×667, 390×844, 430×932 | «Cucina ora» visibile sopra la barra senza scorrere; titoli su due righe senza tagli; scorrimento fino a settimana e tessere |
 | Stesso giro a 375×667 (iPhone SE), 390×844 e 430×932 (iPhone Pro Max) | Nessun testo tagliato o elemento sovrapposto trovato a vista |
+| Movimento: giro registrato nella demo web (`record-motion.cjs`) e giro completo delle 22 schermate a fine animazione | Animazioni come da elenco sopra; impaginazione delle 22 schermate identica a prima; 0 errori JavaScript |
+| "Riduci movimento" emulato nel browser | Il passo nuovo del questionario è al suo posto dopo 60 ms, senza scorrimento |
 | Persistenza: dopo il questionario si ricarica la pagina (Impostazioni, Notifiche, Plus…) | Profilo e piano restano (database locale invariato) |
 | Navigazione: schede, ricetta e ritorno, rotte modali e secondarie | Funzionano |
 | Animazioni di Mina (fotogrammi del video e della pagina `/mina`) | Livelli allineati, braccia attaccate al corpo, espressioni cambiate dentro il battito di ciglia |
@@ -86,4 +107,6 @@ node scripts/screenshots/record-mina.cjs http://localhost:PORTA cartella-out/min
 - Le nuove pose di Mina Chef (`mixing`, `serving`, `checklist`) sono pronte nel codice, nella vetrina `/mina` e nei PNG per i video, ma non sono ancora usate in una schermata: dove metterle è una scelta da fare.
 - Restano dello stile precedente due elementi neutri: le illustrazioni degli ingredienti (caricamento, benvenuto, icone dei reparti) e l'onda verde dell'animazione iniziale. Sono coerenti con la palette ma hanno ancora il contorno scuro.
 - La pagina `/mina` (vetrina delle animazioni) esiste solo nella demo web; su telefono rimanda all'app.
+- **Transizioni tra pagine**: lo scorrimento di iOS tra le pagine è nativo e sul web non esiste; nel video si vedono solo comparse, schede e micro-animazioni. Va guardato su iPhone e Android.
+- Al primo ingresso in Ricette, Spesa e Dispensa la demo web mostra per un attimo il fondo vuoto: è il tempo di montaggio della schermata, non un'animazione. Su telefono va verificato.
 - I 7 avvisi di configurazione di `npm run verify` (URL legali, bundle id, EAS, RevenueCat) sono precedenti al restyling e restano da completare per la pubblicazione.

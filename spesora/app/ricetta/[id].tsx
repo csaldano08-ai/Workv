@@ -20,6 +20,7 @@ import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
 import { Card } from '../../src/ui/Card';
 import { MinaNote } from '../../src/ui/AssistantBubble';
+import { Reveal } from '../../src/ui/Reveal';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
 import { SectionTitle } from '../../src/ui/Row';
@@ -97,7 +98,10 @@ export default function RecipeScreen() {
           ),
         }}
       />
-      <RecipeImage recipe={recipe} />
+      {/* la foto si appoggia sulla pagina con un leggero zoom, poi il resto sale a cascata */}
+      <Reveal from="zoom">
+        <RecipeImage recipe={recipe} />
+      </Reveal>
       {meal ? (
         <Text variant="caption" color={colors.green}>
           {`${MEAL_LABELS[meal.mealType].toUpperCase()} · ${formatLongDate(meal.date).toUpperCase()} · ${minutesToHHMM(meal.timeMinutes)}`}

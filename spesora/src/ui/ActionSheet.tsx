@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, radius, space, TOUCH } from '../theme/tokens';
+import { Reveal } from './Reveal';
 import { Text } from './Text';
 
 export interface SheetOption {
@@ -10,7 +11,7 @@ export interface SheetOption {
   destructive?: boolean;
 }
 
-/** Menu di azioni multipiattaforma (iOS e Android), accessibile e senza animazioni lente. */
+/** Menu di azioni multipiattaforma (iOS e Android), accessibile e senza animazioni lente: il fondo si scurisce e il foglio sale dal basso. */
 export function useActionSheet() {
   const [state, setState] = useState<{ title: string; subtitle?: string; options: SheetOption[] } | null>(null);
   const open = useCallback((title: string, options: SheetOption[], subtitle?: string) => setState({ title, options, subtitle }), []);
@@ -18,7 +19,8 @@ export function useActionSheet() {
   const element = (
     <Modal visible={!!state} transparent animationType="fade" onRequestClose={close} accessibilityViewIsModal>
       <Pressable style={styles.backdrop} onPress={close} accessibilityLabel="Chiudi menu" accessibilityRole="button" />
-      <SafeAreaView edges={['bottom']} style={styles.sheet}>
+      <Reveal from="sheet">
+        <SafeAreaView edges={['bottom']} style={styles.sheet}>
         {state ? (
           <View style={styles.inner}>
             <Text variant="heading" accessibilityRole="header">
@@ -51,7 +53,8 @@ export function useActionSheet() {
             </Pressable>
           </View>
         ) : null}
-      </SafeAreaView>
+        </SafeAreaView>
+      </Reveal>
     </Modal>
   );
   return { open, element };

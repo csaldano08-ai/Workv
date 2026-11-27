@@ -46,8 +46,11 @@ export default function Onboarding() {
   }, [draft, step, service]);
 
   const def = STEPS[step];
+  // direzione del passaggio: avanti il passo nuovo entra da destra, indietro da sinistra
+  const [dir, setDir] = useState<'left' | 'right'>('right');
   const go = (next: number) => {
     setError(null);
+    setDir(next >= step ? 'right' : 'left');
     setStep(Math.max(0, Math.min(PREVIEW_STEP, next)));
   };
 
@@ -91,6 +94,7 @@ export default function Onboarding() {
   return (
     <Screen
       edges={['top', 'bottom']}
+      reveal={false}
       footer={
         <View style={styles.footerRow}>
           {step > 0 ? <Button kind="secondary" label={t('action.back')} onPress={() => go(step - 1)} style={styles.flex} /> : null}
@@ -111,17 +115,24 @@ export default function Onboarding() {
           {`${step + 1}/${STEPS.length}`}
         </Text>
       </View>
-      {mina ? <AssistantBubble pose={mina.pose} text={mina.tip} size={96} /> : null}
-      <Text variant="title" accessibilityRole="header">
-        {def.title}
-      </Text>
-      {def.subtitle ? (
-        <Text variant="body" color={colors.inkSoft}>
-          {def.subtitle}
+      {/* il passo nuovo scivola dentro dalla direzione del movimento; la barra di avanzamento resta ferma */}
+      <Reveal key={step} from={dir} style={styles.stepBody}>
+        {mina ? <AssistantBubble pose={mina.pose} text={mina.tip} size={96} /> : null}
+        <Text variant="title" accessibilityRole="header">
+          {def.title}
         </Text>
+        {def.subtitle ? (
+          <Text variant="body" color={colors.inkSoft}>
+            {def.subtitle}
+          </Text>
+        ) : null}
+        <def.Component draft={draft} setDraft={setDraft} />
+      </Reveal>
+      {error ? (
+        <Reveal from="pop">
+          <Notice tone="warning" text={error} />
+        </Reveal>
       ) : null}
-      <def.Component draft={draft} setDraft={setDraft} />
-      {error ? <Notice tone="warning" text={error} /> : null}
     </Screen>
   );
 }
@@ -227,6 +238,7 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
 const styles = StyleSheet.create({
   footerRow: { flexDirection: 'row', gap: space.sm },
   flex: { flex: 1 },
+  stepBody: { gap: space.lg },
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginTop: space.sm },
   party: { alignItems: 'center', gap: space.sm, paddingVertical: space.md, borderRadius: radius.xl, backgroundColor: colors.greenSoft },
   partyText: { alignItems: 'center', gap: 2, paddingHorizontal: space.lg },

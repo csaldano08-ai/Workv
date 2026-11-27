@@ -18,6 +18,7 @@ import { HandLabel, NotebookPage, PaperTabs, StickyNote, TapedPhoto } from '../.
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
 import { Reveal } from '../../src/ui/Reveal';
+import { Squish } from '../../src/ui/Squish';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
 
@@ -28,12 +29,18 @@ export default function Week() {
   const actions = useMealActions();
   const [view, setView] = useState<View_>('giorno');
   const [picked, setPicked] = useState<IsoDate | null>(null);
+  // direzione del cambio di giorno: un giorno dopo entra da destra, uno prima da sinistra
+  const [dir, setDir] = useState<'left' | 'right'>('right');
   if (!snapshot?.profile || !snapshot.plan) return <Screen>{null}</Screen>;
   const snap = snapshot;
   const plan = snapshot.plan;
   const days = rangeDays(plan.startDate, diffDays(plan.startDate, plan.endDate) + 1);
   const selected = picked && days.includes(picked) ? picked : days.includes(snap.today) ? snap.today : days[0];
   const tripDates = new Set(snap.shopping.trips.filter((tr) => tr.lines.length > 0).map((tr) => tr.date));
+  const pick = (d: IsoDate) => {
+    setDir(d >= selected ? 'right' : 'left');
+    setPicked(d);
+  };
 
   const regenerate = () =>
     Alert.alert(
@@ -65,19 +72,22 @@ export default function Week() {
       />
       {snap.issues.length > 0 ? <Notice tone="warning" title={`${snap.issues.length} pasti senza ricetta`} text={snap.issues[0].message} /> : null}
 
-      {view === 'giorno' ? (
-        <DayView snap={snap} days={days} selected={selected} onSelect={setPicked} tripDates={tripDates} onMenu={actions.openMenu} />
-      ) : (
-        <WeekGrid
-          snap={snap}
-          days={days}
-          tripDates={tripDates}
-          onOpenDay={(d) => {
-            setPicked(d);
-            setView('giorno');
-          }}
-        />
-      )}
+      {/* Giorno ⇄ Settimana: la vista nuova scivola dal lato della linguetta scelta */}
+      <Reveal key={view} from={view === 'giorno' ? 'left' : 'right'} style={styles.viewBody}>
+        {view === 'giorno' ? (
+          <DayView snap={snap} days={days} selected={selected} onSelect={pick} from={dir} tripDates={tripDates} onMenu={actions.openMenu} />
+        ) : (
+          <WeekGrid
+            snap={snap}
+            days={days}
+            tripDates={tripDates}
+            onOpenDay={(d) => {
+              pick(d);
+              setView('giorno');
+            }}
+          />
+        )}
+      </Reveal>
 
       <Button kind="ghost" icon="wallet-outline" label="Rendi questa settimana più economica" onPress={() => router.push('/economica')} />
       {actions.sheet}
@@ -86,7 +96,7 @@ export default function Week() {
 }
 
 /** Vista "Giorno": linguette dei giorni, riassunto di Mina, schede dei pasti. */
-function DayView({ snap, days, selected, onSelect, tripDates, onMenu }: { snap: AppSnapshot; days: IsoDate[]; selected: IsoDate; onSelect: (d: IsoDate) => void; tripDates: Set<string>; onMenu: (m: PlannedMeal) => void }) {
+function DayView({ snap, days, selected, onSelect, from, tripDates, onMenu }: { snap: AppSnapshot; days: IsoDate[]; selected: IsoDate; onSelect: (d: IsoDate) => void; from: 'left' | 'right'; tripDates: Set<string>; onMenu: (m: PlannedMeal) => void }) {
   const meals = snap.meals.filter((m) => m.date === selected);
   const toCook = meals.filter((m) => m.status === 'planned');
   const shopping = tripDates.has(selected);
@@ -104,8 +114,9 @@ function DayView({ snap, days, selected, onSelect, tripDates, onMenu }: { snap: 
         {days.map((d) => {
           const on = d === selected;
           return (
-            <Pressable
+            <Squish
               key={d}
+              outerStyle={styles.flex}
               accessibilityRole="tab"
               accessibilityState={{ selected: on }}
               accessibilityLabel={`${formatLongDate(d)}${d === snap.today ? ', oggi' : ''}${tripDates.has(d) ? ', giorno di spesa' : ''}`}
@@ -123,22 +134,24 @@ function DayView({ snap, days, selected, onSelect, tripDates, onMenu }: { snap: 
                   <Ionicons name="basket" size={10} color={colors.ink} />
                 </View>
               ) : null}
-            </Pressable>
+            </Squish>
           );
         })}
       </View>
 
       <View style={styles.scene}>
         <MinaMascot pose={toCook.length === 0 && meals.length > 0 ? 'success' : 'calendar'} size={92} style={styles.sceneMina} />
-        <StickyNote style={styles.flex}>
-          <Text variant="hand">{summary}</Text>
-          {last ? (
-            <Text variant="small" color={colors.inkSoft}>
-              {`Ultimo pasto alle ${minutesToHHMM(last.timeMinutes)}`}
-            </Text>
-          ) : null}
-          {shopping ? <Button kind="peach" compact icon="basket-outline" label="Lista della spesa" onPress={() => router.push(`/spesa?trip=${selected}`)} style={styles.noteBtn} /> : null}
-        </StickyNote>
+        <Reveal key={selected} from={from} style={styles.flex}>
+          <StickyNote>
+            <Text variant="hand">{summary}</Text>
+            {last ? (
+              <Text variant="small" color={colors.inkSoft}>
+                {`Ultimo pasto alle ${minutesToHHMM(last.timeMinutes)}`}
+              </Text>
+            ) : null}
+            {shopping ? <Button kind="peach" compact icon="basket-outline" label="Lista della spesa" onPress={() => router.push(`/spesa?trip=${selected}`)} style={styles.noteBtn} /> : null}
+          </StickyNote>
+        </Reveal>
       </View>
 
       {meals.length === 0 ? (
@@ -148,7 +161,7 @@ function DayView({ snap, days, selected, onSelect, tripDates, onMenu }: { snap: 
       ) : (
         <View style={styles.cards}>
           {meals.map((m, i) => (
-            <Reveal key={`${selected}-${m.id}`} index={i}>
+            <Reveal key={`${selected}-${m.id}`} index={i} from={from}>
               <MealCard meal={m} onMenu={() => onMenu(m)} />
             </Reveal>
           ))}
@@ -254,6 +267,7 @@ function WeekGrid({ snap, days, tripDates, onOpenDay }: { snap: AppSnapshot; day
 
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', alignItems: 'center', gap: space.md },
+  viewBody: { gap: space.lg },
   flex: { flex: 1 },
   iconBtn: { width: TOUCH, height: TOUCH, alignItems: 'center', justifyContent: 'center' },
   dayTabs: { flexDirection: 'row', gap: 5, marginTop: space.sm },

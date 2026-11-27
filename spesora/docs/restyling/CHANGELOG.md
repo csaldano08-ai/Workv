@@ -1,5 +1,15 @@
 # Changelog tecnico — restyling Mina 2.0
 
+## Quarta iterazione: movimento in tutta l'app
+
+- `src/ui/Reveal.tsx`: comparsa con il «back» dei gesti di Mina e sei provenienze (`bottom`, `left`, `right`, `zoom`, `pop`, `sheet`), ritardo fisso (`delay`) e cascata limitata a 7 elementi; i blocchi delle pagine partono già un poco visibili (la pagina non resta mai vuota al cambio di scheda).
+- `src/ui/Screen.tsx`: cascata automatica dei figli diretti (`reveal`, attiva per predefinito); lascia stare i figli che sono già un `Reveal` e `Stack.Screen`; Oggi, Benvenuto e questionario la spengono.
+- **Nuovi** `src/ui/TabIcon.tsx` (icona piena e saltello al tocco, avviato da `hopTab` perché la barra disegna due copie di ogni icona), `src/ui/Hop.tsx` (saltello di conferma), `src/ui/Strike.tsx` (riga che si disegna sul nome), `src/ui/Pulse.tsx` (respiro dei segnaposto).
+- `src/ui/Squish.tsx`: `outerStyle` per l'area di tocco (es. `flex: 1` nelle righe). `src/ui/Stepper.tsx`: il numero arriva dal lato giusto. `src/ui/CelebrationHost.tsx`: entrata a sbocciare e uscita animata. `src/ui/AssistantBubble.tsx`: nuvoletta dopo Mina. `src/ui/ActionSheet.tsx`: foglio che sale.
+- `app/_layout.tsx`: scorrimento di iOS anche su Android (`ios_from_right`), dissolvenza con "Riduci movimento". `app/(tabs)/_layout.tsx`: transizione `shift` tra schede, icone animate.
+- `app/onboarding.tsx` (passi che scivolano nella direzione del movimento), `app/(tabs)/settimana.tsx` (cambio di giorno e di vista direzionali, pastiglie elastiche), `app/(tabs)/ricette.tsx` (sezioni e caroselli a cascata, card elastiche), `app/(tabs)/spesa.tsx` (riga e saltello nel carrello), `app/ricetta/[id].tsx` (foto che si appoggia), `app/(tabs)/index.tsx` (segnaposto che respirano).
+- **Nuovo** `scripts/screenshots/record-motion.cjs`: video del movimento dalla demo web reale.
+
 ## Terza iterazione: Mina Chef dal suo foglio
 
 - `src/ui/mascot/mina2/art.ts`: scheletro per variante (`RIG`: spalle, lunghezze delle braccia, centro degli occhi, perni del corpo, del cappello e dell'inclinazione). Mina Chef ridisegnata dal foglio «Mina Chef — Style Reference»: borsa alta e inclinata con fianco caldo, cappello a nuvola con fascia curva, arco del manico con frutto arancio, limone e lattuga a lobi, grembiule sul terzo basso con foglia e fiocco (`bow`), viso più piccolo con occhiolino a «<» e sorriso chiuso marrone, braccia e gambe più sottili. Oggetti nuovi o rifatti: cucchiaio grande a sagoma unica, ciotola con zuppa e frusta tenuta in su, cloche su vassoio con vapore ondeggiante, cartellina con molletta e tre spunte; segni `shine` e `shineUp` (tratti gialli del foglio). Lunghezze delle braccia per posa (`ArmPose.len`), gomito invertibile (`flip`), pugno con pollice in su (`fist`), spostamento della figura (`shift`).

@@ -8,7 +8,20 @@ const native = Platform.OS !== 'web';
  * Pressable con risposta elastica (squash al tocco, rimbalzo al rilascio), come gli oggetti dell'intro.
  * Con "Riduci movimento" resta fermo e mostra solo la variazione di opacità.
  */
-export function Squish({ style, children, onPressIn, onPressOut, disabled, ...rest }: Omit<PressableProps, 'style' | 'children'> & { style?: StyleProp<ViewStyle>; children?: React.ReactNode }) {
+export function Squish({
+  style,
+  outerStyle,
+  children,
+  onPressIn,
+  onPressOut,
+  disabled,
+  ...rest
+}: Omit<PressableProps, 'style' | 'children'> & {
+  style?: StyleProp<ViewStyle>;
+  /** Stile dell'area di tocco esterna (es. `flex: 1` quando l'elemento deve allargarsi in una riga). */
+  outerStyle?: StyleProp<ViewStyle>;
+  children?: React.ReactNode;
+}) {
   const reduced = useReducedMotion();
   const [s] = useState(() => new Animated.Value(1));
   const to = (v: number, bounce: boolean) =>
@@ -16,6 +29,7 @@ export function Squish({ style, children, onPressIn, onPressOut, disabled, ...re
   return (
     <Pressable
       {...rest}
+      style={outerStyle}
       disabled={disabled}
       onPressIn={(e) => {
         if (!reduced) to(0.95, false);

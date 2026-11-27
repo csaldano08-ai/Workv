@@ -14,6 +14,8 @@ import { checkKey } from '../../src/features/app/SpesoraService';
 import { CATEGORY_LABELS } from '../../src/i18n/labels';
 import { colors, TOUCH, font, radius, shadow, space } from '../../src/theme/tokens';
 import { CheckBox } from '../../src/ui/CheckBox';
+import { Hop } from '../../src/ui/Hop';
+import { Strike } from '../../src/ui/Strike';
 import { celebrate } from '../../src/ui/celebration';
 import { Button } from '../../src/ui/Button';
 import { EMPTY } from '../../src/i18n/assistant';
@@ -155,23 +157,25 @@ function TripView({ trip }: { trip: ShoppingTripPlan }) {
               const ing = catalogIndex.ingredient(l.ingredientId);
               const on = isChecked(l);
               return (
-                <Pressable
-                  key={l.ingredientId}
-                  accessibilityRole="checkbox"
-                  accessibilityState={{ checked: on }}
-                  accessibilityLabel={`${ing.name}, ${qtyText(l)}, serve ${isToday ? 'oggi' : 'subito'}`}
-                  onPress={() => toggle(l)}
-                  style={[styles.tile, on && styles.tileOn]}
-                >
-                  <CategoryIcon category={ing.category} size={40} />
-                  <Text variant="small" center style={styles.tileName} numberOfLines={2}>
-                    {ing.name}
-                  </Text>
-                  <Text variant="caption" color={colors.inkSoft}>
-                    {qtyText(l)}
-                  </Text>
-                  <CheckBox checked={on} />
-                </Pressable>
+                // nel carrello la tessera fa un saltello
+                <Hop key={l.ingredientId} on={on} style={styles.flex}>
+                  <Pressable
+                    accessibilityRole="checkbox"
+                    accessibilityState={{ checked: on }}
+                    accessibilityLabel={`${ing.name}, ${qtyText(l)}, serve ${isToday ? 'oggi' : 'subito'}`}
+                    onPress={() => toggle(l)}
+                    style={[styles.tile, on && styles.tileOn]}
+                  >
+                    <CategoryIcon category={ing.category} size={40} />
+                    <Text variant="small" center style={styles.tileName} numberOfLines={2}>
+                      {ing.name}
+                    </Text>
+                    <Text variant="caption" color={colors.inkSoft}>
+                      {qtyText(l)}
+                    </Text>
+                    <CheckBox checked={on} />
+                  </Pressable>
+                </Hop>
               );
             })}
           </View>
@@ -248,10 +252,15 @@ function LineRow({ line, trip, checked, onToggle, urgentToday }: { line: Shoppin
         >
           <CheckBox checked={checked} size={24} />
           <View style={styles.flex}>
-            <Text variant="body" style={checked && styles.checked}>
-              {ing.name}
-              {urgent && !checked ? <Text variant="handSmall" color={colors.danger}>{urgentToday ? '  oggi' : '  subito'}</Text> : null}
-            </Text>
+            {/* nel carrello: la riga si disegna sopra il nome */}
+            <Strike on={checked}>
+              {(wrapped) => (
+                <Text variant="body" style={[checked && styles.checked, checked && wrapped && styles.through]}>
+                  {ing.name}
+                  {urgent && !checked ? <Text variant="handSmall" color={colors.danger}>{urgentToday ? '  oggi' : '  subito'}</Text> : null}
+                </Text>
+              )}
+            </Strike>
             {line.toTaste ? (
               <Text variant="caption" color={colors.inkSoft}>
                 VERIFICA DI AVERLO
@@ -393,7 +402,8 @@ const styles = StyleSheet.create({
   confirmWrap: { gap: space.sm },
   paid: { minHeight: TOUCH, borderWidth: 1.5, borderColor: colors.lineStrong, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, color: colors.ink, backgroundColor: colors.white, fontFamily: font.regular },
   flex: { flex: 1 },
-  checked: { textDecorationLine: 'line-through', color: colors.inkSoft },
+  checked: { color: colors.inkSoft },
+  through: { textDecorationLine: 'line-through' },
   coveredRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, paddingLeft: space.xl, paddingVertical: 2 },
   confirm: { flexDirection: 'row', alignItems: 'center', gap: space.md, borderRadius: radius.md },
 });

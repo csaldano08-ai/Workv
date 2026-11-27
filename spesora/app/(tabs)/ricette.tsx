@@ -11,6 +11,8 @@ import { MEAL_LABELS } from '../../src/i18n/labels';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { AssistantBubble } from '../../src/ui/AssistantBubble';
 import { Chip } from '../../src/ui/Chip';
+import { Reveal } from '../../src/ui/Reveal';
+import { Squish } from '../../src/ui/Squish';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { SectionTitle } from '../../src/ui/Row';
@@ -124,9 +126,10 @@ export default function Recipes() {
     return (
       <SafeAreaView style={styles.safe} edges={['top']}>
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-          {header}
-          {sections.map((s) => (
-            <View key={s.id} style={styles.section}>
+          <Reveal>{header}</Reveal>
+          {/* le sezioni salgono a cascata; le prime card di ogni carosello entrano da destra */}
+          {sections.map((s, si) => (
+            <Reveal key={s.id} index={si + 1} style={styles.section}>
               <SectionTitle>{s.title}</SectionTitle>
               <FlatList
                 horizontal
@@ -134,9 +137,17 @@ export default function Recipes() {
                 keyExtractor={(r) => r.id}
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.carousel}
-                renderItem={({ item }) => <RecipeCard recipe={item} favorite={favorites.has(item.id)} />}
+                renderItem={({ item, index }) =>
+                  index < 4 ? (
+                    <Reveal from="right" index={si + 1 + index}>
+                      <RecipeCard recipe={item} favorite={favorites.has(item.id)} />
+                    </Reveal>
+                  ) : (
+                    <RecipeCard recipe={item} favorite={favorites.has(item.id)} />
+                  )
+                }
               />
-            </View>
+            </Reveal>
           ))}
           <Pressable accessibilityRole="button" onPress={() => setBrowseAll(true)} style={styles.allBtn}>
             <Text variant="heading" color={colors.green}>
@@ -173,7 +184,7 @@ function FilterRow({ children }: { children: React.ReactNode }) {
 
 function RecipeCard({ recipe, favorite }: { recipe: Recipe; favorite: boolean }) {
   return (
-    <Pressable accessibilityRole="button" accessibilityLabel={`${recipe.name}, ${recipe.totalMinutes} minuti`} onPress={() => router.push(`/ricetta/${recipe.id}`)} style={({ pressed }) => [styles.card, pressed && { opacity: 0.8 }]}>
+    <Squish accessibilityRole="button" accessibilityLabel={`${recipe.name}, ${recipe.totalMinutes} minuti`} onPress={() => router.push(`/ricetta/${recipe.id}`)} style={styles.card}>
       <RecipeImage recipe={recipe} rounded={12} />
       <Text variant="small" numberOfLines={2} style={styles.cardTitle}>
         {recipe.name}
@@ -181,7 +192,7 @@ function RecipeCard({ recipe, favorite }: { recipe: Recipe; favorite: boolean })
       <Text variant="caption" color={colors.inkSoft}>
         {`${recipe.totalMinutes} MIN${favorite ? ' · PREFERITA' : ''}`}
       </Text>
-    </Pressable>
+    </Squish>
   );
 }
 
