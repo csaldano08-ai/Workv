@@ -1,5 +1,7 @@
 # Restyling UI e Mina 2.0
 
+> **Novembre 2026 — restyling MINA:** l'app si chiama Mina e segue le 13 schermate approvate. Consegna, confronti, video e test: [docs/mina/README.md](../mina/README.md). Audit di privacy e abbonamenti: [compliance/README.md](../../compliance/README.md).
+
 La stessa Spesora, con la stessa struttura e le stesse funzioni, ma più moderna, luminosa e accogliente, accompagnata dalla nuova mascotte **Mina 2.0** (la borsetta della spesa) e da **Mina Chef** nelle ricette.
 
 Branch: `claude/spesora-restyling-mina2`. La versione precedente è confrontabile nelle branch `claude/spesora-redesign-bc` e `claude/spesora-ads-concepts`.

@@ -29,7 +29,7 @@ export function checkConfig(appJson, packageJson, { release }) {
   const expo = appJson?.expo;
   if (!expo) return { errors: ['app.json: manca la chiave "expo"'], warnings };
 
-  if (expo.name !== 'Spesora') warnings.push('app.json: nome app diverso da "Spesora"');
+  if (expo.name !== 'Mina') warnings.push('app.json: nome app diverso da "Mina"');
   if (!expo.scheme) errors.push('app.json: manca "scheme" (necessario per i link interni delle notifiche)');
   const plugins = (expo.plugins ?? []).map((/** @type {any} */ p) => (Array.isArray(p) ? p[0] : p));
   for (const required of ['expo-router', 'expo-sqlite', 'expo-notifications']) {

@@ -3,6 +3,7 @@
  * risposte predefinite, caricamento, anteprima, abbonamento, poi tutte le schede, una ricetta, la Modalità Cucina,
  * il Profilo, i preferiti, la privacy.
  *   node scripts/screenshots/capture-mina.cjs <url-base> <cartella> [larghezza] [altezza]
+ * Con RIDUCI=1 la pagina simula «Riduci movimento» (prefers-reduced-motion).
  * Data fissa (lunedì 23 novembre 2026, ore 9) per avere sempre lo stesso piano.
  */
 const { chromium } = require('playwright');
@@ -16,7 +17,7 @@ const DATA = '2026-11-23T09:00:00';
   const root = base.replace(/\/$/, '');
   fs.mkdirSync(outDir, { recursive: true });
   const b = await chromium.launch();
-  const ctx = await b.newContext({ viewport: { width: Number(w), height: Number(h) }, deviceScaleFactor: 2 });
+  const ctx = await b.newContext({ viewport: { width: Number(w), height: Number(h) }, deviceScaleFactor: 2, reducedMotion: process.env.RIDUCI ? 'reduce' : 'no-preference' });
   const p = await ctx.newPage();
   p.on('dialog', (d) => d.accept());
   const errors = [];

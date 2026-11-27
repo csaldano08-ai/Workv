@@ -1,0 +1,30 @@
+# MINA — riferimento approvato ↔ app reale
+
+Ogni immagine in [`confronti/`](confronti/) mette a sinistra il telefono del riferimento e a destra lo screenshot dell'app vera: demo web generata dal codice, 390×844 pt, dati reali del questionario e data fissa lunedì 23 novembre.
+Le immagini si rigenerano con:
+
+```
+node scripts/screenshots/capture-mina.cjs <url> <cartella>
+python3 scripts/screenshots/compare-mina.py <cartella> docs/mina/confronti
+```
+
+**Nota sulla fedeltà.** Non dichiaro una percentuale: il riferimento è un'immagine generata, con proporzioni del telefono diverse (≈ 1:1,94 contro 1:2,16 di un iPhone 14), fotografie al posto delle nostre illustrazioni e una mascotte in stile 3D, mentre Mina 2.0 approvata è il disegno 2D vettoriale. Il confronto è stato fatto a occhio, schermata per schermata, su posizioni, gerarchia, dimensioni, colori e testi. Le differenze che restano sono elencate qui sotto con il motivo.
+
+**Eccezione esplicita: i pulsanti.** Hanno lo stile dell'app (pillola in rilievo con base più scura e pressione elastica) e non quello lucido e sfumato del riferimento. Del riferimento riprendono posizione, larghezza, colore e la freccia finale.
+
+| # | Schermata | Uguale al riferimento | Differenze e motivo |
+| --- | --- | --- | --- |
+| 1 | Benvenuto | Mina grande che saluta, logo «Mina» con cestino, «Cucina e organizza la tua spesa.», 3 pallini, «Inizia →», forme salvia ai lati | Mina è il disegno 2D approvato. Sotto il pulsante c'è un piccolo «Nessun account richiesto · Privacy» (trasparenza). L'avviso sull'abbonamento compare solo quando sarà obbligatorio |
+| 2 | Intro Chef | Mina Chef con il cucchiaio su forma salvia, «Benvenuto in Mina!», pallini, «Continua →» | Il secondo pallino è attivo: nel riferimento era acceso il primo anche qui, ma l'indicatore deve dire la verità. Una riga di testo sul vantaggio (ricette). C'è anche una terza pagina sulla spesa, che il riferimento non mostra |
+| 3 | Pasti | Barra a segmenti, titolo centrato, tessere con illustrazione, bordo verde e spunta, Mina che esulta, ← e «Avanti →» | I pasti sono 4 (c'è anche lo spuntino): tessere 2×2 invece di 3 in fila. La domanda è quella vera dell'app («Quali pasti vuoi organizzare?»). La barra ha 5 segmenti per fasi delle 16 domande reali |
+| 4 | Persone | Cerchi 1…5+, scelta verde piena, Mina con la lista, ← e «Avanti →» | È la prima domanda (ordine reale del questionario). Una nota breve con ⓘ |
+| 5 | Anteprima | «La tua settimana», sottotitolo, righe con badge del giorno salvia, foto, nome e freccia, Mina con le scintille, «Procedi →» | C'è il cerchio ← per correggere le risposte (richiesto dal brief). Sotto i primi giorni, «Vedi tutti i 7 giorni». Le ricette sono quelle generate davvero |
+| 6 | Abbonamento | Onda salvia con Mina, «👑 Sblocca tutto Mina», 4 vantaggi con spunte verdi, pulsante grande | **Niente prezzi, «-40%» o piani inventati.** Con gli acquisti spenti c'è un riquadro «Abbonamenti non ancora attivi» e «Continua». Con lo store attivo compaiono le due card dei piani con i prezzi letti dallo store (codice pronto) |
+| 7 | Oggi | Logo, campanella e ingranaggio, «Buongiorno! 👋», «Cosa cuciniamo oggi?», card orizzontale con foto e cuore, chip del pasto e ora, nome, tempi e persone, «Cucina ora →», banner pesca «Ti mancano N ingredienti ›», «La tua settimana» con i giorni a chip | Data sopra il saluto (richiesta dal brief). Mina piccola a destra del saluto: il brief la vuole in Home, nel riferimento lo spazio è vuoto. Pulsante «…» sulla foto per cambiare, spostare o segnare il pasto (funzioni esistenti). Sotto la piega: conferme «Com'è andata?», preparazioni della sera, accessi rapidi a spesa e dispensa |
+| 8 | Settimana | Logo, titolo, pillola salvia con l'intervallo, righe con badge del giorno salvia, foto, nome e freccia, «Modifica piano» | Niente frecce ‹ ›: il piano copre una settimana alla volta e non esistono altre settimane da sfogliare. Più pasti nello stesso giorno stanno nella stessa card, con il giorno di spesa. Mina accanto al titolo (calendario) |
+| 9 | Spesa | Logo, «Lista della spesa», «Da acquistare (N)» / «Acquistati (N)», reparti con fascia pesca, casella, nome e immagine a destra | Al posto della foto del prodotto c'è l'illustrazione del reparto (non abbiamo foto dei prodotti). La quantità è sotto il nome (va mantenuta). **Niente «+ Aggiungi prodotto»: la funzione non esiste.** In basso c'è «Conferma acquisti», funzione reale. Selettore leggero dei giorni di spesa quando sono più d'uno |
+| 10 | Dispensa | Logo, titolo, pillole di filtro, elenco in card con immagine, nome in grassetto, quantità grigia e freccia | Filtri «Tutti / Scadenze / Da controllare»: «Preferiti» non esiste per la dispensa, e le scadenze sono solo quelle inserite dall'utente. «+» in alto per aggiungere. Stato con icona e parola sotto la quantità |
+| 11 | Ricette | Logo, «Ricette», ricerca con il pulsante filtro salvia, tessere Tutte/Primi/Secondi/Veg, griglia a 2 colonne con foto, cuore, tempo e persone | Altre tessere scorrendo (Per te, Dispensa, 15 min, Preferite, Unici, Colazioni, Spuntini): sono le sezioni e i filtri già esistenti. Mina Chef accanto al titolo, con la trasformazione alla prima visita |
+| 12 | Ricetta | Foto a tutta larghezza con ← e cuore, titolo, tempo e persone, linguette Ingredienti/Preparazione/Consigli, righe con quantità, «Inizia a cucinare →» | Niente «Facile» (nei dati non c'è la difficoltà) e niente «condividi» (non esiste). Avviso allergeni sempre visibile. La casella degli ingredienti indica la disponibilità solo per un pasto programmato. Lo stepper delle persone resta |
+| 13 | Profilo | Logo, «Profilo», righe con icone verdi e freccia, Mina con il cuore su forma salvia | Niente riga «Lingua» (l'app è solo in italiano). Righe in più per funzioni reali: Storico, Prezzi, Abbonamento, Privacy e condizioni, I tuoi dati. Freccia ← per tornare. Mina con gli occhi a cuore (non ha un cuore in mano) |
+| — | Barra delle schede | Casa, calendario, cestino, barattolo, cappello da chef; scheda attiva verde e piena | Badge pesca con il numero dei prodotti da comprare oggi (funzione esistente) |

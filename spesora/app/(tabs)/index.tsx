@@ -406,7 +406,7 @@ function QuickTiles({ snap, todayTrip, nextTrip }: { snap: AppSnapshot; todayTri
   const pantrySub = short > 0 ? `${short} ${short === 1 ? 'prodotto potrebbe' : 'prodotti potrebbero'} non bastare` : inStock > 0 ? `${inStock} prodotti in casa` : 'Ancora vuota';
   return (
     <View style={styles.tiles}>
-      <Tile icon="basket-outline" title="Lista della spesa" sub={shopSub} onPress={() => router.push(trip ? `/spesa?trip=${trip.date}` : '/spesa')} />
+      <Tile icon="basket-outline" title="Spesa" sub={shopSub} onPress={() => router.push(trip ? `/spesa?trip=${trip.date}` : '/spesa')} />
       <Tile icon="file-tray-stacked-outline" title="Dispensa" sub={pantrySub} onPress={() => router.push('/dispensa')} />
     </View>
   );
