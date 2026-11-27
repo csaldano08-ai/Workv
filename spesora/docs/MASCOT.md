@@ -19,7 +19,7 @@ Riferimento approvato: `docs/restyling/riferimenti/mina2_foglio_approvato.webp`.
 
 ### Mina Chef
 
-È la stessa Mina con **cappello da chef bianco, grembiule verde** (con la foglia bianca e il fiocco sul fianco) e **cucchiaio di legno**. Si usa **solo** per ricette, preparazione e consigli di cucina. Un test (`src/test/mina2.test.ts`) verifica che cappello e grembiule compaiano soltanto nelle pose `cooking` e `recipe`.
+È la stessa Mina con **cappello da chef bianco, grembiule verde** (con la foglia bianca e il fiocco sul fianco) e **cucchiaio di legno**. Si usa **solo** per ricette, preparazione e consigli di cucina. Un test (`src/test/mina2.test.ts`) verifica che cappello e grembiule compaiano soltanto nelle pose di Mina Chef.
 
 ## Fedeltà al riferimento
 
@@ -32,7 +32,8 @@ Il disegno è ricalcato sul foglio approvato, misura per misura (confronto affia
 - **foglia** verde chiaro **senza contorno**, con una sola venatura bianca curva che esce come picciolo;
 - **braccia e gambe corte e spesse**, **mani a guanto con tre dita e pollice** (a pugno quando tengono un oggetto), scarponcini arrotondati;
 - **ombra a terra verde chiaro**;
-- Mina Chef: **cappello grande e morbido** (quasi largo quanto la borsa) inclinato, che lascia vedere il manico sotto la fascia; lattuga grande e frutti gialli e arancio; **grembiule** con foglia bianca e **fiocco** sul fianco; **grande cucchiaio di legno** con bordo marrone.
+- Mina Chef: **cappello grande e morbido** (tre ciuffi che si allargano oltre una fascia stretta, appoggiata sul bordo della borsa); lattuga grande a sinistra e limone che sbuca a destra; **grembiule** come nel foglio: un pannello a metà corpo che parte un po' dentro il fianco sinistro (si vede il lato ivorio sotto il fiocco), con una **gonna che sporge** in basso e a destra oltre il profilo della borsa, un bordo superiore netto, la **foglia bianca** al centro e un **fiocco grande** sul bordo sinistro con anse e code che scendono; **grande cucchiaio di legno** con bordo marrone. Il contorno della borsa sta sotto il grembiule, altrimenti sembrerebbe una maglietta.
+- Mina Chef negli usi del foglio: **mescola** una ciotola verde chiaro con la frusta (`mixing`), **serve** una cloche d'argento con il vapore (`serving`), **controlla** una checklist verde (`checklist`), oltre a `cooking` e `recipe` con il cucchiaio.
 
 Differenze che restano, volute: il foglio ha una grana da acquerello che un disegno vettoriale per l'app non riproduce (colori pieni con una leggera sfumatura sul fronte); nel foglio la borsa di Mina Chef è un po' più alta di quella di Mina 2.0, qui è la stessa borsa per tenere coerenti le animazioni.
 

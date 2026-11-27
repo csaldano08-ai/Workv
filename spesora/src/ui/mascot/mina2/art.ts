@@ -51,12 +51,17 @@ export const C = {
   paper: '#FFFFFF',
   paperLine: '#C9D3CB',
   shadow: '#E2EDD4', // ombra a terra verde chiaro, come nel foglio
+  bowl: '#A9D46E', // ciotola verde chiaro della Mina Chef che mescola
+  bowlDark: '#7DB34A',
+  steel: '#D5DDE2', // cloche e vassoio
+  steelDark: '#8E9CA5',
+  steam: '#7BB86A',
 } as const;
 
 export type Variant = 'classic' | 'chef';
 export type Eyes = 'open' | 'happy' | 'closed' | 'wink' | 'laugh' | 'star' | 'heart' | 'surprised';
 export type Mouth = 'smile' | 'grin' | 'small' | 'o' | 'hmm';
-export type Prop = 'none' | 'spoon' | 'phone' | 'list' | 'clipboard';
+export type Prop = 'none' | 'spoon' | 'phone' | 'list' | 'clipboard' | 'bowl' | 'cloche';
 export type Emote = 'question' | 'sparkles' | 'hearts' | 'bang';
 export type Legs = 'stand' | 'walk';
 export type Side = 'L' | 'R';
@@ -120,13 +125,13 @@ const HANDLE = 'M71,88 L71,50 A32,32 0 0 1 135,50 L135,88';
 function veggiesBack(variant: Variant): string {
   const vein = (d: string, color: string = C.leafDark) => `<path d="${d}" stroke="${color}" stroke-width="1.8" fill="none" stroke-linecap="round"/>`;
   if (variant === 'chef') {
-    // nel foglio di Mina Chef: lattuga grande a sinistra, frutti gialli e arancio sotto il cappello
+    // nel foglio di Mina Chef: lattuga grande che esce dal lato sinistro, limone che sbuca a destra sotto il cappello
     return (
-      frilly(30, 82, 17, 15, -18, 10, 0.16, C.lettuce) +
-      frilly(22, 98, 11, 9, 10, 8, 0.18, C.lettuce) +
-      vein('M47,92 C39,86 31,82 20,80 M33,84 L24,94') +
-      frilly(152, 66, 10, 8, 20, 8, 0.2, C.lettuce) +
-      `<circle cx="128" cy="74" r="10" fill="${C.lemon}" ${sw(2.6)}/>`
+      frilly(22, 72, 21, 18, -14, 10, 0.16, C.lettuce) +
+      frilly(14, 98, 13, 11, 12, 8, 0.18, C.lettuce) +
+      vein('M42,84 C32,80 24,76 13,74 M30,84 L20,92') +
+      frilly(156, 64, 11, 9, 20, 8, 0.2, C.lettuce) +
+      `<circle cx="140" cy="68" r="9.5" fill="${C.lemon}" ${sw(2.6)}/>`
     );
   }
   return (
@@ -189,23 +194,27 @@ function panelPart(variant: Variant): string {
   return panel + leaf;
 }
 
+/**
+ * Grembiule come nel foglio: un pannello a metà corpo che parte un po' dentro il fianco sinistro (si vede il lato
+ * ivorio della borsa sotto il fiocco), con una gonna che sporge in basso e a destra oltre il profilo della borsa,
+ * e un bordo superiore netto. Non segue il contorno della borsa: per questo non sembra una maglietta.
+ */
 function apronPart(): string {
+  const apron = 'M50,136 L162,132 Q166,133 166,141 L166,172 Q166,188 150,188 L64,189 Q49,189 49,174 Z';
   return (
-    `<path d="M40.4,128.5 L159.1,126 L157.5,160 Q157,172 145,172 L55,173 Q43.5,173 43,161 Z" fill="${C.green}"/>` +
-    `<path d="M40.4,128.5 L59.2,128.1 L60,173 L55,173 Q43.5,173 43,161 Z" fill="${C.greenDeep}"/>` +
-    `<path d="M59.2,129 L60.2,168" stroke="${C.line}" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.6"/>` +
-    `<path d="M40.4,128.5 L159.1,126" ${sw(2.8)} fill="none"/>` +
-    // foglia bianca con venatura verde
-    `<g transform="translate(114 151) scale(1.02)">` +
+    `<path d="${apron}" fill="${C.green}"/>` +
+    `<path d="${apron}" fill="none" ${sw(2.8)}/>` +
+    // foglia bianca con venatura verde, al centro del grembiule
+    `<g transform="translate(112 161) scale(1.02)">` +
     `<path d="M-12,10 C-15,-4 -2,-13 14,-11 C13,4 2,13 -12,10 Z" fill="${C.white}"/>` +
     `<path d="M-17,15 Q-4,4 9,-7" stroke="${C.green}" stroke-width="2.3" fill="none" stroke-linecap="round"/>` +
     `</g>` +
-    // fiocco sul fianco sinistro
-    `<path d="M37,131 C24,121 16,128 22,136 C26,141 34,137 37,131 Z" fill="${C.green}" ${sw(2.6)}/>` +
-    `<path d="M37,131 C25,140 21,149 28,151 C34,150 36,140 37,131 Z" fill="${C.green}" ${sw(2.6)}/>` +
-    `<path d="M38,133 L34,154 M39,133 L44,153" ${sw(5)} fill="none"/>` +
-    `<path d="M38,133 L34,154 M39,133 L44,153" stroke="${C.green}" stroke-width="2.4" fill="none" stroke-linecap="round"/>` +
-    `<circle cx="38" cy="132" r="4.4" fill="${C.green}" ${sw(2.4)}/>`
+    // fiocco sul bordo sinistro del grembiule: due anse grandi, nodo e code che scendono (la mano lo tiene dal nodo)
+    `<path d="M42,155 L35,177 M47,156 L53,176" stroke="${C.line}" stroke-width="8" stroke-linecap="round" fill="none"/>` +
+    `<path d="M42,155 L35,177 M47,156 L53,176" stroke="${C.green}" stroke-width="4.4" stroke-linecap="round" fill="none"/>` +
+    `<ellipse cx="35" cy="145" rx="12" ry="8.6" transform="rotate(-22 35 145)" fill="${C.green}" ${sw(2.8)}/>` +
+    `<ellipse cx="51" cy="158" rx="12" ry="8.6" transform="rotate(20 51 158)" fill="${C.green}" ${sw(2.8)}/>` +
+    `<circle cx="43" cy="152" r="5.2" fill="${C.greenLight}" ${sw(2.6)}/>`
   );
 }
 
@@ -219,36 +228,40 @@ export function bodyPart(variant: Variant): string {
     handlePart() +
     veggiesFront(variant) +
     panelPart(variant) +
-    (variant === 'chef' ? apronPart() : '') +
+    // Mina Chef: il contorno della borsa sta sotto il grembiule, che ha il suo bordo (altrimenti sembra una maglietta)
+    (variant === 'chef' ? `<path d="${BOX}" fill="none" ${sw(LW)}/>` + apronPart() : '') +
     `<ellipse cx="${CHEEK_L.x}" cy="${CHEEK_L.y}" rx="8.6" ry="5.4" fill="${C.cheek}" opacity="0.9"/>` +
     `<ellipse cx="${CHEEK_R.x}" cy="${CHEEK_R.y}" rx="8.6" ry="5.4" fill="${C.cheek}" opacity="0.9"/>` +
-    `<path d="${BOX}" fill="none" ${sw(LW)}/>`
+    (variant === 'chef' ? '' : `<path d="${BOX}" fill="none" ${sw(LW)}/>`)
   );
 }
 
 /** Perno del cappello (base della fascia): oscilla quando Mina salta. */
-export const HAT_PIVOT = { x: 101, y: 70 } as const;
+export const HAT_PIVOT = { x: 101, y: 80 } as const;
 
-/** Cappello da chef grande e morbido (quasi largo quanto la borsa), poggiato sopra il manico. */
+/**
+ * Cappello da chef come nel foglio: tre ciuffi grandi e morbidi che si allargano oltre la fascia, e una fascia
+ * stretta (circa il 60% della larghezza dei ciuffi) appoggiata sul bordo della borsa, che nasconde il manico.
+ */
 export function hatPart(): string {
   return (
-    `<g transform="rotate(-5 101 70)">` +
+    `<g transform="rotate(-6 101 80)">` +
     puffs(
       [
-        [69, 36, 15],
-        [80, 17, 17],
-        [101, 8, 19.5],
-        [122, 15, 17.5],
-        [134, 34, 14],
-        [101, 30, 18],
+        [60, 50, 16],
+        [75, 27, 18.5],
+        [101, 17, 21],
+        [127, 27, 18.5],
+        [142, 50, 16],
+        [101, 42, 21],
       ],
       C.white,
       3,
     ) +
-    `<path d="M82,32 Q83,22 90,15 M115,30 Q118,21 125,17" stroke="${C.hatShade}" stroke-width="3" fill="none" stroke-linecap="round"/>` +
-    `<path d="M64,48 L138,48 L133,70 L69,70 Z" fill="${C.white}" ${sw(3)}/>` +
-    `<path d="M66.5,59 L135.5,59 L133,70 L69,70 Z" fill="${C.hatShade}"/>` +
-    `<path d="M64,48 L138,48 L133,70 L69,70 Z" fill="none" ${sw(3)}/>` +
+    `<path d="M86,36 Q88,26 94,20 M116,35 Q120,26 126,22" stroke="${C.hatShade}" stroke-width="3.2" fill="none" stroke-linecap="round"/>` +
+    `<path d="M70,62 L132,62 L129,80 L73,80 Z" fill="${C.white}" ${sw(3)}/>` +
+    `<path d="M71.5,72 L130.5,72 L129,80 L73,80 Z" fill="${C.hatShade}"/>` +
+    `<path d="M70,62 L132,62 L129,80 L73,80 Z" fill="none" ${sw(3)}/>` +
     `</g>`
   );
 }
@@ -275,7 +288,7 @@ function eye(kind: Eyes, x: number, y: number, side: Side): string {
     case 'closed':
       return `<path d="M${x - 6.5},${y - 1} Q${x},${y + 5.5} ${x + 6.5},${y - 1}" ${s}/>`;
     case 'wink':
-      return side === 'L' ? eye('open', x, y, side) : `<path d="M${x + 6},${y - 6} L${x - 4.5},${y} L${x + 6},${y + 6}" ${s}/>`;
+      return side === 'L' ? eye('open', x, y, side) : `<path d="M${x - 6.5},${y + 2} Q${x},${y - 6} ${x + 6.5},${y - 2}" ${s}/>`;
     case 'laugh':
       return side === 'L' ? `<path d="M${x - 6},${y - 6} L${x + 4.5},${y} L${x - 6},${y + 6}" ${s}/>` : `<path d="M${x + 6},${y - 6} L${x - 4.5},${y} L${x + 6},${y + 6}" ${s}/>`;
     case 'star': {
@@ -399,16 +412,46 @@ export function propPart(prop: Prop, hx: number, hy: number, rot: number): strin
     case 'list':
     case 'clipboard': {
       const board = prop === 'clipboard';
+      const bw = board ? 36 : 30;
+      const bh = board ? 54 : 44;
+      const x0 = hx - bw / 2;
+      const y0 = hy - bh;
       const tick = (yy: number) =>
-        `<path d="M${hx - 9},${yy} l3,3 l5,-6" stroke="${C.green}" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M${hx + 1},${yy} L${hx + 10},${yy}" stroke="${C.paperLine}" stroke-width="2.6" stroke-linecap="round"/>`;
+        `<path d="M${hx - bw * 0.3},${yy} l3,3 l5,-6" stroke="${C.green}" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M${hx + bw * 0.03},${yy} L${hx + bw * 0.33},${yy}" stroke="${C.paperLine}" stroke-width="2.6" stroke-linecap="round"/>`;
+      const k = board ? 1.2 : 1;
       return g(
-        `<rect x="${hx - 15}" y="${hy - 44}" width="30" height="44" rx="${board ? 4 : 3}" fill="${board ? C.green : C.paper}" ${sw(2.6)}/>` +
-          (board ? `<rect x="${hx - 11}" y="${hy - 39}" width="22" height="34" rx="2" fill="${C.paper}"/><rect x="${hx - 6}" y="${hy - 48}" width="12" height="7" rx="2" fill="${C.green}" ${sw(2.2)}/>` : '') +
-          tick(hy - 32) +
-          tick(hy - 23) +
-          tick(hy - 14),
+        `<g transform="translate(${hx} ${hy}) scale(${k}) translate(${-hx} ${-hy})">` +
+        `<rect x="${x0}" y="${y0}" width="${bw}" height="${bh}" rx="${board ? 4 : 3}" fill="${board ? C.green : C.paper}" ${sw(2.6)}/>` +
+          (board ? `<rect x="${x0 + 4}" y="${y0 + 5}" width="${bw - 8}" height="${bh - 10}" rx="2" fill="${C.paper}"/><rect x="${hx - 6}" y="${y0 - 3}" width="12" height="7" rx="2" fill="${C.green}" ${sw(2.2)}/>` : '') +
+          tick(y0 + bh * 0.27) +
+          tick(y0 + bh * 0.48) +
+          tick(y0 + bh * 0.68) +
+        `</g>`,
       );
     }
+    case 'bowl':
+      // ciotola verde chiaro tenuta dal bordo, frusta infilata dentro (il manico esce in alto a sinistra), in scala come nel foglio
+      return g(
+        `<g transform="translate(${hx} ${hy}) scale(1.9) translate(${-hx} ${-hy})">` +
+          `<path d="M${hx - 17},${hy + 2} C${hx - 17},${hy + 26} ${hx + 13},${hy + 28} ${hx + 15},${hy + 2} Z" fill="${C.bowl}" ${sw(2.6)}/>` +
+          `<ellipse cx="${hx - 1}" cy="${hy + 2}" rx="16" ry="4.2" fill="${C.bowlDark}" ${sw(2.2)}/>` +
+          `<path d="M${hx + 1},${hy - 2} L${hx - 9},${hy - 26}" stroke="${C.spoonLine}" stroke-width="4" stroke-linecap="round"/>` +
+          `<path d="M${hx - 9},${hy - 26} C${hx - 14},${hy - 34} ${hx - 22},${hy - 28} ${hx - 19},${hy - 19} C${hx - 17},${hy - 12} ${hx - 9},${hy - 10} ${hx - 6},${hy - 4}" stroke="${C.line}" stroke-width="3" fill="none" stroke-linecap="round"/>` +
+          `<path d="M${hx - 9},${hy - 26} C${hx - 14},${hy - 34} ${hx - 22},${hy - 28} ${hx - 19},${hy - 19} C${hx - 17},${hy - 12} ${hx - 9},${hy - 10} ${hx - 6},${hy - 4}" stroke="${C.steel}" stroke-width="1.4" fill="none" stroke-linecap="round"/>` +
+        `</g>`,
+      );
+    case 'cloche':
+      // cloche d'argento su vassoio, con il vapore che sale: in scala come nel foglio, tenuta dal vassoio
+      return g(
+        `<g transform="translate(${hx} ${hy}) scale(1.3) translate(${-hx} ${-hy})">` +
+          `<rect x="${hx - 22}" y="${hy + 2}" width="44" height="6" rx="3" fill="${C.steel}" ${sw(2.4, C.steelDark)}/>` +
+          `<path d="M${hx - 14},${hy + 2} C${hx - 14},${hy - 16} ${hx + 14},${hy - 16} ${hx + 14},${hy + 2} Z" fill="${C.steel}" ${sw(2.4, C.steelDark)}/>` +
+          `<path d="M${hx - 8},${hy - 6} Q${hx - 6},${hy - 11} ${hx - 2},${hy - 11}" stroke="${C.white}" stroke-width="2.2" fill="none" stroke-linecap="round"/>` +
+          `<circle cx="${hx}" cy="${hy - 17}" r="2.6" fill="${C.steelDark}"/>` +
+          `<path d="M${hx - 6},${hy - 24} q 4,-4 0,-8 q -4,-4 0,-8" stroke="${C.steam}" stroke-width="2.6" fill="none" stroke-linecap="round"/>` +
+          `<path d="M${hx + 6},${hy - 24} q 4,-4 0,-8 q -4,-4 0,-8" stroke="${C.steam}" stroke-width="2.6" fill="none" stroke-linecap="round"/>` +
+        `</g>`,
+      );
     default:
       return '';
   }

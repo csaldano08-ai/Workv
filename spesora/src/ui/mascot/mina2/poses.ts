@@ -16,6 +16,14 @@ export const ARM = {
   holdR: armTo('R', 165, 141),
   upL: armTo('L', 24, 106),
   upR: armTo('R', 175, 102),
+  // Mina Chef: la mano sinistra tiene il fiocco del grembiule dal nodo
+  chefBowL: armTo('L', 40, 130),
+  // ciotola tenuta dal bordo, frusta dentro (mano destra in basso a destra)
+  bowlR: armTo('R', 158, 128),
+  // cloche alzata sul vassoio, a altezza delle spalle
+  clocheR: armTo('R', 168, 112),
+  // checklist tenuta a destra, come nel foglio
+  checkR: armTo('R', 172, 118),
 } as const satisfies Record<string, ArmPose>;
 
 /** Pose pubbliche della mascotte. I nomi delle pose precedenti restano validi (stesse schermate, nuovo personaggio). */
@@ -29,6 +37,9 @@ export const MINA_POSES = [
   'shopping',
   'cooking',
   'recipe',
+  'mixing',
+  'serving',
+  'checklist',
   'pantry',
   'missing',
   'savings',
@@ -86,8 +97,12 @@ export const POSES: Record<MinaPose, PoseSpec> = {
   thinking: { look: classic({ eyes: 'open', mouth: 'hmm', armL: ARM.hipL, armR: ARM.chinR, emote: 'question' }), action: 'think' },
   calendar: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.restL, armR: { ...ARM.holdR, prop: 'phone', propTilt: 6 } }), action: 'none' },
   shopping: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.holdR, prop: 'list', propTilt: 8 } }), action: 'none' },
-  cooking: { look: chef({ eyes: 'wink', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.raiseR, prop: 'spoon', propTilt: 4 }, emote: 'sparkles' }), action: 'recipe' },
-  recipe: { look: chef({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.raiseR, prop: 'spoon', propTilt: 4 } }), action: 'recipe' },
+  cooking: { look: chef({ eyes: 'wink', mouth: 'smile', armL: ARM.chefBowL, armR: { ...ARM.raiseR, prop: 'spoon', propTilt: 4 }, emote: 'sparkles' }), action: 'recipe' },
+  recipe: { look: chef({ eyes: 'open', mouth: 'smile', armL: ARM.chefBowL, armR: { ...ARM.raiseR, prop: 'spoon', propTilt: 4 } }), action: 'recipe' },
+  // gli usi di Mina Chef nel foglio: mescola, serve, controlla la lista
+  mixing: { look: chef({ eyes: 'happy', mouth: 'grin', armL: ARM.restL, armR: { ...ARM.bowlR, prop: 'bowl', propTilt: 0 } }), action: 'recipe' },
+  serving: { look: chef({ eyes: 'open', mouth: 'grin', armL: ARM.hipL, armR: { ...ARM.clocheR, prop: 'cloche', propTilt: 0 } }), action: 'recipe' },
+  checklist: { look: chef({ eyes: 'wink', mouth: 'smile', armL: ARM.hipL, armR: { ...ARM.checkR, prop: 'clipboard', propTilt: 10 }, emote: 'sparkles' }), action: 'remind' },
   pantry: { look: classic({ eyes: 'open', mouth: 'small', armL: ARM.restL, armR: ARM.openR }), action: 'none' },
   missing: { look: classic({ eyes: 'surprised', mouth: 'o', armL: ARM.upL, armR: ARM.upR }), action: 'none' },
   savings: { look: classic({ eyes: 'star', mouth: 'grin', armL: ARM.hipL, armR: ARM.cheerR, emote: 'sparkles' }), action: 'happy' },

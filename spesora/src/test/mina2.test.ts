@@ -19,7 +19,7 @@ function hand(side: Side, out: number, bend: number) {
 
 describe('Mina 2.0 — la borsetta della spesa', () => {
   it('ogni posa è un SVG valido e chiuso, con l’identità fissa della borsa', () => {
-    expect(MINA_POSES).toHaveLength(17);
+    expect(MINA_POSES).toHaveLength(20);
     for (const p of MINA_POSES) {
       const s = minaStaticSvg(POSES[p].look);
       expect(s.startsWith('<svg')).toBe(true);
@@ -43,7 +43,7 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
   });
 
   it('Mina Chef (cappello e grembiule) solo nelle pose di cucina e ricette', () => {
-    expect(CHEF_POSES.sort()).toEqual(['cooking', 'recipe']);
+    expect(CHEF_POSES.sort()).toEqual(['checklist', 'cooking', 'mixing', 'recipe', 'serving']);
     for (const p of MINA_POSES) {
       const s = minaStaticSvg(POSES[p].look);
       const hasHat = s.includes(C.hatShade);
