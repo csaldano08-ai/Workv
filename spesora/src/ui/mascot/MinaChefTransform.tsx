@@ -46,8 +46,8 @@ const SEAM = 10.5;
 const SWEEP_FROM = FEET_Y + 6;
 const SWEEP_TO = -12;
 
-/** Mani di Mina Chef all'inizio: la destra lungo il fianco, la sinistra aperta vicino al bordo della borsa. */
-const HANDS_START: Record<Side, Pt> = { L: { x: 54, y: 152 }, R: CHEF_ARM.restR.at! };
+/** Mani all'inizio: le stesse braccia a riposo di Mina 2.0 (V4: un solo scheletro per le due varianti). */
+const HANDS_START: Record<Side, Pt> = { L: CHEF_ARM.restL.at!, R: CHEF_ARM.restR.at! };
 const HANDS_END: Record<Side, Pt> = { L: CHEF_ARM.bowL.at!, R: CHEF_ARM.spoonR.at! };
 const LEN = { L: FINAL.armL.len, R: FINAL.armR.len };
 

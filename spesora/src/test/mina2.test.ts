@@ -71,21 +71,25 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
     expect(Math.abs(far.bend)).toBeLessThan(20);
   });
 
-  it('Mina Chef ha il suo scheletro: le braccia (anche con lunghezze proprie) arrivano dove indicato', () => {
-    const cases: [Side, number, number, ArmLen | undefined][] = [
-      ['R', 162.5, 118, [12, 16]],
-      ['R', 168, 104, [20, 23]],
-      ['L', 54, 176, [14, 15]],
-      ['R', 148, 154, undefined],
-    ];
-    for (const [side, x, y, len] of cases) {
-      const pose = armTo(side, x, y, { len }, 'chef');
-      const h = hand(side, pose.out, pose.bend, 'chef', len);
+  it('Mina Chef è Mina 2.0 con gli accessori: stesso scheletro, nessuna lunghezza propria delle braccia', () => {
+    expect(RIG.chef.shoulder).toEqual(RIG.classic.shoulder);
+    expect([RIG.chef.upper, RIG.chef.fore]).toEqual([RIG.classic.upper, RIG.classic.fore]);
+    for (const p of CHEF_POSES) {
+      const look = POSES[p].look;
+      expect(look.armL.len, `${p} L`).toBeUndefined();
+      expect(look.armR.len, `${p} R`).toBeUndefined();
+    }
+    for (const [side, x, y] of [
+      ['R', 185, 100],
+      ['L', 31.5, 165.6],
+    ] as const) {
+      const pose = armTo(side, x, y, {}, 'chef');
+      const h = hand(side, pose.out, pose.bend, 'chef');
       expect(Math.hypot(h.x - x, h.y - y), `${side} ${x},${y}`).toBeLessThan(0.6);
     }
   });
 
-  it('Mina Chef nelle quattro pose del foglio: cucchiaio e occhiolino, ciotola, cloche, cartellina', () => {
+  it('Mina Chef nelle sue pose: cucchiaio e occhiolino, ciotola, cloche, cartellina, sulla borsa di Mina 2.0', () => {
     const chef = (p: keyof typeof POSES) => POSES[p].look;
     expect(chef('cooking').armR.prop).toBe('spoon');
     expect(chef('cooking').eyes).toBe('wink');
@@ -97,9 +101,21 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
     expect(chef('serving').shift ?? 0).toBeLessThan(0);
     for (const p of CHEF_POSES) {
       const s = minaStaticSvg(POSES[p].look);
-      expect(s, p).toContain(C.chefSide); // fianco caldo della borsa di Mina Chef
-      expect(s, p).not.toContain(C.ivoryShade); // non è la borsa di Mina 2.0 con il cappello sopra
+      expect(s, p).toContain(C.ivoryShade); // la stessa borsa di Mina 2.0 (fianco e fronte)
+      expect(s, p).not.toContain(C.chefSide); // nessuna borsa diversa
     }
+  });
+
+  it('a riposo le braccia sono quasi distese (gomito oltre 140°), non piegate a metà', () => {
+    for (const side of ['L', 'R'] as const) {
+      const f = poseFrame(side, side === 'L' ? ARM.restL : ARM.restR, 'classic');
+      const v1 = { x: f.s.x - f.e.x, y: f.s.y - f.e.y };
+      const v2 = { x: f.w.x - f.e.x, y: f.w.y - f.e.y };
+      const ang = (Math.acos((v1.x * v2.x + v1.y * v2.y) / (Math.hypot(v1.x, v1.y) * Math.hypot(v2.x, v2.y))) * 180) / Math.PI;
+      expect(ang, side).toBeGreaterThan(140);
+    }
+    // il saluto non resta fisso: da ferma Mina sta a riposo
+    expect(POSES.welcome.look.armR).toEqual(ARM.restR);
   });
 
   it('ogni stato di MinaAnimated porta a una posa esistente, in entrambe le varianti', () => {
@@ -147,7 +163,7 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
     // occhi e bocca di Mina 2.0 e di Mina Chef (riquadri del viso nel disegno)
     const face: Record<Variant, { x0: number; x1: number; y0: number; y1: number }> = {
       classic: { x0: 84, x1: 141, y0: 96, y1: 132 },
-      chef: { x0: 86, x1: 130, y0: 100, y1: 128 },
+      chef: { x0: 84, x1: 141, y0: 96, y1: 132 },
     };
     for (const p of MINA_POSES) {
       const look = POSES[p].look;
@@ -173,7 +189,7 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
 
   it('le mani di Mina 2.0 non passano sopra gli ingredienti (lattuga, apertura, ciuffo della carota)', () => {
     const zones = [
-      { name: 'lattuga', x0: 2, x1: 40, y0: 76, y1: 112 },
+      { name: 'lattuga', x0: 14, x1: 52, y0: 68, y1: 104 },
       { name: 'apertura', x0: 58, x1: 146, y0: 8, y1: 80 },
       { name: 'ciuffo', x0: 146, x1: 184, y0: 26, y1: 70 },
     ];

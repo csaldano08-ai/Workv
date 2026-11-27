@@ -201,8 +201,9 @@ export class Gesture {
       parts.push(Animated.parallel([this.tween(u, next.upper, leg.ms - lag, leg.easing), Animated.sequence([Animated.delay(T(lag)), this.tween(f, next.fore, leg.ms - lag, leg.easing)])]));
       prev = next;
     }
-    this.cur[side] = to;
-    this.ang[side] = prev;
+    // oggetti nuovi, mai modificati sul posto: chi ha preso `g.cur` come punto di partenza del gesto lo ritrova intatto
+    this.cur = { ...this.cur, [side]: to };
+    this.ang = { ...this.ang, [side]: prev };
     return Animated.sequence(parts);
   }
 
@@ -259,12 +260,14 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
   switch (action) {
     case 'emerge': {
       // intro: esce dal basso a occhi chiusi (la salita la fa l'intro) e si assesta con un piccolo rimbalzo; apre gli
-      // occhi, sorride, alza la mano con gradualità e fa un saluto breve; il braccio resta alzato: è la posa ferma
-      // del Benvenuto, che prende il suo posto senza stacchi
+      // occhi, sorride, alza la mano con gradualità, fa un saluto breve e riporta il braccio giù: a riposo, come la
+      // posa ferma del Benvenuto (V4: il saluto non resta mai fisso)
       const g = make(rest);
+      const wave = handAt('R', ARM.waveR, v);
+      const via = handAt('R', ARM.liftWaveR, v);
       return {
         start: { at: rest, eyes: 'closed', mouth: 'small', brows: 'none' },
-        end: posed,
+        end: rest,
         cues: [
           [380, 'open', null, null],
           [480, null, 'smile', 'raised'],
@@ -275,8 +278,10 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
           Animated.delay(T(180)),
           g.tween(vals.squash, 0.95, 120, easeOut),
           g.tween(vals.squash, 1, 220, back),
-          Animated.parallel([g.reach('R', posed.R, 420, { via: handAt('R', ARM.liftWaveR, v) }), g.tween(vals.tilt, -1.5, 380)]),
+          Animated.parallel([g.reach('R', wave, 460, { via }), g.tween(vals.tilt, -1.5, 380)]),
           Animated.parallel([g.swing('R', [10, -6, 10], 130), Animated.sequence([g.tween(vals.tilt, 1, 260), g.tween(vals.tilt, 0, 260)])]),
+          Animated.delay(T(180)),
+          g.reach('R', rest.R, 560, { via }),
         ]),
       };
     }
@@ -400,13 +405,17 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
     case 'think': {
       // pensierosa: la mano arriva al mento con un arco esterno (non passa davanti al viso), lo sguardo sale,
       // le sopracciglia si stringono, il corpo si inclina; poi compare il punto di domanda
-      const g = make({ L: posed.L, R: rest.R });
+      // il punto di partenza è un oggetto proprio: `g.cur` viene aggiornato da `reach` mentre si costruisce il gesto
+      // (V4: prima l'animazione partiva dalla posa finale e il braccio faceva un giro intero davanti al viso)
+      const from = { L: posed.L, R: rest.R };
+      const g = make(from);
       return {
-        start: { at: g.cur, eyes: 'open', mouth: 'small', brows: 'none' },
+        start: { at: from, eyes: 'open', mouth: 'small', brows: 'none' },
         end: posed,
         cues: [[240, null, null, 'focus'], [420, null, 'hmm', null]],
         anim: Animated.parallel([
-          g.reach('R', posed.R, 620, { arc: 0.45 }),
+          // V4: passa dal lato (braccio aperto all'altezza della spalla), mai davanti alla bocca
+          g.reach('R', posed.R, 640, { via: handAt('R', ARM.liftWaveR, v) }),
           Animated.sequence([Animated.delay(T(160)), Animated.parallel([g.tween(vals.gazeY, -3, 420), g.tween(vals.gazeX, 2.5, 420)])]),
           g.tween(vals.tilt, 3, 720, ease),
           Animated.sequence([Animated.delay(T(660)), g.tween(vals.emote, 1, 320, back)]),
@@ -466,9 +475,12 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
     }
     case 'remind': {
       // richiama l'attenzione con garbo: si sporge, alza la mano, due piccoli rimbalzi, poi torna composta
-      const g = make({ L: posed.L, R: rest.R });
+      // il punto di partenza è un oggetto proprio: `g.cur` viene aggiornato da `reach` mentre si costruisce il gesto
+      // (V4: prima l'animazione partiva dalla posa finale e il braccio faceva un giro intero davanti al viso)
+      const from = { L: posed.L, R: rest.R };
+      const g = make(from);
       return {
-        start: { at: g.cur, eyes: 'open', mouth: 'small', brows: 'none' },
+        start: { at: from, eyes: 'open', mouth: 'small', brows: 'none' },
         end: { L: posed.L, R: rest.R },
         cues: [[200, null, 'smile', 'raised'], [1700, null, null, 'none']],
         anim: Animated.sequence([

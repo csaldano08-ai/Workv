@@ -88,10 +88,6 @@ export function svg(inner: string, viewBox = VIEWBOX): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}">${inner}</svg>`;
 }
 
-/** Gruppo di cerchi fusi in una forma riccia (cappello): contorno sotto, riempimento sopra. */
-function puffs(circles: [number, number, number][], fill: string, stroke = 2.1): string {
-  return circles.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" ${sw(stroke)}/>`).join('') + circles.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${(r - stroke / 2 - 0.2).toFixed(2)}" fill="${fill}"/>`).join('');
-}
 
 /**
  * Foglia riccia (lattuga, ciuffo della carota): ellisse con il bordo ondulato a «smerli», come nel foglio.
@@ -130,31 +126,25 @@ export interface Rig {
   leanPivot: { x: number; y: number };
 }
 
-export const RIG: Record<Variant, Rig> = {
-  // spalle 2 unità dentro il bordo della borsa: il braccio esce dal corpo e non sembra appoggiato sopra
-  // spalle all'altezza della bocca e appena dentro il bordo della borsa, come nel foglio (misure in scripts/mascot)
-  classic: { shoulder: { L: { x: 43, y: 123 }, R: { x: 157, y: 127.5 } }, upper: 18, fore: 16, eyesCenter: { x: 112.8, y: 105 }, bodyPivot: { x: 104, y: FEET_Y }, hatPivot: { x: 101, y: 80 }, leanPivot: { x: 104, y: FEET_Y } },
-  // Mina Chef (foglio «Mina Chef — Style Reference»): braccia corte attaccate ai lati, sotto il viso
-  chef: { shoulder: { L: { x: 57, y: 145 }, R: { x: 143, y: 131 } }, upper: 12, fore: 12, eyesCenter: { x: 106.8, y: 109.8 }, bodyPivot: { x: 105, y: FEET_Y }, hatPivot: { x: 90, y: 66 }, leanPivot: { x: 98, y: 135 } },
-};
+/**
+ * UN SOLO scheletro per Mina 2.0 e Mina Chef (V4): stesso corpo, stesse spalle, stesse braccia, stessi piedi.
+ * Mina Chef è Mina 2.0 con cappello, grembiule e oggetti da cucina: cambia solo `hatPivot` (base del cappello).
+ * Braccia lunghe abbastanza da stare distese lungo i fianchi (22 + 21 unità, mano fino al fondo della borsa):
+ * a riposo sono quasi dritte, si piegano solo nei gesti.
+ */
+const BASE_RIG: Rig = { shoulder: { L: { x: 43, y: 123 }, R: { x: 157, y: 127.5 } }, upper: 22, fore: 21, eyesCenter: { x: 112.8, y: 105 }, bodyPivot: { x: 104, y: FEET_Y }, hatPivot: { x: 100, y: 80 }, leanPivot: { x: 104, y: FEET_Y } };
+export const RIG: Record<Variant, Rig> = { classic: BASE_RIG, chef: BASE_RIG };
 
 /** Perno di tutto il corpo di Mina 2.0 (compatibilità). */
 export const BODY_PIVOT = RIG.classic.bodyPivot;
 
 export function shadowPart(variant: Variant = 'classic'): string {
-  if (variant === 'chef') return `<ellipse cx="105" cy="${FEET_Y - 0.5}" rx="64" ry="7" fill="${C.shadow}"/>`;
+  void variant; // stessa ombra per Mina 2.0 e Mina Chef
   return `<ellipse cx="104" cy="${FEET_Y + 2}" rx="66" ry="6.5" fill="${C.shadow}"/>`;
 }
 
 export function legsPart(legs: Legs = 'stand', variant: Variant = 'classic'): string {
-  if (variant === 'chef') {
-    // gambe corte e piene come nel foglio, scarponcini che puntano in fuori
-    const leg = (x1: number, y1: number, x2: number, fx: number, dir: number) =>
-      `<path d="M${x1},${y1} L${x2},${FEET_Y - 5}" ${sw(12)} fill="none"/>` +
-      `<path d="M${x1},${y1} L${x2},${FEET_Y - 5}" stroke="${C.green}" stroke-width="8.4" stroke-linecap="round" fill="none"/>` +
-      `<path d="M${fx - 7.5 * dir},${FEET_Y - 1} C${fx - 8.5 * dir},${FEET_Y - 9} ${fx + 5 * dir},${FEET_Y - 10} ${fx + 9.5 * dir},${FEET_Y - 3.5} C${fx + 11 * dir},${FEET_Y + 1} ${fx - 7 * dir},${FEET_Y + 2.5} ${fx - 7.5 * dir},${FEET_Y - 1} Z" fill="${C.green}" ${sw(1.9)}/>`;
-    return leg(89, 180, 88.5, 88.8, -1) + leg(123.5, 178, 124.5, 126.3, 1);
-  }
+  void variant; // stesse gambe per Mina 2.0 e Mina Chef
   // gambe corte e piene come nel foglio (spessore circa 18 unità, piedi a terra poco sotto la borsa)
   const leg = (x1: number, x2: number, y2: number, fx: number, dir: number) =>
     `<path d="M${x1},166 L${x2},${y2}" ${sw(18)} fill="none"/>` +
@@ -177,19 +167,25 @@ function veggiesBack(): string {
   return (
     // lattuga riccia che esce dall'angolo in alto a sinistra
     // lattuga (foglio): due foglie ricce dietro l'angolo in alto a sinistra, che sporgono fin quasi al bordo
+    // V4: più raccolta dietro l'angolo della borsa, così il braccio sinistro alzato non la attraversa
+    `<g transform="translate(12 -8)">` +
     frilly(26, 89, 14, 12.5, -25, 9, 0.17, C.lettuce) +
     frilly(14, 102, 12, 10, 15, 8, 0.18, C.lettuce) +
     vein('M42,96 C33,92 25,89 15,87 M29,91 L24,81 M26,100 L12,106') +
+    `</g>` +
     // foglie scure (spinaci) dietro al pane
     `<path d="M62,88 C55,74 57,56 64,46 C68,55 72,67 71,84 Z" fill="${C.spinach}" ${sw(2)}/>` +
     `<path d="M69,88 C67,72 71,59 78,52 C78,65 76,77 75,88 Z" fill="${C.spinach}" ${sw(2)}/>` +
     // ciuffo della carota: foglie ricce verde chiaro
+    // carota e ciuffo spostati fuori dal montante destro del manico: il manico non li attraversa più
+    `<g transform="translate(9 0)">` +
     frilly(151, 45, 11, 17, -20, 8, 0.15, C.leaf) +
     frilly(167, 44, 11, 16, 30, 8, 0.15, C.leaf) +
     frilly(160, 59, 10, 10, 0, 8, 0.15, C.leaf) +
     vein('M150,72 L156,32 M154,64 L170,32 M152,62 L161,52') +
     `<path d="M135,92 C133,75 138,61 147,56 C155,52 162,58 161,66 C159,79 153,88 150,93 Z" fill="${C.carrot}" ${sw(2.1)}/>` +
     `<path d="M142,68 L150,69 M140,78 L148,79" stroke="${C.carrotDark}" stroke-width="1.8" stroke-linecap="round"/>` +
+    `</g>` +
     `<circle cx="69" cy="79" r="6" fill="${C.radish}" ${sw(1.9)}/>`
   );
 }
@@ -202,17 +198,19 @@ function veggiesFront(): string {
   const calyx = Array.from({ length: 10 }, (_, i) => {
     const a = (i * Math.PI) / 5 - Math.PI / 2;
     const r = i % 2 === 0 ? 10 : 3.8;
-    return `${(107 + r * Math.cos(a)).toFixed(1)},${(49 + r * Math.sin(a) * 0.6).toFixed(1)}`;
+    return `${(103 + r * Math.cos(a)).toFixed(1)},${(52 + r * Math.sin(a) * 0.6).toFixed(1)}`;
   }).join(' ');
   // il pomodoro sta dentro l'apertura (la metà bassa è nascosta dal fronte della borsa), tra le gambe del manico
   const tomato =
-    `<ellipse cx="107" cy="66.5" rx="22" ry="18.5" fill="${C.tomato}" ${sw(2.2)}/>` +
-    `<ellipse cx="118" cy="57" rx="4.8" ry="2.6" fill="${C.tomatoLight}" transform="rotate(-25 118 57)"/>` +
-    `<path d="M107,49 L108,41" ${sw(2.2)}/>` +
+    // dentro l'arco del manico, senza toccarne i montanti (bordo interno a x 78 e 128)
+    `<ellipse cx="103" cy="68" rx="19.5" ry="17" fill="${C.tomato}" ${sw(2.2)}/>` +
+    `<ellipse cx="112.5" cy="59.5" rx="4.4" ry="2.4" fill="${C.tomatoLight}" transform="rotate(-25 112.5 59.5)"/>` +
+    `<path d="M103,52 L104,44" ${sw(2.2)}/>` +
     `<polygon points="${calyx}" fill="${C.calyx}" ${sw(1.8)}/>`;
   // la baguette sull'asse del foglio: esce dall'angolo in alto a sinistra e la sua base è dentro la borsa
   const bread =
-    `<g transform="rotate(-39 57 57)">` +
+    // spostata a sinistra: la sua base entra nella borsa fuori dal montante sinistro del manico
+    `<g transform="translate(-7 3) rotate(-39 57 57)">` +
     `<rect x="45.5" y="15" width="23" height="86" rx="11.5" fill="${C.bread}" ${sw(2.2)}/>` +
     `<path d="M50,31 Q57,27 64,29 M50,46 Q57,42 64,44 M50,61 Q57,57 64,59" stroke="${C.breadMark}" stroke-width="2.6" fill="none" stroke-linecap="round"/>` +
     `</g>`;
@@ -239,66 +237,29 @@ export const CHEEK_R = { x: 147, y: 119 } as const;
 // ───────────────────────────── Mina Chef: borsa, grembiule, cappello ─────────────────────────────
 
 /*
- * Mina Chef dal foglio «Mina Chef — Style Reference»: la borsa è più alta che larga e inclinata (circa −12°),
- * con il fianco sinistro più caldo; il manico è un arco basso e spesso su cui poggia la fascia del cappello;
- * dentro l'arco un frutto arancio, a destra un limone, a sinistra la lattuga; il grembiule verde copre il terzo
- * basso della borsa, con la foglia bianca al centro e il fiocco sul bordo sinistro.
- * Coordinate ricalcate sul foglio (0,62 unità per pixel del foglio).
+ * Mina Chef (V4) = Mina 2.0 con gli accessori da cucina. Stessa borsa, stesso viso, stesse braccia e gambe:
+ * il cappello poggia sull'apertura (copre manico, pane e pomodoro; ai lati sporgono lattuga e carota) e il
+ * grembiule verde copre il terzo basso del fronte, con la foglia bianca e il fiocco sul bordo sinistro.
  */
-const CHEF_BOX = 'M50.5,97.5 Q92,75.5 135.5,81.4 Q139,82 139.3,85.5 L143.6,128 L144.6,145 L144.9,168 Q145,176 138,177 L76,182 Q71.5,182.3 69.6,178 L46.6,103.5 Q45.5,98.8 50.5,97.5 Z';
-const CHEF_SIDE = 'M50.5,97.5 Q54.5,95.3 58.8,93.4 L86,181.5 L76,182 Q71.5,182.3 69.6,178 L46.6,103.5 Q45.5,98.8 50.5,97.5 Z';
-/** Apertura della borsa sotto il cappello: il manico visto di fronte, un arco verde pieno, con l'interno scuro. */
-const CHEF_OPENING = 'M61,96 C61,78 73,64.5 95,63 C114,62.3 122.5,68 123.8,85 Z';
-const CHEF_INSIDE = 'M68,94 C68,80 78,70.5 95,69.8 C110,69.3 117,73.5 118,86 Z';
-const CHEF_APRON = 'M70.2,155.4 L143,141.8 Q144.9,141.5 145,143.5 L145.4,167 Q145.6,174.5 139,177 Q112,186 82,185 Q77.2,184.8 77,180.5 L76.3,166 Z';
+const APRON = 'M59.5,140.5 Q108,136.5 158.4,139.8 L157.5,160 Q157,172 145,172 L61,173 Z';
 
 function chefBodyPart(bow: boolean, apron = true): string {
-  const vein = (d: string) => `<path d="${d}" stroke="${C.leafDark}" stroke-width="1.9" fill="none" stroke-linecap="round"/>`;
   return (
-    // lattuga a lobi grandi dietro l'angolo in alto a sinistra, limone che sbuca a destra
-    puffs(
-      [
-        [34, 80, 8.2],
-        [41.5, 67.5, 7.6],
-        [53.5, 68.5, 7.6],
-        [47, 79, 11.5],
-        [52, 88, 8],
-      ],
-      C.lettuceChef,
-      2.1,
-    ) +
-    vein('M55,94 C52,84 49,75 46,64 M49,80 L37,77 M50.5,82 L57,70') +
-    `<path d="M58.5,91 L61.5,76 L67,78.5 Z" fill="${C.carrot}" ${sw(1.8)}/>` +
-    `<circle cx="122.5" cy="72" r="8.3" fill="${C.lemonChef}" ${sw(1.9)}/>` +
-    `<ellipse cx="124.5" cy="68.5" rx="2.8" ry="2" fill="${C.orangeLight}"/>` +
-    // apertura: arco del manico verde, interno scuro, frutto arancio
-    `<path d="${CHEF_OPENING}" fill="${C.green}" ${sw(2)}/>` +
-    `<path d="${CHEF_INSIDE}" fill="${C.greenDeep}" ${sw(1.8)}/>` +
-    `<circle cx="94.5" cy="86" r="16" fill="${C.orange}" ${sw(2)}/>` +
-    `<ellipse cx="101" cy="74.5" rx="4.8" ry="2.4" fill="${C.orangeLight}" transform="rotate(-18 101 74.5)"/>` +
-    // borsa alta, con il fianco sinistro più caldo
-    FRONT_GRADIENT +
-    `<path d="${CHEF_BOX}" fill="url(#mina2-front)"/>` +
-    `<path d="${CHEF_SIDE}" fill="${C.chefSide}"/>` +
-    `<path d="M59.5,97 L84,170" stroke="${C.crease}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.35"/>` +
-    `<path d="${CHEF_BOX}" fill="none" ${sw(2.1)}/>` +
-    // grembiule verde sul terzo basso (livello a parte nella trasformazione, dove compare con una maschera)
-    (apron ? apronPart(bow) : '') +
-    // guance
-    `<ellipse cx="82.9" cy="126.4" rx="6.4" ry="5" transform="rotate(-10 82.9 126.4)" fill="${C.cheek}" opacity="0.85"/>` +
-    `<ellipse cx="132.4" cy="120.4" rx="6.4" ry="5" transform="rotate(-10 132.4 120.4)" fill="${C.cheek}" opacity="0.85"/>`
+    veggiesBack() +
+    panelPart() +
+    `<ellipse cx="${CHEEK_L.x}" cy="${CHEEK_L.y}" rx="8.6" ry="5.4" fill="${C.cheek}" opacity="0.9"/>` +
+    `<ellipse cx="${CHEEK_R.x}" cy="${CHEEK_R.y}" rx="8.6" ry="5.4" fill="${C.cheek}" opacity="0.9"/>` +
+    `<path d="${BOX}" fill="none" ${sw(LW)}/>` +
+    // grembiule (livello a parte nella trasformazione, dove compare con una maschera)
+    (apron ? apronPart(bow) : '')
   );
 }
 
-/**
- * Grembiule di Mina Chef: il telo verde sul terzo basso con il suo contorno e la foglia bianca, e il fiocco sul
- * bordo sinistro (un'ansa verso sinistra, la coda a coda di rondine che scende, il nodo; nelle pose in cui il
- * braccio sinistro lo copre, nel foglio non si vede).
- */
+/** Grembiule di Mina Chef sul fronte della borsa di Mina 2.0: telo verde, foglia bianca, fiocco sul bordo sinistro. */
 export function apronPart(bow = true): string {
   return (
-    `<path d="${CHEF_APRON}" fill="${C.green}" ${sw(2)}/>` +
-    `<g transform="translate(112.5 165.2) rotate(-7) scale(0.9)">` +
+    `<path d="${APRON}" fill="${C.green}" ${sw(2)}/>` +
+    `<g transform="translate(110 157) scale(0.86)">` +
     `<path d="M-12,10 C-15,-4 -2,-13 14,-11 C13,4 2,13 -12,10 Z" fill="${C.white}"/>` +
     `<path d="M-17,15 Q-4,4 9,-7" stroke="${C.green}" stroke-width="2.6" fill="none" stroke-linecap="round"/>` +
     `</g>` +
@@ -307,14 +268,16 @@ export function apronPart(bow = true): string {
 }
 
 /** Area occupata dal grembiule (fiocco compreso), per la maschera che lo rivela. */
-export const APRON_BOX = { top: 140, bottom: 187, left: 45, right: 147 } as const;
+export const APRON_BOX = { top: 134, bottom: 178, left: 38, right: 160 } as const;
 
 function chefBow(): string {
   return (
+    `<g transform="translate(-5 -7)">` +
     `<path d="M63.5,163 C57,165 51,168 47.5,172.5 L54.5,181.5 L57.8,176 L60.5,181 C62.5,176 64,169 65.5,164 Z" fill="${C.green}" ${sw(1.9)}/>` +
     `<path d="M62,155.5 C57,151 50,150.5 47,155.5 C45.5,159.5 49,164 55,163.5 C58,163.3 61,162 62.5,160.5 Z" fill="${C.green}" ${sw(1.9)}/>` +
     `<path d="M51,157.5 Q55,157.5 59,159.5" stroke="${C.line}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.6"/>` +
-    `<ellipse cx="63" cy="158" rx="5.4" ry="6.6" fill="${C.green}" ${sw(1.9)}/>`
+    `<ellipse cx="63" cy="158" rx="5.4" ry="6.6" fill="${C.green}" ${sw(1.9)}/>` +
+    `</g>`
   );
 }
 
@@ -343,22 +306,23 @@ export const HAT_PIVOT = RIG.chef.hatPivot;
  */
 export function hatPart(): string {
   const lobes: [number, number, number][] = [
-    [58, 40, 18],
-    [85, 24, 20],
-    [113, 35.5, 17.2],
-    [85, 42, 17],
-    [70, 46, 12],
-    [101, 44, 13],
+    [66, 46, 17],
+    [88, 30, 20],
+    [114, 30, 19.5],
+    [136, 45, 16.5],
+    [101, 46, 16],
+    [79, 50, 12.5],
+    [123, 50, 12.5],
   ];
   return (
     lobes.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${C.white}" ${sw(2)}/>`).join('') +
     // ombra in basso a ogni lobo: cerchio grigio, poi cerchio bianco spostato in alto
     lobes.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${(r - 1.6).toFixed(1)}" fill="${C.hatShade}"/>`).join('') +
     lobes.map(([x, y, r]) => `<circle cx="${x}" cy="${(y - 2.6).toFixed(1)}" r="${(r - 4.4).toFixed(1)}" fill="${C.white}"/>`).join('') +
-    // fascia curva
-    `<path d="M60.5,59.5 Q93,40 115.5,49.5 L116.8,68.5 Q95,55.5 64.5,75.5 Z" fill="${C.white}"/>` +
-    `<path d="M61,60 Q93,40.6 115.6,50 L115.9,54.6 Q93,46.5 61.8,64.6 Z" fill="${C.hatShade}"/>` +
-    `<path d="M60.5,59.5 Q93,40 115.5,49.5 L116.8,68.5 Q95,55.5 64.5,75.5 Z" fill="none" ${sw(2)}/>`
+    // fascia che poggia sull'apertura della borsa (copre manico e ingredienti al centro)
+    `<path d="M53,62 Q100,53 147,62 L148,84 Q100,76 52,84 Z" fill="${C.white}"/>` +
+    `<path d="M53.4,62.4 Q100,53.6 146.6,62.4 L146.8,67 Q100,59 53.2,67 Z" fill="${C.hatShade}"/>` +
+    `<path d="M53,62 Q100,53 147,62 L148,84 Q100,76 52,84 Z" fill="none" ${sw(2)}/>`
   );
 }
 
@@ -370,9 +334,6 @@ export const EYE_R = { x: 134.5, y: 104.5 } as const;
 export const MOUTH = { x: 113, y: 119.5 } as const;
 /** Centro degli occhi di Mina 2.0 (perno del battito di ciglia). */
 export const EYES_CENTER = RIG.classic.eyesCenter;
-
-/** Viso di Mina Chef (dal foglio): occhi più piccoli, bocca più piccola, tutto inclinato come la borsa. */
-const CHEF_FACE = { eyeL: { x: 90.3, y: 112.8 }, eyeR: { x: 123.3, y: 106.8 }, mouth: { x: 108.3, y: 125.5 }, tilt: -10 } as const;
 
 function eye(kind: Eyes, x: number, y: number, side: Side, chef = false): string {
   const s = `stroke="${C.eye}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"`;
@@ -405,14 +366,10 @@ function eye(kind: Eyes, x: number, y: number, side: Side, chef = false): string
   }
 }
 
+/** Occhi: stesso viso per Mina 2.0 e Mina Chef (lo chef strizza l'occhio con la «<» del suo foglio). */
 export function eyesPart(kind: Eyes, variant: Variant = 'classic'): string {
-  if (variant === 'chef') {
-    // nel foglio l'occhio destro è un po' più piccolo (la borsa è vista di tre quarti)
-    const at = (p: { x: number; y: number }, base: { x: number; y: number }, side: Side, k: number) =>
-      `<g transform="translate(${p.x} ${p.y}) rotate(${CHEF_FACE.tilt}) scale(${(0.73 * k).toFixed(3)} ${(0.82 * k).toFixed(3)}) translate(${-base.x} ${-base.y})">${eye(kind, base.x, base.y, side, true)}</g>`;
-    return at(CHEF_FACE.eyeL, EYE_L, 'L', 1) + at(CHEF_FACE.eyeR, EYE_R, 'R', 0.9);
-  }
-  return eye(kind, EYE_L.x, EYE_L.y, 'L') + eye(kind, EYE_R.x, EYE_R.y, 'R');
+  const chef = variant === 'chef';
+  return eye(kind, EYE_L.x, EYE_L.y, 'L', chef) + eye(kind, EYE_R.x, EYE_R.y, 'R', chef);
 }
 
 function mouthShape(kind: Mouth): string {
@@ -437,13 +394,9 @@ function mouthShape(kind: Mouth): string {
   }
 }
 
+/** Bocca: la stessa per le due varianti. */
 export function mouthPart(kind: Mouth, variant: Variant = 'classic'): string {
-  if (variant === 'chef') {
-    const m = CHEF_FACE.mouth;
-    // il sorriso chiuso di Mina Chef nel foglio è largo quasi quanto la bocca aperta
-    if (kind === 'small') return `<path d="M${m.x - 7.1},${m.y - 4.2} Q${m.x - 0.3},${m.y + 8.5} ${m.x + 8.4},${m.y - 6.2}" stroke="${C.mouthLine}" stroke-width="2.9" fill="none" stroke-linecap="round"/>`;
-    return `<g transform="translate(${m.x} ${m.y}) rotate(${CHEF_FACE.tilt}) scale(0.67 0.75) translate(${-MOUTH.x} ${-MOUTH.y})">${mouthShape(kind)}</g>`;
-  }
+  void variant;
   return mouthShape(kind);
 }
 
@@ -471,7 +424,10 @@ export function handRest(side: Side, variant: Variant = 'classic', len?: ArmLen)
 }
 
 /** Spessore del braccio (contorno, riempimento): Mina Chef ha braccia un po' più sottili e più lunghe. */
-const armWidth = (variant: Variant): [number, number] => (variant === 'chef' ? [8.8, 5.8] : [10.6, 6.6]);
+const armWidth = (variant: Variant): [number, number] => {
+  void variant; // stesse braccia per le due varianti
+  return [11.2, 7.2];
+};
 
 /** Segmento superiore (spalla → gomito). `pass` = contorno o riempimento: i due passaggi non lasciano giunture. */
 export function upperArmPart(side: Side, pass: 'outline' | 'fill', variant: Variant = 'classic', len?: ArmLen): string {
@@ -490,7 +446,8 @@ function handShape(side: Side, pass: 'outline' | 'fill', fist: boolean, variant:
   const t = side === 'L' ? 1 : -1; // il pollice punta verso il corpo
   const color = pass === 'outline' ? C.line : C.green;
   const grow = pass === 'outline' ? 2 : 0;
-  const k = variant === 'chef' ? 0.8 : 0.92;
+  void variant;
+  const k = 0.92;
   const palm = `<circle cx="${h.x}" cy="${h.y + 3}" r="${((thumbUp ? 5.6 : fist ? 8 : 7.2) * k + grow).toFixed(2)}" fill="${color}"/>`;
   const capsule = (x1: number, y1: number, x2: number, y2: number, w: number) => `<path d="M${x1},${y1} L${x2},${y2}" stroke="${color}" stroke-width="${(w * k + grow * 2).toFixed(2)}" stroke-linecap="round"/>`;
   if (thumbUp) return palm;
@@ -684,7 +641,7 @@ export function armTo(side: Side, x: number, y: number, extra: Partial<ArmPose> 
   let dx = x - s.x;
   let dy = y - s.y;
   let d = Math.hypot(dx, dy);
-  const max = a + b - 0.5;
+  const max = a + b - 0.15;
   const min = Math.abs(a - b) + 0.5;
   if (d > max || d < min) {
     const k = (d > max ? max : min) / (d || 1);
@@ -756,7 +713,9 @@ export function tubeD(f: ArmFrame): string {
   const n = (v: number) => v.toFixed(2);
   const lu = Math.hypot(f.e.x - f.s.x, f.e.y - f.s.y);
   const lf = Math.hypot(f.w.x - f.e.x, f.w.y - f.e.y);
-  const r = 0.45 * Math.min(lu, lf);
+  // gomito morbido: la curva occupa quasi tutto il segmento più corto, quindi un braccio piegato è un arco
+  // continuo (mai uno spigolo) e un braccio disteso resta una linea dritta
+  const r = 0.9 * Math.min(lu, lf);
   const p1 = { x: f.e.x + ((f.s.x - f.e.x) * r) / (lu || 1), y: f.e.y + ((f.s.y - f.e.y) * r) / (lu || 1) };
   const p2 = { x: f.e.x + ((f.w.x - f.e.x) * r) / (lf || 1), y: f.e.y + ((f.w.y - f.e.y) * r) / (lf || 1) };
   return `M${n(f.s.x)},${n(f.s.y)} L${n(p1.x)},${n(p1.y)} Q${n(f.e.x)},${n(f.e.y)} ${n(p2.x)},${n(p2.y)} L${n(f.w.x)},${n(f.w.y)}`;
@@ -856,20 +815,19 @@ function brow(kind: Brows, x: number, y: number, side: Side): string {
 
 export function browsPart(kind: Brows, variant: Variant = 'classic'): string {
   if (kind === 'none') return '';
-  if (variant === 'chef') {
-    const at = (p: { x: number; y: number }, side: Side) =>
-      `<g transform="translate(${p.x} ${p.y - 11}) rotate(${CHEF_FACE.tilt}) scale(0.85)">${brow(kind, 0, 0, side)}</g>`;
-    return at(CHEF_FACE.eyeL, 'L') + at(CHEF_FACE.eyeR, 'R');
-  }
+  void variant; // stesso viso per le due varianti
   return brow(kind, EYE_L.x, EYE_L.y - 13, 'L') + brow(kind, EYE_R.x, EYE_R.y - 13, 'R');
 }
 
 // ───────────────────────────── ciotola (oggetto fermo davanti a Mina Chef) ─────────────────────────────
 
 /** La ciotola verde con la zuppa, ferma nel corpo (la frusta in mano la mescola). (cx, ry) = centro del bordo. */
+/** Ciotola in scala con Mina Chef V4 (corpo di Mina 2.0): appoggiata a terra davanti a lei. */
+const BOWL_K = 0.62;
+
 export function bowlPart(cx: number, ry: number, tilt = 0): string {
   return (
-    `<g transform="rotate(${tilt} ${cx} ${ry})">` +
+    `<g transform="rotate(${tilt} ${cx} ${ry}) translate(${cx} ${ry}) scale(${BOWL_K}) translate(${-cx} ${-ry})">` +
     `<ellipse cx="${cx}" cy="${ry + 46}" rx="16" ry="4" fill="${C.bowlDark}" ${sw(2.1)}/>` +
     `<path d="M${cx - 43},${ry} C${cx - 43},${ry + 66} ${cx + 43},${ry + 66} ${cx + 43},${ry} Z" fill="${C.bowl}" ${sw(2.1)}/>` +
     `<ellipse cx="${cx}" cy="${ry}" rx="43" ry="9.5" fill="${C.bowl}" ${sw(2.1)}/>` +
@@ -882,7 +840,7 @@ export function bowlPart(cx: number, ry: number, tilt = 0): string {
 /** Il bordo anteriore della ciotola, disegnato sopra la frusta: i fili sembrano dentro la zuppa. */
 export function bowlFrontPart(cx: number, ry: number, tilt = 0): string {
   return (
-    `<g transform="rotate(${tilt} ${cx} ${ry})">` +
+    `<g transform="rotate(${tilt} ${cx} ${ry}) translate(${cx} ${ry}) scale(${BOWL_K}) translate(${-cx} ${-ry})">` +
     `<path d="M${cx - 43},${ry} C${cx - 43},${ry + 66} ${cx + 43},${ry + 66} ${cx + 43},${ry} C${cx + 43},${ry + 6.5} ${cx + 20},${ry + 9.5} ${cx},${ry + 9.5} C${cx - 20},${ry + 9.5} ${cx - 43},${ry + 6.5} ${cx - 43},${ry} Z" fill="${C.bowl}" ${sw(2.1)}/>` +
     `</g>`
   );
