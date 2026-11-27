@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { diffDays, formatShortDate } from '../../src/core/domain/dates';
 import { EXPIRY_PRIORITY_DAYS } from '../../src/core/domain/planner';
@@ -12,6 +12,8 @@ import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { CategoryIcon } from '../../src/ui/illustrations/CategoryIcon';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
 import { MinaAnimated } from '../../src/ui/mascot/MinaAnimated';
+import { emitMina } from '../../src/ui/mascot/director';
+import { useMinaScope } from '../../src/ui/mascot/useMinaScope';
 import { Reveal } from '../../src/ui/Reveal';
 import { LinkRow, NotebookPage, StickyNote } from '../../src/ui/notebook';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
@@ -187,27 +189,54 @@ const STATE: Record<PantryState, { label: string; bg: string; fg: string; icon: 
 };
 
 /**
- * La scena «Potrebbe non bastare»: Mina vede l'avviso, si inclina preoccupata, lo indica e si ricompone
- * (gesto `concern`, una sola volta per avviso: riparte solo se cambiano gli ingredienti scarsi).
- * Quando le quantità vengono sistemate e l'avviso sparisce, al suo posto Mina sorride per un momento.
+ * La scena «Potrebbe non bastare», guidata dalla regia di Mina:
+ *  - avviso nuovo: Mina lo guarda, sopracciglia preoccupate, si inclina e lo indica (una volta per avviso; tornando
+ *    nella pagina resta composta, senza ripetere la scena);
+ *  - un ingrediente sistemato (gli altri restano): sorride e fa un saltello, poi torna composta;
+ *  - tutto sistemato: l'avviso sparisce e al suo posto Mina sorride per un momento («Ora ci siamo»).
  */
 function ShortageScene({ names }: { names: string[] }) {
   const key = names.join(', ');
-  // l'avviso è appena sparito? (aggiustamento di stato durante il render, come da guida di React)
+  const reaction = useMinaScope('pantry');
+  // l'avviso è appena sparito del tutto? (aggiustamento di stato durante il render, come da guida di React)
   const [prevKey, setPrevKey] = useState(key);
   const [resolved, setResolved] = useState(false);
   if (prevKey !== key) {
     setPrevKey(key);
     setResolved(prevKey !== '' && key === '');
   }
+  // eventi per la regia: avviso nuovo, oppure uno o più ingredienti appena sistemati
+  const before = useRef<string[] | null>(null);
+  useEffect(() => {
+    const prev = before.current;
+    before.current = names;
+    if (names.length === 0) return;
+    const fixed = prev ? prev.filter((n) => !names.includes(n)) : [];
+    if (prev && fixed.length > 0 && names.every((n) => prev.includes(n))) emitMina({ scope: 'pantry', kind: 'shortageResolved', key: fixed.join(',') });
+    else emitMina({ scope: 'pantry', kind: 'shortage', key });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+  // finito il sorriso per l'ingrediente sistemato, Mina torna composta (senza rifare la scena dell'avviso)
+  const [calmFor, setCalmFor] = useState<number | null>(null);
   if (names.length > 0) {
+    const relief = reaction?.kind === 'shortageResolved' && calmFor !== reaction.id ? reaction : undefined;
+    const acting = relief || reaction?.kind === 'shortage';
     return (
       <View style={styles.scene}>
-        <MinaAnimated state="concerned" size={92} event={key} accessibilityLabel="Mina è preoccupata: qualcosa potrebbe non bastare" style={styles.sceneMina} />
+        <MinaMascot
+          pose={relief ? 'happy' : 'concerned'}
+          gesture={acting ? undefined : 'none'}
+          replayKey={reaction?.id}
+          onDone={relief ? () => setCalmFor(relief.id) : undefined}
+          size={92}
+          animated
+          accessibilityLabel={relief ? 'Mina sorride: un ingrediente è a posto' : 'Mina è preoccupata: qualcosa potrebbe non bastare'}
+          style={styles.sceneMina}
+        />
         <StickyNote style={styles.flex}>
-          <Text variant="hand">Potrebbe non bastare</Text>
+          <Text variant="hand">{relief ? 'Meglio così!' : 'Potrebbe non bastare'}</Text>
           <Text variant="small" color={colors.inkSoft}>
-            {`${key}: il resto è già nella lista della spesa.`}
+            {relief ? `${relief.key?.split(',').join(', ')}: a posto. Restano ${key}, già nella lista della spesa.` : `${key}: il resto è già nella lista della spesa.`}
           </Text>
         </StickyNote>
       </View>

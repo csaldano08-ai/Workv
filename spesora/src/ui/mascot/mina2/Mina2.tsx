@@ -232,7 +232,8 @@ export function hop(g: Gesture, vals: Vals, height: number) {
 type Cue = [number, Eyes | null, Mouth | null, Brows | null];
 
 interface Timeline {
-  start: { at: Record<Side, Pt>; eyes: Eyes; mouth: Mouth; brows: Brows };
+  /** Stato iniziale; `tilt` serve a partire dall'inclinazione della posa precedente (reazioni senza scatti). */
+  start: { at: Record<Side, Pt>; eyes: Eyes; mouth: Mouth; brows: Brows; tilt?: number };
   /** Dove restano le mani a gesto finito (riposo dopo un saluto, oppure la posa). */
   end: Record<Side, Pt>;
   anim: Animated.CompositeAnimation;
@@ -492,7 +493,8 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
       const g = make(rest);
       const down = { x: rest.L.x - 9, y: rest.L.y + 6 };
       return {
-        start: { at: rest, eyes: 'open', mouth: 'small', brows: 'none' },
+        // parte dall'inclinazione del saluto di Home (posa più inclinata all'indietro) e si sporge verso la card
+        start: { at: rest, eyes: 'open', mouth: 'small', brows: 'none', tilt: -7 },
         end: posed,
         cues: [
           [60, null, null, 'worried'],
@@ -759,6 +761,7 @@ function AnimatedMina({
 
   const run = (p: Timeline) => {
     new Gesture(vals, look.variant, { L: look.armL.len, R: look.armR.len }, p.start.at).place();
+    vals.tilt.setValue(p.start.tilt ?? 0);
     vals.brows.setValue(p.start.brows !== 'none' ? 1 : 0);
     vals.emote.setValue(act !== 'none' ? 0 : 1);
     // nell'intro Mina esce dal basso già intera, e una reazione parte da Mina già in scena: niente dissolvenza

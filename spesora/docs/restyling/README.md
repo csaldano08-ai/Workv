@@ -14,6 +14,11 @@ Branch: `claude/spesora-restyling-mina2`. La versione precedente è confrontabil
 | `riferimenti/mina_chef_style_reference.png` | Il foglio di Mina Chef con le quattro pose (cucchiaio, mescola, serve, checklist) |
 | `mina2_confronto_riferimento.jpg` | Mina 2.0 e Mina Chef dell'app accanto al foglio approvato |
 | `mina2_confronto_chef.jpg` | Le quattro pose di Mina Chef: foglio sopra, app sotto |
+| `v2/intro_reale.mp4` | L'intro V2 registrata dall'app reale al primo avvio (goccia → cerchio → logo con la foglia → Mina che esce e saluta → Benvenuto), più `v2/intro_fotogrammi.jpg` |
+| `v2/mina_braccia.mp4` | Gli 8 gesti di prova del rig delle braccia, a velocità normale e rallentati ×3 |
+| `v2/trasformazione_mina_chef.mp4` | La trasformazione in Mina Chef: normale, rallentata ×3 e nell'app alla prima apertura di Ricette |
+| `v2/navigazione_completa.mp4` | Navigazione completa (79 s) dall'app reale: intro, onboarding, Home, Settimana, Spesa, Dispensa, Ricette, Preparazione, «Ho cucinato» |
+| `v2/prova_spesa_completata.jpg`, `v2/prova_dispensa_aggiornata.jpg`, `v2/prova_preparazione.jpg` | Fotogrammi di prova: lista completata e confermata, dispensa corretta, modalità cucina con timer e conferma |
 | `mina_alive_demo.mp4` | Video (70 s) della demo completa «Mina Alive»: avvio con l'intro, onboarding, Home, Settimana, Spesa con spunte e festa, Dispensa con la reazione e la correzione, Mina Chef, apertura ricetta, preparazione e conferma finale |
 | `dispensa_risolta.png` | La scena «Ora ci siamo»: Mina sorride quando l'ultimo «potrebbe non bastare» viene risolto |
 | `movimento_app.mp4` | Video (39 s) del movimento in tutta l'app, dalla demo web reale: passi del questionario, schede, giorni, ricettario, ricetta, spesa, festeggiamento, foglio delle azioni |
@@ -82,11 +87,28 @@ Mina non è un'immagine che scorre: è disegnata in SVG a parti separate (occhi,
 - **Sistema di animazione**: valutate Reanimated e Rive; scelta la `Animated` di React Native già in uso (driver nativo, zero dipendenze nuove, identica su iOS, Android e web). Il rig 2D è il disegno stesso a livelli: non servono asset esterni.
 - **Mina Chef più snella**, come la prima fila del foglio: contorni più fini, braccia, gambe e piedini ridotti (confronto aggiornato in `mina2_confronto_chef.jpg`).
 
+## Animation & UI polish V2 (sesta richiesta)
+
+Correzioni sull'app vera, senza rifare le schermate e senza cambiare funzioni. Video e prove in `v2/`.
+
+- **Intro «la goccia che diventa Spesora»** (~2,9 s, primo avvio o da Impostazioni): la goccia cade accelerando, tocca terra, si schiaccia e rimbalza con un'increspatura; un cerchio verde perfettamente circolare riempie lo schermo e diventa la maschera che rivela la composizione; il marchio sboccia, la scritta esce da dietro, una foglia lo completa; Mina 2.0 esce dal basso (manico, poi borsa), apre gli occhi, sorride e saluta; logo e Mina volano al loro posto nel Benvenuto e l'intro si dissolve senza tagli. Si salta con un tocco; in background finisce subito; con "Riduci movimento" o screen reader non c'è.
+- **Braccia mai «smontate»**: curva unica spalla → gomito → polso, mano agganciata al polso, traiettorie esterne al viso, gomito che guida la piega. 8 gesti di prova (saluto destro e sinistro, indicare, sollevare, soddisfazione, mescolare, salto, pensierosa) controllati a velocità normale e rallentati ×3.
+- **Espressioni vive**: sopracciglia (preoccupate, alzate, morbide, pensierose), occhi che cambiano dentro un battito di ciglia, sguardo che segue i gesti.
+- **Trasformazione in Mina Chef** a livelli e maschere: guarda in alto, un anello verde la circonda e sale trasformandola, il cappello scende dall'alto, il grembiule si rivela dall'alto in basso, il cucchiaio arriva nella mano, posa da chef, occhiolino e sorriso. Una volta per sessione, entrando in Ricette.
+- **Reazioni legate ai dati** (regia comune con priorità e senza ripetizioni): Home (ingredienti mancanti per il pasto di oggi), Settimana (pasto programmato), Spesa (festa a lista completata con elementi grafici), Dispensa (avviso, ingrediente sistemato, tutto sistemato), Preparazione (timer, «Tempo!», «Ho cucinato»).
+- **Niente schermate vuote**: schede precaricate quando Home è ferma, Ricette più leggera (miniature nei caroselli). Nel video nuovo il cambio di scheda mostra subito il contenuto.
+- **Pagine più leggibili**: giorno scelto evidenziato da una forma che scivola; quantità in evidenza in Spesa e Dispensa; stato della dispensa come icona (con legenda) invece dell'etichetta ripetuta; filtri rapidi in Ricette; Mina Chef della preparazione nella riga del timer, mai sopra il testo.
+
 ## Test eseguiti
 
 | Controllo | Esito |
 | --- | --- |
-| `npm run verify` (tipi, linter, 148 test, catalogo, immagini, stringhe, sorgenti, configurazione) | **Tutti superati** (7 avvisi di configurazione già noti: URL legali, bundle id, progetto EAS, abbonamenti non attivi) |
+| `npm run verify` (tipi, linter, 157 test, catalogo, immagini, stringhe, sorgenti, configurazione), ripetuto dopo la V2 | **Tutti superati** (7 avvisi di configurazione già noti: URL legali, bundle id, progetto EAS, abbonamenti non attivi) |
+| V2 — nuovi test: regia di Mina (priorità, ripetizioni, interruzioni, azzeramento) | 6/6 |
+| V2 — nuovi test della mascotte: braccio collegato (parte dalla spalla, passa dal gomito, mano sul polso) in 32 configurazioni; nessun braccio davanti al viso in tutte le 27 pose; sopracciglia; grembiule come livello separato | 12/12 nel file `mina2.test.ts` |
+| V2 — intro registrata dal primo avvio reale (`v2/intro_reale.mp4`, fotogrammi in `v2/intro_fotogrammi.jpg`) | Goccia, impatto, increspature, cerchio, maschera, logo con foglia, Mina che esce e saluta, arrivo esatto su logo e Mina del Benvenuto |
+| V2 — gesti delle braccia a velocità normale e ×3 (`v2/mina_braccia.mp4`), esaminati fotogramma per fotogramma | Braccia sempre attaccate; corretti dopo l'esame: sopracciglia «pensierosa» (sembravano arrabbiate), braccio che indica (ora quasi disteso), pugno di soddisfazione (più lontano dal viso) |
+| V2 — navigazione completa (`record-v2.cjs`, `v2/navigazione_completa.mp4`) | Tutte le reazioni compaiono al momento giusto; lista 16/16 con festa; dispensa corretta con sorriso; timer → «Tempo!» → «Ho cucinato»; cambio di scheda senza fondo vuoto |
 | Nuovi test: Mina 2.0 (SVG validi, nessun colore della vecchia Mina, Chef solo in cucina, cinematica delle braccia, nessuna immagine di rete) | 6/6 |
 | Nuovi test: contrasto WCAG AA della palette (11 coppie testo/fondo + etichette dei pasti) | 12/12 |
 | Nuovo test: avviso di fine settimana con data in italiano | 1/1 |
@@ -123,5 +145,8 @@ node scripts/screenshots/record-mina.cjs http://localhost:PORTA cartella-out/min
 - Restano dello stile precedente due elementi neutri: le illustrazioni degli ingredienti (caricamento, benvenuto, icone dei reparti) e l'onda verde dell'animazione iniziale. Sono coerenti con la palette ma hanno ancora il contorno scuro.
 - La pagina `/mina` (vetrina delle animazioni) esiste solo nella demo web; su telefono rimanda all'app.
 - **Transizioni tra pagine**: lo scorrimento di iOS tra le pagine è nativo e sul web non esiste; nel video si vedono solo comparse, schede e micro-animazioni. Va guardato su iPhone e Android.
-- Al primo ingresso in Ricette, Spesa e Dispensa la demo web mostra per un attimo il fondo vuoto: è il tempo di montaggio della schermata, non un'animazione. Su telefono va verificato.
+- **Schermate vuote**: risolte per il cambio di scheda (precaricamento). Restano ~0,3–0,4 s di fondo vuoto all'apertura di una pagina nuova (ricetta, finestra della dispensa) nella demo web, che non ha l'animazione di scorrimento di iOS: su telefono la pagina entra scorrendo. Se si tocca una scheda prima che sia precaricata (entro ~2–4 s dall'avvio), il primo ingresso può ancora mostrare il montaggio.
+- **Prestazioni su telefoni lenti da verificare**: le braccia di Mina sono ridisegnate in JavaScript durante i gesti (il resto del corpo è sul driver nativo); il precaricamento delle schede occupa il thread di JavaScript per qualche centinaio di millisecondi in sottofondo, a thread libero. Va misurato su un Android economico prima del rilascio.
+- **Accessibilità sul web**: react-native-web ignora `accessibilityState` (es. «aperto/chiuso» dei reparti della spesa); su iOS e Android funziona. Passare alle proprietà `aria-*` è un lavoro a parte, su tutta l'app.
+- La trasformazione in Mina Chef dell'intestazione di Ricette è piccola (72 punti): si legge, ma il dettaglio si vede meglio nella vetrina `/mina?posa=trasformazione`.
 - I 7 avvisi di configurazione di `npm run verify` (URL legali, bundle id, EAS, RevenueCat) sono precedenti al restyling e restano da completare per la pubblicazione.
