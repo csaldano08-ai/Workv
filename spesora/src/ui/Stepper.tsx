@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
     borderColor: colors.lineStrong,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.white,
+    backgroundColor: colors.card,
   },
 });

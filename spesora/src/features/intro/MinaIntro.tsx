@@ -9,7 +9,7 @@ import { measureIntroAnchor } from './introBus';
 const native = Platform.OS !== 'web';
 
 /**
- * Tempi dell'intro, in millisecondi (~2,9 s in tutto, una sola volta al primo avvio):
+ * Tempi dell'intro, in millisecondi (~2,7 s in tutto, una sola volta al primo avvio; V4: fase vuota accorciata):
  *   0–350     una goccia verde cade dall'alto verso il centro, accelerando
  *   350–600   tocca terra, si schiaccia, rimbalza; un'increspatura circolare le si allarga intorno
  *   600–1100  dal punto d'impatto un cerchio verde si allarga fino a riempire lo schermo
@@ -18,23 +18,24 @@ const native = Platform.OS !== 'web';
  *   1600–2470 Mina 2.0 esce dal basso (prima il manico, poi la borsa), apre gli occhi, sorride e saluta
  *   2250–2940 la composizione vola al posto del logo e di Mina nella schermata di Benvenuto e lascia il posto a lei
  */
+// V4: la fase iniziale (goccia su schermo vuoto) è più breve: logo e Mina arrivano circa 300 ms prima
 const T = {
-  fall: 350,
-  bounce: 250,
-  fill: 600,
-  fillMs: 500,
-  reveal: 1100,
-  revealMs: 420,
-  mark: 1250,
-  word: 1340,
-  spark: 1460,
-  disc: 1470,
-  minaMount: 1320,
-  rise: 1600,
+  fall: 260,
+  bounce: 200,
+  fill: 440,
+  fillMs: 400,
+  reveal: 800,
+  revealMs: 400,
+  mark: 950,
+  word: 1040,
+  spark: 1160,
+  disc: 1170,
+  minaMount: 1020,
+  rise: 1300,
   riseMs: 380,
-  morph: 2250,
+  morph: 2050,
   morphMs: 450,
-  fade: 2680,
+  fade: 2480,
   fadeMs: 260,
 } as const;
 

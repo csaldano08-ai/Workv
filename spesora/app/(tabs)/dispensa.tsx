@@ -16,7 +16,7 @@ import { emitMina } from '../../src/ui/mascot/director';
 import { useMinaScope } from '../../src/ui/mascot/useMinaScope';
 import { Reveal } from '../../src/ui/Reveal';
 import { StickyNote } from '../../src/ui/notebook';
-import { AppHeader, HeaderIcon, InfoToggle, ListCard, ListRow, Pills, ScreenTitle } from '../../src/ui/mina/kit';
+import { AppHeader, HeaderIcon, InfoToggle, ListCard, ListRow, Pills, ScreenTitle, SearchField } from '../../src/ui/mina/kit';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
 import { Button } from '../../src/ui/Button';
 import { Screen } from '../../src/ui/Screen';
@@ -25,6 +25,7 @@ import { Text } from '../../src/ui/Text';
 export default function Pantry() {
   const { snapshot, run } = useApp();
   const [filter, setFilter] = useState<'all' | 'expiry' | 'attention'>('all');
+  const [query, setQuery] = useState('');
   if (!snapshot?.profile) return <Screen>{null}</Screen>;
   const items = [...snapshot.outlook].sort((a, b) =>
     a.insufficient === b.insufficient ? catalogIndex.ingredient(a.ingredientId).name.localeCompare(catalogIndex.ingredient(b.ingredientId).name) : a.insufficient ? -1 : 1,
@@ -57,7 +58,10 @@ export default function Pantry() {
   const counts = { ok: 0, check: 0, short: 0, out: 0 } as Record<PantryState, number>;
   for (const i of quantified) counts[stateOf(i)]++;
 
-  const filtered = quantified.filter((i) => (filter === 'expiry' ? !!i.expiryDate : filter === 'attention' ? stateOf(i) !== 'ok' : true));
+  const q = query.trim().toLowerCase();
+  const filtered = quantified
+    .filter((i) => (filter === 'expiry' ? !!i.expiryDate : filter === 'attention' ? stateOf(i) !== 'ok' : true))
+    .filter((i) => !q || catalogIndex.ingredient(i.ingredientId).name.toLowerCase().includes(q));
   const withExpiry = quantified.filter((i) => !!i.expiryDate).length;
   const attention = quantified.length - counts.ok;
 
@@ -65,6 +69,7 @@ export default function Pantry() {
     <Screen>
       <AppHeader right={<HeaderIcon icon="add-circle-outline" label="Aggiungi in dispensa" onPress={() => router.push('/aggiungi')} />} />
       <ScreenTitle title="Dispensa" />
+      {quantified.length > 5 ? <SearchField value={query} onChangeText={setQuery} placeholder="Cerca in dispensa..." label="Cerca un prodotto in dispensa" /> : null}
       {quantified.length > 0 ? (
         <Pills
           fill
@@ -108,7 +113,7 @@ export default function Pantry() {
         </View>
       ) : filtered.length === 0 ? (
         <Text variant="body" color={colors.inkSoft} center style={styles.emptyFilter}>
-          {filter === 'expiry' ? 'Nessuna scadenza inserita. Puoi aggiungerla toccando un prodotto.' : 'Tutto a posto: niente da controllare.'}
+          {q ? 'Nessun prodotto con questo nome.' : filter === 'expiry' ? 'Nessuna scadenza inserita. Puoi aggiungerla toccando un prodotto.' : 'Tutto a posto: niente da controllare.'}
         </Text>
       ) : (
         <ListCard>
@@ -222,18 +227,20 @@ function ShortageScene({ names }: { names: string[] }) {
     const acting = relief || reaction?.kind === 'shortage';
     return (
       <View style={styles.sceneWrap}>
-        <Pressable accessibilityRole="button" accessibilityState={{ expanded: why }} accessibilityLabel={`${names.length} ingredienti potrebbero non bastare. Tocca per sapere perché`} onPress={() => setWhy((v) => !v)} style={styles.scene}>
+        <Pressable accessibilityRole="button" accessibilityState={{ expanded: why }} accessibilityLabel={`${names.length} ingredienti potrebbero non bastare. Tocca per sapere perché`} onPress={() => setWhy((v) => !v)} style={[styles.scene, styles.alert]}>
           <MinaMascot
             pose={relief ? 'happy' : 'concerned'}
             gesture={acting ? undefined : 'none'}
             replayKey={reaction?.id}
             onDone={relief ? () => setCalmFor(relief.id) : undefined}
-            size={92}
+            size={54}
             animated
-            style={styles.sceneMina}
+            style={styles.alertMina}
           />
           <View style={styles.flex}>
-            <Text variant="hand">{relief ? 'Meglio così!' : `${names.length} ${names.length === 1 ? 'ingrediente potrebbe' : 'ingredienti potrebbero'} non bastare`}</Text>
+            <Text variant="heading" color={colors.peachInk} style={styles.bold}>
+              {relief ? 'Meglio così!' : `${names.length} ${names.length === 1 ? 'ingrediente potrebbe' : 'ingredienti potrebbero'} non bastare`}
+            </Text>
             <View style={styles.minaTap}>
               <Ionicons name={why ? 'chevron-up-circle-outline' : 'help-circle-outline'} size={16} color={colors.green} />
               <Text variant="small" color={colors.green}>
@@ -257,14 +264,16 @@ function ShortageScene({ names }: { names: string[] }) {
   if (!resolved) return null;
   return (
     <Reveal from="pop">
-      <View style={styles.scene}>
-        <MinaAnimated state="happy" size={92} accessibilityLabel="Mina è contenta: scorte a posto" style={styles.sceneMina} />
-        <StickyNote style={styles.flex}>
-          <Text variant="hand">Ora ci siamo</Text>
+      <View style={[styles.scene, styles.alert, styles.alertOk]}>
+        <MinaAnimated state="happy" size={54} accessibilityLabel="Mina è contenta: scorte a posto" style={styles.alertMina} />
+        <View style={styles.flex}>
+          <Text variant="heading" color={colors.greenDark} style={styles.bold}>
+            Ora ci siamo
+          </Text>
           <Text variant="small" color={colors.inkSoft}>
             Scorte a posto: quello che serve è disponibile o già in lista.
           </Text>
-        </StickyNote>
+        </View>
       </View>
     </Reveal>
   );
@@ -276,6 +285,9 @@ const styles = StyleSheet.create({
   scene: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   sceneWrap: { gap: space.sm },
   sceneMina: { marginLeft: -space.sm },
+  alert: { gap: space.sm, paddingHorizontal: space.md, paddingVertical: space.sm, borderRadius: radius.lg, backgroundColor: colors.peachSoft },
+  alertOk: { backgroundColor: colors.greenSoft },
+  alertMina: { marginVertical: -space.xs },
   noteBtn: { alignSelf: 'flex-start', marginTop: space.sm },
   bold: { fontWeight: '800', fontVariant: ['tabular-nums'] },
   minaTap: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
@@ -285,5 +297,5 @@ const styles = StyleSheet.create({
   emptyFilter: { paddingVertical: space.lg },
   section: { marginTop: space.sm, fontSize: 22, lineHeight: 28 },
   staples: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
-  staple: { flexDirection: 'row', alignItems: 'center', gap: 4, minHeight: TOUCH - 8, paddingHorizontal: space.md, borderRadius: radius.pill, borderWidth: 1.5, borderBottomWidth: 3, borderColor: colors.lineStrong, backgroundColor: colors.white },
+  staple: { flexDirection: 'row', alignItems: 'center', gap: 4, minHeight: TOUCH - 8, paddingHorizontal: space.md, borderRadius: radius.pill, borderWidth: 1.5, borderBottomWidth: 3, borderColor: colors.lineStrong, backgroundColor: colors.card },
 });

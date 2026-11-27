@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { formatLongDate, minutesToHHMM } from '../../src/core/domain/dates';
 import { mealIngredientStatus, toStock, type IngredientAvailability } from '../../src/core/domain/pantry';
@@ -19,6 +19,7 @@ import { ALLERGEN_LABELS, EQUIPMENT_LABELS, MEAL_LABELS } from '../../src/i18n/l
 import { t } from '../../src/i18n/it';
 import { colors, radius, space } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
+import { CheckBox } from '../../src/ui/CheckBox';
 import { Card } from '../../src/ui/Card';
 import { MinaNote } from '../../src/ui/AssistantBubble';
 import { Reveal } from '../../src/ui/Reveal';
@@ -47,6 +48,15 @@ export default function RecipeScreen() {
   const meal = mealId ? snapshot?.meals.find((m) => m.id === mealId) : undefined;
   const [localServings, setLocalServings] = useState<number>(snapshot?.profile?.servings ?? recipe?.baseServings ?? 2);
   const [tab, setTab] = useState<Tab>('ingredienti');
+  // caselle degli ingredienti (come nel riferimento): si spuntano mentre si prepara, solo su questa schermata
+  const [got, setGot] = useState<Set<string>>(() => new Set());
+  const toggleGot = (id: string) =>
+    setGot((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
 
   if (!recipe || !snapshot) {
     return (
@@ -76,7 +86,7 @@ export default function RecipeScreen() {
       <ScrollView contentContainerStyle={styles.scroll}>
         {/* foto a tutta larghezza (telefono 12): indietro, preferito e azioni del pasto sopra la foto */}
         <Reveal from="zoom">
-          <RecipeImage recipe={recipe} rounded={0} aspectRatio={1.22} />
+          <RecipeImage recipe={recipe} rounded={0} aspectRatio={1.34} />
         </Reveal>
         <View style={[styles.overlay, { top: insets.top + space.sm }]}>
           <PhotoButton icon="arrow-back" label="Indietro" onPress={back} />
@@ -142,21 +152,23 @@ export default function RecipeScreen() {
                   const mine = isPersonalized(recipe, ri, ing, servings, portions);
                   const st = statuses?.get(ri.ingredientId);
                   const a = st && planned ? AVAILABILITY[st] : null;
-                  const have = st === 'in_dispensa' || st === 'qb_presente';
                   return (
-                    <View key={ri.ingredientId} style={[styles.ingRow, i > 0 && styles.ingLine]} accessible accessibilityLabel={`${ing.name}, ${qty === null ? 'quanto basta' : formatQtyWithUnit(qty, ing.unit)}${a ? `, ${a.label}` : ''}`}>
-                      {/* casella = disponibilità stimata dalla dispensa (solo per un pasto programmato) */}
-                      {a ? (
-                        <View style={[styles.box, have && styles.boxOn]}>{have ? <Ionicons name="checkmark" size={16} color={colors.white} /> : null}</View>
-                      ) : (
-                        <View style={styles.dot} />
-                      )}
+                    <Pressable
+                      key={ri.ingredientId}
+                      style={[styles.ingRow, i > 0 && styles.ingLine]}
+                      accessibilityRole="checkbox"
+                      accessibilityState={{ checked: got.has(ri.ingredientId) }}
+                      accessibilityLabel={`${ing.name}, ${qty === null ? 'quanto basta' : formatQtyWithUnit(qty, ing.unit)}${a ? `, ${a.label}` : ''}`}
+                      accessibilityHint="Spunta l'ingrediente mentre lo prepari"
+                      onPress={() => toggleGot(ri.ingredientId)}
+                    >
+                      <CheckBox checked={got.has(ri.ingredientId)} size={26} />
                       <View style={styles.flex}>
                         <Text variant="heading" style={styles.ingName}>
                           {ing.name}
                           {ri.hint ? <Text variant="small" color={colors.inkSoft}>{` (${ri.hint})`}</Text> : null}
                         </Text>
-                        {a && !have ? (
+                        {a ? (
                           <Text variant="small" color={a.color}>
                             {a.label}
                           </Text>
@@ -172,7 +184,7 @@ export default function RecipeScreen() {
                       <Text variant="body" color={colors.inkSoft} style={styles.qty}>
                         {qty === null ? 'q.b.' : formatQtyWithUnit(qty, ing.unit)}
                       </Text>
-                    </View>
+                    </Pressable>
                   );
                 })}
               </View>
@@ -273,16 +285,13 @@ const styles = StyleSheet.create({
   ingRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, minHeight: 56, paddingVertical: space.sm },
   ingLine: { borderTopWidth: 1, borderTopColor: colors.line },
   ingName: { fontWeight: '700' },
-  box: { width: 26, height: 26, borderRadius: 7, borderWidth: 2, borderColor: colors.lineStrong, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.white },
-  boxOn: { backgroundColor: colors.green, borderColor: colors.green },
-  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.sage, marginHorizontal: 9 },
   qty: { fontVariant: ['tabular-nums'] },
   mine: { backgroundColor: colors.greenSoft, borderRadius: radius.pill, paddingHorizontal: 6, paddingVertical: 1 },
   step: { flexDirection: 'row', gap: space.md },
   stepNum: { width: 32, height: 32, borderRadius: 16, backgroundColor: colors.green, alignItems: 'center', justifyContent: 'center' },
   stepBody: { flex: 1, gap: space.xs, paddingTop: 4 },
   stepTime: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  footer: { paddingHorizontal: space.lg, paddingTop: space.sm, borderTopWidth: 1, borderTopColor: colors.line, backgroundColor: colors.white },
+  footer: { paddingHorizontal: space.lg, paddingTop: space.sm, borderTopWidth: 1, borderTopColor: colors.line, backgroundColor: colors.card },
 });
 
 

@@ -62,7 +62,7 @@ export function MealsStep({ draft, setDraft }: StepProps) {
           multi
           columns={2}
           label={MEAL_LABELS[m]}
-          art={<ChoiceArt name={m} size={52} />}
+          art={<ChoiceArt name={m} size={68} />}
           selected={draft.profile.mealTypes.includes(m)}
           onPress={() => setProfile(setDraft, (p) => ({ ...p, mealTypes: toggle(p.mealTypes, m) }))}
         />
@@ -76,7 +76,7 @@ export function DietStep({ draft, setDraft }: StepProps) {
     <View style={styles.gap}>
       <TileGrid>
         {DIETS.map((d) => (
-          <OptionTile key={d} columns={2} label={DIET_LABELS[d]} art={<ChoiceArt name={d} size={52} />} selected={draft.profile.diet === d} onPress={() => setProfile(setDraft, (p) => ({ ...p, diet: d }))} />
+          <OptionTile key={d} columns={2} label={DIET_LABELS[d]} art={<ChoiceArt name={d} size={68} />} selected={draft.profile.diet === d} onPress={() => setProfile(setDraft, (p) => ({ ...p, diet: d }))} />
         ))}
       </TileGrid>
       <InfoToggle label="Come decido cosa è compatibile?" text="Pescetariano: niente carne, sì pesce. La compatibilità è calcolata dagli ingredienti di ogni ricetta." />

@@ -162,7 +162,11 @@ export default function CookingMode() {
       {/* l'azione da compiere adesso */}
       <Reveal key={index} from="right">
         <View style={styles.card}>
-          {icon ? <CategoryIcon category={icon} size={44} /> : null}
+          {icon ? (
+            <View style={styles.cardIcon}>
+              <CategoryIcon category={icon} size={46} />
+            </View>
+          ) : null}
           {/* azioni brevi in grande; quelle lunghe un po' più piccole, perché restino leggibili a colpo d'occhio */}
           <Text variant={action.length > 70 ? 'heading' : 'title'} center accessibilityRole="header" style={action.length > 70 ? styles.longAction : undefined}>
             {action}
@@ -266,19 +270,21 @@ const styles = StyleSheet.create({
   segOn: { backgroundColor: colors.green },
   stepRow: { flexDirection: 'row', alignItems: 'center' },
   time: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  card: { alignItems: 'center', gap: space.md, padding: space.xl, borderRadius: radius.xl, backgroundColor: colors.greenMist, borderWidth: 1, borderColor: colors.sage },
-  panel: { borderRadius: radius.lg, borderWidth: 1.5, borderColor: colors.line, backgroundColor: colors.white, paddingHorizontal: space.lg },
+  // il passaggio attivo è il protagonista: riquadro alto, centrato
+  card: { alignItems: 'center', justifyContent: 'center', gap: space.md, padding: space.xl, minHeight: 250, borderRadius: radius.xl, backgroundColor: colors.greenMist, borderWidth: 1, borderColor: colors.sage },
+  cardIcon: { width: 72, height: 72, borderRadius: 36, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.card },
+  panel: { borderRadius: radius.lg, borderWidth: 1.5, borderColor: colors.line, backgroundColor: colors.card, paddingHorizontal: space.lg },
   panelHead: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: TOUCH + 8 },
   ingRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: 36, borderTopWidth: 1, borderTopColor: colors.line },
   qty: { fontVariant: ['tabular-nums'] },
   mina: { flexDirection: 'row', alignItems: 'center', gap: space.sm, padding: space.sm, paddingRight: space.md, borderRadius: radius.lg, backgroundColor: colors.peachSoft },
-  ask: { minHeight: TOUCH, justifyContent: 'center', paddingHorizontal: space.md, borderRadius: radius.pill, borderWidth: 1.5, borderColor: colors.peach, backgroundColor: colors.white },
-  help: { gap: space.sm, padding: space.md, borderRadius: radius.lg, backgroundColor: colors.white, borderWidth: 1, borderColor: colors.line },
+  ask: { minHeight: TOUCH, justifyContent: 'center', paddingHorizontal: space.md, borderRadius: radius.pill, borderWidth: 1.5, borderColor: colors.peach, backgroundColor: colors.card },
+  help: { gap: space.sm, padding: space.md, borderRadius: radius.lg, backgroundColor: colors.card, borderWidth: 1, borderColor: colors.line },
   allLink: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4, minHeight: TOUCH },
   allRow: { flexDirection: 'row', gap: space.sm, paddingVertical: space.sm, paddingHorizontal: space.sm, borderRadius: radius.md },
   allRowOn: { backgroundColor: colors.greenMist },
   nav: { flexDirection: 'row', gap: space.sm },
   navBack: { minWidth: 120 },
   finish: { alignItems: 'center', gap: space.sm, paddingVertical: space.lg },
-  longAction: { fontSize: 19, lineHeight: 26 },
+  longAction: { fontSize: 20, lineHeight: 27 },
 });

@@ -18,7 +18,7 @@ import { Reveal } from '../src/ui/Reveal';
 import { LOADER_TEXT, withLoader } from '../src/ui/loader/loaderBus';
 import { MinaMascot, type MinaPose } from '../src/ui/mascot/Mina';
 import { BackCircle, SegmentProgress } from '../src/ui/mina/choices';
-import { DayBadge, InfoToggle, InlineError, InfoNote, ListCard, ListRow } from '../src/ui/mina/kit';
+import { DayBadge, InfoToggle, InlineError, InfoNote, ListCard, ListRow, MascotStage } from '../src/ui/mina/kit';
 import { RecipeImage } from '../src/ui/RecipeImage';
 import { Button } from '../src/ui/Button';
 import { Text } from '../src/ui/Text';
@@ -137,9 +137,11 @@ export default function Onboarding() {
           <SegmentProgress phases={BAR_SEGMENTS} phase={phase} within={within} label={`Domanda ${step + 1} di ${STEPS.length}`} />
         </View>
       </View>
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        {/* il passo nuovo scivola dentro dalla direzione del movimento; la barra resta ferma */}
-        <Reveal key={step} from={dir} style={styles.stepBody}>
+      <ScrollView contentContainerStyle={[styles.content, styles.grow]} keyboardShouldPersistTaps="handled">
+        {/* il passo nuovo scivola dentro dalla direzione del movimento; la barra resta ferma. Domanda e risposte in
+            alto, Mina in basso sul suo «palco» salvia: la pagina è composta su tutta l'altezza, senza un vuoto sotto */}
+        <Reveal key={step} from={dir} style={[styles.stepBody, styles.fill]}>
+          <View style={styles.stepTop}>
           <Text variant="screen" center accessibilityRole="header" style={styles.question}>
             {def.title}
           </Text>
@@ -155,14 +157,17 @@ export default function Onboarding() {
           ) : null}
           <def.Component draft={draft} setDraft={setDraft} />
           {error ? <InlineError text={error} /> : null}
+          </View>
           {pose ? (
             <View style={styles.mina}>
-              <MinaMascot pose={pose} size={150} animated idle interactive replayKey={reaction ? reaction.tip : def.id} />
               {reaction ? (
                 <Text variant="small" color={colors.inkSoft} center style={styles.reaction}>
                   {reaction.tip}
                 </Text>
               ) : null}
+              <MascotStage width={230} height={56}>
+                <MinaMascot pose={pose} size={180} animated idle interactive replayKey={reaction ? reaction.tip : def.id} />
+              </MascotStage>
             </View>
           ) : null}
         </Reveal>
@@ -251,10 +256,9 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
           {days.length > PREVIEW_DAYS ? (
             <Button kind="ghost" compact label={all ? 'Mostra meno' : `Vedi tutti i ${days.length} giorni`} icon={all ? 'chevron-up' : 'chevron-down'} onPress={() => setAll((a) => !a)} />
           ) : null}
-          <View style={styles.mina}>
-            <View style={styles.minaBlob} />
-            <MinaMascot pose="success" size={140} animated idle interactive accessibilityLabel="Mina festeggia: la tua settimana è pronta" />
-          </View>
+          <MascotStage width={220} height={54} style={styles.mina}>
+            <MinaMascot pose="success" size={150} animated idle interactive accessibilityLabel="Mina festeggia: la tua settimana è pronta" />
+          </MascotStage>
           <Text variant="small" color={colors.inkSoft} center>
             {`Dal ${shortDate(today)} al ${shortDate(addDays(today, PLAN_DAYS - 1))}. Potrai cambiare ogni pasto quando vuoi.`}
           </Text>
@@ -279,9 +283,11 @@ const styles = StyleSheet.create({
   bar: { width: '62%', maxWidth: 260 },
   content: { paddingHorizontal: space.lg, paddingTop: space.lg, paddingBottom: space.xl, width: '100%', maxWidth: 560, alignSelf: 'center' },
   stepBody: { gap: space.lg },
-  question: { fontSize: 27, lineHeight: 33 },
-  mina: { alignItems: 'center', marginTop: space.md, gap: space.xs },
-  minaBlob: { position: 'absolute', bottom: 0, width: 230, height: 90, borderRadius: 60, backgroundColor: colors.greenSoft },
+  grow: { flexGrow: 1 },
+  fill: { flexGrow: 1, justifyContent: 'space-between' },
+  stepTop: { gap: space.xl },
+  question: { fontSize: 30, lineHeight: 36, marginTop: space.sm },
+  mina: { alignItems: 'center', marginTop: space.lg, gap: space.sm, paddingBottom: space.sm },
   reaction: { maxWidth: 300 },
   footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: space.lg, paddingHorizontal: space.lg, paddingTop: space.sm, paddingBottom: space.md, width: '100%', maxWidth: 560, alignSelf: 'center' },
   mainBtn: { flex: 1, maxWidth: 260 },

@@ -98,7 +98,7 @@ export default function Subscription() {
             <Path d="M0,0 H390 V176 C320,150 250,206 180,196 C110,186 60,150 0,168 Z" fill={colors.sage} />
             <Path d="M0,0 H390 V120 C330,104 270,146 200,140 C130,134 70,98 0,116 Z" fill={colors.greenSoft} opacity={0.7} />
           </Svg>
-          <MinaMascot pose="happy" size={compact ? 118 : 150} animated idle interactive accessibilityLabel="Mina ti sorride" />
+          <MinaMascot pose="happy" size={compact ? 130 : 172} animated idle interactive accessibilityLabel="Mina ti sorride" />
         </View>
 
         <View style={styles.sheet}>
@@ -115,7 +115,7 @@ export default function Subscription() {
                 <View style={styles.tick}>
                   <Ionicons name="checkmark" size={16} color={colors.green} />
                 </View>
-                <Text variant="body" style={styles.flex}>
+                <Text variant="body" style={[styles.flex, styles.benefitText]}>
                   {b}
                 </Text>
               </View>
@@ -166,25 +166,37 @@ export default function Subscription() {
               })}
             </View>
           ) : !active ? (
-            <View style={styles.inactive} accessible accessibilityRole="text">
-              <Ionicons name="information-circle-outline" size={22} color={colors.greenDark} />
-              <View style={styles.flex}>
-                <Text variant="heading" color={colors.greenDark}>
-                  Abbonamenti non ancora attivi
-                </Text>
-                <Text variant="small" color={colors.inkSoft}>
-                  {service.mode !== 'disabled' && unavailable ? `${unavailable} ` : ''}In questa versione di prova Mina è gratuita. Prezzi e piani verranno letti dallo store.
+            <>
+              {/* le due card dei piani come nel riferimento, ma senza prezzi inventati: con gli acquisti spenti il
+                  prezzo non esiste ancora e le card non sono selezionabili */}
+              <View style={styles.plans} accessible accessibilityLabel="Piani annuale e mensile: prezzi non ancora disponibili">
+                {(['Annuale', 'Mensile'] as const).map((name) => (
+                  <View key={name} style={[styles.plan, styles.planOff, styles.planIdle]}>
+                    <Text variant="heading" style={styles.planName}>
+                      {name}
+                    </Text>
+                    <Text variant="small" color={colors.inkSoft}>
+                      Prezzo dallo store
+                    </Text>
+                  </View>
+                ))}
+              </View>
+              <View style={styles.inactive} accessible accessibilityRole="text">
+                <Ionicons name="information-circle-outline" size={20} color={colors.greenDark} />
+                <Text variant="small" color={colors.greenDark} style={[styles.flex, styles.bold]}>
+                  {service.mode !== 'disabled' && unavailable ? `${unavailable} ` : ''}Abbonamenti non ancora attivi: in questa versione di prova Mina è gratuita.
                 </Text>
               </View>
-            </View>
+            </>
           ) : null}
 
           {message ? message.error ? <InlineError text={message.text} /> : <InfoNote text={message.text} /> : null}
+          {/* pulsante principale subito sotto i piani, come nel riferimento (non in fondo alla pagina) */}
+          {main ? <Button label={main.label} iconRight="arrow-forward" size="large" onPress={main.onPress} loading={busy} disabled={busy || (!!plans && live && !active && !selected)} style={styles.mainBtn} /> : null}
         </View>
       </ScrollView>
 
       <View style={styles.footer}>
-        {main ? <Button label={main.label} iconRight="arrow-forward" size="large" onPress={main.onPress} loading={busy} disabled={busy || (!!plans && live && !active && !selected)} /> : null}
         <View style={styles.links}>
           <Pressable accessibilityRole="button" onPress={() => void act(() => service.restore())} disabled={busy} hitSlop={6}>
             <Text variant="small" color={colors.green} style={styles.bold}>
@@ -258,14 +270,17 @@ const styles = StyleSheet.create({
   title: { fontSize: 27, lineHeight: 33, flexShrink: 1 },
   benefits: { gap: space.md },
   benefit: { flexDirection: 'row', alignItems: 'center', gap: space.md },
-  tick: { width: 26, height: 26, borderRadius: 13, backgroundColor: colors.greenSoft, alignItems: 'center', justifyContent: 'center' },
+  benefitText: { fontSize: 17, fontWeight: '600' },
+  tick: { width: 30, height: 30, borderRadius: 15, backgroundColor: colors.sage, alignItems: 'center', justifyContent: 'center' },
   plans: { flexDirection: 'row', gap: space.md },
-  plan: { minHeight: 92, borderRadius: radius.lg, padding: space.md, justifyContent: 'center', gap: 2, backgroundColor: colors.white },
+  plan: { minHeight: 96, borderRadius: radius.lg, padding: space.lg, justifyContent: 'center', gap: 4, backgroundColor: colors.card },
   planOn: { borderWidth: 2.5, borderColor: colors.green, backgroundColor: colors.greenMist, ...shadow.card },
   planOff: { borderWidth: 1.5, borderColor: colors.line, ...shadow.card },
-  planName: { fontWeight: '800' },
-  inactive: { flexDirection: 'row', gap: space.md, padding: space.lg, borderRadius: radius.lg, backgroundColor: colors.greenSoft },
+  planName: { fontWeight: '800', fontSize: 19 },
+  inactive: { flexDirection: 'row', alignItems: 'center', gap: space.sm, paddingHorizontal: space.md, paddingVertical: space.sm, borderRadius: radius.md, backgroundColor: colors.greenSoft },
+  planIdle: { opacity: 0.75 },
   footer: { paddingHorizontal: space.xl, paddingTop: space.sm, paddingBottom: space.md, gap: space.md, width: '100%', maxWidth: 560, alignSelf: 'center' },
+  mainBtn: { marginTop: space.sm },
   links: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: space.sm, flexWrap: 'wrap' },
   legal: { fontWeight: '400', letterSpacing: 0 },
 });

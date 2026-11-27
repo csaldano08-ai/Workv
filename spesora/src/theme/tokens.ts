@@ -6,8 +6,8 @@
  *  - avorio #FFF8EC: superfici calde (benvenuto, fasce, icona), non come fondo uniforme di tutto;
  *  - pesca #FFA56B: accenti e avvisi gentili (mai per testi lunghi);
  *  - salvia #DCECD8: pillole, fondi dei giorni, forme decorative.
- * Il fondo delle pagine è un bianco caldo (misurato nel riferimento: #FDFAF4–#FFF9F2) e le card sono bianche:
- * leggibile, mai giallino.
+ * V4: fondo delle pagine crema caldo (misurato sul riferimento: #FDF8F0–#FEF9F2) e card crema chiarissima con
+ * ombra morbida: niente più pagina bianca piatta, ma sempre luminosa e leggibile.
  */
 export const colors = {
   green: '#1F6B4A',
@@ -17,8 +17,10 @@ export const colors = {
   greenSoft: '#E9F3E5',
   greenMist: '#F3F8EF',
   ivory: '#FFF8EC',
-  paper: '#FFFFFF', // card (nome storico)
-  desk: '#FFFCF7', // fondo delle schermate: bianco caldo
+  paper: '#FFFDF8', // card (nome storico)
+  /** Superficie delle card: crema chiarissima, quasi il tono del fondo (le card si staccano con l'ombra, come nel riferimento). */
+  card: '#FFFDF8',
+  desk: '#FDF8F0', // fondo delle schermate: crema caldo misurato sul riferimento (#FDF8F0–#FEF9F2)
   tab: '#EEF4EA', // controlli segmentati non attivi
   shadowPaper: '#EEE8DE',
   sage: '#DCECD8',
@@ -29,8 +31,8 @@ export const colors = {
   peachInk: '#94450F', // testo su pesca chiara, contrasto AA
   ink: '#1D2A23',
   inkSoft: '#5F6B64',
-  line: '#EEE8DE',
-  lineStrong: '#DDD5C8',
+  line: '#EFE6D8',
+  lineStrong: '#DED3C3',
   danger: '#B3402F',
   dangerSoft: '#FBE9E5',
   white: '#FFFFFF',
@@ -53,8 +55,8 @@ export const outline = { color: colors.line, width: 1, thin: 1 } as const;
 
 /** Ombra morbida delle card (bruno caldo molto trasparente: niente grigi sporchi sul fondo bianco caldo). */
 export const shadow = {
-  card: { shadowColor: '#3B3426', shadowOpacity: 0.07, shadowRadius: 14, shadowOffset: { width: 0, height: 4 }, elevation: 2 },
-  float: { shadowColor: '#3B3426', shadowOpacity: 0.13, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 6 },
+  card: { shadowColor: '#5A4528', shadowOpacity: 0.09, shadowRadius: 14, shadowOffset: { width: 0, height: 5 }, elevation: 3 },
+  float: { shadowColor: '#5A4528', shadowOpacity: 0.15, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 6 },
 } as const;
 
 export const space = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 } as const;

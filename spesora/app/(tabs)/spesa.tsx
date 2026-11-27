@@ -22,7 +22,7 @@ import { EMPTY } from '../../src/i18n/assistant';
 import { CategoryIcon } from '../../src/ui/illustrations/CategoryIcon';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
 import { LinkRow } from '../../src/ui/notebook';
-import { AppHeader, InlineError, Pills, ScreenTitle } from '../../src/ui/mina/kit';
+import { AppHeader, Expandable, InlineError, Pills, ScreenTitle } from '../../src/ui/mina/kit';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
 
@@ -53,7 +53,7 @@ export default function Shopping() {
       <AppHeader />
       <ScreenTitle
         title="Lista della spesa"
-        subtitle={current ? `${current.isInitial ? 'Spesa iniziale · ' : ''}${current.date === snapshot.today ? 'oggi, ' : ''}${formatLongDate(current.date)}${nextOther ? ` · poi ${weekdayShort(weekdayOf(nextOther.date))} ${Number(nextOther.date.slice(8))}` : ''}` : undefined}
+        subtitle={current && trips.length <= 1 ? `${current.isInitial ? 'Spesa iniziale · ' : ''}${current.date === snapshot.today ? 'oggi, ' : ''}${formatLongDate(current.date)}${nextOther ? ` · poi ${weekdayShort(weekdayOf(nextOther.date))} ${Number(nextOther.date.slice(8))}` : ''}` : undefined}
         right={current && !complete ? <MinaMascot pose="shopping" size={64} animated glance={checkedCount} style={styles.titleMina} /> : undefined}
       />
       {trips.length === 0 ? (
@@ -156,8 +156,6 @@ function TripView({ trip, filter, isChecked }: { trip: ShoppingTripPlan; filter:
   const isToday = trip.date === snapshot?.today;
   return (
     <View style={styles.tripGap}>
-      {trip.isInitial ? <MoreInfo text="Servono prima del tuo primo giorno di spesa." more="Se preferisci non uscire a comprarli, cambia le ricette interessate dalla Settimana." color={colors.peachInk} /> : null}
-      <TripCostLine trip={trip} />
       {groups.length === 0 ? (
         filter === 'done' ? (
           <Text variant="body" color={colors.inkSoft} center style={styles.emptyFilter}>
@@ -183,6 +181,11 @@ function TripView({ trip, filter, isChecked }: { trip: ShoppingTripPlan; filter:
           ))}
         </View>
       ))}
+      {/* informazioni secondarie in fondo, a richiesta: non coprono più l'elenco dei prodotti */}
+      <Expandable title="Dettagli della spesa" icon="receipt-outline">
+        {trip.isInitial ? <MoreInfo text="Servono prima del tuo primo giorno di spesa." more="Se preferisci non uscire a comprarli, cambia le ricette interessate dalla Settimana." color={colors.peachInk} /> : null}
+        <TripCostLine trip={trip} />
+      </Expandable>
     </View>
   );
 }
@@ -382,7 +385,7 @@ const styles = StyleSheet.create({
   burst: { position: 'absolute', left: -47, top: -39 },
   tripGap: { gap: space.md },
   emptyFilter: { paddingVertical: space.lg },
-  group: { backgroundColor: colors.white, borderRadius: radius.xl, overflow: 'hidden', ...shadow.card },
+  group: { backgroundColor: colors.card, borderRadius: radius.xl, overflow: 'hidden', ...shadow.card },
   groupHead: { flexDirection: 'row', alignItems: 'center', gap: space.sm, paddingHorizontal: space.lg, paddingVertical: space.sm + 2, backgroundColor: colors.peachSoft },
   sep: { height: 1, backgroundColor: colors.line, marginLeft: space.lg + 26 + space.md },
   lineWrap: { paddingHorizontal: space.md },
@@ -399,5 +402,5 @@ const styles = StyleSheet.create({
   moreRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
   coveredRow: { flexDirection: 'row', gap: space.sm, paddingVertical: 6, paddingHorizontal: space.sm },
   confirmWrap: { gap: space.sm },
-  paid: { minHeight: TOUCH, borderWidth: 1.5, borderColor: colors.lineStrong, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, fontFamily: font.regular, color: colors.ink, backgroundColor: colors.white },
+  paid: { minHeight: TOUCH, borderWidth: 1.5, borderColor: colors.lineStrong, borderRadius: radius.md, paddingHorizontal: space.md, fontSize: 16, fontFamily: font.regular, color: colors.ink, backgroundColor: colors.card },
 });

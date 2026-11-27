@@ -56,7 +56,8 @@ export default function Welcome() {
   useIntroAnchor('mina', minaRef);
 
   // spazio per la grafica: telefoni bassi (iPhone SE) con Mina più piccola, così testo e pulsante restano visibili
-  const art = Math.round(Math.min(250, Math.max(150, (height - 400) * 0.58)));
+  // V4: grafica grande (come nel riferimento) che riempie la pagina; più piccola solo sui telefoni bassi
+  const art = Math.round(Math.min(300, Math.max(150, (height - 360) * 0.66)));
 
   const go = (p: number) => {
     setPage(p);
@@ -106,7 +107,7 @@ export default function Welcome() {
         <Page width={width}>
           <View style={styles.stage}>
             <StageBlob size={art * 1.35} />
-            <MinaMascot pose="cooking" eyes="happy" size={Math.round(art * 1.12)} animated={page === 1} idle={page === 1} interactive accessibilityLabel="Mina Chef con il cucchiaio di legno" />
+            <MinaMascot pose="cooking" eyes="happy" size={Math.round(Math.min(art * 1.12, 330))} animated={page === 1} idle={page === 1} interactive accessibilityLabel="Mina Chef con il cucchiaio di legno" />
           </View>
           <Text variant="screen" center style={styles.title} accessibilityRole="header">
             Benvenuto in Mina!
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
   stage: { alignItems: 'center', justifyContent: 'center' },
   blob: { position: 'absolute' },
   flip: { transform: [{ scaleX: -1 }] },
-  title: { marginTop: space.xl, fontSize: 28, lineHeight: 34 },
+  title: { marginTop: space.xl, fontSize: 30, lineHeight: 36 },
   line: { marginTop: space.sm },
   bottom: { width: '100%', maxWidth: 480, alignSelf: 'center', paddingHorizontal: space.xl, paddingBottom: space.sm, gap: space.lg },
   dots: { flexDirection: 'row', justifyContent: 'center', gap: 10 },

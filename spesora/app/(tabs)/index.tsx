@@ -99,13 +99,15 @@ export default function Today() {
       <AppHeader
         right={
           <>
+            <Text variant="small" color={colors.inkSoft} style={styles.headDate} accessibilityLabel={`Oggi è ${formatLongDate(snap.today)}`}>
+              {shortToday(snap.today)}
+            </Text>
             <HeaderIcon icon="notifications-outline" label="Notifiche" onPress={() => router.push('/notifiche')} />
             <HeaderIcon icon="settings-outline" label="Profilo e impostazioni" onPress={() => router.push('/impostazioni')} />
           </>
         }
       />
       <Greeting
-        date={capitalize(formatLongDate(snap.today))}
         hello={hello}
         subtitle={subtitle}
         pose={minaPose}
@@ -190,6 +192,20 @@ export default function Today() {
   );
 }
 
+/** Dimensione del nome del piatto nella card: più piccola se una parola è lunga («all'amatriciana»). */
+function dishFit(name: string, compact: boolean) {
+  const longest = Math.max(...name.split(/\s+/).map((w) => w.length));
+  const base = compact ? 20 : 24;
+  const size = longest >= 15 ? base - 5 : longest >= 12 ? base - 3 : base;
+  return { fontSize: size, lineHeight: Math.round(size * 1.2) };
+}
+
+/** Data breve per l'intestazione («lun 23 nov»). */
+function shortToday(iso: string): string {
+  const d = new Date(`${iso}T12:00:00`);
+  return d.toLocaleDateString('it-IT', { weekday: 'short', day: 'numeric', month: 'short' }).replace('.', '');
+}
+
 /** Cestino pesca del banner «Ti mancano…» (come nel riferimento). */
 function BasketMark() {
   return (
@@ -206,7 +222,7 @@ function BasketMark() {
  * lo spazio è vuoto: il brief chiede Mina 2.0 in Home). Mina saluta una volta all'apertura; se al pasto di oggi manca
  * qualcosa, dopo il saluto guarda la card preoccupata e la indica (una volta: la regia ignora le ripetizioni).
  */
-function Greeting({ date, hello, subtitle, pose, compact, missing }: { date: string; hello: string; subtitle: string; pose: string; compact: boolean; missing: { key: string; count: number } | null }) {
+function Greeting({ hello, subtitle, pose, compact, missing }: { hello: string; subtitle: string; pose: string; compact: boolean; missing: { key: string; count: number } | null }) {
   const [peek, setPeek] = useState(0);
   const [worry, setWorry] = useState<number | null>(null);
   const worried = worry !== null && !!missing;
@@ -215,13 +231,10 @@ function Greeting({ date, hello, subtitle, pose, compact, missing }: { date: str
     if (r) setWorry(r.id);
     else setPeek(1);
   };
-  const mina = compact ? 84 : 100;
+  const mina = compact ? 80 : 92;
   return (
     <View style={styles.greeting}>
-      <View style={styles.flex} accessible accessibilityRole="header" accessibilityLabel={`${hello} ${subtitle} ${date}`}>
-        <Text variant="small" color={colors.green} style={styles.date}>
-          {date}
-        </Text>
+      <View style={styles.flex} accessible accessibilityRole="header" accessibilityLabel={`${hello} ${subtitle}`}>
         <Text variant="display" style={compact ? styles.helloCompact : styles.hello}>
           {`${hello} 👋`}
         </Text>
@@ -281,7 +294,8 @@ function TodayHero({ meal, snap, compact, onMore }: { meal: PlannedMeal; snap: A
           </Text>
         </View>
         <Pressable accessibilityRole="button" accessibilityLabel={`Apri la ricetta ${recipe.name}`} onPress={open} style={styles.flex}>
-          <Text variant="title" style={[styles.dish, compact && styles.dishCompact]} numberOfLines={compact ? 3 : 4} adjustsFontSizeToFit minimumFontScale={0.8}>
+          {/* il titolo si adatta alla parola più lunga (mai una parola spezzata a metà) */}
+          <Text variant="title" style={[styles.dish, compact && styles.dishCompact, dishFit(recipe.name, compact)]} numberOfLines={compact ? 3 : 4}>
             {recipe.name}
           </Text>
         </Pressable>
@@ -292,7 +306,7 @@ function TodayHero({ meal, snap, compact, onMore }: { meal: PlannedMeal; snap: A
           <Ionicons name="people-outline" size={17} color={colors.ink} />
           <Text variant="small" style={styles.bold}>{String(meal.servings)}</Text>
         </View>
-        <Button label="Cucina ora" iconRight="arrow-forward" compact onPress={cook} style={styles.cook} />
+        <Button label="Cucina ora" iconRight="arrow-forward" onPress={cook} style={styles.cook} />
       </View>
     </View>
   );
@@ -454,50 +468,50 @@ const styles = StyleSheet.create({
   bold: { fontWeight: '800' },
   row: { flexDirection: 'row', gap: space.sm, alignItems: 'center' },
   header: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
-  greeting: { flexDirection: 'row', alignItems: 'flex-end', gap: space.sm, marginTop: space.sm },
-  date: { fontWeight: '800', letterSpacing: 0.2 },
-  hello: { fontSize: 32, lineHeight: 39, letterSpacing: -0.6 },
+  greeting: { flexDirection: 'row', alignItems: 'center', gap: space.sm, marginTop: 0, marginBottom: space.xs },
+  headDate: { fontWeight: '700', marginRight: space.xs },
+  hello: { fontSize: 33, lineHeight: 40, letterSpacing: -0.6 },
   helloCompact: { fontSize: 28, lineHeight: 34, letterSpacing: -0.5 },
   subtitle: { fontSize: 18, lineHeight: 24, marginTop: 2 },
   greetMina: { marginBottom: -space.sm },
-  hero: { flexDirection: 'row', backgroundColor: colors.white, borderRadius: radius.xl, overflow: 'hidden', minHeight: 250, ...shadow.card },
-  heroCompact: { minHeight: 214 },
-  heroCard: { backgroundColor: colors.white, borderRadius: radius.xl, ...shadow.card },
+  hero: { flexDirection: 'row', backgroundColor: colors.card, borderRadius: radius.xl, overflow: 'hidden', minHeight: 286, ...shadow.float },
+  heroCompact: { minHeight: 236 },
+  heroCard: { backgroundColor: colors.card, borderRadius: radius.xl, ...shadow.card },
   photoCol: { width: '47%' },
   photoPress: { flex: 1 },
   photo: { width: '100%', height: '100%' },
   heartSpot: { position: 'absolute', left: space.md, bottom: space.md },
   moreSpot: { position: 'absolute', right: space.sm, top: space.sm },
-  heart: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center', ...shadow.card },
+  heart: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.card, alignItems: 'center', justifyContent: 'center', ...shadow.card },
   heroBody: { flex: 1, padding: space.md, paddingLeft: space.md + 2, gap: space.sm },
   heroTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: space.xs },
   mealChip: { backgroundColor: colors.sage, borderRadius: radius.pill, paddingHorizontal: 12, paddingVertical: 4 },
   time: { fontWeight: '700', fontSize: 16 },
-  dish: { fontSize: 21, lineHeight: 26 },
-  dishCompact: { fontSize: 19, lineHeight: 23 },
+  dish: { fontSize: 24, lineHeight: 29 },
+  dishCompact: { fontSize: 20, lineHeight: 24 },
   meta: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   metaSep: { width: 1, height: 16, backgroundColor: colors.lineStrong, marginHorizontal: 6 },
   cook: { marginTop: space.xs },
   emptyHero: { alignItems: 'center', gap: space.md, padding: space.xl },
   emptyIcon: { width: 56, height: 56, borderRadius: 28, backgroundColor: colors.greenSoft, alignItems: 'center', justifyContent: 'center' },
   laterDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.greenBright, marginLeft: space.xs },
-  pending: { gap: space.xs, padding: space.lg, borderRadius: radius.xl, backgroundColor: colors.white, ...shadow.card },
+  pending: { gap: space.xs, padding: space.lg, borderRadius: radius.xl, backgroundColor: colors.card, ...shadow.card },
   pendingRow: { gap: space.sm, paddingVertical: space.xs },
-  section: { gap: space.md, marginTop: space.xs },
-  sectionTitle: { fontSize: 22, lineHeight: 28 },
+  section: { gap: space.md, marginTop: space.md },
+  sectionTitle: { fontSize: 24, lineHeight: 30 },
   weekScroll: { marginHorizontal: -space.lg },
   week: { flexDirection: 'row', gap: space.sm + 2, paddingHorizontal: space.lg, paddingVertical: space.sm },
-  day: { width: 64, minHeight: 78, alignItems: 'center', justifyContent: 'center', gap: 2, borderRadius: radius.lg },
-  dayOther: { backgroundColor: colors.white, ...shadow.card },
+  day: { width: 66, minHeight: 84, alignItems: 'center', justifyContent: 'center', gap: 2, borderRadius: radius.lg },
+  dayOther: { backgroundColor: colors.card, ...shadow.card },
   dayToday: { backgroundColor: colors.green, ...shadow.float },
   dayPast: { opacity: 0.55 },
-  dayWeek: { fontWeight: '700', fontSize: 15, lineHeight: 19 },
-  dayNum: { fontSize: 22, lineHeight: 27, fontWeight: '800' },
+  dayWeek: { fontWeight: '700', fontSize: 16, lineHeight: 20 },
+  dayNum: { fontSize: 24, lineHeight: 29, fontWeight: '800' },
   dayMark: { position: 'absolute', top: -5, right: -4, width: 20, height: 20, borderRadius: 10, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: colors.desk },
   dayMarkDone: { backgroundColor: colors.green },
   dayMarkShop: { backgroundColor: colors.peach },
   tiles: { flexDirection: 'row', gap: space.md },
-  tile: { flexDirection: 'row', alignItems: 'center', gap: space.sm, padding: space.md, borderRadius: radius.lg, backgroundColor: colors.white, minHeight: 76, ...shadow.card },
+  tile: { flexDirection: 'row', alignItems: 'center', gap: space.sm, padding: space.md, borderRadius: radius.lg, backgroundColor: colors.card, minHeight: 76, ...shadow.card },
   tileIcon: { width: 38, height: 38, borderRadius: 19, backgroundColor: colors.greenSoft, alignItems: 'center', justifyContent: 'center' },
   skel: { backgroundColor: colors.greenMist, borderRadius: 8 },
 });

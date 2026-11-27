@@ -122,7 +122,7 @@ export function LinkRow({ children, onPress, label }: { children: React.ReactNod
 void motion;
 
 const styles = StyleSheet.create({
-  page: { backgroundColor: colors.white, borderRadius: radius.xl, borderWidth: 1, borderColor: colors.line, padding: space.lg, gap: space.md, ...shadow.card },
+  page: { backgroundColor: colors.card, borderRadius: radius.xl, borderWidth: 1, borderColor: colors.line, padding: space.lg, gap: space.md, ...shadow.card },
   note: { borderRadius: radius.lg, padding: space.md, gap: 4 },
   noteBorder: { borderWidth: 1, borderColor: colors.line },
   label: { alignSelf: 'flex-start', paddingHorizontal: 10, paddingVertical: 3, borderRadius: radius.pill },
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   photoWrap: { borderRadius: radius.lg, ...shadow.card },
   photo: { borderRadius: radius.lg, overflow: 'hidden', backgroundColor: colors.greenMist },
   tabsRow: { flexDirection: 'row', backgroundColor: colors.tab, borderRadius: radius.pill, padding: 4 },
-  thumb: { position: 'absolute', top: 4, bottom: 4, left: 4, borderRadius: radius.pill, backgroundColor: colors.white, ...shadow.card },
+  thumb: { position: 'absolute', top: 4, bottom: 4, left: 4, borderRadius: radius.pill, backgroundColor: colors.card, ...shadow.card },
   tab: { flex: 1, minHeight: TOUCH - 6, paddingHorizontal: space.md, alignItems: 'center', justifyContent: 'center', borderRadius: radius.pill },
   linkRow: { minHeight: TOUCH, flexDirection: 'row', alignItems: 'center', gap: space.sm },
 });

@@ -59,7 +59,8 @@ export function Screen({ children, edges = ['top'], footer, scroll = true, revea
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.desk },
-  content: { padding: space.lg, paddingBottom: space.xxl },
+  // in fondo spazio abbondante: l'ultima card non resta mai sotto la barra delle schede
+  content: { padding: space.lg, paddingBottom: space.xxl + space.xl },
   inner: { width: '100%', maxWidth: 640, alignSelf: 'center', gap: space.lg },
   // un blocco può essere un frammento con più elementi: dentro tiene la stessa spaziatura della pagina
   block: { gap: space.lg },
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     paddingBottom: space.lg,
     borderTopWidth: 1,
     borderTopColor: colors.line,
-    backgroundColor: colors.white,
+    backgroundColor: colors.card,
     gap: space.sm,
   },
 });

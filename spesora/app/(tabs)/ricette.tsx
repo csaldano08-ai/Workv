@@ -158,7 +158,7 @@ export default function Recipes() {
           const on = t.id === tile;
           return (
             <Squish key={t.id} accessibilityRole="tab" accessibilityState={{ selected: on }} accessibilityLabel={t.label} onPress={() => setTile(t.id)} style={[styles.tile, on ? styles.tileOn : styles.tileOff]}>
-              {t.art ? <ChoiceArt name={t.art} size={36} /> : <Ionicons name={on ? (t.icon.replace('-outline', '') as keyof typeof Ionicons.glyphMap) : t.icon} size={26} color={on ? colors.white : colors.green} />}
+              {t.art ? <ChoiceArt name={t.art} size={44} /> : <Ionicons name={on ? (t.icon.replace('-outline', '') as keyof typeof Ionicons.glyphMap) : t.icon} size={32} color={on ? colors.white : colors.green} />}
               <Text variant="small" color={on ? colors.white : colors.ink} style={styles.tileText} numberOfLines={1}>
                 {t.label}
               </Text>
@@ -225,7 +225,7 @@ function RecipeCard({ recipe, favorite, servings, onFavorite }: { recipe: Recipe
     <Squish accessibilityRole="button" accessibilityLabel={`${recipe.name}, ${recipe.totalMinutes} minuti${favorite ? ', preferita' : ''}`} onPress={() => router.push(`/ricetta/${recipe.id}`)} outerStyle={styles.cardOuter} style={styles.card}>
       <View>
         {/* miniatura 320×240: nitida a questa misura e molto più leggera da decodificare dell'immagine grande */}
-        <RecipeImage variant="thumb" recipe={recipe} rounded={0} aspectRatio={1.2} />
+        <RecipeImage variant="thumb" recipe={recipe} rounded={0} aspectRatio={1.08} />
         <Pressable accessibilityRole="button" accessibilityLabel={favorite ? `Togli ${recipe.name} dai preferiti` : `Aggiungi ${recipe.name} ai preferiti`} accessibilityState={{ selected: favorite }} onPress={onFavorite} hitSlop={6} style={styles.heart}>
           <Ionicons name={favorite ? 'heart' : 'heart-outline'} size={19} color={colors.danger} />
         </Pressable>
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   bold: { fontWeight: '800' },
   chef: { marginTop: -18, marginBottom: -10 },
   searchRow: { flexDirection: 'row', gap: space.md, alignItems: 'center' },
-  search: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: 54, paddingHorizontal: space.lg, borderRadius: radius.pill, backgroundColor: colors.white, ...shadow.card },
+  search: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: 54, paddingHorizontal: space.lg, borderRadius: radius.pill, backgroundColor: colors.card, ...shadow.card },
   input: { flex: 1, minHeight: 50, fontSize: 17, color: colors.ink, fontFamily: font.regular },
   filterBtn: { width: 54, height: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.greenSoft },
   filterBtnOn: { backgroundColor: colors.sage },
@@ -262,17 +262,17 @@ const styles = StyleSheet.create({
   filterRow: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   tilesScroll: { marginHorizontal: -space.lg },
   tiles: { gap: space.md, paddingHorizontal: space.lg, paddingVertical: space.xs },
-  tile: { width: 76, height: 84, borderRadius: radius.lg, alignItems: 'center', justifyContent: 'center', gap: 4 },
+  tile: { width: 82, height: 94, borderRadius: radius.lg, alignItems: 'center', justifyContent: 'center', gap: 4 },
   tileOn: { backgroundColor: colors.green, ...shadow.float },
-  tileOff: { backgroundColor: colors.white, ...shadow.card },
-  tileText: { fontWeight: '800', fontSize: 14 },
+  tileOff: { backgroundColor: colors.card, ...shadow.card },
+  tileText: { fontWeight: '800', fontSize: 15 },
   resultBar: { flexDirection: 'row', alignItems: 'center', marginTop: -space.xs },
   gridRow: { gap: space.md, marginBottom: space.md },
   cardOuter: { flex: 1, maxWidth: '50%' },
-  card: { borderRadius: radius.xl, backgroundColor: colors.white, overflow: 'hidden', ...shadow.card },
-  heart: { position: 'absolute', top: 8, right: 8, width: 34, height: 34, borderRadius: 17, backgroundColor: colors.white, alignItems: 'center', justifyContent: 'center' },
+  card: { borderRadius: radius.xl, backgroundColor: colors.card, overflow: 'hidden', ...shadow.card },
+  heart: { position: 'absolute', top: 8, right: 8, width: 34, height: 34, borderRadius: 17, backgroundColor: colors.card, alignItems: 'center', justifyContent: 'center' },
   cardBody: { padding: space.md, gap: 6 },
-  cardTitle: { fontWeight: '800', fontSize: 16, lineHeight: 21 },
+  cardTitle: { fontWeight: '800', fontSize: 18, lineHeight: 23 },
   cardMeta: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   metaGap: { marginLeft: space.sm },
   empty: { alignItems: 'center', gap: space.md, paddingVertical: space.xl },

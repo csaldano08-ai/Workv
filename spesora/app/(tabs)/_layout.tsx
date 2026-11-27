@@ -64,7 +64,7 @@ export default function TabsLayout() {
         tabBarActiveTintColor: colors.green,
         tabBarInactiveTintColor: colors.ink,
         // barra bianca come nel riferimento: icone disegnate, etichette in grassetto; 49 = altezza standard + respiro
-        tabBarStyle: { backgroundColor: colors.white, borderTopColor: colors.line, borderTopWidth: 1, height: 60 + insets.bottom, paddingTop: 5 },
+        tabBarStyle: { backgroundColor: colors.card, borderTopColor: colors.line, borderTopWidth: 1, height: 60 + insets.bottom, paddingTop: 5 },
         tabBarLabelStyle: { fontSize: 12, fontFamily: font.bold, marginTop: 1 },
       }}
     >

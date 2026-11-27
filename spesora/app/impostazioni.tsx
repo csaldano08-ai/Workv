@@ -87,7 +87,6 @@ export default function Settings() {
         <MinaLogo height={HEADER_LOGO} />
       </View>
       <ScreenTitle title="Profilo" subtitle={summary || undefined} />
-      <InfoNote text="Profilo locale: niente account, i dati restano su questo telefono." />
 
       <ListCard>
         <Group icon="restaurant-outline" title="Preferenze pasti" open={open === 'pasti'} onToggle={() => setOpen(open === 'pasti' ? null : 'pasti')}>
@@ -100,6 +99,19 @@ export default function Settings() {
             <SubRow key={s.id} title={s.title} plus={s.premium} onPress={() => router.push(`/preferenze/${s.id}`)} />
           ))}
         </Group>
+        {/* l'app è solo in italiano: la riga mostra la lingua, senza aprire scelte che non esistono */}
+        <ListRow
+          left={<RowIcon icon="globe-outline" />}
+          title="Lingua"
+          right={
+            <Text variant="body" color={colors.inkSoft}>
+              Italiano
+            </Text>
+          }
+          onPress={() => toast('Per ora Mina è disponibile in italiano.', 'info')}
+          chevron={false}
+          accessibilityLabel="Lingua: italiano"
+        />
         <ListRow left={<RowIcon icon="notifications-outline" />} title="Notifiche" onPress={() => router.push('/notifiche')} />
         <ListRow left={<RowIcon icon="time-outline" />} title="Storico dei pasti" onPress={() => router.push('/storico')} />
         <ListRow left={<RowIcon icon="pricetag-outline" />} title="Prezzi" subtitle="Per stimare la spesa" onPress={() => router.push('/prezzi')} />
@@ -127,6 +139,7 @@ export default function Settings() {
       </ListCard>
       <InfoToggle label="Cosa succede se cambio le preferenze?" text="I pasti futuri non ancora cucinati vengono ricalcolati. Pasti completati, acquisti e dispensa restano. Le voci PLUS fanno parte della personalizzazione avanzata: in questa fase sono incluse per tutti." />
 
+      <InfoNote text="Profilo locale: niente account, i dati restano su questo telefono." />
       <View style={styles.minaStage}>
         <View style={styles.minaBlob} />
         <MinaMascot pose="happy" eyes="heart" size={130} animated interactive accessibilityLabel="Mina ti saluta con affetto" />
