@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { router } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { router, useFocusEffect } from 'expo-router';
+import { useMemo, useState, useCallback } from 'react';
 import { FlatList, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { toStock } from '../../src/core/domain/pantry';
@@ -34,6 +34,9 @@ const DIETS = [
 
 export default function Recipes() {
   const { snapshot } = useApp();
+  // a ogni apertura della scheda Mina Chef rifà il suo ingresso (solleva il cucchiaio, strizza l'occhio)
+  const [visit, setVisit] = useState(0);
+  useFocusEffect(useCallback(() => setVisit((n) => n + 1), []));
   const [filter, setFilter] = useState<RecipeFilter>({ onlyCompatible: true });
   const [showFilters, setShowFilters] = useState(false);
   const [browseAll, setBrowseAll] = useState(false);
@@ -57,7 +60,7 @@ export default function Recipes() {
         <Text variant="title" accessibilityRole="header" style={styles.titleFlex}>
           Ricettario
         </Text>
-        <MinaMascot pose="cooking" size={54} style={styles.chef} />
+        <MinaMascot pose="cooking" size={54} animated replayKey={visit} style={styles.chef} />
       </View>
       <View style={styles.searchRow}>
         <TextInput

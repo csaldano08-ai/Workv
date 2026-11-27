@@ -11,6 +11,8 @@ import { t } from '../../src/i18n/it';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { CategoryIcon } from '../../src/ui/illustrations/CategoryIcon';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
+import { MinaAnimated } from '../../src/ui/mascot/MinaAnimated';
+import { Reveal } from '../../src/ui/Reveal';
 import { LinkRow, NotebookPage, StickyNote } from '../../src/ui/notebook';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
 import { Button } from '../../src/ui/Button';
@@ -67,17 +69,7 @@ export default function Pantry() {
         </View>
       ) : null}
 
-      {warnings.length > 0 ? (
-        <View style={styles.scene}>
-          <MinaMascot pose="missing" size={92} style={styles.sceneMina} />
-          <StickyNote style={styles.flex}>
-            <Text variant="hand">Potrebbe non bastare</Text>
-            <Text variant="small" color={colors.inkSoft}>
-              {`${warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name).join(', ')}: il resto è già nella lista della spesa.`}
-            </Text>
-          </StickyNote>
-        </View>
-      ) : null}
+      <ShortageScene names={warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name)} />
 
       {expiring.length > 0 ? (
         <View style={styles.scene}>
@@ -179,6 +171,49 @@ const STATE: Record<PantryState, { label: string; bg: string; fg: string; icon: 
   short: { label: 'Potrebbe non bastare', bg: colors.peachSoft, fg: colors.peachInk, icon: 'alert-circle' },
   out: { label: 'Esaurito', bg: colors.tab, fg: colors.inkSoft, icon: 'remove-circle' },
 };
+
+/**
+ * La scena «Potrebbe non bastare»: Mina vede l'avviso, si inclina preoccupata, lo indica e si ricompone
+ * (gesto `concern`, una sola volta per avviso: riparte solo se cambiano gli ingredienti scarsi).
+ * Quando le quantità vengono sistemate e l'avviso sparisce, al suo posto Mina sorride per un momento.
+ */
+function ShortageScene({ names }: { names: string[] }) {
+  const key = names.join(', ');
+  // l'avviso è appena sparito? (aggiustamento di stato durante il render, come da guida di React)
+  const [prevKey, setPrevKey] = useState(key);
+  const [resolved, setResolved] = useState(false);
+  if (prevKey !== key) {
+    setPrevKey(key);
+    setResolved(prevKey !== '' && key === '');
+  }
+  if (names.length > 0) {
+    return (
+      <View style={styles.scene}>
+        <MinaAnimated state="concerned" size={92} event={key} accessibilityLabel="Mina è preoccupata: qualcosa potrebbe non bastare" style={styles.sceneMina} />
+        <StickyNote style={styles.flex}>
+          <Text variant="hand">Potrebbe non bastare</Text>
+          <Text variant="small" color={colors.inkSoft}>
+            {`${key}: il resto è già nella lista della spesa.`}
+          </Text>
+        </StickyNote>
+      </View>
+    );
+  }
+  if (!resolved) return null;
+  return (
+    <Reveal from="pop">
+      <View style={styles.scene}>
+        <MinaAnimated state="happy" size={92} accessibilityLabel="Mina è contenta: scorte a posto" style={styles.sceneMina} />
+        <StickyNote style={styles.flex}>
+          <Text variant="hand">Ora ci siamo</Text>
+          <Text variant="small" color={colors.inkSoft}>
+            Scorte a posto: quello che serve è disponibile o già in lista.
+          </Text>
+        </StickyNote>
+      </View>
+    </Reveal>
+  );
+}
 
 function StatePill({ state, count }: { state: PantryState; count?: number }) {
   const s = STATE[state];

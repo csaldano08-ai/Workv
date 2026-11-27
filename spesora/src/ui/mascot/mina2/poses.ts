@@ -16,6 +16,11 @@ export const ARM = {
   holdR: armTo('R', 165, 141),
   upL: armTo('L', 24, 106),
   upR: armTo('R', 175, 102),
+  // indica il contenuto accanto (braccio disteso verso destra)
+  pointR: armTo('R', 185, 116),
+  // braccia un po' aperte in basso, da preoccupata
+  worryL: armTo('L', 26, 146),
+  worryR: armTo('R', 175, 142),
 } as const satisfies Record<string, ArmPose>;
 
 const chefArm = (side: 'L' | 'R', x: number, y: number, extra: Partial<ArmPose> = {}) => armTo(side, x, y, extra, 'chef');
@@ -81,6 +86,9 @@ export const MINA_POSES = [
   'sleepy',
   'empty',
   'reminder',
+  'concerned',
+  'pointing',
+  'goodbye',
 ] as const;
 export type MinaPose = (typeof MINA_POSES)[number];
 
@@ -107,7 +115,7 @@ export function resolvePose(pose: string): MinaPose {
 }
 
 /** Gesto animato associato a una posa (eseguito una volta all'ingresso). */
-export type MinaAction = 'greet' | 'happy' | 'think' | 'done' | 'recipe' | 'present' | 'remind' | 'none';
+export type MinaAction = 'greet' | 'happy' | 'think' | 'done' | 'recipe' | 'present' | 'remind' | 'concern' | 'point' | 'none';
 
 export interface PoseSpec {
   look: MinaLook;
@@ -145,6 +153,10 @@ export const POSES: Record<MinaPose, PoseSpec> = {
   sleepy: { look: classic({ eyes: 'closed', mouth: 'small', armL: ARM.restL, armR: ARM.restR }), action: 'none' },
   empty: { look: classic({ eyes: 'open', mouth: 'hmm', armL: ARM.hipL, armR: ARM.chinR }), action: 'think' },
   reminder: { look: classic({ eyes: 'open', mouth: 'smile', armL: ARM.hipL, armR: ARM.raiseR, emote: 'bang' }), action: 'remind' },
+  // recitazione contestuale: vede un problema e lo indica; indica un contenuto; saluta andando via
+  concerned: { look: classic({ eyes: 'open', mouth: 'hmm', armL: ARM.worryL, armR: ARM.worryR, lean: 2 }), action: 'concern' },
+  pointing: { look: classic({ eyes: 'open', mouth: 'small', armL: ARM.hipL, armR: ARM.pointR, lean: -2 }), action: 'point' },
+  goodbye: { look: classic({ eyes: 'happy', mouth: 'smile', armL: ARM.restL, armR: ARM.waveR, legs: 'walk', lean: -5 }), action: 'greet' },
 };
 
 /** Le pose dello chef (per i test e la documentazione). */

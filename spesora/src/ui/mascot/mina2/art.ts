@@ -148,9 +148,9 @@ export function legsPart(legs: Legs = 'stand', variant: Variant = 'classic'): st
   if (variant === 'chef') {
     // gambe corte e spesse, scarponcini che puntano in fuori
     const leg = (x1: number, y1: number, x2: number, fx: number, dir: number) =>
-      `<path d="M${x1},${y1} L${x2},195" ${sw(10.6)} fill="none"/>` +
-      `<path d="M${x1},${y1} L${x2},195" stroke="${C.green}" stroke-width="6.4" stroke-linecap="round" fill="none"/>` +
-      `<path d="M${fx - 9 * dir},${FEET_Y - 1} C${fx - 10 * dir},${FEET_Y - 10} ${fx + 6 * dir},${FEET_Y - 11} ${fx + 11 * dir},${FEET_Y - 4} C${fx + 13 * dir},${FEET_Y + 1} ${fx - 8 * dir},${FEET_Y + 3} ${fx - 9 * dir},${FEET_Y - 1} Z" fill="${C.green}" ${sw(2.6)}/>`;
+      `<path d="M${x1},${y1} L${x2},195" ${sw(9.2)} fill="none"/>` +
+      `<path d="M${x1},${y1} L${x2},195" stroke="${C.green}" stroke-width="5.4" stroke-linecap="round" fill="none"/>` +
+      `<path d="M${fx - 7.5 * dir},${FEET_Y - 1} C${fx - 8.5 * dir},${FEET_Y - 9} ${fx + 5 * dir},${FEET_Y - 10} ${fx + 9.5 * dir},${FEET_Y - 3.5} C${fx + 11 * dir},${FEET_Y + 1} ${fx - 7 * dir},${FEET_Y + 2.5} ${fx - 7.5 * dir},${FEET_Y - 1} Z" fill="${C.green}" ${sw(2.4)}/>`;
     return leg(89, 180, 88.5, 88.8, -1) + leg(119.5, 178, 120.5, 122.3, 1);
   }
   const leg = (x1: number, x2: number, y2: number, fx: number, dir: number) =>
@@ -266,8 +266,8 @@ function chefBodyPart(bow: boolean): string {
     `<circle cx="122.5" cy="72" r="8.3" fill="${C.lemonChef}" ${sw(2.4)}/>` +
     `<ellipse cx="124.5" cy="68.5" rx="2.8" ry="2" fill="${C.orangeLight}"/>` +
     // apertura: arco del manico verde, interno scuro, frutto arancio
-    `<path d="${CHEF_OPENING}" fill="${C.green}" ${sw(2.8)}/>` +
-    `<path d="${CHEF_INSIDE}" fill="${C.greenDeep}" ${sw(2.4)}/>` +
+    `<path d="${CHEF_OPENING}" fill="${C.green}" ${sw(2.5)}/>` +
+    `<path d="${CHEF_INSIDE}" fill="${C.greenDeep}" ${sw(2.2)}/>` +
     `<circle cx="94.5" cy="86" r="16" fill="${C.orange}" ${sw(2.6)}/>` +
     `<ellipse cx="101" cy="74.5" rx="4.8" ry="2.4" fill="${C.orangeLight}" transform="rotate(-18 101 74.5)"/>` +
     // borsa alta, con il fianco sinistro più caldo
@@ -275,9 +275,9 @@ function chefBodyPart(bow: boolean): string {
     `<path d="${CHEF_BOX}" fill="url(#mina2-front)"/>` +
     `<path d="${CHEF_SIDE}" fill="${C.chefSide}"/>` +
     `<path d="M59.5,97 L84,170" stroke="${C.crease}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.35"/>` +
-    `<path d="${CHEF_BOX}" fill="none" ${sw(3)}/>` +
+    `<path d="${CHEF_BOX}" fill="none" ${sw(2.7)}/>` +
     // grembiule verde sul terzo basso, con il suo contorno e la foglia bianca
-    `<path d="${CHEF_APRON}" fill="${C.green}" ${sw(2.8)}/>` +
+    `<path d="${CHEF_APRON}" fill="${C.green}" ${sw(2.5)}/>` +
     `<g transform="translate(112.5 165.2) rotate(-7) scale(0.9)">` +
     `<path d="M-12,10 C-15,-4 -2,-13 14,-11 C13,4 2,13 -12,10 Z" fill="${C.white}"/>` +
     `<path d="M-17,15 Q-4,4 9,-7" stroke="${C.green}" stroke-width="2.6" fill="none" stroke-linecap="round"/>` +
@@ -293,10 +293,10 @@ function chefBodyPart(bow: boolean): string {
 
 function chefBow(): string {
   return (
-    `<path d="M63.5,163 C57,165 51,168 47.5,172.5 L54.5,181.5 L57.8,176 L60.5,181 C62.5,176 64,169 65.5,164 Z" fill="${C.green}" ${sw(2.6)}/>` +
-    `<path d="M62,155.5 C57,151 50,150.5 47,155.5 C45.5,159.5 49,164 55,163.5 C58,163.3 61,162 62.5,160.5 Z" fill="${C.green}" ${sw(2.6)}/>` +
+    `<path d="M63.5,163 C57,165 51,168 47.5,172.5 L54.5,181.5 L57.8,176 L60.5,181 C62.5,176 64,169 65.5,164 Z" fill="${C.green}" ${sw(2.4)}/>` +
+    `<path d="M62,155.5 C57,151 50,150.5 47,155.5 C45.5,159.5 49,164 55,163.5 C58,163.3 61,162 62.5,160.5 Z" fill="${C.green}" ${sw(2.4)}/>` +
     `<path d="M51,157.5 Q55,157.5 59,159.5" stroke="${C.line}" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.6"/>` +
-    `<ellipse cx="63" cy="158" rx="5.4" ry="6.6" fill="${C.green}" ${sw(2.6)}/>`
+    `<ellipse cx="63" cy="158" rx="5.4" ry="6.6" fill="${C.green}" ${sw(2.4)}/>`
   );
 }
 
@@ -331,14 +331,14 @@ export function hatPart(): string {
     [101, 44, 13],
   ];
   return (
-    lobes.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${C.white}" ${sw(2.8)}/>`).join('') +
+    lobes.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${C.white}" ${sw(2.5)}/>`).join('') +
     // ombra in basso a ogni lobo: cerchio grigio, poi cerchio bianco spostato in alto
     lobes.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${(r - 1.6).toFixed(1)}" fill="${C.hatShade}"/>`).join('') +
     lobes.map(([x, y, r]) => `<circle cx="${x}" cy="${(y - 2.6).toFixed(1)}" r="${(r - 4.4).toFixed(1)}" fill="${C.white}"/>`).join('') +
     // fascia curva
     `<path d="M60.5,59.5 Q93,40 115.5,49.5 L116.8,68.5 Q95,55.5 64.5,75.5 Z" fill="${C.white}"/>` +
     `<path d="M61,60 Q93,40.6 115.6,50 L115.9,54.6 Q93,46.5 61.8,64.6 Z" fill="${C.hatShade}"/>` +
-    `<path d="M60.5,59.5 Q93,40 115.5,49.5 L116.8,68.5 Q95,55.5 64.5,75.5 Z" fill="none" ${sw(2.8)}/>`
+    `<path d="M60.5,59.5 Q93,40 115.5,49.5 L116.8,68.5 Q95,55.5 64.5,75.5 Z" fill="none" ${sw(2.5)}/>`
   );
 }
 
@@ -451,7 +451,7 @@ export function handRest(side: Side, variant: Variant = 'classic', len?: ArmLen)
 }
 
 /** Spessore del braccio (contorno, riempimento): Mina Chef ha braccia un po' più sottili e più lunghe. */
-const armWidth = (variant: Variant): [number, number] => (variant === 'chef' ? [10.6, 6.6] : [14, 9.4]);
+const armWidth = (variant: Variant): [number, number] => (variant === 'chef' ? [9.2, 5.8] : [14, 9.4]);
 
 /** Segmento superiore (spalla → gomito). `pass` = contorno o riempimento: i due passaggi non lasciano giunture. */
 export function upperArmPart(side: Side, pass: 'outline' | 'fill', variant: Variant = 'classic', len?: ArmLen): string {
@@ -470,7 +470,7 @@ function handShape(side: Side, pass: 'outline' | 'fill', fist: boolean, variant:
   const t = side === 'L' ? 1 : -1; // il pollice punta verso il corpo
   const color = pass === 'outline' ? C.line : C.green;
   const grow = pass === 'outline' ? 2.4 : 0;
-  const k = variant === 'chef' ? 0.9 : 1;
+  const k = variant === 'chef' ? 0.8 : 1;
   const palm = `<circle cx="${h.x}" cy="${h.y + 3}" r="${((thumbUp ? 5.6 : fist ? 8 : 7.2) * k + grow).toFixed(2)}" fill="${color}"/>`;
   const capsule = (x1: number, y1: number, x2: number, y2: number, w: number) => `<path d="M${x1},${y1} L${x2},${y2}" stroke="${color}" stroke-width="${(w * k + grow * 2).toFixed(2)}" stroke-linecap="round"/>`;
   if (thumbUp) return palm;

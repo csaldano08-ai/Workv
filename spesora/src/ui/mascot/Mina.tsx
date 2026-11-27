@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { Mina2, Mina2Badge } from './mina2/Mina2';
+import type { Eyes, Mouth } from './mina2/art';
 import type { MinaPose } from './mina2/poses';
 
 export type { MinaPose } from './mina2/poses';
@@ -23,6 +24,13 @@ export interface MinaMascotProps {
   accessibilityLabel?: string;
   style?: StyleProp<ViewStyle>;
   replayKey?: string | number;
+  /** Espressioni al posto di quelle della posa (occhi, bocca). */
+  eyes?: Eyes;
+  mouth?: Mouth;
+  /** Chiamata alla fine del gesto della posa. */
+  onDone?: () => void;
+  /** Quando cambia, Mina dà un'occhiata breve al contenuto accanto. */
+  glance?: string | number;
 }
 
 /**

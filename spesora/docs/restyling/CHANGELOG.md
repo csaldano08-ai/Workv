@@ -1,5 +1,14 @@
 # Changelog tecnico — restyling Mina 2.0
 
+## Quinta iterazione: Mina Alive V1
+
+- **Nuovi** `src/ui/mascot/MinaAnimated.tsx` e `src/ui/mascot/mina2/states.ts`: recitazione a stati (10 stati per 2 varianti), con espressione, evento, occhiata e callback di fine; mappa stato → posa pura e testata.
+- `src/ui/mascot/mina2/poses.ts`: pose `concerned`, `pointing`, `goodbye` (23 in tutto); bersagli `pointR`, `worryL/R`. `Mina2.tsx`: props `eyes`/`mouth` (espressioni al posto di quelle della posa), `onDone`, `glance` (occhiata con ritorno); gesti `concern` (inclinazione, sguardo, indicazione, ricomposizione) e `point`.
+- **Intro nuova** `src/features/intro/MinaIntro.tsx` (~4,5 s, si salta col tocco): marchio che si posa, Mina che entra e saluta, frase parola per parola; sostituisce lo «Splash elastico» (`SplashIntro`/`splashScene` rimossi insieme ai loro test e a `LogoMarkSvg`). `IntroGate` invariato: solo primo avvio o replay dalle Impostazioni, mai per gli utenti già registrati.
+- Pagine: Home (occhiata al pasto dopo il saluto), Spesa (sguardo che segue le spunte), Dispensa (scena «Potrebbe non bastare» con gesto `concern` una volta per avviso e scena «Ora ci siamo» alla risoluzione), Settimana (occhiata al giorno scelto), Ricette (ingresso di Mina Chef a ogni apertura della scheda), Ricetta («Ai fornelli!» all'inizio della preparazione), questionario (le reazioni alle scelte rianimano il gesto, `replayKey` su `AssistantBubble`).
+- Mina Chef più snella come la prima fila del foglio: contorni 2,4–2,7 (erano 2,6–3), braccia 9,2/5,8, gambe 9,2/5,4, mani ×0,8, piedini ridotti.
+- **Nuovi** `scripts/screenshots/record-alive.cjs` (demo completa in 14 passi) e QC della scena di risoluzione.
+
 ## Quarta iterazione: movimento in tutta l'app
 
 - `src/ui/Reveal.tsx`: comparsa con il «back» dei gesti di Mina e sei provenienze (`bottom`, `left`, `right`, `zoom`, `pop`, `sheet`), ritardo fisso (`delay`) e cascata limitata a 7 elementi; i blocchi delle pagine partono già un poco visibili (la pagina non resta mai vuota al cambio di scheda).

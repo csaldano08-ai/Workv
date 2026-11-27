@@ -19,7 +19,7 @@ import { t } from '../../src/i18n/it';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
 import { Card } from '../../src/ui/Card';
-import { MinaNote } from '../../src/ui/AssistantBubble';
+import { AssistantBubble, MinaNote } from '../../src/ui/AssistantBubble';
 import { Reveal } from '../../src/ui/Reveal';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
@@ -207,6 +207,7 @@ export default function RecipeScreen() {
       <FoodInfoCard recipeId={recipe.id} servings={servings} />
 
       <SectionTitle>Preparazione</SectionTitle>
+      {meal && planned ? <AssistantBubble pose="cooking" size={88} title="Ai fornelli!" text="Un passo alla volta: i tempi li tengo d'occhio io." /> : null}
       {recipe.steps.map((s, i) => (
         <View key={i} style={styles.step}>
           <View style={styles.stepNum}>

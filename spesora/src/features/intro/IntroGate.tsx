@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useApp } from '../app/AppProvider';
 import { useReducedMotion } from '../../ui/useReducedMotion';
 import { onReplayIntro } from './introBus';
-import { SplashIntro } from './SplashIntro';
+import { MinaIntro } from './MinaIntro';
 
 /**
  * Mostra l'animazione iniziale una sola volta (primo avvio, o quando cambia la versione dell'intro),
@@ -35,5 +35,5 @@ export function IntroGate() {
   }, [service]);
 
   if (!show) return null;
-  return <SplashIntro onDone={done} />;
+  return <MinaIntro onDone={done} />;
 }

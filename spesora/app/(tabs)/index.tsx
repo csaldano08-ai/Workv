@@ -189,6 +189,8 @@ function IconButton({ icon, label, onPress }: { icon: keyof typeof Ionicons.glyp
  * come se ci si affacciasse sopra. Saluta una volta all'apertura, poi resta ferma; toccandola fa un saltello.
  */
 function Greeting({ hello, subtitle, pose, compact }: { hello: string; subtitle: string; pose: string; compact: boolean }) {
+  // finito il gesto d'ingresso, Mina dà un'occhiata al pasto di oggi (la card sotto di lei)
+  const [peek, setPeek] = useState(0);
   const mina = compact ? 104 : 136;
   const tall = mina * 1.16;
   const tuck = compact ? 22 : 28; // quanto Mina scende dietro la card: solo i piedi
@@ -211,7 +213,7 @@ function Greeting({ hello, subtitle, pose, compact }: { hello: string; subtitle:
         </Svg>
       </View>
       <View pointerEvents="box-none" style={[styles.minaSpot, { width: mina + 20, height: tall, bottom: -(tuck + space.lg) }]}>
-        <MinaMascot pose={pose} size={mina} animated interactive accessibilityLabel="Mina, la tua borsetta della spesa" />
+        <MinaMascot pose={pose} size={mina} animated interactive glance={peek} onDone={() => setPeek(1)} accessibilityLabel="Mina, la tua borsetta della spesa" />
       </View>
     </View>
   );

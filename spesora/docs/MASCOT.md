@@ -51,15 +51,16 @@ Differenze che restano, volute: il foglio ha una grana da acquerello che un dise
 | File | Contenuto |
 | --- | --- |
 | `src/ui/mascot/mina2/art.ts` | Il disegno, in SVG puro, diviso in parti: ombra, gambe, corpo (lattuga, manico, verdure, pannello, foglia o grembiule, guance), cappello, occhi, bocca, braccio e avambraccio (contorno e riempimento separati, così il gomito non lascia giunture), oggetti in mano (cucchiaio, telefono, lista, cartellina, ciotola con frusta, cloche), segni (punto di domanda, scintille, tratti gialli, cuore). Uno scheletro per variante (`RIG`): spalle, lunghezze delle braccia, perni. |
-| `src/ui/mascot/mina2/poses.ts` | Le 20 pose: aspetto finale (occhi, bocca, braccia, segno) e gesto animato. Le braccia si descrivono con la posizione della mano (cinematica inversa `armTo`); quelle di Mina Chef con il punto misurato sul suo foglio (`chefAt`). |
+| `src/ui/mascot/mina2/poses.ts` | Le 23 pose: aspetto finale (occhi, bocca, braccia, segno) e gesto animato. Le braccia si descrivono con la posizione della mano (cinematica inversa `armTo`); quelle di Mina Chef con il punto misurato sul suo foglio (`chefAt`). |
 | `src/ui/mascot/mina2/Mina2.tsx` | Il componente: statico (un solo SVG) o animato a livelli. |
 | `src/ui/mascot/Mina.tsx` | `MinaMascot` e `MinaBadge`: l'interfaccia usata dalle schermate (stessi nomi di prima). |
+| `src/ui/mascot/MinaAnimated.tsx` | «MinaAnimated»: l'ingresso per la recitazione a stati (`idle`, `hello`, `happy`, `thinking`, `concerned`, `pointing`, `cooking`, `success`, `celebrate`, `goodbye`), con variante (`standard`/`chef`), espressione, dimensione, evento da rappresentare (`event`), occhiata (`glance`) e callback di fine gesto (`onDone`). La mappa stato → posa è in `mina2/states.ts` (pura, coperta dai test). |
 
 Tutto è vettoriale e locale: niente immagini raster nell'app, niente rete.
 
 ## Pose
 
-`neutral`, `welcome`, `wave`, `explaining`, `thinking`, `calendar` (telefono), `shopping` (lista), `cooking`, `recipe`, `mixing`, `serving` e `checklist` (Mina Chef), `pantry`, `missing`, `savings`, `happy`, `success`, `sleepy`, `empty`, `reminder`. I vecchi nomi italiani (`saluto`, `spesa`, `promemoria`…) sono ancora risolti.
+`neutral`, `welcome`, `wave`, `explaining`, `thinking`, `calendar` (telefono), `shopping` (lista), `cooking`, `recipe`, `mixing`, `serving` e `checklist` (Mina Chef), `pantry`, `missing`, `savings`, `happy`, `success`, `sleepy`, `empty`, `reminder`, `concerned` (vede un problema), `pointing` (indica un contenuto), `goodbye` (saluta andando via). I vecchi nomi italiani (`saluto`, `spesa`, `promemoria`…) sono ancora risolti.
 
 ## Espressioni
 
@@ -79,6 +80,9 @@ Ogni parte ruota attorno al proprio perno: spalla, gomito, base del cappello, ce
 | Ricetta (`recipe`, `cooking`) | Mina Chef alza il cucchiaio con un piccolo svolazzo; il cappello oscilla; in `cooking` strizza l'occhio e compaiono i tratti gialli. |
 | Presenta (`mixing`, `serving`, `checklist`) | Mina Chef tiene fermo l'oggetto grande (ciotola, cloche, cartellina): si piega appena, fa un saltello, il cappello ondeggia, compaiono i segni. |
 | Promemoria (`reminder`) | Si sporge, alza la mano, due piccoli rimbalzi, poi torna a riposo. |
+| Preoccupata (`concerned`) | Vede l'avviso: si inclina verso di lui, lo sguardo lo segue, la bocca si fa dubbiosa, lo indica con la mano, poi si ricompone. Parte solo quando l'avviso compare o cambia, mai a ogni render. |
+| Indica (`pointing`) | Il braccio si distende verso il contenuto con un rimbalzo, lo sguardo lo segue, poi torna composta (il braccio resta a indicare). |
+| Occhiata (`glance`) | Non è un gesto ma una reazione: quando la prop `glance` cambia (una spunta nella lista, un giorno scelto), gli occhi guardano un momento il contenuto e tornano. |
 | Tocco (`interactive`) | Un saltello felice, poi torna alla posa di partenza (Mina Chef con un oggetto in mano non alza le braccia). |
 
 Regole tecniche:
@@ -94,16 +98,16 @@ Anteprima: nella demo web, la pagina `/mina` (non collegata dall'app, solo web) 
 
 | Schermata | Mina | Ruolo |
 | --- | --- | --- |
-| Intro | `wave` | Compare sotto il logo e saluta |
+| Intro | `welcome` | Il marchio si posa, Mina entra, saluta e si compone «Ciao, sono Mina!»; solo al primo avvio o su richiesta |
 | Benvenuto | `welcome` grande, viva, toccabile | Presenta Spesora |
 | Questionario | per passo; reagisce alle scelte | Accompagna senza rallentare |
 | Fine questionario | `success` grande | Festeggia «È pronta!» |
-| Oggi | `welcome` (saluto), `success`, `thinking` | Saluto breve; giornata finita; ricette mancanti |
+| Oggi | `welcome` (saluto) e, a gesto finito, un'occhiata al pasto di oggi; `success`, `thinking` | Saluto breve; giornata finita; ricette mancanti |
 | Settimana | `calendar` / `success` | Riepilogo del giorno |
-| Spesa | `shopping`; `success` a lista completata | Lista pronta; festeggia quando è tutto nel carrello |
-| Ricette | Mina Chef piccola nel titolo | Il mondo delle ricette |
-| Ricetta | Mina Chef (`cooking`) per la preparazione della sera prima; `shopping` per gli ingredienti mancanti | Consigli brevi |
-| Dispensa | `missing`, `thinking`, `empty` | Scorte, scadenze, stato vuoto |
+| Spesa | `shopping` con l'occhiata a ogni spunta; `success` a lista completata | Segue la spesa con lo sguardo; festeggia quando è tutto nel carrello |
+| Ricette | Mina Chef nel titolo: a ogni apertura della scheda rifà l'ingresso (cucchiaio su, occhiolino) | Il mondo delle ricette |
+| Ricetta | Mina Chef (`cooking`) per la preparazione della sera prima e per «Ai fornelli!» all'inizio della preparazione; `shopping` per gli ingredienti mancanti | Consigli brevi |
+| Dispensa | `concerned` su «Potrebbe non bastare» (reazione una sola volta per avviso); `happy` quando l'ultimo avviso viene risolto; `thinking`, `empty` | Scorte, scadenze, stato vuoto |
 | Festeggiamenti | `success` | Spesa registrata, pasto cucinato |
 
 Regole: Mina non copre mai le informazioni principali, non parla di continuo, non è un chatbot. Reagisce a eventi già esistenti con regole deterministiche.

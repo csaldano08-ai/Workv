@@ -56,6 +56,14 @@ export interface Mina2Props {
   pose?: MinaPose | string;
   /** Larghezza in punti (l'altezza è 1,16 × la larghezza). */
   size?: number;
+  /** Espressione degli occhi al posto di quella della posa (es. una reazione a una scelta). */
+  eyes?: Eyes;
+  /** Espressione della bocca al posto di quella della posa. */
+  mouth?: Mouth;
+  /** Chiamata quando il gesto della posa è finito (non con "Riduci movimento", dove non c'è gesto). */
+  onDone?: () => void;
+  /** Quando cambia, Mina dà un'occhiata al contenuto accanto (sguardo breve, poi torna). */
+  glance?: string | number;
   /** Entra con il gesto della posa (saluto, felice, pensierosa…). Rispetta "Riduci movimento". */
   animated?: boolean;
   /** Dopo il gesto resta viva: respiro, battito di ciglia, sguardo. Solo per le Mina grandi in primo piano. */
@@ -234,6 +242,35 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
         ]),
       };
     }
+    case 'concern': {
+      // vede l'avviso: si inclina verso di lui, si preoccupa, lo indica con la mano, poi si ricompone
+      return {
+        start: { ...rest, eyes: 'open', mouth: 'small' },
+        cues: [[320, null, 'hmm']],
+        anim: Animated.sequence([
+          Animated.parallel([armTo(vals, 'L', look.armL, 440), armTo(vals, 'R', look.armR, 440), tween(vals.tilt, 2.5, 440), tween(vals.gazeX, 2.4, 440), tween(vals.gazeY, 1, 440)]),
+          Animated.delay(180),
+          armTo(vals, 'R', ARM.pointR, 400, back),
+          Animated.delay(650),
+          Animated.parallel([armTo(vals, 'R', look.armR, 480, ease), tween(vals.tilt, 0, 480), tween(vals.gazeX, 0, 420), tween(vals.gazeY, 0, 420)]),
+        ]),
+      };
+    }
+    case 'point': {
+      // indica il contenuto accanto: il braccio si distende con un rimbalzo e lo sguardo lo segue
+      const r = armRotations('R', look.armR);
+      return {
+        start: { ...rest, eyes: 'open', mouth: look.mouth },
+        cues: [],
+        anim: Animated.sequence([
+          Animated.parallel([armTo(vals, 'R', look.armR, 420, back), armTo(vals, 'L', look.armL, 460), tween(vals.tilt, -2, 420), tween(vals.gazeX, 2.6, 420)]),
+          tween(vals.rF, r.fore + 10, 200, Easing.inOut(Easing.sin)),
+          tween(vals.rF, r.fore, 240, back),
+          Animated.delay(500),
+          Animated.parallel([tween(vals.gazeX, 0, 380), tween(vals.tilt, 0, 380)]),
+        ]),
+      };
+    }
     default:
       return { start: { l: look.armL, r: look.armR, eyes: look.eyes, mouth: look.mouth, emote: look.emote }, cues: [], anim: Animated.delay(0) };
   }
@@ -266,15 +303,16 @@ function idleLoop(vals: Vals) {
  * centro degli occhi, piedi). Le animazioni usano il driver nativo; senza `animated` o con "Riduci movimento"
  * resta un unico disegno fermo nella posa finale.
  */
-export const Mina2 = memo(function Mina2({ pose = 'neutral', size = 120, animated = false, idle = false, interactive = false, accessibilityLabel, style, replayKey }: Mina2Props) {
+export const Mina2 = memo(function Mina2({ pose = 'neutral', size = 120, animated = false, idle = false, interactive = false, eyes, mouth, onDone, glance, accessibilityLabel, style, replayKey }: Mina2Props) {
   const resolved = resolvePose(pose);
   const spec = POSES[resolved];
+  const look = useMemo<MinaLook>(() => ({ ...spec.look, ...(eyes ? { eyes } : null), ...(mouth ? { mouth } : null) }), [spec, eyes, mouth]);
   const reduced = useReducedMotion();
   const still = !animated || reduced;
   const a11y = accessibilityLabel ? { accessible: true, accessibilityRole: 'image' as const, accessibilityLabel } : { accessibilityElementsHidden: true, importantForAccessibility: 'no-hide-descendants' as const };
   const W = size;
   const H = size * RATIO;
-  const staticXml = useMemo(() => minaStaticSvg(spec.look), [spec]);
+  const staticXml = useMemo(() => minaStaticSvg(look), [look]);
   if (still && !interactive) {
     return (
       <View {...a11y} style={[{ width: W, height: H }, style]}>
@@ -284,8 +322,9 @@ export const Mina2 = memo(function Mina2({ pose = 'neutral', size = 120, animate
   }
   return (
     <AnimatedMina
-      key={`${resolved}|${animated}|${reduced}|${idle}|${replayKey ?? ''}`}
-      pose={resolved}
+      key={`${resolved}|${animated}|${reduced}|${idle}|${eyes ?? ''}|${mouth ?? ''}|${replayKey ?? ''}`}
+      look={look}
+      action={spec.action}
       W={W}
       H={H}
       a11y={a11y}
@@ -294,12 +333,15 @@ export const Mina2 = memo(function Mina2({ pose = 'neutral', size = 120, animate
       animated={animated}
       idle={idle}
       interactive={interactive}
+      onDone={onDone}
+      glance={glance}
     />
   );
 });
 
 function AnimatedMina({
-  pose,
+  look,
+  action,
   W,
   H,
   a11y,
@@ -308,8 +350,11 @@ function AnimatedMina({
   animated,
   idle,
   interactive,
+  onDone,
+  glance,
 }: {
-  pose: MinaPose;
+  look: MinaLook;
+  action: MinaAction;
   W: number;
   H: number;
   a11y: object;
@@ -318,18 +363,43 @@ function AnimatedMina({
   animated: boolean;
   idle: boolean;
   interactive: boolean;
+  onDone?: () => void;
+  glance?: string | number;
 }) {
-  const spec = POSES[pose];
-  const look = spec.look;
   const [vals] = useState(makeValues);
   // Il componente viene ricreato (key) a ogni cambio di posa/gesto: lo stato iniziale nasce qui, non in un effetto.
-  const [plan] = useState(() => timeline(animated && !reduced ? spec.action : 'none', look, vals));
+  const [plan] = useState(() => timeline(animated && !reduced ? action : 'none', look, vals));
   const [eyes, setEyes] = useState<Eyes>(plan.start.eyes);
   const [mouth, setMouth] = useState<Mouth>(plan.start.mouth);
   const [emote, setEmote] = useState<Emote | undefined>(look.emote);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const running = useRef<Animated.CompositeAnimation | null>(null);
   const idleOn = useRef(false);
+  const onDoneRef = useRef(onDone);
+  useEffect(() => {
+    onDoneRef.current = onDone;
+  }, [onDone]);
+
+  // occhiata: quando `glance` cambia (non al primo render), Mina guarda un momento il contenuto accanto e poi torna
+  const lastGlance = useRef<{ v?: string | number; seen: boolean }>({ seen: false });
+  useEffect(() => {
+    const st = lastGlance.current;
+    if (!st.seen) {
+      st.seen = true;
+      st.v = glance;
+      return;
+    }
+    if (glance === undefined || st.v === glance) return;
+    st.v = glance;
+    if (reduced) return;
+    const a = Animated.sequence([
+      Animated.parallel([tween(vals.gazeX, 2.4, 190, easeOut), tween(vals.gazeY, 1.5, 190, easeOut)]),
+      Animated.delay(430),
+      Animated.parallel([tween(vals.gazeX, 0, 300), tween(vals.gazeY, 0, 300)]),
+    ]);
+    a.start();
+    return () => a.stop();
+  }, [glance, reduced, vals]);
 
   const k = W / VIEW.w;
   /** Trasformazioni attorno a un punto del disegno (px, py), per una vista grande quanto tutto il riquadro. */
@@ -370,14 +440,17 @@ function AnimatedMina({
 
   useEffect(() => {
     setArms(vals, plan.start.l, plan.start.r);
-    vals.emote.setValue(animated && !reduced && spec.action !== 'none' ? 0 : 1);
+    vals.emote.setValue(animated && !reduced && action !== 'none' ? 0 : 1);
     vals.enter.setValue(animated && !reduced ? 0 : 1);
     schedule(plan.cues);
     const intro = animated && !reduced ? tween(vals.enter, 1, 320, easeOut) : Animated.delay(0);
     const seq = Animated.sequence([intro, plan.anim]);
     running.current = seq;
     seq.start(({ finished }) => {
-      if (finished) startIdle();
+      if (finished) {
+        onDoneRef.current?.();
+        startIdle();
+      }
     });
     // in background niente animazioni; al ritorno riprende la vita a riposo
     const sub = AppState.addEventListener('change', (st) => {

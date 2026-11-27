@@ -117,7 +117,7 @@ export default function Onboarding() {
       </View>
       {/* il passo nuovo scivola dentro dalla direzione del movimento; la barra di avanzamento resta ferma */}
       <Reveal key={step} from={dir} style={styles.stepBody}>
-        {mina ? <AssistantBubble pose={mina.pose} text={mina.tip} size={96} /> : null}
+          {mina ? <AssistantBubble pose={mina.pose} text={mina.tip} size={96} replayKey={reaction ? mina.tip : undefined} /> : null}
         <Text variant="title" accessibilityRole="header">
           {def.title}
         </Text>

@@ -140,13 +140,14 @@ function TripView({ trip }: { trip: ShoppingTripPlan }) {
   const rest = trip.lines.filter((l) => !tileIds.has(l.ingredientId));
   const groups = SHOPPING_CATEGORIES.map((cat) => ({ cat, lines: rest.filter((l) => catalogIndex.ingredient(l.ingredientId).category === cat) })).filter((g) => g.lines.length > 0);
   const isChecked = (l: ShoppingLine) => snapshot?.checks.get(checkKey(trip.date, l.ingredientId)) ?? false;
+  const inCart = trip.lines.filter(isChecked).length;
   const toggle = (l: ShoppingLine) => void run((s) => s.setChecked(trip.date, l.ingredientId, !isChecked(l)));
   const isToday = trip.date === snapshot?.today;
   return (
     <View style={styles.tripGap}>
       <NotebookPage rings={0} contentStyle={styles.tripPage}>
         <View style={styles.minaRow}>
-          <MinaMascot pose="shopping" size={84} style={styles.minaShop} />
+          <MinaMascot pose="shopping" size={84} animated glance={inCart} style={styles.minaShop} />
           <Text variant="hand" style={styles.flex}>
             {urgent.length > 0 ? `${isToday ? 'Prima questi' : 'Per primi questi'} ${urgent.length}: ${isToday ? 'servono oggi!' : 'servono subito!'}` : `${trip.lines.length} ${trip.lines.length === 1 ? 'prodotto' : 'prodotti'} per i prossimi pasti`}
           </Text>

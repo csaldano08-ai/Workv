@@ -14,6 +14,8 @@ Branch: `claude/spesora-restyling-mina2`. La versione precedente è confrontabil
 | `riferimenti/mina_chef_style_reference.png` | Il foglio di Mina Chef con le quattro pose (cucchiaio, mescola, serve, checklist) |
 | `mina2_confronto_riferimento.jpg` | Mina 2.0 e Mina Chef dell'app accanto al foglio approvato |
 | `mina2_confronto_chef.jpg` | Le quattro pose di Mina Chef: foglio sopra, app sotto |
+| `mina_alive_demo.mp4` | Video (70 s) della demo completa «Mina Alive»: avvio con l'intro, onboarding, Home, Settimana, Spesa con spunte e festa, Dispensa con la reazione e la correzione, Mina Chef, apertura ricetta, preparazione e conferma finale |
+| `dispensa_risolta.png` | La scena «Ora ci siamo»: Mina sorride quando l'ultimo «potrebbe non bastare» viene risolto |
 | `movimento_app.mp4` | Video (39 s) del movimento in tutta l'app, dalla demo web reale: passi del questionario, schede, giorni, ricettario, ricetta, spesa, festeggiamento, foglio delle azioni |
 | `movimento_fotogrammi.jpg` | 13 fotogrammi del video, con il nome di ogni animazione |
 | `home_v3_navigazione.mp4` | Video (13 s) della Home V3: saluto di Mina, card che entrano, preferito, calendario, spesa, tocco su Mina |
@@ -69,6 +71,17 @@ Tutta l'app si muove come Mina: entrate morbide con un piccolo rimbalzo finale, 
 - **Numeri** (porzioni, quantità): il numero nuovo arriva dal basso se cresce, dall'alto se cala.
 - **Caricamento della Home**: i segnaposto respirano lentamente.
 
+## Mina Alive V1 (quinta richiesta)
+
+Mina non è un'immagine che scorre: è disegnata in SVG a parti separate (occhi, bocca, braccia con gomito, mani, gambe, corpo, manico, cappello, oggetti), ognuna con il suo perno, e recita legata agli eventi veri dell'app.
+
+- **Intro nuova e breve** (~4,5 s, si salta con un tocco): il marchio si posa, una piccola Mina 2.0 entra e saluta, «Ciao, sono Mina!» si compone parola per parola, poi resta la schermata vera. Solo al primo avvio o da Impostazioni → «Rivedi l'animazione iniziale»: chi è già registrato apre l'app subito, senza seconde schermate di caricamento.
+- **«MinaAnimated»**: componente unico per la recitazione a stati (`idle`, `hello`, `happy`, `thinking`, `concerned`, `pointing`, `cooking`, `success`, `celebrate`, `goodbye`), con variante standard/chef, espressione, dimensione, evento da rappresentare e callback di fine. Un solo gesto per evento; allo smontaggio le animazioni si interrompono.
+- **Nuovi gesti**: `concerned` (si inclina, si preoccupa, indica l'avviso, si ricompone), `pointing` (indica un contenuto), `goodbye`; e l'**occhiata** (`glance`): gli occhi seguono per un momento quello che succede accanto.
+- **Interazioni contestuali**: in Home, finito il saluto, Mina dà un'occhiata al pasto di oggi; in Spesa segue con lo sguardo ogni spunta e festeggia a lista completata; in Dispensa reagisce a «Potrebbe non bastare» (una sola volta per avviso, mai a ogni render) e **sorride quando l'ultimo avviso viene risolto**; in Settimana dà un'occhiata al giorno scelto; in Ricette Mina Chef rifà il suo ingresso a ogni apertura della scheda; nella ricetta di oggi incoraggia all'inizio della preparazione («Ai fornelli!»); nel questionario le reazioni alle scelte rianimano il gesto.
+- **Sistema di animazione**: valutate Reanimated e Rive; scelta la `Animated` di React Native già in uso (driver nativo, zero dipendenze nuove, identica su iOS, Android e web). Il rig 2D è il disegno stesso a livelli: non servono asset esterni.
+- **Mina Chef più snella**, come la prima fila del foglio: contorni più fini, braccia, gambe e piedini ridotti (confronto aggiornato in `mina2_confronto_chef.jpg`).
+
 ## Test eseguiti
 
 | Controllo | Esito |
@@ -81,6 +94,8 @@ Tutta l'app si muove come Mina: entrate morbide con un piccolo rimbalzo finale, 
 | Home V3 su 375×667, 390×844, 430×932 | «Cucina ora» visibile sopra la barra senza scorrere; titoli su due righe senza tagli; scorrimento fino a settimana e tessere |
 | Stesso giro a 375×667 (iPhone SE), 390×844 e 430×932 (iPhone Pro Max) | Nessun testo tagliato o elemento sovrapposto trovato a vista |
 | Movimento: giro registrato nella demo web (`record-motion.cjs`) e giro completo delle 22 schermate a fine animazione | Animazioni come da elenco sopra; impaginazione delle 22 schermate identica a prima; 0 errori JavaScript |
+| «Mina Alive»: demo completa registrata (`record-alive.cjs`, 14 passi del brief) | Intro, onboarding con reazioni, saluto + occhiata in Home, Settimana, spunte e festa in Spesa, reazione e correzione in Dispensa, ingresso di Mina Chef, apertura ricetta, «Ai fornelli!», «Ho cucinato» con festa; 0 errori JavaScript |
+| Scena di risoluzione della Dispensa: script dedicato che sistema tutte le scorte scarse | Compare «Ora ci siamo» con Mina felice (`dispensa_risolta.png`) |
 | "Riduci movimento" emulato nel browser | Il passo nuovo del questionario è al suo posto dopo 60 ms, senza scorrimento |
 | Persistenza: dopo il questionario si ricarica la pagina (Impostazioni, Notifiche, Plus…) | Profilo e piano restano (database locale invariato) |
 | Navigazione: schede, ricetta e ritorno, rotte modali e secondarie | Funzionano |

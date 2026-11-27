@@ -16,6 +16,7 @@ export function AssistantBubble({
   title,
   size = 104,
   animated = true,
+  replayKey,
   children,
 }: {
   pose?: MinaPose | string;
@@ -23,11 +24,13 @@ export function AssistantBubble({
   title?: string;
   size?: number;
   animated?: boolean;
+  /** Ripete il gesto quando cambia (es. una reazione a una scelta del questionario). */
+  replayKey?: string | number;
   children?: React.ReactNode;
 }) {
   return (
     <View style={styles.row} accessible accessibilityLabel={`Mina: ${title ? `${title}. ` : ''}${text}`}>
-      <MinaMascot pose={pose} size={size} animated={animated} />
+      <MinaMascot pose={pose} size={size} animated={animated} replayKey={replayKey} />
       {/* la nuvoletta sboccia subito dopo Mina, come se fosse lei a parlare */}
       <Reveal from="pop" delay={animated ? 220 : 0} style={styles.bubbleWrap}>
         <StickyNote tone="sage" style={styles.bubble}>

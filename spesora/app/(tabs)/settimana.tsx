@@ -140,7 +140,7 @@ function DayView({ snap, days, selected, onSelect, from, tripDates, onMenu }: { 
       </View>
 
       <View style={styles.scene}>
-        <MinaMascot pose={toCook.length === 0 && meals.length > 0 ? 'success' : 'calendar'} size={92} style={styles.sceneMina} />
+        <MinaMascot pose={toCook.length === 0 && meals.length > 0 ? 'success' : 'calendar'} size={92} animated glance={selected} style={styles.sceneMina} />
         <Reveal key={selected} from={from} style={styles.flex}>
           <StickyNote>
             <Text variant="hand">{summary}</Text>

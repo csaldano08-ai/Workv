@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { C, FORE, RIG, SHOULDER, UPPER, armRotations, armTo, minaStaticSvg, type ArmLen, type Side, type Variant } from '../ui/mascot/mina2/art';
 import { CHEF_POSES, MINA_POSES, POSES, resolvePose } from '../ui/mascot/mina2/poses';
+import { MINA_STATE_POSE } from '../ui/mascot/mina2/states';
 
 const ROOT = join(__dirname, '..', '..');
 
@@ -20,7 +21,7 @@ function hand(side: Side, out: number, bend: number, variant: Variant = 'classic
 
 describe('Mina 2.0 — la borsetta della spesa', () => {
   it('ogni posa è un SVG valido e chiuso, con l’identità fissa della borsa', () => {
-    expect(MINA_POSES).toHaveLength(20);
+    expect(MINA_POSES).toHaveLength(23);
     for (const p of MINA_POSES) {
       const s = minaStaticSvg(POSES[p].look);
       expect(s.startsWith('<svg')).toBe(true);
@@ -97,6 +98,17 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
       const s = minaStaticSvg(POSES[p].look);
       expect(s, p).toContain(C.chefSide); // fianco caldo della borsa di Mina Chef
       expect(s, p).not.toContain(C.ivoryShade); // non è la borsa di Mina 2.0 con il cappello sopra
+    }
+  });
+
+  it('ogni stato di MinaAnimated porta a una posa esistente, in entrambe le varianti', () => {
+    for (const variant of ['standard', 'chef'] as const) {
+      for (const state of Object.keys(MINA_STATE_POSE[variant]) as (keyof (typeof MINA_STATE_POSE)[typeof variant])[]) {
+        const pose = MINA_STATE_POSE[variant][state];
+        expect(MINA_POSES, `${variant}/${String(state)}`).toContain(pose);
+        // la variante chef usa solo pose di Mina Chef
+        if (variant === 'chef') expect(POSES[pose].look.variant, String(state)).toBe('chef');
+      }
     }
   });
 
