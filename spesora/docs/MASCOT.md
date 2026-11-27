@@ -70,11 +70,15 @@ Occhi: `open`, `happy` (^ ^), `closed`, `wink`, `laugh` (> <), `star`, `heart`, 
 
 Ogni parte ruota attorno al proprio perno: spalla, gomito, base del cappello, centro degli occhi, piedi. Gli occhi cambiano espressione **dentro un battito di ciglia** (nessun salto visibile).
 
-**Rig delle braccia (V2).** Ogni braccio è una curva unica che parte dalla spalla dello scheletro, passa esattamente dal gomito e arriva al polso (Bézier quadratica con punto di controllo `2·gomito − (spalla + polso)/2`); la mano e l'oggetto sono disegni fissi agganciati al polso e orientati come la fine del braccio, quindi il braccio non si stacca mai e la mano non si muove da sola. I gesti descrivono dove va la mano: la traiettoria passa **all'esterno del corpo** (mai davanti al viso) e a ogni tappa la cinematica inversa ricalcola spalla e gomito, con angoli continui; il saluto oscilla dal gomito. Le braccia sono ridisegnate in JavaScript solo durante i gesti; corpo, occhi, cappello e oggetti fermi restano sul driver nativo. Test: `src/test/mina2.test.ts` (braccio collegato in 32 configurazioni, nessun braccio sul viso in 27 pose). Rallentatore per il controllo qualità: `setMinaTimeScale(k)` o `/mina?lento=3`; gli 8 gesti di prova in `/mina?gruppo=braccia`.
+**Rig delle braccia.** Braccio (18) e avambraccio (16) sono segmenti rigidi di lunghezza fissa; al gomito un raccordo arrotondato (gomito stilizzato). Tutto il braccio è **un solo tracciato** disegnato in due passate (prima il contorno scuro, poi il riempimento verde): il contorno esterno resta continuo e la giunzione non si vede mai. La spalla sta appena dentro il fianco della borsa, all'altezza della bocca (come nel foglio); la mano è attaccata al polso e prosegue l'avambraccio. Le pose del braccio si descrivono con la posizione del palmo (`armTo`, cinematica inversa); i **gesti ruotano le articolazioni** verso pose chiave disegnate (`poses.ts`), con eventuale posa intermedia: la spalla guida, l'avambraccio segue con un piccolo ritardo, niente deformazioni. Le mani restano fuori dal viso e lontane dagli ingredienti (test in `src/test/mina2.test.ts`). Le braccia si ridisegnano in JavaScript solo durante i gesti; il resto è sul driver nativo. Rallentatore: `setMinaTimeScale(k)` o `/mina?lento=3`; gli 8 gesti di prova in `/mina?gruppo=braccia`.
+
+**Livelli della borsa** (come nel foglio): foglie dietro → ingredienti nell'apertura → manico (cucito sul fronte, quindi davanti agli ingredienti) → fronte della borsa, che nasconde la parte bassa di ogni ingrediente → guance, viso → braccia e oggetti in mano.
+
+**Fedeltà al foglio**: `npx tsx scripts/mascot/compare-ref.ts out.png` allinea il foglio al disegno (similitudine sugli angoli della borsa) e mostra foglio · app · sovrapposizione; `compare-anim.ts` aggiunge i fotogrammi dell'app reale a metà movimento e a gesto completo, alla stessa scala.
 
 | Gesto | Cosa fa |
 | --- | --- |
-| Saluto (`welcome`, `wave`) | Compare, sorride, alza la mano e saluta con due oscillazioni dal gomito, poi la riabbassa. |
+| Saluto (`welcome`, `wave`) | Saluto delicato: guarda verso di te e sorride, alza la mano con gradualità (prima il gomito, poi l'avambraccio), due piccole oscillazioni, un battito di ciglia, poi riabbassa il braccio. La mano resta accanto alla borsa. |
 | Idle | Respiro appena percettibile (schiacciamento dell'1,8%), battiti di ciglia a intervalli irregolari, uno sguardo di lato. |
 | Felice (`happy`, `savings`) | Chiude gli occhi felici, braccia in alto, salto con anticipo, schiacciamento all'atterraggio e ritorno elastico. |
 | Pensierosa (`thinking`, `empty`) | Guarda in alto, porta la mano al viso, inclina il corpo; compare il punto di domanda. |
@@ -119,8 +123,9 @@ Anteprima: nella demo web, la pagina `/mina` (non collegata dall'app, solo web) 
 | Settimana | `calendar` / `success`; occhiata al giorno scelto; `satisfied` quando un pasto viene programmato, cambiato o spostato | Riepilogo del giorno |
 | Spesa | `shopping` con l'occhiata a ogni spunta; `success` con foglioline e scintille (`Burst`) a lista completata | Segue la spesa con lo sguardo; festeggia quando è tutto nel carrello |
 | Ricette | Prima apertura della sessione: trasformazione di Mina in Mina Chef; poi, a ogni apertura, l'ingresso breve (cucchiaio su, occhiolino) | Il mondo delle ricette |
-| Ricetta | Mina Chef (`cooking`) per la preparazione della sera prima e per «Ai fornelli!»; nella riga del timer Mina Chef piccola che mescola (`mixing`) e a «Tempo!» alza il cucchiaio (`cooking`); `shopping` per gli ingredienti mancanti | Consigli brevi, mai sopra il testo |
-| Dispensa | `concerned` su «Potrebbe non bastare» (una volta per avviso); `happy` per un momento quando un ingrediente viene sistemato, poi torna composta; «Ora ci siamo» quando non resta nulla; `thinking`, `empty` | Scorte, scadenze, stato vuoto |
+| Ricetta | Mina Chef (`cooking`) per la preparazione della sera prima; `shopping` per gli ingredienti mancanti | Consigli brevi, mai sopra il testo |
+| Modalità Cucina | Mina Chef nella sua scheda: gesto per tipo di passaggio (organizza, cuoce, mescola, serve), mescola mentre il timer scorre, alza il cucchiaio a «Tempo!», serve con la cloche a fine ricetta; parla solo con «Chiedi a Mina» | Assistente di cucina a richiesta |
+| Dispensa | `concerned` su «Potrebbe non bastare» (una volta per avviso; la spiegazione solo toccando Mina o «Perché?»); `happy` per un momento quando un ingrediente viene sistemato, poi torna composta; «Ora ci siamo» quando non resta nulla; `thinking`, `empty` | Scorte, scadenze, stato vuoto |
 | Festeggiamenti | `success` (spesa registrata); Mina Chef `serving` con la cloche (pasto cucinato) | Conferme |
 
 Regole: Mina non copre mai le informazioni principali, non parla di continuo, non è un chatbot. Reagisce a eventi già esistenti con regole deterministiche.

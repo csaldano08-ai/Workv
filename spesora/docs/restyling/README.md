@@ -14,6 +14,14 @@ Branch: `claude/spesora-restyling-mina2`. La versione precedente è confrontabil
 | `riferimenti/mina_chef_style_reference.png` | Il foglio di Mina Chef con le quattro pose (cucchiaio, mescola, serve, checklist) |
 | `mina2_confronto_riferimento.jpg` | Mina 2.0 e Mina Chef dell'app accanto al foglio approvato |
 | `mina2_confronto_chef.jpg` | Le quattro pose di Mina Chef: foglio sopra, app sotto |
+| `v3/confronto_foglio_app.png` | Mina 2.0 e Mina Chef allineate sul foglio approvato: foglio · app · sovrapposizione al 50% |
+| `v3/confronto_animazione.jpg` | Alla stessa scala: foglio · posa statica · app a metà movimento · gesto completo (fotogrammi dell'app reale) |
+| `v3/ingredienti_prima_dopo.jpg` | L'apertura della borsa prima e dopo: ingredienti dentro, manico davanti |
+| `v3/saluto_e_otto_gesti.mp4` | Il nuovo saluto e gli 8 gesti, a velocità normale e rallentati ×3 |
+| `v3/intro_nuovo_saluto.mp4` | L'intro registrata dall'app reale, con il nuovo saluto di Mina (fotogrammi in `v3/intro_fotogrammi.jpg`) |
+| `v3/trasformazione_mina_chef.mp4` | La trasformazione in Mina Chef con il disegno corretto (normale e ×3) |
+| `v3/modalita_cucina.jpg`, `v3/leggibilita_pagine.jpg` | Modalità Cucina passo per passo; Dispensa, Spesa e scheda ricetta semplificate |
+| `v3/navigazione_completa.mp4` | Navigazione completa (89 s) dall'app reale, con la Modalità Cucina |
 | `v2/intro_reale.mp4` | L'intro V2 registrata dall'app reale al primo avvio (goccia → cerchio → logo con la foglia → Mina che esce e saluta → Benvenuto), più `v2/intro_fotogrammi.jpg` |
 | `v2/mina_braccia.mp4` | Gli 8 gesti di prova del rig delle braccia, a velocità normale e rallentati ×3 |
 | `v2/trasformazione_mina_chef.mp4` | La trasformazione in Mina Chef: normale, rallentata ×3 e nell'app alla prima apertura di Ricette |
@@ -87,6 +95,17 @@ Mina non è un'immagine che scorre: è disegnata in SVG a parti separate (occhi,
 - **Sistema di animazione**: valutate Reanimated e Rive; scelta la `Animated` di React Native già in uso (driver nativo, zero dipendenze nuove, identica su iOS, Android e web). Il rig 2D è il disegno stesso a livelli: non servono asset esterni.
 - **Mina Chef più snella**, come la prima fila del foglio: contorni più fini, braccia, gambe e piedini ridotti (confronto aggiornato in `mina2_confronto_chef.jpg`).
 
+## Mina 2D quality fix (settima richiesta)
+
+Stessa app, stessa mascotte: più precisione nel disegno, animazioni che non deformano Mina, schermate meno dense. Prove in `v3/`.
+
+- **Perché le braccia sembravano storte**: ogni braccio era una curva unica ricalcolata a ogni fotogramma e mossa lungo traiettorie generate al volo; piegandosi faceva un gancio vicino alla spalla, nel saluto si deformava tutto il braccio e la mano ruotava da sola. Ora braccio e avambraccio sono **rigidi**, raccordati da un **gomito arrotondato**, in **un solo tracciato con il contorno continuo**; la mano è attaccata all'avambraccio. I gesti ruotano le articolazioni verso **pose chiave disegnate**: niente deformazioni.
+- **Saluto delicato**: guarda verso di te, sorride, alza la mano con gradualità, due piccole oscillazioni, un battito di ciglia, poi riabbassa il braccio. La mano resta accanto alla borsa, mai su viso, cappello o ingredienti. Rifatti anche gli altri 7 gesti; l'intro usa il nuovo saluto.
+- **Fedeltà al foglio**, misurata a pari scala (foglio allineato sugli angoli della borsa): tratto più sottile e uniforme, occhi più grandi, spalle all'altezza della bocca, braccia più sottili e corte, gambe corte e piene, baguette e lattuga come nel foglio; Mina Chef con tratto sottile, gambe piene e la mano che stringe il laccio del grembiule.
+- **Ingredienti dentro la borsa**: il manico sta davanti agli ingredienti e il fronte della borsa nasconde la loro parte bassa, come nel foglio.
+- **Modalità Cucina**: un passaggio alla volta (numero, azione, tempo, «Fatto, avanti»), ingredienti del passaggio e aiuto di Mina Chef solo se li chiedi, allergeni sempre visibili, tutti i passaggi a un tocco. Tutto dai dati della ricetta.
+- **Meno testo**: scheda ricetta con foto, titolo, durata, porzioni e azione principale in alto; Dispensa con «disponibili / necessari» e stato a parole; Spesa con note brevi. Mina reagisce con un gesto (livello 1) e spiega solo se la tocchi o chiedi aiuto (livello 2).
+
 ## Animation & UI polish V2 (sesta richiesta)
 
 Correzioni sull'app vera, senza rifare le schermate e senza cambiare funzioni. Video e prove in `v2/`.
@@ -103,7 +122,12 @@ Correzioni sull'app vera, senza rifare le schermate e senza cambiare funzioni. V
 
 | Controllo | Esito |
 | --- | --- |
-| `npm run verify` (tipi, linter, 157 test, catalogo, immagini, stringhe, sorgenti, configurazione), ripetuto dopo la V2 | **Tutti superati** (7 avvisi di configurazione già noti: URL legali, bundle id, progetto EAS, abbonamenti non attivi) |
+| `npm run verify` (tipi, linter, 161 test in 16 file, catalogo, immagini, stringhe, sorgenti, configurazione), ripetuto dopo il quality fix | **Tutti superati** (7 avvisi di configurazione già noti: URL legali, bundle id, progetto EAS, abbonamenti non attivi) |
+| Quality fix — test della mascotte: braccia rigide e collegate (40 configurazioni), nessun braccio sul viso (27 pose), nessuna mano sugli ingredienti, cinematica inversa sul palmo, sopracciglia e grembiule | 13/13 in `mina2.test.ts` |
+| Quality fix — test della Modalità Cucina: azione e dettaglio senza testo perso, ingredienti riconosciuti in tutte le ricette, gesto per tipo di passaggio | 3/3 |
+| Quality fix — confronto a pari scala con il foglio (`compare-ref.ts`, `compare-anim.ts`) | Viso, spalle, braccia, gambe e ingredienti allineati al foglio; restano differenze dichiarate sotto |
+| Quality fix — 8 gesti e saluto a velocità normale e ×3, esaminati fotogramma per fotogramma | Corretti durante l'esame: posa intermedia del saluto, saluto con la sinistra, braccio sinistro nel salto (passava sulla lattuga), giro della frusta più leggibile |
+| Quality fix — navigazione completa con la Modalità Cucina (`record-v3.cjs`) | Intro, Home, Settimana, Spesa 16/16, Dispensa con «Perché?» e correzione, Ricette, scheda ricetta, Modalità Cucina dal primo all'ultimo passaggio con timer, «Ho cucinato»; nessun errore |
 | V2 — nuovi test: regia di Mina (priorità, ripetizioni, interruzioni, azzeramento) | 6/6 |
 | V2 — nuovi test della mascotte: braccio collegato (parte dalla spalla, passa dal gomito, mano sul polso) in 32 configurazioni; nessun braccio davanti al viso in tutte le 27 pose; sopracciglia; grembiule come livello separato | 12/12 nel file `mina2.test.ts` |
 | V2 — intro registrata dal primo avvio reale (`v2/intro_reale.mp4`, fotogrammi in `v2/intro_fotogrammi.jpg`) | Goccia, impatto, increspature, cerchio, maschera, logo con foglia, Mina che esce e saluta, arrivo esatto su logo e Mina del Benvenuto |
@@ -136,6 +160,16 @@ node scripts/screenshots/record-mina.cjs http://localhost:PORTA cartella-out/min
 (La cartella esportata va servita con un server statico che rimanda a `index.html` le rotte sconosciute.)
 
 ## Limiti
+
+**Quality fix (settima richiesta)**
+- Il disegno di Mina resta vettoriale e geometrico: tratto, proporzioni, viso e arti sono allineati al foglio, ma non ne riproduce la grana a mano (spessori che variano, piccole irregolarità). La baguette è leggermente più lunga e la carota più piccola che nel foglio.
+- Il braccio con gomito arrotondato è una scelta di stile: nel foglio le braccia sono un po' più «morbide» lungo tutta la lunghezza. Se si preferisce una leggera curva anche sui segmenti, si aggiunge senza toccare le animazioni.
+- Con la lattuga che sporge a sinistra, il saluto con la sinistra è più basso di quello con la destra (per non passare sopra gli ingredienti).
+- La Modalità Cucina prende come «azione» la prima frase del passaggio: con passaggi lunghi in una sola frase il titolo resta lungo (lo mostra più piccolo). Il riconoscimento degli ingredienti nel testo funziona sul 60%+ dei passaggi; negli altri mostra tutti gli ingredienti della ricetta.
+- Non ho aggiunto la «Modalità essenziale» proposta nella simulazione: non era nel brief e la schermata è già ridotta all'essenziale; si può aggiungere in seguito.
+- Restano valide le note sotto: niente prove su iPhone/Android reali, transizioni native da vedere sul telefono.
+
+**Iterazioni precedenti**
 
 - **Nessuna prova su iPhone o Android reali**: in questo ambiente cloud non ci sono simulatori né Expo Go. Tutte le prove visive sono sulla demo web (Chromium). Le animazioni di Mina su iOS/Android usano il driver nativo e lo stesso codice, ma vanno guardate su un dispositivo prima del rilascio (in particolare fluidità con più Mina sullo schermo).
 - **Notifiche**: sul web non esistono, quindi sono verificate solo dai test automatici (calcolo, testi, orari, fasce di silenzio). Permessi e consegna vanno provati su iPhone.
