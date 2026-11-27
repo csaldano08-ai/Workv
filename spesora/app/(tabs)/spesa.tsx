@@ -191,11 +191,7 @@ function TripView({ trip }: { trip: ShoppingTripPlan }) {
             {`+ altri ${urgent.length - tiles.length} ${isToday ? 'per oggi' : 'subito'}, segnati qui sotto`}
           </Text>
         ) : null}
-        {trip.isInitial ? (
-          <Text variant="small" color={colors.peachInk}>
-            Servono prima del tuo primo giorno di spesa. Se preferisci non uscire, cambia le ricette interessate.
-          </Text>
-        ) : null}
+        {trip.isInitial ? <MoreInfo text="Servono prima del tuo primo giorno di spesa." more="Se preferisci non uscire a comprarli, cambia le ricette interessate dalla Settimana." color={colors.peachInk} /> : null}
         <TripCostLine trip={trip} />
       </NotebookPage>
 
@@ -325,10 +321,29 @@ function TripCostLine({ trip }: { trip: ShoppingTripPlan }) {
     const left = budget.weeklyLimitCents - week.knownCents;
     parts.push(left >= 0 ? `restano circa ${formatCents(left)} del budget` : `oltre il budget di circa ${formatCents(-left)}`);
   }
+  // la cifra (o il «non stimato») subito; la nota su cosa comprende la stima solo a richiesta
+  return <MoreInfo text={`${parts.join(' · ')}.`} more={budget.scopeNote} />;
+}
+
+/** Una riga breve con l'informazione essenziale; la spiegazione si apre con ⓘ (mai ripetuta di continuo). */
+function MoreInfo({ text, more, color = colors.inkSoft }: { text: string; more: string; color?: string }) {
+  const [open, setOpen] = useState(false);
   return (
-    <Text variant="small" color={colors.inkSoft}>
-      {`${parts.join(' · ')}. ${budget.scopeNote}`}
-    </Text>
+    <View style={styles.moreInfo}>
+      <View style={styles.moreRow}>
+        <Text variant="small" color={color} style={styles.flex}>
+          {text}
+        </Text>
+        <Pressable accessibilityRole="button" accessibilityLabel={open ? 'Nascondi la spiegazione' : 'Mostra la spiegazione'} accessibilityState={{ expanded: open }} onPress={() => setOpen((v) => !v)} hitSlop={8}>
+          <Ionicons name={open ? 'information-circle' : 'information-circle-outline'} size={20} color={colors.inkSoft} />
+        </Pressable>
+      </View>
+      {open ? (
+        <Text variant="small" color={colors.inkSoft}>
+          {more}
+        </Text>
+      ) : null}
+    </View>
   );
 }
 
@@ -407,6 +422,8 @@ const styles = StyleSheet.create({
   tile: { flex: 1, alignItems: 'center', gap: 4, paddingVertical: space.md, paddingHorizontal: 4, borderRadius: radius.lg, borderWidth: 1.5, borderColor: colors.line, backgroundColor: colors.greenMist },
   tileOn: { backgroundColor: colors.greenSoft, borderColor: colors.green },
   tileName: { fontWeight: '700', minHeight: 36 },
+  moreInfo: { gap: 4 },
+  moreRow: { flexDirection: 'row', alignItems: 'flex-start', gap: space.sm },
   restHead: { flexDirection: 'row', alignItems: 'baseline', gap: space.sm, marginTop: space.md, paddingTop: space.md, borderTopWidth: 1, borderTopColor: colors.line },
   doneMina: { alignItems: 'center', justifyContent: 'center' },
   burst: { left: 42 - 95, top: 48 - 95 },

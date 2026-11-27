@@ -19,17 +19,13 @@ import { t } from '../../src/i18n/it';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
 import { Card } from '../../src/ui/Card';
-import { AssistantBubble, MinaNote } from '../../src/ui/AssistantBubble';
+import { MinaNote } from '../../src/ui/AssistantBubble';
 import { Reveal } from '../../src/ui/Reveal';
 import { RecipeImage } from '../../src/ui/RecipeImage';
 import { Notice } from '../../src/ui/Notice';
 import { SectionTitle } from '../../src/ui/Row';
 import { Screen } from '../../src/ui/Screen';
 import { Stepper } from '../../src/ui/Stepper';
-import { StepTimer, type TimerPhase } from '../../src/ui/StepTimer';
-import { MinaMascot } from '../../src/ui/mascot/Mina';
-import { emitMina } from '../../src/ui/mascot/director';
-import { useMinaScope } from '../../src/ui/mascot/useMinaScope';
 import { Text } from '../../src/ui/Text';
 
 const AVAILABILITY: Record<IngredientAvailability, { label: string; color: string; icon: keyof typeof Ionicons.glyphMap }> = {
@@ -47,6 +43,7 @@ export default function RecipeScreen() {
   const recipe = catalogIndex.recipe(String(id));
   const meal = mealId ? snapshot?.meals.find((m) => m.id === mealId) : undefined;
   const [localServings, setLocalServings] = useState<number>(snapshot?.profile?.servings ?? recipe?.baseServings ?? 2);
+  const [more, setMore] = useState(false);
 
   if (!recipe || !snapshot) {
     return (
@@ -114,17 +111,25 @@ export default function RecipeScreen() {
       <Text variant="display" accessibilityRole="header">
         {recipe.name}
       </Text>
-      <Text variant="body" color={colors.inkSoft}>
-        {recipe.description}
-      </Text>
 
-      <View style={styles.chips}>
-        <Info icon="time-outline" text={`${recipe.totalMinutes} min in tutto`} />
-        <Info icon="hand-left-outline" text={`${recipe.prepMinutes} min preparazione`} />
-        {recipe.cookMinutes > 0 ? <Info icon="flame-outline" text={`${recipe.cookMinutes} min cottura`} /> : null}
-        {recipe.equipment.map((e) => (
-          <Info key={e} icon="construct-outline" text={EQUIPMENT_LABELS[e]} />
-        ))}
+      {/* l'essenziale: durata, porzioni, azione principale; il resto a richiesta in «Altre informazioni» */}
+      <View style={styles.keyRow}>
+        <View style={styles.keyFact} accessible accessibilityLabel={`${recipe.totalMinutes} minuti in tutto`}>
+          <Ionicons name="time-outline" size={20} color={colors.green} />
+          <Text variant="heading">{`${recipe.totalMinutes} min`}</Text>
+        </View>
+        <View style={styles.keyServings}>
+          <Ionicons name="people-outline" size={20} color={colors.green} />
+          <Stepper label="Porzioni" value={servings} min={1} max={30} onChange={setServings} />
+        </View>
+      </View>
+      <Button label="Inizia a cucinare" icon="restaurant-outline" onPress={() => router.push(`/cucina/${recipe.id}${meal ? `?mealId=${encodeURIComponent(meal.id)}` : ''}`)} />
+      <View style={styles.safety} accessible>
+        <Ionicons name={facts.allergens.length > 0 ? 'warning-outline' : 'checkmark-circle-outline'} size={16} color={facts.allergens.length > 0 ? colors.peachInk : colors.green} />
+        <Text variant="small" color={facts.allergens.length > 0 ? colors.peachInk : colors.greenDark} style={styles.flex}>
+          {facts.allergens.length > 0 ? `Contiene: ${facts.allergens.map((a) => ALLERGEN_LABELS[a]).join(', ')}.` : 'Nessun allergene noto tra gli ingredienti generici.'}
+          {facts.allergenInfoIncomplete ? ' Alcuni prodotti confezionati: verifica l’etichetta.' : ''}
+        </Text>
       </View>
       {prepAhead ? (
         <MinaNote
@@ -135,23 +140,6 @@ export default function RecipeScreen() {
       ) : null}
       {missingCount > 0 && planned ? <MinaNote pose="shopping" text={`Mancano ${missingCount} ${missingCount === 1 ? 'ingrediente' : 'ingredienti'} in dispensa: ${missingCount === 1 ? 'è già' : 'sono già'} nella lista della spesa.`} /> : null}
 
-      <Card>
-        <View style={styles.servingsRow}>
-          <View style={styles.flex}>
-            <Text variant="heading">Porzioni</Text>
-            <Text variant="small" color={colors.inkSoft}>
-              {meal && planned ? 'Vale solo per questo pasto: lista della spesa aggiornata.' : 'Le quantità si adattano.'}
-            </Text>
-          </View>
-          <Stepper label="Porzioni" value={servings} min={1} max={30} onChange={setServings} />
-        </View>
-      </Card>
-
-      {meal && meal.reasons.length > 0 && planned ? (
-        <Text variant="small" color={colors.inkSoft}>
-          {`Perché questa ricetta: ${meal.reasons.join(' · ')}`}
-        </Text>
-      ) : null}
 
       <SectionTitle>Ingredienti</SectionTitle>
       <Card>
@@ -182,35 +170,9 @@ export default function RecipeScreen() {
             </View>
           );
         })}
-        {statuses ? (
-          <Text variant="small" color={colors.inkSoft}>
-            Disponibilità stimata dalla dispensa confermata.
-          </Text>
-        ) : null}
-        <Text variant="small" color={colors.inkSoft}>
-          {`${PORTIONS_NOTE} “TUA” indica le quantità adattate alle tue abitudini.`}
-        </Text>
       </Card>
-
-      <Card tone="peach">
-        <Text variant="heading">Allergeni</Text>
-        <Text variant="small">
-          {facts.allergens.length > 0 ? `Contiene: ${facts.allergens.map((a) => ALLERGEN_LABELS[a]).join(', ')}.` : 'Nessun allergene noto tra gli ingredienti generici.'}
-        </Text>
-        {facts.allergenInfoIncomplete ? (
-          <Text variant="small" color={colors.danger}>
-            Informazioni non verificate: alcuni ingredienti sono prodotti confezionati la cui composizione dipende dalla marca.
-          </Text>
-        ) : null}
-        <Text variant="small" color={colors.inkSoft}>
-          {t('allergen.disclaimer')}
-        </Text>
-      </Card>
-
-      <FoodInfoCard recipeId={recipe.id} servings={servings} />
 
       <SectionTitle>Preparazione</SectionTitle>
-      {meal && planned ? <AssistantBubble pose="cooking" size={88} title="Ai fornelli!" text="Un passo alla volta: i tempi li tengo d'occhio io." /> : null}
       {recipe.steps.map((s, i) => (
         <View key={i} style={styles.step}>
           <View style={styles.stepNum}>
@@ -220,60 +182,68 @@ export default function RecipeScreen() {
           </View>
           <View style={styles.stepBody}>
             <Text variant="body">{s.text}</Text>
-            {s.timerMinutes ? <TimerStep minutes={s.timerMinutes} label={`passaggio ${i + 1}`} /> : null}
+            {s.timerMinutes ? (
+              <View style={styles.stepTime}>
+                <Ionicons name="time-outline" size={15} color={colors.inkSoft} />
+                <Text variant="small" color={colors.inkSoft}>{`${s.timerMinutes} min · timer nella Modalità Cucina`}</Text>
+              </View>
+            ) : null}
           </View>
         </View>
       ))}
 
-      {recipe.substitutions && recipe.substitutions.length > 0 ? (
-        <>
-          <SectionTitle>Sostituzioni possibili</SectionTitle>
-          <Card>
-            {recipe.substitutions.map((sub) => (
-              <Text key={sub.substituteId} variant="small">
-                {`${catalogIndex.ingredient(sub.ingredientId).name} → ${catalogIndex.ingredient(sub.substituteId).name}: ${sub.note}`}
-              </Text>
+      {/* informazioni secondarie: non competono con la ricetta, si aprono a richiesta */}
+      <Pressable accessibilityRole="button" accessibilityState={{ expanded: more }} onPress={() => setMore((v) => !v)} style={styles.moreHead}>
+        <Ionicons name="information-circle-outline" size={20} color={colors.green} />
+        <Text variant="heading" color={colors.green} style={styles.flex}>
+          Altre informazioni
+        </Text>
+        <Ionicons name={more ? 'chevron-up' : 'chevron-down'} size={18} color={colors.green} />
+      </Pressable>
+      {more ? (
+        <View style={styles.moreBody}>
+          <Text variant="body" color={colors.inkSoft}>
+            {recipe.description}
+          </Text>
+          <View style={styles.chips}>
+            <Info icon="hand-left-outline" text={`${recipe.prepMinutes} min preparazione`} />
+            {recipe.cookMinutes > 0 ? <Info icon="flame-outline" text={`${recipe.cookMinutes} min cottura`} /> : null}
+            {recipe.equipment.map((e) => (
+              <Info key={e} icon="construct-outline" text={EQUIPMENT_LABELS[e]} />
             ))}
-          </Card>
-        </>
+          </View>
+          <Text variant="small" color={colors.inkSoft}>
+            {meal && planned ? 'Le porzioni valgono solo per questo pasto: la lista della spesa si aggiorna.' : 'Le quantità si adattano alle porzioni.'}
+          </Text>
+          {meal && meal.reasons.length > 0 && planned ? <Text variant="small" color={colors.inkSoft}>{`Perché questa ricetta: ${meal.reasons.join(' · ')}`}</Text> : null}
+          {statuses ? (
+            <Text variant="small" color={colors.inkSoft}>
+              Disponibilità stimata dalla dispensa confermata.
+            </Text>
+          ) : null}
+          <Text variant="small" color={colors.inkSoft}>
+            {`${PORTIONS_NOTE} “TUA” indica le quantità adattate alle tue abitudini.`}
+          </Text>
+          <Text variant="small" color={colors.inkSoft}>
+            {t('allergen.disclaimer')}
+          </Text>
+          <FoodInfoCard recipeId={recipe.id} servings={servings} />
+          {recipe.substitutions && recipe.substitutions.length > 0 ? (
+            <Card>
+              <Text variant="heading">Sostituzioni possibili</Text>
+              {recipe.substitutions.map((sub) => (
+                <Text key={sub.substituteId} variant="small">
+                  {`${catalogIndex.ingredient(sub.ingredientId).name} → ${catalogIndex.ingredient(sub.substituteId).name}: ${sub.note}`}
+                </Text>
+              ))}
+            </Card>
+          ) : null}
+        </View>
       ) : null}
 
       <Button kind="ghost" icon="repeat-outline" label="Aggiungi a un altro giorno" onPress={() => router.push(`/ripeti/${recipe.id}`)} />
       {actions.sheet}
     </Screen>
-  );
-}
-
-/**
- * Timer del passaggio con Mina Chef accanto, piccola e nella riga del timer (non copre mai il testo):
- * mentre il tempo scorre mescola nella ciotola; a tempo scaduto alza il cucchiaio e strizza l'occhio.
- * Le reazioni passano dalla regia di Mina: avvii e pause ravvicinati non le fanno ripartire ogni volta.
- */
-function TimerStep({ minutes, label }: { minutes: number; label: string }) {
-  const [phase, setPhase] = useState<TimerPhase>('idle');
-  const reaction = useMinaScope('cooking');
-  const mine = reaction?.key === label ? reaction : undefined;
-  const onPhase = (p: TimerPhase) => {
-    setPhase(p);
-    if (p === 'running') emitMina({ scope: 'cooking', kind: 'timerStarted', key: label });
-    if (p === 'done') emitMina({ scope: 'cooking', kind: 'timerDone', key: label });
-  };
-  const show = phase === 'running' || phase === 'done';
-  return (
-    <View style={styles.timerRow}>
-      <View style={styles.flex}>
-        <StepTimer minutes={minutes} label={label} onPhase={onPhase} />
-      </View>
-      {show ? (
-        <MinaMascot
-          pose={phase === 'done' ? 'cooking' : 'mixing'}
-          size={56}
-          animated
-          replayKey={mine?.id}
-          accessibilityLabel={phase === 'done' ? 'Mina Chef: tempo scaduto, si passa al prossimo passaggio' : 'Mina Chef mescola mentre il tempo scorre'}
-        />
-      ) : null}
-    </View>
   );
 }
 
@@ -298,8 +268,14 @@ const styles = StyleSheet.create({
   mine: { backgroundColor: colors.greenSoft, borderRadius: radius.pill, paddingHorizontal: 6, paddingVertical: 1 },
   step: { flexDirection: 'row', gap: space.md },
   stepNum: { width: 32, height: 32, borderRadius: 16, backgroundColor: colors.green, alignItems: 'center', justifyContent: 'center' },
-  stepBody: { flex: 1, gap: space.sm, paddingTop: 4 },
-  timerRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: 64 },
+  stepBody: { flex: 1, gap: space.xs, paddingTop: 4 },
+  stepTime: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  keyRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: space.md, flexWrap: 'wrap' },
+  keyFact: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  keyServings: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
+  safety: { flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: colors.peachSoft, borderRadius: radius.md, paddingHorizontal: space.md, paddingVertical: space.sm },
+  moreHead: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: TOUCH, marginTop: space.sm },
+  moreBody: { gap: space.sm },
 });
 
 /** Costo indicativo e informazioni alimentari con stato esplicito: nessun claim non verificato. */

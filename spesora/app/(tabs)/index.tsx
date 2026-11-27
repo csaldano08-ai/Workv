@@ -250,6 +250,8 @@ function TodayHero({ meal, snap, todayTrip, compact, onMore }: { meal: PlannedMe
   const toCheck = statuses.filter((s) => s.status === 'qb_mancante').length;
   const when = meal.date === snap.today ? 'oggi' : meal.date === addDays(snap.today, 1) ? 'domani' : formatShortDate(meal.date);
   const open = () => router.push(`/ricetta/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`);
+  // «Cucina ora» apre la Modalità Cucina: un passaggio alla volta
+  const cook = () => router.push(`/cucina/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`);
   const favorite = snap.favorites.has(recipe.id);
   // gli ingredienti mancanti sono già nella spesa che arriva prima del pasto
   const trip = snap.shopping.trips.find((tr) => tr.date <= meal.date && tr.lines.length > 0 && tr.lines.some((l) => l.uses.some((u) => u.date === meal.date))) ?? todayTrip;
@@ -312,7 +314,7 @@ function TodayHero({ meal, snap, todayTrip, compact, onMore }: { meal: PlannedMe
 
         <View style={styles.row}>
           <View style={styles.flex}>
-            <Button label="Cucina ora" icon="restaurant-outline" onPress={open} />
+            <Button label="Cucina ora" icon="restaurant-outline" onPress={cook} />
           </View>
           <Squish accessibilityRole="button" accessibilityLabel="Altre azioni: cambia ricetta, sposta, segna come cucinato" onPress={onMore} style={styles.more}>
             <Ionicons name="ellipsis-horizontal" size={22} color={colors.green} />

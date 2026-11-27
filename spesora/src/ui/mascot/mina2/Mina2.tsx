@@ -178,30 +178,27 @@ export class Gesture {
   }
 
   /**
-   * La mano va dal punto attuale a `to` lungo un arco che passa all'esterno del corpo (mai davanti al viso);
-   * a ogni tappa la cinematica inversa ricalcola spalla e gomito, che resta sempre piegato verso l'esterno.
-   * L'andamento (accelerazione, rimbalzo d'arrivo) viene dalla funzione di easing campionata sulle tappe.
+   * La mano va dalla posa attuale alla posa chiave `to` (eventualmente passando per la posa intermedia `via`):
+   * le articolazioni RUOTANO — la spalla guida, l'avambraccio segue con un leggero ritardo (`lag`) — senza mai
+   * deformare le forme. Le pose chiave sono disegnate a mano (poses.ts) e controllate fotogramma per fotogramma.
+   * Con `via` la prima metà accelera e la seconda rallenta: la velocità resta continua (nessun arresto a metà).
    */
-  reach(side: Side, to: Pt, ms: number, opts: { arc?: number; easing?: (t: number) => number; steps?: number } = {}) {
-    const from = this.cur[side];
-    const steps = opts.steps ?? 8;
-    const easing = opts.easing ?? ease;
-    const out = side === 'R' ? 1 : -1;
-    const dist = Math.hypot(to.x - from.x, to.y - from.y);
-    const bulge = (opts.arc ?? 0.3) * dist;
-    const mid = { x: (from.x + to.x) / 2 + out * bulge, y: (from.y + to.y) / 2 - bulge * 0.25 };
-    const at = (t: number) => ({
-      x: (1 - t) * (1 - t) * from.x + 2 * (1 - t) * t * mid.x + t * t * to.x,
-      y: (1 - t) * (1 - t) * from.y + 2 * (1 - t) * t * mid.y + t * t * to.y,
-    });
+  reach(side: Side, to: Pt, ms: number, opts: { easing?: (t: number) => number; via?: Pt; lag?: number; arc?: number; steps?: number } = {}) {
     const [u, f] = side === 'L' ? [this.vals.lU, this.vals.lF] : [this.vals.rU, this.vals.rF];
+    const legs = opts.via
+      ? [
+          { p: opts.via, ms: ms * 0.5, easing: Easing.in(Easing.sin) },
+          { p: to, ms: ms * 0.5, easing: opts.easing ?? Easing.out(Easing.sin) },
+        ]
+      : [{ p: to, ms, easing: opts.easing ?? ease }];
+    const unwrap = (a: number, ref: number) => a + 360 * Math.round((ref - a) / 360);
     let prev = this.ang[side];
     const parts: Animated.CompositeAnimation[] = [];
-    for (let i = 1; i <= steps; i++) {
-      const a = this.solve(side, at(easing(i / steps)));
-      // angoli continui (niente giri di 360°)
-      const next = { upper: a.upper + 360 * Math.round((prev.upper - a.upper) / 360), fore: a.fore + 360 * Math.round((prev.fore - a.fore) / 360) };
-      parts.push(Animated.parallel([this.tween(u, next.upper, ms / steps, linear), this.tween(f, next.fore, ms / steps, linear)]));
+    for (const leg of legs) {
+      const a = this.solve(side, leg.p);
+      const next = { upper: unwrap(a.upper, prev.upper), fore: unwrap(a.fore, prev.fore) };
+      const lag = Math.min(leg.ms * 0.3, opts.lag ?? leg.ms * 0.14);
+      parts.push(Animated.parallel([this.tween(u, next.upper, leg.ms - lag, leg.easing), Animated.sequence([Animated.delay(T(lag)), this.tween(f, next.fore, leg.ms - lag, leg.easing)])]));
       prev = next;
     }
     this.cur[side] = to;
@@ -261,57 +258,71 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
   };
   switch (action) {
     case 'emerge': {
-      // intro: esce dal basso a occhi chiusi (la salita la fa l'intro), li apre, sorride e saluta; alla fine il
-      // braccio resta alzato, cioè la posa ferma della schermata di Benvenuto, che prende il suo posto senza stacchi
+      // intro: esce dal basso a occhi chiusi (la salita la fa l'intro) e si assesta con un piccolo rimbalzo; apre gli
+      // occhi, sorride, alza la mano con gradualità e fa un saluto breve; il braccio resta alzato: è la posa ferma
+      // del Benvenuto, che prende il suo posto senza stacchi
       const g = make(rest);
       return {
         start: { at: rest, eyes: 'closed', mouth: 'small', brows: 'none' },
         end: posed,
         cues: [
-          [440, 'open', null, null],
-          [540, null, 'smile', 'raised'],
-          [1300, null, null, 'none'],
+          [380, 'open', null, null],
+          [480, null, 'smile', 'raised'],
+          [1400, null, null, 'none'],
         ],
         anim: Animated.sequence([
-          Animated.delay(T(460)),
-          Animated.parallel([g.reach('R', posed.R, 250, { arc: 0.32, easing: Easing.out(Easing.back(1.25)) }), g.reach('L', posed.L, 280, { arc: 0.2 }), g.tween(vals.tilt, -2, 250)]),
-          Animated.parallel([g.swing('R', [20, -12, 20], 110), Animated.sequence([g.tween(vals.tilt, 1.2, 220), g.tween(vals.tilt, 0, 220)])]),
+          // assestamento dopo la salita: si schiaccia appena e torna
+          Animated.delay(T(180)),
+          g.tween(vals.squash, 0.95, 120, easeOut),
+          g.tween(vals.squash, 1, 220, back),
+          Animated.parallel([g.reach('R', posed.R, 420, { via: handAt('R', ARM.liftWaveR, v) }), g.tween(vals.tilt, -1.5, 380)]),
+          Animated.parallel([g.swing('R', [10, -6, 10], 130), Animated.sequence([g.tween(vals.tilt, 1, 260), g.tween(vals.tilt, 0, 260)])]),
         ]),
       };
     }
     case 'greet': {
-      // sorride e saluta: la mano sale lungo un arco all'esterno, l'avambraccio oscilla due volte dal gomito,
-      // poi il braccio torna a riposo con lo stesso arco
+      // saluto delicato: guarda verso chi usa l'app e sorride, alza la mano con gradualità (la spalla guida, il gomito
+      // si piega appena), due piccole oscillazioni della mano, un battito di ciglia, poi il braccio torna giù
+      // lungo la stessa via. La mano resta accanto alla borsa: non passa davanti al viso né agli ingredienti.
       const g = make(rest);
+      const via = handAt('R', ARM.liftWaveR, v);
       const wave = handAt('R', ARM.waveR, v);
       return {
         start: { at: rest, eyes: 'open', mouth: 'small', brows: 'none' },
         end: rest,
         cues: [
-          [120, null, 'smile', 'raised'],
-          [1500, null, null, 'none'],
+          [90, null, 'smile', 'soft'],
+          [1500, 'open', null, null],
+          [1700, null, null, 'none'],
         ],
         anim: Animated.sequence([
-          Animated.parallel([g.reach('R', wave, 560, { arc: 0.32, easing: Easing.out(Easing.back(1.25)) }), g.reach('L', posed.L, 600, { arc: 0.2 }), g.tween(vals.tilt, -2, 460)]),
-          Animated.parallel([g.swing('R', [22, -14, 22, -14], 210), Animated.sequence([g.tween(vals.tilt, 1.5, 420), g.tween(vals.tilt, -1.5, 420)])]),
-          Animated.delay(T(360)),
-          Animated.parallel([g.reach('R', rest.R, 620, { arc: 0.3 }), g.reach('L', rest.L, 620, { arc: 0.15 }), g.tween(vals.tilt, 0, 560)]),
+          Animated.parallel([g.tween(vals.gazeX, 0, 200), g.tween(vals.gazeY, 0, 200), g.tween(vals.tilt, -1.5, 500)]),
+          g.reach('R', wave, 700, { via }),
+          Animated.parallel([g.swing('R', [10, -6, 10, -6], 165), Animated.sequence([g.tween(vals.tilt, 0.8, 410), g.tween(vals.tilt, -0.8, 410)])]),
+          Animated.delay(T(260)),
+          Animated.parallel([g.reach('R', rest.R, 650, { via }), g.tween(vals.tilt, 0, 600)]),
         ]),
       };
     }
     case 'greetL': {
-      // lo stesso saluto con la mano sinistra
+      // lo stesso saluto delicato con la mano sinistra (più in basso: sopra c'è la lattuga)
       const g = make(rest);
+      const via = handAt('L', ARM.liftWaveL, v);
       const wave = handAt('L', ARM.waveL, v);
       return {
         start: { at: rest, eyes: 'open', mouth: 'small', brows: 'none' },
         end: rest,
-        cues: [[120, null, 'smile', 'raised'], [1500, null, null, 'none']],
+        cues: [
+          [90, null, 'smile', 'soft'],
+          [1500, 'open', null, null],
+          [1700, null, null, 'none'],
+        ],
         anim: Animated.sequence([
-          Animated.parallel([g.reach('L', wave, 560, { arc: 0.32, easing: Easing.out(Easing.back(1.25)) }), g.tween(vals.tilt, 2, 460)]),
-          Animated.parallel([g.swing('L', [22, -14, 22, -14], 210), Animated.sequence([g.tween(vals.tilt, -1.5, 420), g.tween(vals.tilt, 1.5, 420)])]),
-          Animated.delay(T(360)),
-          Animated.parallel([g.reach('L', rest.L, 620, { arc: 0.3 }), g.tween(vals.tilt, 0, 560)]),
+          Animated.parallel([g.tween(vals.gazeX, 0, 200), g.tween(vals.gazeY, 0, 200), g.tween(vals.tilt, 1.5, 500)]),
+          g.reach('L', wave, 700, { via }),
+          Animated.parallel([g.swing('L', [10, -6, 10, -6], 165), Animated.sequence([g.tween(vals.tilt, -0.8, 410), g.tween(vals.tilt, 0.8, 410)])]),
+          Animated.delay(T(260)),
+          Animated.parallel([g.reach('L', rest.L, 650, { via }), g.tween(vals.tilt, 0, 600)]),
         ]),
       };
     }
@@ -335,7 +346,8 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
     case 'jump': {
       // salto: si carica (braccia indietro, schiacciata), si stacca con le braccia in alto, atterra e si ricompone
       const g = make(rest);
-      const up = { L: { x: rest.L.x - 6, y: rest.L.y - 46 }, R: { x: rest.R.x + 6, y: rest.R.y - 46 } };
+      // braccia in alto ai lati della borsa (posa «felice»): mai sopra la lattuga o il ciuffo della carota
+      const up = { L: handAt('L', CHEER[v].l, v), R: handAt('R', CHEER[v].r, v) };
       const low = { L: { x: rest.L.x - 8, y: rest.L.y + 4 }, R: { x: rest.R.x + 8, y: rest.R.y + 4 } };
       return {
         start: { at: rest, eyes: 'open', mouth: 'smile', brows: 'none' },
@@ -420,11 +432,12 @@ function timeline(action: MinaAction, look: MinaLook, vals: Vals): Timeline {
       // Mina Chef mescola: la ciotola resta ferma, la mano con la frusta fa tre giri piccoli, il cappello ondeggia
       const g = make(posed);
       const c = posed.R;
+      // la frusta descrive un piccolo cerchio dentro la ciotola (la ciotola resta ferma): quattro tappe per giro
       const loop = () => [
-        g.reach('R', { x: c.x + 4, y: c.y + 1.5 }, 150, { arc: 0, steps: 3, easing: linear }),
-        g.reach('R', { x: c.x, y: c.y + 3.5 }, 150, { arc: 0, steps: 3, easing: linear }),
-        g.reach('R', { x: c.x - 4, y: c.y + 1.5 }, 150, { arc: 0, steps: 3, easing: linear }),
-        g.reach('R', { x: c.x, y: c.y - 1 }, 150, { arc: 0, steps: 3, easing: linear }),
+        g.reach('R', { x: c.x + 5.5, y: c.y + 2 }, 150, { easing: linear, lag: 0 }),
+        g.reach('R', { x: c.x, y: c.y + 4.5 }, 150, { easing: linear, lag: 0 }),
+        g.reach('R', { x: c.x - 5.5, y: c.y + 2 }, 150, { easing: linear, lag: 0 }),
+        g.reach('R', { x: c.x, y: c.y - 0.5 }, 150, { easing: linear, lag: 0 }),
       ];
       return {
         start: { at: posed, eyes: 'open', mouth: look.mouth, brows: 'none' },

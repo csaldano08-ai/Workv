@@ -101,42 +101,50 @@ export default function Pantry() {
           {quantified.map((i, idx) => {
             const ing = catalogIndex.ingredient(i.ingredientId);
             const st = stateOf(i);
-            const qty = i.available > 0 ? formatQtyWithUnit(i.available, ing.unit) : null;
-            // sotto il nome solo ciò che cambia le decisioni (quanto è già previsto, quando scade)
-            const parts = [i.reserved > 0 ? `previsti ${formatQtyWithUnit(i.reserved, ing.unit)}` : null, i.expiryDate ? `scade ${formatShortDate(i.expiryDate)}` : null].filter(Boolean);
+            const avail = i.available > 0 ? formatQtyWithUnit(i.available, ing.unit) : null;
+            const need = i.reserved > 0 ? formatQtyWithUnit(i.reserved, ing.unit) : null;
             const s = STATE[st];
+            // quantità subito leggibili: «550 g disponibili / 940 g necessari» e lo stato a parole; i dettagli
+            // (stima, scadenza, correzioni) toccando il prodotto
             return (
               <Pressable
                 key={i.ingredientId}
                 accessibilityRole="button"
-                accessibilityLabel={`${ing.name}: ${s.label}. ${[qty ? `${qty}${i.estimated ? ' stimati' : ''}` : null, ...parts].filter(Boolean).join(', ')}`}
+                accessibilityLabel={`${ing.name}: ${avail ? `${avail} disponibili${i.estimated ? ', stima' : ''}` : 'esaurito'}${need ? `, ${need} necessari` : ''}. Stato: ${s.row}${i.expiryDate ? `. Scade il ${formatShortDate(i.expiryDate)}` : ''}`}
                 onPress={() => router.push(`/voce/${i.ingredientId}`)}
                 style={({ pressed }) => [styles.item, idx > 0 && styles.itemLine, pressed && { opacity: 0.7 }]}
               >
                 <CategoryIcon category={ing.category} size={30} />
                 <View style={styles.flex}>
-                  <Text variant="body" numberOfLines={2}>
+                  <Text variant="body" numberOfLines={2} style={styles.itemName}>
                     {ing.name}
                   </Text>
-                  {parts.length ? (
-                    <Text variant="small" color={colors.inkSoft} numberOfLines={1}>
-                      {parts.join(' · ')}
+                  <Text variant="small" color={colors.inkSoft}>
+                    <Text variant="small" color={st === 'out' ? colors.inkSoft : colors.ink} style={styles.bold}>
+                      {avail ?? '0'}
                     </Text>
-                  ) : null}
-                </View>
-                {/* quantità in evidenza a destra; lo stato è il colore dell'icona (legenda in alto) */}
-                <View style={styles.qtyCol}>
-                  <Text variant="heading" style={styles.qty} color={st === 'out' ? colors.inkSoft : colors.ink}>
-                    {qty ?? '—'}
+                    {` disponibili${i.estimated && avail ? ' (stima)' : ''}`}
+                    {need ? (
+                      <>
+                        {' / '}
+                        <Text variant="small" color={colors.ink} style={styles.bold}>
+                          {need}
+                        </Text>
+                        {' necessari'}
+                      </>
+                    ) : null}
                   </Text>
-                  {i.estimated && qty ? (
-                    <Text variant="caption" color={s.fg}>
-                      STIMA
+                  {i.expiryDate ? (
+                    <Text variant="caption" color={colors.inkSoft}>
+                      {`SCADE ${formatShortDate(i.expiryDate).toUpperCase()}`}
                     </Text>
                   ) : null}
                 </View>
-                <View style={[styles.stateDot, { backgroundColor: s.bg }]}>
-                  <Ionicons name={s.icon} size={16} color={s.fg} />
+                <View style={[styles.rowTag, { backgroundColor: s.bg }]}>
+                  <Ionicons name={s.icon} size={14} color={s.fg} />
+                  <Text variant="caption" color={s.fg}>
+                    {s.row.toUpperCase()}
+                  </Text>
                 </View>
                 <Ionicons name="chevron-forward" size={16} color={colors.inkSoft} />
               </Pressable>
@@ -181,11 +189,11 @@ export default function Pantry() {
 }
 
 type PantryState = 'ok' | 'check' | 'short' | 'out';
-const STATE: Record<PantryState, { label: string; bg: string; fg: string; icon: keyof typeof Ionicons.glyphMap }> = {
-  ok: { label: 'Disponibile', bg: colors.greenSoft, fg: colors.greenDark, icon: 'checkmark-circle' },
-  check: { label: 'Da verificare (stima)', bg: '#F3E3A6', fg: '#6B5410', icon: 'help-circle' },
-  short: { label: 'Potrebbe non bastare', bg: colors.peachSoft, fg: colors.peachInk, icon: 'alert-circle' },
-  out: { label: 'Esaurito', bg: colors.tab, fg: colors.inkSoft, icon: 'remove-circle' },
+const STATE: Record<PantryState, { label: string; row: string; bg: string; fg: string; icon: keyof typeof Ionicons.glyphMap }> = {
+  ok: { label: 'Disponibile', row: 'Disponibile', bg: colors.greenSoft, fg: colors.greenDark, icon: 'checkmark-circle' },
+  check: { label: 'Da verificare (stima)', row: 'Da verificare', bg: '#F3E3A6', fg: '#6B5410', icon: 'help-circle' },
+  short: { label: 'Potrebbe non bastare', row: 'Insufficiente', bg: colors.peachSoft, fg: colors.peachInk, icon: 'alert-circle' },
+  out: { label: 'Esaurito', row: 'Esaurito', bg: colors.tab, fg: colors.inkSoft, icon: 'remove-circle' },
 };
 
 /**
@@ -218,27 +226,42 @@ function ShortageScene({ names }: { names: string[] }) {
   }, [key]);
   // finito il sorriso per l'ingrediente sistemato, Mina torna composta (senza rifare la scena dell'avviso)
   const [calmFor, setCalmFor] = useState<number | null>(null);
+  // livello 2: la spiegazione compare solo se la chiedi (toccando Mina o «Perché?»), mai da sola
+  const [why, setWhy] = useState(false);
   if (names.length > 0) {
     const relief = reaction?.kind === 'shortageResolved' && calmFor !== reaction.id ? reaction : undefined;
     const acting = relief || reaction?.kind === 'shortage';
     return (
-      <View style={styles.scene}>
-        <MinaMascot
-          pose={relief ? 'happy' : 'concerned'}
-          gesture={acting ? undefined : 'none'}
-          replayKey={reaction?.id}
-          onDone={relief ? () => setCalmFor(relief.id) : undefined}
-          size={92}
-          animated
-          accessibilityLabel={relief ? 'Mina sorride: un ingrediente è a posto' : 'Mina è preoccupata: qualcosa potrebbe non bastare'}
-          style={styles.sceneMina}
-        />
-        <StickyNote style={styles.flex}>
-          <Text variant="hand">{relief ? 'Meglio così!' : 'Potrebbe non bastare'}</Text>
-          <Text variant="small" color={colors.inkSoft}>
-            {relief ? `${relief.key?.split(',').join(', ')}: a posto. Restano ${key}, già nella lista della spesa.` : `${key}: il resto è già nella lista della spesa.`}
-          </Text>
-        </StickyNote>
+      <View style={styles.sceneWrap}>
+        <Pressable accessibilityRole="button" accessibilityState={{ expanded: why }} accessibilityLabel={`${names.length} ingredienti potrebbero non bastare. Tocca per sapere perché`} onPress={() => setWhy((v) => !v)} style={styles.scene}>
+          <MinaMascot
+            pose={relief ? 'happy' : 'concerned'}
+            gesture={acting ? undefined : 'none'}
+            replayKey={reaction?.id}
+            onDone={relief ? () => setCalmFor(relief.id) : undefined}
+            size={92}
+            animated
+            style={styles.sceneMina}
+          />
+          <View style={styles.flex}>
+            <Text variant="hand">{relief ? 'Meglio così!' : `${names.length} ${names.length === 1 ? 'ingrediente potrebbe' : 'ingredienti potrebbero'} non bastare`}</Text>
+            <View style={styles.minaTap}>
+              <Ionicons name={why ? 'chevron-up-circle-outline' : 'help-circle-outline'} size={16} color={colors.green} />
+              <Text variant="small" color={colors.green}>
+                {why ? 'Chiudi' : 'Perché?'}
+              </Text>
+            </View>
+          </View>
+        </Pressable>
+        {why ? (
+          <Reveal from="pop">
+            <StickyNote>
+              <Text variant="small" color={colors.inkSoft}>
+                {`Per i pasti previsti serve più di quanto risulta in dispensa (${key}). Quello che manca è già nella lista della spesa. Se in casa ne hai di più, tocca il prodotto e correggi la quantità.`}
+              </Text>
+            </StickyNote>
+          </Reveal>
+        ) : null}
       </View>
     );
   }
@@ -276,13 +299,15 @@ const styles = StyleSheet.create({
   legend: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   pill: { flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 10, paddingVertical: 5, borderRadius: radius.pill },
   scene: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
+  sceneWrap: { gap: space.sm },
   sceneMina: { marginLeft: -space.sm },
   noteBtn: { alignSelf: 'flex-start', marginTop: space.sm },
   page: { paddingHorizontal: space.md, gap: 0 },
   item: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: TOUCH + 8, paddingVertical: space.sm },
-  qtyCol: { alignItems: 'flex-end', minWidth: 64 },
-  qty: { fontVariant: ['tabular-nums'] },
-  stateDot: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  itemName: { fontWeight: '600' },
+  bold: { fontWeight: '800', fontVariant: ['tabular-nums'] },
+  rowTag: { flexDirection: 'row', alignItems: 'center', gap: 3, paddingHorizontal: 8, paddingVertical: 4, borderRadius: radius.pill },
+  minaTap: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
   itemLine: { borderTopWidth: 1, borderTopColor: colors.line },
   section: { marginTop: space.sm },
   staples: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },

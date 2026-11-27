@@ -99,6 +99,7 @@ function Shell() {
         <Stack.Screen name="prezzi" options={{ title: 'Prezzi' }} />
         <Stack.Screen name="economica" options={{ title: 'Settimana più economica', presentation: 'modal' }} />
         <Stack.Screen name="mina" options={{ title: 'Mina 2.0' }} />
+        <Stack.Screen name="cucina/[id]" options={{ title: 'Modalità Cucina' }} />
       </Stack>
       <CelebrationHost />
       <LoaderHost />

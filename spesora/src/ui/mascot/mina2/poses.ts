@@ -1,34 +1,43 @@
 import { RIG, armTo, type ArmPose, type MinaLook, type Variant } from './art';
 
-/** Pose del braccio, descritte dalla posizione della mano (cinematica inversa in `armTo`). */
+/**
+ * Pose chiave del braccio di Mina 2.0, descritte dalla posizione del palmo (la cinematica inversa in `armTo` dà le
+ * rotazioni di spalla e gomito). Spalle e lunghezze dal foglio approvato (spalle all'altezza della bocca, braccio
+ * 18, avambraccio 16). Le mani restano fuori dal viso e lontane da lattuga (a sinistra) e ciuffo della carota (a
+ * destra): nessun braccio attraversa gli ingredienti.
+ */
 export const ARM = {
-  // braccia corte come nel foglio: spalle sui bordi della borsa, mani a guanto
-  // a riposo le braccia pendono appena piegate (nel foglio sono morbide, non a parentesi)
-  restL: armTo('L', 28, 154),
-  restR: armTo('R', 173, 150),
-  // braccio sinistro rilassato e appena aperto, come nel disegno principale del foglio (non sull'anca)
-  hipL: armTo('L', 25, 149),
-  waveR: armTo('R', 173, 90),
-  cheerL: armTo('L', 26, 94),
-  cheerR: armTo('R', 173, 89),
-  openL: armTo('L', 16, 128),
-  openR: armTo('R', 185, 128),
-  chinR: armTo('R', 147, 141),
-  raiseR: armTo('R', 179, 106),
-  holdR: armTo('R', 165, 141),
-  upL: armTo('L', 24, 106),
-  upR: armTo('R', 175, 102),
-  // indica il contenuto accanto (braccio disteso verso destra)
-  pointR: armTo('R', 191, 113),
-  // saluto con la mano sinistra (specchio del destro)
-  waveL: armTo('L', 25, 90),
-  // solleva un oggetto sopra la spalla
-  liftR: armTo('R', 178, 96),
-  // pugno di soddisfazione davanti al corpo
-  pumpR: armTo('R', 178, 101),
+  // a riposo: braccio un po' aperto, gomito morbido verso l'esterno, mano all'altezza del fondo della borsa (foglio)
+  restL: armTo('L', 26, 146),
+  restR: armTo('R', 174, 150),
+  hipL: armTo('L', 24, 148),
+  // saluto (foglio): gomito in fuori all'altezza della guancia, avambraccio in su, mano accanto all'angolo della borsa
+  waveR: armTo('R', 181, 103),
+  // posa intermedia del saluto: il braccio si alza dalla spalla, l'avambraccio ancora un po' piegato in giù
+  liftWaveR: armTo('R', 182, 142),
+  // saluto con la sinistra: più basso, sotto la lattuga che sporge a sinistra
+  waveL: armTo('L', 17, 123),
+  liftWaveL: armTo('L', 19, 146),
+  // felice: braccia aperte e in su, ai lati della borsa (non sopra gli ingredienti)
+  cheerL: armTo('L', 9, 119),
+  cheerR: armTo('R', 185, 104),
+  openL: armTo('L', 12, 136),
+  openR: armTo('R', 189, 137),
+  // pensierosa: la mano sotto la guancia destra, fuori dal viso
+  chinR: armTo('R', 150, 140),
+  raiseR: armTo('R', 183, 108),
+  holdR: armTo('R', 171, 146),
+  upL: armTo('L', 8, 120),
+  upR: armTo('R', 186, 102),
+  // indica di lato: braccio quasi disteso all'altezza della spalla
+  pointR: armTo('R', 190, 128),
+  // solleva un oggetto sopra la spalla, accanto alla borsa
+  liftR: armTo('R', 182, 106),
+  // pugno di soddisfazione: avambraccio in su accanto al corpo
+  pumpR: armTo('R', 180, 110),
   // braccia un po' aperte in basso, da preoccupata
-  worryL: armTo('L', 26, 146),
-  worryR: armTo('R', 175, 142),
+  worryL: armTo('L', 22, 148),
+  worryR: armTo('R', 178, 147),
 } as const satisfies Record<string, ArmPose>;
 
 const chefArm = (side: 'L' | 'R', x: number, y: number, extra: Partial<ArmPose> = {}) => armTo(side, x, y, extra, 'chef');
@@ -55,14 +64,16 @@ export const CHEF_ARM = {
   cheerL: chefArm('L', 44, 126),
   cheerR: chefArm('R', 160, 110),
   // 1 · cucchiaio di legno alzato; la sinistra, a pugno, stringe il fiocco del grembiule
-  bowL: chefArm('L', 60, 139, { len: [4, 4.5], prop: 'fist' }),
-  spoonR: chefArm('R', 162.5, 118, { len: [12, 16] }),
+  // la sinistra stringe il laccio del grembiule proprio sopra il fiocco, come nel foglio (pugno chiuso)
+  bowL: chefArm('L', 61, 146, { len: [4, 4.5], prop: 'grip' }),
+  spoonR: chefArm('R', 166, 116.5, { len: [12, 16] }),
   // 2 · mescola: la sinistra tiene la ciotola dal bordo, la destra la frusta
   bowlL: chefAt('L', 100, 160, LEAN.mixing, { len: [24, 24] }),
   whiskR: chefAt('R', 165, 117, LEAN.mixing, { len: [15, 17] }),
   // 3 · serve: la cloche sul vassoio alto a destra, la sinistra lungo il fianco
-  sideL: chefAt('L', 55, 177, LEAN.serving, { len: [14, 15] }),
-  sideL4: chefAt('L', 55, 177, LEAN.checklist, { len: [14, 15] }),
+  // nel foglio il braccio sinistro è corto e vicino al fianco, la mano all'altezza del grembiule
+  sideL: chefAt('L', 57, 168, LEAN.serving, { len: [12, 12] }),
+  sideL4: chefAt('L', 57, 168, LEAN.checklist, { len: [12, 12] }),
   clocheR: chefAt('R', 167, 101, LEAN.serving, { len: [20, 23] }),
   // 4 · checklist: la mano destra tiene la cartellina dal bordo destro (il braccio passa dietro)
   boardR: chefAt('R', 190.5, 124.5, LEAN.checklist, { len: [27, 27] }),

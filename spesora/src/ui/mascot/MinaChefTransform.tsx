@@ -404,7 +404,7 @@ function Transform({ W, H, play, onDone, a11y, style }: { W: number; H: number; 
   const squashT = around(RIG.chef.bodyPivot.x, RIG.chef.bodyPivot.y, [{ scaleY: vals.squash }, { scaleX: vals.squash.interpolate({ inputRange: [0.8, 1, 1.2], outputRange: [1.08, 1, 0.94] }) }]);
   const armsLook: MinaLook = {
     ...FINAL,
-    armL: { ...FINAL.armL, prop: stage >= 1 ? 'fist' : 'none' },
+    armL: { ...FINAL.armL, prop: stage >= 1 ? 'grip' : 'none' },
     armR: { ...FINAL.armR, prop: stage >= 2 ? 'spoon' : 'none' },
   };
   const chef = (
