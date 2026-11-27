@@ -167,7 +167,7 @@ function Header({ snap }: { snap: AppSnapshot }) {
       <LogoMark size={36} />
       <View style={styles.flex}>
         <Text variant="heading" color={colors.greenDark} style={styles.brand}>
-          Spesora
+          Mina
         </Text>
         <Text variant="small" color={colors.inkSoft}>
           {capitalize(formatLongDate(snap.today))}

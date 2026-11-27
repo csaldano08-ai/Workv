@@ -1,25 +1,25 @@
 import { router } from 'expo-router';
-import { useEffect, useRef, type RefObject } from 'react';
-import { StyleSheet, View, type HostInstance } from 'react-native';
+import { useEffect, useRef, useState, type ReactNode, type RefObject } from 'react';
+import { Platform, Pressable, ScrollView, StyleSheet, useWindowDimensions, View, type HostInstance, type NativeScrollEvent, type NativeSyntheticEvent, type ScrollViewInstance } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Svg, { Path } from 'react-native-svg';
+import { appConfig } from '../src/core/config';
 import { useApp } from '../src/features/app/AppProvider';
-import { colors, radius, space } from '../src/theme/tokens';
-import { MinaMascot } from '../src/ui/mascot/Mina';
-import { Floaty } from '../src/ui/Decor';
-import { Ingredient } from '../src/ui/illustrations/Ingredient';
-import { Reveal } from '../src/ui/Reveal';
-import { StickyNote } from '../src/ui/notebook';
-import { Button } from '../src/ui/Button';
-import { Logo } from '../src/ui/Logo';
-import { Screen } from '../src/ui/Screen';
-import { Text } from '../src/ui/Text';
-import { t } from '../src/i18n/it';
 import { registerIntroAnchor, useIntroState, type IntroAnchor } from '../src/features/intro/introBus';
+import { colors, space } from '../src/theme/tokens';
+import { MinaLogo } from '../src/ui/brand/MinaLogo';
+import { Button } from '../src/ui/Button';
+import { MinaMascot } from '../src/ui/mascot/Mina';
+import { Text } from '../src/ui/Text';
 
-const POINTS = [
-  { title: 'Cosa cucinare', text: 'Colazione, pranzo e cena per tutta la settimana, nel tempo che hai.' },
-  { title: 'Quando fare la spesa', text: 'Liste divise per i giorni in cui esci davvero a comprare.' },
-  { title: 'Cosa resta in dispensa', text: 'Le quantità si aggiornano solo quando confermi di aver cucinato.' },
-];
+/*
+ * Benvenuto (telefoni 1 e 2 del riferimento): tre pagine brevi, una per vantaggio, grafica grande e poche parole.
+ *   1 · Mina 2.0 saluta, logo, «Cucina e organizza la tua spesa.»  → «Inizia»
+ *   2 · Mina Chef con cucchiaio e ciotola, «Benvenuto in Mina!»     → «Continua» (le ricette)
+ *   3 · Mina 2.0 con la lista, la spesa già pronta                  → «Continua» porta al questionario
+ * Nessun account, nessun accesso con email, Google o Apple: si parte e basta.
+ * Si vede solo finché il profilo non esiste (OnboardingGate); chi ha già iniziato il questionario lo riprende subito.
+ */
 
 /** Registra dove si trova un elemento, perché l'intro possa arrivarci esattamente (passaggio senza tagli). */
 function useIntroAnchor(name: IntroAnchor, ref: RefObject<HostInstance | null>) {
@@ -38,108 +38,168 @@ function useIntroAnchor(name: IntroAnchor, ref: RefObject<HostInstance | null>) 
   );
 }
 
+const PAGES = 3;
+/** Abbonamento obbligatorio configurato (app.json → extra.paywallMode = "required"): va detto prima del questionario. */
+const SUBSCRIPTION_REQUIRED = appConfig.paywallMode === 'required';
+
 export default function Welcome() {
   const { snapshot } = useApp();
   const resuming = !!snapshot?.onboarding && !snapshot.onboarding.completed;
+  const { width, height } = useWindowDimensions();
+  const [page, setPage] = useState(0);
+  const pager = useRef<ScrollViewInstance>(null);
   // dopo l'intro Mina è già qui e ha già salutato: resta nella posa del saluto, viva, senza ripetere il gesto
   const intro = useIntroState();
   const logoRef = useRef<HostInstance>(null);
   const minaRef = useRef<HostInstance>(null);
   useIntroAnchor('logo', logoRef);
   useIntroAnchor('mina', minaRef);
+
+  // spazio per la grafica: telefoni bassi (iPhone SE) con Mina più piccola, così testo e pulsante restano visibili
+  const art = Math.round(Math.min(250, Math.max(150, (height - 400) * 0.58)));
+
+  const go = (p: number) => {
+    setPage(p);
+    pager.current?.scrollTo({ x: p * width, animated: true });
+  };
+  const next = () => {
+    if (resuming || page >= PAGES - 1) router.push('/onboarding');
+    else go(page + 1);
+  };
+  const onScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const p = Math.round(e.nativeEvent.contentOffset.x / Math.max(1, width));
+    if (p !== page && p >= 0 && p < PAGES) setPage(p);
+  };
+  const label = resuming ? 'Riprendi il questionario' : page === 0 ? 'Inizia' : 'Continua';
+
   return (
-    <Screen
-      edges={['top', 'bottom']}
-      reveal={false}
-      footer={
-        <>
-          <Button label={resuming ? 'Riprendi da dove eri rimasto' : t('welcome.start')} onPress={() => router.push('/onboarding')} />
-          <Button kind="ghost" label={t('welcome.privacy')} onPress={() => router.push('/privacy')} />
-        </>
-      }
-    >
-      <View style={styles.hero}>
-        <Reveal style={styles.brand}>
-          <View ref={logoRef} collapsable={false}>
-            <Logo size={36} />
+    <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+      <Blobs />
+      <ScrollView
+        ref={pager}
+        horizontal
+        pagingEnabled
+        scrollEnabled={!resuming}
+        showsHorizontalScrollIndicator={false}
+        onScroll={onScroll}
+        scrollEventThrottle={32}
+        style={styles.flex}
+        accessibilityLabel="Presentazione di Mina"
+      >
+        <Page width={width}>
+          <View ref={minaRef} collapsable={false}>
+            <MinaMascot pose="welcome" size={art} animated={intro === 'none'} idle interactive accessibilityLabel="Mina, la tua borsetta della spesa, che ti saluta" />
           </View>
-        </Reveal>
-        <Reveal>
-          <View style={styles.stage}>
-            <View style={styles.blob} />
-            <View style={styles.blobInner} />
-            <Floaty style={styles.ingTL}>
-              <Ingredient kind="leaf" size={46} />
-            </Floaty>
-            <Floaty delay={400} style={styles.ingTR}>
-              <Ingredient kind="lemon" size={44} />
-            </Floaty>
-            <Floaty delay={800} style={styles.ingBL}>
-              <Ingredient kind="tomato" size={50} />
-            </Floaty>
-            <Floaty delay={1200} style={styles.ingBR}>
-              <Ingredient kind="carrot" size={48} />
-            </Floaty>
-            <View ref={minaRef} collapsable={false}>
-              <MinaMascot pose="welcome" size={220} animated={intro === 'none'} idle interactive accessibilityLabel="Mina, la borsetta della spesa di Spesora, che ti saluta" />
-            </View>
+          <View ref={logoRef} collapsable={false} style={styles.logo}>
+            <MinaLogo height={Math.round(art * 0.27)} />
           </View>
-        </Reveal>
-        <Reveal index={1}>
-          <StickyNote tone="sage" style={styles.speech}>
-            <Text variant="hand" center accessibilityLabel="Mina: Ciao, sono Mina!">Ciao, sono Mina!</Text>
-            <Text variant="body" color={colors.inkSoft}>
-              Ti aiuto a decidere cosa cucinare, cosa comprare e quando. Tu pensi solo a goderti il pasto.
+          <Text variant="heading" center style={styles.tagline}>
+            {'Cucina e organizza\nla tua spesa.'}
+          </Text>
+          {/* trasparenza: chi inizia il questionario sa già che l'accesso completo sarà a pagamento */}
+          {SUBSCRIPTION_REQUIRED ? (
+            <Text variant="small" color={colors.inkSoft} center style={styles.disclosure}>
+              Personalizza il tuo piano. L’accesso completo richiede un abbonamento.
             </Text>
-          </StickyNote>
-        </Reveal>
-        <Reveal index={2} style={{ gap: space.sm }}>
-          <Text variant="title" color={colors.ink} style={styles.slogan}>
-            {t('app.slogan')}
-          </Text>
-          <Text variant="body" color={colors.inkSoft}>
-            {t('welcome.value')}
-          </Text>
-        </Reveal>
-      </View>
-      <View style={styles.points}>
-        {POINTS.map((p, i) => (
-          <View key={p.title} style={styles.point}>
-            <View style={styles.num}>
-              <Text variant="heading" color={colors.white}>
-                {i + 1}
-              </Text>
-            </View>
-            <View style={styles.pointText}>
-              <Text variant="heading">{p.title}</Text>
-              <Text variant="small" color={colors.inkSoft}>
-                {p.text}
-              </Text>
-            </View>
+          ) : null}
+        </Page>
+        <Page width={width}>
+          <View style={styles.stage}>
+            <StageBlob size={art * 1.35} />
+            <MinaMascot pose="cooking" eyes="happy" size={Math.round(art * 1.12)} animated={page === 1} idle={page === 1} interactive accessibilityLabel="Mina Chef con il cucchiaio di legno" />
           </View>
-        ))}
+          <Text variant="screen" center style={styles.title} accessibilityRole="header">
+            Benvenuto in Mina!
+          </Text>
+          <Text variant="body" color={colors.inkSoft} center style={styles.line}>
+            Ricette facili, scelte per i tuoi gusti.
+          </Text>
+        </Page>
+        <Page width={width}>
+          <View style={styles.stage}>
+            <StageBlob size={art * 1.35} flip />
+            <MinaMascot pose="shopping" size={Math.round(art * 1.05)} animated={page === 2} idle={page === 2} interactive accessibilityLabel="Mina con la lista della spesa" />
+          </View>
+          <Text variant="screen" center style={styles.title} accessibilityRole="header">
+            La spesa è già pronta
+          </Text>
+          <Text variant="body" color={colors.inkSoft} center style={styles.line}>
+            Una lista per i giorni in cui esci a comprare.
+          </Text>
+        </Page>
+      </ScrollView>
+
+      <View style={styles.bottom}>
+        {!resuming ? (
+          <View style={styles.dots} accessible accessibilityLabel={`Pagina ${page + 1} di ${PAGES}`}>
+            {Array.from({ length: PAGES }, (_, i) => (
+              <Pressable key={i} onPress={() => go(i)} hitSlop={8} accessibilityElementsHidden importantForAccessibility="no">
+                <View style={[styles.dot, i === page && styles.dotOn]} />
+              </Pressable>
+            ))}
+          </View>
+        ) : null}
+        <Button label={label} iconRight="arrow-forward" size="large" onPress={next} />
+        <Pressable accessibilityRole="link" onPress={() => router.push('/privacy')} style={styles.privacy} hitSlop={6}>
+          <Text variant="small" color={colors.inkSoft} center>
+            Nessun account richiesto · <Text variant="small" color={colors.green} style={styles.link}>Privacy</Text>
+          </Text>
+        </Pressable>
       </View>
-      <Text variant="small" color={colors.inkSoft}>
-        {t('welcome.noAccount')}
-      </Text>
-    </Screen>
+    </SafeAreaView>
+  );
+}
+
+function Page({ width, children }: { width: number; children: ReactNode }) {
+  return (
+    <View style={[styles.page, { width }]}>
+      <View style={styles.pageInner}>{children}</View>
+    </View>
+  );
+}
+
+/** Forma morbida dietro Mina (pagine 2 e 3), come la macchia salvia del riferimento. */
+function StageBlob({ size, flip }: { size: number; flip?: boolean }) {
+  return (
+    <Svg width={size} height={size * 0.82} viewBox="0 0 200 164" style={[styles.blob, flip && styles.flip]} pointerEvents="none">
+      <Path d="M38,30 C70,4 136,0 170,28 C200,54 204,104 182,132 C158,162 96,170 54,152 C14,135 -4,98 6,66 C11,50 22,40 38,30 Z" fill={colors.greenSoft} />
+    </Svg>
+  );
+}
+
+/** Forme morbide salvia ai lati, come nel riferimento (decorative). */
+function Blobs() {
+  return (
+    <View style={StyleSheet.absoluteFill} pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+      <Svg width={150} height={260} viewBox="0 0 150 260" style={styles.blobL}>
+        <Path d="M0,10 C60,0 120,40 128,104 C136,170 92,236 0,252 Z" fill={colors.sage} opacity={0.55} />
+      </Svg>
+      <Svg width={120} height={220} viewBox="0 0 120 220" style={styles.blobR}>
+        <Path d="M120,0 C60,12 14,56 10,112 C6,170 56,212 120,220 Z" fill={colors.sage} opacity={0.5} />
+      </Svg>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  hero: { gap: space.md, marginTop: space.md },
-  brand: { alignItems: 'center' },
-  stage: { alignItems: 'center', justifyContent: 'center', height: 290 },
-  blob: { position: 'absolute', width: 270, height: 270, borderRadius: 135, backgroundColor: colors.greenSoft },
-  blobInner: { position: 'absolute', width: 200, height: 200, borderRadius: 100, backgroundColor: colors.greenMist },
-  ingTL: { position: 'absolute', left: 8, top: 18 },
-  ingTR: { position: 'absolute', right: 10, top: 30 },
-  ingBL: { position: 'absolute', left: 22, bottom: 10 },
-  ingBR: { position: 'absolute', right: 26, bottom: 4 },
-  speech: { padding: space.lg, alignItems: 'center', gap: space.xs },
-  slogan: { marginTop: space.sm },
-  points: { gap: space.lg, marginTop: space.md, padding: space.lg, borderRadius: radius.xl, backgroundColor: colors.white, borderWidth: 1, borderColor: colors.line },
-  point: { flexDirection: 'row', gap: space.md, alignItems: 'flex-start' },
-  num: { width: 32, height: 32, borderRadius: 16, backgroundColor: colors.peach, alignItems: 'center', justifyContent: 'center' },
-  pointText: { flex: 1, gap: 2 },
+  safe: { flex: 1, backgroundColor: colors.desk },
+  flex: { flex: 1 },
+  page: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  pageInner: { width: '100%', maxWidth: 480, alignItems: 'center', paddingHorizontal: space.xl },
+  logo: { marginTop: space.lg },
+  tagline: { marginTop: space.lg, fontSize: 22, lineHeight: 30, fontWeight: '600' },
+  disclosure: { marginTop: space.md, maxWidth: 300 },
+  stage: { alignItems: 'center', justifyContent: 'center' },
+  blob: { position: 'absolute' },
+  flip: { transform: [{ scaleX: -1 }] },
+  title: { marginTop: space.xl, fontSize: 28, lineHeight: 34 },
+  line: { marginTop: space.sm },
+  bottom: { width: '100%', maxWidth: 480, alignSelf: 'center', paddingHorizontal: space.xl, paddingBottom: space.sm, gap: space.lg },
+  dots: { flexDirection: 'row', justifyContent: 'center', gap: 10 },
+  dot: { width: 9, height: 9, borderRadius: 5, backgroundColor: '#DCD8CF' },
+  dotOn: { backgroundColor: colors.green },
+  privacy: { alignSelf: 'center', minHeight: 32, justifyContent: 'center', marginTop: -space.xs },
+  link: { fontWeight: '700', textDecorationLine: Platform.OS === 'web' ? 'underline' : 'none' },
+  blobL: { position: 'absolute', left: -40, top: '36%' },
+  blobR: { position: 'absolute', right: -30, top: '40%' },
 });

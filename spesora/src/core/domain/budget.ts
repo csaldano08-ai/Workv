@@ -24,7 +24,7 @@ export interface BudgetEvaluation extends PlanEconomics {
   weeklyLimitCents: number | null;
   /** true/false solo se la stima è completa; null = non determinabile con i dati disponibili. */
   withinBudget: boolean | null;
-  /** Il budget riguarda solo i pasti pianificati in Spesora (o una parte della spesa). */
+  /** Il budget riguarda solo i pasti pianificati in Mina (o una parte della spesa). */
   scopeNote: string;
 }
 
@@ -56,7 +56,7 @@ export function planEconomics(meals: PlannedMeal[], ctx: EconomicsContext): Plan
 export function scopeNote(profile: UserProfile): string {
   const meals = profile.mealTypes.length;
   if (profile.budget.scope === 'parte_spesa') return 'Il budget riguarda solo una parte della tua spesa alimentare.';
-  return meals < 4 ? 'Stima riferita solo ai pasti che organizzi in Spesora, non alla spesa alimentare totale.' : 'Stima riferita ai pasti organizzati in Spesora.';
+  return meals < 4 ? 'Stima riferita solo ai pasti che organizzi in Mina, non alla spesa alimentare totale.' : 'Stima riferita ai pasti organizzati in Mina.';
 }
 
 export function evaluateBudget(meals: PlannedMeal[], ctx: EconomicsContext): BudgetEvaluation {

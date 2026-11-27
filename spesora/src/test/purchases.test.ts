@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { entitlementFromCustomerInfo, outcomeFromError, packagesFromOfferings } from '../core/purchases/revenuecat';
+import { canUse, mustSubscribe } from '../core/purchases/features';
+import { apiKeyFor, entitlementFromCustomerInfo, outcomeFromError, packagesFromOfferings, RevenueCatPurchaseService } from '../core/purchases/revenuecat';
 import { createPurchaseService, DisabledPurchaseService } from '../core/purchases/services';
 
 // Oggetti minimi con la stessa forma di quelli dell'SDK (dati di prova, nessun prezzo reale).
@@ -38,5 +39,39 @@ describe('Abbonamenti RevenueCat', () => {
     const s = createPurchaseService('disabled', true);
     expect((await s.purchase('x')).kind).toBe('not_available');
     expect(s.isLive).toBe(false);
+  });
+
+  it('chiave dell\'SDK per piattaforma: senza la chiave Android, su Android gli acquisti restano spenti', () => {
+    const rc = { iosApiKey: 'appl_prova', entitlementId: 'plus' };
+    expect(apiKeyFor('ios', rc)).toBe('appl_prova');
+    expect(apiKeyFor('android', rc)).toBeNull();
+    expect(apiKeyFor('web', rc)).toBeNull();
+    expect(createPurchaseService('revenuecat', false, rc, 'android')).toBeInstanceOf(DisabledPurchaseService);
+    expect(createPurchaseService('revenuecat', false, rc, 'web')).toBeInstanceOf(DisabledPurchaseService);
+    expect(createPurchaseService('revenuecat', false, rc, 'ios')).toBeInstanceOf(RevenueCatPurchaseService);
+    expect(createPurchaseService('revenuecat', false, { ...rc, androidApiKey: 'goog_prova' }, 'android')).toBeInstanceOf(RevenueCatPurchaseService);
+  });
+});
+
+describe('Abbonamento obbligatorio: si blocca solo con acquisti reali e funzionanti', () => {
+  const active = { state: 'active', expiresAt: null, willRenew: true, inGracePeriod: false } as const;
+  it('mustSubscribe', () => {
+    // modalità richiesta + acquisti reali: senza abbonamento o scaduto si va alla schermata dell'abbonamento
+    expect(mustSubscribe('required', true, { state: 'none' })).toBe(true);
+    expect(mustSubscribe('required', true, { state: 'expired', expiredAt: '2026-11-01' })).toBe(true);
+    expect(mustSubscribe('required', true, active)).toBe(false);
+    // stato non leggibile (store irraggiungibile senza dati in memoria): non si blocca
+    expect(mustSubscribe('required', true, { state: 'unknown' })).toBe(false);
+    // acquisti spenti (oggi): mai bloccati, qualunque sia la modalità
+    expect(mustSubscribe('required', false, { state: 'none' })).toBe(false);
+    for (const m of ['off', 'soft', 'hard'] as const) expect(mustSubscribe(m, true, { state: 'none' })).toBe(false);
+  });
+  it('canUse: con acquisti spenti o stato sconosciuto nessuna funzione è bloccata', () => {
+    expect(canUse('tastes', 'hard', { state: 'none' }, true)).toBe(false);
+    expect(canUse('tastes', 'required', { state: 'none' }, true)).toBe(false);
+    expect(canUse('tastes', 'hard', active, true)).toBe(true);
+    expect(canUse('tastes', 'hard', { state: 'none' }, false)).toBe(true);
+    expect(canUse('tastes', 'hard', { state: 'unknown' }, true)).toBe(true);
+    expect(canUse('tastes', 'soft', { state: 'none' }, true)).toBe(true);
   });
 });

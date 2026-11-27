@@ -1,5 +1,5 @@
 /**
- * Mina 2.0 — la borsetta della spesa di Spesora (e la variante Mina Chef).
+ * Mina 2.0 — la borsetta della spesa, mascotte di MINA (e la variante Mina Chef).
  * Disegno vettoriale ricalcato sui fogli approvati:
  *  - Mina 2.0: docs/restyling/riferimenti/mina2_foglio_approvato.webp
  *  - Mina Chef: docs/restyling/riferimenti/mina_chef_style_reference.png
@@ -910,7 +910,7 @@ export interface MinaLook {
 }
 
 /** Mina intera in un solo SVG (versione statica: righe piccole, "Riduci movimento", esportazioni). */
-export function minaStaticSvg(look: MinaLook, opts: { shadow?: boolean; viewBox?: string } = {}): string {
+export function minaStaticSvg(look: MinaLook, opts: { shadow?: boolean; viewBox?: string; legs?: boolean } = {}): string {
   const v = look.variant;
   const pivot = RIG[v].leanPivot;
   const lean = look.lean ?? 0;
@@ -923,7 +923,7 @@ export function minaStaticSvg(look: MinaLook, opts: { shadow?: boolean; viewBox?
     `<g transform="translate(${look.shift ?? 0} 0)">` +
       (opts.shadow === false ? '' : shadowPart(v)) +
       `<g transform="rotate(${lean} ${pivot.x} ${pivot.y})">` +
-      legsPart(look.legs, v) +
+      (opts.legs === false ? '' : legsPart(look.legs, v)) +
       bodyPart(v, { bow: look.bow }) +
       (bowl ? bowlPart(bowl.cx, bowl.ry, bowl.tilt) : '') +
       (v === 'chef' ? hatPart() : '') +

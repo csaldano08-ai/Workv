@@ -11,6 +11,10 @@ export interface ButtonProps {
   onPress: () => void;
   kind?: Kind;
   icon?: keyof typeof Ionicons.glyphMap;
+  /** Icona dopo l'etichetta (es. la freccia «→» dei pulsanti principali del riferimento). */
+  iconRight?: keyof typeof Ionicons.glyphMap;
+  /** `large`: pulsante principale a tutta larghezza (stesso stile, solo più alto e con testo più grande). */
+  size?: 'regular' | 'large';
   disabled?: boolean;
   loading?: boolean;
   compact?: boolean;
@@ -27,8 +31,12 @@ const palette: Record<Kind, { bg: string; fg: string; border: string; base: stri
   peach: { bg: colors.peach, fg: colors.ink, border: colors.peach, base: '#E8894F' },
 };
 
-/** Pulsante arrotondato in leggero rilievo, che si schiaccia elasticamente al tocco. */
-export function Button({ label, onPress, kind = 'primary', icon, disabled, loading, compact, style, accessibilityHint }: ButtonProps) {
+/**
+ * Pulsante arrotondato in leggero rilievo, che si schiaccia elasticamente al tocco.
+ * È lo stile dei pulsanti dell'app e resta tale anche nel restyling MINA (niente pulsanti lucidi o sfumati):
+ * del riferimento si adattano solo dimensioni, posizione, spaziature, colori e la freccia finale.
+ */
+export function Button({ label, onPress, kind = 'primary', icon, iconRight, size = 'regular', disabled, loading, compact, style, accessibilityHint }: ButtonProps) {
   const p = palette[kind];
   const inactive = disabled || loading;
   return (
@@ -42,6 +50,7 @@ export function Button({ label, onPress, kind = 'primary', icon, disabled, loadi
       style={[
         styles.base,
         compact && styles.compact,
+        size === 'large' && !compact && styles.large,
         kind === 'ghost' ? styles.ghost : null,
         { backgroundColor: p.bg, borderColor: p.border, borderBottomColor: p.base, opacity: inactive ? 0.45 : 1 },
         style,
@@ -49,9 +58,10 @@ export function Button({ label, onPress, kind = 'primary', icon, disabled, loadi
     >
       <View style={styles.row}>
         {loading ? <ActivityIndicator color={p.fg} /> : icon ? <Ionicons name={icon} size={18} color={p.fg} /> : null}
-        <Text variant="heading" color={p.fg} style={[styles.label, { fontWeight: '800' }]}>
+        <Text variant="heading" color={p.fg} style={[styles.label, size === 'large' && styles.labelLarge, { fontWeight: '800' }]}>
           {label}
         </Text>
+        {iconRight && !loading ? <Ionicons name={iconRight} size={size === 'large' ? 22 : 19} color={p.fg} /> : null}
       </View>
     </Squish>
   );
@@ -69,6 +79,8 @@ const styles = StyleSheet.create({
   },
   ghost: { borderWidth: 0, borderBottomWidth: 0 },
   compact: { minHeight: TOUCH, paddingHorizontal: space.lg, paddingVertical: space.sm },
+  large: { minHeight: 58, paddingVertical: 14 },
+  labelLarge: { fontSize: 18, lineHeight: 23 },
   row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: space.sm },
   label: { textAlign: 'center', flexShrink: 1 },
 });

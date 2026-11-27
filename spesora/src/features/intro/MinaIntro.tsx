@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Animated, AppState, Easing, Platform, Pressable, StyleSheet, View, useWindowDimensions, type LayoutRectangle } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
-import { colors, space } from '../../theme/tokens';
-import { LogoMark } from '../../ui/Logo';
+import Svg, { Path, SvgXml } from 'react-native-svg';
+import { colors } from '../../theme/tokens';
+import { LOGO_BOX, LOGO_RATIO, minaLogoPartsSvg } from '../../ui/brand/logoArt';
 import { MinaMascot } from '../../ui/mascot/Mina';
-import { Text } from '../../ui/Text';
 import { measureIntroAnchor } from './introBus';
 
 const native = Platform.OS !== 'web';
@@ -14,7 +13,8 @@ const native = Platform.OS !== 'web';
  *   0–350     una goccia verde cade dall'alto verso il centro, accelerando
  *   350–600   tocca terra, si schiaccia, rimbalza; un'increspatura circolare le si allarga intorno
  *   600–1100  dal punto d'impatto un cerchio verde si allarga fino a riempire lo schermo
- *   1100–1520 la maschera circolare si apre e rivela la nuova composizione; entra il logo, una foglia lo completa
+ *   1100–1520 la maschera circolare si apre e rivela la nuova composizione; entra il logo: il cestino sboccia,
+ *             la parola «Mina» scivola fuori, i tre trattini del cestino scattano
  *   1600–2470 Mina 2.0 esce dal basso (prima il manico, poi la borsa), apre gli occhi, sorride e saluta
  *   2250–2940 la composizione vola al posto del logo e di Mina nella schermata di Benvenuto e lascia il posto a lei
  */
@@ -27,7 +27,7 @@ const T = {
   revealMs: 420,
   mark: 1250,
   word: 1340,
-  leaf: 1460,
+  spark: 1460,
   disc: 1470,
   minaMount: 1320,
   rise: 1600,
@@ -45,7 +45,15 @@ const MINA_H = MINA * (232 / 200);
 const FEET_LINE = ((213 + 12) / 232) * MINA_H;
 const DROP = { w: 20, h: 28 } as const;
 const DOT = 18;
-const LOGO_SCALE = 1.55;
+const LOGO_SCALE = 1.5;
+/** Logo dell'intro: le tre parti sovrapposte nello stesso riquadro (vedi src/ui/brand/logoArt.ts). */
+const LOGO_PARTS = minaLogoPartsSvg();
+const LOGO_H = 46;
+const LOGO_W = Math.round(LOGO_H * LOGO_RATIO);
+/** Centri del cestino e dei trattini rispetto al centro del logo (per farli sbocciare dal loro posto). */
+const BASKET_DX = ((928 - LOGO_BOX.x) / LOGO_BOX.w - 0.5) * LOGO_W;
+const SPARK_DX = ((1030 - LOGO_BOX.x) / LOGO_BOX.w - 0.5) * LOGO_W;
+const SPARK_DY = ((95 - LOGO_BOX.y) / LOGO_BOX.h - 0.5) * LOGO_H;
 const MINA_SCALE = 0.8;
 
 /** Fotogrammi chiave dell'impatto (0 = tocca terra, 1 = ferma): schiacciamento, rimbalzo, piccolo assestamento. */
@@ -55,7 +63,7 @@ const BOUNCE_SY = [1.25, 0.5, 0.95, 1.12, 1.05, 1, 0.86, 1];
 const BOUNCE_Y = [0, 0, -15, -22, -14, 0, 0, 0];
 
 /**
- * Intro dell'app: «la goccia che diventa Spesora». Tutto è disegnato e animato dal vivo (nessuna sequenza di
+ * Intro dell'app: «la goccia che diventa MINA». Tutto è disegnato e animato dal vivo (nessuna sequenza di
  * immagini), con i colori ufficiali. Si salta con un tocco; se l'app va in background a metà, l'intro finisce.
  * Viene mostrata solo al primo avvio o su richiesta dalle Impostazioni (vedi IntroGate).
  */
@@ -70,8 +78,7 @@ export function MinaIntro({ onDone }: { onDone: () => void }) {
     reveal: new Animated.Value(0),
     mark: new Animated.Value(0),
     word: new Animated.Value(0),
-    leaf: new Animated.Value(0),
-    leafOut: new Animated.Value(0),
+    spark: new Animated.Value(0),
     disc: new Animated.Value(0),
     rise: new Animated.Value(0),
     logoX: new Animated.Value(0),
@@ -96,8 +103,9 @@ export function MinaIntro({ onDone }: { onDone: () => void }) {
   const impact = { x: W / 2, y: H * 0.42 };
   const center = { x: impact.x, y: impact.y - DOT / 2 };
   const R = Math.hypot(Math.max(center.x, W - center.x), Math.max(center.y, H - center.y)) + 8;
-  const logoTop = H * 0.27 - 18;
-  const minaTop = H * 0.6 - MINA_H / 2;
+  // come nel Benvenuto: Mina in alto, il logo sotto (così il passaggio finale non incrocia le due parti)
+  const minaTop = H * 0.36 - MINA_H / 2;
+  const logoTop = H * 0.64 - LOGO_H / 2;
 
   useEffect(() => {
     const tw = (val: Animated.Value, to: number, ms: number, easing: (t: number) => number) => Animated.timing(val, { toValue: to, duration: ms, easing, useNativeDriver: native });
@@ -127,7 +135,7 @@ export function MinaIntro({ onDone }: { onDone: () => void }) {
     at(T.reveal, tw(v.reveal, 1, T.revealMs, Easing.bezier(0.15, 0, 0.15, 1)));
     at(T.mark, tw(v.mark, 1, 360, Easing.out(Easing.back(1.7))));
     at(T.word, tw(v.word, 1, 300, Easing.out(Easing.cubic)));
-    at(T.leaf, Animated.timing(v.leaf, { toValue: 1, duration: 330, easing: Easing.linear, useNativeDriver: native }));
+    at(T.spark, tw(v.spark, 1, 280, Easing.out(Easing.back(2.2))));
     // 5 · il «palco» di Mina e Mina che esce dal basso: prima il manico, poi la borsa
     at(T.disc, tw(v.disc, 1, 340, Easing.out(Easing.back(1.4))));
     later(T.minaMount, () => setMinaOn(true));
@@ -152,7 +160,6 @@ export function MinaIntro({ onDone }: { onDone: () => void }) {
           tw(v.minaX, mina.x + mina.w / 2 - minaC.x, T.morphMs, ease),
           tw(v.minaY, mina.y + mina.h / 2 - minaC.y, T.morphMs, ease),
           tw(v.minaS, mina.w / MINA, T.morphMs, ease),
-          tw(v.leafOut, 1, 220, Easing.out(Easing.quad)),
         ]);
         anims.current.push(move);
         move.start();
@@ -221,7 +228,7 @@ export function MinaIntro({ onDone }: { onDone: () => void }) {
   );
 
   return (
-    <Pressable style={styles.fill} onPress={skip} accessibilityRole="button" accessibilityLabel="Benvenuto in Spesora: Mina ti saluta. Tocca per saltare.">
+    <Pressable style={styles.fill} onPress={skip} accessibilityRole="button" accessibilityLabel="Benvenuto in Mina! Tocca per saltare.">
       <Animated.View style={[styles.fill, styles.bg, { opacity: v.fade }]} pointerEvents="none">
         {/* 3-4 · cerchio verde che riempie lo schermo, poi la maschera circolare che rivela la composizione */}
         {circle(colors.greenBright, v.fill, DOT / 2 / R)}
@@ -282,39 +289,38 @@ export function MinaIntro({ onDone }: { onDone: () => void }) {
           </View>
         </Animated.View>
 
-        {/* 4 · logo: il marchio sboccia, la scritta scivola fuori da dietro, una piccola foglia lo completa */}
+        {/* 4 · logo: il cestino sboccia, la parola scivola fuori da dietro, i trattini scattano */}
         <View style={[styles.abs, styles.logoRowWrap, { top: logoTop }]} pointerEvents="none">
           <Animated.View
-            style={[styles.logoRow, { transform: [{ translateX: v.logoX }, { translateY: v.logoY }, { scale: v.logoS }] }]}
+            style={[styles.logoBox, { transform: [{ translateX: v.logoX }, { translateY: v.logoY }, { scale: v.logoS }] }]}
             onLayout={(e) => {
               logoBox.current = e.nativeEvent.layout;
             }}
           >
-            <Animated.View style={{ opacity: v.mark.interpolate({ inputRange: [0, 0.25], outputRange: [0, 1], extrapolate: 'clamp' }), transform: [{ scale: v.mark.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1] }) }] }}>
-              <LogoMark size={36} />
-            </Animated.View>
-            <Animated.View style={{ opacity: v.word, transform: [{ translateX: v.word.interpolate({ inputRange: [0, 1], outputRange: [-22, 0] }) }] }}>
-              <Text variant="display" color={colors.green}>
-                Spesora
-              </Text>
+            <Animated.View style={[styles.layer, { opacity: v.word, transform: [{ translateX: v.word.interpolate({ inputRange: [0, 1], outputRange: [-22, 0] }) }] }]}>
+              <SvgXml xml={LOGO_PARTS.word} width={LOGO_W} height={LOGO_H} />
             </Animated.View>
             <Animated.View
               style={[
-                styles.leaf,
+                styles.layer,
                 {
-                  opacity: Animated.multiply(v.leaf.interpolate({ inputRange: [0, 0.15], outputRange: [0, 1], extrapolate: 'clamp' }), v.leafOut.interpolate({ inputRange: [0, 1], outputRange: [1, 0] })),
-                  transform: [
-                    { translateX: k([0, 0.4, 0.8, 1], [78, 44, 6, 0], v.leaf) },
-                    { translateY: k([0, 0.4, 0.8, 1], [-54, -44, -8, 0], v.leaf) },
-                    { rotate: v.leaf.interpolate({ inputRange: [0, 0.5, 0.8, 0.9, 1], outputRange: ['170deg', '70deg', '-16deg', '7deg', '0deg'] }) },
-                  ],
+                  opacity: v.mark.interpolate({ inputRange: [0, 0.25], outputRange: [0, 1], extrapolate: 'clamp' }),
+                  transform: [{ translateX: BASKET_DX }, { scale: v.mark.interpolate({ inputRange: [0, 1], outputRange: [0.4, 1] }) }, { translateX: -BASKET_DX }],
                 },
               ]}
             >
-              <Svg width={16} height={16} viewBox="0 0 16 16">
-                <Path d="M2,14.5 C1,6 7,1 15,1 C15,9.5 10,15.5 2,14.5 Z" fill={colors.greenBright} />
-                <Path d="M3.5,13 Q8,8.5 12.5,4" stroke={colors.white} strokeWidth={1.3} strokeLinecap="round" fill="none" />
-              </Svg>
+              <SvgXml xml={LOGO_PARTS.basket} width={LOGO_W} height={LOGO_H} />
+            </Animated.View>
+            <Animated.View
+              style={[
+                styles.layer,
+                {
+                  opacity: v.spark.interpolate({ inputRange: [0, 0.3], outputRange: [0, 1], extrapolate: 'clamp' }),
+                  transform: [{ translateX: SPARK_DX }, { translateY: SPARK_DY }, { scale: v.spark }, { translateX: -SPARK_DX }, { translateY: -SPARK_DY }],
+                },
+              ]}
+            >
+              <SvgXml xml={LOGO_PARTS.sparkles} width={LOGO_W} height={LOGO_H} />
             </Animated.View>
           </Animated.View>
         </View>
@@ -333,6 +339,6 @@ const styles = StyleSheet.create({
   disc: { width: 270, height: 270, borderRadius: 135, backgroundColor: colors.greenSoft },
   discInner: { width: 200, height: 200, borderRadius: 100, backgroundColor: colors.greenMist },
   logoRowWrap: { left: 0, right: 0, alignItems: 'center' },
-  logoRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
-  leaf: { position: 'absolute', left: 25, top: -11 },
+  logoBox: { width: LOGO_W, height: LOGO_H },
+  layer: { position: 'absolute', left: 0, top: 0 },
 });

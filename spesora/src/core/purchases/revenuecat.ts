@@ -9,9 +9,19 @@ import type { EntitlementStatus, PlusPackage, PurchaseOutcome, PurchaseService }
  */
 
 export interface RevenueCatConfig {
+  /** Chiave pubblica dell'SDK per iOS (`appl_…`). */
   iosApiKey: string;
+  /** Chiave pubblica dell'SDK per Android (`goog_…`); senza, su Android gli acquisti restano spenti. */
+  androidApiKey?: string;
   entitlementId: string;
   offeringId?: string;
+}
+
+/** Chiave dell'SDK per la piattaforma corrente (null se manca: acquisti spenti su quella piattaforma). */
+export function apiKeyFor(platform: string, config: Pick<RevenueCatConfig, 'iosApiKey' | 'androidApiKey'>): string | null {
+  if (platform === 'ios') return config.iosApiKey || null;
+  if (platform === 'android') return config.androidApiKey || null;
+  return null;
 }
 
 /** Mappa pura (testata): stato dell'entitlement da CustomerInfo. */
@@ -62,14 +72,19 @@ export class RevenueCatPurchaseService implements PurchaseService {
   private sdk: PurchasesModule | null = null;
   private packages = new Map<string, PurchasesPackage>();
 
-  constructor(private readonly config: RevenueCatConfig) {}
+  constructor(
+    private readonly config: RevenueCatConfig,
+    private readonly platform: string,
+  ) {}
 
   private async ready(): Promise<PurchasesModule> {
     if (this.sdk) return this.sdk;
     // Caricamento pigro: il modulo nativo non viene toccato se gli acquisti sono disattivati.
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const mod = require('react-native-purchases').default as PurchasesModule;
-    if (!(await mod.isConfigured())) mod.configure({ apiKey: this.config.iosApiKey });
+    const apiKey = apiKeyFor(this.platform, this.config);
+    if (!apiKey) throw new Error('Chiave RevenueCat mancante per questa piattaforma');
+    if (!(await mod.isConfigured())) mod.configure({ apiKey });
     this.sdk = mod;
     return mod;
   }
@@ -98,9 +113,10 @@ export class RevenueCatPurchaseService implements PurchaseService {
   async getEntitlement(): Promise<EntitlementStatus> {
     try {
       const sdk = await this.ready();
+      // l'SDK restituisce lo stato in memoria anche senza rete; se nemmeno quello è disponibile lo stato è «sconosciuto»
       return entitlementFromCustomerInfo(await sdk.getCustomerInfo(), this.config.entitlementId);
     } catch {
-      return { state: 'none' };
+      return { state: 'unknown' };
     }
   }
 

@@ -34,7 +34,7 @@ export interface StepDef {
   pose?: MinaPose;
   /** Reazione di Mina alle scelte già fatte nel passo (posa e frase); assente = usa `tip`/`pose`. */
   react?: (d: OnboardingDraft) => { pose: MinaPose; tip: string } | null;
-  /** Funzione di personalizzazione avanzata (Spesora Plus in futuro; oggi disponibile a tutti). */
+  /** Funzione di personalizzazione avanzata (Mina Plus in futuro; oggi disponibile a tutti). */
   premium?: boolean;
 }
 

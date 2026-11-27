@@ -84,7 +84,7 @@ export async function sendTestNotification(): Promise<PermissionState> {
   if (permission !== 'granted') return permission;
   await Notifications.scheduleNotificationAsync({
     identifier: `${NOTIFICATION_PREFIX}test:${Date.now()}`,
-    content: { title: 'Prova di Spesora', body: 'Le notifiche funzionano. Tocca per aprire la schermata Oggi.', data: { url: '/' } },
+    content: { title: 'Prova di Mina', body: 'Le notifiche funzionano. Tocca per aprire la schermata Oggi.', data: { url: '/' } },
     trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: 5, repeats: false },
   });
   return permission;

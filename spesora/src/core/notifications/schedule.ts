@@ -134,7 +134,7 @@ export function computeNotifications(input: ScheduleInput): DesiredNotification[
         kind: 'plan_end',
         fireAt,
         title: 'La settimana è quasi finita',
-        body: `Apri Spesora quando vuoi: preparo io il menù da ${formatLongDate(addDays(input.planEnd, 1))} in poi.`,
+        body: `Apri Mina quando vuoi: preparo io il menù da ${formatLongDate(addDays(input.planEnd, 1))} in poi.`,
         url: '/',
       });
     }
@@ -148,7 +148,7 @@ export interface NotificationDiff {
   toSchedule: DesiredNotification[];
 }
 
-/** Confronta gli avvisi desiderati con quelli già programmati (solo quelli di Spesora). */
+/** Confronta gli avvisi desiderati con quelli già programmati (solo quelli di Mina). */
 export function diffNotifications(desired: DesiredNotification[], scheduledIds: string[]): NotificationDiff {
   const desiredIds = new Set(desired.map((d) => d.id));
   const ours = scheduledIds.filter((id) => id.startsWith(NOTIFICATION_PREFIX));

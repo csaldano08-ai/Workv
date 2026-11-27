@@ -1,4 +1,4 @@
-/** Colori delle illustrazioni (palette di Spesora + colori naturali smorzati dei cibi). */
+/** Colori delle illustrazioni (palette di Mina + colori naturali smorzati dei cibi). */
 export const illo = {
   ink: '#24332C',
   green: '#386E55',

@@ -1,7 +1,8 @@
 import { router } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { addDays, capitalize, formatLongDate, rangeDays, toIsoLocal, weekdayOf } from '../src/core/domain/dates';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { addDays, rangeDays, toIsoLocal, weekdayOf, weekdayShort } from '../src/core/domain/dates';
 import { generatePlan } from '../src/core/domain/planner';
 import { parseProfile } from '../src/core/domain/profile';
 import { hashString } from '../src/core/domain/random';
@@ -15,16 +16,44 @@ import { MEAL_LABELS } from '../src/i18n/labels';
 import { colors, radius, space } from '../src/theme/tokens';
 import { Reveal } from '../src/ui/Reveal';
 import { LOADER_TEXT, withLoader } from '../src/ui/loader/loaderBus';
-import { AssistantBubble } from '../src/ui/AssistantBubble';
-import { MinaMascot } from '../src/ui/mascot/Mina';
-import { ProgressBar } from '../src/ui/ProgressBar';
-import { PaywallSlot } from '../src/features/paywall/PaywallSlot';
+import { MinaMascot, type MinaPose } from '../src/ui/mascot/Mina';
+import { BackCircle, SegmentProgress } from '../src/ui/mina/choices';
+import { DayBadge, InfoToggle, InlineError, InfoNote, ListCard, ListRow } from '../src/ui/mina/kit';
+import { RecipeImage } from '../src/ui/RecipeImage';
 import { Button } from '../src/ui/Button';
-import { Card } from '../src/ui/Card';
-import { Notice } from '../src/ui/Notice';
-import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
 import { t } from '../src/i18n/it';
+
+/*
+ * Questionario (telefoni 3 e 4 del riferimento) e anteprima del piano (telefono 5).
+ * Le domande e la logica sono quelle di prima (16 passi, salvataggio a ogni modifica, validazioni):
+ * cambiano la presentazione e la quantità di testo. La barra in alto ha un segmento per fase.
+ * Alla fine: caricamento con Mina Chef (piano generato dal motore vero), anteprima, poi l'abbonamento.
+ */
+
+/** Fasi della barra di avanzamento: gruppi di passi (id) e, per ultima, l'anteprima. */
+const PHASES: string[][] = [
+  ['persone', 'pasti', 'dieta'],
+  ['esclusioni', 'non-graditi', 'porzioni', 'quantita', 'gusti'],
+  ['tempo', 'orari', 'frequenza', 'giorni-spesa', 'budget'],
+  ['strumenti', 'dispensa', 'notifiche'],
+];
+const BAR_SEGMENTS = PHASES.length + 1;
+
+function progressOf(stepId: string): { phase: number; within: number } {
+  const phase = Math.max(0, PHASES.findIndex((p) => p.includes(stepId)));
+  const ids = PHASES[phase];
+  return { phase, within: (ids.indexOf(stepId) + 1) / ids.length };
+}
+
+/** Mina compare solo in alcuni passi (momenti scelti), grande e senza fumetto. */
+const STEP_MINA: Record<string, MinaPose> = {
+  persone: 'shopping',
+  pasti: 'happy',
+  'giorni-spesa': 'shopping',
+  budget: 'savings',
+  notifiche: 'reminder',
+};
 
 export default function Onboarding() {
   const { snapshot, service, run } = useApp();
@@ -53,6 +82,11 @@ export default function Onboarding() {
     setDir(next >= step ? 'right' : 'left');
     setStep(Math.max(0, Math.min(PREVIEW_STEP, next)));
   };
+  const back = () => {
+    if (step > 0) go(step - 1);
+    else if (router.canGoBack()) router.back();
+    else router.replace('/benvenuto');
+  };
 
   const next = async () => {
     if (!def) return;
@@ -67,13 +101,15 @@ export default function Onboarding() {
       setBusy(false);
     }
     if (step + 1 >= PREVIEW_STEP) {
-      // la settimana viene composta mentre gli ingredienti ballano, poi si riuniscono nel piatto
+      // la settimana viene composta mentre Mina Chef mescola e gli ingredienti le girano intorno
       await withLoader(LOADER_TEXT.firstWeek, async () => go(step + 1));
       return;
     }
     go(step + 1);
   };
 
+  // conferma: salva profilo, dispensa, promemoria e il piano (stesso motore e stesso seme dell'anteprima),
+  // poi la schermata dell'abbonamento (che con gli acquisti spenti lascia entrare)
   const finish = async () => {
     setBusy(true);
     const ok = await run(async (s, today) => {
@@ -82,7 +118,7 @@ export default function Onboarding() {
       return true;
     });
     setBusy(false);
-    if (ok) router.replace('/');
+    if (ok) router.replace('/abbonamento?da=questionario');
   };
 
   if (step >= PREVIEW_STEP) {
@@ -90,50 +126,52 @@ export default function Onboarding() {
   }
 
   const reaction = def.react?.(draft) ?? null;
-  const mina = reaction ?? (def.tip ? { pose: def.pose ?? 'explaining', tip: def.tip } : null);
+  const pose = reaction?.pose ?? STEP_MINA[def.id];
+  const { phase, within } = progressOf(def.id);
+  const last = step === STEPS.length - 1;
+  const label = last ? 'Continua' : def.optional && isEmptyOptional(def.id, draft) ? t('action.skip') : t('action.next');
   return (
-    <Screen
-      edges={['top', 'bottom']}
-      reveal={false}
-      footer={
-        <View style={styles.footerRow}>
-          {step > 0 ? <Button kind="secondary" label={t('action.back')} onPress={() => go(step - 1)} style={styles.flex} /> : null}
-          <Button
-            label={def.id === 'notifiche' ? 'Continua' : def.optional && isEmptyOptional(def.id, draft) ? t('action.skip') : t('action.next')}
-            onPress={next}
-            loading={busy}
-            style={styles.flex}
-          />
+    <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+      <View style={styles.top}>
+        <View style={styles.bar}>
+          <SegmentProgress phases={BAR_SEGMENTS} phase={phase} within={within} label={`Domanda ${step + 1} di ${STEPS.length}`} />
         </View>
-      }
-    >
-      <View style={styles.progressRow}>
-        <View style={styles.flex}>
-          <ProgressBar value={step + 1} max={STEPS.length + 1} label={`Passo ${step + 1} di ${STEPS.length}`} />
-        </View>
-        <Text variant="caption" color={colors.inkSoft}>
-          {`${step + 1}/${STEPS.length}`}
-        </Text>
       </View>
-      {/* il passo nuovo scivola dentro dalla direzione del movimento; la barra di avanzamento resta ferma */}
-      <Reveal key={step} from={dir} style={styles.stepBody}>
-          {mina ? <AssistantBubble pose={mina.pose} text={mina.tip} size={96} replayKey={reaction ? mina.tip : undefined} /> : null}
-        <Text variant="title" accessibilityRole="header">
-          {def.title}
-        </Text>
-        {def.subtitle ? (
-          <Text variant="body" color={colors.inkSoft}>
-            {def.subtitle}
+      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+        {/* il passo nuovo scivola dentro dalla direzione del movimento; la barra resta ferma */}
+        <Reveal key={step} from={dir} style={styles.stepBody}>
+          <Text variant="screen" center accessibilityRole="header" style={styles.question}>
+            {def.title}
           </Text>
-        ) : null}
-        <def.Component draft={draft} setDraft={setDraft} />
-      </Reveal>
-      {error ? (
-        <Reveal from="pop">
-          <Notice tone="warning" text={error} />
+          {def.subtitle ? (
+            <Text variant="body" color={colors.inkSoft} center>
+              {def.subtitle}
+            </Text>
+          ) : null}
+          {def.tip && !reaction ? (
+            <View style={styles.center}>
+              <InfoToggle text={def.tip} />
+            </View>
+          ) : null}
+          <def.Component draft={draft} setDraft={setDraft} />
+          {error ? <InlineError text={error} /> : null}
+          {pose ? (
+            <View style={styles.mina}>
+              <MinaMascot pose={pose} size={150} animated idle interactive replayKey={reaction ? reaction.tip : def.id} />
+              {reaction ? (
+                <Text variant="small" color={colors.inkSoft} center style={styles.reaction}>
+                  {reaction.tip}
+                </Text>
+              ) : null}
+            </View>
+          ) : null}
         </Reveal>
-      ) : null}
-    </Screen>
+      </ScrollView>
+      <View style={styles.footer}>
+        <BackCircle onPress={back} label={step > 0 ? 'Domanda precedente' : 'Torna al benvenuto'} />
+        <Button label={label} iconRight="arrow-forward" size="large" onPress={next} loading={busy} style={styles.mainBtn} />
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -150,9 +188,13 @@ function isEmptyOptional(id: string, d: OnboardingDraft): boolean {
   return false;
 }
 
-/** Anteprima reale: lo stesso motore e lo stesso seed usati alla conferma. */
+/** Quanti giorni mostrare subito nell'anteprima (gli altri a richiesta). */
+const PREVIEW_DAYS = 3;
+
+/** Anteprima reale (telefono 5): lo stesso motore e lo stesso seme usati alla conferma. */
 function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; busy: boolean; onBack: () => void; onConfirm: () => void }) {
   const today = toIsoLocal(new Date());
+  const [all, setAll] = useState(false);
   const result = useMemo(() => {
     try {
       const profile = parseProfile(draft.profile);
@@ -162,86 +204,88 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
       return null;
     }
   }, [draft, today]);
+  const days = result ? rangeDays(today, PLAN_DAYS).filter((d) => result.meals.some((m) => m.date === d)) : [];
+  const shown = all ? days : days.slice(0, PREVIEW_DAYS);
 
   return (
-    <Screen
-      edges={['top', 'bottom']}
-      footer={
-        <View style={styles.footerRow}>
-          <Button kind="secondary" label="Modifica" onPress={onBack} style={styles.flex} />
-          <Button label="Inizia la settimana" onPress={onConfirm} loading={busy} disabled={!result || result.meals.length === 0} style={styles.flex} />
-        </View>
-      }
-    >
-      <Text variant="title" accessibilityRole="header">
-        La tua prima settimana
-      </Text>
-      <View style={styles.party}>
-        <MinaMascot pose="success" size={150} animated idle interactive accessibilityLabel="Mina festeggia: la tua settimana è pronta" />
-        <View style={styles.partyText}>
-          <Text variant="hand">È pronta!</Text>
-          <Text variant="small" color={colors.inkSoft}>
-            L’ho preparata con le tue risposte. Puoi cambiare ogni pasto quando vuoi.
-          </Text>
+    <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+      <View style={styles.top}>
+        <View style={styles.bar}>
+          <SegmentProgress phases={BAR_SEGMENTS} phase={BAR_SEGMENTS - 1} within={0.5} label="Questionario completato: anteprima del piano" />
         </View>
       </View>
-      {/* punto di inserimento della futura schermata di abbonamento: oggi spento (paywallMode 'off') */}
-      <PaywallSlot placement="onboarding_end" />
-      <Text variant="body" color={colors.inkSoft}>
-        {`Dal ${formatLongDate(today)} al ${formatLongDate(addDays(today, PLAN_DAYS - 1))}. Potrai cambiare ogni pasto in qualsiasi momento.`}
-      </Text>
-      {!result ? <Notice tone="warning" text="Alcune risposte non sono valide. Torna indietro per controllarle." /> : null}
-      {result && result.issues.length > 0 ? (
-        <Notice tone="warning" title={`${result.issues.length} pasti senza ricetta`} text={result.issues[0].message} />
-      ) : null}
-      {result
-        ? rangeDays(today, PLAN_DAYS).map((date, dayIndex) => {
-            const meals = result.meals.filter((m) => m.date === date);
-            return (
-              <Reveal key={date} index={dayIndex}>
-              <Card>
-                <Text variant="heading">
-                  {capitalize(formatLongDate(date))}
-                  {draft.profile.shoppingDays.includes(weekdayOf(date)) ? ' · giorno di spesa' : ''}
-                </Text>
-                {meals.length === 0 ? (
-                  <Text variant="small" color={colors.inkSoft}>
-                    Nessun pasto
-                  </Text>
-                ) : (
-                  meals.map((m) => {
-                    const r = catalogIndex.recipe(m.recipeId);
-                    return (
-                      <View key={m.id} style={styles.mealRow}>
-                        <Text variant="small" color={colors.inkSoft} style={styles.mealType}>
-                          {MEAL_LABELS[m.mealType]}
-                        </Text>
-                        <Text variant="body" style={styles.flex}>
-                          {r?.name}
-                        </Text>
-                        <Text variant="small" color={colors.inkSoft}>
-                          {r ? `${r.totalMinutes}′` : ''}
-                        </Text>
-                      </View>
-                    );
-                  })
-                )}
-              </Card>
-              </Reveal>
-            );
-          })
-        : null}
-    </Screen>
+      <ScrollView contentContainerStyle={styles.content}>
+        <View style={styles.stepBody}>
+          <View>
+            <Text variant="screen" center accessibilityRole="header" style={styles.question}>
+              La tua settimana
+            </Text>
+            <Text variant="body" color={colors.inkSoft} center>
+              Ecco un’anteprima del tuo piano.
+            </Text>
+          </View>
+          {!result ? <InlineError text="Alcune risposte non sono valide: torna indietro per controllarle." /> : null}
+          {result && result.issues.length > 0 ? <InfoNote tone="warning" text={`${result.issues.length} pasti senza ricetta: ${result.issues[0].message}`} /> : null}
+          <View style={styles.days}>
+            {shown.map((date, i) => {
+              const meals = result!.meals.filter((m) => m.date === date);
+              const main = meals.find((m) => m.mealType === 'cena') ?? meals.find((m) => m.mealType === 'pranzo') ?? meals[0];
+              const recipe = catalogIndex.recipe(main.recipeId);
+              const others = meals.filter((m) => m !== main);
+              return (
+                <Reveal key={date} index={i} style={styles.dayRow}>
+                  <DayBadge weekday={capitalizeShort(weekdayShort(weekdayOf(date)))} day={String(Number(date.slice(8)))} size={62} />
+                  <ListCard style={styles.flex}>
+                    <ListRow
+                      left={recipe ? <RecipeImage variant="thumb" recipe={recipe} rounded={radius.md} aspectRatio={1} style={styles.thumb} /> : undefined}
+                      title={recipe?.name ?? ''}
+                      subtitle={others.length > 0 ? `${MEAL_LABELS[main.mealType]} · +${others.length} ${others.length === 1 ? 'pasto' : 'pasti'}` : MEAL_LABELS[main.mealType]}
+                      onPress={recipe ? () => router.push(`/ricetta/${recipe.id}`) : undefined}
+                      accessibilityLabel={`${date}: ${meals.map((m) => `${MEAL_LABELS[m.mealType]} ${catalogIndex.recipe(m.recipeId)?.name ?? ''}`).join(', ')}`}
+                    />
+                  </ListCard>
+                </Reveal>
+              );
+            })}
+          </View>
+          {days.length > PREVIEW_DAYS ? (
+            <Button kind="ghost" compact label={all ? 'Mostra meno' : `Vedi tutti i ${days.length} giorni`} icon={all ? 'chevron-up' : 'chevron-down'} onPress={() => setAll((a) => !a)} />
+          ) : null}
+          <View style={styles.mina}>
+            <View style={styles.minaBlob} />
+            <MinaMascot pose="success" size={140} animated idle interactive accessibilityLabel="Mina festeggia: la tua settimana è pronta" />
+          </View>
+          <Text variant="small" color={colors.inkSoft} center>
+            {`Dal ${shortDate(today)} al ${shortDate(addDays(today, PLAN_DAYS - 1))}. Potrai cambiare ogni pasto quando vuoi.`}
+          </Text>
+        </View>
+      </ScrollView>
+      <View style={styles.footer}>
+        <BackCircle onPress={onBack} label="Modifica le risposte" />
+        <Button label="Procedi" iconRight="arrow-forward" size="large" onPress={onConfirm} loading={busy} disabled={!result || result.meals.length === 0} style={styles.mainBtn} />
+      </View>
+    </SafeAreaView>
   );
 }
 
+const capitalizeShort = (s: string) => s.charAt(0).toUpperCase() + s.slice(1, 3);
+const shortDate = (d: string) => `${Number(d.slice(8))}/${Number(d.slice(5, 7))}`;
+
 const styles = StyleSheet.create({
-  footerRow: { flexDirection: 'row', gap: space.sm },
+  safe: { flex: 1, backgroundColor: colors.desk },
   flex: { flex: 1 },
+  center: { alignItems: 'center' },
+  top: { paddingTop: space.md, paddingBottom: space.sm, alignItems: 'center' },
+  bar: { width: '62%', maxWidth: 260 },
+  content: { paddingHorizontal: space.lg, paddingTop: space.lg, paddingBottom: space.xl, width: '100%', maxWidth: 560, alignSelf: 'center' },
   stepBody: { gap: space.lg },
-  progressRow: { flexDirection: 'row', alignItems: 'center', gap: space.md, marginTop: space.sm },
-  party: { alignItems: 'center', gap: space.sm, paddingVertical: space.md, borderRadius: radius.xl, backgroundColor: colors.greenSoft },
-  partyText: { alignItems: 'center', gap: 2, paddingHorizontal: space.lg },
-  mealRow: { flexDirection: 'row', alignItems: 'center', gap: space.sm },
-  mealType: { width: 84 },
+  question: { fontSize: 27, lineHeight: 33 },
+  mina: { alignItems: 'center', marginTop: space.md, gap: space.xs },
+  minaBlob: { position: 'absolute', bottom: 0, width: 230, height: 90, borderRadius: 60, backgroundColor: colors.greenSoft },
+  reaction: { maxWidth: 300 },
+  footer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: space.lg, paddingHorizontal: space.lg, paddingTop: space.sm, paddingBottom: space.md, width: '100%', maxWidth: 560, alignSelf: 'center' },
+  mainBtn: { flex: 1, maxWidth: 260 },
+  days: { gap: space.md },
+  dayRow: { flexDirection: 'row', alignItems: 'center', gap: space.md },
+  thumb: { width: 56, height: 56 },
 });

@@ -510,7 +510,7 @@ export class SpesoraService {
 
   async exportJson(): Promise<string> {
     const data = await this.repo.exportAll();
-    return JSON.stringify({ app: 'Spesora', format: 1, exportedAt: new Date().toISOString(), quantityUnit: 'milli-unità (1 g = 1000)', data }, null, 2);
+    return JSON.stringify({ app: 'Mina', format: 1, exportedAt: new Date().toISOString(), quantityUnit: 'milli-unità (1 g = 1000)', data }, null, 2);
   }
 
   async wipe(): Promise<void> {

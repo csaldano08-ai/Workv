@@ -47,7 +47,7 @@ export default function Prices() {
 
   return (
     <Screen edges={['bottom']}>
-      <Notice text="Spesora non conosce i prezzi dei negozi: usa quelli che inserisci tu, con la data. Servono a stimare il costo delle ricette e della spesa; le stime restano indicative." />
+      <Notice text="Mina non conosce i prezzi dei negozi: usa quelli che inserisci tu, con la data. Servono a stimare il costo delle ricette e della spesa; le stime restano indicative." />
       {ing ? (
         <Card>
           <Text variant="heading">{ing.name}</Text>

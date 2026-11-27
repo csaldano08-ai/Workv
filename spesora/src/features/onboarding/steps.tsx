@@ -9,7 +9,9 @@ import { ALLERGEN_LABELS, DIET_LABELS, EQUIPMENT_LABELS, MEAL_LABELS } from '../
 import { t } from '../../i18n/it';
 import { colors, radius, space, TOUCH } from '../../theme/tokens';
 import { Chip, ChipGroup } from '../../ui/Chip';
-import { Notice } from '../../ui/Notice';
+import { ChoiceArt } from '../../ui/mina/ChoiceArt';
+import { NumberChoice, NumberRow, OptionTile, TileGrid } from '../../ui/mina/choices';
+import { InfoNote, InfoToggle } from '../../ui/mina/kit';
 import { SectionTitle } from '../../ui/Row';
 import { Stepper, TimeStepper } from '../../ui/Stepper';
 import { Text } from '../../ui/Text';
@@ -37,48 +39,47 @@ export function PeopleStep({ draft, setDraft }: StepProps) {
   const n = draft.profile.servings;
   return (
     <View style={styles.gap}>
-      <ChipGroup>
+      <NumberRow>
         {[1, 2, 3, 4].map((v) => (
-          <Chip key={v} label={String(v)} selected={n === v} onPress={() => setProfile(setDraft, (p) => ({ ...p, servings: v }))} />
+          <NumberChoice key={v} label={String(v)} accessibilityLabel={v === 1 ? '1 persona' : `${v} persone`} selected={n === v} onPress={() => setProfile(setDraft, (p) => ({ ...p, servings: v }))} />
         ))}
-        <Chip label="5 o più" selected={n >= 5} onPress={() => setProfile(setDraft, (p) => ({ ...p, servings: Math.max(5, p.servings) }))} />
-      </ChipGroup>
+        <NumberChoice label="5+" accessibilityLabel="5 o più persone" selected={n >= 5} onPress={() => setProfile(setDraft, (p) => ({ ...p, servings: Math.max(5, p.servings) }))} />
+      </NumberRow>
       {n >= 5 ? (
         <Stepper label="Numero di persone" value={n} min={5} max={30} onChange={(v) => setProfile(setDraft, (p) => ({ ...p, servings: v }))} />
       ) : null}
-      <Text variant="small" color={colors.inkSoft}>
-        Le quantità di ricette e spesa vengono calcolate per questo numero. Puoi cambiarlo per un singolo pasto.
-      </Text>
+      <InfoNote text="Ricette e spesa useranno questo numero. Puoi cambiarlo per un singolo pasto." />
     </View>
   );
 }
 
 export function MealsStep({ draft, setDraft }: StepProps) {
   return (
-    <ChipGroup>
+    <TileGrid>
       {MEAL_TYPES.map((m) => (
-        <Chip
+        <OptionTile
           key={m}
+          multi
+          columns={2}
           label={MEAL_LABELS[m]}
+          art={<ChoiceArt name={m} size={52} />}
           selected={draft.profile.mealTypes.includes(m)}
           onPress={() => setProfile(setDraft, (p) => ({ ...p, mealTypes: toggle(p.mealTypes, m) }))}
         />
       ))}
-    </ChipGroup>
+    </TileGrid>
   );
 }
 
 export function DietStep({ draft, setDraft }: StepProps) {
   return (
     <View style={styles.gap}>
-      <ChipGroup>
+      <TileGrid>
         {DIETS.map((d) => (
-          <Chip key={d} label={DIET_LABELS[d]} selected={draft.profile.diet === d} onPress={() => setProfile(setDraft, (p) => ({ ...p, diet: d }))} />
+          <OptionTile key={d} columns={2} label={DIET_LABELS[d]} art={<ChoiceArt name={d} size={52} />} selected={draft.profile.diet === d} onPress={() => setProfile(setDraft, (p) => ({ ...p, diet: d }))} />
         ))}
-      </ChipGroup>
-      <Text variant="small" color={colors.inkSoft}>
-        Pescetariano: niente carne, sì pesce. La compatibilità è calcolata dagli ingredienti di ogni ricetta.
-      </Text>
+      </TileGrid>
+      <InfoToggle label="Come decido cosa è compatibile?" text="Pescetariano: niente carne, sì pesce. La compatibilità è calcolata dagli ingredienti di ogni ricetta." />
     </View>
   );
 }
@@ -103,11 +104,9 @@ export function AllergenStep({ draft, setDraft }: StepProps) {
         tone="danger"
         onToggle={(id) => setProfile(setDraft, (p) => ({ ...p, excludedIngredientIds: toggle(p.excludedIngredientIds, id) }))}
       />
-      <Notice tone="warning" text={t('allergen.disclaimer')} />
+      <InfoNote tone="warning" text={t('allergen.disclaimer')} />
       {draft.profile.excludedAllergens.length > 0 ? (
-        <Text variant="small" color={colors.inkSoft}>
-          Con almeno un’esclusione attiva, Spesora scarta anche le ricette con prodotti confezionati i cui allergeni dipendono dalla marca (per esempio pesto o pane).
-        </Text>
+        <InfoNote text="Con un’esclusione attiva, Mina scarta anche le ricette con prodotti confezionati i cui allergeni dipendono dalla marca (es. pesto, pane)." />
       ) : null}
     </View>
   );
@@ -245,19 +244,18 @@ export function TimesStep({ draft, setDraft }: StepProps) {
 export function FrequencyStep({ draft, setDraft }: StepProps) {
   return (
     <View style={styles.gap}>
-      <ChipGroup>
+      <NumberRow>
         {[1, 2, 3, 4, 5, 6, 7].map((n) => (
-          <Chip
+          <NumberChoice
             key={n}
-            label={n === 1 ? '1 volta' : n >= 4 ? `${n} volte` : `${n} volte`}
+            label={String(n)}
+            accessibilityLabel={n === 1 ? '1 volta a settimana' : `${n} volte a settimana`}
             selected={draft.shoppingFrequency === n}
             onPress={() => setDraft((d) => ({ ...d, shoppingFrequency: n, profile: { ...d.profile, shoppingDays: suggestShoppingDays(n) } }))}
           />
         ))}
-      </ChipGroup>
-      <Text variant="small" color={colors.inkSoft}>
-        Nel prossimo passo ti proponiamo dei giorni: potrai cambiarli.
-      </Text>
+      </NumberRow>
+      <InfoNote text="Volte a settimana. Nel prossimo passo ti propongo i giorni: potrai cambiarli." />
     </View>
   );
 }
@@ -284,9 +282,7 @@ export function ShoppingDaysStep({ draft, setDraft }: StepProps) {
           Hai scelto {days.length} {days.length === 1 ? 'giorno' : 'giorni'}: useremo questi.
         </Text>
       ) : null}
-      <Text variant="small" color={colors.inkSoft}>
-        Ogni prodotto viene assegnato alla spesa più vicina prima del suo utilizzo, tenendo conto di quanto si conserva.
-      </Text>
+      <InfoToggle label="Come divido la spesa?" text="Ogni prodotto va nella spesa più vicina prima del suo utilizzo, tenendo conto di quanto si conserva." />
     </View>
   );
 }
@@ -311,7 +307,7 @@ export function BudgetStep({ draft, setDraft }: StepProps) {
     });
   return (
     <View style={styles.gap}>
-      <SectionTitle>Vuoi che Spesora tenga conto del budget?</SectionTitle>
+      <SectionTitle>Vuoi che Mina tenga conto del budget?</SectionTitle>
       <ChipGroup>
         {(['minimo', 'equilibrato', 'limite', 'off'] as const).map((m) => (
           <Chip key={m} label={BUDGET_MODE_LABELS[m]} selected={b.mode === m} onPress={() => setBudget({ mode: m })} />
@@ -374,7 +370,7 @@ export function BudgetStep({ draft, setDraft }: StepProps) {
           </ChipGroup>
         </>
       ) : null}
-      <Notice text="Gli importi rapidi sono solo scorciatoie, non somme consigliate. Spesora non riduce mai pasti o porzioni per stare nel budget: sceglie ricette che riutilizzano gli ingredienti e richiedono meno acquisti. I costi in euro compaiono solo per i prodotti di cui conosci il prezzo (puoi inserirli in Impostazioni → Prezzi)." />
+      <InfoToggle label="Come uso il budget?" text="Gli importi rapidi sono solo scorciatoie, non somme consigliate. Mina non riduce mai pasti o porzioni per stare nel budget: sceglie ricette che riutilizzano gli ingredienti e richiedono meno acquisti. I costi in euro compaiono solo per i prodotti di cui conosci il prezzo (Profilo → Prezzi)." />
     </View>
   );
 }
@@ -392,9 +388,7 @@ export function EquipmentStep({ draft, setDraft }: StepProps) {
           />
         ))}
       </ChipGroup>
-      <Text variant="small" color={colors.inkSoft}>
-        Proporremo solo ricette realizzabili con gli strumenti selezionati.
-      </Text>
+      <InfoNote text="Ti propongo solo ricette fattibili con questi strumenti." />
     </View>
   );
 }
@@ -409,9 +403,7 @@ export function PantryStep({ draft, setDraft }: StepProps) {
     });
   return (
     <View style={styles.gap}>
-      <Text variant="small" color={colors.inkSoft}>
-        Seleziona solo ciò che hai davvero. Per gli ingredienti da quantificare indica una quantità approssimativa: potrai correggerla dalla Dispensa.
-      </Text>
+      <InfoNote text="Scegli solo ciò che hai. Una quantità indicativa basta: potrai correggerla dalla Dispensa." />
       {QUICK_PANTRY.filter((id) => catalogIndex.ingredients.has(id)).map((id) => {
         const ing = catalogIndex.ingredient(id);
         const has = id in draft.pantry;

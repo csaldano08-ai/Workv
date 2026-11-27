@@ -1,6 +1,6 @@
 /** Stringhe italiane principali. Le chiavi sono verificate da `npm run verify`. */
 export const it = {
-  'app.name': 'Spesora',
+  'app.name': 'Mina',
   'app.slogan': 'La tua settimana, già in tavola.',
   'welcome.value': 'Un calendario che decide cosa cucinare, quando fare la spesa e cosa comprare. Tu devi solo cucinare.',
   'welcome.start': 'Inizia',
@@ -35,7 +35,7 @@ export const it = {
   'action.next': 'Avanti',
   'action.skip': 'Salta',
   'allergen.disclaimer':
-    'Spesora esclude le ricette in base agli ingredienti che indichi, ma non certifica l’assenza di allergeni. Controlla sempre etichette, ingredienti e possibili contaminazioni.',
+    'Mina esclude le ricette in base agli ingredienti che indichi, ma non certifica l’assenza di allergeni. Controlla sempre etichette, ingredienti e possibili contaminazioni.',
   'estimate.note': 'Le quantità marcate “stima” derivano dalle ricette confermate: correggile se non corrispondono.',
   'error.generic': 'Qualcosa non ha funzionato. I tuoi dati non sono stati modificati.',
   'error.db': 'Non è stato possibile aprire i dati locali. Nessun dato è stato cancellato.',

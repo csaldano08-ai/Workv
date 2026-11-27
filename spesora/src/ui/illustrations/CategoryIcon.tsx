@@ -4,7 +4,7 @@ import Svg, { Circle, Ellipse, G, Path, Rect } from 'react-native-svg';
 import type { ShoppingCategory } from '../../core/domain/types';
 import { illo } from './palette';
 
-/** Micro-illustrazione per ogni reparto della spesa (contorno scuro, palette di Spesora). Decorativa. */
+/** Micro-illustrazione per ogni reparto della spesa (contorno scuro, palette di Mina). Decorativa. */
 const ink = illo.ink;
 const SW = 2.2;
 

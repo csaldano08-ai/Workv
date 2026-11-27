@@ -1,4 +1,4 @@
-import { RevenueCatPurchaseService, type RevenueCatConfig } from './revenuecat';
+import { apiKeyFor, RevenueCatPurchaseService, type RevenueCatConfig } from './revenuecat';
 import type { EntitlementStatus, PlusPackage, PurchaseMode, PurchaseOutcome, PurchaseService } from './types';
 
 /** Modalità predefinita: acquisti non configurati. Nessun prezzo e nessuna attivazione simulata. */
@@ -75,9 +75,10 @@ export class MockPurchaseService implements PurchaseService {
  * (non funziona in Expo Go) e chiavi API: finché non sono configurate si usa la modalità disabilitata.
  * Vedi docs/RELEASE_CHECKLIST.md.
  */
-export function createPurchaseService(mode: PurchaseMode, isDev: boolean, revenuecat?: RevenueCatConfig | null): PurchaseService {
+export function createPurchaseService(mode: PurchaseMode, isDev: boolean, revenuecat?: RevenueCatConfig | null, platform = 'unknown'): PurchaseService {
   if (mode === 'mock' && isDev) return new MockPurchaseService();
-  if (mode === 'revenuecat' && revenuecat?.iosApiKey) return new RevenueCatPurchaseService(revenuecat);
+  // `platform` = Platform.OS passato dall'interfaccia (qui niente react-native: il modulo resta testabile)
+  if (mode === 'revenuecat' && revenuecat && apiKeyFor(platform, revenuecat)) return new RevenueCatPurchaseService(revenuecat, platform);
   // Configurazione mancante: nessun prezzo e nessuna attivazione simulata.
   return new DisabledPurchaseService();
 }

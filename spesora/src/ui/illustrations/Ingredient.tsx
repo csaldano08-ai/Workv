@@ -5,7 +5,7 @@ import { smoothD, superPts } from '../motion/shapes';
 import { illo } from './palette';
 
 /**
- * Ingredienti illustrati nello stile dell'intro: forme morbide, contorno scuro, palette di Spesora.
+ * Ingredienti illustrati nello stile dell'intro: forme morbide, contorno scuro, palette di Mina.
  * Disegnati in un riquadro di 100 unità centrato in 0 (viewBox con margine per il contorno).
  */
 export const INGREDIENT_KINDS = ['tomato', 'leaf', 'carrot', 'lemon', 'mushroom', 'peas'] as const;

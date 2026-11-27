@@ -1,5 +1,5 @@
 /**
- * Caricamento illustrato (concept C): gli ingredienti ballano mentre Spesora lavora, poi si riuniscono.
+ * Caricamento illustrato (concept C): gli ingredienti ballano mentre Mina lavora, poi si riuniscono.
  * `withLoader` mostra l'animazione, esegue il lavoro e restituisce il suo risultato.
  * Senza un LoaderHost montato (test, script) il lavoro viene eseguito direttamente.
  */
@@ -25,7 +25,7 @@ export function minLoaderMs(reducedMotion: boolean): number {
   return reducedMotion ? 700 : 1700;
 }
 
-/** Frasi del caricamento nei momenti in cui Spesora compone le ricette. */
+/** Frasi del caricamento nei momenti in cui Mina compone le ricette. */
 export const LOADER_TEXT = {
   firstWeek: { title: 'Preparo la tua settimana', subtitle: 'Scelgo le ricette, i giorni e la spesa.', done: 'Ecco le tue ricette!' },
   regenerate: { title: 'Rifaccio il menù', subtitle: 'Nuove ricette per i pasti ancora da cucinare.', done: 'Menù pronto!' },

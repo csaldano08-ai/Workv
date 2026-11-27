@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Spesora",
+    "name": "Mina",
     "slug": "spesora",
     "version": "0.1.0",
     "scheme": "spesora",
@@ -9,9 +9,9 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash-icon.png",
-      "imageWidth": 160,
+      "imageWidth": 220,
       "resizeMode": "contain",
-      "backgroundColor": "#FBFCFA"
+      "backgroundColor": "#FFFCF7"
     },
     "ios": {
       "supportsTablet": false,
@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#F6F3EA",
+        "backgroundColor": "#FFF4E7",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -39,7 +39,7 @@
       [
         "expo-notifications",
         {
-          "color": "#386E55"
+          "color": "#1F6B4A"
         }
       ]
     ],
@@ -56,6 +56,7 @@
       },
       "revenuecat": {
         "iosApiKey": "",
+        "androidApiKey": "",
         "entitlementId": "plus",
         "offeringId": "default"
       }

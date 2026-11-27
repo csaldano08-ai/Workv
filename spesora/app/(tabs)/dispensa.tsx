@@ -31,7 +31,7 @@ export default function Pantry() {
   const quantified = items.filter((i) => !catalogIndex.ingredient(i.ingredientId).staple);
   const staples = [...snapshot.staples].filter((id) => catalogIndex.ingredients.has(id));
   const warnings = quantified.filter((i) => i.insufficient && i.available > 0);
-  // In scadenza a breve e non ancora previsti in un pasto: Spesora può spostarli in cima al calendario.
+  // In scadenza a breve e non ancora previsti in un pasto: Mina può spostarli in cima al calendario.
   const expiring = quantified.filter((i) => {
     if (!i.expiryDate || i.available <= 0 || i.reserved > 0) return false;
     const left = diffDays(snapshot.today, i.expiryDate);
@@ -40,7 +40,7 @@ export default function Pantry() {
   const prioritize = () =>
     Alert.alert(
       'Usare prima questi ingredienti?',
-      'Spesora riorganizza i pasti futuri non ancora cucinati preferendo ricette che li usano prima della scadenza. Pasti completati, scelte manuali, acquisti e dispensa restano invariati.',
+      'Mina riorganizza i pasti futuri non ancora cucinati preferendo ricette che li usano prima della scadenza. Pasti completati, scelte manuali, acquisti e dispensa restano invariati.',
       [
         { text: t('action.cancel'), style: 'cancel' },
         { text: 'Riorganizza', onPress: () => void withLoader(LOADER_TEXT.expiring, () => run((s, today) => s.regenerate(today))) },

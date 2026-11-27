@@ -6,7 +6,7 @@ import { illo } from './illustrations/palette';
 import { bloomPts, smoothD } from './motion/shapes';
 import { useReducedMotion } from './useReducedMotion';
 
-/** Decorazioni leggere e puramente grafiche (nascoste agli screen reader), nei colori di Spesora. */
+/** Decorazioni leggere e puramente grafiche (nascoste agli screen reader), nei colori di Mina. */
 
 const BLOB = (a: string, b: string) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="${a}" d="M45 38c26-24 74-26 104-6 27 18 42 50 36 84-6 33-34 58-70 62-37 4-77-12-93-44-13-27-3-70 23-96z"/><path fill="${b}" opacity="0.55" d="M150 150c-11 17-34 26-55 22-22-4-40-20-43-38 18 4 34-1 51-6 18-5 36-4 47 22z"/></svg>`;

@@ -14,7 +14,7 @@ import { Text } from '../src/ui/Text';
 
 const PERMISSION_TEXT: Record<PermissionState, string> = {
   granted: 'Permesso concesso: i promemoria sono programmati su questo iPhone.',
-  denied: 'Permesso negato: Spesora funziona comunque, ma senza avvisi. Puoi riattivarli dalle Impostazioni di iOS.',
+  denied: 'Permesso negato: Mina funziona comunque, ma senza avvisi. Puoi riattivarli dalle Impostazioni di iOS.',
   undetermined: 'Non hai ancora concesso il permesso alle notifiche.',
   unsupported: 'Le notifiche non sono disponibili su questa piattaforma.',
 };
@@ -64,7 +64,7 @@ export default function NotificationsScreen() {
         }}
       />
       <Text variant="small" color={colors.inkSoft}>
-        iOS limita le attività in background: i promemoria coprono il calendario attuale. Apri Spesora almeno una volta a settimana per programmare i successivi.
+        iOS limita le attività in background: i promemoria coprono il calendario attuale. Apri Mina almeno una volta a settimana per programmare i successivi.
       </Text>
     </Screen>
   );

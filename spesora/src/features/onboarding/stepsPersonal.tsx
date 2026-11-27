@@ -2,12 +2,11 @@ import { StyleSheet, View } from 'react-native';
 import { LIKE_LABELS, WEEK_STYLE_LABELS } from '../../core/domain/classify';
 import { suggestedPortions } from '../../core/domain/portions';
 import { APPETITES, GENDERS, LIFESTYLES, LIKES, MEAL_GOALS, PROTEIN_SIZES, WEEK_STYLES, type PortionProfile, type UserProfile } from '../../core/domain/types';
-import { colors, space } from '../../theme/tokens';
+import { space } from '../../theme/tokens';
 import { Chip, ChipGroup } from '../../ui/Chip';
-import { Notice } from '../../ui/Notice';
+import { InfoNote, InfoToggle } from '../../ui/mina/kit';
 import { SectionTitle } from '../../ui/Row';
 import { Stepper } from '../../ui/Stepper';
-import { Text } from '../../ui/Text';
 import type { StepProps } from './steps';
 
 export const PORTIONS_NOTE = 'Le porzioni sono indicative e si basano sulle tue abitudini impostate nell’app.';
@@ -63,9 +62,7 @@ export function PortionProfileStep({ draft, setDraft }: StepProps) {
           <Chip key={g} label={GENDER_LABELS[g]} selected={p.gender === g} onPress={() => apply({ gender: g })} />
         ))}
       </ChipGroup>
-      <Text variant="small" color={colors.inkSoft}>
-        Non usiamo il sesso per nessun calcolo: le quantità dipendono solo dalle abitudini che indichi. Spesora non è un servizio nutrizionale.
-      </Text>
+      <InfoNote text="Non usato per nessun calcolo. Mina non è un servizio nutrizionale." />
     </View>
   );
 }
@@ -94,7 +91,7 @@ export function QuantitiesStep({ draft, setDraft }: StepProps) {
           <Chip key={s} label={PROTEIN_LABELS[s]} selected={p.proteinSize === s} onPress={() => setPortions(setDraft, (c) => ({ ...c, proteinSize: s }))} />
         ))}
       </ChipGroup>
-      <Notice text={`${PORTIONS_NOTE} Esempio: con ${p.pastaGrams} g di pasta, una pasta al tonno per 2 persone ne usa ${p.pastaGrams * 2} g e la lista della spesa si adegua.`} />
+      <InfoToggle label="Come uso queste quantità?" text={`${PORTIONS_NOTE} Esempio: con ${p.pastaGrams} g di pasta, una pasta al tonno per 2 persone ne usa ${p.pastaGrams * 2} g e la lista della spesa si adegua.`} />
     </View>
   );
 }
@@ -115,9 +112,7 @@ export function TastesStep({ draft, setDraft }: StepProps) {
           <Chip key={w} label={WEEK_STYLE_LABELS[w]} selected={t.weekStyles.includes(w)} onPress={() => setTastes(setDraft, (c) => ({ ...c, weekStyles: toggle(c.weekStyles, w) }))} />
         ))}
       </ChipGroup>
-      <Text variant="small" color={colors.inkSoft}>
-        Puoi sceglierne più di uno. I gusti danno la precedenza ad alcune ricette ma non escludono le altre; le esclusioni alimentari restano sempre rispettate. “Ingredienti semplici e riutilizzati” non stima prezzi: favorisce ricette che condividono ingredienti.
-      </Text>
+      <InfoToggle label="Come uso i tuoi gusti?" text="I gusti danno la precedenza ad alcune ricette ma non escludono le altre; le esclusioni alimentari restano sempre rispettate. «Ingredienti semplici e riutilizzati» non stima prezzi: favorisce ricette che condividono ingredienti." />
     </View>
   );
 }

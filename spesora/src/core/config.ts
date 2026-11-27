@@ -6,7 +6,7 @@ interface Extra {
   purchasesMode?: PurchaseMode;
   paywallMode?: PaywallMode;
   legal?: { privacyPolicyUrl?: string; termsUrl?: string; supportUrl?: string; supportEmail?: string };
-  revenuecat?: { iosApiKey?: string; entitlementId?: string; offeringId?: string };
+  revenuecat?: { iosApiKey?: string; androidApiKey?: string; entitlementId?: string; offeringId?: string };
 }
 
 const extra = (Constants.expoConfig?.extra ?? {}) as Extra;
@@ -21,8 +21,14 @@ export const appConfig = {
     supportEmail: extra.legal?.supportEmail ?? '',
   },
   version: Constants.expoConfig?.version ?? '0.0.0',
-  /** Chiave PUBBLICA dell'SDK RevenueCat (non è un segreto, ma non va inventata). */
-  revenuecat: extra.revenuecat?.iosApiKey
-    ? { iosApiKey: extra.revenuecat.iosApiKey, entitlementId: extra.revenuecat.entitlementId || 'plus', offeringId: extra.revenuecat.offeringId || undefined }
-    : null,
+  /** Chiavi PUBBLICHE dell'SDK RevenueCat per iOS e Android (non sono segreti, ma non vanno inventate). */
+  revenuecat:
+    extra.revenuecat?.iosApiKey || extra.revenuecat?.androidApiKey
+      ? {
+          iosApiKey: extra.revenuecat.iosApiKey ?? '',
+          androidApiKey: extra.revenuecat.androidApiKey || undefined,
+          entitlementId: extra.revenuecat.entitlementId || 'plus',
+          offeringId: extra.revenuecat.offeringId || undefined,
+        }
+      : null,
 };

@@ -1,9 +1,12 @@
 import Svg, { Circle, Path, Rect } from 'react-native-svg';
-import { StyleSheet, View } from 'react-native';
-import { colors, space } from '../theme/tokens';
-import { Text } from './Text';
+import { View } from 'react-native';
+import { colors } from '../theme/tokens';
+import { MinaLogo } from './brand/MinaLogo';
 
-/** Marchio Spesora: un piatto che è anche la pagina di un'agenda. Disegno originale. */
+/**
+ * Vecchio marchio (piatto-agenda), usato solo dove serve un simbolo quadrato senza scritta (schermata di errore).
+ * Il logo dell'app è `MinaLogo` (src/ui/brand/MinaLogo.tsx).
+ */
 export function LogoMark({ size = 56 }: { size?: number }) {
   return (
     <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
@@ -20,15 +23,8 @@ export function LogoMark({ size = 56 }: { size?: number }) {
   );
 }
 
-export function Logo({ size = 56 }: { size?: number }) {
-  return (
-    <View style={styles.row} accessible accessibilityLabel="Spesora">
-      <LogoMark size={size} />
-      <Text variant="display" color={colors.green}>
-        Spesora
-      </Text>
-    </View>
-  );
+/** Logo MINA (parola + cestino). `size` = altezza del disegno. */
+export function Logo({ size = 40 }: { size?: number }) {
+  return <MinaLogo height={size} />;
 }
 
-const styles = StyleSheet.create({ row: { flexDirection: 'row', alignItems: 'center', gap: space.md } });

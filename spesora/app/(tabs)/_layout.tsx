@@ -1,4 +1,3 @@
-import type Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs, router } from 'expo-router';
 import { useEffect } from 'react';
 import type { ColorValue } from 'react-native';
@@ -6,13 +5,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useApp } from '../../src/features/app/AppProvider';
 import { useReducedMotion } from '../../src/ui/useReducedMotion';
 import { TabIcon, hopTab } from '../../src/ui/TabIcon';
+import type { NavGlyphName } from '../../src/ui/mina/NavGlyph';
 import { colors, font } from '../../src/theme/tokens';
 import { t } from '../../src/i18n/it';
 
-type IconName = keyof typeof Ionicons.glyphMap;
-const icon = (name: IconName, route: string) =>
+const icon = (glyph: NavGlyphName, route: string) =>
   function TabBarIcon({ color, size, focused }: { color: ColorValue | null; size: number; focused: boolean }) {
-    return <TabIcon name={name} route={route} color={color} size={size} focused={focused} />;
+    return <TabIcon glyph={glyph} route={route} color={color} size={size} focused={focused} />;
   };
 
 /** Esegue `f` quando il thread di JavaScript è libero (o al più tardi dopo 1,5 s). */
@@ -63,25 +62,25 @@ export default function TabsLayout() {
         // cambio di scheda: la pagina nuova scivola appena dal lato della scheda e si dissolve (ferma con "Riduci movimento")
         animation: reduced ? 'none' : 'shift',
         tabBarActiveTintColor: colors.green,
-        tabBarInactiveTintColor: colors.inkSoft,
-        // 49 = altezza standard della barra; +6 di respiro, così le etichette non vengono tagliate
-        tabBarStyle: { backgroundColor: colors.white, borderTopColor: colors.line, borderTopWidth: 1, height: 55 + insets.bottom, paddingTop: 2 },
-        tabBarLabelStyle: { fontSize: 12, fontFamily: font.bold },
+        tabBarInactiveTintColor: colors.ink,
+        // barra bianca come nel riferimento: icone disegnate, etichette in grassetto; 49 = altezza standard + respiro
+        tabBarStyle: { backgroundColor: colors.white, borderTopColor: colors.line, borderTopWidth: 1, height: 60 + insets.bottom, paddingTop: 5 },
+        tabBarLabelStyle: { fontSize: 12, fontFamily: font.bold, marginTop: 1 },
       }}
     >
-      <Tabs.Screen name="index" options={{ title: t('tabs.today'), tabBarIcon: icon('sunny-outline', 'index') }} />
-      <Tabs.Screen name="settimana" options={{ title: t('tabs.week'), tabBarIcon: icon('calendar-outline', 'settimana') }} />
+      <Tabs.Screen name="index" options={{ title: t('tabs.today'), tabBarIcon: icon('today', 'index') }} />
+      <Tabs.Screen name="settimana" options={{ title: t('tabs.week'), tabBarIcon: icon('week', 'settimana') }} />
       <Tabs.Screen
         name="spesa"
         options={{
           title: t('tabs.shopping'),
-          tabBarIcon: icon('basket-outline', 'spesa'),
+          tabBarIcon: icon('shopping', 'spesa'),
           tabBarBadge: shoppingCount ? shoppingCount : undefined,
           tabBarBadgeStyle: { backgroundColor: colors.peach, color: colors.ink, fontFamily: font.extrabold, fontSize: 11 },
         }}
       />
-      <Tabs.Screen name="dispensa" options={{ title: t('tabs.pantry'), tabBarIcon: icon('file-tray-stacked-outline', 'dispensa') }} />
-      <Tabs.Screen name="ricette" options={{ title: t('tabs.recipes'), tabBarIcon: icon('book-outline', 'ricette') }} />
+      <Tabs.Screen name="dispensa" options={{ title: t('tabs.pantry'), tabBarIcon: icon('pantry', 'dispensa') }} />
+      <Tabs.Screen name="ricette" options={{ title: t('tabs.recipes'), tabBarIcon: icon('recipes', 'ricette') }} />
     </Tabs>
   );
 }

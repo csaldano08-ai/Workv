@@ -1,5 +1,5 @@
 /**
- * Abbonamenti Spesora Plus. Prezzi, periodi e prove gratuite vengono SEMPRE letti dallo store:
+ * Abbonamenti Mina Plus. Prezzi, periodi e prove gratuite vengono SEMPRE letti dallo store:
  * qui non esistono prezzi "attivi" scritti nel codice.
  */
 export type PurchaseMode = 'disabled' | 'mock' | 'revenuecat';
@@ -15,6 +15,8 @@ export interface PlusPackage {
 
 export type EntitlementStatus =
   | { state: 'none' }
+  /** Stato non leggibile (es. errore dello store senza dati in memoria): non blocca mai l'accesso. */
+  | { state: 'unknown' }
   | { state: 'active'; expiresAt: string | null; willRenew: boolean; inGracePeriod: boolean }
   | { state: 'expired'; expiredAt: string };
 
@@ -37,5 +39,12 @@ export interface PurchaseService {
   managementUrl(): Promise<string | null>;
 }
 
-/** Politica di accesso: durante lo sviluppo nessuna funzione è bloccata. */
-export type PaywallMode = 'off' | 'soft' | 'hard';
+/**
+ * Politica di accesso.
+ *  - 'off': nessun blocco (oggi);
+ *  - 'soft': invito non bloccante;
+ *  - 'hard': bloccate solo le funzioni Plus (`canUse`);
+ *  - 'required': abbonamento obbligatorio per usare l'app dopo il questionario (`mustSubscribe`).
+ * In ogni modalità il blocco vale SOLO se gli acquisti sono reali e funzionanti (`PurchaseService.isLive`).
+ */
+export type PaywallMode = 'off' | 'soft' | 'hard' | 'required';

@@ -1,5 +1,5 @@
 /**
- * Tipi di dominio di Spesora.
+ * Tipi di dominio di Mina.
  *
  * Convenzioni importanti:
  * - Le date di calendario sono stringhe ISO locali `YYYY-MM-DD` (nessun fuso orario).
@@ -284,7 +284,7 @@ export interface BudgetProfile {
   /** Importo indicato dall'utente in centesimi (per il periodo scelto). */
   amountCents: number | null;
   period: 'settimana' | 'mese';
-  /** Se il budget copre tutti i pasti pianificati in Spesora o solo una parte della spesa. */
+  /** Se il budget copre tutti i pasti pianificati in Mina o solo una parte della spesa. */
   scope: 'pasti_spesora' | 'parte_spesa';
   store: 'discount' | 'supermercato' | 'mercato' | 'ovunque' | 'non_indicato';
 }

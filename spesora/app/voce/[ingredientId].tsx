@@ -112,7 +112,7 @@ export default function PantryItem() {
       <Card>
         <Text variant="heading">Scadenza (facoltativa)</Text>
         <Text variant="small" color={colors.inkSoft}>
-          Solo se la leggi sulla confezione: Spesora non stima le scadenze.
+          Solo se la leggi sulla confezione: Mina non stima le scadenze.
         </Text>
         <TextInput
           value={expiry}

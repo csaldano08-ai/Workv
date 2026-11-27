@@ -10,6 +10,7 @@ import { colors, font, space } from '../src/theme/tokens';
 import { useFonts } from 'expo-font';
 import { CelebrationHost } from '../src/ui/CelebrationHost';
 import { IntroGate } from '../src/features/intro/IntroGate';
+import { SubscriptionGate } from '../src/features/paywall/subscription';
 import { LoaderHost } from '../src/ui/loader/LoaderHost';
 import { useReducedMotion } from '../src/ui/useReducedMotion';
 import { Button } from '../src/ui/Button';
@@ -41,7 +42,7 @@ function OnboardingGate() {
   const pathname = usePathname();
   useEffect(() => {
     if (status.kind !== 'ready' || !snapshot) return;
-    const open = ['/benvenuto', '/onboarding', '/privacy', '/mina'].some((p) => pathname.startsWith(p));
+    const open = ['/benvenuto', '/onboarding', '/privacy', '/termini', '/mina'].some((p) => pathname.startsWith(p));
     if (!snapshot.profile && !open) router.replace('/benvenuto');
   }, [status, snapshot, pathname]);
   return null;
@@ -67,6 +68,7 @@ function Shell() {
     <>
       {Platform.OS !== 'web' ? <NotificationRouter /> : null}
       <OnboardingGate />
+      <SubscriptionGate />
       <Stack
         screenOptions={{
           headerTintColor: colors.green,
@@ -94,7 +96,9 @@ function Shell() {
         <Stack.Screen name="impostazioni" options={{ title: 'Impostazioni' }} />
         <Stack.Screen name="preferenze/[section]" options={{ title: 'Modifica' }} />
         <Stack.Screen name="notifiche" options={{ title: 'Notifiche' }} />
-        <Stack.Screen name="plus" options={{ title: 'Spesora Plus' }} />
+        <Stack.Screen name="plus" options={{ title: 'Abbonamento' }} />
+        <Stack.Screen name="abbonamento" options={{ title: 'Abbonamento' }} />
+        <Stack.Screen name="termini" options={{ title: 'Termini e abbonamento' }} />
         <Stack.Screen name="storico" options={{ title: 'Storico dei pasti' }} />
         <Stack.Screen name="prezzi" options={{ title: 'Prezzi' }} />
         <Stack.Screen name="economica" options={{ title: 'Settimana più economica', presentation: 'modal' }} />

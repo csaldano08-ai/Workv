@@ -39,7 +39,7 @@ export interface MinaMascotProps {
 }
 
 /**
- * Mina 2.0, la mascotte di Spesora: la borsetta della spesa (Mina Chef nelle pose di cucina e ricette).
+ * Mina 2.0, la mascotte dell’app: la borsetta della spesa (Mina Chef nelle pose di cucina e ricette).
  * Vettoriale e offline, animata a parti separate. Vedi `mina2/` e docs/MASCOT.md.
  */
 export const MinaMascot = memo(function MinaMascot(props: MinaMascotProps) {

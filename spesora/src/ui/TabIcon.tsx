@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useState } from 'react';
 import { Animated, Easing, Platform, type ColorValue } from 'react-native';
+import { NavGlyph, type NavGlyphName } from './mina/NavGlyph';
 import { useReducedMotion } from './useReducedMotion';
 
 const native = Platform.OS !== 'web';
@@ -20,7 +21,7 @@ export function hopTab(route: string) {
  * Icona della barra delle schede: piena quando la scheda è attiva; al tocco fa un saltello
  * (si alza, si allunga appena e ricade con un rimbalzo, come Mina). Ferma con "Riduci movimento".
  */
-export function TabIcon({ name, route, focused, color, size }: { name: IconName; route: string; focused: boolean; color: ColorValue | null; size: number }) {
+export function TabIcon({ name, glyph, route, focused, color, size }: { name?: IconName; glyph?: NavGlyphName; route: string; focused: boolean; color: ColorValue | null; size: number }) {
   const reduced = useReducedMotion();
   const [v] = useState(() => new Animated.Value(0));
   useEffect(() => {
@@ -43,7 +44,8 @@ export function TabIcon({ name, route, focused, color, size }: { name: IconName;
     };
   }, [reduced, route, v]);
   // icona piena quando la scheda è attiva (le icone di Ionicons hanno la variante «-outline»)
-  const shown = (focused ? name.replace(/-outline$/, '') : name) as IconName;
+  const shown = (focused ? (name ?? 'ellipse-outline').replace(/-outline$/, '') : (name ?? 'ellipse-outline')) as IconName;
+  const tint = typeof color === 'string' ? color : '#000000';
   return (
     <Animated.View
       style={{
@@ -54,7 +56,7 @@ export function TabIcon({ name, route, focused, color, size }: { name: IconName;
         ],
       }}
     >
-      <Ionicons name={shown} color={typeof color === 'string' ? color : undefined} size={size} />
+      {glyph ? <NavGlyph name={glyph} focused={focused} color={tint} size={size + 2} /> : <Ionicons name={shown} color={tint} size={size} />}
     </Animated.View>
   );
 }

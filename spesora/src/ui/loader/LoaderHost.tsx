@@ -1,17 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Platform, StyleSheet, View } from 'react-native';
-import Svg, { Circle, Path } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { colors, space } from '../../theme/tokens';
 import { INGREDIENT_KINDS, Ingredient } from '../illustrations/Ingredient';
 import { illo } from '../illustrations/palette';
+import { MinaMascot } from '../mascot/Mina';
 import { Text } from '../Text';
 import { useReducedMotion } from '../useReducedMotion';
 import { minLoaderMs, setLoaderHandler, type LoaderText } from './loaderBus';
 
 const native = Platform.OS !== 'web';
 const STAGE = 280;
-const RINGS = [112, 56]; // orbita esterna (pari, oraria) e interna (dispari, antioraria)
-const SIZES = [64, 50];
+/** Mina Chef al centro del caricamento. */
+const MINA_SIZE = 150;
+const RINGS = [124, 102]; // orbita esterna (pari, oraria) e interna (dispari, antioraria), intorno a Mina
+const SIZES = [54, 44];
 const STEPS = 24;
 
 /** Valori per un'orbita circolare (interpolazione a tratti, eseguibile sul thread nativo). */
@@ -40,11 +43,18 @@ export function LoaderHost() {
   }, [reduced]);
   const [text, setText] = useState<LoaderText | null>(null);
   const [gathering, setGathering] = useState(false);
+  // ogni 2,1 s Mina ripete il gesto del mescolare: il movimento è continuo finché il lavoro dura, ma ogni giro
+  // finisce al suo posto, quindi alla fine del caricamento non resta mai bloccata a metà gesto
+  const [stir, setStir] = useState(0);
+  useEffect(() => {
+    if (!text || gathering || reduced) return;
+    const id = setInterval(() => setStir((k) => k + 1), 2100);
+    return () => clearInterval(id);
+  }, [text, gathering, reduced]);
   const [v] = useState(() => ({
     spin: new Animated.Value(0),
     bob: new Animated.Value(0),
     gather: new Animated.Value(0),
-    plate: new Animated.Value(0),
     fade: new Animated.Value(0),
   }));
 
@@ -54,7 +64,6 @@ export function LoaderHost() {
       const started = Date.now();
       const r = reducedRef.current;
       v.gather.setValue(0);
-      v.plate.setValue(0);
       v.spin.setValue(0);
       v.bob.setValue(0);
       setGathering(false);
@@ -70,13 +79,12 @@ export function LoaderHost() {
         const result = await task();
         const left = minLoaderMs(r) - (Date.now() - started);
         if (left > 0) await wait(left);
-        // gli ingredienti si stringono a vortice e si riuniscono; compare il piatto con la spunta
+        // gli ingredienti si stringono a vortice e finiscono nella ciotola; Mina Chef fa l'occhiolino
         setGathering(true);
         await new Promise<void>((res) =>
           Animated.sequence([
             Animated.timing(v.gather, { toValue: 1, duration: r ? 1 : 650, easing: Easing.in(Easing.cubic), useNativeDriver: native }),
-            Animated.spring(v.plate, { toValue: 1, friction: 4, tension: 120, useNativeDriver: native }),
-            Animated.delay(r ? 150 : 380),
+            Animated.delay(r ? 250 : 900),
           ]).start(() => res()),
         );
         return result;
@@ -139,14 +147,11 @@ export function LoaderHost() {
             </Animated.View>
           );
         })}
-        {/* il piatto con la spunta (lo stesso del marchio Spesora) */}
-        <Animated.View pointerEvents="none" style={[styles.plate, { transform: [{ scale: v.plate }] }]}>
-          <Svg width={96} height={96} viewBox="0 0 96 96">
-            <Circle cx={48} cy={48} r={42} fill={illo.ivory} stroke={illo.ink} strokeWidth={4} />
-            <Circle cx={48} cy={48} r={28} fill="none" stroke={illo.peach} strokeWidth={7} />
-            <Path d="M37 49 l8 8 l15 -17" stroke={illo.green} strokeWidth={8} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          </Svg>
-        </Animated.View>
+        {/* al centro Mina Chef mescola nella ciotola (un giro di tre mescolate alla volta, finché il lavoro dura);
+            a lavoro finito gli ingredienti finiscono nella ciotola e lei fa l'occhiolino col cucchiaio */}
+        <View pointerEvents="none" style={styles.mina}>
+          <MinaMascot pose={gathering ? 'cooking' : 'mixing'} size={MINA_SIZE} animated replayKey={gathering ? 'pronto' : stir} />
+        </View>
       </View>
       <Text variant="title" center>
         {gathering && text.done ? text.done : text.title}
@@ -165,5 +170,5 @@ const styles = StyleSheet.create({
   stage: { width: STAGE, height: STAGE, marginBottom: space.lg },
   fill: { position: 'absolute', left: 0, top: 0, width: STAGE, height: STAGE },
   item: { position: 'absolute', left: STAGE / 2, top: STAGE / 2 },
-  plate: { position: 'absolute', left: STAGE / 2 - 48, top: STAGE / 2 - 48 },
+  mina: { position: 'absolute', left: STAGE / 2 - MINA_SIZE / 2, top: STAGE / 2 - (MINA_SIZE * 1.16) / 2 },
 });

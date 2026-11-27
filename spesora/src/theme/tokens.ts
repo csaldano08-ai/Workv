@@ -1,46 +1,60 @@
 /**
- * Design token di Spesora — restyling «Mina 2.0»: stessa identità verde, più fresca e luminosa.
- * Unica fonte dei colori: le schermate non scrivono codici colore propri.
+ * Design token di MINA. Unica fonte dei colori: le schermate non scrivono codici colore propri.
  *
- * Palette di partenza del brief, rifinita sulle schermate reali:
- *  - verde principale #34865E → #2F7F57: stessa tinta, 3% più scuro, così il testo bianco sui pulsanti
- *    e il verde sui link superano il contrasto AA (4,9:1 invece di 4,45:1);
- *  - pesca #FFA873 solo per accenti e momenti positivi, mai per testi lunghi.
+ * Palette approvata (reference «Mina — Pianifica, cucina e fai la spesa in modo semplice»):
+ *  - verde #1F6B4A: azioni principali, selezioni, link (bianco sul verde 6,4:1);
+ *  - avorio #FFF8EC: superfici calde (benvenuto, fasce, icona), non come fondo uniforme di tutto;
+ *  - pesca #FFA56B: accenti e avvisi gentili (mai per testi lunghi);
+ *  - salvia #DCECD8: pillole, fondi dei giorni, forme decorative.
+ * Il fondo delle pagine è un bianco caldo (misurato nel riferimento: #FDFAF4–#FFF9F2) e le card sono bianche:
+ * leggibile, mai giallino.
  */
 export const colors = {
-  green: '#2F7F57',
-  greenBright: '#34865E', // tinta del brief: superfici grandi e illustrazioni, non per testo piccolo
-  greenDark: '#214C36',
-  greenDeep: '#24603F', // base "in rilievo" dei pulsanti verdi
-  greenSoft: '#EAF6EC',
-  greenMist: '#F3F9F4',
-  ivory: '#FBFCFA', // fondo dell'app (nome storico)
+  green: '#1F6B4A',
+  greenBright: '#2A8459', // stessa tinta più luminosa: superfici grandi e illustrazioni, non per testo piccolo
+  greenDark: '#174F37',
+  greenDeep: '#154832', // base "in rilievo" dei pulsanti verdi
+  greenSoft: '#E9F3E5',
+  greenMist: '#F3F8EF',
+  ivory: '#FFF8EC',
   paper: '#FFFFFF', // card (nome storico)
-  desk: '#FBFCFA', // fondo delle schermate (nome storico)
-  tab: '#EEF3EE', // controlli segmentati non attivi
-  shadowPaper: '#E5EBE5',
-  sage: '#DCEEDF',
+  desk: '#FFFCF7', // fondo delle schermate: bianco caldo
+  tab: '#EEF4EA', // controlli segmentati non attivi
+  shadowPaper: '#EEE8DE',
+  sage: '#DCECD8',
   lavender: '#ECE9F7',
   tape: 'transparent',
-  peach: '#FFA873',
-  peachSoft: '#FFF1E6',
+  peach: '#FFA56B',
+  peachSoft: '#FFF0E3',
   peachInk: '#94450F', // testo su pesca chiara, contrasto AA
-  ink: '#20352A',
-  inkSoft: '#56675D',
-  line: '#E5EBE5',
-  lineStrong: '#D3DDD4',
+  ink: '#1D2A23',
+  inkSoft: '#5F6B64',
+  line: '#EEE8DE',
+  lineStrong: '#DDD5C8',
   danger: '#B3402F',
   dangerSoft: '#FBE9E5',
   white: '#FFFFFF',
 } as const;
 
+/** Colori del marchio (logo e icona): presi dal logo approvato, separati dalla palette dell'interfaccia. */
+export const brand = {
+  wordTop: '#0C8C41',
+  wordBottom: '#065426',
+  basket: '#F59B0C',
+  basketShade: '#E2860A',
+  basketRim: '#1E742E',
+  handle: '#1E742E',
+  sparkle: '#74C412',
+  iconBg: '#FFF4E7',
+} as const;
+
 /** Bordi: sottili e chiari (niente più contorni scuri dello stile "ricettario"). */
 export const outline = { color: colors.line, width: 1, thin: 1 } as const;
 
-/** Ombra morbida delle card (verde scuro molto trasparente: niente grigi sporchi). */
+/** Ombra morbida delle card (bruno caldo molto trasparente: niente grigi sporchi sul fondo bianco caldo). */
 export const shadow = {
-  card: { shadowColor: '#1E4A34', shadowOpacity: 0.07, shadowRadius: 14, shadowOffset: { width: 0, height: 4 }, elevation: 2 },
-  float: { shadowColor: '#1E4A34', shadowOpacity: 0.14, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 6 },
+  card: { shadowColor: '#3B3426', shadowOpacity: 0.07, shadowRadius: 14, shadowOffset: { width: 0, height: 4 }, elevation: 2 },
+  float: { shadowColor: '#3B3426', shadowOpacity: 0.13, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 6 },
 } as const;
 
 export const space = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 } as const;
@@ -57,6 +71,8 @@ export const font = {
 /** Tipografia: Nunito con scala chiara. Rispetta Dynamic Type (fino a MAX_FONT_SCALE). */
 export const type = {
   display: { fontSize: 30, lineHeight: 36, fontWeight: '800' as const, letterSpacing: -0.3 },
+  /** Titolo grande delle schermate (come nel riferimento: «La tua settimana», «Ricette», «Profilo»). */
+  screen: { fontSize: 30, lineHeight: 36, fontWeight: '800' as const, letterSpacing: -0.4 },
   title: { fontSize: 23, lineHeight: 29, fontWeight: '800' as const, letterSpacing: -0.2 },
   heading: { fontSize: 17, lineHeight: 23, fontWeight: '700' as const },
   body: { fontSize: 16, lineHeight: 23, fontWeight: '400' as const },
@@ -68,7 +84,7 @@ export const type = {
 } as const;
 
 /** Colore per tipo di pasto (etichette e puntini): toni chiari e distinti, testo sempre scuro. */
-export const mealTone = { colazione: '#FFE9D6', pranzo: '#DCEEDF', spuntino: '#FFF3C4', cena: '#E6E3F7' } as const;
+export const mealTone = { colazione: '#FFE9D6', pranzo: '#DCECD8', spuntino: '#FFF3C4', cena: '#E6E3F7' } as const;
 /** Colore del testo/puntino per tipo di pasto (più saturo del fondo). */
 export const mealInk = { colazione: '#9A4A14', pranzo: '#276B49', spuntino: '#725600', cena: '#4F4398' } as const;
 

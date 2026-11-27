@@ -23,7 +23,7 @@ export default function Settings() {
     if (!service) return;
     try {
       const json = await service.exportJson();
-      await Share.share({ title: 'Dati Spesora', message: json });
+      await Share.share({ title: 'Dati Mina', message: json });
     } catch {
       Alert.alert('Esportazione non riuscita', 'Riprova. I tuoi dati non sono stati modificati.');
     }
@@ -118,7 +118,7 @@ export default function Settings() {
         <Divider />
         <Row icon="pricetag-outline" title="Prezzi" subtitle="I prezzi che paghi di solito, per stimare la spesa" onPress={() => router.push('/prezzi')} />
         <Divider />
-        <Row icon="star-outline" title="Spesora Plus" onPress={() => router.push('/plus')} />
+        <Row icon="star-outline" title="Mina Plus" onPress={() => router.push('/plus')} />
         <Divider />
         <Row icon="play-circle-outline" title="Rivedi l'animazione iniziale" onPress={replayIntro} />
         <Divider />
@@ -139,7 +139,7 @@ export default function Settings() {
       </Card>
 
       <Text variant="small" color={colors.inkSoft}>
-        {`Spesora ${appConfig.version}. I menù sono generati sul telefono da regole e punteggi deterministici: nessuna intelligenza artificiale, nessun server.`}
+        {`Mina ${appConfig.version}. I menù sono generati sul telefono da regole e punteggi deterministici: nessuna intelligenza artificiale, nessun server.`}
       </Text>
     </Screen>
   );
