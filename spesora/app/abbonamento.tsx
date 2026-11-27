@@ -89,6 +89,7 @@ export default function Subscription() {
         ? null
         : { label: fromQuiz ? 'Continua' : 'Torna all’app', onPress: fromQuiz ? enter : () => router.back() };
 
+  const mainButton = main ? <Button label={main.label} iconRight="arrow-forward" size="large" onPress={main.onPress} loading={busy} disabled={busy || (!!plans && live && !active && !selected)} style={compact ? undefined : styles.mainBtn} /> : null;
   return (
     <SafeAreaView style={styles.safe} edges={fromQuiz ? ['top', 'bottom'] : ['bottom']}>
       <Stack.Screen options={{ headerShown: !fromQuiz, title: 'Abbonamento', gestureEnabled: !fromQuiz }} />
@@ -171,7 +172,7 @@ export default function Subscription() {
                   prezzo non esiste ancora e le card non sono selezionabili */}
               <View style={styles.plans} accessible accessibilityLabel="Piani annuale e mensile: prezzi non ancora disponibili">
                 {(['Annuale', 'Mensile'] as const).map((name) => (
-                  <View key={name} style={[styles.plan, styles.planOff, styles.planIdle]}>
+                  <View key={name} style={[styles.flex, styles.plan, styles.planOff, styles.planIdle]}>
                     <Text variant="heading" style={styles.planName}>
                       {name}
                     </Text>
@@ -191,12 +192,14 @@ export default function Subscription() {
           ) : null}
 
           {message ? message.error ? <InlineError text={message.text} /> : <InfoNote text={message.text} /> : null}
-          {/* pulsante principale subito sotto i piani, come nel riferimento (non in fondo alla pagina) */}
-          {main ? <Button label={main.label} iconRight="arrow-forward" size="large" onPress={main.onPress} loading={busy} disabled={busy || (!!plans && live && !active && !selected)} style={styles.mainBtn} /> : null}
+          {/* pulsante principale subito sotto i piani, come nel riferimento (non in fondo alla pagina);
+              sugli schermi bassi resta fisso in basso, così non finisce mai sotto i link */}
+          {compact ? null : mainButton}
         </View>
       </ScrollView>
 
       <View style={styles.footer}>
+        {compact ? mainButton : null}
         <View style={styles.links}>
           <Pressable accessibilityRole="button" onPress={() => void act(() => service.restore())} disabled={busy} hitSlop={6}>
             <Text variant="small" color={colors.green} style={styles.bold}>

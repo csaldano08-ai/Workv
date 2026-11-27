@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, useWindowDimensions, View, type LayoutChangeEvent } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { addDays, rangeDays, toIsoLocal, weekdayOf, weekdayShort } from '../src/core/domain/dates';
 import { generatePlan } from '../src/core/domain/planner';
@@ -17,6 +17,7 @@ import { colors, radius, space } from '../src/theme/tokens';
 import { Reveal } from '../src/ui/Reveal';
 import { LOADER_TEXT, withLoader } from '../src/ui/loader/loaderBus';
 import { MinaMascot, type MinaPose } from '../src/ui/mascot/Mina';
+import { RATIO } from '../src/ui/mascot/mina2/Mina2';
 import { BackCircle, SegmentProgress } from '../src/ui/mina/choices';
 import { DayBadge, InfoToggle, InlineError, InfoNote, ListCard, ListRow, MascotStage } from '../src/ui/mina/kit';
 import { RecipeImage } from '../src/ui/RecipeImage';
@@ -47,6 +48,9 @@ function progressOf(stepId: string): { phase: number; within: number } {
 }
 
 /** Mina compare solo in alcuni passi (momenti scelti), grande e senza fumetto. */
+const MINA_MAX = 180;
+const MINA_MIN = 96;
+
 const STEP_MINA: Record<string, MinaPose> = {
   persone: 'shopping',
   pasti: 'happy',
@@ -77,6 +81,12 @@ export default function Onboarding() {
   const def = STEPS[step];
   // direzione del passaggio: avanti il passo nuovo entra da destra, indietro da sinistra
   const [dir, setDir] = useState<'left' | 'right'>('right');
+  // Mina in fondo alla domanda: grande quando c'è posto, più piccola sugli schermi bassi, assente se non ci sta
+  // intera (mai tagliata dal pulsante in basso). Si misurano l'area visibile e il blocco domanda+risposte.
+  const [viewH, setViewH] = useState(0);
+  const [topH, setTopH] = useState(0);
+  const onView = (e: LayoutChangeEvent) => setViewH(e.nativeEvent.layout.height);
+  const onTop = (e: LayoutChangeEvent) => setTopH(e.nativeEvent.layout.height);
   const go = (next: number) => {
     setError(null);
     setDir(next >= step ? 'right' : 'left');
@@ -130,6 +140,8 @@ export default function Onboarding() {
   const { phase, within } = progressOf(def.id);
   const last = step === STEPS.length - 1;
   const label = last ? 'Continua' : def.optional && isEmptyOptional(def.id, draft) ? t('action.skip') : t('action.next');
+  const room = viewH - topH - (space.lg + space.xl) - space.lg - space.lg - space.sm - (reaction ? 48 : 0);
+  const minaSize = viewH > 0 && topH > 0 ? Math.min(MINA_MAX, Math.floor(room / RATIO)) : MINA_MAX;
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
       <View style={styles.top}>
@@ -137,11 +149,11 @@ export default function Onboarding() {
           <SegmentProgress phases={BAR_SEGMENTS} phase={phase} within={within} label={`Domanda ${step + 1} di ${STEPS.length}`} />
         </View>
       </View>
-      <ScrollView contentContainerStyle={[styles.content, styles.grow]} keyboardShouldPersistTaps="handled">
+      <ScrollView contentContainerStyle={[styles.content, styles.grow]} keyboardShouldPersistTaps="handled" onLayout={onView}>
         {/* il passo nuovo scivola dentro dalla direzione del movimento; la barra resta ferma. Domanda e risposte in
             alto, Mina in basso sul suo «palco» salvia: la pagina è composta su tutta l'altezza, senza un vuoto sotto */}
         <Reveal key={step} from={dir} style={[styles.stepBody, styles.fill]}>
-          <View style={styles.stepTop}>
+          <View style={styles.stepTop} onLayout={onTop}>
           <Text variant="screen" center accessibilityRole="header" style={styles.question}>
             {def.title}
           </Text>
@@ -158,15 +170,15 @@ export default function Onboarding() {
           <def.Component draft={draft} setDraft={setDraft} />
           {error ? <InlineError text={error} /> : null}
           </View>
-          {pose ? (
+          {pose && minaSize >= MINA_MIN ? (
             <View style={styles.mina}>
               {reaction ? (
                 <Text variant="small" color={colors.inkSoft} center style={styles.reaction}>
                   {reaction.tip}
                 </Text>
               ) : null}
-              <MascotStage width={230} height={56}>
-                <MinaMascot pose={pose} size={180} animated idle interactive replayKey={reaction ? reaction.tip : def.id} />
+              <MascotStage width={Math.round(minaSize * 1.28)} height={Math.round(minaSize * 0.31)}>
+                <MinaMascot pose={pose} size={minaSize} animated idle interactive replayKey={reaction ? reaction.tip : def.id} />
               </MascotStage>
             </View>
           ) : null}
@@ -200,6 +212,7 @@ const PREVIEW_DAYS = 3;
 function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; busy: boolean; onBack: () => void; onConfirm: () => void }) {
   const today = toIsoLocal(new Date());
   const [all, setAll] = useState(false);
+  const short = useWindowDimensions().height < 720;
   const result = useMemo(() => {
     try {
       const profile = parseProfile(draft.profile);
@@ -210,7 +223,9 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
     }
   }, [draft, today]);
   const days = result ? rangeDays(today, PLAN_DAYS).filter((d) => result.meals.some((m) => m.date === d)) : [];
-  const shown = all ? days : days.slice(0, PREVIEW_DAYS);
+  // sugli schermi bassi 2 giorni invece di 3, così Mina e la nota sotto restano interi sopra il pulsante
+  const preview = short ? PREVIEW_DAYS - 1 : PREVIEW_DAYS;
+  const shown = all ? days : days.slice(0, preview);
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
@@ -253,11 +268,11 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
               );
             })}
           </View>
-          {days.length > PREVIEW_DAYS ? (
+          {days.length > preview ? (
             <Button kind="ghost" compact label={all ? 'Mostra meno' : `Vedi tutti i ${days.length} giorni`} icon={all ? 'chevron-up' : 'chevron-down'} onPress={() => setAll((a) => !a)} />
           ) : null}
-          <MascotStage width={220} height={54} style={styles.mina}>
-            <MinaMascot pose="success" size={150} animated idle interactive accessibilityLabel="Mina festeggia: la tua settimana è pronta" />
+          <MascotStage width={short ? 170 : 220} height={short ? 42 : 54} style={styles.mina}>
+            <MinaMascot pose="success" size={short ? 116 : 150} animated idle interactive accessibilityLabel="Mina festeggia: la tua settimana è pronta" />
           </MascotStage>
           <Text variant="small" color={colors.inkSoft} center>
             {`Dal ${shortDate(today)} al ${shortDate(addDays(today, PLAN_DAYS - 1))}. Potrai cambiare ogni pasto quando vuoi.`}

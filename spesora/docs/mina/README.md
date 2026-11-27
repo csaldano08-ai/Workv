@@ -1,9 +1,34 @@
-# MINA — restyling completo UI/UX (consegna)
+# MINA — consegna V4: correzione del design esistente e della mascotte
 
-Spesora diventa **Mina**. Il restyling è implementato nell'app reale (Expo / React Native), seguendo la struttura delle 13 schermate approvate e mantenendo i pulsanti dell'app.
+V4 corregge il restyling precedente, che non era approvato. Non è ripartito da zero: logica, servizi, dati, navigazione e funzioni restano gli stessi. Lo stile dei pulsanti è quello originale dell'app: sono cambiate solo dimensioni e posizioni.
 
 - **Branch:** `claude/bold-darwin-lfb2pr`.
-- **Versione precedente:** resta intatta su `claude/spesora-restyling-mina2`.
+- **Commit:**
+  - «MINA V4 (1/3)»: mascotte;
+  - «MINA V4 (2/3)»: schermate;
+  - «MINA V4 (3/3)»: QC e consegna.
+
+## Le 13 voci della consegna V4
+
+| # | Voce | Dove |
+| --- | --- | --- |
+| 1 | App corretta | `app/` e `src/`: dettagli in [CHANGELOG.md](CHANGELOG.md#v4--correzione-del-design-esistente-e-della-mascotte-27-novembre-2026) |
+| 2 | Mina 2.0 corretta | `src/ui/mascot/mina2/art.ts`, `poses.ts`, `Mina2.tsx` · [mascotte/pose_v4.jpg](mascotte/pose_v4.jpg) |
+| 3 | Braccia, mani e pose corrette: continue, distese a riposo, saluto che torna giù | Scheletro unico `BASE_RIG` · [mascotte/gesti_v4.jpg](mascotte/gesti_v4.jpg) (inizio, apertura, mano in alto, ritorno, riposo) |
+| 4 | Ingredienti e bordi della borsa corretti | Ordine dei livelli e gruppi in `art.ts`: il bordo anteriore copre la base degli ingredienti |
+| 5 | Mascotte coerente ovunque | Mina Chef = Mina 2.0 + cappello e grembiule, stesso scheletro e stessa faccia. Fonte grafica unica, nessuna versione vecchia nella UI · [mascotte/trasformazione_v4.jpg](mascotte/trasformazione_v4.jpg) |
+| 6 | Home molto fedele alla reference | `app/(tabs)/index.tsx` · [confronti/misurati/07_home.jpg](confronti/misurati/07_home.jpg) |
+| 7 | Tutte le altre pagine aggiornate | Benvenuto, intro, questionario, anteprima, abbonamento, Settimana, Spesa, Dispensa, Ricette, ricetta, Modalità Cucina, Profilo · [CONFRONTO.md](CONFRONTO.md) |
+| 8 | Pulsanti originali mantenuti | `src/ui/Button.tsx` non modificato nello stile |
+| 9 | Screenshot comparativi | [confronti/misurati/](confronti/misurati/): riferimento · app · sovrapposizione 50% con linee ogni 50 pt. [confronti/](confronti/): affiancati e panoramica. [screenshot/](screenshot/): 375×667, 390×844, 430×932 e «Riduci movimento» |
+| 10 | Video della navigazione aggiornata | [video/navigazione_mina.mp4](video/navigazione_mina.mp4): 63 s, app reale, percorso completo. Fotogrammi: [video/navigazione_fotogrammi.jpg](video/navigazione_fotogrammi.jpg) |
+| 11 | Changelog tecnico | [CHANGELOG.md](CHANGELOG.md) |
+| 12 | Test eseguiti | [TEST.md](TEST.md): tsc, lint, 165 test, `npm run verify`, percorsi Playwright in 3 formati e con «Riduci movimento», video |
+| 13 | Differenze residue dalle reference, con motivazione | [CONFRONTO.md](CONFRONTO.md), tabella «Schermata per schermata» |
+
+---
+
+# Consegna precedente (V3, restyling non approvato)
 
 ## Le 20 voci della consegna
 
@@ -21,7 +46,7 @@ Spesora diventa **Mina**. Il restyling è implementato nell'app reale (Expo / Re
 | 10 | Intro e onboarding | `app/benvenuto.tsx`, `app/onboarding.tsx`, `src/features/intro/MinaIntro.tsx` · confronti 01–05 |
 | 11 | Mina 2.0 animata | Saluto in benvenuto, Oggi e intro. Esulta nel questionario, festeggia nell'anteprima e a lista completata. Calendario in Settimana. Pensierosa negli stati vuoti. Ferma con «Riduci movimento» |
 | 12 | Mina Chef nelle sezioni di cucina | Ricette (trasformazione alla prima visita), caricamento del piano (mescola, giro per giro), benvenuto pagina 2, Modalità Cucina, consigli della ricetta |
-| 13 | Profilo locale senza account | `app/impostazioni.tsx` (Profilo) · [confronti/13_profilo.jpg](confronti/13_profilo.jpg) |
+| 13 | Profilo locale senza account | `app/impostazioni.tsx` (Profilo) · [confronti/13_profilo.jpg](confronti/13_profilo.jpg) (ora aggiornato a V4) |
 | 14 | Popup e messaggi ridisegnati | `src/ui/toast.tsx` (messaggi brevi), `src/ui/Notice.tsx` compatto e senza rosso, `InlineError` accanto ai campi. Le conferme restano piccoli dialoghi |
 | 15 | Nuova schermata di abbonamento | `app/abbonamento.tsx` · [confronti/06_paywall.jpg](confronti/06_paywall.jpg) |
 | 16 | Predisposizione tecnica degli acquisti in-app | RevenueCat iOS e Android, `mustSubscribe`, porta dell'abbonamento: [../restyling/ABBONAMENTI.md](../restyling/ABBONAMENTI.md), [../../compliance/ABBONAMENTI_SICUREZZA.md](../../compliance/ABBONAMENTI_SICUREZZA.md). **Pagamenti non attivi** |
