@@ -37,6 +37,23 @@ describe('Mina 2.0 — la borsetta della spesa', () => {
     }
   });
 
+  it('nessun id né url(#…) nel disegno: con più Mina nella pagina gli id collidono e il corpo restava trasparente', () => {
+    // sul web ogni SvgXml è un <svg> dello stesso documento: un id ripetuto punta sempre al primo, anche se è in una
+    // scheda nascosta. Il fronte della borsa (e ogni altro riempimento) deve quindi essere un colore pieno.
+    for (const p of MINA_POSES) {
+      const s = minaStaticSvg(POSES[p].look);
+      expect(s, p).not.toMatch(/\burl\(#/);
+      expect(s, p).not.toMatch(/\sid="/);
+      expect(s, p).not.toMatch(/<(linearGradient|radialGradient|clipPath|mask|pattern)\b/);
+    }
+    for (const variant of ['classic', 'chef'] as const) {
+      const body = bodyPart(variant);
+      expect(body).not.toMatch(/\burl\(#/);
+      // il fronte è opaco: colore pieno senza trasparenza sul riempimento principale
+      expect(body).toContain(`fill="${C.ivory}"/>`);
+    }
+  });
+
   it('non è un libro: nessun colore della vecchia Mina ricettario', () => {
     for (const p of MINA_POSES) {
       const s = minaStaticSvg(POSES[p].look);

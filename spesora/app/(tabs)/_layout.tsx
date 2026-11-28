@@ -59,6 +59,8 @@ export default function TabsLayout() {
       screenListeners={({ route }) => ({ tabPress: () => hopTab(route.name) })}
       screenOptions={{
         headerShown: false,
+        // fondo avorio anche mentre la scheda si disegna (niente grigio o bianco tra una pagina e l'altra)
+        sceneStyle: { backgroundColor: colors.desk },
         // cambio di scheda: la pagina nuova scivola appena dal lato della scheda e si dissolve (ferma con "Riduci movimento")
         animation: reduced ? 'none' : 'shift',
         tabBarActiveTintColor: colors.green,

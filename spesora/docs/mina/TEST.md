@@ -8,10 +8,11 @@ Sono elencati solo i test eseguiti davvero, ciascuno con il proprio esito. In fo
 | --- | --- | --- |
 | TypeScript | `npx tsc --noEmit` | ✅ 0 errori |
 | Lint (0 avvisi ammessi) | `npm run lint` | ✅ |
-| Test unitari (motore, catalogo, persistenza, notifiche, abbonamenti, contrasto, mascotte, regia, Modalità Cucina) | `npx vitest run` | ✅ 16 file, **165 test** superati |
+| Test unitari (motore, catalogo, persistenza, notifiche, abbonamenti, contrasto, mascotte, regia, Modalità Cucina) | `npx vitest run` | ✅ 16 file, **166 test** superati |
 | Verifica completa (test, immagini 500/500, configurazione) | `npm run verify` | ✅ «Tutti i controlli superati». 7 avvisi attesi per la pubblicazione: URL legali, email di supporto, `bundleIdentifier`, `projectId` EAS, acquisti non attivi |
 
 Test della mascotte riscritti o aggiunti in V4 (`src/test/mina2.test.ts`):
+- **nessun id e nessun `url(#…)` nel disegno** (gradienti, `clipPath`, `mask`, `pattern`): con più Mina nella pagina gli id collidono e il corpo restava trasparente (vedi CHANGELOG, «Correzione dopo la prova sul telefono»);
 - Mina 2.0 e Mina Chef hanno **lo stesso scheletro**: spalle, lunghezze, spessore, mani. Le pose chef non hanno lunghezze speciali.
 - **A riposo le braccia sono quasi distese**: gomito oltre 140°.
 - Il saluto da fermo (`welcome`) sta a riposo (`armR == restR`).
@@ -33,6 +34,8 @@ Script: `scripts/screenshots/capture-mina.cjs` (22 schermate per esecuzione), da
 | Settimana, Spesa, Dispensa, Ricette, apertura di una ricetta, «Inizia a cucinare» (Modalità Cucina), Profilo | ✅ in tutti e tre i formati |
 | «Riduci movimento» (`prefers-reduced-motion: reduce`) | ✅ niente intro, Mina ferma, stesso percorso completo |
 | Errori JavaScript della pagina | ✅ nessuno: `errori.txt` vuoto in tutte e 4 le esecuzioni finali |
+| **Controllo degli id SVG del documento** (a ogni schermata: ogni `url(#id)` deve puntare a un solo elemento, non nascosto se la figura è visibile) | ✅ nessun problema nelle 4 esecuzioni finali. Sulla versione precedente lo stesso controllo segnalava `#mina2-front` ripetuto da 3 a 9 volte in ogni pagina: è il controllo che avrebbe trovato il corpo trasparente |
+| **Fotogrammi bianchi o grigi nel video** (scansione di tutti i 630 fotogrammi, 10 al secondo) | ✅ nessuno. Prima c'era un lampo bianco di 0,4 s all'apertura della Home dalla Modalità Cucina, più un grigio, e 0,4 s di bianco all'avvio |
 | **Video della navigazione completa** (`record-mina.cjs`, 63 s, 30 fps): intro, benvenuto, questionario, caricamento, anteprima, abbonamento, Oggi, Settimana, Spesa (spunte e «Acquistati»), Dispensa, Ricette (trasformazione in Mina Chef, tessera «Primi»), ricetta con le linguette, Modalità Cucina, Profilo | ✅ registrato dall'app reale e controllato fotogramma per fotogramma: `video/navigazione_fotogrammi.jpg` (uno ogni 2,5 s) |
 
 ## Mascotte: fasi delle animazioni
@@ -55,6 +58,8 @@ Script: `scripts/screenshots/capture-mina.cjs` (22 schermate per esecuzione), da
 | 390×844 con «Riduci movimento» | ✅ stesse schermate, mascotte ferma |
 
 Difetti trovati e corretti durante questa verifica (V4):
+- **Mina con il corpo trasparente** in alcune pagine, segnalato guardando il video sul telefono: gradiente con id fisso. Non l'avevo notato nei miei controlli precedenti perché dipendeva dall'ordine dei componenti nella pagina. Corretto, con test e controllo automatico.
+- **Lampi bianchi e grigi** tra una schermata e l'altra: tema del navigatore e fondo della pagina web allineati all'avorio.
 - **375×667, questionario:** Mina in fondo alla domanda restava tagliata dai pulsanti. Ora si misura lo spazio libero: Mina si rimpicciolisce e, se non entra intera, non compare.
 - **375×667, anteprima:** Mina tagliata. Ora sugli schermi bassi i giorni mostrati sono 2 e Mina è a 116 pt.
 - **375×667, abbonamento:** il pulsante principale finiva sotto i link. Sugli schermi bassi ora resta fisso in basso.

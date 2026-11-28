@@ -160,7 +160,17 @@ export function legsPart(legs: Legs = 'stand', variant: Variant = 'classic'): st
 const BOX = 'M43,80 L155,79 Q161,79 161,85 L157.5,160 Q157,172 145,172 L55,173 Q43.5,173 43,161 L37,86 Q37,80 43,80 Z';
 const SIDE = 'M43,80 L58,80 L60,173 L55,173 Q43.5,173 43,161 L37,86 Q37,80 43,80 Z';
 const HANDLE = 'M71,88 L71,50 A32,32 0 0 1 135,50 L135,88';
-const FRONT_GRADIENT = `<defs><linearGradient id="mina2-front" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.ivory}"/><stop offset="1" stop-color="${C.ivoryLow}"/></linearGradient></defs>`;
+/*
+ * Fronte della borsa: colore pieno + tre fasce basse semitrasparenti che seguono i bordi (sfumatura leggera, senza id).
+ * V4: prima era un gradiente con id fisso («mina2-front»). Con più Mina nella stessa pagina (schede precaricate sul web)
+ * tutti i riferimenti url(#…) puntavano al PRIMO gradiente del documento; se stava in una parte nascosta il riempimento
+ * spariva e il corpo restava trasparente: manico, pane e carota si vedevano attraverso. Niente id = niente collisioni.
+ */
+const edgeL = (y: number) => 37 + ((y - 86) * 6) / 75; // bordo sinistro del fronte (da 37,86 a 43,161)
+const edgeR = (y: number) => 161 - ((y - 85) * 3.5) / 75; // bordo destro (da 161,85 a 157.5,160)
+const FRONT_SHADE = [112, 134, 154]
+  .map((y) => `<path d="M${edgeL(y).toFixed(1)},${y} L${edgeR(y).toFixed(1)},${y} L157.5,160 Q157,172 145,172 L55,173 Q43.5,173 43,161 Z" fill="${C.ivoryLow}" fill-opacity="0.34"/>`)
+  .join('');
 
 function veggiesBack(): string {
   const vein = (d: string, color: string = C.leafDark) => `<path d="${d}" stroke="${color}" stroke-width="1.8" fill="none" stroke-linecap="round"/>`;
@@ -219,8 +229,8 @@ function veggiesFront(): string {
 
 function panelPart(): string {
   return (
-    FRONT_GRADIENT +
-    `<path d="${BOX}" fill="url(#mina2-front)"/>` +
+    `<path d="${BOX}" fill="${C.ivory}"/>` +
+    FRONT_SHADE +
     `<path d="${SIDE}" fill="${C.ivoryShade}"/>` +
     `<path d="M58,85 C58.5,110 59,140 60.5,166" stroke="${C.crease}" stroke-width="2.4" fill="none" stroke-linecap="round"/>` +
     // foglia del foglio: verde chiaro, senza contorno, una sola venatura bianca curva che esce come picciolo

@@ -1,4 +1,4 @@
-import { Stack, router, usePathname } from 'expo-router';
+import { DefaultTheme, Stack, ThemeProvider, router, usePathname } from 'expo-router';
 import * as Notifications from 'expo-notifications';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef } from 'react';
@@ -128,13 +128,24 @@ export default function RootLayout() {
   if (!fontsLoaded && !fontError) return <View style={styles.blank} />;
   return (
     <SafeAreaProvider>
-      <StatusBar style="dark" />
-      <AppProvider>
-        <Shell />
-      </AppProvider>
+      <ThemeProvider value={MINA_THEME}>
+        <StatusBar style="dark" />
+        <AppProvider>
+          <Shell />
+        </AppProvider>
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }
+
+/**
+ * Tema del navigatore con i colori di Mina. Il predefinito ha fondo grigio (242) e carte bianche: si vedevano per un
+ * istante tra una schermata e l'altra, mentre la nuova si disegnava.
+ */
+const MINA_THEME = {
+  ...DefaultTheme,
+  colors: { ...DefaultTheme.colors, primary: colors.green, background: colors.desk, card: colors.card, text: colors.ink, border: colors.line, notification: colors.peach },
+};
 
 const styles = StyleSheet.create({
   blank: { flex: 1, backgroundColor: colors.ivory },

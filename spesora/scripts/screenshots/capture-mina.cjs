@@ -39,7 +39,38 @@ const DATA = '2026-11-23T09:00:00';
   const wait = (ms) => p.waitForTimeout(ms);
   const btn = (re) => p.getByRole('button', { name: re }).filter({ visible: true }).first();
   const tab = (re) => p.getByRole('tab', { name: re }).filter({ visible: true }).first();
+  // Controllo dei riferimenti url(#id) nel documento: ogni id deve esistere UNA volta sola e in una parte visibile.
+  // Un id ripetuto (più Mina o più loghi nella stessa pagina, schede precaricate) fa puntare tutti i riempimenti al
+  // primo elemento del documento: se è nascosto il riempimento sparisce e la figura resta trasparente.
+  const auditIds = (name) =>
+    p.evaluate(() => {
+      const ids = new Map();
+      for (const el of document.querySelectorAll('[id]')) ids.set(el.id, (ids.get(el.id) ?? []).concat(el));
+      const problems = [];
+      const visible = (svg) => {
+        const r = svg?.getBoundingClientRect();
+        return !!r && r.width > 0 && r.height > 0;
+      };
+      // per ogni id: i riferimenti url(#id) e se almeno uno sta in un <svg> visibile
+      const refs = new Map();
+      for (const el of document.querySelectorAll('svg *')) {
+        for (const a of ['fill', 'stroke', 'clip-path', 'mask', 'filter']) {
+          const m = /url\(#([^)]+)\)/.exec(el.getAttribute(a) ?? '');
+          if (m) refs.set(m[1], (refs.get(m[1]) ?? false) || visible(el.ownerSVGElement));
+        }
+      }
+      for (const [id, usedVisible] of refs) {
+        const els = ids.get(id) ?? [];
+        if (els.length === 0) problems.push(`#${id}: nessun elemento`);
+        else if (els.length > 1) problems.push(`#${id}: id ripetuto ${els.length} volte`);
+        else if (usedVisible && !visible(els[0].ownerSVGElement)) problems.push(`#${id}: usato da una figura visibile ma definito in una parte nascosta`);
+      }
+      return problems;
+    }).then((problems) => {
+      for (const q of problems) errors.push(`[${name}] ${q}`);
+    });
   const shot = async (name, full = false) => {
+    await auditIds(name);
     await p.screenshot({ path: path.join(outDir, `${name}.png`), fullPage: full });
     process.stdout.write(`${name}\n`);
   };

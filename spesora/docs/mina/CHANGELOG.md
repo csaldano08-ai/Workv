@@ -6,6 +6,20 @@ Il restyling precedente non era approvato. V4 lo corregge senza ripartire da zer
 
 Commit: «MINA V4 (1/3)» mascotte, «MINA V4 (2/3)» schermate, «MINA V4 (3/3)» QC e consegna.
 
+### Correzione dopo la prova sul telefono (28 novembre 2026)
+
+Guardando il video sul telefono è emerso un difetto che i miei controlli non avevano visto: in alcune pagine (per esempio «Quante persone mangeranno?») Mina aveva il **corpo trasparente**. Il manico, il pane e la carota che stanno dietro si vedevano attraverso il fronte e uscivano dalla linea del disegno, mentre nell'intro il corpo era crema e i livelli erano giusti.
+
+- **Causa:** il fronte della borsa era riempito con una sfumatura con id fisso (`mina2-front`). Sul web ogni figura è un `<svg>` dello stesso documento e, con più Mina nella pagina (le schede precaricate ne tengono una per scheda, anche nascosta), tutti i `url(#mina2-front)` puntavano alla *prima* sfumatura del documento. Se quella stava in una scheda nascosta il riempimento spariva. Dipendeva dall'ordine dei componenti, quindi poteva comparire in qualunque pagina (3–9 duplicati per pagina, misurati).
+- **Correzione (`art.ts`):** nessun id e nessun `url(#…)`. Il fronte è un colore pieno, con tre fasce basse semitrasparenti che seguono i bordi della borsa e danno la stessa sfumatura leggera. Il corpo è sempre opaco.
+- **Test nuovo** (`mina2.test.ts`): nessuna posa, in nessuna variante, contiene `url(#`, `id=`, gradienti, `clipPath`, `mask` o `pattern`.
+- **Controllo nello script di cattura** (`capture-mina.cjs`): a ogni schermata verifica che ogni `url(#id)` del documento punti a un solo elemento e che non sia definito in una parte nascosta mentre è usato da una figura visibile. Sulla versione precedente segnala `#mina2-front: id ripetuto` in tutte le pagine; sulla versione corretta non segnala nulla.
+- **Lampi di bianco e grigio tra una pagina e l'altra:** tornando dalla Modalità Cucina alla Home l'app mostrava per circa 0,4 s un bianco, poi il grigio del navigatore, prima di disegnare la Home. Ora:
+  - `app/_layout.tsx`: tema del navigatore con i colori di Mina (`MINA_THEME`: fondo avorio, carte crema), al posto del predefinito grigio 242 e bianco;
+  - `app/(tabs)/_layout.tsx`: `sceneStyle` avorio per le schede;
+  - `public/index.html`: modello della pagina web con fondo avorio e `lang="it"` (prima bianco del browser). Con `output: single` Expo ignora `+html.tsx`: serve il modello.
+  - Nel video nuovo, scansione di tutti i 630 fotogrammi (10 al secondo): nessuno è bianco o grigio.
+
 ### Mascotte (`src/ui/mascot/mina2/`)
 - **Un solo scheletro per Mina 2.0 e Mina Chef** (`BASE_RIG` in `art.ts`, `RIG = { classic, chef }` identici): stesse spalle (43,123 e 157,127.5), stessa lunghezza di braccio e avambraccio (22 + 21), stesso spessore (11,2 → 7,2), stessa mano (scala 0,92). Mina Chef è Mina 2.0 con cappello e grembiule; prima aveva corpo, braccia e faccia propri.
 - **Braccia continue**: il tubo del braccio è un'unica curva con raccordo morbido al gomito (`r = 0,9 · min(lu, lf)`), quindi niente gomiti a punta. La distanza massima è limitata a `a + b − 0,15`, così il braccio non si «stacca» dalla spalla.
