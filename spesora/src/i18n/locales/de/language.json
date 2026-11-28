@@ -1,0 +1,10 @@
+{
+  "title": "Wähle deine Sprache",
+  "subtitle": "Die restlichen Fragen erscheinen in dieser Sprache. Du kannst sie jederzeit im Profil ändern.",
+  "noAccount": "Kein Konto nötig.",
+  "tip": "Hallo, ich bin Mina! Fangen wir mit der Sprache an.",
+  "settingsTitle": "Sprache",
+  "settingsIntro": "Die Sprache ändert sich sofort. Plan, gespeicherte Rezepte, Einkaufsliste, Vorrat, Einstellungen und Abo bleiben unverändert.",
+  "contentNote": "Die Rezepte sind auf Italienisch geschrieben. Wo es noch keine Übersetzung gibt, bleiben Name und Zubereitung auf Italienisch – das zeigen wir an.",
+  "current": "Sprache: {name}"
+}

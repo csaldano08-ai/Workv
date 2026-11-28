@@ -8,8 +8,9 @@ import { useActionSheet } from '../../src/ui/ActionSheet';
 import type { PlannedMeal } from '../../src/core/domain/types';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
 import { useMealActions } from '../../src/features/meals/useMealActions';
+import { useT } from '../../src/i18n';
+import { recipeName } from '../../src/i18n/content';
 import { MEAL_LABELS } from '../../src/i18n/labels';
-import { t } from '../../src/i18n/it';
 import { colors, radius, space } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
@@ -48,6 +49,7 @@ function useMealPlannedReaction(meals: PlannedMeal[]) {
 }
 
 export default function Week() {
+  const { t } = useT();
   const { snapshot, run } = useApp();
   const actions = useMealActions();
   const sheet = useActionSheet();
@@ -62,21 +64,21 @@ export default function Week() {
 
   const regenerate = () =>
     Alert.alert(
-      'Rigenerare il menù?',
-      'Nuove ricette per i pasti futuri non ancora cucinati. Pasti completati, scelte manuali, acquisti e dispensa restano invariati.',
+      t('week:regenerate.title'),
+      t('week:regenerate.text'),
       [
         { text: t('action.cancel'), style: 'cancel' },
-        { text: 'Rigenera', onPress: () => void withLoader(LOADER_TEXT.regenerate, () => run((s, today) => s.regenerate(today))) },
+        { text: t('week:regenerate.confirm'), onPress: () => void withLoader(LOADER_TEXT.regenerate, () => run((s, today) => s.regenerate(today))) },
       ],
     );
   // «Modifica piano» raccoglie le azioni che prima erano sparse nella pagina (nessuna funzione nuova)
   const editPlan = () =>
-    sheet.open('Modifica piano', [
+    sheet.open(t('week:edit.button'), [
       { label: t('action.regenerate'), onPress: regenerate },
-      { label: 'Rendi la settimana più economica', onPress: () => router.push('/economica') },
-      { label: 'Cambia le preferenze', onPress: () => router.push('/impostazioni') },
-      { label: 'Storico dei pasti', onPress: () => router.push('/storico') },
-    ], 'Per cambiare un solo pasto, toccalo o tienilo premuto.');
+      { label: t('week:edit.cheaper'), onPress: () => router.push('/economica') },
+      { label: t('week:edit.preferences'), onPress: () => router.push('/impostazioni') },
+      { label: t('week:edit.history'), onPress: () => router.push('/storico') },
+    ], t('week:edit.hint'));
 
   const first = days[0];
   const last = days[days.length - 1];
@@ -85,7 +87,7 @@ export default function Week() {
     <Screen>
       <AppHeader />
       <ScreenTitle
-        title="La tua settimana"
+        title={t('week:title')}
         right={
           <MinaMascot
             pose={reaction?.kind === 'mealPlanned' ? 'satisfied' : allDone ? 'success' : 'calendar'}
@@ -97,13 +99,13 @@ export default function Week() {
           />
         }
       />
-      <View style={styles.range} accessible accessibilityLabel={`Settimana dal ${formatLongDate(first)} al ${formatLongDate(last)}`}>
+      <View style={styles.range} accessible accessibilityLabel={t('week:range.a11y', { start: formatLongDate(first), end: formatLongDate(last) })}>
         <Ionicons name="calendar-outline" size={20} color={colors.greenDark} />
         <Text variant="heading" color={colors.ink} style={styles.rangeText}>
           {capitalize(range)}
         </Text>
       </View>
-      {snap.issues.length > 0 ? <InfoNote tone="warning" text={`${snap.issues.length} pasti senza ricetta: ${snap.issues[0].message}`} /> : null}
+      {snap.issues.length > 0 ? <InfoNote tone="warning" text={t('week:issues', { count: snap.issues.length, message: snap.issues[0].message })} /> : null}
 
       <View style={styles.days}>
         {days.map((d, i) => {
@@ -128,7 +130,7 @@ export default function Week() {
               />
               <ListCard style={styles.flex}>
                 {meals.length === 0 ? (
-                  <ListRow title="Nessun pasto" subtitle="Giorno libero" />
+                  <ListRow title={t('week:day.empty')} subtitle={t('week:day.free')} />
                 ) : (
                   meals.map((m) => <MealRow key={m.id} meal={m} onMenu={() => actions.openMenu(m)} />)
                 )}
@@ -140,10 +142,10 @@ export default function Week() {
                         <Ionicons name="basket-outline" size={20} color={colors.peachInk} />
                       </View>
                     }
-                    title={trip.isInitial ? 'Spesa iniziale' : 'Giorno di spesa'}
-                    subtitle={`${trip.lines.length} ${trip.lines.length === 1 ? 'prodotto' : 'prodotti'}`}
+                    title={trip.isInitial ? t('week:trip.initial') : t('week:trip.day')}
+                    subtitle={t('week:trip.products', { count: trip.lines.length })}
                     onPress={() => router.push(`/spesa?trip=${trip.date}`)}
-                    accessibilityLabel={`${formatLongDate(d)}: giorno di spesa, ${trip.lines.length} prodotti. Apri la lista`}
+                    accessibilityLabel={t('week:trip.a11y', { date: formatLongDate(d), count: trip.lines.length })}
                   />
                 ) : null}
               </ListCard>
@@ -152,7 +154,7 @@ export default function Week() {
         })}
       </View>
 
-      <Button label="Modifica piano" size="large" onPress={editPlan} />
+      <Button label={t('week:edit.button')} size="large" onPress={editPlan} />
       {actions.sheet}
       {sheet.element}
     </Screen>
@@ -161,9 +163,12 @@ export default function Week() {
 
 /** Un pasto del giorno: foto, nome, pasto e ora (o stato); tocco = ricetta, pressione lunga = altre azioni. */
 function MealRow({ meal, onMenu }: { meal: PlannedMeal; onMenu: () => void }) {
+  const { t } = useT();
   const recipe = catalogIndex.recipe(meal.recipeId);
+  const name = recipe ? recipeName(recipe) : null;
   const done = meal.status !== 'planned';
-  const statusText = meal.status === 'cooked' ? 'cucinato' : meal.status === 'planned' ? null : 'non cucinato';
+  const statusText = meal.status === 'cooked' ? t('week:meal.cooked') : meal.status === 'planned' ? null : t('week:meal.notCooked');
+  const a11yVars = { meal: MEAL_LABELS[meal.mealType], time: minutesToHHMM(meal.timeMinutes), recipe: name ?? '' };
   return (
     <ListRow
       left={
@@ -178,13 +183,13 @@ function MealRow({ meal, onMenu }: { meal: PlannedMeal; onMenu: () => void }) {
           </View>
         ) : undefined
       }
-      title={recipe?.name ?? 'Ricetta non trovata'}
+      title={name ?? t('week:meal.notFound')}
       subtitle={`${MEAL_LABELS[meal.mealType]} · ${statusText ?? minutesToHHMM(meal.timeMinutes)}`}
       dim={done}
       onPress={() => router.push(`/ricetta/${meal.recipeId}?mealId=${encodeURIComponent(meal.id)}`)}
       onLongPress={done ? undefined : onMenu}
-      accessibilityLabel={`${MEAL_LABELS[meal.mealType]} alle ${minutesToHHMM(meal.timeMinutes)}: ${recipe?.name ?? ''}${statusText ? `, ${statusText}` : ''}`}
-      accessibilityHint={done ? 'Apre la ricetta' : 'Apre la ricetta. Tieni premuto per cambiare, spostare o segnare il pasto.'}
+      accessibilityLabel={statusText ? t('week:meal.a11yStatus', { ...a11yVars, status: statusText }) : t('week:meal.a11y', a11yVars)}
+      accessibilityHint={done ? t('week:meal.hintDone') : t('week:meal.hint')}
     />
   );
 }

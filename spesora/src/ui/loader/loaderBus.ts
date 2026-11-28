@@ -1,3 +1,5 @@
+import { t } from '../../i18n';
+
 /**
  * Caricamento illustrato (concept C): gli ingredienti ballano mentre Mina lavora, poi si riuniscono.
  * `withLoader` mostra l'animazione, esegue il lavoro e restituisce il suo risultato.
@@ -25,9 +27,15 @@ export function minLoaderMs(reducedMotion: boolean): number {
   return reducedMotion ? 700 : 1700;
 }
 
-/** Frasi del caricamento nei momenti in cui Mina compone le ricette. */
+/** Frasi del caricamento nei momenti in cui Mina compone le ricette (getter: lette nella lingua corrente). */
 export const LOADER_TEXT = {
-  firstWeek: { title: 'Preparo la tua settimana', subtitle: 'Scelgo le ricette, i giorni e la spesa.', done: 'Ecco le tue ricette!' },
-  regenerate: { title: 'Rifaccio il menù', subtitle: 'Nuove ricette per i pasti ancora da cucinare.', done: 'Menù pronto!' },
-  expiring: { title: 'Riorganizzo i prossimi pasti', subtitle: 'Prima gli ingredienti che scadono presto.', done: 'Fatto!' },
-} satisfies Record<string, LoaderText>;
+  get firstWeek(): LoaderText {
+    return { title: t('mascot:loader.firstWeek.title'), subtitle: t('mascot:loader.firstWeek.subtitle'), done: t('mascot:loader.firstWeek.done') };
+  },
+  get regenerate(): LoaderText {
+    return { title: t('mascot:loader.regenerate.title'), subtitle: t('mascot:loader.regenerate.subtitle'), done: t('mascot:loader.regenerate.done') };
+  },
+  get expiring(): LoaderText {
+    return { title: t('mascot:loader.expiring.title'), subtitle: t('mascot:loader.expiring.subtitle'), done: t('mascot:loader.expiring.done') };
+  },
+};

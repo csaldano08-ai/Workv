@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Svg, { Path } from 'react-native-svg';
 import { appConfig } from '../src/core/config';
 import { useApp } from '../src/features/app/AppProvider';
+import { useT } from '../src/i18n';
 import { registerIntroAnchor, useIntroState, type IntroAnchor } from '../src/features/intro/introBus';
 import { colors, space } from '../src/theme/tokens';
 import { MinaLogo } from '../src/ui/brand/MinaLogo';
@@ -43,6 +44,7 @@ const PAGES = 3;
 const SUBSCRIPTION_REQUIRED = appConfig.paywallMode === 'required';
 
 export default function Welcome() {
+  const { t } = useT();
   const { snapshot } = useApp();
   const resuming = !!snapshot?.onboarding && !snapshot.onboarding.completed;
   const { width, height } = useWindowDimensions();
@@ -71,7 +73,7 @@ export default function Welcome() {
     const p = Math.round(e.nativeEvent.contentOffset.x / Math.max(1, width));
     if (p !== page && p >= 0 && p < PAGES) setPage(p);
   };
-  const label = resuming ? 'Riprendi il questionario' : page === 0 ? 'Inizia' : 'Continua';
+  const label = resuming ? t('onboarding:welcome.resume') : page === 0 ? t('welcome.start') : t('action.continue');
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
@@ -85,54 +87,54 @@ export default function Welcome() {
         onScroll={onScroll}
         scrollEventThrottle={32}
         style={styles.flex}
-        accessibilityLabel="Presentazione di Mina"
+        accessibilityLabel={t('onboarding:welcome.a11y')}
       >
         <Page width={width}>
           <View ref={minaRef} collapsable={false}>
-            <MinaMascot pose="welcome" size={art} animated={intro === 'none'} idle interactive accessibilityLabel="Mina, la tua borsetta della spesa, che ti saluta" />
+            <MinaMascot pose="welcome" size={art} animated={intro === 'none'} idle interactive accessibilityLabel={t('onboarding:welcome.minaA11y')} />
           </View>
           <View ref={logoRef} collapsable={false} style={styles.logo}>
             <MinaLogo height={Math.round(art * 0.27)} />
           </View>
           <Text variant="heading" center style={styles.tagline}>
-            {'Cucina e organizza\nla tua spesa.'}
+            {t('onboarding:welcome.tagline')}
           </Text>
           {/* trasparenza: chi inizia il questionario sa già che l'accesso completo sarà a pagamento */}
           {SUBSCRIPTION_REQUIRED ? (
             <Text variant="small" color={colors.inkSoft} center style={styles.disclosure}>
-              Personalizza il tuo piano. L’accesso completo richiede un abbonamento.
+              {t('onboarding:welcome.subscription')}
             </Text>
           ) : null}
         </Page>
         <Page width={width}>
           <View style={styles.stage}>
             <StageBlob size={art * 1.35} />
-            <MinaMascot pose="cooking" eyes="happy" size={Math.round(Math.min(art * 1.12, 330))} animated={page === 1} idle={page === 1} interactive accessibilityLabel="Mina Chef con il cucchiaio di legno" />
+            <MinaMascot pose="cooking" eyes="happy" size={Math.round(Math.min(art * 1.12, 330))} animated={page === 1} idle={page === 1} interactive accessibilityLabel={t('onboarding:welcome.chefA11y')} />
           </View>
           <Text variant="screen" center style={styles.title} accessibilityRole="header">
-            Benvenuto in Mina!
+            {t('onboarding:welcome.recipesTitle')}
           </Text>
           <Text variant="body" color={colors.inkSoft} center style={styles.line}>
-            Ricette facili, scelte per i tuoi gusti.
+            {t('onboarding:welcome.recipesText')}
           </Text>
         </Page>
         <Page width={width}>
           <View style={styles.stage}>
             <StageBlob size={art * 1.35} flip />
-            <MinaMascot pose="shopping" size={Math.round(art * 1.05)} animated={page === 2} idle={page === 2} interactive accessibilityLabel="Mina con la lista della spesa" />
+            <MinaMascot pose="shopping" size={Math.round(art * 1.05)} animated={page === 2} idle={page === 2} interactive accessibilityLabel={t('onboarding:welcome.listA11y')} />
           </View>
           <Text variant="screen" center style={styles.title} accessibilityRole="header">
-            La spesa è già pronta
+            {t('onboarding:welcome.shoppingTitle')}
           </Text>
           <Text variant="body" color={colors.inkSoft} center style={styles.line}>
-            Una lista per i giorni in cui esci a comprare.
+            {t('onboarding:welcome.shoppingText')}
           </Text>
         </Page>
       </ScrollView>
 
       <View style={styles.bottom}>
         {!resuming ? (
-          <View style={styles.dots} accessible accessibilityLabel={`Pagina ${page + 1} di ${PAGES}`}>
+          <View style={styles.dots} accessible accessibilityLabel={t('onboarding:welcome.page', { current: page + 1, total: PAGES })}>
             {Array.from({ length: PAGES }, (_, i) => (
               <Pressable key={i} onPress={() => go(i)} hitSlop={8} accessibilityElementsHidden importantForAccessibility="no">
                 <View style={[styles.dot, i === page && styles.dotOn]} />
@@ -143,7 +145,10 @@ export default function Welcome() {
         <Button label={label} iconRight="arrow-forward" size="large" onPress={next} />
         <Pressable accessibilityRole="link" onPress={() => router.push('/privacy')} style={styles.privacy} hitSlop={6}>
           <Text variant="small" color={colors.inkSoft} center>
-            Nessun account richiesto · <Text variant="small" color={colors.green} style={styles.link}>Privacy</Text>
+            {t('onboarding:welcome.noAccount')} ·{' '}
+            <Text variant="small" color={colors.green} style={styles.link}>
+              {t('onboarding:welcome.privacy')}
+            </Text>
           </Text>
         </Pressable>
       </View>

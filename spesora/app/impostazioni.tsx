@@ -1,5 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, Stack } from 'expo-router';
+import { useT } from '../src/i18n';
+import { languageInfo } from '../src/i18n/languages';
 import { useState } from 'react';
 import { Linking, Pressable, Share, StyleSheet, View } from 'react-native';
 import { Alert } from '../src/ui/dialog';
@@ -27,28 +29,29 @@ export default function Settings() {
   const { run, service, refresh, snapshot } = useApp();
   const editable = STEPS.filter((s) => s.editable);
   const [open, setOpen] = useState<string | null>(null);
+  const { t, language } = useT();
 
   const exportData = async () => {
     if (!service) return;
     try {
       const json = await service.exportJson();
-      await Share.share({ title: 'Dati Mina', message: json });
+      await Share.share({ title: t('profile:export.shareTitle'), message: json });
     } catch {
-      toast('Esportazione non riuscita. I tuoi dati non sono cambiati: riprova.', 'warning');
+      toast(t('profile:export.failed'), 'warning');
     }
   };
 
   const wipe = () =>
-    Alert.alert('Cancellare tutti i dati?', 'Preferenze, calendario, dispensa, liste e storico verranno eliminati da questo telefono. L’operazione non si può annullare.', [
-      { text: 'Annulla', style: 'cancel' },
+    Alert.alert(t('profile:wipe.title'), t('profile:wipe.message'), [
+      { text: t('action.cancel'), style: 'cancel' },
       {
-        text: 'Continua',
+        text: t('action.continue'),
         style: 'destructive',
         onPress: () =>
-          Alert.alert('Conferma definitiva', 'Vuoi davvero cancellare tutto e ripartire dal questionario?', [
-            { text: 'No', style: 'cancel' },
+          Alert.alert(t('profile:wipe.confirmTitle'), t('profile:wipe.confirmMessage'), [
+            { text: t('profile:wipe.no'), style: 'cancel' },
             {
-              text: 'Cancella tutto',
+              text: t('profile:wipe.confirm'),
               style: 'destructive',
               onPress: async () => {
                 await cancelAllOurs().catch(() => undefined);
@@ -62,15 +65,15 @@ export default function Settings() {
     ]);
 
   const legalLinks = [
-    { label: 'Informativa privacy (pagina web)', url: appConfig.legal.privacyPolicyUrl },
-    { label: 'Termini di servizio (pagina web)', url: appConfig.legal.termsUrl },
-    { label: 'Supporto (pagina web)', url: appConfig.legal.supportUrl },
+    { label: t('profile:link.privacy'), url: appConfig.legal.privacyPolicyUrl },
+    { label: t('profile:link.terms'), url: appConfig.legal.termsUrl },
+    { label: t('profile:link.support'), url: appConfig.legal.supportUrl },
   ].filter((l) => l.url);
   const p = snapshot?.profile;
   const summary = p
     ? [
-        `${p.servings} ${p.servings === 1 ? 'persona' : 'persone'}`,
-        `pasta ${p.portions.pastaGrams} g`,
+        t('profile:summary.people', { count: p.servings }),
+        t('profile:summary.pasta', { grams: p.portions.pastaGrams }),
         PROTEIN_LABELS[p.portions.proteinSize].toLowerCase(),
         ...p.tastes.likes.slice(0, 2).map((l) => LIKE_LABELS[l].toLowerCase()),
       ].join(' · ')
@@ -83,66 +86,64 @@ export default function Settings() {
     <Screen edges={['top', 'bottom']}>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.top}>
-        <HeaderIcon icon="arrow-back" label="Indietro" onPress={back} />
+        <HeaderIcon icon="arrow-back" label={t('profile:back')} onPress={back} />
         <MinaLogo height={HEADER_LOGO} />
       </View>
-      <ScreenTitle title="Profilo" subtitle={summary || undefined} />
+      <ScreenTitle title={t('profile:title')} subtitle={summary || undefined} />
 
       <ListCard>
-        <Group icon="restaurant-outline" title="Preferenze pasti" open={open === 'pasti'} onToggle={() => setOpen(open === 'pasti' ? null : 'pasti')}>
+        <Group icon="restaurant-outline" title={t('profile:group.meals')} open={open === 'pasti'} onToggle={() => setOpen(open === 'pasti' ? null : 'pasti')}>
           {meals.map((s) => (
             <SubRow key={s.id} title={s.title} plus={s.premium} onPress={() => router.push(`/preferenze/${s.id}`)} />
           ))}
         </Group>
-        <Group icon="nutrition-outline" title="Preferenze alimentari" open={open === 'cibo'} onToggle={() => setOpen(open === 'cibo' ? null : 'cibo')}>
+        <Group icon="nutrition-outline" title={t('profile:group.food')} open={open === 'cibo'} onToggle={() => setOpen(open === 'cibo' ? null : 'cibo')}>
           {food.map((s) => (
             <SubRow key={s.id} title={s.title} plus={s.premium} onPress={() => router.push(`/preferenze/${s.id}`)} />
           ))}
         </Group>
-        {/* l'app è solo in italiano: la riga mostra la lingua, senza aprire scelte che non esistono */}
         <ListRow
           left={<RowIcon icon="globe-outline" />}
-          title="Lingua"
+          title={t('language:settingsTitle')}
           right={
             <Text variant="body" color={colors.inkSoft}>
-              Italiano
+              {languageInfo(language).nativeName}
             </Text>
           }
-          onPress={() => toast('Per ora Mina è disponibile in italiano.', 'info')}
-          chevron={false}
-          accessibilityLabel="Lingua: italiano"
+          onPress={() => router.push('/lingua')}
+          accessibilityLabel={t('language:current', { name: languageInfo(language).nativeName })}
         />
-        <ListRow left={<RowIcon icon="notifications-outline" />} title="Notifiche" onPress={() => router.push('/notifiche')} />
-        <ListRow left={<RowIcon icon="time-outline" />} title="Storico dei pasti" onPress={() => router.push('/storico')} />
-        <ListRow left={<RowIcon icon="pricetag-outline" />} title="Prezzi" subtitle="Per stimare la spesa" onPress={() => router.push('/prezzi')} />
-        <ListRow left={<RowIcon icon="ribbon-outline" />} title="Abbonamento" subtitle="Stato, ripristino acquisti" onPress={() => router.push('/abbonamento')} />
-        <ListRow left={<RowIcon icon="help-circle-outline" />} title="Aiuto e supporto" onPress={() => router.push('/aiuto')} />
-        <Group icon="shield-checkmark-outline" title="Privacy e condizioni" open={open === 'legale'} onToggle={() => setOpen(open === 'legale' ? null : 'legale')}>
-          <SubRow title="Privacy e dati" onPress={() => router.push('/privacy')} />
-          <SubRow title="Termini e abbonamento" onPress={() => router.push('/termini')} />
-          <SubRow title="Informazioni legali" onPress={() => router.push('/legale')} />
-          <SubRow title="Licenze e attribuzioni" onPress={() => router.push('/licenze')} />
+        <ListRow left={<RowIcon icon="notifications-outline" />} title={t('profile:row.notifications')} onPress={() => router.push('/notifiche')} />
+        <ListRow left={<RowIcon icon="time-outline" />} title={t('profile:row.history')} onPress={() => router.push('/storico')} />
+        <ListRow left={<RowIcon icon="pricetag-outline" />} title={t('profile:row.prices')} subtitle={t('profile:row.pricesSub')} onPress={() => router.push('/prezzi')} />
+        <ListRow left={<RowIcon icon="ribbon-outline" />} title={t('profile:row.subscription')} subtitle={t('profile:row.subscriptionSub')} onPress={() => router.push('/abbonamento')} />
+        <ListRow left={<RowIcon icon="help-circle-outline" />} title={t('profile:row.help')} onPress={() => router.push('/aiuto')} />
+        <Group icon="shield-checkmark-outline" title={t('profile:group.legal')} open={open === 'legale'} onToggle={() => setOpen(open === 'legale' ? null : 'legale')}>
+          <SubRow title={t('profile:row.privacy')} onPress={() => router.push('/privacy')} />
+          <SubRow title={t('profile:row.terms')} onPress={() => router.push('/termini')} />
+          <SubRow title={t('profile:row.legal')} onPress={() => router.push('/legale')} />
+          <SubRow title={t('profile:row.licenses')} onPress={() => router.push('/licenze')} />
           {legalLinks.map((l) => (
             <SubRow key={l.label} title={l.label} external onPress={() => void Linking.openURL(l.url)} />
           ))}
         </Group>
-        <Group icon="folder-open-outline" title="I tuoi dati" open={open === 'dati'} onToggle={() => setOpen(open === 'dati' ? null : 'dati')}>
-          <SubRow title="Esporta i dati (JSON)" onPress={() => void exportData()} />
-          <SubRow title="Cancella tutti i dati" danger onPress={wipe} />
+        <Group icon="folder-open-outline" title={t('profile:group.data')} open={open === 'dati'} onToggle={() => setOpen(open === 'dati' ? null : 'dati')}>
+          <SubRow title={t('profile:row.export')} onPress={() => void exportData()} />
+          <SubRow title={t('profile:row.wipe')} danger onPress={wipe} />
         </Group>
-        <Group icon="information-circle-outline" title="Informazioni su Mina" open={open === 'info'} onToggle={() => setOpen(open === 'info' ? null : 'info')}>
+        <Group icon="information-circle-outline" title={t('profile:group.about')} open={open === 'info'} onToggle={() => setOpen(open === 'info' ? null : 'info')}>
           <Text variant="small" color={colors.inkSoft} style={styles.about}>
-            {`Mina ${appConfig.version}. I menù sono generati sul telefono da regole e punteggi deterministici: nessuna intelligenza artificiale, nessun server.`}
+            {t('profile:about.text', { version: appConfig.version })}
           </Text>
-          <SubRow title="Rivedi l’animazione iniziale" onPress={replayIntro} />
+          <SubRow title={t('profile:row.replayIntro')} onPress={replayIntro} />
         </Group>
       </ListCard>
-      <InfoToggle label="Cosa succede se cambio le preferenze?" text="I pasti futuri non ancora cucinati vengono ricalcolati. Pasti completati, acquisti e dispensa restano. Le voci PLUS fanno parte della personalizzazione avanzata: in questa fase sono incluse per tutti." />
+      <InfoToggle label={t('profile:changes.label')} text={t('profile:changes.text')} />
 
-      <InfoNote text="Profilo locale: niente account, i dati restano su questo telefono." />
+      <InfoNote text={t('profile:localNote')} />
       <View style={styles.minaStage}>
         <View style={styles.minaBlob} />
-        <MinaMascot pose="happy" eyes="heart" size={130} animated interactive accessibilityLabel="Mina ti saluta con affetto" />
+        <MinaMascot pose="happy" eyes="heart" size={130} animated interactive accessibilityLabel={t('profile:mascot.a11y')} />
       </View>
     </Screen>
   );
@@ -175,15 +176,16 @@ function Group({ icon, title, open, onToggle, children }: { icon: keyof typeof I
 }
 
 function SubRow({ title, onPress, plus, danger, external }: { title: string; onPress: () => void; plus?: boolean; danger?: boolean; external?: boolean }) {
+  const { t } = useT();
   return (
     <Pressable accessibilityRole="button" accessibilityLabel={title} onPress={onPress} style={({ pressed }) => [styles.sub, pressed && styles.pressed]}>
       <Text variant="body" color={danger ? colors.danger : colors.ink} style={styles.flex}>
         {title}
       </Text>
       {plus ? (
-        <View style={styles.plus} accessibilityLabel="Funzione Plus, oggi inclusa">
+        <View style={styles.plus} accessibilityLabel={t('profile:plusBadge.a11y')}>
           <Text variant="caption" color={colors.peachInk}>
-            PLUS
+            {t('profile:plusBadge')}
           </Text>
         </View>
       ) : null}

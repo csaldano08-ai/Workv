@@ -17,7 +17,7 @@ const DATA = '2026-11-23T09:00:00';
   const root = base.replace(/\/$/, '');
   fs.mkdirSync(outDir, { recursive: true });
   const b = await chromium.launch();
-  const ctx = await b.newContext({ viewport: { width: Number(w), height: Number(h) }, deviceScaleFactor: 2, reducedMotion: process.env.RIDUCI ? 'reduce' : 'no-preference' });
+  const ctx = await b.newContext({ viewport: { width: Number(w), height: Number(h) }, deviceScaleFactor: 2, locale: 'it-IT', reducedMotion: process.env.RIDUCI ? 'reduce' : 'no-preference' });
   const p = await ctx.newPage();
   p.on('dialog', (d) => d.accept());
   const errors = [];
@@ -86,6 +86,10 @@ const DATA = '2026-11-23T09:00:00';
   await wait(1500);
   await shot('02b_benvenuto_spesa');
   await btn(/^Continua/).click();
+  await wait(1600);
+  // primo passo: la lingua (rilevata dal telefono, qui italiano)
+  await shot('03a_lingua');
+  await btn(/^Avanti/).click();
   await wait(1600);
   // domanda 1: persone (cerchi numerati)
   await p.getByRole('radio', { name: /^2 persone/ }).first().click();

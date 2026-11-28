@@ -1,3 +1,4 @@
+import { formatLocale } from './locale';
 import type { MilliQty, Unit } from './types';
 
 /**
@@ -42,7 +43,16 @@ export function roundUpForShopping(q: MilliQty, unit: Unit): MilliQty {
 
 function trimNumber(n: number): string {
   const rounded = Math.round(n * 100) / 100;
-  return rounded.toLocaleString('it-IT', { maximumFractionDigits: 2 });
+  return rounded.toLocaleString(formatLocale(), { maximumFractionDigits: 2 });
+}
+
+/**
+ * Nomi delle unità nella lingua corrente. Il dominio resta indipendente dall'interfaccia: `src/i18n` registra qui
+ * la funzione di traduzione; senza (test, script) restano i simboli italiani.
+ */
+let unitLabel: (unit: 'pz', count: number) => string = () => 'pz';
+export function setUnitLabeler(fn: (unit: 'pz', count: number) => string): void {
+  unitLabel = fn;
 }
 
 export function formatQty(q: MilliQty, unit: Unit): string {
@@ -59,7 +69,7 @@ export function formatQty(q: MilliQty, unit: Unit): string {
 export function formatQtyWithUnit(q: MilliQty, unit: Unit): string {
   const base = formatQty(q, unit);
   if (unit !== 'pz') return base;
-  return `${base} pz`;
+  return `${base} ${unitLabel('pz', q / MILLI)}`;
 }
 
 export interface PackSuggestion {

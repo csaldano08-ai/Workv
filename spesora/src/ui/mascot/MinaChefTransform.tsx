@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Animated, AppState, Easing, Platform, View, type StyleProp, type ViewStyle } from 'react-native';
 import Svg, { Path, SvgXml } from 'react-native-svg';
+import { useT } from '../../i18n';
 import { useReducedMotion } from '../useReducedMotion';
 import {
   APRON_BOX,
@@ -121,7 +122,9 @@ export interface MinaChefTransformProps {
  * cappello, grembiule e cucchiaio sono livelli propri che entrano ognuno con il suo movimento.
  * Va mostrata una volta, quando si entra nel mondo delle ricette; con "Riduci movimento" Mina Chef è già pronta.
  */
-export function MinaChefTransform({ size = 120, play = true, onDone, accessibilityLabel = 'Mina indossa il cappello e diventa Mina Chef', style }: MinaChefTransformProps) {
+export function MinaChefTransform({ size = 120, play = true, onDone, accessibilityLabel: customLabel, style }: MinaChefTransformProps) {
+  const { t } = useT();
+  const accessibilityLabel = customLabel ?? t('mascot:a11y.chefTransform');
   const reduced = useReducedMotion();
   const W = size;
   const H = size * RATIO;

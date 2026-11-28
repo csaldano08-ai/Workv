@@ -7,7 +7,7 @@ import { useReducedMotion } from '../../src/ui/useReducedMotion';
 import { TabIcon, hopTab } from '../../src/ui/TabIcon';
 import type { NavGlyphName } from '../../src/ui/mina/NavGlyph';
 import { colors, font } from '../../src/theme/tokens';
-import { t } from '../../src/i18n/it';
+import { useT } from '../../src/i18n';
 
 const icon = (glyph: NavGlyphName, route: string) =>
   function TabBarIcon({ color, size, focused }: { color: ColorValue | null; size: number; focused: boolean }) {
@@ -48,6 +48,7 @@ function useTabPreload(ready: boolean) {
 }
 
 export default function TabsLayout() {
+  const { t } = useT();
   const { snapshot } = useApp();
   const insets = useSafeAreaInsets();
   const reduced = useReducedMotion();

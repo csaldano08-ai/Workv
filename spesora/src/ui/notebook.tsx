@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Animated, Platform, Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
+import { useT } from '../i18n';
 import { colors, motion, radius, shadow, space, TOUCH } from '../theme/tokens';
 import { Text } from './Text';
 import { useReducedMotion } from './useReducedMotion';
@@ -84,12 +85,13 @@ export function PaperTabs<K extends string>({ tabs, value, onChange, style }: { 
 
 /** Anello di avanzamento (es. prodotti nel carrello): si riempie con una breve animazione. */
 export function ProgressRing({ done, total, size = 58 }: { done: number; total: number; size?: number }) {
+  const { t } = useT();
   const r = (size - 8) / 2;
   const c = 2 * Math.PI * r;
   const k = total > 0 ? Math.min(1, done / total) : 0;
   const complete = total > 0 && done >= total;
   return (
-    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }} accessible accessibilityLabel={`${done} di ${total} nel carrello`}>
+    <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }} accessible accessibilityLabel={t('ui:progressRing.label', { done, total })}>
       <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
         <Circle cx={size / 2} cy={size / 2} r={r} stroke={colors.tab} strokeWidth={7} fill={complete ? colors.greenSoft : colors.white} />
         <Circle

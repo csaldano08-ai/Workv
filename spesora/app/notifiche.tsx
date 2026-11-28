@@ -11,16 +11,19 @@ import { Notice } from '../src/ui/Notice';
 import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
 import { toast } from '../src/ui/toast';
+import { useT } from '../src/i18n';
 
-const PERMISSION_TEXT: Record<PermissionState, string> = {
-  granted: 'Permesso concesso: i promemoria sono programmati su questo iPhone.',
-  denied: 'Permesso negato: Mina funziona comunque, ma senza avvisi. Puoi riattivarli dalle Impostazioni di iOS.',
-  undetermined: 'Non hai ancora concesso il permesso alle notifiche.',
-  unsupported: 'Le notifiche non sono disponibili su questa piattaforma.',
+/** Testo dello stato del permesso (chiavi `profile:notifications.<stato>`). */
+const PERMISSION_KEY: Record<PermissionState, string> = {
+  granted: 'profile:notifications.granted',
+  denied: 'profile:notifications.denied',
+  undetermined: 'profile:notifications.undetermined',
+  unsupported: 'profile:notifications.unsupported',
 };
 
 export default function NotificationsScreen() {
   const { snapshot, run } = useApp();
+  const { t } = useT();
   const [permission, setPermission] = useState<PermissionState>('undetermined');
   const [count, setCount] = useState<number | null>(null);
   const [settings, setSettings] = useState<NotificationSettings | null>(snapshot?.notificationSettings ?? null);
@@ -40,31 +43,31 @@ export default function NotificationsScreen() {
 
   return (
     <Screen edges={['bottom']}>
-      <Notice tone={permission === 'denied' ? 'warning' : 'info'} text={PERMISSION_TEXT[permission]} />
+      <Notice tone={permission === 'denied' ? 'warning' : 'info'} text={t(PERMISSION_KEY[permission])} />
       {permission === 'undetermined' ? (
-        <Button label="Consenti le notifiche" onPress={async () => setPermission(await requestPermission())} />
+        <Button label={t('profile:notifications.allow')} onPress={async () => setPermission(await requestPermission())} />
       ) : null}
-      {permission === 'denied' ? <Button kind="secondary" label="Apri le Impostazioni di iOS" onPress={() => void Linking.openSettings()} /> : null}
+      {permission === 'denied' ? <Button kind="secondary" label={t('profile:notifications.openSettings')} onPress={() => void Linking.openSettings()} /> : null}
       <Card>
         <NotificationSettingsEditor settings={settings} onChange={update} mealTypes={snapshot.profile.mealTypes} />
       </Card>
       {count !== null && permission === 'granted' ? (
         <Text variant="small" color={colors.inkSoft}>
-          {`Promemoria programmati ora: ${count}. Vengono aggiornati ogni volta che apri l’app o modifichi il calendario.`}
+          {t('profile:notifications.scheduled', { count })}
         </Text>
       ) : null}
       <Button
         kind="secondary"
         icon="notifications-outline"
-        label="Invia una notifica di prova"
+        label={t('profile:notifications.test')}
         disabled={permission !== 'granted'}
         onPress={async () => {
           const p = await sendTestNotification();
-          if (p === 'granted') toast('Notifica di prova in arrivo tra circa 5 secondi.', 'info');
+          if (p === 'granted') toast(t('profile:notifications.testSent'), 'info');
         }}
       />
       <Text variant="small" color={colors.inkSoft}>
-        iOS limita le attività in background: i promemoria coprono il calendario attuale. Apri Mina almeno una volta a settimana per programmare i successivi.
+        {t('profile:notifications.iosLimit')}
       </Text>
     </Screen>
   );

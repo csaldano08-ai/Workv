@@ -10,10 +10,12 @@ import { Notice } from '../../src/ui/Notice';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
 import { colors } from '../../src/theme/tokens';
+import { useT } from '../../src/i18n';
 
 export default function EditPreference() {
   const { section } = useLocalSearchParams<{ section: string }>();
   const { snapshot, run } = useApp();
+  const { t } = useT();
   const def = STEPS.find((s) => s.id === section && s.editable);
   const [draft, setDraft] = useState<OnboardingDraft | null>(() =>
     snapshot?.profile
@@ -37,8 +39,8 @@ export default function EditPreference() {
   };
 
   return (
-    <Screen edges={['bottom']} footer={<Button label="Salva e aggiorna il calendario" onPress={() => void save()} loading={busy} />}>
-      <Stack.Screen options={{ title: 'Modifica' }} />
+    <Screen edges={['bottom']} footer={<Button label={t('profile:edit.save')} onPress={() => void save()} loading={busy} />}>
+      <Stack.Screen options={{ title: t('profile:edit.title') }} />
       <Text variant="title">{def.title}</Text>
       {def.subtitle ? (
         <Text variant="body" color={colors.inkSoft}>

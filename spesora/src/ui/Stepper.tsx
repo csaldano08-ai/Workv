@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useRef, useState } from 'react';
 import { Animated, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { minutesToHHMM } from '../core/domain/dates';
+import { useT } from '../i18n';
 import { colors, radius, space, TOUCH } from '../theme/tokens';
 import { Text } from './Text';
 import { useReducedMotion } from './useReducedMotion';
@@ -19,6 +20,7 @@ export interface StepperProps {
 }
 
 export function Stepper({ value, onChange, min, max, step = 1, format = String, label }: StepperProps) {
+  const { t } = useT();
   const clamp = (v: number) => Math.min(max, Math.max(min, v));
   return (
     <View
@@ -30,13 +32,13 @@ export function Stepper({ value, onChange, min, max, step = 1, format = String, 
       accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
       onAccessibilityAction={(e) => onChange(clamp(value + (e.nativeEvent.actionName === 'increment' ? step : -step)))}
     >
-      <RoundButton icon="remove" label={`Diminuisci ${label}`} disabled={value <= min} onPress={() => onChange(clamp(value - step))} />
+      <RoundButton icon="remove" label={t('ui:stepper.decrease', { label })} disabled={value <= min} onPress={() => onChange(clamp(value - step))} />
       <Bump value={value}>
         <Text variant="title" style={styles.value}>
           {format(value)}
         </Text>
       </Bump>
-      <RoundButton icon="add" label={`Aumenta ${label}`} disabled={value >= max} onPress={() => onChange(clamp(value + step))} />
+      <RoundButton icon="add" label={t('ui:stepper.increase', { label })} disabled={value >= max} onPress={() => onChange(clamp(value + step))} />
     </View>
   );
 }

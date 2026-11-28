@@ -10,21 +10,22 @@ const SW = 2.2;
 
 function Draw({ cat }: { cat: ShoppingCategory }) {
   switch (cat) {
+    // simboli NEUTRI del reparto (usati quando un ingrediente non ha un'immagine sua): niente carota o formaggio,
+    // che accanto a una mela o al latte sarebbero un'immagine sbagliata
     case 'frutta_verdura':
       return (
         <G>
-          <Path d="M14 30 L33 12 Q37 14 36 18 L18 36 Q12 38 14 30Z" fill={illo.carrot} stroke={ink} strokeWidth={SW} strokeLinejoin="round" />
-          <Path d="M33 12 L38 5 M35 14 L43 11 M31 11 L33 4" stroke={illo.greenMid} strokeWidth={3} strokeLinecap="round" />
-          <Path d="M21 27l3 3M25 22l3 3" stroke={ink} strokeWidth={1.6} strokeLinecap="round" />
+          <Path d="M24 40 Q24 26 24 16" stroke={ink} strokeWidth={SW} strokeLinecap="round" fill="none" />
+          <Path d="M24 26 Q12 26 9 13 Q22 12 24 26Z" fill={illo.greenMid} stroke={ink} strokeWidth={SW} strokeLinejoin="round" />
+          <Path d="M24 21 Q35 22 39 9 Q26 7 24 21Z" fill={illo.sage} stroke={ink} strokeWidth={SW} strokeLinejoin="round" />
         </G>
       );
     case 'latticini_uova':
       return (
         <G>
-          <Path d="M6 32 L32 14 L42 26 L42 36 L6 36Z" fill={illo.lemon} stroke={ink} strokeWidth={SW} strokeLinejoin="round" />
-          <Path d="M6 32 L42 26" stroke={ink} strokeWidth={2} />
-          <Circle cx={18} cy={31.5} r={2.2} fill="#E0B348" />
-          <Circle cx={30} cy={31} r={1.8} fill="#E0B348" />
+          <Path d="M16 10 H30 L29 15 Q35 19 35 27 V38 Q35 41 32 41 H14 Q11 41 11 38 V27 Q11 19 17 15Z" fill={illo.paper} stroke={ink} strokeWidth={SW} strokeLinejoin="round" />
+          <Path d="M35 22 Q41 22 41 28 Q41 33 35 33" stroke={ink} strokeWidth={SW} fill="none" />
+          <Path d="M12 29 H34" stroke={illo.sage} strokeWidth={3} />
         </G>
       );
     case 'carne':

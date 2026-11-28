@@ -4,6 +4,7 @@ import type { HistoryEntry, IsoDate, MealStatus, MealType, PlannedMeal, UserProf
 import { parseNotificationSettings, parseProfile } from '../domain/profile';
 import type { NotificationSettings } from '../notifications/schedule';
 import type { PriceEntry } from '../domain/prices';
+import { t } from '../../i18n';
 
 /** Accesso ai dati: solo SQL parametrizzato, nessuna logica di pianificazione. */
 
@@ -234,7 +235,7 @@ export class Repository {
   }
 
   async insertMovement(mv: Omit<PantryMovement, 'id' | 'createdAt'>, db: Db = this.db): Promise<void> {
-    if (!Number.isInteger(mv.delta)) throw new Error('Quantità non intera');
+    if (!Number.isInteger(mv.delta)) throw new Error(t('services:error.nonIntegerQty'));
     await db.run('INSERT INTO pantry_movements (id, ingredient_id, delta, kind, meal_id, created_at, note) VALUES (?, ?, ?, ?, ?, ?, ?)', [
       newId('mv'),
       mv.ingredientId,
@@ -326,7 +327,7 @@ export class Repository {
       quantity: r.quantity_milli / 1000,
       unit: r.unit,
       source: 'utente',
-      sourceName: 'Inserito da te',
+      sourceName: t('services:price.userSource'),
       observedAt: r.observed_at,
       storeType: (r.store_type ?? undefined) as PriceEntry['storeType'],
       reliability: 'alta',

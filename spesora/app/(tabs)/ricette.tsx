@@ -6,7 +6,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { toStock } from '../../src/core/domain/pantry';
 import { MEAL_TYPES, type Recipe } from '../../src/core/domain/types';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
-import { filterRecipes, recipeSections, type CourseFilter, type RecipeFilter } from '../../src/features/recipes/search';
+import { filterRecipes, recipeSections, type ContentNames, type CourseFilter, type RecipeFilter } from '../../src/features/recipes/search';
+import { useT } from '../../src/i18n';
+import { ingredientName, recipeName } from '../../src/i18n/content';
 import { MEAL_LABELS } from '../../src/i18n/labels';
 import { colors, font, radius, shadow, space } from '../../src/theme/tokens';
 import { Chip } from '../../src/ui/Chip';
@@ -19,37 +21,39 @@ import { AppHeader, ScreenTitle } from '../../src/ui/mina/kit';
 import { ChoiceArt, type ChoiceArtName } from '../../src/ui/mina/ChoiceArt';
 import { Text } from '../../src/ui/Text';
 
-const COURSES: { id: CourseFilter; label: string }[] = [
-  { id: 'primi', label: 'Primi' },
-  { id: 'secondi', label: 'Secondi' },
-  { id: 'piatti_unici', label: 'Piatti unici' },
-  { id: 'colazioni_dolci', label: 'Colazioni dolci' },
-  { id: 'colazioni_salate', label: 'Colazioni salate' },
-  { id: 'spuntini', label: 'Spuntini' },
+/** Etichette come chiavi (namespace `recipes`): tradotte al momento del disegno, nella lingua corrente. */
+const COURSES: { id: CourseFilter; labelKey: string }[] = [
+  { id: 'primi', labelKey: 'recipes:course.primi' },
+  { id: 'secondi', labelKey: 'recipes:course.secondi' },
+  { id: 'piatti_unici', labelKey: 'recipes:course.piatti_unici' },
+  { id: 'colazioni_dolci', labelKey: 'recipes:course.colazioni_dolci' },
+  { id: 'colazioni_salate', labelKey: 'recipes:course.colazioni_salate' },
+  { id: 'spuntini', labelKey: 'recipes:course.spuntini' },
 ];
 const DIETS = [
-  { id: 'vegetariano', label: 'Vegetariane' },
-  { id: 'vegano', label: 'Vegane' },
-  { id: 'pescetariano', label: 'Pescetariane' },
+  { id: 'vegetariano', labelKey: 'recipes:diet.vegetariano' },
+  { id: 'vegano', labelKey: 'recipes:diet.vegano' },
+  { id: 'pescetariano', labelKey: 'recipes:diet.pescetariano' },
 ] as const;
 
 /** Tessere delle categorie (le prime quattro come nel riferimento; le altre sono funzioni già esistenti). */
 type TileId = 'tutte' | CourseFilter | 'veg' | 'veloci' | 'dispensa' | 'idee' | 'preferite';
-const TILES: { id: TileId; label: string; icon: keyof typeof Ionicons.glyphMap; art?: ChoiceArtName }[] = [
-  { id: 'tutte', label: 'Tutte', icon: 'grid-outline' },
-  { id: 'primi', label: 'Primi', icon: 'restaurant-outline', art: 'pranzo' },
-  { id: 'secondi', label: 'Secondi', icon: 'flame-outline', art: 'onnivoro' },
-  { id: 'veg', label: 'Veg', icon: 'leaf-outline', art: 'vegano' },
-  { id: 'idee', label: 'Per te', icon: 'sparkles-outline' },
-  { id: 'dispensa', label: 'Dispensa', icon: 'file-tray-stacked-outline' },
-  { id: 'veloci', label: '15 min', icon: 'timer-outline' },
-  { id: 'preferite', label: 'Preferite', icon: 'heart-outline' },
-  { id: 'piatti_unici', label: 'Unici', icon: 'pizza-outline' },
-  { id: 'colazioni_dolci', label: 'Colazioni', icon: 'cafe-outline' },
-  { id: 'spuntini', label: 'Spuntini', icon: 'nutrition-outline' },
+const TILES: { id: TileId; labelKey: string; icon: keyof typeof Ionicons.glyphMap; art?: ChoiceArtName }[] = [
+  { id: 'tutte', labelKey: 'recipes:tile.tutte', icon: 'grid-outline' },
+  { id: 'primi', labelKey: 'recipes:tile.primi', icon: 'restaurant-outline', art: 'pranzo' },
+  { id: 'secondi', labelKey: 'recipes:tile.secondi', icon: 'flame-outline', art: 'onnivoro' },
+  { id: 'veg', labelKey: 'recipes:tile.veg', icon: 'leaf-outline', art: 'vegano' },
+  { id: 'idee', labelKey: 'recipes:tile.idee', icon: 'sparkles-outline' },
+  { id: 'dispensa', labelKey: 'recipes:tile.dispensa', icon: 'file-tray-stacked-outline' },
+  { id: 'veloci', labelKey: 'recipes:tile.veloci', icon: 'timer-outline' },
+  { id: 'preferite', labelKey: 'recipes:tile.preferite', icon: 'heart-outline' },
+  { id: 'piatti_unici', labelKey: 'recipes:tile.piatti_unici', icon: 'pizza-outline' },
+  { id: 'colazioni_dolci', labelKey: 'recipes:tile.colazioni_dolci', icon: 'cafe-outline' },
+  { id: 'spuntini', labelKey: 'recipes:tile.spuntini', icon: 'nutrition-outline' },
 ];
 
 export default function Recipes() {
+  const { t, language } = useT();
   const { snapshot, run } = useApp();
   // la prima volta in questa sessione Mina indossa cappello e grembiule (trasformazione in Mina Chef);
   // alle aperture successive Mina Chef fa solo il suo ingresso breve (solleva il cucchiaio, strizza l'occhio)
@@ -67,10 +71,12 @@ export default function Recipes() {
   const profile = snapshot?.profile ?? null;
   const favorites = useMemo(() => snapshot?.favorites ?? new Set<string>(), [snapshot?.favorites]);
   const set = (patch: Partial<RecipeFilter>) => setFilter((f) => ({ ...f, ...patch }));
+  // nomi nella lingua dell'interfaccia: la ricerca trova sia quelli tradotti sia gli originali italiani
+  const names = useMemo<ContentNames>(() => ({ lang: language, recipeName, ingredientName }), [language]);
   // le sezioni «Idee per questa settimana» e «Con ciò che hai in dispensa» diventano tessere (stessi dati di prima)
   const sections = useMemo(
-    () => (snapshot ? recipeSections({ catalog: catalogIndex, profile, favorites, pantry: toStock(snapshot.pantry), plannedIds: new Set(snapshot.meals.map((m) => m.recipeId)), today: snapshot.today }) : []),
-    [snapshot, profile, favorites],
+    () => (snapshot ? recipeSections({ catalog: catalogIndex, profile, favorites, names, pantry: toStock(snapshot.pantry), plannedIds: new Set(snapshot.meals.map((m) => m.recipeId)), today: snapshot.today }) : []),
+    [snapshot, profile, favorites, names],
   );
   const list = useMemo(() => {
     const tileFilter: Partial<RecipeFilter> =
@@ -84,13 +90,13 @@ export default function Recipes() {
               ? {}
               : { course: tile };
     const merged = { ...filter, ...tileFilter };
-    const all = filterRecipes(merged, { catalog: catalogIndex, profile, favorites });
+    const all = filterRecipes(merged, { catalog: catalogIndex, profile, favorites, names });
     if (tile === 'dispensa' || tile === 'idee') {
       const ids = new Set((sections.find((x) => x.id === tile)?.recipes ?? []).map((r) => r.id));
       return all.filter((r) => ids.has(r.id));
     }
     return all;
-  }, [tile, filter, profile, favorites, sections]);
+  }, [tile, filter, profile, favorites, sections, names]);
   const servings = profile?.servings ?? 2;
   const toggleFav = (id: string) => void run((s) => s.toggleFavorite(id, !favorites.has(id)));
   const filtersOn = !!(filter.meal || filter.diet || filter.maxMinutes || filter.course || filter.onlyFavorites || !filter.onlyCompatible);
@@ -99,7 +105,7 @@ export default function Recipes() {
     <View style={styles.header}>
       <AppHeader />
       <ScreenTitle
-        title="Ricette"
+        title={t('recipes:title')}
         right={
           chefMode === 'transform' ? (
             <MinaChefTransform size={72} play onDone={() => markSeenThisSession('chef-transform')} style={styles.chef} />
@@ -114,15 +120,15 @@ export default function Recipes() {
           <TextInput
             value={filter.query ?? ''}
             onChangeText={(v) => set({ query: v })}
-            placeholder="Cerca una ricetta..."
+            placeholder={t('recipes:search.placeholder')}
             placeholderTextColor={colors.inkSoft}
             style={styles.input}
-            accessibilityLabel="Cerca ricette per nome, ingrediente o regione"
+            accessibilityLabel={t('recipes:search.a11y')}
             autoCorrect={false}
             clearButtonMode="while-editing"
           />
         </View>
-        <Squish accessibilityRole="button" accessibilityLabel={showFilters ? 'Nascondi filtri' : 'Mostra filtri'} accessibilityState={{ expanded: showFilters }} onPress={() => setShowFilters(!showFilters)} style={[styles.filterBtn, (showFilters || filtersOn) && styles.filterBtnOn]}>
+        <Squish accessibilityRole="button" accessibilityLabel={showFilters ? t('recipes:filters.hide') : t('recipes:filters.show')} accessibilityState={{ expanded: showFilters }} onPress={() => setShowFilters(!showFilters)} style={[styles.filterBtn, (showFilters || filtersOn) && styles.filterBtnOn]}>
           <Ionicons name="funnel-outline" size={22} color={colors.greenDark} />
           {filtersOn ? <View style={styles.filterDot} /> : null}
         </Squish>
@@ -136,31 +142,32 @@ export default function Recipes() {
           </FilterRow>
           <FilterRow>
             {DIETS.map((d) => (
-              <Chip key={d.id} label={d.label} selected={filter.diet === d.id} onPress={() => set({ diet: filter.diet === d.id ? null : d.id })} />
+              <Chip key={d.id} label={t(d.labelKey)} selected={filter.diet === d.id} onPress={() => set({ diet: filter.diet === d.id ? null : d.id })} />
             ))}
             {[15, 30, 60].map((m) => (
-              <Chip key={m} label={`≤ ${m} min`} selected={filter.maxMinutes === m} onPress={() => set({ maxMinutes: filter.maxMinutes === m ? null : m })} />
+              <Chip key={m} label={t('recipes:filter.maxMinutes', { minutes: m })} selected={filter.maxMinutes === m} onPress={() => set({ maxMinutes: filter.maxMinutes === m ? null : m })} />
             ))}
           </FilterRow>
           <FilterRow>
             {COURSES.map((c) => (
-              <Chip key={c.id} label={c.label} selected={filter.course === c.id} onPress={() => set({ course: filter.course === c.id ? null : c.id })} />
+              <Chip key={c.id} label={t(c.labelKey)} selected={filter.course === c.id} onPress={() => set({ course: filter.course === c.id ? null : c.id })} />
             ))}
           </FilterRow>
           <FilterRow>
-            <Chip tone="peach" label="Preferite" selected={!!filter.onlyFavorites} onPress={() => set({ onlyFavorites: !filter.onlyFavorites })} />
-            <Chip label="Rispetta le mie esclusioni" selected={!!filter.onlyCompatible} onPress={() => set({ onlyCompatible: !filter.onlyCompatible })} />
+            <Chip tone="peach" label={t('recipes:filter.favorites')} selected={!!filter.onlyFavorites} onPress={() => set({ onlyFavorites: !filter.onlyFavorites })} />
+            <Chip label={t('recipes:filter.compatible')} selected={!!filter.onlyCompatible} onPress={() => set({ onlyCompatible: !filter.onlyCompatible })} />
           </FilterRow>
         </View>
       ) : null}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tiles} style={styles.tilesScroll} keyboardShouldPersistTaps="handled" accessibilityRole="tablist">
-        {TILES.map((t) => {
-          const on = t.id === tile;
+        {TILES.map((tl) => {
+          const on = tl.id === tile;
+          const label = t(tl.labelKey, { minutes: 15 });
           return (
-            <Squish key={t.id} accessibilityRole="tab" accessibilityState={{ selected: on }} accessibilityLabel={t.label} onPress={() => setTile(t.id)} style={[styles.tile, on ? styles.tileOn : styles.tileOff]}>
-              {t.art ? <ChoiceArt name={t.art} size={44} /> : <Ionicons name={on ? (t.icon.replace('-outline', '') as keyof typeof Ionicons.glyphMap) : t.icon} size={32} color={on ? colors.white : colors.green} />}
+            <Squish key={tl.id} accessibilityRole="tab" accessibilityState={{ selected: on }} accessibilityLabel={label} onPress={() => setTile(tl.id)} style={[styles.tile, on ? styles.tileOn : styles.tileOff]}>
+              {tl.art ? <ChoiceArt name={tl.art} size={44} /> : <Ionicons name={on ? (tl.icon.replace('-outline', '') as keyof typeof Ionicons.glyphMap) : tl.icon} size={32} color={on ? colors.white : colors.green} />}
               <Text variant="small" color={on ? colors.white : colors.ink} style={styles.tileText} numberOfLines={1}>
-                {t.label}
+                {label}
               </Text>
             </Squish>
           );
@@ -168,7 +175,7 @@ export default function Recipes() {
       </ScrollView>
       <View style={styles.resultBar}>
         <Text variant="small" color={colors.inkSoft} style={styles.flex}>
-          {`${list.length} ${list.length === 1 ? 'ricetta' : 'ricette'}${filter.onlyCompatible ? ' adatte a te' : ''}`}
+          {t(filter.onlyCompatible ? 'recipes:results.forYou' : 'recipes:results.count', { count: list.length })}
         </Text>
         {filtersOn || filter.query ? (
           <Pressable
@@ -180,7 +187,7 @@ export default function Recipes() {
             hitSlop={8}
           >
             <Text variant="small" color={colors.green} style={styles.bold}>
-              Azzera
+              {t('recipes:filters.reset')}
             </Text>
           </Pressable>
         ) : null}
@@ -205,7 +212,7 @@ export default function Recipes() {
           <View style={styles.empty}>
             <MinaMascot pose="thinking" size={100} />
             <Text variant="body" color={colors.inkSoft} center>
-              Nessuna ricetta con questi filtri.
+              {t('recipes:empty')}
             </Text>
           </View>
         }
@@ -221,22 +228,24 @@ function FilterRow({ children }: { children: React.ReactNode }) {
 
 /** Card della griglia: foto con il cuore, nome, tempo e persone (come nel riferimento). */
 function RecipeCard({ recipe, favorite, servings, onFavorite }: { recipe: Recipe; favorite: boolean; servings: number; onFavorite: () => void }) {
+  const { t } = useT();
+  const name = recipeName(recipe);
   return (
-    <Squish accessibilityRole="button" accessibilityLabel={`${recipe.name}, ${recipe.totalMinutes} minuti${favorite ? ', preferita' : ''}`} onPress={() => router.push(`/ricetta/${recipe.id}`)} outerStyle={styles.cardOuter} style={styles.card}>
+    <Squish accessibilityRole="button" accessibilityLabel={t(favorite ? 'recipes:card.a11yFavorite' : 'recipes:card.a11y', { name, minutes: recipe.totalMinutes })} onPress={() => router.push(`/ricetta/${recipe.id}`)} outerStyle={styles.cardOuter} style={styles.card}>
       <View>
         {/* miniatura 320×240: nitida a questa misura e molto più leggera da decodificare dell'immagine grande */}
         <RecipeImage variant="thumb" recipe={recipe} rounded={0} aspectRatio={1.08} />
-        <Pressable accessibilityRole="button" accessibilityLabel={favorite ? `Togli ${recipe.name} dai preferiti` : `Aggiungi ${recipe.name} ai preferiti`} accessibilityState={{ selected: favorite }} onPress={onFavorite} hitSlop={6} style={styles.heart}>
+        <Pressable accessibilityRole="button" accessibilityLabel={favorite ? t('recipes:favorite.removeNamed', { name }) : t('recipes:favorite.addNamed', { name })} accessibilityState={{ selected: favorite }} onPress={onFavorite} hitSlop={6} style={styles.heart}>
           <Ionicons name={favorite ? 'heart' : 'heart-outline'} size={19} color={colors.danger} />
         </Pressable>
       </View>
       <View style={styles.cardBody}>
         <Text variant="heading" numberOfLines={2} style={styles.cardTitle}>
-          {recipe.name}
+          {name}
         </Text>
         <View style={styles.cardMeta}>
           <Ionicons name="time-outline" size={15} color={colors.ink} />
-          <Text variant="small">{`${recipe.totalMinutes} min`}</Text>
+          <Text variant="small">{t('recipes:time.minutes', { minutes: recipe.totalMinutes })}</Text>
           <Ionicons name="people-outline" size={15} color={colors.ink} style={styles.metaGap} />
           <Text variant="small">{String(servings)}</Text>
         </View>

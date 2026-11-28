@@ -4,12 +4,16 @@ import { router } from 'expo-router';
 import { Alert } from '../../ui/dialog';
 import { formatQtyWithUnit } from '../../core/domain/quantity';
 import type { MealStatus, PlannedMeal } from '../../core/domain/types';
+import { useT } from '../../i18n';
+import { ingredientName, recipeName } from '../../i18n/content';
+import { MEAL_LABELS } from '../../i18n/labels';
 import { catalogIndex, useApp } from '../app/AppProvider';
 import { useActionSheet } from '../../ui/ActionSheet';
 import { toast } from '../../ui/toast';
 
 /** Azioni sui pasti condivise da Oggi, Settimana e Ricetta. La logica resta nel servizio. */
 export function useMealActions() {
+  const { t, language } = useT();
   const { run } = useApp();
   const sheet = useActionSheet();
 
@@ -17,38 +21,40 @@ export function useMealActions() {
     const res = await run((s) => s.markCooked(meal.id));
     if (!res) return;
     if (!res.ok) {
-      if (res.reason === 'already_done') toast('Pasto già registrato: gli ingredienti non sono stati sottratti di nuovo.', 'info');
+      if (res.reason === 'already_done') toast(t('week:actions.alreadyDone'), 'info');
       return;
     }
     if (res.shortfalls.length > 0) {
       const list = res.shortfalls
         .map((sf) => {
           const ing = catalogIndex.ingredient(sf.ingredientId);
-          return `${ing.name} (${formatQtyWithUnit(sf.missing, ing.unit)})`;
+          return `${ingredientName(ing.id, ing.name)} (${formatQtyWithUnit(sf.missing, ing.unit)})`;
         })
         .join(', ');
-      toast(`Pasto registrato. In dispensa non risultavano: ${list}.`, 'warning');
+      toast(t('week:actions.shortfall', { list }), 'warning');
       return;
     }
     // il piatto è pronto: festeggia Mina Chef, che lo serve con la cloche (gesto breve)
-    celebrate({ title: 'Pasto completato', text: recipeCompleted(meal.id), pose: 'serving' });
+    celebrate({ title: t('week:actions.completed'), text: recipeCompleted(meal.id), pose: 'serving' });
   };
 
   const notFollowed = async (meal: PlannedMeal, outcome: Exclude<MealStatus, 'planned' | 'cooked'>) => {
     const ok = await run((s) => s.markNotFollowed(meal.id, outcome));
     if (!ok || outcome === 'other') return;
     const recipe = catalogIndex.recipe(meal.recipeId);
+    // in tedesco i nomi comuni restano maiuscoli
+    const mealLabel = language === 'de' ? MEAL_LABELS[meal.mealType] : MEAL_LABELS[meal.mealType].toLowerCase();
     Alert.alert(
-      'Nessun ingrediente sottratto',
-      `Vuoi riproporre ${recipe?.name.toLowerCase() ?? 'questa ricetta'} nel prossimo ${meal.mealType} libero? Gli ingredienti acquistati per questo pasto restano in dispensa.`,
+      t('week:actions.noneSubtracted'),
+      t('week:actions.repropose', { recipe: recipe ? recipeName(recipe) : t('week:actions.thisRecipe'), meal: mealLabel }),
       [
-        { text: 'No', style: 'cancel' },
+        { text: t('week:actions.no'), style: 'cancel' },
         {
-          text: 'Riproponi',
+          text: t('week:actions.reproposeConfirm'),
           onPress: () =>
             void run(async (s) => {
               const next = await s.reproposeLater(meal.id);
-              if (!next) toast('Nessun pasto dello stesso tipo libero in questo calendario.', 'info');
+              if (!next) toast(t('week:actions.noFreeSlot'), 'info');
             }),
         },
       ],
@@ -58,14 +64,14 @@ export function useMealActions() {
   /** Menu completo delle azioni di un pasto ancora da cucinare. */
   const openMenu = (meal: PlannedMeal) => {
     const recipe = catalogIndex.recipe(meal.recipeId);
-    sheet.open(recipe?.name ?? 'Pasto', [
-      { label: 'Apri la ricetta', onPress: () => router.push(`/ricetta/${meal.recipeId}?mealId=${encodeURIComponent(meal.id)}`) },
-      { label: 'Cambia ricetta', onPress: () => router.push(`/cambia/${encodeURIComponent(meal.id)}`) },
-      { label: 'Sposta in un altro giorno', onPress: () => router.push(`/sposta/${encodeURIComponent(meal.id)}`) },
-      { label: 'Ho cucinato', onPress: () => void cooked(meal) },
-      { label: 'Mangio fuori', onPress: () => void notFollowed(meal, 'ate_out') },
-      { label: 'Ho cucinato altro', onPress: () => void notFollowed(meal, 'other') },
-      { label: 'Non ho cucinato', onPress: () => void notFollowed(meal, 'skipped') },
+    sheet.open(recipe ? recipeName(recipe) : t('week:actions.mealFallback'), [
+      { label: t('week:actions.openRecipe'), onPress: () => router.push(`/ricetta/${meal.recipeId}?mealId=${encodeURIComponent(meal.id)}`) },
+      { label: t('action.replace'), onPress: () => router.push(`/cambia/${encodeURIComponent(meal.id)}`) },
+      { label: t('week:actions.move'), onPress: () => router.push(`/sposta/${encodeURIComponent(meal.id)}`) },
+      { label: t('action.cooked'), onPress: () => void cooked(meal) },
+      { label: t('week:actions.ateOut'), onPress: () => void notFollowed(meal, 'ate_out') },
+      { label: t('week:actions.other'), onPress: () => void notFollowed(meal, 'other') },
+      { label: t('action.notCooked'), onPress: () => void notFollowed(meal, 'skipped') },
     ]);
   };
 

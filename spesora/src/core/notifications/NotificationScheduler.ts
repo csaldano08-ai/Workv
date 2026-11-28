@@ -1,5 +1,6 @@
 import { Platform } from 'react-native';
 import * as Notifications from 'expo-notifications';
+import { onLanguageChange, t } from '../../i18n';
 import { computeNotifications, diffNotifications, NOTIFICATION_PREFIX, type ScheduleInput } from './schedule';
 
 /**
@@ -17,12 +18,19 @@ export function configureNotifications(): void {
     handleNotification: async () => ({ shouldShowBanner: true, shouldShowList: true, shouldPlaySound: false, shouldSetBadge: false }),
   });
   if (Platform.OS === 'android') {
-    void Notifications.setNotificationChannelAsync('promemoria', {
-      name: 'Promemoria pasti e spesa',
-      // eslint-disable-next-line import/namespace -- enum esportato dai tipi, falso positivo
-      importance: Notifications.AndroidImportance.DEFAULT,
-    });
+    setupAndroidChannel();
+    // il nome del canale compare nelle impostazioni di sistema: segue la lingua dell'app
+    onLanguageChange(setupAndroidChannel);
   }
+}
+
+/** Crea o aggiorna (stesso id) il canale Android con il nome nella lingua corrente. */
+function setupAndroidChannel(): void {
+  void Notifications.setNotificationChannelAsync('promemoria', {
+    name: t('services:notif.channel'),
+    // eslint-disable-next-line import/namespace -- enum esportato dai tipi, falso positivo
+    importance: Notifications.AndroidImportance.DEFAULT,
+  });
 }
 
 export type PermissionState = 'granted' | 'denied' | 'undetermined' | 'unsupported';
@@ -84,7 +92,7 @@ export async function sendTestNotification(): Promise<PermissionState> {
   if (permission !== 'granted') return permission;
   await Notifications.scheduleNotificationAsync({
     identifier: `${NOTIFICATION_PREFIX}test:${Date.now()}`,
-    content: { title: 'Prova di Mina', body: 'Le notifiche funzionano. Tocca per aprire la schermata Oggi.', data: { url: '/' } },
+    content: { title: t('services:notif.test.title'), body: t('services:notif.test.body'), data: { url: '/' } },
     trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: 5, repeats: false },
   });
   return permission;

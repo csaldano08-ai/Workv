@@ -1,3 +1,4 @@
+// prima di tutto: lingua e formati pronti al primo disegno
 import { DefaultTheme, Stack, ThemeProvider, router, usePathname } from 'expo-router';
 import * as Notifications from 'expo-notifications';
 import { StatusBar } from 'expo-status-bar';
@@ -17,7 +18,7 @@ import { useReducedMotion } from '../src/ui/useReducedMotion';
 import { Button } from '../src/ui/Button';
 import { LogoMark } from '../src/ui/Logo';
 import { Text } from '../src/ui/Text';
-import { t } from '../src/i18n/it';
+import { useT } from '../src/i18n';
 
 /** Apre la schermata indicata dalla notifica toccata, anche ad app chiusa (avvio a freddo). */
 function NotificationRouter() {
@@ -43,7 +44,7 @@ function OnboardingGate() {
   const pathname = usePathname();
   useEffect(() => {
     if (status.kind !== 'ready' || !snapshot) return;
-    const open = ['/benvenuto', '/onboarding', '/privacy', '/termini', '/legale', '/licenze', '/mina'].some((p) => pathname.startsWith(p));
+    const open = ['/benvenuto', '/onboarding', '/privacy', '/termini', '/legale', '/licenze', '/mina', '/lingua'].some((p) => pathname.startsWith(p));
     if (!snapshot.profile && !open) router.replace('/benvenuto');
   }, [status, snapshot, pathname]);
   return null;
@@ -51,6 +52,7 @@ function OnboardingGate() {
 
 function Shell() {
   const { status, retry } = useApp();
+  const { t } = useT();
   const reduced = useReducedMotion();
   // Nessun caricamento visibile all'avvio: solo il fondo, poi parte subito l'intro (o l'app).
   if (status.kind === 'loading') return <View style={styles.blank} />;
@@ -87,27 +89,28 @@ function Shell() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="benvenuto" options={{ headerShown: false, animation: 'fade' }} />
         <Stack.Screen name="onboarding" options={{ headerShown: false, gestureEnabled: false }} />
-        <Stack.Screen name="privacy" options={{ title: 'Privacy e dati' }} />
+        <Stack.Screen name="privacy" options={{ title: t('nav.privacy') }} />
         <Stack.Screen name="ricetta/[id]" options={{ title: '' }} />
-        <Stack.Screen name="cambia/[mealId]" options={{ title: 'Cambia ricetta', presentation: 'modal' }} />
-        <Stack.Screen name="sposta/[mealId]" options={{ title: 'Sposta il pasto', presentation: 'modal' }} />
-        <Stack.Screen name="ripeti/[recipeId]" options={{ title: 'Ripeti la ricetta', presentation: 'modal' }} />
-        <Stack.Screen name="voce/[ingredientId]" options={{ title: 'Dispensa', presentation: 'modal' }} />
-        <Stack.Screen name="aggiungi" options={{ title: 'Aggiungi in dispensa', presentation: 'modal' }} />
-        <Stack.Screen name="impostazioni" options={{ title: 'Profilo', headerShown: false }} />
-        <Stack.Screen name="aiuto" options={{ title: 'Aiuto e supporto' }} />
-        <Stack.Screen name="legale" options={{ title: 'Informazioni legali' }} />
-        <Stack.Screen name="licenze" options={{ title: 'Licenze e attribuzioni' }} />
-        <Stack.Screen name="preferenze/[section]" options={{ title: 'Modifica' }} />
-        <Stack.Screen name="notifiche" options={{ title: 'Notifiche' }} />
-        <Stack.Screen name="plus" options={{ title: 'Abbonamento' }} />
-        <Stack.Screen name="abbonamento" options={{ title: 'Abbonamento' }} />
-        <Stack.Screen name="termini" options={{ title: 'Termini e abbonamento' }} />
-        <Stack.Screen name="storico" options={{ title: 'Storico dei pasti' }} />
-        <Stack.Screen name="prezzi" options={{ title: 'Prezzi' }} />
-        <Stack.Screen name="economica" options={{ title: 'Settimana più economica', presentation: 'modal' }} />
+        <Stack.Screen name="cambia/[mealId]" options={{ title: t('nav.change'), presentation: 'modal' }} />
+        <Stack.Screen name="sposta/[mealId]" options={{ title: t('nav.move'), presentation: 'modal' }} />
+        <Stack.Screen name="ripeti/[recipeId]" options={{ title: t('nav.repeat'), presentation: 'modal' }} />
+        <Stack.Screen name="voce/[ingredientId]" options={{ title: t('nav.pantryItem'), presentation: 'modal' }} />
+        <Stack.Screen name="aggiungi" options={{ title: t('nav.addPantry'), presentation: 'modal' }} />
+        <Stack.Screen name="impostazioni" options={{ title: t('nav.profile'), headerShown: false }} />
+        <Stack.Screen name="aiuto" options={{ title: t('nav.help') }} />
+        <Stack.Screen name="legale" options={{ title: t('nav.legal') }} />
+        <Stack.Screen name="licenze" options={{ title: t('nav.licenses') }} />
+        <Stack.Screen name="preferenze/[section]" options={{ title: t('nav.edit') }} />
+        <Stack.Screen name="notifiche" options={{ title: t('nav.notifications') }} />
+        <Stack.Screen name="plus" options={{ title: t('nav.subscription') }} />
+        <Stack.Screen name="abbonamento" options={{ title: t('nav.subscription') }} />
+        <Stack.Screen name="termini" options={{ title: t('nav.terms') }} />
+        <Stack.Screen name="storico" options={{ title: t('nav.history') }} />
+        <Stack.Screen name="prezzi" options={{ title: t('nav.prices') }} />
+        <Stack.Screen name="economica" options={{ title: t('nav.cheaper'), presentation: 'modal' }} />
         <Stack.Screen name="mina" options={{ title: 'Mina 2.0' }} />
-        <Stack.Screen name="cucina/[id]" options={{ title: 'Modalità Cucina' }} />
+        <Stack.Screen name="lingua" />
+        <Stack.Screen name="cucina/[id]" options={{ title: t('nav.cooking') }} />
       </Stack>
       <CelebrationHost />
       <ToastHost />

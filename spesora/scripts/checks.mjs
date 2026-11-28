@@ -3,6 +3,8 @@
  * Controlli di qualità usati da `npm run verify` e `npm run check:release`.
  * Funzioni pure: ricevono contenuti, restituiscono errori e avvisi (testate in src/test/checks.test.ts).
  */
+import fs from 'node:fs';
+import path from 'node:path';
 
 const FORBIDDEN_DEPENDENCIES = [
   'firebase',
@@ -93,14 +95,31 @@ export function checkSources(files) {
  * @param {{ path: string, content: string }[]} files
  * @param {Record<string, string>} dictionary
  */
+/**
+ * Chiavi di traduzione usate nel codice (`t('ns:chiave')`, `t('chiave')` = namespace common) che non esistono
+ * nel dizionario italiano. `dictionary` è piatto: { "common:tabs.today": "Oggi", "home:hero.cook": "…" }.
+ */
 export function checkStrings(files, dictionary) {
   /** @type {string[]} */ const errors = [];
-  const re = /\bt\(\s*'([a-zA-Z0-9_.]+)'/g;
+  const re = /\bt\(\s*'([a-zA-Z0-9_.:-]+)'/g;
   for (const f of files) {
     for (const m of f.content.matchAll(re)) {
-      if (!(m[1] in dictionary)) errors.push(`${f.path}: chiave di traduzione mancante "${m[1]}"`);
+      const key = m[1].includes(':') ? m[1] : `common:${m[1]}`;
+      const plural = [`${key}_one`, `${key}_other`].every((k) => k in dictionary);
+      if (!(key in dictionary) && !plural) errors.push(`${f.path}: chiave di traduzione mancante "${m[1]}"`);
     }
   }
   for (const [k, v] of Object.entries(dictionary)) if (!v || !String(v).trim()) errors.push(`Stringa vuota: ${k}`);
   return { errors };
+}
+
+/** Dizionario piatto "namespace:chiave" di una lingua, dai file `src/i18n/locales/<lingua>/*.json`. */
+export function loadDictionary(root, lang) {
+  const dir = path.join(root, 'src', 'i18n', 'locales', lang);
+  /** @type {Record<string, string>} */ const out = {};
+  for (const f of fs.readdirSync(dir).filter((n) => n.endsWith('.json'))) {
+    const ns = f.slice(0, -5);
+    for (const [k, v] of Object.entries(JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')))) out[`${ns}:${k}`] = String(v);
+  }
+  return out;
 }

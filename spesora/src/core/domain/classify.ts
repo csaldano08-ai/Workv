@@ -1,5 +1,6 @@
 import type { CatalogIndex } from './catalog';
-import type { Like, Recipe, WeekStyle } from './types';
+import { lazyLabels } from '../../i18n';
+import { LIKES, WEEK_STYLES, type Like, type Recipe, type WeekStyle } from './types';
 
 /** Classificazione delle ricette per i gusti dell'utente (derivata da categoria e ingredienti). */
 
@@ -62,25 +63,7 @@ export function matchesLike(like: Like, recipe: Recipe, catalog: CatalogIndex, m
   }
 }
 
-export const LIKE_LABELS: Record<Like, string> = {
-  pesce: 'Piatti di pesce',
-  legumi: 'Legumi',
-  vegetali: 'Preparazioni vegetali',
-  proteiche: 'Con carne, pesce, uova, legumi o tofu',
-  primi: 'Primi piatti',
-  secondi: 'Secondi piatti',
-  piatti_unici: 'Piatti unici',
-  bowl: 'Insalatone e bowl',
-  cene_veloci: 'Cene veloci',
-  colazioni_salate: 'Colazioni salate',
-  colazioni_dolci: 'Colazioni dolci',
-};
+/** Etichette tradotte (namespace `onboarding`): getter, sempre nella lingua corrente. */
+export const LIKE_LABELS: Record<Like, string> = lazyLabels(LIKES, (k) => `onboarding:like.${k}`);
 
-export const WEEK_STYLE_LABELS: Record<WeekStyle, string> = {
-  pratica: 'Molto pratica',
-  varia: 'Varia',
-  economica: 'Ingredienti economici e riutilizzabili',
-  proteica: 'Più carne, pesce, uova o legumi',
-  vegetariana: 'Più vegetariana',
-  veloce: 'Più veloce',
-};
+export const WEEK_STYLE_LABELS: Record<WeekStyle, string> = lazyLabels(WEEK_STYLES, (k) => `onboarding:weekStyle.${k}`);

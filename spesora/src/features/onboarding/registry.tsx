@@ -7,6 +7,7 @@ import {
   DislikeStep,
   EquipmentStep,
   FrequencyStep,
+  LanguageStep,
   MealsStep,
   NotificationsStep,
   PantryStep,
@@ -18,6 +19,7 @@ import {
 } from './steps';
 import { PortionProfileStep, QuantitiesStep, TastesStep } from './stepsPersonal';
 import type { MinaPose } from '../../ui/mascot/Mina';
+import { t } from '../../i18n';
 
 export interface StepDef {
   id: string;
@@ -39,84 +41,217 @@ export interface StepDef {
 }
 
 export const STEPS: StepDef[] = [
-  { id: 'persone', title: 'Quante persone mangeranno abitualmente?', Component: PeopleStep, editable: true, pose: 'wave', tip: 'Ciao, sono Mina! Bastano due minuti e organizzo io la tua settimana.' },
+  {
+    id: 'lingua',
+    get title() {
+      return t('language:title');
+    },
+    get subtitle() {
+      return t('language:subtitle');
+    },
+    Component: LanguageStep,
+    pose: 'wave',
+    get tip() {
+      return t('language:tip');
+    },
+  },
+  {
+    id: 'persone',
+    get title() {
+      return t('onboarding:people.title');
+    },
+    Component: PeopleStep,
+    editable: true,
+    pose: 'wave',
+    get tip() {
+      return t('onboarding:people.tip');
+    },
+  },
   {
     id: 'pasti',
-    title: 'Quali pasti vuoi organizzare?',
-    subtitle: 'Puoi sceglierne più di uno.',
+    get title() {
+      return t('onboarding:meals.title');
+    },
+    get subtitle() {
+      return t('onboarding:meals.subtitle');
+    },
     Component: MealsStep,
     editable: true,
-    validate: (d) => (d.profile.mealTypes.length === 0 ? 'Scegli almeno un pasto.' : null),
+    validate: (d) => (d.profile.mealTypes.length === 0 ? t('onboarding:meals.invalid') : null),
   },
-  { id: 'dieta', title: 'Come mangi?', Component: DietStep, editable: true },
+  {
+    id: 'dieta',
+    get title() {
+      return t('onboarding:diet.title');
+    },
+    Component: DietStep,
+    editable: true,
+  },
   {
     id: 'esclusioni',
-    title: 'Ci sono ingredienti da evitare?',
-    subtitle: 'Allergie, intolleranze o scelte personali: verranno esclusi sempre.',
+    get title() {
+      return t('onboarding:exclusions.title');
+    },
+    get subtitle() {
+      return t('onboarding:exclusions.subtitle');
+    },
     Component: AllergenStep,
     optional: true,
     editable: true,
-    react: (d) => (d.profile.excludedAllergens.length + d.profile.excludedIngredientIds.length > 0 ? { pose: 'thinking', tip: 'Preso nota: questi ingredienti non compariranno mai nelle ricette che ti propongo.' } : null),
+    react: (d) => (d.profile.excludedAllergens.length + d.profile.excludedIngredientIds.length > 0 ? { pose: 'thinking', tip: t('onboarding:exclusions.react') } : null),
   },
-  { id: 'non-graditi', title: 'C’è qualcosa che non ti piace?', subtitle: 'Non lo vedrai nelle ricette proposte.', Component: DislikeStep, optional: true, editable: true, react: (d) => (d.profile.dislikedIngredientIds.length > 0 ? { pose: 'happy', tip: 'Va bene così: userò gli altri ingredienti per variare i piatti.' } : null) },
+  {
+    id: 'non-graditi',
+    get title() {
+      return t('onboarding:dislikes.title');
+    },
+    get subtitle() {
+      return t('onboarding:dislikes.subtitle');
+    },
+    Component: DislikeStep,
+    optional: true,
+    editable: true,
+    react: (d) => (d.profile.dislikedIngredientIds.length > 0 ? { pose: 'happy', tip: t('onboarding:dislikes.react') } : null),
+  },
   {
     id: 'porzioni',
-    title: 'Come mangi di solito?',
-    subtitle: 'Serve solo a proporti quantità vicine alle tue abitudini.',
+    get title() {
+      return t('onboarding:portions.title');
+    },
+    get subtitle() {
+      return t('onboarding:portions.subtitle');
+    },
     Component: PortionProfileStep,
     editable: true,
     premium: true,
-    tip: 'Niente diete: uso queste risposte solo per non farti cucinare troppo o troppo poco.',
+    get tip() {
+      return t('onboarding:portions.tip');
+    },
   },
   {
     id: 'quantita',
-    title: 'Le tue quantità abituali',
-    subtitle: 'Le ricette e la spesa useranno questi valori come base.',
+    get title() {
+      return t('onboarding:quantities.title');
+    },
+    get subtitle() {
+      return t('onboarding:quantities.subtitle');
+    },
     Component: QuantitiesStep,
     editable: true,
     premium: true,
     pose: 'cooking',
-    tip: 'Se di solito cuoci 70 g di pasta, userò 70 g. Semplice.',
+    get tip() {
+      return t('onboarding:quantities.tip');
+    },
   },
   {
     id: 'gusti',
-    title: 'I tuoi gusti',
-    subtitle: 'Scegli liberamente: puoi combinare più preferenze.',
+    get title() {
+      return t('onboarding:tastes.title');
+    },
+    get subtitle() {
+      return t('onboarding:tastes.subtitle');
+    },
     Component: TastesStep,
     optional: true,
     editable: true,
     premium: true,
     pose: 'thinking',
-    tip: 'Dimmi cosa ti piace e lo proporrò più spesso, senza rinunciare alla varietà.',
+    get tip() {
+      return t('onboarding:tastes.tip');
+    },
   },
-  { id: 'tempo', title: 'Quanto tempo hai per cucinare?', subtitle: 'Per ogni pasto principale.', Component: TimeStep, editable: true },
-  { id: 'orari', title: 'A che ora mangi di solito?', subtitle: 'Servono per i promemoria. Bastano orari indicativi.', Component: TimesStep, editable: true },
-  { id: 'frequenza', title: 'Quante volte fai la spesa a settimana?', Component: FrequencyStep },
+  {
+    id: 'tempo',
+    get title() {
+      return t('onboarding:time.title');
+    },
+    get subtitle() {
+      return t('onboarding:time.subtitle');
+    },
+    Component: TimeStep,
+    editable: true,
+  },
+  {
+    id: 'orari',
+    get title() {
+      return t('onboarding:times.title');
+    },
+    get subtitle() {
+      return t('onboarding:times.subtitle');
+    },
+    Component: TimesStep,
+    editable: true,
+  },
+  {
+    id: 'frequenza',
+    get title() {
+      return t('onboarding:frequency.title');
+    },
+    Component: FrequencyStep,
+  },
   {
     id: 'giorni-spesa',
-    title: 'In quali giorni fai la spesa?',
+    get title() {
+      return t('onboarding:shoppingDays.title');
+    },
     pose: 'shopping',
-    tip: 'Dividerò la spesa tra questi giorni, così i prodotti freschi restano freschi.',
+    get tip() {
+      return t('onboarding:shoppingDays.tip');
+    },
     Component: ShoppingDaysStep,
     editable: true,
-    validate: (d) => (d.profile.shoppingDays.length === 0 ? 'Scegli almeno un giorno.' : null),
+    validate: (d) => (d.profile.shoppingDays.length === 0 ? t('onboarding:shoppingDays.invalid') : null),
   },
-  { id: 'budget', title: 'Quanto vuoi spendere per la tua spesa?', subtitle: 'Facoltativo: aiuta a scegliere ricette che riutilizzano gli ingredienti.', Component: BudgetStep, editable: true, premium: true, pose: 'savings', tip: 'Mangiare bene secondo i tuoi gusti, senza comprare più del necessario.' },
+  {
+    id: 'budget',
+    get title() {
+      return t('onboarding:budget.title');
+    },
+    get subtitle() {
+      return t('onboarding:budget.subtitle');
+    },
+    Component: BudgetStep,
+    editable: true,
+    premium: true,
+    pose: 'savings',
+    get tip() {
+      return t('onboarding:budget.tip');
+    },
+  },
   {
     id: 'strumenti',
-    title: 'Cosa hai in cucina?',
+    get title() {
+      return t('onboarding:equipment.title');
+    },
     Component: EquipmentStep,
     editable: true,
-    validate: (d) => (d.profile.equipment.length === 0 ? 'Scegli almeno uno strumento.' : null),
+    validate: (d) => (d.profile.equipment.length === 0 ? t('onboarding:equipment.invalid') : null),
   },
-  { id: 'dispensa', title: 'Cosa hai già in casa?', subtitle: 'Facoltativo: aiuta a comprare solo il necessario.', Component: PantryStep, optional: true },
+  {
+    id: 'dispensa',
+    get title() {
+      return t('onboarding:pantry.title');
+    },
+    get subtitle() {
+      return t('onboarding:pantry.subtitle');
+    },
+    Component: PantryStep,
+    optional: true,
+  },
   {
     id: 'notifiche',
-    title: 'Vuoi dei promemoria?',
-    subtitle: 'Un avviso quando è ora di iniziare a cucinare e nei giorni di spesa. Nessuno spam: solo ciò che scegli qui.',
+    get title() {
+      return t('onboarding:notifications.title');
+    },
+    get subtitle() {
+      return t('onboarding:notifications.subtitle');
+    },
     Component: NotificationsStep,
     pose: 'thinking',
-    tip: 'Ti scrivo solo quando serve: niente spam, promesso.',
+    get tip() {
+      return t('onboarding:notifications.tip');
+    },
   },
 ];
 

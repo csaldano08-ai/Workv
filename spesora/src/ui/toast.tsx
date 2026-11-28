@@ -2,6 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useRef, useState } from 'react';
 import { AccessibilityInfo, Animated, Easing, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useT } from '../i18n';
 import { colors, radius, shadow, space } from '../theme/tokens';
 import { Text } from './Text';
 import { useReducedMotion } from './useReducedMotion';
@@ -35,6 +36,7 @@ const TONES: Record<ToastTone, { icon: keyof typeof Ionicons.glyphMap; fg: strin
 
 /** Da montare una sola volta nel layout radice. */
 export function ToastHost() {
+  const { t } = useT();
   const insets = useSafeAreaInsets();
   const reduced = useReducedMotion();
   const [msg, setMsg] = useState<ToastMsg | null>(null);
@@ -59,13 +61,13 @@ export function ToastHost() {
     };
   }, [v, reduced]);
   if (!msg) return null;
-  const t = TONES[msg.tone];
+  const tone = TONES[msg.tone];
   return (
     <View pointerEvents="box-none" style={[styles.wrap, { bottom: insets.bottom + 76 }]}>
       <Animated.View style={{ opacity: v, transform: [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) }] }}>
-        <Pressable onPress={() => setMsg(null)} accessibilityRole="alert" accessibilityLabel={msg.text} accessibilityHint="Tocca per chiudere" style={[styles.toast, { backgroundColor: t.bg }]}>
-          <Ionicons name={t.icon} size={20} color={msg.tone === 'warning' ? colors.peachInk : t.fg} />
-          <Text variant="small" color={t.fg} style={styles.text}>
+        <Pressable onPress={() => setMsg(null)} accessibilityRole="alert" accessibilityLabel={msg.text} accessibilityHint={t('ui:toast.closeHint')} style={[styles.toast, { backgroundColor: tone.bg }]}>
+          <Ionicons name={tone.icon} size={20} color={msg.tone === 'warning' ? colors.peachInk : tone.fg} />
+          <Text variant="small" color={tone.fg} style={styles.text}>
             {msg.text}
           </Text>
         </Pressable>

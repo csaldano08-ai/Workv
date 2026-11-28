@@ -4,6 +4,8 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import { normalizeText } from '../src/core/domain/catalog';
 import { parseUserQty, toMilli } from '../src/core/domain/quantity';
 import { catalogIndex, useApp } from '../src/features/app/AppProvider';
+import { useT } from '../src/i18n';
+import { ingredientName } from '../src/i18n/content';
 import { colors, radius, space, TOUCH } from '../src/theme/tokens';
 import { Button } from '../src/ui/Button';
 import { Card } from '../src/ui/Card';
@@ -13,6 +15,7 @@ import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
 
 export default function AddPantry() {
+  const { t } = useT();
   const { run } = useApp();
   const [query, setQuery] = useState('');
   const [picked, setPicked] = useState<string | null>(null);
@@ -21,8 +24,10 @@ export default function AddPantry() {
   const results = useMemo(() => {
     const q = normalizeText(query);
     const all = catalogIndex.catalog.ingredients;
-    return (q.length === 0 ? all : all.filter((i) => [i.name, ...i.aliases].some((a) => normalizeText(a).includes(q)))).slice(0, 30);
-  }, [query]);
+    return (q.length === 0 ? all : all.filter((i) => [ingredientName(i.id, i.name), i.name, ...i.aliases].some((a) => normalizeText(a).includes(q)))).slice(0, 30);
+    // la lingua cambia l'elenco dei nomi cercabili
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, t]);
   const ing = picked ? catalogIndex.ingredient(picked) : null;
 
   const save = async () => {
@@ -33,7 +38,7 @@ export default function AddPantry() {
       return;
     }
     const v = parseUserQty(qty);
-    if (v === null || v === 0) return setError('Inserisci una quantità maggiore di zero.');
+    if (v === null || v === 0) return setError(t('pantry:add.qtyError'));
     await run((s) => s.addPantry(ing.id, toMilli(v)));
     goBack('/dispensa');
   };
@@ -42,10 +47,10 @@ export default function AddPantry() {
     <Screen edges={['bottom']}>
       {ing ? (
         <Card>
-          <Text variant="heading">{ing.name}</Text>
+          <Text variant="heading">{ingredientName(ing.id, ing.name)}</Text>
           {ing.staple ? (
             <Text variant="small" color={colors.inkSoft}>
-              Ingrediente “quanto basta”: verrà segnato come presente.
+              {t('pantry:add.toTasteNote')}
             </Text>
           ) : (
             <View style={styles.row}>
@@ -57,17 +62,17 @@ export default function AddPantry() {
                 }}
                 keyboardType="decimal-pad"
                 style={styles.input}
-                placeholder="Quantità"
+                placeholder={t('pantry:add.qtyPlaceholder')}
                 placeholderTextColor={colors.inkSoft}
-                accessibilityLabel={`Quantità in ${ing.unit}`}
+                accessibilityLabel={t('pantry:qtyA11y', { unit: t(`pantry:unitName.${ing.unit}`) })}
                 autoFocus
               />
-              <Text variant="body">{ing.unit}</Text>
+              <Text variant="body">{t(`unit.${ing.unit}`, { count: 2 })}</Text>
             </View>
           )}
           <View style={styles.row}>
-            <Button kind="secondary" compact label="Cambia" onPress={() => setPicked(null)} style={styles.flex} />
-            <Button compact label="Aggiungi" onPress={() => void save()} style={styles.flex} />
+            <Button kind="secondary" compact label={t('pantry:add.change')} onPress={() => setPicked(null)} style={styles.flex} />
+            <Button compact label={t('pantry:add.confirm')} onPress={() => void save()} style={styles.flex} />
           </View>
           {error ? <Notice tone="warning" text={error} /> : null}
         </Card>
@@ -77,16 +82,16 @@ export default function AddPantry() {
             value={query}
             onChangeText={setQuery}
             style={styles.input}
-            placeholder="Cerca un ingrediente"
+            placeholder={t('pantry:add.search')}
             placeholderTextColor={colors.inkSoft}
-            accessibilityLabel="Cerca un ingrediente"
+            accessibilityLabel={t('pantry:add.search')}
             autoCorrect={false}
           />
           <Card style={styles.list}>
             {results.map((i, idx) => (
               <View key={i.id}>
                 {idx > 0 ? <Divider /> : null}
-                <Row title={i.name} subtitle={i.staple ? 'quanto basta' : i.unit} onPress={() => setPicked(i.id)} />
+                <Row title={ingredientName(i.id, i.name)} subtitle={i.staple ? t('pantry:toTaste') : t(`unit.${i.unit}`, { count: 2 })} onPress={() => setPicked(i.id)} />
               </View>
             ))}
           </Card>

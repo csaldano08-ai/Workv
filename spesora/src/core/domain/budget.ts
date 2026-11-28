@@ -1,3 +1,4 @@
+import { t } from '../../i18n';
 import type { CatalogIndex } from './catalog';
 import { distinctPurchases, shoppingCost, type Completeness } from './cost';
 import { maxMinutesFor, MEAL_ORDER, suggestAlternatives, type PlannerInput } from './planner';
@@ -55,8 +56,8 @@ export function planEconomics(meals: PlannedMeal[], ctx: EconomicsContext): Plan
 
 export function scopeNote(profile: UserProfile): string {
   const meals = profile.mealTypes.length;
-  if (profile.budget.scope === 'parte_spesa') return 'Il budget riguarda solo una parte della tua spesa alimentare.';
-  return meals < 4 ? 'Stima riferita solo ai pasti che organizzi in Mina, non alla spesa alimentare totale.' : 'Stima riferita ai pasti organizzati in Mina.';
+  if (profile.budget.scope === 'parte_spesa') return t('pantry:budget.scopePartial');
+  return meals < 4 ? t('pantry:budget.scopeSomeMeals') : t('pantry:budget.scopeAllMeals');
 }
 
 export function evaluateBudget(meals: PlannedMeal[], ctx: EconomicsContext): BudgetEvaluation {

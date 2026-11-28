@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Children, Fragment, isValidElement, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
+import { useT } from '../../i18n';
 import { colors, radius, shadow, space, TOUCH } from '../../theme/tokens';
 import { MinaLogo } from '../brand/MinaLogo';
 import Svg, { Ellipse } from 'react-native-svg';
@@ -287,9 +288,10 @@ const styles = StyleSheet.create({
 
 /** Nota breve con icona (spiegazioni di una riga al posto dei paragrafi). `tone` warning = avviso da non perdere. */
 export function InfoNote({ text, tone = 'info' }: { text: string; tone?: 'info' | 'warning' }) {
+  const { t } = useT();
   const warn = tone === 'warning';
   return (
-    <View style={[infoStyles.note, warn && infoStyles.noteWarn]} accessible accessibilityRole="text" accessibilityLabel={warn ? `Attenzione: ${text}` : text}>
+    <View style={[infoStyles.note, warn && infoStyles.noteWarn]} accessible accessibilityRole="text" accessibilityLabel={warn ? t('ui:a11y.warning', { text }) : text}>
       <Ionicons name={warn ? 'warning-outline' : 'information-circle-outline'} size={18} color={warn ? colors.peachInk : colors.inkSoft} style={infoStyles.icon} />
       <Text variant="small" color={warn ? colors.peachInk : colors.inkSoft} style={infoStyles.flex}>
         {text}
@@ -299,7 +301,10 @@ export function InfoNote({ text, tone = 'info' }: { text: string; tone?: 'info' 
 }
 
 /** Spiegazione su richiesta: una riga «ⓘ Perché?» che apre il testo completo (secondo livello). */
-export function InfoToggle({ label = 'Perché te lo chiedo?', text }: { label?: string; text: string }) {
+export function InfoToggle({ label: customLabel, text }: { label?: string; text: string }) {
+  const { t } = useT();
+  // etichetta predefinita nella lingua corrente
+  const label = customLabel ?? t('ui:infoToggle.why');
   const [open, setOpen] = useState(false);
   return (
     <View style={infoStyles.toggleWrap}>

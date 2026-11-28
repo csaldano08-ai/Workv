@@ -1,0 +1,21 @@
+{
+  "toast.closeHint": "Tap to close",
+  "actionSheet.close": "Close menu",
+  "progressRing.label": "{done} of {total} in the basket",
+  "a11y.warning": "Warning: {text}",
+  "infoToggle.why": "Why am I asking?",
+  "stepper.decrease": "Decrease {label}",
+  "stepper.increase": "Increase {label}",
+  "timer.a11y": "Timer {minutes} and {seconds}",
+  "timer.minutes_one": "{count} minute",
+  "timer.minutes_other": "{count} minutes",
+  "timer.seconds_one": "{count} second",
+  "timer.seconds_other": "{count} seconds",
+  "timer.timeUp": "Time’s up!",
+  "timer.doneAnnounce": "Time’s up: {label}",
+  "timer.pause": "Pause",
+  "timer.start": "Start {minutes} min",
+  "timer.restart": "Restart",
+  "timer.resume": "Resume",
+  "timer.reset": "Reset"
+}

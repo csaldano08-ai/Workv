@@ -29,6 +29,7 @@ import type { HistoryEntry, IsoDate, MealStatus, MilliQty, PlanIssue, PlannedMea
 import type { NotificationSettings } from '../../core/notifications/schedule';
 import type { Db } from '../../core/storage/db';
 import { newId, Repository, type PlanRow } from '../../core/storage/repository';
+import { t } from '../../i18n';
 
 export const PLAN_DAYS = 7;
 
@@ -250,7 +251,7 @@ export class SpesoraService {
    */
   async regenerate(today: IsoDate, options: { keepManual?: boolean } = {}): Promise<void> {
     const profile = await this.repo.getProfile();
-    if (!profile) throw new Error('Profilo non configurato');
+    if (!profile) throw new Error(t('services:error.profileMissing'));
     const plan = await this.repo.getPlanCovering(today);
     if (!plan) {
       await this.createPlan(profile, today);
@@ -297,18 +298,18 @@ export class SpesoraService {
   }
 
   async replaceRecipe(mealId: string, recipeId: string, source: PlannedMeal['source'] = 'manual'): Promise<boolean> {
-    if (!this.catalog.recipe(recipeId)) throw new Error('Ricetta sconosciuta');
-    const changes = await this.repo.updateMealFields(mealId, { recipeId, source, reasons: ['Scelta da te'] });
+    if (!this.catalog.recipe(recipeId)) throw new Error(t('services:error.unknownRecipe'));
+    const changes = await this.repo.updateMealFields(mealId, { recipeId, source, reasons: [t('services:reason.chosenByYou')] });
     return changes === 1;
   }
 
   async setServings(mealId: string, servings: number): Promise<boolean> {
-    if (!Number.isInteger(servings) || servings < 1 || servings > 30) throw new Error('Numero di porzioni non valido');
+    if (!Number.isInteger(servings) || servings < 1 || servings > 30) throw new Error(t('services:error.invalidServings'));
     return (await this.repo.updateMealFields(mealId, { servings })) === 1;
   }
 
   async setMealTime(mealId: string, timeMinutes: number): Promise<boolean> {
-    if (!Number.isInteger(timeMinutes) || timeMinutes < 0 || timeMinutes > 1439) throw new Error('Orario non valido');
+    if (!Number.isInteger(timeMinutes) || timeMinutes < 0 || timeMinutes > 1439) throw new Error(t('services:error.invalidTime'));
     return (await this.repo.updateMealFields(mealId, { timeMinutes })) === 1;
   }
 
@@ -318,8 +319,8 @@ export class SpesoraService {
       const a = await this.repo.getMeal(aId, tx);
       const b = await this.repo.getMeal(bId, tx);
       if (!a || !b || a.status !== 'planned' || b.status !== 'planned') return false;
-      await this.repo.updateMealFields(a.id, { recipeId: b.recipeId, servings: b.servings, source: 'manual', reasons: ['Spostata da te'] }, tx);
-      await this.repo.updateMealFields(b.id, { recipeId: a.recipeId, servings: a.servings, source: 'manual', reasons: ['Spostata da te'] }, tx);
+      await this.repo.updateMealFields(a.id, { recipeId: b.recipeId, servings: b.servings, source: 'manual', reasons: [t('services:reason.movedByYou')] }, tx);
+      await this.repo.updateMealFields(b.id, { recipeId: a.recipeId, servings: a.servings, source: 'manual', reasons: [t('services:reason.movedByYou')] }, tx);
       return true;
     });
   }
@@ -362,7 +363,7 @@ export class SpesoraService {
       (m) => m.mealType === meal.mealType && m.status === 'planned' && m.recipeId !== meal.recipeId,
     );
     if (!next) return null;
-    await this.repo.updateMealFields(next.id, { recipeId: meal.recipeId, source: 'repeat', reasons: ['Riproposta dopo un pasto saltato'] });
+    await this.repo.updateMealFields(next.id, { recipeId: meal.recipeId, source: 'repeat', reasons: [t('services:reason.repeated')] });
     return { ...next, recipeId: meal.recipeId };
   }
 
@@ -384,10 +385,10 @@ export class SpesoraService {
     partial: boolean,
     actualCents: number | null = null,
   ): Promise<void> {
-    if (actualCents !== null && (!Number.isInteger(actualCents) || actualCents < 0 || actualCents > 10_000_000)) throw new Error('Importo speso non valido');
+    if (actualCents !== null && (!Number.isInteger(actualCents) || actualCents < 0 || actualCents > 10_000_000)) throw new Error(t('services:error.invalidSpent'));
     for (const p of purchases) {
       this.catalog.ingredient(p.ingredientId);
-      if (!p.toTaste && (!Number.isInteger(p.qty) || p.qty <= 0)) throw new Error('Quantità acquistata non valida');
+      if (!p.toTaste && (!Number.isInteger(p.qty) || p.qty <= 0)) throw new Error(t('services:error.invalidPurchasedQty'));
     }
     await this.db.transaction(async (tx) => {
       for (const p of purchases) {
@@ -429,7 +430,7 @@ export class SpesoraService {
     await this.db.transaction(async (tx) => {
       for (const c of changes) {
         if (!this.catalog.recipe(c.toRecipeId)) continue;
-        applied += await this.repo.updateMealFields(c.mealId, { recipeId: c.toRecipeId, source: 'auto', reasons: ['Scelta per contenere la spesa'] }, tx);
+        applied += await this.repo.updateMealFields(c.mealId, { recipeId: c.toRecipeId, source: 'auto', reasons: [t('services:reason.budget')] }, tx);
       }
     });
     return applied;
@@ -438,8 +439,8 @@ export class SpesoraService {
   /** Prezzo personale: importo pagato (centesimi) per una quantità (unità canonica dell'ingrediente). */
   async setUserPrice(ingredientId: string, priceCents: number, quantity: number, today: IsoDate, storeType: string | null = null): Promise<void> {
     const ing = this.catalog.ingredient(ingredientId);
-    if (!Number.isInteger(priceCents) || priceCents <= 0 || priceCents > 100_000) throw new Error('Prezzo non valido');
-    if (!Number.isFinite(quantity) || quantity <= 0 || quantity > 100_000) throw new Error('Quantità non valida');
+    if (!Number.isInteger(priceCents) || priceCents <= 0 || priceCents > 100_000) throw new Error(t('services:error.invalidPrice'));
+    if (!Number.isFinite(quantity) || quantity <= 0 || quantity > 100_000) throw new Error(t('services:error.invalidQty'));
     await this.repo.setUserPrice(ingredientId, priceCents, Math.round(quantity * 1000), ing.unit, today, storeType);
   }
 
@@ -466,14 +467,14 @@ export class SpesoraService {
   }
 
   async addPantry(ingredientId: string, qty: MilliQty): Promise<void> {
-    if (!Number.isInteger(qty) || qty <= 0) throw new Error('Quantità non valida');
+    if (!Number.isInteger(qty) || qty <= 0) throw new Error(t('services:error.invalidQty'));
     this.catalog.ingredient(ingredientId);
     await this.repo.insertMovement({ ingredientId, delta: qty, kind: 'manual_add', mealId: null, note: null });
   }
 
   /** Consumo fuori dall'app: sottrae al massimo quanto presente. */
   async removePantry(ingredientId: string, qty: MilliQty): Promise<void> {
-    if (!Number.isInteger(qty) || qty <= 0) throw new Error('Quantità non valida');
+    if (!Number.isInteger(qty) || qty <= 0) throw new Error(t('services:error.invalidQty'));
     await this.db.transaction(async (tx) => {
       const current = stockFromMovements(await this.repo.getMovements(tx)).get(ingredientId)?.qty ?? 0;
       const take = Math.min(current, qty);

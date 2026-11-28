@@ -1,5 +1,6 @@
+import { t } from '../../i18n';
 import { CatalogIndex } from './catalog';
-import { diffDays, rangeDays, weekdayOf } from './dates';
+import { diffDays, formatLongDate, rangeDays, weekdayOf } from './dates';
 import { MEAL_ORDER } from './planner';
 import { ingredientNeed } from './portions';
 import { roundUpForShopping, suggestPacks, type PackSuggestion } from './quantity';
@@ -72,6 +73,8 @@ export interface ShoppingInput {
 }
 
 export function planShopping(input: ShoppingInput): ShoppingPlan {
+  // testo degli avvisi nella lingua corrente (vedi WARN_BEFORE_FIRST)
+  WARN_BEFORE_FIRST = t('services:shopping.beforeFirst');
   const { catalog, today } = input;
   const meals = input.meals
     .filter((m) => m.status === 'planned' && diffDays(today, m.date) >= 0)
@@ -178,7 +181,7 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
         if (!line.warnings.includes(WARN_BEFORE_FIRST)) line.warnings.push(WARN_BEFORE_FIRST);
       }
       if (diffDays(trip.date, meal.date) > maxDays) {
-        const w = `Potrebbe non conservarsi fino a ${meal.date}: valuta di acquistarlo più vicino al giorno d'uso.`;
+        const w = t('services:shopping.mayNotKeep', { date: formatLongDate(meal.date) });
         if (!line.warnings.includes(w)) line.warnings.push(w);
       }
     }
@@ -191,7 +194,12 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
   return { trips: orderedTrips, covered: [...covered.values()] };
 }
 
-export const WARN_BEFORE_FIRST = 'Serve prima della prossima spesa programmata.';
+/**
+ * Avviso «serve prima della prossima spesa» così come compare in `line.warnings`. È tradotto: lo aggiorna ogni
+ * `planShopping` (lingua corrente), quindi coincide sempre con gli avvisi dell'ultimo calcolo della spesa.
+ */
+// eslint-disable-next-line import/no-mutable-exports -- valore che segue la lingua: confrontato con gli avvisi già calcolati
+export let WARN_BEFORE_FIRST = '';
 
 /** Fabbisogno lordo per ingrediente (milli) dei pasti pianificati futuri: utile per la dispensa. */
 export function futureNeeds(meals: PlannedMeal[], catalog: CatalogIndex, today: IsoDate, portions?: PortionProfile): Map<string, MilliQty> {

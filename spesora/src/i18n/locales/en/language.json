@@ -1,0 +1,10 @@
+{
+  "title": "Choose your language",
+  "subtitle": "The rest of the questions will be in this language. You can change it any time from Profile.",
+  "noAccount": "No account needed.",
+  "tip": "Hi, I’m Mina! Let’s start with your language.",
+  "settingsTitle": "Language",
+  "settingsIntro": "The language changes right away. Your plan, saved recipes, shopping list, pantry, preferences and subscription stay as they are.",
+  "contentNote": "Recipes are written in Italian. Where a translation isn’t available yet, the name and method stay in Italian, and we say so.",
+  "current": "Language: {name}"
+}

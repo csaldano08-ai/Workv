@@ -1,3 +1,5 @@
+import { currentLanguage, t } from '../../i18n';
+import { ingredientName } from '../../i18n/content';
 import { CatalogIndex } from './catalog';
 import { addDays, diffDays, rangeDays, weekdayOf } from './dates';
 import { ingredientNeed } from './portions';
@@ -106,28 +108,20 @@ export function explainNoCandidates(
     const fastest = Math.min(...compatible.map((r) => r.totalMinutes));
     return {
       code: 'no_recipes_in_time',
-      message: `Nessuna ricetta compatibile si prepara in ${maxMinutes} minuti (la più rapida ne richiede ${fastest}). Puoi aumentare il tempo disponibile per questo giorno.`,
+      message: t('services:issue.noTime', { max: maxMinutes, fastest }),
     };
   }
   const counts = new Map<RejectionReason, number>();
   for (const r of forMeal) {
     for (const reason of checkHardConstraints(r, profile, catalog)) counts.set(reason, (counts.get(reason) ?? 0) + 1);
   }
-  const labels: Record<RejectionReason, string> = {
-    allergeni: 'ingredienti esclusi per allergeni',
-    allergeni_non_verificati: 'informazioni sugli allergeni non verificate',
-    escluso: 'ingredienti esclusi',
-    non_gradito: 'ingredienti non graditi',
-    dieta: 'preferenza alimentare',
-    attrezzatura: 'strumenti di cucina non disponibili',
-  };
   const detail = [...counts.entries()]
     .sort((a, b) => b[1] - a[1])
-    .map(([k, n]) => `${labels[k]} (${n})`)
+    .map(([k, n]) => `${t(`services:issue.reason.${k}`)} (${n})`)
     .join(', ');
   return {
     code: 'no_compatible_recipes',
-    message: `Il catalogo non contiene ricette compatibili per questo pasto. Motivi principali: ${detail || 'nessuna ricetta per questo tipo di pasto'}. Puoi rivedere preferenze o strumenti: le esclusioni alimentari non vengono mai ignorate.`,
+    message: t('services:issue.noCompatible', { detail: detail || t('services:issue.noneForMeal') }),
   };
 }
 
@@ -191,7 +185,7 @@ function scoreCandidate(
   if (favorites.has(recipe.id)) {
     score += 12;
     if (!last || diffDays(last, slot.date) >= 10) score += 10;
-    reasons.push('Tra le tue ricette preferite');
+    reasons.push(t('services:reason.favorite'));
   }
 
   const weekStyles = profile.tastes?.weekStyles ?? [];
@@ -203,7 +197,7 @@ function scoreCandidate(
       ...(state.lastCategoryByDate.get(addDays(slot.date, -1)) ?? []),
     ];
     if (recent.includes(recipe.dishCategory)) score -= 20;
-    else if (catCount === 0) reasons.push('Aggiunge varietà alla settimana');
+    else if (catCount === 0) reasons.push(t('services:reason.variety'));
   }
 
   // Varietà con un catalogo grande: famiglie di varianti, ingrediente principale, tecnica.
@@ -222,7 +216,7 @@ function scoreCandidate(
     const season = seasonOfMonth(Number(slot.date.slice(5, 7)));
     if (meta.seasons.includes(season)) {
       score += 5;
-      reasons.push('Di stagione');
+      reasons.push(t('services:reason.season'));
     } else score -= 10;
   }
 
@@ -245,11 +239,11 @@ function scoreCandidate(
     const need = ingredientNeed(recipe, ri, ing, profile.servings, profile.portions);
     const available = state.projectedPantry.get(ing.id) ?? 0;
     if (available >= need && need > 0) {
-      fromPantry.push(ing.name);
+      fromPantry.push(ingredientName(ing.id, ing.name));
       const exp = input.expiries?.get(ing.id);
       if (exp) {
         const left = diffDays(slot.date, exp);
-        if (left >= 0 && left <= EXPIRY_PRIORITY_DAYS) expiring.push(ing.name);
+        if (left >= 0 && left <= EXPIRY_PRIORITY_DAYS) expiring.push(ingredientName(ing.id, ing.name));
       }
       continue;
     }
@@ -267,10 +261,10 @@ function scoreCandidate(
   score += Math.min(shared * (weekStyles.includes('economica') ? 8 : 4), weekStyles.includes('economica') ? 24 : 12);
   score -= Math.min(perishablePenalty, 60);
   score += Math.min(expiring.length * 14, 28);
-  if (expiring.length > 0) reasons.push(`Usa prima della scadenza: ${expiring.slice(0, 2).join(', ')}`);
-  else if (fromPantry.length > 0) reasons.push(`Usa ingredienti già in dispensa: ${fromPantry.join(', ')}`);
-  if (shared > 0) reasons.push('Condivide ingredienti con altri pasti della settimana');
-  if (perishablePenalty > 0) reasons.push('Contiene ingredienti freschi lontani dal giorno di spesa');
+  if (expiring.length > 0) reasons.push(t('services:reason.expiring', { items: expiring.slice(0, 2).join(', ') }));
+  else if (fromPantry.length > 0) reasons.push(t('services:reason.pantry', { items: fromPantry.join(', ') }));
+  if (shared > 0) reasons.push(t('services:reason.shared'));
+  if (perishablePenalty > 0) reasons.push(t('services:reason.perishable'));
 
   // Budget (BudgetMealPlanner): mai prima dei vincoli rigidi, già applicati a monte.
   const budget = profile.budget?.mode ?? 'off';
@@ -281,11 +275,11 @@ function scoreCandidate(
       const perServing = marginalCents / Math.max(1, profile.servings);
       score -= (perServing / 100) * w.perEuro;
     }
-    if (newItems === 0 && !isBreakfastLike) reasons.push('Non richiede nuovi acquisti');
+    if (newItems === 0 && !isBreakfastLike) reasons.push(t('services:reason.noNewItems'));
   }
 
   const maxMinutes = maxMinutesFor(profile, slot.date);
-  reasons.unshift(`Pronta in ${recipe.totalMinutes} min (ne hai ${maxMinutes})`);
+  reasons.unshift(t('services:reason.time', { minutes: recipe.totalMinutes, max: maxMinutes }));
   score += jitter * 8;
   return { recipe, score, reasons };
 }
@@ -309,7 +303,9 @@ export function tasteScore(recipe: Recipe, slot: { mealType: MealType }, profile
   const matched = likes.filter((l) => matchesLike(l, recipe, catalog, slot.mealType));
   if (matched.length > 0) {
     score += Math.min(matched.length * 12, 24);
-    reasons.push(`Tra i tuoi gusti: ${matched.map((m) => LIKE_LABELS[m].toLowerCase()).join(', ')}`);
+    // in tedesco i sostantivi restano maiuscoli
+    const lower = (s: string) => (currentLanguage() === 'de' ? s : s.toLowerCase());
+    reasons.push(t('services:reason.tastes', { items: matched.map((m) => lower(LIKE_LABELS[m])).join(', ') }));
   }
   const main = slot.mealType === 'pranzo' || slot.mealType === 'cena';
   if (styles.includes('veloce')) score += Math.max(0, (30 - recipe.totalMinutes) / 2);
@@ -386,7 +382,7 @@ function slotsFor(input: PlannerInput): SlotContext[] {
 
 export function generatePlan(input: PlannerInput): PlannerOutput {
   const { profile, catalog } = input;
-  if (!(profile.servings >= 1)) throw new Error('Numero di persone non valido');
+  if (!(profile.servings >= 1)) throw new Error(t('services:error.invalidPeople'));
   const compatible = compatibleRecipes(profile, catalog);
   const rng = createRng(input.seed);
   const history = historyIndex(input.history);
@@ -464,7 +460,7 @@ export function suggestAlternatives(
       const scored = scoreCandidate(r, target, input, state, history, 0);
       if (r.totalMinutes > maxMinutes) {
         scored.score -= 40;
-        scored.reasons[0] = `Richiede ${r.totalMinutes} min: più del tempo previsto (${maxMinutes})`;
+        scored.reasons[0] = t('services:reason.tooLong', { minutes: r.totalMinutes, max: maxMinutes });
       }
       return scored;
     })

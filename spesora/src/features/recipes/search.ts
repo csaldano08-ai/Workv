@@ -9,10 +9,30 @@ import type { Diet, MealType, PantryStock, Recipe, UserProfile } from '../../cor
  * con 1.500 ricette una ricerca resta nell'ordine dei millisecondi.
  */
 
-const indexCache = new WeakMap<CatalogIndex, Map<string, string>>();
+/**
+ * Nomi dei contenuti nella lingua dell'interfaccia (di solito `recipeName` e `ingredientName` da `src/i18n/content.ts`).
+ * Passati dall'interfaccia, così il ricettario resta usabile anche fuori dall'app (script del catalogo, test).
+ */
+export interface ContentNames {
+  lang: string;
+  recipeName: (recipe: Recipe) => string;
+  ingredientName: (id: string, italianName: string) => string;
+}
 
-export function searchIndex(catalog: CatalogIndex): Map<string, string> {
-  let idx = indexCache.get(catalog);
+const indexCache = new WeakMap<CatalogIndex, Map<string, Map<string, string>>>();
+
+/**
+ * Indice testuale per ricetta. Contiene sempre i testi italiani originali (nome, descrizione, ingredienti, alias,
+ * regione); in un'altra lingua aggiunge il nome della ricetta e degli ingredienti tradotti, se esistono.
+ */
+export function searchIndex(catalog: CatalogIndex, names?: ContentNames): Map<string, string> {
+  const lang = names && names.lang !== 'it' ? names.lang : 'it';
+  let byLang = indexCache.get(catalog);
+  if (!byLang) {
+    byLang = new Map();
+    indexCache.set(catalog, byLang);
+  }
+  let idx = byLang.get(lang);
   if (idx) return idx;
   idx = new Map();
   for (const r of catalog.catalog.recipes) {
@@ -22,9 +42,18 @@ export function searchIndex(catalog: CatalogIndex): Map<string, string> {
     })];
     const meta = metaOf(r);
     if (meta.region) parts.push(meta.region);
+    if (names && lang !== 'it') {
+      const name = names.recipeName(r);
+      if (name !== r.name) parts.push(name);
+      for (const i of r.ingredients) {
+        const ing = catalog.ingredient(i.ingredientId);
+        const local = names.ingredientName(ing.id, ing.name);
+        if (local !== ing.name) parts.push(local);
+      }
+    }
     idx.set(r.id, normalizeText(parts.join(' ')));
   }
-  indexCache.set(catalog, idx);
+  byLang.set(lang, idx);
   return idx;
 }
 
@@ -47,6 +76,8 @@ export interface FilterContext {
   catalog: CatalogIndex;
   profile: UserProfile | null;
   favorites: Set<string>;
+  /** Nomi nella lingua dell'interfaccia: la ricerca li trova insieme a quelli italiani. */
+  names?: ContentNames;
 }
 
 export function matchesCourse(r: Recipe, course: CourseFilter): boolean {
@@ -67,7 +98,7 @@ export function matchesCourse(r: Recipe, course: CourseFilter): boolean {
 }
 
 export function filterRecipes(f: RecipeFilter, ctx: FilterContext): Recipe[] {
-  const idx = searchIndex(ctx.catalog);
+  const idx = searchIndex(ctx.catalog, ctx.names);
   const words = normalizeText(f.query ?? '').split(' ').filter((w) => w.length >= 2);
   const list = ctx.catalog.catalog.recipes.filter((r) => {
     if (f.meal && !r.mealTypes.includes(f.meal)) return false;
@@ -90,16 +121,19 @@ export function filterRecipes(f: RecipeFilter, ctx: FilterContext): Recipe[] {
   });
   // Preferite in alto, poi titoli che contengono la ricerca, poi ordine alfabetico.
   const q = words.join(' ');
+  const local = ctx.names && ctx.names.lang !== 'it' ? ctx.names : null;
+  const nameOf = (r: Recipe) => (local ? local.recipeName(r) : r.name);
+  const titleHas = (r: Recipe) => normalizeText(r.name).includes(q) || (!!local && normalizeText(nameOf(r)).includes(q));
   return list.sort((a, b) => {
     const fa = ctx.favorites.has(a.id) ? 0 : 1;
     const fb = ctx.favorites.has(b.id) ? 0 : 1;
     if (fa !== fb) return fa - fb;
     if (q) {
-      const ta = normalizeText(a.name).includes(q) ? 0 : 1;
-      const tb = normalizeText(b.name).includes(q) ? 0 : 1;
+      const ta = titleHas(a) ? 0 : 1;
+      const tb = titleHas(b) ? 0 : 1;
       if (ta !== tb) return ta - tb;
     }
-    return a.name.localeCompare(b.name, 'it');
+    return local ? nameOf(a).localeCompare(nameOf(b), local.lang) : a.name.localeCompare(b.name, 'it');
   });
 }
 
@@ -109,7 +143,8 @@ export function quantifiedIngredients(r: Recipe): number {
 
 export interface RecipeSection {
   id: string;
-  title: string;
+  /** Chiave del titolo (namespace `recipes`): l'interfaccia la traduce con `t(section.titleKey)`. */
+  titleKey: string;
   recipes: Recipe[];
   filter: RecipeFilter;
 }
@@ -124,21 +159,21 @@ export function recipeSections(ctx: FilterContext & { pantry: PantryStock; plann
   const sections: RecipeSection[] = [
     {
       id: 'settimana',
-      title: 'Idee per questa settimana',
+      titleKey: 'recipes:section.settimana',
       recipes: take(all.filter((r) => !ctx.plannedIds.has(r.id) && (metaOf(r).seasons?.includes(season) || ctx.favorites.has(r.id)))),
       filter: base,
     },
     {
       id: 'dispensa',
-      title: 'Con ciò che hai in dispensa',
+      titleKey: 'recipes:section.dispensa',
       recipes: take([...all].filter((r) => pantryScore(r) >= 2).sort((a, b) => pantryScore(b) - pantryScore(a))),
       filter: base,
     },
-    { id: 'veloci', title: 'Pronto in 15 minuti', recipes: take(all.filter((r) => r.totalMinutes <= 15)), filter: { ...base, maxMinutes: 15 } },
-    { id: 'pochi', title: 'Pochi ingredienti', recipes: take(all.filter((r) => quantifiedIngredients(r) <= 4)), filter: base },
-    { id: 'italiani', title: 'Piatti italiani', recipes: take(all.filter((r) => metaOf(r).cuisine === 'italiana_tradizionale' || metaOf(r).cuisine === 'italiana_regionale')), filter: base },
-    { id: 'unici', title: 'Piatti unici', recipes: take(all.filter((r) => isPiattoUnico(r))), filter: { ...base, course: 'piatti_unici' } },
-    { id: 'colazioni_salate', title: 'Colazioni salate', recipes: take(all.filter((r) => matchesCourse(r, 'colazioni_salate'))), filter: { ...base, course: 'colazioni_salate' } },
+    { id: 'veloci', titleKey: 'recipes:section.veloci', recipes: take(all.filter((r) => r.totalMinutes <= 15)), filter: { ...base, maxMinutes: 15 } },
+    { id: 'pochi', titleKey: 'recipes:section.pochi', recipes: take(all.filter((r) => quantifiedIngredients(r) <= 4)), filter: base },
+    { id: 'italiani', titleKey: 'recipes:section.italiani', recipes: take(all.filter((r) => metaOf(r).cuisine === 'italiana_tradizionale' || metaOf(r).cuisine === 'italiana_regionale')), filter: base },
+    { id: 'unici', titleKey: 'recipes:section.unici', recipes: take(all.filter((r) => isPiattoUnico(r))), filter: { ...base, course: 'piatti_unici' } },
+    { id: 'colazioni_salate', titleKey: 'recipes:section.colazioni_salate', recipes: take(all.filter((r) => matchesCourse(r, 'colazioni_salate'))), filter: { ...base, course: 'colazioni_salate' } },
   ];
   return sections.filter((s) => s.recipes.length > 0);
 }

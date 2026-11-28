@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useT } from '../i18n';
 import { colors, radius, space, TOUCH } from '../theme/tokens';
 import { Reveal } from './Reveal';
 import { Text } from './Text';
@@ -13,12 +14,13 @@ export interface SheetOption {
 
 /** Menu di azioni multipiattaforma (iOS e Android), accessibile e senza animazioni lente: il fondo si scurisce e il foglio sale dal basso. */
 export function useActionSheet() {
+  const { t } = useT();
   const [state, setState] = useState<{ title: string; subtitle?: string; options: SheetOption[] } | null>(null);
   const open = useCallback((title: string, options: SheetOption[], subtitle?: string) => setState({ title, options, subtitle }), []);
   const close = () => setState(null);
   const element = (
     <Modal visible={!!state} transparent animationType="fade" onRequestClose={close} accessibilityViewIsModal>
-      <Pressable style={styles.backdrop} onPress={close} accessibilityLabel="Chiudi menu" accessibilityRole="button" />
+      <Pressable style={styles.backdrop} onPress={close} accessibilityLabel={t('ui:actionSheet.close')} accessibilityRole="button" />
       <Reveal from="sheet">
         <SafeAreaView edges={['bottom']} style={styles.sheet}>
         {state ? (
@@ -48,7 +50,7 @@ export function useActionSheet() {
             ))}
             <Pressable accessibilityRole="button" style={styles.option} onPress={close}>
               <Text variant="heading" color={colors.green}>
-                Annulla
+                {t('action.cancel')}
               </Text>
             </Pressable>
           </View>

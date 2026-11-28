@@ -1,4 +1,6 @@
 import { apiKeyFor, RevenueCatPurchaseService, type RevenueCatConfig } from './revenuecat';
+import { t } from '../../i18n';
+import { formatLocale } from '../domain/locale';
 import type { EntitlementStatus, PlusPackage, PurchaseMode, PurchaseOutcome, PurchaseService } from './types';
 
 /** Modalità predefinita: acquisti non configurati. Nessun prezzo e nessuna attivazione simulata. */
@@ -6,16 +8,16 @@ export class DisabledPurchaseService implements PurchaseService {
   readonly mode = 'disabled' as const;
   readonly isLive = false;
   async getPackages() {
-    return { unavailable: 'Gli abbonamenti non sono ancora attivi in questa versione di prova.' };
+    return { unavailable: t('paywall:disabled.packages') };
   }
   async getEntitlement(): Promise<EntitlementStatus> {
     return { state: 'none' };
   }
   async purchase(): Promise<PurchaseOutcome> {
-    return { kind: 'not_available', message: 'Gli acquisti non sono ancora disponibili.' };
+    return { kind: 'not_available', message: t('paywall:disabled.purchase') };
   }
   async restore(): Promise<PurchaseOutcome> {
-    return { kind: 'not_available', message: 'Nessun acquisto da ripristinare: gli abbonamenti non sono ancora attivi.' };
+    return { kind: 'not_available', message: t('paywall:disabled.restore') };
   }
   async managementUrl() {
     return null;
@@ -38,9 +40,10 @@ export class MockPurchaseService implements PurchaseService {
   }
 
   async getPackages(): Promise<PlusPackage[]> {
+    const eur = (n: number) => n.toLocaleString(formatLocale(), { style: 'currency', currency: 'EUR' });
     return [
-      { id: 'mock_monthly', period: 'monthly', priceString: 'ESEMPIO 3,49 €', introOffer: null },
-      { id: 'mock_annual', period: 'annual', priceString: 'ESEMPIO 27,99 €', introOffer: 'ESEMPIO: 7 giorni gratuiti se idoneo' },
+      { id: 'mock_monthly', period: 'monthly', priceString: t('paywall:mock.price', { price: eur(3.49) }), introOffer: null },
+      { id: 'mock_annual', period: 'annual', priceString: t('paywall:mock.price', { price: eur(27.99) }), introOffer: t('paywall:mock.introOffer', { days: 7 }) },
     ];
   }
   async getEntitlement() {
@@ -51,7 +54,7 @@ export class MockPurchaseService implements PurchaseService {
       case 'cancelled':
         return { kind: 'cancelled' };
       case 'network_error':
-        return { kind: 'network_error', message: 'Connessione assente (simulata).' };
+        return { kind: 'network_error', message: t('paywall:mock.network') };
       case 'expired':
         this.entitlement = { state: 'expired', expiredAt: new Date().toISOString() };
         return { kind: 'success', entitlement: this.entitlement };

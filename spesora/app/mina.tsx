@@ -7,6 +7,7 @@ import { MinaChefTransform } from '../src/ui/mascot/MinaChefTransform';
 import { setMinaTimeScale } from '../src/ui/mascot/mina2/Mina2';
 import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
+import { useT } from '../src/i18n';
 
 /**
  * Vetrina delle animazioni di Mina, solo nella demo web (controllo qualità e video di presentazione).
@@ -17,28 +18,30 @@ import { Text } from '../src/ui/Text';
  *   /mina?posa=trasformazione la trasformazione in Mina Chef
  *   &lento=4                  rallentatore (4 volte più lento)
  */
-const SHOWCASE: { pose: MinaPose | 'trasformazione'; label: string; group?: 'braccia' }[] = [
-  { pose: 'welcome', label: '1 · Saluto con la destra', group: 'braccia' },
-  { pose: 'waveLeft', label: '2 · Saluto con la sinistra', group: 'braccia' },
-  { pose: 'pointing', label: '3 · Indica di lato', group: 'braccia' },
-  { pose: 'lifting', label: '4 · Solleva un oggetto', group: 'braccia' },
-  { pose: 'satisfied', label: '5 · Soddisfazione', group: 'braccia' },
-  { pose: 'mixing', label: '6 · Mescola (Mina Chef)', group: 'braccia' },
-  { pose: 'jumping', label: '7 · Piccolo salto', group: 'braccia' },
-  { pose: 'thinking', label: '8 · Pensierosa', group: 'braccia' },
-  { pose: 'neutral', label: 'Idle' },
-  { pose: 'happy', label: 'Felice' },
-  { pose: 'success', label: 'Lista completata' },
-  { pose: 'concerned', label: 'Preoccupata' },
-  { pose: 'reminder', label: 'Promemoria' },
-  { pose: 'cooking', label: 'Mina Chef: cucchiaio' },
-  { pose: 'serving', label: 'Mina Chef: serve' },
-  { pose: 'checklist', label: 'Mina Chef: checklist' },
-  { pose: 'trasformazione', label: 'Trasformazione in Mina Chef' },
+/** Etichette: chiavi `profile:mina.pose.<posa>`. */
+const SHOWCASE: { pose: MinaPose | 'trasformazione'; group?: 'braccia' }[] = [
+  { pose: 'welcome', group: 'braccia' },
+  { pose: 'waveLeft', group: 'braccia' },
+  { pose: 'pointing', group: 'braccia' },
+  { pose: 'lifting', group: 'braccia' },
+  { pose: 'satisfied', group: 'braccia' },
+  { pose: 'mixing', group: 'braccia' },
+  { pose: 'jumping', group: 'braccia' },
+  { pose: 'thinking', group: 'braccia' },
+  { pose: 'neutral' },
+  { pose: 'happy' },
+  { pose: 'success' },
+  { pose: 'concerned' },
+  { pose: 'reminder' },
+  { pose: 'cooking' },
+  { pose: 'serving' },
+  { pose: 'checklist' },
+  { pose: 'trasformazione' },
 ];
 
 export default function MinaShowcase() {
   const [run, setRun] = useState(0);
+  const { t } = useT();
   if (Platform.OS !== 'web') return <Redirect href="/" />;
   const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
   const only = params?.get('posa') ?? null;
@@ -51,7 +54,7 @@ export default function MinaShowcase() {
       <Stack.Screen options={{ title: 'Mina' }} />
       <Pressable accessibilityRole="button" onPress={() => setRun((n) => n + 1)} style={styles.replay}>
         <Text variant="heading" color={colors.white}>
-          Ripeti le animazioni
+          {t('profile:mina.replay')}
         </Text>
       </Pressable>
       <View style={styles.grid}>
@@ -60,10 +63,10 @@ export default function MinaShowcase() {
             {s.pose === 'trasformazione' ? (
               <MinaChefTransform size={size} play />
             ) : (
-              <MinaMascot pose={s.pose} size={size} animated idle interactive accessibilityLabel={`Mina: ${s.label}`} />
+              <MinaMascot pose={s.pose} size={size} animated idle interactive accessibilityLabel={t('profile:mina.a11y', { label: t(`profile:mina.pose.${s.pose}`) })} />
             )}
             <Text variant="small" color={colors.inkSoft} style={{ fontWeight: '700' }}>
-              {s.label}
+              {t(`profile:mina.pose.${s.pose}`)}
             </Text>
           </View>
         ))}

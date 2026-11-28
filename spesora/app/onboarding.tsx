@@ -12,6 +12,8 @@ import { catalogIndex, useApp } from '../src/features/app/AppProvider';
 import { PLAN_DAYS } from '../src/features/app/SpesoraService';
 import { newDraft, pantryItems, restoreDraft, type OnboardingDraft } from '../src/features/onboarding/draft';
 import { PREVIEW_STEP, STEPS } from '../src/features/onboarding/registry';
+import { useT } from '../src/i18n';
+import { recipeName } from '../src/i18n/content';
 import { MEAL_LABELS } from '../src/i18n/labels';
 import { colors, radius, space } from '../src/theme/tokens';
 import { Reveal } from '../src/ui/Reveal';
@@ -23,7 +25,6 @@ import { DayBadge, InfoToggle, InlineError, InfoNote, ListCard, ListRow, MascotS
 import { RecipeImage } from '../src/ui/RecipeImage';
 import { Button } from '../src/ui/Button';
 import { Text } from '../src/ui/Text';
-import { t } from '../src/i18n/it';
 
 /*
  * Questionario (telefoni 3 e 4 del riferimento) e anteprima del piano (telefono 5).
@@ -34,7 +35,7 @@ import { t } from '../src/i18n/it';
 
 /** Fasi della barra di avanzamento: gruppi di passi (id) e, per ultima, l'anteprima. */
 const PHASES: string[][] = [
-  ['persone', 'pasti', 'dieta'],
+  ['lingua', 'persone', 'pasti', 'dieta'],
   ['esclusioni', 'non-graditi', 'porzioni', 'quantita', 'gusti'],
   ['tempo', 'orari', 'frequenza', 'giorni-spesa', 'budget'],
   ['strumenti', 'dispensa', 'notifiche'],
@@ -52,6 +53,7 @@ const MINA_MAX = 180;
 const MINA_MIN = 96;
 
 const STEP_MINA: Record<string, MinaPose> = {
+  lingua: 'wave',
   persone: 'shopping',
   pasti: 'happy',
   'giorni-spesa': 'shopping',
@@ -60,6 +62,8 @@ const STEP_MINA: Record<string, MinaPose> = {
 };
 
 export default function Onboarding() {
+  // ridisegna al cambio di lingua (primo passo): titolo, testi e pulsanti seguono subito la lingua scelta
+  const { t } = useT();
   const { snapshot, service, run } = useApp();
   const [initial] = useState(() => (snapshot?.onboarding && !snapshot.onboarding.completed ? snapshot.onboarding : null));
   const [draft, setDraftState] = useState<OnboardingDraft>(() => (initial ? restoreDraft(initial.draft) : newDraft()));
@@ -139,14 +143,14 @@ export default function Onboarding() {
   const pose = reaction?.pose ?? STEP_MINA[def.id];
   const { phase, within } = progressOf(def.id);
   const last = step === STEPS.length - 1;
-  const label = last ? 'Continua' : def.optional && isEmptyOptional(def.id, draft) ? t('action.skip') : t('action.next');
+  const label = last ? t('action.continue') : def.optional && isEmptyOptional(def.id, draft) ? t('action.skip') : t('action.next');
   const room = viewH - topH - (space.lg + space.xl) - space.lg - space.lg - space.sm - (reaction ? 48 : 0);
   const minaSize = viewH > 0 && topH > 0 ? Math.min(MINA_MAX, Math.floor(room / RATIO)) : MINA_MAX;
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
       <View style={styles.top}>
         <View style={styles.bar}>
-          <SegmentProgress phases={BAR_SEGMENTS} phase={phase} within={within} label={`Domanda ${step + 1} di ${STEPS.length}`} />
+          <SegmentProgress phases={BAR_SEGMENTS} phase={phase} within={within} label={t('onboarding:progress.question', { current: step + 1, total: STEPS.length })} />
         </View>
       </View>
       <ScrollView contentContainerStyle={[styles.content, styles.grow]} keyboardShouldPersistTaps="handled" onLayout={onView}>
@@ -185,7 +189,7 @@ export default function Onboarding() {
         </Reveal>
       </ScrollView>
       <View style={styles.footer}>
-        <BackCircle onPress={back} label={step > 0 ? 'Domanda precedente' : 'Torna al benvenuto'} />
+        <BackCircle onPress={back} label={step > 0 ? t('onboarding:nav.prev') : t('onboarding:nav.welcome')} />
         <Button label={label} iconRight="arrow-forward" size="large" onPress={next} loading={busy} style={styles.mainBtn} />
       </View>
     </SafeAreaView>
@@ -210,6 +214,7 @@ const PREVIEW_DAYS = 3;
 
 /** Anteprima reale (telefono 5): lo stesso motore e lo stesso seme usati alla conferma. */
 function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; busy: boolean; onBack: () => void; onConfirm: () => void }) {
+  const { t } = useT();
   const today = toIsoLocal(new Date());
   const [all, setAll] = useState(false);
   const short = useWindowDimensions().height < 720;
@@ -231,21 +236,21 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
       <View style={styles.top}>
         <View style={styles.bar}>
-          <SegmentProgress phases={BAR_SEGMENTS} phase={BAR_SEGMENTS - 1} within={0.5} label="Questionario completato: anteprima del piano" />
+          <SegmentProgress phases={BAR_SEGMENTS} phase={BAR_SEGMENTS - 1} within={0.5} label={t('onboarding:preview.progress')} />
         </View>
       </View>
       <ScrollView contentContainerStyle={styles.content}>
         <View style={styles.stepBody}>
           <View>
             <Text variant="screen" center accessibilityRole="header" style={styles.question}>
-              La tua settimana
+              {t('onboarding:preview.title')}
             </Text>
             <Text variant="body" color={colors.inkSoft} center>
-              Ecco un’anteprima del tuo piano.
+              {t('onboarding:preview.subtitle')}
             </Text>
           </View>
-          {!result ? <InlineError text="Alcune risposte non sono valide: torna indietro per controllarle." /> : null}
-          {result && result.issues.length > 0 ? <InfoNote tone="warning" text={`${result.issues.length} pasti senza ricetta: ${result.issues[0].message}`} /> : null}
+          {!result ? <InlineError text={t('onboarding:preview.invalid')} /> : null}
+          {result && result.issues.length > 0 ? <InfoNote tone="warning" text={t('onboarding:preview.issues', { count: result.issues.length, message: result.issues[0].message })} /> : null}
           <View style={styles.days}>
             {shown.map((date, i) => {
               const meals = result!.meals.filter((m) => m.date === date);
@@ -258,10 +263,15 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
                   <ListCard style={styles.flex}>
                     <ListRow
                       left={recipe ? <RecipeImage variant="thumb" recipe={recipe} rounded={radius.md} aspectRatio={1} style={styles.thumb} /> : undefined}
-                      title={recipe?.name ?? ''}
-                      subtitle={others.length > 0 ? `${MEAL_LABELS[main.mealType]} · +${others.length} ${others.length === 1 ? 'pasto' : 'pasti'}` : MEAL_LABELS[main.mealType]}
+                      title={recipe ? recipeName(recipe) : ''}
+                      subtitle={others.length > 0 ? t('onboarding:preview.moreMeals', { meal: MEAL_LABELS[main.mealType], count: others.length }) : MEAL_LABELS[main.mealType]}
                       onPress={recipe ? () => router.push(`/ricetta/${recipe.id}`) : undefined}
-                      accessibilityLabel={`${date}: ${meals.map((m) => `${MEAL_LABELS[m.mealType]} ${catalogIndex.recipe(m.recipeId)?.name ?? ''}`).join(', ')}`}
+                      accessibilityLabel={`${date}: ${meals
+                        .map((m) => {
+                          const r = catalogIndex.recipe(m.recipeId);
+                          return `${MEAL_LABELS[m.mealType]} ${r ? recipeName(r) : ''}`;
+                        })
+                        .join(', ')}`}
                     />
                   </ListCard>
                 </Reveal>
@@ -269,19 +279,19 @@ function Preview({ draft, busy, onBack, onConfirm }: { draft: OnboardingDraft; b
             })}
           </View>
           {days.length > preview ? (
-            <Button kind="ghost" compact label={all ? 'Mostra meno' : `Vedi tutti i ${days.length} giorni`} icon={all ? 'chevron-up' : 'chevron-down'} onPress={() => setAll((a) => !a)} />
+            <Button kind="ghost" compact label={all ? t('onboarding:preview.showLess') : t('onboarding:preview.showAll', { days: days.length })} icon={all ? 'chevron-up' : 'chevron-down'} onPress={() => setAll((a) => !a)} />
           ) : null}
           <MascotStage width={short ? 170 : 220} height={short ? 42 : 54} style={styles.mina}>
-            <MinaMascot pose="success" size={short ? 116 : 150} animated idle interactive accessibilityLabel="Mina festeggia: la tua settimana è pronta" />
+            <MinaMascot pose="success" size={short ? 116 : 150} animated idle interactive accessibilityLabel={t('onboarding:preview.minaA11y')} />
           </MascotStage>
           <Text variant="small" color={colors.inkSoft} center>
-            {`Dal ${shortDate(today)} al ${shortDate(addDays(today, PLAN_DAYS - 1))}. Potrai cambiare ogni pasto quando vuoi.`}
+            {t('onboarding:preview.range', { from: shortDate(today), to: shortDate(addDays(today, PLAN_DAYS - 1)) })}
           </Text>
         </View>
       </ScrollView>
       <View style={styles.footer}>
-        <BackCircle onPress={onBack} label="Modifica le risposte" />
-        <Button label="Procedi" iconRight="arrow-forward" size="large" onPress={onConfirm} loading={busy} disabled={!result || result.meals.length === 0} style={styles.mainBtn} />
+        <BackCircle onPress={onBack} label={t('onboarding:preview.edit')} />
+        <Button label={t('onboarding:preview.proceed')} iconRight="arrow-forward" size="large" onPress={onConfirm} loading={busy} disabled={!result || result.meals.length === 0} style={styles.mainBtn} />
       </View>
     </SafeAreaView>
   );

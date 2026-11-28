@@ -1,10 +1,10 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { checkConfig, checkSources, checkStrings } from '../../scripts/checks.mjs';
-import { it as dictionary } from '../i18n/it';
+import { checkConfig, checkSources, checkStrings, loadDictionary } from '../../scripts/checks.mjs';
 
 const ROOT = join(__dirname, '..', '..');
+const dictionary = loadDictionary(ROOT, 'it');
 
 function sourceFiles(dir: string): { path: string; content: string }[] {
   return readdirSync(dir).flatMap((name) => {
@@ -19,7 +19,7 @@ const appJson = JSON.parse(readFileSync(join(ROOT, 'app.json'), 'utf8'));
 const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
 
 describe('Controlli di qualità', () => {
-  it('le stringhe usate esistono nel dizionario italiano', () => {
+  it('le chiavi di traduzione usate esistono nel dizionario italiano', () => {
     expect(checkStrings(files, dictionary).errors).toEqual([]);
   });
 

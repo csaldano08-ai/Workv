@@ -1,0 +1,21 @@
+{
+  "toast.closeHint": "Tippen zum Schließen",
+  "actionSheet.close": "Menü schließen",
+  "progressRing.label": "{done} von {total} im Einkaufswagen",
+  "a11y.warning": "Achtung: {text}",
+  "infoToggle.why": "Warum frage ich das?",
+  "stepper.decrease": "{label} verringern",
+  "stepper.increase": "{label} erhöhen",
+  "timer.a11y": "Timer {minutes} und {seconds}",
+  "timer.minutes_one": "{count} Minute",
+  "timer.minutes_other": "{count} Minuten",
+  "timer.seconds_one": "{count} Sekunde",
+  "timer.seconds_other": "{count} Sekunden",
+  "timer.timeUp": "Zeit um!",
+  "timer.doneAnnounce": "Zeit abgelaufen: {label}",
+  "timer.pause": "Pause",
+  "timer.start": "{minutes} Min. starten",
+  "timer.restart": "Neu starten",
+  "timer.resume": "Fortsetzen",
+  "timer.reset": "Zurücksetzen"
+}

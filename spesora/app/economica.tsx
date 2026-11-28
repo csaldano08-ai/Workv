@@ -6,6 +6,8 @@ import { formatLongDate } from '../src/core/domain/dates';
 import { formatCents } from '../src/core/domain/prices';
 import { catalogIndex, useApp } from '../src/features/app/AppProvider';
 import { goBack } from '../src/features/navigation';
+import { useT } from '../src/i18n';
+import { recipeName } from '../src/i18n/content';
 import { MEAL_LABELS } from '../src/i18n/labels';
 import { colors } from '../src/theme/tokens';
 import { AssistantBubble } from '../src/ui/AssistantBubble';
@@ -15,8 +17,14 @@ import { Divider, Row } from '../src/ui/Row';
 import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
 
+function nameOf(recipeId: string): string | undefined {
+  const r = catalogIndex.recipe(recipeId);
+  return r ? recipeName(r) : undefined;
+}
+
 /** "Rendi questa settimana più economica": proposta da confermare, nulla cambia prima. */
 export default function CheaperWeek() {
+  const { t } = useT();
   const { service, snapshot, run } = useApp();
   const [proposal, setProposal] = useState<CheaperWeekProposal | null | undefined>(undefined);
 
@@ -34,24 +42,24 @@ export default function CheaperWeek() {
   if (!proposal || proposal.changes.length === 0) {
     return (
       <Screen edges={['bottom']}>
-        <AssistantBubble pose="happy" text="Il calendario è già il più semplice possibile con le tue preferenze: non trovo sostituzioni che riducano la spesa senza ripetere piatti o superare i tuoi vincoli." />
-        <Button kind="secondary" label="Torna alla settimana" onPress={() => goBack('/settimana')} />
+        <AssistantBubble pose="happy" text={t('week:cheaper.nothing')} />
+        <Button kind="secondary" label={t('week:cheaper.back')} onPress={() => goBack('/settimana')} />
       </Screen>
     );
   }
   const { before, after } = proposal;
   const summary =
     proposal.savingCents !== null
-      ? `Stima: da circa ${formatCents(before.knownCents)} a circa ${formatCents(after.knownCents)} (prezzi che conosci).`
-      : `Prodotti diversi da comprare: da ${before.purchases} a ${after.purchases}. Non mostro un risparmio in euro perché mancano prezzi per alcuni prodotti.`;
-  const limitText = proposal.limitReached === false ? ' Anche così la stima supera il tuo limite: puoi alzare il budget o cambiare qualche preferenza.' : '';
+      ? t('week:cheaper.estimate', { before: formatCents(before.knownCents), after: formatCents(after.knownCents) })
+      : t('week:cheaper.purchases', { before: before.purchases, after: after.purchases });
+  const limitText = proposal.limitReached === false ? ` ${t('week:cheaper.overLimit')}` : '';
 
   return (
     <Screen
       edges={['bottom']}
       footer={
         <Button
-          label={`Applica ${proposal.changes.length} sostituzioni`}
+          label={t('week:cheaper.apply', { count: proposal.changes.length })}
           onPress={async () => {
             await run((s) => s.applyMealChanges(proposal.changes));
             router.replace('/settimana');
@@ -59,7 +67,7 @@ export default function CheaperWeek() {
         />
       }
     >
-      <AssistantBubble pose="savings" text={`${summary}${limitText} I pasti cucinati e gli acquisti già confermati non cambiano.`} />
+      <AssistantBubble pose="savings" text={`${summary}${limitText} ${t('week:cheaper.unchanged')}`} />
       <Card style={{ gap: 0 }}>
         {proposal.changes.map((c, i) => {
           const meal = snapshot?.meals.find((m) => m.id === c.mealId);
@@ -67,15 +75,15 @@ export default function CheaperWeek() {
             <View key={c.mealId}>
               {i > 0 ? <Divider /> : null}
               <Row
-                title={catalogIndex.recipe(c.toRecipeId)?.name ?? c.toRecipeId}
-                subtitle={`${meal ? `${MEAL_LABELS[meal.mealType]} · ${formatLongDate(meal.date)} · ` : ''}al posto di ${catalogIndex.recipe(c.fromRecipeId)?.name ?? ''}`}
+                title={nameOf(c.toRecipeId) ?? c.toRecipeId}
+                subtitle={`${meal ? `${MEAL_LABELS[meal.mealType]} · ${formatLongDate(meal.date)} · ` : ''}${t('week:cheaper.instead', { recipe: nameOf(c.fromRecipeId) ?? '' })}`}
               />
             </View>
           );
         })}
       </Card>
       <Text variant="small" color={colors.inkSoft}>
-        Le alternative rispettano tutte le esclusioni alimentari, il tempo disponibile e il numero di persone.
+        {t('week:cheaper.footnote')}
       </Text>
     </Screen>
   );

@@ -1,4 +1,5 @@
 import { StyleSheet, View } from 'react-native';
+import { useT } from '../i18n';
 import type { MinaPose } from './mascot/Mina';
 import { MinaMascot } from './mascot/Mina';
 import { colors, radius, space } from '../theme/tokens';
@@ -28,8 +29,9 @@ export function AssistantBubble({
   replayKey?: string | number;
   children?: React.ReactNode;
 }) {
+  const { t } = useT();
   return (
-    <View style={styles.row} accessible accessibilityLabel={`Mina: ${title ? `${title}. ` : ''}${text}`}>
+    <View style={styles.row} accessible accessibilityLabel={t('mascot:a11y.says', { text: `${title ? `${title}. ` : ''}${text}` })}>
       <MinaMascot pose={pose} size={size} animated={animated} replayKey={replayKey} />
       {/* la nuvoletta sboccia subito dopo Mina, come se fosse lei a parlare */}
       <Reveal from="pop" delay={animated ? 220 : 0} style={styles.bubbleWrap}>
@@ -48,8 +50,9 @@ export function AssistantBubble({
 
 /** Piccolo richiamo di Mina (Mina Chef nelle ricette) accanto a un testo breve, senza nuvoletta. */
 export function MinaNote({ pose = 'neutral', title, text, size = 64 }: { pose?: MinaPose | string; title?: string; text: string; size?: number }) {
+  const { t } = useT();
   return (
-    <View style={styles.note} accessible accessibilityLabel={`Mina: ${title ? `${title}. ` : ''}${text}`}>
+    <View style={styles.note} accessible accessibilityLabel={t('mascot:a11y.says', { text: `${title ? `${title}. ` : ''}${text}` })}>
       <MinaMascot pose={pose} size={size} />
       <View style={styles.noteText}>
         {title ? <Text variant="heading">{title}</Text> : null}

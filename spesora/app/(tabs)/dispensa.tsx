@@ -7,7 +7,8 @@ import { EXPIRY_PRIORITY_DAYS } from '../../src/core/domain/planner';
 import { Alert } from '../../src/ui/dialog';
 import { formatQtyWithUnit } from '../../src/core/domain/quantity';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
-import { t } from '../../src/i18n/it';
+import { t as translate, useT } from '../../src/i18n';
+import { ingredientName } from '../../src/i18n/content';
 import { colors, radius, space, TOUCH } from '../../src/theme/tokens';
 import { CategoryIcon } from '../../src/ui/illustrations/CategoryIcon';
 import { MinaMascot } from '../../src/ui/mascot/Mina';
@@ -22,13 +23,19 @@ import { Button } from '../../src/ui/Button';
 import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
 
+/** Nome dell'ingrediente nella lingua corrente. */
+function nameOf(id: string): string {
+  return ingredientName(id, catalogIndex.ingredient(id).name);
+}
+
 export default function Pantry() {
+  const { t } = useT();
   const { snapshot, run } = useApp();
   const [filter, setFilter] = useState<'all' | 'expiry' | 'attention'>('all');
   const [query, setQuery] = useState('');
   if (!snapshot?.profile) return <Screen>{null}</Screen>;
   const items = [...snapshot.outlook].sort((a, b) =>
-    a.insufficient === b.insufficient ? catalogIndex.ingredient(a.ingredientId).name.localeCompare(catalogIndex.ingredient(b.ingredientId).name) : a.insufficient ? -1 : 1,
+    a.insufficient === b.insufficient ? nameOf(a.ingredientId).localeCompare(nameOf(b.ingredientId)) : a.insufficient ? -1 : 1,
   );
   const quantified = items.filter((i) => !catalogIndex.ingredient(i.ingredientId).staple);
   const staples = [...snapshot.staples].filter((id) => catalogIndex.ingredients.has(id));
@@ -41,11 +48,11 @@ export default function Pantry() {
   });
   const prioritize = () =>
     Alert.alert(
-      'Usare prima questi ingredienti?',
-      'Mina riorganizza i pasti futuri non ancora cucinati preferendo ricette che li usano prima della scadenza. Pasti completati, scelte manuali, acquisti e dispensa restano invariati.',
+      t('pantry:prioritize.title'),
+      t('pantry:prioritize.text'),
       [
         { text: t('action.cancel'), style: 'cancel' },
-        { text: 'Riorganizza', onPress: () => void withLoader(LOADER_TEXT.expiring, () => run((s, today) => s.regenerate(today))) },
+        { text: t('pantry:prioritize.confirm'), onPress: () => void withLoader(LOADER_TEXT.expiring, () => run((s, today) => s.regenerate(today))) },
       ],
     );
 
@@ -61,41 +68,41 @@ export default function Pantry() {
   const q = query.trim().toLowerCase();
   const filtered = quantified
     .filter((i) => (filter === 'expiry' ? !!i.expiryDate : filter === 'attention' ? stateOf(i) !== 'ok' : true))
-    .filter((i) => !q || catalogIndex.ingredient(i.ingredientId).name.toLowerCase().includes(q));
+    .filter((i) => !q || nameOf(i.ingredientId).toLowerCase().includes(q));
   const withExpiry = quantified.filter((i) => !!i.expiryDate).length;
   const attention = quantified.length - counts.ok;
 
   return (
     <Screen>
-      <AppHeader right={<HeaderIcon icon="add-circle-outline" label="Aggiungi in dispensa" onPress={() => router.push('/aggiungi')} />} />
-      <ScreenTitle title="Dispensa" />
-      {quantified.length > 5 ? <SearchField value={query} onChangeText={setQuery} placeholder="Cerca in dispensa..." label="Cerca un prodotto in dispensa" /> : null}
+      <AppHeader right={<HeaderIcon icon="add-circle-outline" label={t('pantry:add')} onPress={() => router.push('/aggiungi')} />} />
+      <ScreenTitle title={t('tabs.pantry')} />
+      {quantified.length > 5 ? <SearchField value={query} onChangeText={setQuery} placeholder={t('pantry:search.placeholder')} label={t('pantry:search.label')} /> : null}
       {quantified.length > 0 ? (
         <Pills
           fill
           options={[
-            { key: 'all', label: 'Tutti' },
-            { key: 'expiry', label: 'Scadenze', count: withExpiry > 0 ? withExpiry : undefined },
-            { key: 'attention', label: 'Da controllare', count: attention > 0 ? attention : undefined },
+            { key: 'all', label: t('pantry:filter.all') },
+            { key: 'expiry', label: t('pantry:filter.expiry'), count: withExpiry > 0 ? withExpiry : undefined },
+            { key: 'attention', label: t('pantry:filter.attention'), count: attention > 0 ? attention : undefined },
           ]}
           value={filter}
           onChange={setFilter}
         />
       ) : null}
 
-      <ShortageScene names={warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name)} />
+      <ShortageScene names={warnings.map((w) => catalogIndex.ingredient(w.ingredientId).name)} labels={warnings.map((w) => nameOf(w.ingredientId))} />
 
       {expiring.length > 0 ? (
         <View style={styles.scene}>
           <MinaMascot pose="thinking" size={84} style={styles.sceneMina} />
           <StickyNote tone="sage" style={styles.flex}>
             <Text variant="heading" style={styles.bold}>
-              In scadenza a breve
+              {t('pantry:expiring.title')}
             </Text>
             <Text variant="small" color={colors.inkSoft}>
-              {`${expiring.map((e) => `${catalogIndex.ingredient(e.ingredientId).name} (${formatShortDate(e.expiryDate!)})`).join(', ')}: non ancora previsti in un pasto.`}
+              {t('pantry:expiring.text', { list: expiring.map((e) => `${nameOf(e.ingredientId)} (${formatShortDate(e.expiryDate!)})`).join(', ') })}
             </Text>
-            <Button kind="secondary" compact icon="calendar-outline" label="Usali nei prossimi pasti" onPress={prioritize} style={styles.noteBtn} />
+            <Button kind="secondary" compact icon="calendar-outline" label={t('pantry:expiring.button')} onPress={prioritize} style={styles.noteBtn} />
           </StickyNote>
         </View>
       ) : null}
@@ -104,21 +111,22 @@ export default function Pantry() {
         <View style={styles.emptyState}>
           <MinaMascot pose="empty" size={120} animated />
           <Text variant="title" center>
-            La dispensa è vuota
+            {t('pantry:empty.title')}
           </Text>
           <Text variant="body" color={colors.inkSoft} center>
-            Quando confermi una spesa, i prodotti compaiono qui. Puoi anche aggiungere ciò che hai già.
+            {t('pantry:empty.text')}
           </Text>
-          <Button label="Aggiungi in dispensa" icon="add" onPress={() => router.push('/aggiungi')} />
+          <Button label={t('pantry:add')} icon="add" onPress={() => router.push('/aggiungi')} />
         </View>
       ) : filtered.length === 0 ? (
         <Text variant="body" color={colors.inkSoft} center style={styles.emptyFilter}>
-          {q ? 'Nessun prodotto con questo nome.' : filter === 'expiry' ? 'Nessuna scadenza inserita. Puoi aggiungerla toccando un prodotto.' : 'Tutto a posto: niente da controllare.'}
+          {q ? t('pantry:filterEmpty.search') : filter === 'expiry' ? t('pantry:filterEmpty.expiry') : t('pantry:filterEmpty.attention')}
         </Text>
       ) : (
         <ListCard>
           {filtered.map((i) => {
             const ing = catalogIndex.ingredient(i.ingredientId);
+            const name = nameOf(i.ingredientId);
             const st = stateOf(i);
             const avail = i.available > 0 ? formatQtyWithUnit(i.available, ing.unit) : null;
             const need = i.reserved > 0 ? formatQtyWithUnit(i.reserved, ing.unit) : null;
@@ -129,11 +137,11 @@ export default function Pantry() {
               <ListRow
                 key={i.ingredientId}
                 left={<CategoryIcon category={ing.category} size={42} />}
-                title={ing.name}
+                title={name}
                 subtitle={
                   <View style={styles.sub}>
                     <Text variant="small" color={colors.inkSoft}>
-                      {`${avail ?? '0'}${i.estimated && avail ? ' (stima)' : ''}${need ? ` · servono ${need}` : ''}`}
+                      {`${avail ?? '0'}${i.estimated && avail ? ` ${t('pantry:row.estimate')}` : ''}${need ? ` · ${t('pantry:row.needed', { qty: need })}` : ''}`}
                     </Text>
                     <View style={styles.stateRow}>
                       {st !== 'ok' ? (
@@ -146,14 +154,14 @@ export default function Pantry() {
                       ) : null}
                       {i.expiryDate ? (
                         <Text variant="small" color={colors.inkSoft}>
-                          {`${st !== 'ok' ? ' · ' : ''}scade ${formatShortDate(i.expiryDate)}`}
+                          {`${st !== 'ok' ? ' · ' : ''}${t('pantry:row.expires', { date: formatShortDate(i.expiryDate) })}`}
                         </Text>
                       ) : null}
                     </View>
                   </View>
                 }
                 onPress={() => router.push(`/voce/${i.ingredientId}`)}
-                accessibilityLabel={`${ing.name}: ${avail ? `${avail} disponibili${i.estimated ? ', stima' : ''}` : 'esaurito'}${need ? `, ${need} necessari` : ''}. Stato: ${s.row}${i.expiryDate ? `. Scade il ${formatShortDate(i.expiryDate)}` : ''}`}
+                accessibilityLabel={`${name}: ${avail ? `${t('pantry:row.a11yAvailable', { qty: avail })}${i.estimated ? `, ${t('pantry:row.a11yEstimate')}` : ''}` : t('pantry:row.a11yOut')}${need ? `, ${t('pantry:row.a11yNeeded', { qty: need })}` : ''}. ${t('pantry:row.a11yState', { state: s.row })}${i.expiryDate ? `. ${t('pantry:row.a11yExpires', { date: formatShortDate(i.expiryDate) })}` : ''}`}
               />
             );
           })}
@@ -161,33 +169,33 @@ export default function Pantry() {
       )}
 
       <Text variant="title" style={styles.section} accessibilityRole="header">
-        Basi in casa
+        {t('pantry:staples.title')}
       </Text>
       <View style={styles.staples}>
         {staples.length === 0 ? (
           <Text variant="small" color={colors.inkSoft}>
-            Sale, olio, spezie e simili: segnali come presenti per non vederli in lista.
+            {t('pantry:staples.empty')}
           </Text>
         ) : (
           staples.map((id) => (
-            <Pressable key={id} accessibilityRole="button" accessibilityLabel={`${catalogIndex.ingredient(id).name}, presente`} onPress={() => router.push(`/voce/${id}`)} style={styles.staple}>
+            <Pressable key={id} accessibilityRole="button" accessibilityLabel={t('pantry:staples.a11y', { name: nameOf(id) })} onPress={() => router.push(`/voce/${id}`)} style={styles.staple}>
               <Ionicons name="checkmark" size={14} color={colors.green} />
-              <Text variant="small">{catalogIndex.ingredient(id).name}</Text>
+              <Text variant="small">{nameOf(id)}</Text>
             </Pressable>
           ))
         )}
       </View>
-      <InfoToggle label="Come funziona la dispensa" text={`Le quantità arrivano dalle spese confermate e dalle tue correzioni. I pasti programmati non sottraggono nulla finché non confermi di averli cucinati. ${t('estimate.note')}`} />
+      <InfoToggle label={t('pantry:info.label')} text={`${t('pantry:info.text')} ${t('estimate.note')}`} />
     </Screen>
   );
 }
 
 type PantryState = 'ok' | 'check' | 'short' | 'out';
 const STATE: Record<PantryState, { label: string; row: string; bg: string; fg: string; icon: keyof typeof Ionicons.glyphMap }> = {
-  ok: { label: 'Disponibile', row: 'Disponibile', bg: colors.greenSoft, fg: colors.greenDark, icon: 'checkmark-circle' },
-  check: { label: 'Da verificare (stima)', row: 'Da verificare', bg: '#F3E3A6', fg: '#6B5410', icon: 'help-circle' },
-  short: { label: 'Potrebbe non bastare', row: 'Insufficiente', bg: colors.peachSoft, fg: colors.peachInk, icon: 'alert-circle' },
-  out: { label: 'Esaurito', row: 'Esaurito', bg: colors.tab, fg: colors.inkSoft, icon: 'remove-circle' },
+  ok: { get label() { return translate('pantry:state.ok'); }, get row() { return translate('pantry:state.ok'); }, bg: colors.greenSoft, fg: colors.greenDark, icon: 'checkmark-circle' },
+  check: { get label() { return translate('pantry:state.checkLong'); }, get row() { return translate('pantry:state.check'); }, bg: '#F3E3A6', fg: '#6B5410', icon: 'help-circle' },
+  short: { get label() { return translate('pantry:state.shortLong'); }, get row() { return translate('pantry:state.short'); }, bg: colors.peachSoft, fg: colors.peachInk, icon: 'alert-circle' },
+  out: { get label() { return translate('pantry:state.out'); }, get row() { return translate('pantry:state.out'); }, bg: colors.tab, fg: colors.inkSoft, icon: 'remove-circle' },
 };
 
 /**
@@ -197,7 +205,8 @@ const STATE: Record<PantryState, { label: string; row: string; bg: string; fg: s
  *  - un ingrediente sistemato (gli altri restano): sorride e fa un saltello, poi torna composta;
  *  - tutto sistemato: l'avviso sparisce e al suo posto Mina sorride per un momento («Ora ci siamo»).
  */
-function ShortageScene({ names }: { names: string[] }) {
+function ShortageScene({ names, labels }: { names: string[]; labels: string[] }) {
+  const { t } = useT();
   const key = names.join(', ');
   const reaction = useMinaScope('pantry');
   // l'avviso è appena sparito del tutto? (aggiustamento di stato durante il render, come da guida di React)
@@ -227,7 +236,7 @@ function ShortageScene({ names }: { names: string[] }) {
     const acting = relief || reaction?.kind === 'shortage';
     return (
       <View style={styles.sceneWrap}>
-        <Pressable accessibilityRole="button" accessibilityState={{ expanded: why }} accessibilityLabel={`${names.length} ingredienti potrebbero non bastare. Tocca per sapere perché`} onPress={() => setWhy((v) => !v)} style={[styles.scene, styles.alert]}>
+        <Pressable accessibilityRole="button" accessibilityState={{ expanded: why }} accessibilityLabel={t('pantry:shortage.a11y', { count: names.length })} onPress={() => setWhy((v) => !v)} style={[styles.scene, styles.alert]}>
           <MinaMascot
             pose={relief ? 'happy' : 'concerned'}
             gesture={acting ? undefined : 'none'}
@@ -239,12 +248,12 @@ function ShortageScene({ names }: { names: string[] }) {
           />
           <View style={styles.flex}>
             <Text variant="heading" color={colors.peachInk} style={styles.bold}>
-              {relief ? 'Meglio così!' : `${names.length} ${names.length === 1 ? 'ingrediente potrebbe' : 'ingredienti potrebbero'} non bastare`}
+              {relief ? t('pantry:shortage.relief') : t('pantry:shortage.title', { count: names.length })}
             </Text>
             <View style={styles.minaTap}>
               <Ionicons name={why ? 'chevron-up-circle-outline' : 'help-circle-outline'} size={16} color={colors.green} />
               <Text variant="small" color={colors.green}>
-                {why ? 'Chiudi' : 'Perché?'}
+                {why ? t('action.close') : t('pantry:shortage.why')}
               </Text>
             </View>
           </View>
@@ -253,7 +262,7 @@ function ShortageScene({ names }: { names: string[] }) {
           <Reveal from="pop">
             <StickyNote>
               <Text variant="small" color={colors.inkSoft}>
-                {`Per i pasti previsti serve più di quanto risulta in dispensa (${key}). Quello che manca è già nella lista della spesa. Se in casa ne hai di più, tocca il prodotto e correggi la quantità.`}
+                {t('pantry:shortage.explain', { list: labels.join(', ') })}
               </Text>
             </StickyNote>
           </Reveal>
@@ -265,13 +274,13 @@ function ShortageScene({ names }: { names: string[] }) {
   return (
     <Reveal from="pop">
       <View style={[styles.scene, styles.alert, styles.alertOk]}>
-        <MinaAnimated state="happy" size={54} accessibilityLabel="Mina è contenta: scorte a posto" style={styles.alertMina} />
+        <MinaAnimated state="happy" size={54} accessibilityLabel={t('pantry:resolved.a11y')} style={styles.alertMina} />
         <View style={styles.flex}>
           <Text variant="heading" color={colors.greenDark} style={styles.bold}>
-            Ora ci siamo
+            {t('pantry:resolved.title')}
           </Text>
           <Text variant="small" color={colors.inkSoft}>
-            Scorte a posto: quello che serve è disponibile o già in lista.
+            {t('pantry:resolved.text')}
           </Text>
         </View>
       </View>

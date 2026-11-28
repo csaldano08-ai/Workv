@@ -3,11 +3,15 @@ import { addDays, formatLongDate, localInstant, minutesToHHMM } from '../domain/
 import { hashString } from '../domain/random';
 import type { IsoDate, MealType, PlannedMeal } from '../domain/types';
 import { PREP_AHEAD_MINUTES, prepAheadOf, prepAheadShort } from '../domain/prepAhead';
-import { mealReminderBody, mealReminderTitle, SHOPPING_REMINDER_BODY, shoppingDay } from '../../i18n/assistant';
+import { t } from '../../i18n';
+import { mealReminderBody, mealReminderTitle, shoppingDay, shoppingReminderBody } from '../../i18n/assistant';
+import { recipeName } from '../../i18n/content';
 
 /**
  * Calcolo puro degli avvisi locali desiderati (NotificationScheduler, parte deterministica).
  * L'adattatore Expo confronta questo elenco con quanto già programmato sul dispositivo.
+ * Titoli e testi sono nella lingua corrente e fanno parte dell'identificativo: cambiando lingua gli avvisi
+ * vengono riprogrammati con i testi nuovi alla prossima sincronizzazione (vedi AppProvider).
  */
 
 export const NOTIFICATION_PREFIX = 'spesora:';
@@ -59,8 +63,6 @@ export interface ScheduleInput {
   now: Date;
 }
 
-const FOR_MEAL: Record<MealType, string> = { colazione: 'la colazione', pranzo: 'il pranzo', spuntino: 'lo spuntino', cena: 'la cena' };
-
 export function isInQuietHours(minutes: number, start: number, end: number): boolean {
   if (start === end) return false;
   return start < end ? minutes >= start && minutes < end : minutes >= start || minutes < end;
@@ -85,7 +87,7 @@ export function computeNotifications(input: ScheduleInput): DesiredNotification[
       if (fireAt.getTime() <= now.getTime()) continue;
       if (isInQuietHours(minuteOf(fireAt), settings.quietStartMinutes, settings.quietEndMinutes)) continue;
       const title = mealReminderTitle(meal.mealType, meal.id);
-      const body = mealReminderBody(recipe.name, recipe.totalMinutes, meal.servings, meal.id);
+      const body = mealReminderBody(recipeName(recipe), recipe.totalMinutes, meal.servings, meal.id);
       const url = `/ricetta/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`;
       out.push({ id: makeId('meal', meal.id, `${fireAt.getTime()}|${body}|${url}`), kind: 'meal', fireAt, title, body, url });
     }
@@ -104,8 +106,8 @@ export function computeNotifications(input: ScheduleInput): DesiredNotification[
       if (minutes < 0 || isInQuietHours(minutes, settings.quietStartMinutes, settings.quietEndMinutes)) continue;
       const fireAt = localInstant(addDays(meal.date, -1), minutes);
       if (fireAt.getTime() <= now.getTime()) continue;
-      const title = `Per ${FOR_MEAL[meal.mealType]} di domani`;
-      const body = `${recipe.name}. Da fare stasera: ${prepAheadShort(prep)}.`;
+      const title = t(`services:notif.prep.title.${meal.mealType}`);
+      const body = t('services:notif.prep.body', { recipe: recipeName(recipe), prep: prepAheadShort(prep) });
       const url = `/ricetta/${recipe.id}?mealId=${encodeURIComponent(meal.id)}`;
       out.push({ id: makeId('prep', meal.id, `${fireAt.getTime()}|${body}|${url}`), kind: 'prep', fireAt, title, body, url });
     }
@@ -118,9 +120,9 @@ export function computeNotifications(input: ScheduleInput): DesiredNotification[
       const fireAt = localInstant(date, minutes);
       if (fireAt.getTime() <= now.getTime()) continue;
       const { title } = shoppingDay(0, date);
-      const body = SHOPPING_REMINDER_BODY;
+      const body = shoppingReminderBody();
       const url = `/spesa?trip=${date}`;
-      out.push({ id: makeId('shopping', date, `${fireAt.getTime()}|${url}`), kind: 'shopping', fireAt, title, body, url });
+      out.push({ id: makeId('shopping', date, `${fireAt.getTime()}|${title}|${body}|${url}`), kind: 'shopping', fireAt, title, body, url });
     }
   }
 
@@ -129,14 +131,9 @@ export function computeNotifications(input: ScheduleInput): DesiredNotification[
     if (isInQuietHours(minutes, settings.quietStartMinutes, settings.quietEndMinutes)) minutes = settings.quietEndMinutes;
     const fireAt = localInstant(input.planEnd, minutes);
     if (fireAt.getTime() > now.getTime()) {
-      out.push({
-        id: makeId('plan_end', input.planEnd, `${fireAt.getTime()}`),
-        kind: 'plan_end',
-        fireAt,
-        title: 'La settimana è quasi finita',
-        body: `Apri Mina quando vuoi: preparo io il menù da ${formatLongDate(addDays(input.planEnd, 1))} in poi.`,
-        url: '/',
-      });
+      const title = t('services:notif.planEnd.title');
+      const body = t('services:notif.planEnd.body', { date: formatLongDate(addDays(input.planEnd, 1)) });
+      out.push({ id: makeId('plan_end', input.planEnd, `${fireAt.getTime()}|${title}|${body}`), kind: 'plan_end', fireAt, title, body, url: '/' });
     }
   }
 

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Animated, Easing, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useT } from '../i18n';
 import { colors, radius, shadow, space } from '../theme/tokens';
 import { onCelebrate, type Celebration } from './celebration';
 import { MinaMascot } from './mascot/Mina';
@@ -16,6 +17,7 @@ const native = Platform.OS !== 'web';
  * La card sboccia dal basso con un rimbalzo e, alla chiusura, scende e si dissolve invece di sparire di colpo.
  */
 export function CelebrationHost() {
+  const { t } = useT();
   const [current, setCurrent] = useState<(Celebration & { id: number }) | null>(null);
   const insets = useSafeAreaInsets();
   const reduced = useReducedMotion();
@@ -50,7 +52,7 @@ export function CelebrationHost() {
     <View pointerEvents="box-none" style={[styles.wrap, { bottom: insets.bottom + 84 }]}>
       <Animated.View style={leave}>
         <Reveal key={current.id} from="pop">
-          <Pressable accessibilityRole="alert" accessibilityLabel={`Mina: ${current.title}. ${current.text}`} onPress={close} style={styles.card}>
+          <Pressable accessibilityRole="alert" accessibilityLabel={t('mascot:a11y.says', { text: `${current.title}. ${current.text}` })} onPress={close} style={styles.card}>
           <MinaMascot pose={current.pose ?? 'success'} size={96} animated style={styles.mina} />
           <View style={styles.text}>
             <Text variant="hand">{current.title}</Text>

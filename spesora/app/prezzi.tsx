@@ -11,13 +11,16 @@ import { Notice } from '../src/ui/Notice';
 import { Divider, Row, SectionTitle } from '../src/ui/Row';
 import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
+import { useT } from '../src/i18n';
+import { ingredientName } from '../src/i18n/content';
+import { formatLocale } from '../src/core/domain/locale';
 
-const UNIT_WORD = { g: 'grammi', ml: 'millilitri', pz: 'pezzi' } as const;
-const PER = { g: '€/kg', ml: '€/l', pz: '€/pezzo' } as const;
 
 /** Prezzi personali: ciò che paghi di solito. Nessun prezzo viene inventato dall'app. */
 export default function Prices() {
   const { snapshot, run } = useApp();
+  const { t } = useT();
+  const unitWord = (u: 'g' | 'ml' | 'pz') => t(`profile:prices.unitWord.${u}`);
   const [query, setQuery] = useState('');
   const [editing, setEditing] = useState<string | null>(null);
   const [priceText, setPriceText] = useState('');
@@ -38,8 +41,8 @@ export default function Prices() {
     if (!ing) return;
     const euro = parseUserQty(priceText);
     const qty = parseUserQty(qtyText);
-    if (euro === null || euro <= 0) return setError('Scrivi il prezzo pagato, ad esempio 1,20.');
-    if (qty === null || qty <= 0) return setError(`Scrivi la quantità della confezione in ${UNIT_WORD[ing.unit]}, ad esempio 500.`);
+    if (euro === null || euro <= 0) return setError(t('profile:prices.errorPrice'));
+    if (qty === null || qty <= 0) return setError(t('profile:prices.errorQty', { unit: unitWord(ing.unit) }));
     await run((s, today) => s.setUserPrice(ing.id, Math.round(euro * 100), qty, today));
     setEditing(null);
     setError(null);
@@ -47,27 +50,27 @@ export default function Prices() {
 
   return (
     <Screen edges={['bottom']}>
-      <Notice text="Mina non conosce i prezzi dei negozi: usa quelli che inserisci tu, con la data. Servono a stimare il costo delle ricette e della spesa; le stime restano indicative." />
+      <Notice text={t('profile:prices.notice')} />
       {ing ? (
         <Card>
-          <Text variant="heading">{ing.name}</Text>
+          <Text variant="heading">{ingredientName(ing.id, ing.name)}</Text>
           <Text variant="small" color={colors.inkSoft}>
-            Quanto paghi una confezione e quanto contiene?
+            {t('profile:prices.question')}
           </Text>
           <View style={styles.row}>
-            <TextInput value={priceText} onChangeText={setPriceText} placeholder="Prezzo €" placeholderTextColor={colors.inkSoft} keyboardType="decimal-pad" style={styles.input} accessibilityLabel="Prezzo pagato in euro" />
-            <TextInput value={qtyText} onChangeText={setQtyText} placeholder={UNIT_WORD[ing.unit]} placeholderTextColor={colors.inkSoft} keyboardType="decimal-pad" style={styles.input} accessibilityLabel={`Quantità in ${UNIT_WORD[ing.unit]}`} />
+            <TextInput value={priceText} onChangeText={setPriceText} placeholder={t('profile:prices.pricePlaceholder')} placeholderTextColor={colors.inkSoft} keyboardType="decimal-pad" style={styles.input} accessibilityLabel={t('profile:prices.priceA11y')} />
+            <TextInput value={qtyText} onChangeText={setQtyText} placeholder={unitWord(ing.unit)} placeholderTextColor={colors.inkSoft} keyboardType="decimal-pad" style={styles.input} accessibilityLabel={t('profile:prices.qtyA11y', { unit: unitWord(ing.unit) })} />
           </View>
           {error ? <Notice tone="warning" text={error} /> : null}
           <View style={styles.row}>
-            <Button compact kind="secondary" label="Annulla" onPress={() => setEditing(null)} style={styles.flex} />
-            <Button compact label="Salva" onPress={() => void save()} style={styles.flex} />
+            <Button compact kind="secondary" label={t('profile:prices.cancel')} onPress={() => setEditing(null)} style={styles.flex} />
+            <Button compact label={t('profile:prices.save')} onPress={() => void save()} style={styles.flex} />
           </View>
           {userPrices.has(ing.id) ? (
             <Button
               compact
               kind="danger"
-              label="Rimuovi il mio prezzo"
+              label={t('profile:prices.remove')}
               onPress={async () => {
                 await run((s) => s.deleteUserPrice(ing.id));
                 setEditing(null);
@@ -77,28 +80,35 @@ export default function Prices() {
         </Card>
       ) : (
         <>
-          <TextInput value={query} onChangeText={setQuery} placeholder="Cerca un ingrediente" placeholderTextColor={colors.inkSoft} style={styles.input} accessibilityLabel="Cerca un ingrediente" autoCorrect={false} />
-          <SectionTitle>{query.length < 2 ? 'Prodotti nella lista della spesa' : 'Risultati'}</SectionTitle>
+          <TextInput value={query} onChangeText={setQuery} placeholder={t('profile:prices.search')} placeholderTextColor={colors.inkSoft} style={styles.input} accessibilityLabel={t('profile:prices.search')} autoCorrect={false} />
+          <SectionTitle>{query.length < 2 ? t('profile:prices.inList') : t('profile:prices.results')}</SectionTitle>
           <Card style={{ gap: 0 }}>
             {results.length === 0 ? (
               <Text variant="small" color={colors.inkSoft}>
-                Nessun prodotto: cerca per nome.
+                {t('profile:prices.noResults')}
               </Text>
             ) : (
               results.map((i, idx) => {
                 const p = userPrices.get(i.id);
                 const sub = p
-                  ? `${formatCents(p.priceCents)} per ${p.quantity} ${i.unit} · ${formatCents(normalizedCents(p))} ${PER[i.unit].replace('€', '').trim()} · ${p.observedAt}${freshness(p, snapshot.today) === 'obsoleto' ? ' · da aggiornare' : ''}`
-                  : 'Prezzo sconosciuto';
+                  ? `${t('profile:prices.entry', {
+                      price: formatCents(p.priceCents),
+                      quantity: p.quantity.toLocaleString(formatLocale()),
+                      unit: t(`unit.${i.unit}`, { count: p.quantity }),
+                      normalized: formatCents(normalizedCents(p)),
+                      per: t(`profile:prices.per.${i.unit}`),
+                      date: p.observedAt,
+                    })}${freshness(p, snapshot.today) === 'obsoleto' ? t('profile:prices.stale') : ''}`
+                  : t('profile:prices.unknown');
                 return (
                   <View key={i.id}>
                     {idx > 0 ? <Divider /> : null}
                     <Row
-                      title={i.name}
+                      title={ingredientName(i.id, i.name)}
                       subtitle={sub}
                       onPress={() => {
                         setEditing(i.id);
-                        setPriceText(p ? String(p.priceCents / 100).replace('.', ',') : '');
+                        setPriceText(p ? (p.priceCents / 100).toLocaleString(formatLocale(), { useGrouping: false, maximumFractionDigits: 2 }) : '');
                         setQtyText(p ? String(p.quantity) : String(i.commonPackSizes?.[0] ?? ''));
                         setError(null);
                       }}

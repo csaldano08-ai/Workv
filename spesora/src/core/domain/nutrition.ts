@@ -23,14 +23,18 @@ export const MAY_CONTAIN_ADDED_SUGARS = new Set([
   'besciamella', 'latte_cocco', 'pomodori_secchi', 'prugne_secche', 'albicocche_secche', 'fichi_secchi', 'datteri', 'uvetta', 'hummus', 'fiocchi_mais', 'focaccia', 'grissini', 'taralli', 'pane_arabo',
 ]);
 
+/**
+ * `note` è il testo di riferimento in italiano; `noteKey` è la chiave dell'interfaccia (namespace `recipes`)
+ * con lo stesso significato, da mostrare con `t(noteKey)`. Il dominio non dipende dalla localizzazione.
+ */
 export interface RecipeFoodInfo {
   /** Formulata senza ingredienti che contengono glutine (NON idoneità per celiaci). */
-  formulatedWithoutGluten: { value: boolean; status: AssessmentStatus; note: string };
+  formulatedWithoutGluten: { value: boolean; status: AssessmentStatus; note: string; noteKey: string };
   /** Nessun ingrediente dolcificante nella preparazione (NON "senza zuccheri"). */
-  noAddedSweeteners: { value: boolean; status: AssessmentStatus; note: string };
+  noAddedSweeteners: { value: boolean; status: AssessmentStatus; note: string; noteKey: string };
   /** Claim nutrizionali sulle proteine: sempre non valutati (mancano valori nutrizionali verificati). */
-  proteinClaim: { status: AssessmentStatus; note: string };
-  organic: { status: AssessmentStatus; note: string };
+  proteinClaim: { status: AssessmentStatus; note: string; noteKey: string };
+  organic: { status: AssessmentStatus; note: string; noteKey: string };
 }
 
 export function foodInfo(recipe: Recipe, catalog: CatalogIndex): RecipeFoodInfo {
@@ -48,6 +52,7 @@ export function foodInfo(recipe: Recipe, catalog: CatalogIndex): RecipeFoodInfo 
       note: noGlutenFormula
         ? 'Nessun ingrediente della ricetta contiene glutine per sua natura. Non è un’indicazione “senza glutine”: verifica le etichette dei prodotti acquistati e le possibili contaminazioni.'
         : 'Contiene ingredienti con glutine.',
+      noteKey: noGlutenFormula ? 'recipes:food.noGlutenIngredients' : 'recipes:food.containsGluten',
     },
     noAddedSweeteners: {
       value: sweeteners.length === 0 && maybeSugar.length === 0,
@@ -58,8 +63,9 @@ export function foodInfo(recipe: Recipe, catalog: CatalogIndex): RecipeFoodInfo 
           : maybeSugar.length > 0
             ? 'Alcuni prodotti confezionati potrebbero contenere zuccheri aggiunti: controlla l’etichetta.'
             : 'Nessun ingrediente aggiunto per dolcificare. Gli alimenti possono contenere zuccheri naturalmente presenti.',
+      noteKey: sweeteners.length > 0 ? 'recipes:food.sweetened' : maybeSugar.length > 0 ? 'recipes:food.mayContainSugars' : 'recipes:food.noSweeteners',
     },
-    proteinClaim: { status: 'not_assessed', note: 'Valori nutrizionali non disponibili: nessuna indicazione sulle proteine.' },
-    organic: { status: 'not_assessed', note: 'Nessuna informazione sulla certificazione biologica degli ingredienti.' },
+    proteinClaim: { status: 'not_assessed', note: 'Valori nutrizionali non disponibili: nessuna indicazione sulle proteine.', noteKey: 'recipes:food.protein' },
+    organic: { status: 'not_assessed', note: 'Nessuna informazione sulla certificazione biologica degli ingredienti.', noteKey: 'recipes:food.organic' },
   };
 }

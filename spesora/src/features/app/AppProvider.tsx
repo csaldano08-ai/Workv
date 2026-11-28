@@ -6,7 +6,7 @@ import { toIsoLocal } from '../../core/domain/dates';
 import { configureNotifications, syncNotifications } from '../../core/notifications/NotificationScheduler';
 import { openAppDb } from '../../core/storage/expoDb';
 import { CATALOG } from '../../data/catalog';
-import { t } from '../../i18n/it';
+import { onLanguageChange, t } from '../../i18n';
 import { SpesoraService, type AppSnapshot } from './SpesoraService';
 
 export const catalogIndex = new CatalogIndex(CATALOG);
@@ -86,6 +86,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     };
   }, [attempt, refresh]);
 
+  // Cambio di lingua: si ricalcola lo stato (testi del pianificatore) e si riallineano le notifiche già programmate
+  // (titoli e testi fanno parte dell'identificativo, quindi le vecchie vengono annullate e riprogrammate nella lingua nuova).
+  useEffect(() => onLanguageChange(() => void refresh().catch(() => undefined)), [refresh]);
+
   // Al ritorno in primo piano: la data può essere cambiata, il piano va aggiornato.
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
@@ -104,7 +108,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         return result;
       } catch (e) {
         const detail = e instanceof Error && !(e as { cause?: unknown }).cause ? `\n\n${e.message}` : '';
-        Alert.alert('Operazione non riuscita', `${t('error.generic')}${detail}`);
+        Alert.alert(t('services:error.operationFailed'), `${t('error.generic')}${detail}`);
         await refresh().catch(() => undefined);
         return undefined;
       }

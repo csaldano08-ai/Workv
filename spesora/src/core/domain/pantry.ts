@@ -1,3 +1,4 @@
+import { t } from '../../i18n';
 import { CatalogIndex } from './catalog';
 import { ingredientNeed } from './portions';
 import type { IsoDate, MilliQty, PantryStock, PlannedMeal, PortionProfile } from './types';
@@ -59,7 +60,7 @@ export interface ConsumptionResult {
  */
 export function computeMealConsumption(meal: PlannedMeal, catalog: CatalogIndex, stock: PantryStock, portions?: PortionProfile): ConsumptionResult {
   const recipe = catalog.recipe(meal.recipeId);
-  if (!recipe) throw new Error(`Ricetta sconosciuta: ${meal.recipeId}`);
+  if (!recipe) throw new Error(t('pantry:error.unknownRecipe', { id: meal.recipeId }));
   const movements: ConsumptionResult['movements'] = [];
   const shortfalls: ConsumptionResult['shortfalls'] = [];
   for (const ri of recipe.ingredients) {
@@ -77,7 +78,7 @@ export function computeMealConsumption(meal: PlannedMeal, catalog: CatalogIndex,
 
 /** Movimento di correzione che porta la quantità al valore indicato dall'utente. */
 export function correctionMovement(ingredientId: string, current: MilliQty, target: MilliQty): Omit<PantryMovement, 'id' | 'createdAt'> | null {
-  if (!Number.isInteger(target) || target < 0) throw new Error('Quantità non valida');
+  if (!Number.isInteger(target) || target < 0) throw new Error(t('pantry:error.invalidQty'));
   if (target === current) return null;
   return { ingredientId, delta: target - current, kind: 'correction', mealId: null, note: null };
 }

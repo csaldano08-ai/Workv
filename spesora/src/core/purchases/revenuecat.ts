@@ -1,4 +1,5 @@
 import type { CustomerInfo, PurchasesOfferings, PurchasesPackage } from 'react-native-purchases';
+import { t } from '../../i18n';
 import type { EntitlementStatus, PlusPackage, PurchaseOutcome, PurchaseService } from './types';
 
 /**
@@ -45,9 +46,9 @@ export function entitlementFromCustomerInfo(info: Pick<CustomerInfo, 'entitlemen
 export function outcomeFromError(e: unknown): PurchaseOutcome {
   const err = e as { code?: string; userCancelled?: boolean | null; message?: string };
   if (err?.userCancelled || err?.code === '1') return { kind: 'cancelled' };
-  if (err?.code === '10' || err?.code === '35') return { kind: 'network_error', message: 'Connessione non disponibile. Riprova quando sei online.' };
-  if (err?.code === '20') return { kind: 'error', message: 'Pagamento in attesa di approvazione dallo store.' };
-  return { kind: 'error', message: err?.message ? `Acquisto non completato: ${err.message}` : 'Acquisto non completato.' };
+  if (err?.code === '10' || err?.code === '35') return { kind: 'network_error', message: t('paywall:error.network') };
+  if (err?.code === '20') return { kind: 'error', message: t('paywall:error.pending') };
+  return { kind: 'error', message: err?.message ? t('paywall:error.failedDetail', { detail: err.message }) : t('paywall:error.failed') };
 }
 
 export function packagesFromOfferings(offerings: Pick<PurchasesOfferings, 'current' | 'all'>, offeringId?: string): PlusPackage[] {
@@ -60,7 +61,9 @@ export function packagesFromOfferings(offerings: Pick<PurchasesOfferings, 'curre
       period: p.packageType === 'MONTHLY' ? 'monthly' : 'annual',
       priceString: p.product.priceString,
       // L'offerta introduttiva viene mostrata solo se lo store la dichiara; l'idoneità si verifica a parte.
-      introOffer: p.product.introPrice ? `${p.product.introPrice.priceString} per ${p.product.introPrice.periodNumberOfUnits} ${p.product.introPrice.periodUnit.toLowerCase()}` : null,
+      introOffer: p.product.introPrice
+        ? t('paywall:introOffer', { price: p.product.introPrice.priceString, units: p.product.introPrice.periodNumberOfUnits, unit: p.product.introPrice.periodUnit.toLowerCase() })
+        : null,
     }));
 }
 
@@ -96,7 +99,7 @@ export class RevenueCatPurchaseService implements PurchaseService {
       const offering = (this.config.offeringId && offerings.all[this.config.offeringId]) || offerings.current;
       this.packages = new Map((offering?.availablePackages ?? []).map((p) => [p.identifier, p]));
       const list = packagesFromOfferings(offerings, this.config.offeringId);
-      if (list.length === 0) return { unavailable: 'Nessun abbonamento disponibile al momento nello store.' };
+      if (list.length === 0) return { unavailable: t('paywall:error.noPackages') };
       // Prova gratuita: mostrata solo agli utenti idonei secondo lo store.
       const eligibility = await sdk.checkTrialOrIntroductoryPriceEligibility([...this.packages.values()].map((p) => p.product.identifier));
       return list.map((p) => {
@@ -106,7 +109,7 @@ export class RevenueCatPurchaseService implements PurchaseService {
       });
     } catch (e) {
       const o = outcomeFromError(e);
-      return { unavailable: o.kind === 'network_error' ? o.message : 'Impossibile leggere gli abbonamenti dallo store.' };
+      return { unavailable: o.kind === 'network_error' ? o.message : t('paywall:error.readFailed') };
     }
   }
 
@@ -124,7 +127,7 @@ export class RevenueCatPurchaseService implements PurchaseService {
     try {
       const sdk = await this.ready();
       const pkg = this.packages.get(packageId);
-      if (!pkg) return { kind: 'error', message: 'Abbonamento non trovato: ricarica la pagina.' };
+      if (!pkg) return { kind: 'error', message: t('paywall:error.notFound') };
       const { customerInfo } = await sdk.purchasePackage(pkg);
       return { kind: 'success', entitlement: entitlementFromCustomerInfo(customerInfo, this.config.entitlementId) };
     } catch (e) {

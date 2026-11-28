@@ -5,6 +5,8 @@ import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import { formatLongDate } from '../../src/core/domain/dates';
 import type { ScoredCandidate } from '../../src/core/domain/planner';
 import { catalogIndex, useApp } from '../../src/features/app/AppProvider';
+import { useT } from '../../src/i18n';
+import { recipeName } from '../../src/i18n/content';
 import { MEAL_LABELS } from '../../src/i18n/labels';
 import { colors, space } from '../../src/theme/tokens';
 import { Card } from '../../src/ui/Card';
@@ -14,6 +16,7 @@ import { Screen } from '../../src/ui/Screen';
 import { Text } from '../../src/ui/Text';
 
 export default function ReplaceMeal() {
+  const { t } = useT();
   const { mealId } = useLocalSearchParams<{ mealId: string }>();
   const { snapshot, service, run } = useApp();
   const meal = snapshot?.meals.find((m) => m.id === mealId);
@@ -32,7 +35,7 @@ export default function ReplaceMeal() {
   if (!meal || meal.status !== 'planned') {
     return (
       <Screen edges={['bottom']}>
-        <Notice tone="warning" text="Questo pasto non può più essere modificato." />
+        <Notice tone="warning" text={t('week:replace.locked')} />
       </Screen>
     );
   }
@@ -41,15 +44,15 @@ export default function ReplaceMeal() {
   return (
     <Screen edges={['bottom']}>
       <Text variant="small" color={colors.inkSoft}>
-        {`${MEAL_LABELS[meal.mealType]} di ${formatLongDate(meal.date)} · ora: ${current?.name ?? ''}. Le alternative rispettano tutte le tue esclusioni; in alto quelle che usano ciò che hai già.`}
+        {t('week:replace.intro', { meal: MEAL_LABELS[meal.mealType], date: formatLongDate(meal.date), recipe: current ? recipeName(current) : '' })}
       </Text>
       {alts === null ? <ActivityIndicator color={colors.green} /> : null}
-      {alts && alts.length === 0 ? <Notice tone="warning" text="Nessuna alternativa compatibile con le tue preferenze per questo pasto." /> : null}
+      {alts && alts.length === 0 ? <Notice tone="warning" text={t('week:replace.none')} /> : null}
       {alts?.map((a) => (
         <Pressable
           key={a.recipe.id}
           accessibilityRole="button"
-          accessibilityLabel={`Scegli ${a.recipe.name}, ${a.recipe.totalMinutes} minuti`}
+          accessibilityLabel={t('week:replace.choose', { recipe: recipeName(a.recipe), count: a.recipe.totalMinutes })}
           onPress={async () => {
             await run((s) => s.replaceRecipe(meal.id, a.recipe.id));
             goBack('/settimana');
@@ -60,7 +63,7 @@ export default function ReplaceMeal() {
               <View style={styles.row}>
                 <RecipeImage variant="thumb" recipe={a.recipe} style={styles.thumb} rounded={10} />
                 <View style={styles.flex}>
-                  <Text variant="heading">{a.recipe.name}</Text>
+                  <Text variant="heading">{recipeName(a.recipe)}</Text>
                   <Text variant="small" color={colors.inkSoft}>
                     {a.reasons.slice(0, 2).join(' · ')}
                   </Text>

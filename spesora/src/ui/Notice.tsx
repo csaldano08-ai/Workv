@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { useT } from '../i18n';
 import { colors, radius, space } from '../theme/tokens';
 import { Text } from './Text';
 
@@ -16,13 +17,15 @@ const tones = {
 };
 
 export function Notice({ text, tone = 'info', title, children }: { text?: string; tone?: keyof typeof tones; title?: string; children?: ReactNode }) {
-  const t = tones[tone];
+  const { t } = useT();
+  const palette = tones[tone];
+  const spoken = `${title ? `${title}. ` : ''}${text ?? ''}`;
   return (
-    <View style={[styles.box, { backgroundColor: t.bg }]} accessibilityRole="text" accessible={!children} accessibilityLabel={!children ? `${tone === 'warning' ? 'Attenzione: ' : ''}${title ? `${title}. ` : ''}${text ?? ''}` : undefined}>
-      <Ionicons name={t.icon} size={18} color={t.fg} style={styles.icon} />
+    <View style={[styles.box, { backgroundColor: palette.bg }]} accessibilityRole="text" accessible={!children} accessibilityLabel={!children ? (tone === 'warning' ? t('ui:a11y.warning', { text: spoken }) : spoken) : undefined}>
+      <Ionicons name={palette.icon} size={18} color={palette.fg} style={styles.icon} />
       <View style={styles.body}>
         {title ? (
-          <Text variant="small" color={t.fg} style={styles.title}>
+          <Text variant="small" color={palette.fg} style={styles.title}>
             {title}
           </Text>
         ) : null}

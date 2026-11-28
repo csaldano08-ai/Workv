@@ -1,3 +1,4 @@
+import { formatLocale } from './locale';
 import type { IsoDate, Weekday } from './types';
 
 /**
@@ -76,27 +77,43 @@ export function minutesToHHMM(minutes: number): string {
   return `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
 }
 
-const WEEKDAY_NAMES = ['lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica'];
-const WEEKDAY_SHORT = ['lun', 'mar', 'mer', 'gio', 'ven', 'sab', 'dom'];
-const MONTHS = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+/*
+ * Nomi di giorni e mesi nel locale corrente (Intl: date e mesi corretti per ogni lingua e regione).
+ * In italiano il risultato è lo stesso di prima: "martedì 3 novembre", "lun", "3 nov".
+ */
+const dtf = new Map<string, Intl.DateTimeFormat>();
+function fmt(opts: Intl.DateTimeFormatOptions): Intl.DateTimeFormat {
+  const key = formatLocale() + JSON.stringify(opts);
+  let f = dtf.get(key);
+  if (!f) {
+    f = new Intl.DateTimeFormat(formatLocale(), { ...opts, timeZone: 'UTC' });
+    dtf.set(key, f);
+  }
+  return f;
+}
+/** Un lunedì qualunque (5 gennaio 2026) + w giorni, a mezzogiorno UTC. */
+const weekdayDate = (w: Weekday) => new Date(Date.UTC(2026, 0, 5 + w, 12));
+const utcOf = (date: IsoDate) => {
+  const [y, m, d] = parts(date);
+  return new Date(Date.UTC(y, m - 1, d, 12));
+};
+const strip = (s: string) => s.replace(/\.$/, '');
 
 export function weekdayName(w: Weekday): string {
-  return WEEKDAY_NAMES[w];
+  return fmt({ weekday: 'long' }).format(weekdayDate(w));
 }
 export function weekdayShort(w: Weekday): string {
-  return WEEKDAY_SHORT[w];
+  return strip(fmt({ weekday: 'short' }).format(weekdayDate(w)));
 }
 
-/** "martedì 3 novembre" */
+/** "martedì 3 novembre" (in inglese "Tuesday 3 November", negli USA "Tuesday, November 3") */
 export function formatLongDate(date: IsoDate): string {
-  const [, m, d] = parts(date);
-  return `${WEEKDAY_NAMES[weekdayOf(date)]} ${d} ${MONTHS[m - 1]}`;
+  return fmt({ weekday: 'long', day: 'numeric', month: 'long' }).format(utcOf(date)).replace(/,/g, '').replace(/\s+/g, ' ');
 }
 
 /** "3 nov" */
 export function formatShortDate(date: IsoDate): string {
-  const [, m, d] = parts(date);
-  return `${d} ${MONTHS[m - 1].slice(0, 3)}`;
+  return strip(fmt({ day: 'numeric', month: 'short' }).format(utcOf(date)));
 }
 
 /** Prima lettera maiuscola (solo la prima: "Sabato 31 ottobre"). */

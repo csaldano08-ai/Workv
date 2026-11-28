@@ -1,4 +1,6 @@
+import { t } from '../../i18n';
 import { diffDays } from './dates';
+import { formatLocale } from './locale';
 import { suggestPacks } from './quantity';
 import type { IsoDate, MilliQty, Unit } from './types';
 
@@ -40,9 +42,9 @@ export interface PriceEntry {
 export const PRICE_MAX_AGE_DAYS = 180;
 
 export function validatePriceEntry(e: PriceEntry): string | null {
-  if (!Number.isInteger(e.priceCents) || e.priceCents <= 0 || e.priceCents > 100_000) return 'Prezzo non valido';
-  if (!(e.quantity > 0) || !Number.isFinite(e.quantity)) return 'Quantità di riferimento non valida';
-  if (e.currency !== 'EUR') return 'Valuta non supportata';
+  if (!Number.isInteger(e.priceCents) || e.priceCents <= 0 || e.priceCents > 100_000) return t('services:error.invalidPrice');
+  if (!(e.quantity > 0) || !Number.isFinite(e.quantity)) return t('services:error.invalidRefQty');
+  if (e.currency !== 'EUR') return t('services:error.unsupportedCurrency');
   return null;
 }
 
@@ -57,7 +59,7 @@ export function normalizedCents(e: PriceEntry): number {
 }
 
 export function formatCents(cents: number): string {
-  return (cents / 100).toLocaleString('it-IT', { style: 'currency', currency: 'EUR' });
+  return (cents / 100).toLocaleString(formatLocale(), { style: 'currency', currency: 'EUR' });
 }
 
 export interface PriceQuote {

@@ -4,6 +4,7 @@ import Svg, { Path, SvgXml } from 'react-native-svg';
 import { colors } from '../../theme/tokens';
 import { LOGO_BOX, LOGO_RATIO, minaLogoPartsSvg } from '../../ui/brand/logoArt';
 import { MinaMascot } from '../../ui/mascot/Mina';
+import { useT } from '../../i18n';
 import { measureIntroAnchor } from './introBus';
 
 const native = Platform.OS !== 'web';
@@ -69,6 +70,7 @@ const BOUNCE_Y = [0, 0, -15, -22, -14, 0, 0, 0];
  * Viene mostrata solo al primo avvio o su richiesta dalle Impostazioni (vedi IntroGate).
  */
 export function MinaIntro({ onDone }: { onDone: () => void }) {
+  const { t } = useT();
   const { width: W, height: H } = useWindowDimensions();
   const [v] = useState(() => ({
     fall: new Animated.Value(0),
@@ -229,7 +231,7 @@ export function MinaIntro({ onDone }: { onDone: () => void }) {
   );
 
   return (
-    <Pressable style={styles.fill} onPress={skip} accessibilityRole="button" accessibilityLabel="Benvenuto in Mina! Tocca per saltare.">
+    <Pressable style={styles.fill} onPress={skip} accessibilityRole="button" accessibilityLabel={t('onboarding:intro.a11y')}>
       <Animated.View style={[styles.fill, styles.bg, { opacity: v.fade }]} pointerEvents="none">
         {/* 3-4 · cerchio verde che riempie lo schermo, poi la maschera circolare che rivela la composizione */}
         {circle(colors.greenBright, v.fill, DOT / 2 / R)}

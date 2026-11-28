@@ -1,0 +1,23 @@
+{
+  "toast.closeHint": "Toca para cerrar",
+  "actionSheet.close": "Cerrar menú",
+  "progressRing.label": "{done} de {total} en el carrito",
+  "a11y.warning": "Atención: {text}",
+  "infoToggle.why": "¿Por qué te lo pregunto?",
+  "stepper.decrease": "Reducir {label}",
+  "stepper.increase": "Aumentar {label}",
+  "timer.a11y": "Temporizador: {minutes} y {seconds}",
+  "timer.minutes_one": "{count} minuto",
+  "timer.minutes_many": "{count} minutos",
+  "timer.minutes_other": "{count} minutos",
+  "timer.seconds_one": "{count} segundo",
+  "timer.seconds_many": "{count} segundos",
+  "timer.seconds_other": "{count} segundos",
+  "timer.timeUp": "¡Tiempo!",
+  "timer.doneAnnounce": "Se acabó el tiempo: {label}",
+  "timer.pause": "Pausa",
+  "timer.start": "Iniciar {minutes} min",
+  "timer.restart": "Reiniciar",
+  "timer.resume": "Reanudar",
+  "timer.reset": "Poner a cero"
+}

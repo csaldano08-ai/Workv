@@ -4,29 +4,34 @@ import { Card } from '../src/ui/Card';
 import { InfoNote } from '../src/ui/mina/kit';
 import { Screen } from '../src/ui/Screen';
 import { Text } from '../src/ui/Text';
+import { useT } from '../src/i18n';
 
 /*
  * Informazioni legali: chi pubblica e fornisce il servizio. I dati arrivano da app.json → extra.legal.publisher
  * e non vengono mai inventati: finché mancano, la pagina dice che vanno completati prima della pubblicazione.
  */
 export default function Legal() {
+  const { t } = useT();
   const pub = appConfig.legal.publisher;
   return (
     <Screen edges={[]}>
+      <Text variant="small" color={colors.inkSoft}>
+        {t('legal:referenceNote')}
+      </Text>
       <Card>
-        <Text variant="heading">Chi fornisce Mina</Text>
+        <Text variant="heading">{t('legal:legal.provider.title')}</Text>
         {pub ? (
           <Text variant="body" color={colors.inkSoft}>
             {pub}
           </Text>
         ) : (
-          <InfoNote tone="warning" text="Da completare prima della pubblicazione: nome o ragione sociale, indirizzo, email e telefono di contatto (per la vendita nell’Unione europea gli store li mostrano anche nella pagina dell’app)." />
+          <InfoNote tone="warning" text={t('legal:legal.provider.missing')} />
         )}
       </Card>
       <Card>
-        <Text variant="heading">Natura del servizio</Text>
+        <Text variant="heading">{t('legal:legal.nature.title')}</Text>
         <Text variant="body" color={colors.inkSoft}>
-          Mina aiuta a pianificare pasti, ricette, spesa e dispensa. Non è un dispositivo medico e non fornisce indicazioni dietetiche, nutrizionali o terapeutiche.
+          {t('legal:legal.nature.text')}
         </Text>
       </Card>
     </Screen>

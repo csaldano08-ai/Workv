@@ -5,8 +5,8 @@ import { formatQtyWithUnit, parseUserQty, toMilli } from '../../core/domain/quan
 import { suggestShoppingDays, weeklyBudgetCents } from '../../core/domain/profile';
 import { ALLERGENS, DIETS, EQUIPMENT, MEAL_TYPES, type MealType, type UserProfile, type Weekday } from '../../core/domain/types';
 import { weekdayName } from '../../core/domain/dates';
+import { formatLocale } from '../../core/domain/locale';
 import { ALLERGEN_LABELS, DIET_LABELS, EQUIPMENT_LABELS, MEAL_LABELS } from '../../i18n/labels';
-import { t } from '../../i18n/it';
 import { colors, radius, space, TOUCH } from '../../theme/tokens';
 import { Chip, ChipGroup } from '../../ui/Chip';
 import { ChoiceArt } from '../../ui/mina/ChoiceArt';
@@ -17,6 +17,9 @@ import { Stepper, TimeStepper } from '../../ui/Stepper';
 import { Text } from '../../ui/Text';
 import { catalogIndex } from '../app/AppProvider';
 import { COMMON_DISLIKES, MINUTE_OPTIONS, QUICK_PANTRY, type OnboardingDraft } from './draft';
+import { lazyLabels, useT } from '../../i18n';
+import { ingredientName } from '../../i18n/content';
+import { LanguagePicker } from '../../ui/mina/LanguagePicker';
 import type { NotificationSettings } from '../../core/notifications/schedule';
 
 export interface StepProps {
@@ -35,25 +38,38 @@ const minuteLabel = (m: number) => (m >= 60 ? '60+ min' : `${m} min`);
 
 /* ------------------------------------------------------------------ */
 
+/** Primo passo: la lingua. Toccarne una la applica subito, così il resto del questionario è già in quella lingua. */
+export function LanguageStep(_: StepProps) {
+  const { t } = useT();
+  return (
+    <View style={styles.gap}>
+      <LanguagePicker />
+      <InfoNote text={t('language:noAccount')} />
+    </View>
+  );
+}
+
 export function PeopleStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   const n = draft.profile.servings;
   return (
     <View style={styles.gap}>
       <NumberRow>
         {[1, 2, 3, 4].map((v) => (
-          <NumberChoice key={v} label={String(v)} accessibilityLabel={v === 1 ? '1 persona' : `${v} persone`} selected={n === v} onPress={() => setProfile(setDraft, (p) => ({ ...p, servings: v }))} />
+          <NumberChoice key={v} label={String(v)} accessibilityLabel={t('onboarding:people.count', { count: v })} selected={n === v} onPress={() => setProfile(setDraft, (p) => ({ ...p, servings: v }))} />
         ))}
-        <NumberChoice label="5+" accessibilityLabel="5 o più persone" selected={n >= 5} onPress={() => setProfile(setDraft, (p) => ({ ...p, servings: Math.max(5, p.servings) }))} />
+        <NumberChoice label="5+" accessibilityLabel={t('onboarding:people.fivePlus')} selected={n >= 5} onPress={() => setProfile(setDraft, (p) => ({ ...p, servings: Math.max(5, p.servings) }))} />
       </NumberRow>
       {n >= 5 ? (
-        <Stepper label="Numero di persone" value={n} min={5} max={30} onChange={(v) => setProfile(setDraft, (p) => ({ ...p, servings: v }))} />
+        <Stepper label={t('onboarding:people.stepper')} value={n} min={5} max={30} onChange={(v) => setProfile(setDraft, (p) => ({ ...p, servings: v }))} />
       ) : null}
-      <InfoNote text="Ricette e spesa useranno questo numero. Puoi cambiarlo per un singolo pasto." />
+      <InfoNote text={t('onboarding:people.note')} />
     </View>
   );
 }
 
 export function MealsStep({ draft, setDraft }: StepProps) {
+  useT();
   return (
     <TileGrid>
       {MEAL_TYPES.map((m) => (
@@ -72,6 +88,7 @@ export function MealsStep({ draft, setDraft }: StepProps) {
 }
 
 export function DietStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   return (
     <View style={styles.gap}>
       <TileGrid>
@@ -79,12 +96,13 @@ export function DietStep({ draft, setDraft }: StepProps) {
           <OptionTile key={d} columns={2} label={DIET_LABELS[d]} art={<ChoiceArt name={d} size={68} />} selected={draft.profile.diet === d} onPress={() => setProfile(setDraft, (p) => ({ ...p, diet: d }))} />
         ))}
       </TileGrid>
-      <InfoToggle label="Come decido cosa è compatibile?" text="Pescetariano: niente carne, sì pesce. La compatibilità è calcolata dagli ingredienti di ogni ricetta." />
+      <InfoToggle label={t('onboarding:diet.howLabel')} text={t('onboarding:diet.howText')} />
     </View>
   );
 }
 
 export function AllergenStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   return (
     <View style={styles.gap}>
       <ChipGroup>
@@ -98,7 +116,7 @@ export function AllergenStep({ draft, setDraft }: StepProps) {
           />
         ))}
       </ChipGroup>
-      <SectionTitle>Altri ingredienti da evitare</SectionTitle>
+      <SectionTitle>{t('onboarding:exclusions.others')}</SectionTitle>
       <IngredientPicker
         selected={draft.profile.excludedIngredientIds}
         tone="danger"
@@ -106,13 +124,14 @@ export function AllergenStep({ draft, setDraft }: StepProps) {
       />
       <InfoNote tone="warning" text={t('allergen.disclaimer')} />
       {draft.profile.excludedAllergens.length > 0 ? (
-        <InfoNote text="Con un’esclusione attiva, Mina scarta anche le ricette con prodotti confezionati i cui allergeni dipendono dalla marca (es. pesto, pane)." />
+        <InfoNote text={t('onboarding:exclusions.brandNote')} />
       ) : null}
     </View>
   );
 }
 
 export function DislikeStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   return (
     <View style={styles.gap}>
       <ChipGroup>
@@ -120,13 +139,13 @@ export function DislikeStep({ draft, setDraft }: StepProps) {
           <Chip
             key={id}
             tone="peach"
-            label={catalogIndex.ingredient(id).name}
+            label={ingredientName(id, catalogIndex.ingredient(id).name)}
             selected={draft.profile.dislikedIngredientIds.includes(id)}
             onPress={() => setProfile(setDraft, (p) => ({ ...p, dislikedIngredientIds: toggle(p.dislikedIngredientIds, id) }))}
           />
         ))}
       </ChipGroup>
-      <SectionTitle>Cerca un altro ingrediente</SectionTitle>
+      <SectionTitle>{t('onboarding:dislikes.search')}</SectionTitle>
       <IngredientPicker
         selected={draft.profile.dislikedIngredientIds}
         tone="peach"
@@ -137,39 +156,42 @@ export function DislikeStep({ draft, setDraft }: StepProps) {
 }
 
 function IngredientPicker({ selected, onToggle, tone }: { selected: string[]; onToggle: (id: string) => void; tone: 'danger' | 'peach' }) {
+  const { t, language } = useT();
   const [query, setQuery] = useState('');
   const results = useMemo(() => {
     const q = normalizeText(query);
     if (q.length < 2) return [];
     return catalogIndex.catalog.ingredients
-      .filter((i) => [i.name, ...i.aliases].some((a) => normalizeText(a).includes(q)))
+      .filter((i) => [i.name, ingredientName(i.id, i.name), ...i.aliases].some((a) => normalizeText(a).includes(q)))
       .slice(0, 12);
-  }, [query]);
+    // la lingua cambia il nome tradotto con cui si cerca
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, language]);
   const selectedOthers = selected.filter((id) => catalogIndex.ingredients.has(id));
   return (
     <View style={styles.gap}>
       <TextInput
         value={query}
         onChangeText={setQuery}
-        placeholder="Scrivi un ingrediente, es. funghi"
+        placeholder={t('onboarding:picker.placeholder')}
         placeholderTextColor={colors.inkSoft}
         style={styles.input}
-        accessibilityLabel="Cerca ingrediente"
+        accessibilityLabel={t('onboarding:picker.a11y')}
         autoCorrect={false}
       />
       <ChipGroup>
         {results.map((i) => (
-          <Chip key={i.id} tone={tone} label={i.name} selected={selected.includes(i.id)} onPress={() => onToggle(i.id)} />
+          <Chip key={i.id} tone={tone} label={ingredientName(i.id, i.name)} selected={selected.includes(i.id)} onPress={() => onToggle(i.id)} />
         ))}
       </ChipGroup>
       {selectedOthers.length > 0 ? (
         <>
           <Text variant="small" color={colors.inkSoft}>
-            Selezionati (tocca per rimuovere):
+            {t('onboarding:picker.selected')}
           </Text>
           <ChipGroup>
             {selectedOthers.map((id) => (
-              <Chip key={id} tone={tone} label={catalogIndex.ingredient(id).name} selected onPress={() => onToggle(id)} />
+              <Chip key={id} tone={tone} label={ingredientName(id, catalogIndex.ingredient(id).name)} selected onPress={() => onToggle(id)} />
             ))}
           </ChipGroup>
         </>
@@ -179,32 +201,33 @@ function IngredientPicker({ selected, onToggle, tone }: { selected: string[]; on
 }
 
 export function TimeStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   const [perDay, setPerDay] = useState(false);
   const days = draft.profile.days;
   const setRange = (from: number, to: number, minutes: number) =>
     setProfile(setDraft, (p) => ({ ...p, days: p.days.map((d, i) => (i >= from && i <= to ? { ...d, maxMinutes: minutes } : d)) }));
   return (
     <View style={styles.gap}>
-      <SectionTitle>Giorni feriali</SectionTitle>
+      <SectionTitle>{t('onboarding:time.weekdays')}</SectionTitle>
       <ChipGroup>
         {MINUTE_OPTIONS.map((m) => (
           <Chip key={m} label={minuteLabel(m)} selected={days.slice(0, 5).every((d) => d.maxMinutes === m)} onPress={() => setRange(0, 4, m)} />
         ))}
       </ChipGroup>
-      <SectionTitle>Weekend</SectionTitle>
+      <SectionTitle>{t('onboarding:time.weekend')}</SectionTitle>
       <ChipGroup>
         {MINUTE_OPTIONS.map((m) => (
           <Chip key={m} label={minuteLabel(m)} selected={days.slice(5).every((d) => d.maxMinutes === m)} onPress={() => setRange(5, 6, m)} />
         ))}
       </ChipGroup>
-      <ToggleRow label="Personalizza per singolo giorno" value={perDay} onChange={setPerDay} />
+      <ToggleRow label={t('onboarding:time.perDay')} value={perDay} onChange={setPerDay} />
       {perDay
         ? days.map((d, i) => (
             <View key={i} style={styles.dayRow}>
               <Text variant="body" style={styles.dayName}>
                 {weekdayName(i as Weekday)}
               </Text>
-              <Stepper label={`Minuti ${weekdayName(i as Weekday)}`} value={d.maxMinutes} min={10} max={120} step={5} format={(v) => `${v}′`} onChange={(v) => setRange(i, i, v)} />
+              <Stepper label={t('onboarding:time.minutesFor', { day: weekdayName(i as Weekday) })} value={d.maxMinutes} min={10} max={120} step={5} format={(v) => `${v}′`} onChange={(v) => setRange(i, i, v)} />
             </View>
           ))
         : null}
@@ -213,6 +236,7 @@ export function TimeStep({ draft, setDraft }: StepProps) {
 }
 
 export function TimesStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   const [perDay, setPerDay] = useState(false);
   const meals = MEAL_TYPES.filter((m) => draft.profile.mealTypes.includes(m));
   const setTime = (from: number, to: number, meal: MealType, minutes: number) =>
@@ -235,13 +259,14 @@ export function TimesStep({ draft, setDraft }: StepProps) {
   );
   return (
     <View style={styles.gap}>
-      {perDay ? [0, 1, 2, 3, 4, 5, 6].map((i) => group(weekdayName(i as Weekday), i, i)) : [group('Giorni feriali', 0, 4), group('Weekend', 5, 6)]}
-      <ToggleRow label="Orari diversi per ogni giorno" value={perDay} onChange={setPerDay} />
+      {perDay ? [0, 1, 2, 3, 4, 5, 6].map((i) => group(weekdayName(i as Weekday), i, i)) : [group(t('onboarding:time.weekdays'), 0, 4), group(t('onboarding:time.weekend'), 5, 6)]}
+      <ToggleRow label={t('onboarding:times.perDay')} value={perDay} onChange={setPerDay} />
     </View>
   );
 }
 
 export function FrequencyStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   return (
     <View style={styles.gap}>
       <NumberRow>
@@ -249,18 +274,19 @@ export function FrequencyStep({ draft, setDraft }: StepProps) {
           <NumberChoice
             key={n}
             label={String(n)}
-            accessibilityLabel={n === 1 ? '1 volta a settimana' : `${n} volte a settimana`}
+            accessibilityLabel={t('onboarding:frequency.count', { count: n })}
             selected={draft.shoppingFrequency === n}
             onPress={() => setDraft((d) => ({ ...d, shoppingFrequency: n, profile: { ...d.profile, shoppingDays: suggestShoppingDays(n) } }))}
           />
         ))}
       </NumberRow>
-      <InfoNote text="Volte a settimana. Nel prossimo passo ti propongo i giorni: potrai cambiarli." />
+      <InfoNote text={t('onboarding:frequency.note')} />
     </View>
   );
 }
 
 export function ShoppingDaysStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   const days = draft.profile.shoppingDays;
   return (
     <View style={styles.gap}>
@@ -279,24 +305,20 @@ export function ShoppingDaysStep({ draft, setDraft }: StepProps) {
       </ChipGroup>
       {days.length !== draft.shoppingFrequency && days.length > 0 ? (
         <Text variant="small" color={colors.inkSoft}>
-          Hai scelto {days.length} {days.length === 1 ? 'giorno' : 'giorni'}: useremo questi.
+          {t('onboarding:shoppingDays.chosen', { count: days.length })}
         </Text>
       ) : null}
-      <InfoToggle label="Come divido la spesa?" text="Ogni prodotto va nella spesa più vicina prima del suo utilizzo, tenendo conto di quanto si conserva." />
+      <InfoToggle label={t('onboarding:shoppingDays.howLabel')} text={t('onboarding:shoppingDays.howText')} />
     </View>
   );
 }
 
-const BUDGET_MODE_LABELS = {
-  minimo: 'Sì, voglio spendere il meno possibile',
-  equilibrato: 'Sì, voglio un budget equilibrato',
-  limite: 'Sì, ho un limite preciso',
-  off: 'No, scelgo solo in base ai gusti',
-} as const;
-const STORE_LABELS = { discount: 'Discount', supermercato: 'Supermercato', mercato: 'Mercato o negozi locali', ovunque: 'Un po’ ovunque', non_indicato: 'Preferisco non dirlo' } as const;
+const BUDGET_MODE_LABELS = lazyLabels(['minimo', 'equilibrato', 'limite', 'off'] as const, (k) => `onboarding:budget.mode.${k}`);
+const STORE_LABELS = lazyLabels(['discount', 'supermercato', 'mercato', 'ovunque', 'non_indicato'] as const, (k) => `onboarding:budget.store.${k}`);
 const QUICK_AMOUNTS = [30, 50, 70, 100, 150];
 
 export function BudgetStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   const b = draft.profile.budget;
   const [text, setText] = useState(b.amountCents === null ? '' : String(b.amountCents / 100).replace('.', ','));
   const invalid = text.trim() !== '' && (parseUserQty(text) === null || (parseUserQty(text) ?? 0) < 1);
@@ -307,7 +329,7 @@ export function BudgetStep({ draft, setDraft }: StepProps) {
     });
   return (
     <View style={styles.gap}>
-      <SectionTitle>Vuoi che Mina tenga conto del budget?</SectionTitle>
+      <SectionTitle>{t('onboarding:budget.question')}</SectionTitle>
       <ChipGroup>
         {(['minimo', 'equilibrato', 'limite', 'off'] as const).map((m) => (
           <Chip key={m} label={BUDGET_MODE_LABELS[m]} selected={b.mode === m} onPress={() => setBudget({ mode: m })} />
@@ -315,10 +337,10 @@ export function BudgetStep({ draft, setDraft }: StepProps) {
       </ChipGroup>
       {b.mode !== 'off' ? (
         <>
-          <SectionTitle>Quanto vorresti spendere?</SectionTitle>
+          <SectionTitle>{t('onboarding:budget.howMuch')}</SectionTitle>
           <ChipGroup>
-            <Chip label="A settimana" selected={b.period === 'settimana'} onPress={() => setBudget({ period: 'settimana' })} />
-            <Chip label="Al mese" selected={b.period === 'mese'} onPress={() => setBudget({ period: 'mese' })} />
+            <Chip label={t('onboarding:budget.perWeek')} selected={b.period === 'settimana'} onPress={() => setBudget({ period: 'settimana' })} />
+            <Chip label={t('onboarding:budget.perMonth')} selected={b.period === 'mese'} onPress={() => setBudget({ period: 'mese' })} />
           </ChipGroup>
           <ChipGroup>
             {QUICK_AMOUNTS.map((v) => (
@@ -341,28 +363,28 @@ export function BudgetStep({ draft, setDraft }: StepProps) {
               const parsed = parseUserQty(v);
               setBudget({ amountCents: v.trim() === '' || parsed === null || parsed < 1 ? null : Math.round(parsed * 100) });
             }}
-            placeholder="Importo libero in euro"
+            placeholder={t('onboarding:budget.placeholder')}
             placeholderTextColor={colors.inkSoft}
             keyboardType="decimal-pad"
             style={styles.input}
-            accessibilityLabel="Importo del budget in euro"
+            accessibilityLabel={t('onboarding:budget.amountA11y')}
           />
           {invalid ? (
             <Text variant="small" color={colors.danger}>
-              Inserisci un importo valido, ad esempio 60 oppure 60,50.
+              {t('onboarding:budget.invalid')}
             </Text>
           ) : null}
           {b.period === 'mese' && b.amountCents ? (
             <Text variant="small" color={colors.inkSoft}>
-              {`Equivale a circa ${((weeklyBudgetCents(b) ?? 0) / 100).toLocaleString('it-IT', { style: 'currency', currency: 'EUR' })} a settimana.`}
+              {t('onboarding:budget.weekly', { amount: ((weeklyBudgetCents(b) ?? 0) / 100).toLocaleString(formatLocale(), { style: 'currency', currency: 'EUR' }) })}
             </Text>
           ) : null}
-          <SectionTitle>Il budget riguarda</SectionTitle>
+          <SectionTitle>{t('onboarding:budget.scopeTitle')}</SectionTitle>
           <ChipGroup>
-            <Chip label={`I pasti che organizzo qui (${draft.profile.servings} ${draft.profile.servings === 1 ? 'persona' : 'persone'})`} selected={b.scope === 'pasti_spesora'} onPress={() => setBudget({ scope: 'pasti_spesora' })} />
-            <Chip label="Solo una parte della mia spesa" selected={b.scope === 'parte_spesa'} onPress={() => setBudget({ scope: 'parte_spesa' })} />
+            <Chip label={t('onboarding:budget.scopeMeals', { count: draft.profile.servings })} selected={b.scope === 'pasti_spesora'} onPress={() => setBudget({ scope: 'pasti_spesora' })} />
+            <Chip label={t('onboarding:budget.scopePart')} selected={b.scope === 'parte_spesa'} onPress={() => setBudget({ scope: 'parte_spesa' })} />
           </ChipGroup>
-          <SectionTitle>Dove fai generalmente la spesa? (facoltativo)</SectionTitle>
+          <SectionTitle>{t('onboarding:budget.storeTitle')}</SectionTitle>
           <ChipGroup>
             {(Object.keys(STORE_LABELS) as (keyof typeof STORE_LABELS)[]).map((k) => (
               <Chip key={k} label={STORE_LABELS[k]} selected={b.store === k} onPress={() => setBudget({ store: k })} />
@@ -370,12 +392,13 @@ export function BudgetStep({ draft, setDraft }: StepProps) {
           </ChipGroup>
         </>
       ) : null}
-      <InfoToggle label="Come uso il budget?" text="Gli importi rapidi sono solo scorciatoie, non somme consigliate. Mina non riduce mai pasti o porzioni per stare nel budget: sceglie ricette che riutilizzano gli ingredienti e richiedono meno acquisti. I costi in euro compaiono solo per i prodotti di cui conosci il prezzo (Profilo → Prezzi)." />
+      <InfoToggle label={t('onboarding:budget.howLabel')} text={t('onboarding:budget.howText')} />
     </View>
   );
 }
 
 export function EquipmentStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   return (
     <View style={styles.gap}>
       <ChipGroup>
@@ -388,12 +411,13 @@ export function EquipmentStep({ draft, setDraft }: StepProps) {
           />
         ))}
       </ChipGroup>
-      <InfoNote text="Ti propongo solo ricette fattibili con questi strumenti." />
+      <InfoNote text={t('onboarding:equipment.note')} />
     </View>
   );
 }
 
 export function PantryStep({ draft, setDraft }: StepProps) {
+  const { t } = useT();
   const setQty = (id: string, qty: number | null | undefined) =>
     setDraft((d) => {
       const pantry = { ...d.pantry };
@@ -403,22 +427,23 @@ export function PantryStep({ draft, setDraft }: StepProps) {
     });
   return (
     <View style={styles.gap}>
-      <InfoNote text="Scegli solo ciò che hai. Una quantità indicativa basta: potrai correggerla dalla Dispensa." />
+      <InfoNote text={t('onboarding:pantry.note')} />
       {QUICK_PANTRY.filter((id) => catalogIndex.ingredients.has(id)).map((id) => {
         const ing = catalogIndex.ingredient(id);
+        const name = ingredientName(id, ing.name);
         const has = id in draft.pantry;
         const value = draft.pantry[id];
         const step = ing.unit === 'pz' ? 1 : ing.unit === 'g' ? 50 : 100;
         return (
           <View key={id} style={styles.pantryRow}>
             <Chip
-              label={ing.name}
+              label={name}
               selected={has}
               onPress={() => setQty(id, has ? undefined : ing.staple ? null : (ing.commonPackSizes?.[0] ?? (ing.unit === 'pz' ? 1 : 250)))}
             />
             {has && value !== null && value !== undefined ? (
               <Stepper
-                label={`Quantità di ${ing.name}`}
+                label={t('onboarding:pantry.qtyOf', { name })}
                 value={value}
                 min={step}
                 max={ing.unit === 'pz' ? 30 : 5000}
@@ -428,7 +453,7 @@ export function PantryStep({ draft, setDraft }: StepProps) {
               />
             ) : has ? (
               <Text variant="small" color={colors.inkSoft}>
-                Presente (quanto basta)
+                {t('onboarding:pantry.present')}
               </Text>
             ) : null}
           </View>
@@ -453,9 +478,10 @@ export function NotificationSettingsEditor({
   onChange: (patch: Partial<NotificationSettings>) => void;
   mealTypes: MealType[];
 }) {
+  const { t } = useT();
   return (
     <View style={styles.gap}>
-      <ToggleRow label="Quando iniziare a cucinare" value={n.mealReminders} onChange={(v) => set({ mealReminders: v })} />
+      <ToggleRow label={t('onboarding:notifications.cook')} value={n.mealReminders} onChange={(v) => set({ mealReminders: v })} />
       {n.mealReminders ? (
         <>
           <ChipGroup>
@@ -465,37 +491,37 @@ export function NotificationSettingsEditor({
           </ChipGroup>
           <View style={styles.dayRow}>
             <Text variant="body" style={styles.dayName}>
-              Anticipo extra
+              {t('onboarding:notifications.lead')}
             </Text>
-            <Stepper label="Anticipo in minuti" value={n.leadMinutes} min={0} max={60} step={5} format={(v) => `${v} min`} onChange={(v) => set({ leadMinutes: v })} />
+            <Stepper label={t('onboarding:notifications.leadA11y')} value={n.leadMinutes} min={0} max={60} step={5} format={(v) => `${v} min`} onChange={(v) => set({ leadMinutes: v })} />
           </View>
           <Text variant="small" color={colors.inkSoft}>
-            L’avviso arriva all’orario del pasto meno la durata della ricetta e l’anticipo extra.
+            {t('onboarding:notifications.leadNote')}
           </Text>
         </>
       ) : null}
-      <ToggleRow label="Giorno della spesa" value={n.shoppingReminders} onChange={(v) => set({ shoppingReminders: v })} />
+      <ToggleRow label={t('onboarding:notifications.shopping')} value={n.shoppingReminders} onChange={(v) => set({ shoppingReminders: v })} />
       {n.shoppingReminders ? (
         <View style={styles.dayRow}>
           <Text variant="body" style={styles.dayName}>
-            Orario
+            {t('onboarding:notifications.time')}
           </Text>
-          <TimeStepper label="Orario promemoria spesa" value={n.shoppingTimeMinutes} onChange={(v) => set({ shoppingTimeMinutes: v })} />
+          <TimeStepper label={t('onboarding:notifications.timeA11y')} value={n.shoppingTimeMinutes} onChange={(v) => set({ shoppingTimeMinutes: v })} />
         </View>
       ) : null}
-      <ToggleRow label="Fine del calendario settimanale" value={n.planEndReminder} onChange={(v) => set({ planEndReminder: v })} />
-      <SectionTitle>Fascia di silenzio</SectionTitle>
+      <ToggleRow label={t('onboarding:notifications.planEnd')} value={n.planEndReminder} onChange={(v) => set({ planEndReminder: v })} />
+      <SectionTitle>{t('onboarding:notifications.quiet')}</SectionTitle>
       <View style={styles.dayRow}>
         <Text variant="body" style={styles.dayName}>
-          Dalle
+          {t('onboarding:notifications.from')}
         </Text>
-        <TimeStepper label="Inizio silenzio" value={n.quietStartMinutes} onChange={(v) => set({ quietStartMinutes: v })} />
+        <TimeStepper label={t('onboarding:notifications.quietStart')} value={n.quietStartMinutes} onChange={(v) => set({ quietStartMinutes: v })} />
       </View>
       <View style={styles.dayRow}>
         <Text variant="body" style={styles.dayName}>
-          Alle
+          {t('onboarding:notifications.to')}
         </Text>
-        <TimeStepper label="Fine silenzio" value={n.quietEndMinutes} onChange={(v) => set({ quietEndMinutes: v })} />
+        <TimeStepper label={t('onboarding:notifications.quietEnd')} value={n.quietEndMinutes} onChange={(v) => set({ quietEndMinutes: v })} />
       </View>
     </View>
   );

@@ -1,6 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useEffect, useState, type ReactNode } from 'react';
 import { Animated, Platform, StyleSheet, View } from 'react-native';
+import { useT } from '../../i18n';
 import { colors, radius, shadow, space, TOUCH } from '../../theme/tokens';
 import { Squish } from '../Squish';
 import { Text } from '../Text';
@@ -99,9 +100,10 @@ export function SegmentProgress({ phases, phase, within, label }: { phases: numb
 }
 
 /** Pulsante «indietro» rotondo, bianco con bordo chiaro (a sinistra del pulsante principale). */
-export function BackCircle({ onPress, label = 'Indietro' }: { onPress: () => void; label?: string }) {
+export function BackCircle({ onPress, label }: { onPress: () => void; label?: string }) {
+  const { t } = useT();
   return (
-    <Squish accessibilityRole="button" accessibilityLabel={label} onPress={onPress} style={styles.back} hitSlop={4}>
+    <Squish accessibilityRole="button" accessibilityLabel={label ?? t('action.back')} onPress={onPress} style={styles.back} hitSlop={4}>
       <Ionicons name="arrow-back" size={24} color={colors.ink} />
     </Squish>
   );

@@ -1,3 +1,4 @@
+import { t } from '../../i18n';
 import type { EntitlementStatus, PaywallMode } from './types';
 
 /**
@@ -5,15 +6,27 @@ import type { EntitlementStatus, PaywallMode } from './types';
  * spargere controlli nel codice. Con paywallMode 'off' (oggi) tutto è disponibile.
  */
 export const PLUS_FEATURES = {
-  portion_profile: { label: 'Porzioni sulle tue abitudini', description: 'Pasta, riso e secondi calcolati sulle quantità che usi davvero.' },
-  tastes: { label: 'Gusti e stile della settimana', description: 'Più pesce, più primi, settimane veloci o più vegetariane.' },
-  multi_shopping_days: { label: 'Spesa su più giorni', description: 'Liste divise tra i tuoi giorni di spesa, con i freschi al momento giusto.' },
-  advanced_pantry: { label: 'Dispensa avanzata', description: 'Scadenze, stime e avvisi “potrebbe non bastare”.' },
-  smart_regeneration: { label: 'Rigenerazione e sostituzioni', description: 'Alternative che usano ciò che hai già in casa.' },
-  extended_history: { label: 'Storico esteso', description: 'Tutto lo storico dei pasti, senza limiti di tempo.' },
-  advanced_reminders: { label: 'Promemoria avanzati', description: 'Anticipi, fasce di silenzio e promemoria della spesa.' },
-  catalog_updates: { label: 'Nuove ricette', description: 'Aggiornamenti continui del ricettario.' },
+  portion_profile: feature('portion_profile'),
+  tastes: feature('tastes'),
+  multi_shopping_days: feature('multi_shopping_days'),
+  advanced_pantry: feature('advanced_pantry'),
+  smart_regeneration: feature('smart_regeneration'),
+  extended_history: feature('extended_history'),
+  advanced_reminders: feature('advanced_reminders'),
+  catalog_updates: feature('catalog_updates'),
 } as const;
+
+/** Nome e descrizione tradotti (namespace `paywall`), letti nella lingua corrente al momento dell'uso. */
+function feature(id: string): { readonly label: string; readonly description: string } {
+  return {
+    get label() {
+      return t(`paywall:feature.${id}.label`);
+    },
+    get description() {
+      return t(`paywall:feature.${id}.description`);
+    },
+  };
+}
 
 export type PlusFeature = keyof typeof PLUS_FEATURES;
 
