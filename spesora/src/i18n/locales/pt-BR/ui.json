@@ -6,7 +6,7 @@
   "infoToggle.why": "Por que estou perguntando?",
   "stepper.decrease": "Diminuir {label}",
   "stepper.increase": "Aumentar {label}",
-  "timer.a11y": "Timer {minutes} e {seconds}",
+  "timer.a11y": "Timer: {minutes} e {seconds}",
   "timer.minutes_one": "{count} minuto",
   "timer.minutes_many": "{count} minutos",
   "timer.minutes_other": "{count} minutos",

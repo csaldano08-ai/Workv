@@ -2,6 +2,7 @@ import { IsFocusedContext } from 'expo-router/build/react-navigation/core/useIsF
 import { memo, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, AppState, Easing, Platform, Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import Svg, { Path, SvgXml } from 'react-native-svg';
+import { useT } from '../../../i18n';
 import { useReducedMotion } from '../../useReducedMotion';
 import {
   EMOTE_PIVOT,
@@ -688,6 +689,7 @@ function AnimatedMina({
   entrance: boolean;
   onAppear?: () => void;
 }) {
+  const { t } = useT();
   const [vals] = useState(makeValues);
   const focused = useScreenFocused();
   const act: MinaAction = animated && !reduced ? action : 'none';
@@ -955,7 +957,7 @@ function AnimatedMina({
 
   if (interactive && !reduced) {
     return (
-      <Pressable {...a11y} style={[{ width: W, height: H }, style]} onPress={onTap} accessibilityHint="Mina fa un saltello">
+      <Pressable {...a11y} style={[{ width: W, height: H }, style]} onPress={onTap} accessibilityHint={t('mascot:a11y.hopHint')}>
         {content}
       </Pressable>
     );

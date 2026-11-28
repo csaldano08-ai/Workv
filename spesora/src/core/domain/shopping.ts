@@ -198,7 +198,6 @@ export function planShopping(input: ShoppingInput): ShoppingPlan {
  * Avviso «serve prima della prossima spesa» così come compare in `line.warnings`. È tradotto: lo aggiorna ogni
  * `planShopping` (lingua corrente), quindi coincide sempre con gli avvisi dell'ultimo calcolo della spesa.
  */
-// eslint-disable-next-line import/no-mutable-exports -- valore che segue la lingua: confrontato con gli avvisi già calcolati
 export let WARN_BEFORE_FIRST = '';
 
 /** Fabbisogno lordo per ingrediente (milli) dei pasti pianificati futuri: utile per la dispensa. */
