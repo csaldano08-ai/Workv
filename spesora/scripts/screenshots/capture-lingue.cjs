@@ -15,7 +15,7 @@ const path = require('path');
 
 const DATA = '2026-11-23T09:00:00';
 const LANGS = { it: 'it-IT', en: 'en-GB', es: 'es-ES', de: 'de-DE', fr: 'fr-FR', 'pt-BR': 'pt-BR' };
-const ROOT = path.join(__dirname, '..', '..');
+const ROOT = path.resolve(path.dirname(process.argv[1]), '..', '..');
 const tr = (lang, ns, key) => JSON.parse(fs.readFileSync(path.join(ROOT, 'src/i18n/locales', lang, `${ns}.json`), 'utf8'))[key];
 const RECIPE = 'bucatini_amatriciana';
 

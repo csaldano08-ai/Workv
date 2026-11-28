@@ -180,7 +180,7 @@ export default function CookingMode() {
       footer={
         <View style={styles.nav}>
           <Button kind="secondary" label={t('action.back')} icon="arrow-back" onPress={() => (index === 0 ? router.back() : go(index - 1))} style={styles.navBack} />
-          <Button label={nextLabel} iconRight={index === n - 1 ? 'checkmark' : 'arrow-forward'} onPress={() => go(index + 1)} style={styles.flex} />
+          <Button label={nextLabel} iconRight={index === n - 1 ? 'checkmark' : 'arrow-forward'} onPress={() => go(index + 1)} outerStyle={styles.flex} />
         </View>
       }
     >

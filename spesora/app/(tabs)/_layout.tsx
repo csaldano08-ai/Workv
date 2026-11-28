@@ -71,7 +71,7 @@ export default function TabsLayout() {
         tabBarLabelStyle: { fontSize: 12, fontFamily: font.bold, marginTop: 1 },
       }}
     >
-      <Tabs.Screen name="index" options={{ title: t('tabs.today'), tabBarIcon: icon('today', 'index') }} />
+      <Tabs.Screen name="index" options={{ title: t('tabs.todayTab'), tabBarIcon: icon('today', 'index') }} />
       <Tabs.Screen name="settimana" options={{ title: t('tabs.week'), tabBarIcon: icon('week', 'settimana') }} />
       <Tabs.Screen
         name="spesa"

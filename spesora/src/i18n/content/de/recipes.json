@@ -1,1 +1,1502 @@
-{}
+{
+  "pasta_al_tonno": {
+    "name": "Pasta mit Thunfisch"
+  },
+  "pasta_al_pesto": {
+    "name": "Pasta mit Pesto"
+  },
+  "pasta_pomodoro_basilico": {
+    "name": "Pasta mit Tomate und Basilikum"
+  },
+  "spaghetti_aglio_olio": {
+    "name": "Spaghetti mit Knoblauch, Öl und Chili"
+  },
+  "pasta_e_ceci": {
+    "name": "Pasta mit Kichererbsen"
+  },
+  "pasta_zucchine": {
+    "name": "Pasta mit Zucchini"
+  },
+  "pasta_broccoli": {
+    "name": "Pasta mit Brokkoli"
+  },
+  "pasta_gamberetti_pomodorini": {
+    "name": "Pasta mit Garnelen und Cherrytomaten"
+  },
+  "pasta_ricotta_spinaci": {
+    "name": "Pasta mit Ricotta und Spinat"
+  },
+  "pasta_carbonara": {
+    "name": "Pasta carbonara"
+  },
+  "pasta_ragu_veloce": {
+    "name": "Pasta mit schnellem Ragù"
+  },
+  "pasta_funghi": {
+    "name": "Pasta mit gebratenen Pilzen"
+  },
+  "gnocchi_pomodoro_mozzarella": {
+    "name": "Gnocchi mit Tomate und Mozzarella"
+  },
+  "pasta_al_forno": {
+    "name": "Einfacher Nudelauflauf"
+  },
+  "pasta_e_fagioli": {
+    "name": "Pasta mit Bohnen"
+  },
+  "tagliatelle_burro_salvia": {
+    "name": "Tagliatelle mit Butter und Salbei"
+  },
+  "risotto_zucca": {
+    "name": "Kürbisrisotto"
+  },
+  "riso_piselli_carote": {
+    "name": "Reis mit Erbsen und Karotten"
+  },
+  "insalata_riso_tonno": {
+    "name": "Reissalat mit Thunfisch"
+  },
+  "couscous_verdure_ceci": {
+    "name": "Couscous mit Gemüse und Kichererbsen"
+  },
+  "farro_pomodorini_feta": {
+    "name": "Dinkel mit Cherrytomaten, Gurke und Feta"
+  },
+  "riso_saltato_uova_verdure": {
+    "name": "Gebratener Reis mit Ei und Gemüse"
+  },
+  "polenta_funghi": {
+    "name": "Polenta mit gebratenen Pilzen"
+  },
+  "ceci_spinaci_padella": {
+    "name": "Kichererbsen und Spinat aus der Pfanne"
+  },
+  "fagioli_uccelletto": {
+    "name": "Toskanische Bohnen mit Tomate und Salbei"
+  },
+  "lenticchie_umido": {
+    "name": "Schneller Linseneintopf"
+  },
+  "dal_lenticchie_rosse": {
+    "name": "Würziges Rote-Linsen-Dal"
+  },
+  "polpette_ceci_friggitrice": {
+    "name": "Kichererbsenbällchen aus der Heißluftfritteuse"
+  },
+  "borlotti_mais_piccanti": {
+    "name": "Scharfe Borlotti-Bohnen mit Mais"
+  },
+  "tofu_saltato_verdure": {
+    "name": "Gebratener Tofu mit Gemüse"
+  },
+  "minestrone_pastina": {
+    "name": "Minestrone mit Suppennudeln"
+  },
+  "vellutata_zucca": {
+    "name": "Kürbis-Kartoffel-Cremesuppe"
+  },
+  "pollo_al_limone": {
+    "name": "Zitronen-Hähnchenbrust"
+  },
+  "pollo_peperoni": {
+    "name": "Hähnchenstücke mit Paprika"
+  },
+  "straccetti_pollo_friggitrice": {
+    "name": "Knusprige Hähnchenstreifen aus der Heißluftfritteuse"
+  },
+  "tacchino_rosmarino_insalata": {
+    "name": "Putenschnitzel mit Rosmarin und Salat"
+  },
+  "polpette_al_sugo": {
+    "name": "Fleischbällchen in Tomatensoße"
+  },
+  "cosce_pollo_patate_forno": {
+    "name": "Hähnchenschenkel mit Ofenkartoffeln"
+  },
+  "hamburger_insalata": {
+    "name": "Burger aus der Pfanne mit Salat und Tomaten"
+  },
+  "piadina_crudo_rucola": {
+    "name": "Piadina mit Rohschinken, Rucola und Tomate"
+  },
+  "salmone_padella_zucchine": {
+    "name": "Lachs aus der Pfanne mit Zucchini"
+  },
+  "merluzzo_pomodorini_capperi": {
+    "name": "Kabeljau mit Cherrytomaten und Kapern"
+  },
+  "salmone_forno_broccoli": {
+    "name": "Ofenlachs mit Brokkoli"
+  },
+  "merluzzo_impanato_friggitrice": {
+    "name": "Panierte Kabeljaufilets aus der Heißluftfritteuse"
+  },
+  "insalata_ceci_tonno": {
+    "name": "Kichererbsensalat mit Thunfisch und Cherrytomaten"
+  },
+  "insalata_sgombro_fagioli": {
+    "name": "Salat mit Makrele, Bohnen und roten Zwiebeln"
+  },
+  "piadina_salmone_affumicato": {
+    "name": "Piadina mit Räucherlachs und Frischkäse"
+  },
+  "frittata_zucchine": {
+    "name": "Zucchini-Frittata"
+  },
+  "uova_al_pomodoro": {
+    "name": "Eier in Tomatensoße"
+  },
+  "caprese_pane": {
+    "name": "Caprese mit Brot"
+  },
+  "insalata_greca": {
+    "name": "Griechischer Salat"
+  },
+  "cavolfiore_ceci_forno": {
+    "name": "Ofen-Blumenkohl mit Kichererbsen und Curry"
+  },
+  "patate_fagiolini_uova": {
+    "name": "Kartoffeln, grüne Bohnen und gekochte Eier"
+  },
+  "porridge_banana_cannella": {
+    "name": "Porridge mit Banane und Zimt"
+  },
+  "porridge_cacao_pera": {
+    "name": "Kakao-Porridge mit Birne"
+  },
+  "porridge_latte_frutti_bosco": {
+    "name": "Milch-Porridge mit Beeren"
+  },
+  "macedonia_mattino": {
+    "name": "Obstsalat zum Frühstück"
+  },
+  "yogurt_greco_noci_miele": {
+    "name": "Griechischer Joghurt mit Walnüssen, Honig und Obst"
+  },
+  "yogurt_soia_avena_fragole": {
+    "name": "Sojajoghurt mit Haferflocken und Erdbeeren"
+  },
+  "pancake_banana": {
+    "name": "Bananenpfannkuchen"
+  },
+  "toast_avocado_pomodorini": {
+    "name": "Toast mit Avocado und Cherrytomaten"
+  },
+  "fette_biscottate_ricotta_marmellata": {
+    "name": "Zwieback mit Ricotta und Konfitüre"
+  },
+  "uova_strapazzate_toast": {
+    "name": "Rührei mit Toast"
+  },
+  "latte_cereali_banana": {
+    "name": "Frühstücksflocken mit Milch und Banane"
+  },
+  "pane_burro_arachidi_banana": {
+    "name": "Vollkornbrot mit Erdnussbutter und Banane"
+  },
+  "frullato_fragole_banana": {
+    "name": "Erdbeer-Bananen-Smoothie"
+  },
+  "toast_prosciutto_mozzarella": {
+    "name": "Toast mit Schinken und Mozzarella"
+  },
+  "mela_cotta_cannella": {
+    "name": "Gedünsteter Apfel mit Zimt"
+  },
+  "crema_ceci_bastoncini": {
+    "name": "Kichererbsencreme mit Zitrone und Rohkost"
+  },
+  "ceci_croccanti_friggitrice": {
+    "name": "Knusprige Kichererbsen aus der Heißluftfritteuse"
+  },
+  "bruschetta_pomodoro": {
+    "name": "Bruschetta mit Tomaten"
+  },
+  "mela_mandorle": {
+    "name": "Apfelspalten mit Mandeln"
+  },
+  "gallette_ricotta_miele": {
+    "name": "Reiswaffeln mit Ricotta und Honig"
+  },
+  "yogurt_banana_cacao": {
+    "name": "Joghurt mit Banane und Kakao"
+  },
+  "spaghetti_vongole": {
+    "name": "Spaghetti mit Venusmuscheln"
+  },
+  "pasta_pesce_spada_menta": {
+    "name": "Pasta mit Schwertfisch, Cherrytomaten und Minze"
+  },
+  "pasta_crema_cavolo_nero": {
+    "name": "Pasta mit Schwarzkohlcreme"
+  },
+  "pasta_carciofi_limone": {
+    "name": "Pasta mit Artischocken und Zitrone"
+  },
+  "pasta_radicchio_gorgonzola": {
+    "name": "Pasta mit Radicchio und Gorgonzola"
+  },
+  "pasta_acciughe_pangrattato": {
+    "name": "Pasta mit Sardellen und gerösteten Bröseln"
+  },
+  "pasta_pomodori_secchi_rucola": {
+    "name": "Nudelsalat mit getrockneten Tomaten und Rucola"
+  },
+  "pasta_pancetta_pomodoro_pecorino": {
+    "name": "Pasta mit Pancetta, Tomate und Pecorino"
+  },
+  "pasta_alla_norma": {
+    "name": "Pasta alla Norma"
+  },
+  "pasta_e_lenticchie": {
+    "name": "Pasta mit Linsen"
+  },
+  "risotto_asparagi": {
+    "name": "Spargelrisotto"
+  },
+  "riso_fagioli_neri_peperoni": {
+    "name": "Reis mit schwarzen Bohnen und Paprika"
+  },
+  "riso_zucchine_pomodorini": {
+    "name": "Gebratener Reis mit Zucchini und Cherrytomaten"
+  },
+  "noodles_riso_verdure_edamame": {
+    "name": "Reisnudeln mit Gemüse und Edamame"
+  },
+  "orzo_zucchine_pomodorini": {
+    "name": "Lauwarme Graupen mit Zucchini, Cherrytomaten und Basilikum"
+  },
+  "bulgur_peperoni_olive": {
+    "name": "Bulgur mit Paprika, Oliven und Kapern"
+  },
+  "quinoa_ceci_cetriolo_menta": {
+    "name": "Quinoasalat mit Kichererbsen, Gurke und Minze"
+  },
+  "zuppa_cavolo_nero_cannellini": {
+    "name": "Schwarzkohlsuppe mit Cannellini-Bohnen"
+  },
+  "crema_piselli_spezzati": {
+    "name": "Cremige Schälerbsensuppe"
+  },
+  "vellutata_carote_zenzero": {
+    "name": "Karotten-Ingwer-Cremesuppe"
+  },
+  "scaloppine_limone": {
+    "name": "Kalbsschnitzel in Zitronensoße"
+  },
+  "lonza_mele": {
+    "name": "Schweinelachs mit Äpfeln"
+  },
+  "spezzatino_piselli": {
+    "name": "Rinderragout mit Erbsen"
+  },
+  "tacchino_curry_cocco": {
+    "name": "Putencurry mit Kokosmilch und Reis"
+  },
+  "saltimbocca_tacchino_speck": {
+    "name": "Puten-Saltimbocca mit Speck"
+  },
+  "involtini_pollo_cotto_scamorza": {
+    "name": "Hähnchenröllchen mit Kochschinken und Scamorza"
+  },
+  "pollo_friggitrice_verdure": {
+    "name": "Hähnchenbrust aus der Heißluftfritteuse mit Paprika und Zucchini"
+  },
+  "pollo_cacciatora": {
+    "name": "Hähnchen nach Jägerart aus der Pfanne"
+  },
+  "polpette_tacchino_carote": {
+    "name": "Putenbällchen aus dem Ofen mit Karotten"
+  },
+  "peperoni_ripieni_carne": {
+    "name": "Gefüllte Paprika mit Hackfleisch aus dem Ofen"
+  },
+  "bresaola_rucola_parmigiano": {
+    "name": "Bresaola mit Rucola und Parmesanspänen"
+  },
+  "pesce_spada_siciliana": {
+    "name": "Schwertfisch nach sizilianischer Art"
+  },
+  "orata_forno_patate": {
+    "name": "Doradenfilets aus dem Ofen mit Kartoffeln"
+  },
+  "tonno_sesamo_zucchine": {
+    "name": "Kurz gebratener Sesam-Thunfisch mit Ingwer-Zucchini"
+  },
+  "calamari_friggitrice": {
+    "name": "Knusprige Calamari-Ringe aus der Heißluftfritteuse"
+  },
+  "cozze_marinara": {
+    "name": "Miesmuscheln Marinara"
+  },
+  "gamberi_zucchine_curcuma": {
+    "name": "Garnelen und Zucchini mit Kurkuma"
+  },
+  "frittata_forno_patate_cipolle": {
+    "name": "Ofen-Frittata mit Kartoffeln und Zwiebeln"
+  },
+  "uova_purgatorio_peperoni": {
+    "name": "Eier im Fegefeuer mit Paprika"
+  },
+  "omelette_spinaci_scamorza": {
+    "name": "Omelett mit Spinat und Scamorza"
+  },
+  "chili_fagioli_neri": {
+    "name": "Chili mit schwarzen Bohnen und Reis"
+  },
+  "hummus_bowl_tahina": {
+    "name": "Bowl mit hausgemachtem Hummus und Quinoa"
+  },
+  "tofu_croccante_broccoli": {
+    "name": "Knuspriger Tofu aus der Heißluftfritteuse mit Brokkoli"
+  },
+  "bowl_edamame_riso": {
+    "name": "Reis-Bowl mit Edamame und Avocado"
+  },
+  "noodles_tempeh_peperoni": {
+    "name": "Reisnudeln mit Tempeh und Paprika"
+  },
+  "zuppa_piselli_spezzati": {
+    "name": "Erbseneintopf"
+  },
+  "curry_ceci_cocco": {
+    "name": "Kichererbsen-Curry mit Kokosmilch"
+  },
+  "parmigiana_leggera": {
+    "name": "Leichte Auberginen-Parmigiana"
+  },
+  "carciofi_patate_padella": {
+    "name": "Artischocken und Kartoffeln aus der Pfanne"
+  },
+  "cavoletti_ceci_friggitrice": {
+    "name": "Rosenkohl und Kichererbsen aus der Heißluftfritteuse"
+  },
+  "patate_dolci_ripiene": {
+    "name": "Gefüllte Süßkartoffeln mit Spinat und Feta"
+  },
+  "verza_stufata_fagioli": {
+    "name": "Geschmorter Wirsing mit Cannellini-Bohnen"
+  },
+  "frittelle_verdure_ceci": {
+    "name": "Gemüsepuffer ohne Ei"
+  },
+  "insalatone_cannellini_mais": {
+    "name": "Großer Salat mit Cannellini-Bohnen und Mais"
+  },
+  "zucchine_ripiene_couscous": {
+    "name": "Gefüllte Zucchini mit Couscous und Oliven"
+  },
+  "torta_salata_zucchine": {
+    "name": "Blätterteig-Tarte mit Zucchini und Scamorza"
+  },
+  "farinata_ceci_forno": {
+    "name": "Kichererbsen-Fladen aus dem Ofen mit Salat"
+  },
+  "tacos_lenticchie": {
+    "name": "Tacos mit würzigen Linsen"
+  },
+  "orzotto_radicchio": {
+    "name": "Graupenrisotto mit Radicchio"
+  },
+  "crostoni_cavolo_nero_cannellini": {
+    "name": "Röstbrot mit Schwarzkohl und Cannellini-Bohnen"
+  },
+  "pudding_chia_mango": {
+    "name": "Chia-Pudding mit Mango"
+  },
+  "riso_dolce_frutti_bosco": {
+    "name": "Süßer Reis mit Beeren"
+  },
+  "pancake_ceci_banana": {
+    "name": "Kichererbsen-Bananen-Pfannkuchen"
+  },
+  "smoothie_bowl_tropicale": {
+    "name": "Tropische Smoothie-Bowl"
+  },
+  "quinoa_cacao_banana": {
+    "name": "Kakao-Quinoa mit Banane"
+  },
+  "crema_polenta_mele": {
+    "name": "Süße Polentacreme mit Äpfeln"
+  },
+  "overnight_oats_mirtilli": {
+    "name": "Overnight Oats mit Heidelbeeren"
+  },
+  "crepes_marmellata": {
+    "name": "Crêpes mit Konfitüre"
+  },
+  "yogurt_kiwi_granola": {
+    "name": "Joghurt-Bowl mit Kiwi und Granola"
+  },
+  "ciambellone_friggitrice": {
+    "name": "Zitronen-Gugelhupf aus der Heißluftfritteuse"
+  },
+  "french_toast_fragole": {
+    "name": "French Toast mit Erdbeeren"
+  },
+  "frullato_kefir_pesca": {
+    "name": "Kefir-Pfirsich-Smoothie"
+  },
+  "patata_dolce_avocado": {
+    "name": "Süßkartoffelscheiben mit Avocado"
+  },
+  "tofu_strapazzato_spinaci": {
+    "name": "Tofu-Rührei mit Spinat"
+  },
+  "uova_camicia_pomodoro": {
+    "name": "Pochierte Eier auf Brot mit Tomate"
+  },
+  "palline_datteri_cacao": {
+    "name": "Dattel-Kakao-Kugeln"
+  },
+  "chips_mela_cannella": {
+    "name": "Apfelchips mit Zimt"
+  },
+  "ananas_menta_lime": {
+    "name": "Frische Ananas mit Minze und Limette"
+  },
+  "spiedini_frutta_cioccolato": {
+    "name": "Obstspieße mit Schokolade"
+  },
+  "pera_gorgonzola_noci": {
+    "name": "Birne mit Gorgonzola und Walnüssen"
+  },
+  "carasau_rosmarino": {
+    "name": "Knuspriges Carasau-Brot mit Rosmarin"
+  },
+  "chips_tortilla_pomodorini": {
+    "name": "Tortilla-Chips mit Cherrytomaten-Salsa"
+  },
+  "ciambella_yogurt_forno": {
+    "name": "Joghurt-Gugelhupf"
+  },
+  "torta_mele_casalinga": {
+    "name": "Omas Apfelkuchen"
+  },
+  "plumcake_banana_noci": {
+    "name": "Vollkorn-Bananenbrot mit Walnüssen"
+  },
+  "torta_cacao_acqua": {
+    "name": "Kakaokuchen mit Wasser"
+  },
+  "torta_carote_mandorle": {
+    "name": "Karotten-Mandel-Kuchen"
+  },
+  "crostata_marmellata": {
+    "name": "Marmeladen-Mürbeteigtarte"
+  },
+  "migliaccio_napoletano": {
+    "name": "Neapolitanischer Migliaccio-Grießkuchen"
+  },
+  "biscotti_inzuppo_limone": {
+    "name": "Zitronenkekse zum Eintunken"
+  },
+  "biscotti_avena_banana": {
+    "name": "Hafer-Bananen-Kekse"
+  },
+  "mele_forno_noci_uvetta": {
+    "name": "Bratäpfel mit Walnüssen und Rosinen"
+  },
+  "pere_forno_cannella": {
+    "name": "Ofenbirnen mit Rohrzucker und Nelken"
+  },
+  "frittelle_mele": {
+    "name": "Apfelküchlein"
+  },
+  "riso_latte_cannella": {
+    "name": "Milchreis mit Zimt und Zitrone"
+  },
+  "semolino_dolce_arancia": {
+    "name": "Süßer Grießbrei mit Orange"
+  },
+  "porridge_miglio_mela": {
+    "name": "Hirsebrei mit Apfel und Zimt"
+  },
+  "crema_grano_saraceno_cacao": {
+    "name": "Buchweizencreme mit Kakao und Banane"
+  },
+  "quinoa_dolce_albicocche": {
+    "name": "Süße Quinoa mit Aprikosen und Honig"
+  },
+  "porridge_soia_cachi": {
+    "name": "Porridge mit Sojadrink und Kaki"
+  },
+  "overnight_oats_mela_cannella": {
+    "name": "Overnight Oats mit Apfel, Zimt und Haferdrink"
+  },
+  "pudding_chia_mandorla_lamponi": {
+    "name": "Chia-Pudding mit Mandeldrink und Himbeeren"
+  },
+  "crema_banana_lino_cacao": {
+    "name": "Bananencreme mit Leinsamen und Kakao"
+  },
+  "crema_castagne_cacao_pera": {
+    "name": "Maronencreme mit Kakao und Birne"
+  },
+  "yogurt_fichi_miele_mandorle": {
+    "name": "Joghurt mit frischen Feigen, Honig und Mandeln"
+  },
+  "yogurt_greco_albicocche_avena": {
+    "name": "Griechischer Joghurt mit Aprikosen und karamellisierten Haferflocken"
+  },
+  "ricotta_montata_miele_arancia": {
+    "name": "Aufgeschlagene Ricotta mit Honig und Orange"
+  },
+  "macedonia_autunnale_melagrana": {
+    "name": "Herbstlicher Obstsalat mit Trauben und Granatapfel"
+  },
+  "arance_datteri_cannella": {
+    "name": "Orangenscheiben mit Datteln und Zimt"
+  },
+  "fragole_limone_zucchero": {
+    "name": "Erdbeeren mit Zitrone und Zucker"
+  },
+  "smoothie_bowl_frutti_rossi": {
+    "name": "Smoothie-Bowl mit roten Beeren"
+  },
+  "smoothie_bowl_verde_kiwi": {
+    "name": "Grüne Smoothie-Bowl mit Kiwi und Spinat"
+  },
+  "toast_integrale_ricotta_pomodorini": {
+    "name": "Vollkorntoast mit Ricotta und Cherrytomaten"
+  },
+  "pane_tostato_hummus_carota_cetriolo": {
+    "name": "Geröstetes Brot mit Hummus, Karotte und Gurke"
+  },
+  "pane_integrale_salmone_affumicato_yogurt": {
+    "name": "Vollkornbrot mit Räucherlachs und Zitronenjoghurt"
+  },
+  "pane_uovo_occhio_bue_spinaci": {
+    "name": "Geröstetes Brot mit Spiegelei und Spinat"
+  },
+  "avocado_toast_uovo_sodo_sesamo": {
+    "name": "Avocado-Toast mit gekochtem Ei und Sesam"
+  },
+  "pane_cunzato_primo_sale_acciughe": {
+    "name": "Sizilianisches Pane cunzato mit Primo sale und Sardellen"
+  },
+  "pane_integrale_crema_cannellini_pomodori_secchi": {
+    "name": "Vollkornbrot mit Cannellini-Creme und getrockneten Tomaten"
+  },
+  "gallette_riso_tonno_pomodorini_capperi": {
+    "name": "Reiswaffeln mit Thunfisch, Cherrytomaten und Kapern"
+  },
+  "uovo_coque_soldatini_pane": {
+    "name": "Weiches Ei mit Brotstreifen"
+  },
+  "omelette_erbe_aromatiche": {
+    "name": "Kräuteromelett"
+  },
+  "frittatina_piselli_cipollotto": {
+    "name": "Kleine Frittata mit Erbsen und Frühlingszwiebeln"
+  },
+  "uovo_camicia_asparagi_parmigiano": {
+    "name": "Pochiertes Ei mit Spargel und Parmesan"
+  },
+  "uova_tegamino_patate_rosmarino": {
+    "name": "Spiegeleier mit Rosmarinkartoffeln"
+  },
+  "uova_cocotte_friggitrice_spinaci": {
+    "name": "Eier im Förmchen aus der Heißluftfritteuse mit Spinat"
+  },
+  "piadina_uova_strapazzate_zucchine": {
+    "name": "Piadina-Wrap mit Rührei und Zucchini"
+  },
+  "polenta_morbida_uovo_tegamino": {
+    "name": "Cremige Polenta mit Spiegelei"
+  },
+  "yogurt_salato_cetriolo_menta_pane": {
+    "name": "Herzhafte Joghurt-Bowl mit Gurke, Minze und Röstbrot"
+  },
+  "bowl_yogurt_ceci_croccanti_paprika": {
+    "name": "Joghurt-Bowl mit knusprigen Paprika-Kichererbsen"
+  },
+  "porridge_salato_avena_funghi": {
+    "name": "Herzhafter Haferbrei mit Pilzen und Parmesan"
+  },
+  "bowl_ceci_avocado_pomodorini": {
+    "name": "Frühstücks-Bowl mit Kichererbsen, Avocado und Cherrytomaten"
+  },
+  "quinoa_salata_avocado_semi_zucca": {
+    "name": "Herzhafte Quinoa mit Avocado, Cherrytomaten und Kürbiskernen"
+  },
+  "strapazzata_farina_ceci_zucchine": {
+    "name": "Kichererbsenmehl-Rührei mit Zucchini"
+  },
+  "tofu_strapazzato_peperoni_paprika": {
+    "name": "Tofu-Rührei mit Paprika"
+  },
+  "pancake_salati_ceci_spinaci": {
+    "name": "Herzhafte Kichererbsen-Spinat-Pfannkuchen"
+  },
+  "polenta_morbida_pomodorini_saltati": {
+    "name": "Cremige Polenta mit gebratenen Cherrytomaten und Basilikum"
+  },
+  "patate_saltate_peperoni_paprika": {
+    "name": "Bratkartoffeln mit Paprika"
+  },
+  "rosti_patate_friggitrice_aria": {
+    "name": "Kartoffelrösti aus der Heißluftfritteuse"
+  },
+  "patata_dolce_friggitrice_fagioli_neri": {
+    "name": "Süßkartoffel aus der Heißluftfritteuse mit schwarzen Bohnen und Limette"
+  },
+  "cannellini_funghi_pomodorini_padella": {
+    "name": "Cannellini-Bohnen, Pilze und Cherrytomaten aus der Pfanne"
+  },
+  "wrap_tortilla_fagioli_neri_avocado": {
+    "name": "Wrap mit schwarzen Bohnen, Avocado und Tomate"
+  },
+  "bucatini_amatriciana": {
+    "name": "Bucatini all'amatriciana"
+  },
+  "rigatoni_alla_gricia": {
+    "name": "Rigatoni alla gricia"
+  },
+  "spaghetti_cacio_e_pepe": {
+    "name": "Spaghetti cacio e pepe"
+  },
+  "penne_all_arrabbiata": {
+    "name": "Penne all'arrabbiata"
+  },
+  "spaghetti_alla_puttanesca": {
+    "name": "Spaghetti alla puttanesca"
+  },
+  "pasta_con_le_sarde": {
+    "name": "Sizilianische Pasta mit Sardinen"
+  },
+  "orecchiette_cime_di_rapa": {
+    "name": "Orecchiette mit Stängelkohl"
+  },
+  "pasta_e_patate_con_provola": {
+    "name": "Pasta mit Kartoffeln und Provola"
+  },
+  "pasta_e_fave": {
+    "name": "Pasta mit dicken Bohnen"
+  },
+  "pasta_e_piselli": {
+    "name": "Pasta mit Erbsen"
+  },
+  "pasta_e_cavolfiore": {
+    "name": "Pasta mit Blumenkohl"
+  },
+  "pasta_alla_genovese": {
+    "name": "Neapolitanische Pasta alla Genovese"
+  },
+  "tagliatelle_ragu_bolognese": {
+    "name": "Tagliatelle mit Bologneser Ragù"
+  },
+  "lasagne_alla_bolognese": {
+    "name": "Lasagne alla Bolognese"
+  },
+  "lasagne_alle_verdure": {
+    "name": "Gemüselasagne"
+  },
+  "pasta_al_forno_melanzane_scamorza": {
+    "name": "Nudelauflauf mit Aubergine und Scamorza"
+  },
+  "tortellini_in_brodo": {
+    "name": "Tortellini in Brühe"
+  },
+  "tortellini_panna_prosciutto": {
+    "name": "Tortellini mit Sahne und Schinken"
+  },
+  "ravioli_burro_salvia": {
+    "name": "Ricotta-Spinat-Ravioli mit Butter und Salbei"
+  },
+  "gnocchi_alla_sorrentina": {
+    "name": "Gnocchi alla sorrentina"
+  },
+  "gnocchi_pesto_pomodorini": {
+    "name": "Gnocchi mit Pesto und Cherrytomaten"
+  },
+  "trofie_pesto_patate_fagiolini": {
+    "name": "Trofie mit Pesto, Kartoffeln und grünen Bohnen"
+  },
+  "spaghetti_ai_frutti_di_mare": {
+    "name": "Spaghetti mit Meeresfrüchten"
+  },
+  "pasta_seppie_pomodorini": {
+    "name": "Pasta mit Sepia und Cherrytomaten"
+  },
+  "paccheri_ragu_di_polpo": {
+    "name": "Paccheri mit Oktopus-Ragù"
+  },
+  "pasta_al_salmone_affumicato": {
+    "name": "Pasta mit Räucherlachs"
+  },
+  "pasta_tonno_limone_capperi": {
+    "name": "Pasta mit Thunfisch, Zitrone und Kapern"
+  },
+  "pasta_zucchine_gamberetti": {
+    "name": "Pasta mit Zucchini und Garnelen"
+  },
+  "pasta_funghi_salsiccia": {
+    "name": "Pasta mit Pilzen und Salsiccia"
+  },
+  "pasta_salsiccia_broccoli": {
+    "name": "Pasta mit Salsiccia und Brokkoli"
+  },
+  "pasta_zucca_salsiccia": {
+    "name": "Pasta mit Kürbis und Salsiccia"
+  },
+  "pasta_ragu_bianco": {
+    "name": "Pasta mit weißem Ragù"
+  },
+  "pasta_panna_prosciutto_piselli": {
+    "name": "Pasta mit Sahne, Schinken und Erbsen"
+  },
+  "spaghetti_alla_carrettiera": {
+    "name": "Spaghetti alla carrettiera"
+  },
+  "pasta_alla_crudaiola": {
+    "name": "Pasta mit roher Tomatensoße"
+  },
+  "pasta_pomodorini_burrata": {
+    "name": "Pasta mit Cherrytomaten und Burrata"
+  },
+  "busiate_pesto_trapanese": {
+    "name": "Busiate mit Pesto alla Trapanese"
+  },
+  "pasta_pesto_rosso_pomodori_secchi": {
+    "name": "Pasta mit rotem Pesto aus getrockneten Tomaten"
+  },
+  "spaghetti_alla_nerano": {
+    "name": "Spaghetti alla Nerano"
+  },
+  "spaghetti_al_limone": {
+    "name": "Zitronen-Spaghetti"
+  },
+  "pasta_salsa_di_noci": {
+    "name": "Pasta mit Walnusssoße"
+  },
+  "carbonara_di_zucchine": {
+    "name": "Zucchini-Carbonara"
+  },
+  "pasta_quattro_formaggi": {
+    "name": "Pasta mit vier Käsesorten"
+  },
+  "pasta_fiori_di_zucca_zafferano": {
+    "name": "Pasta mit Zucchiniblüten, Zucchini und Safran"
+  },
+  "pasta_integrale_crema_lenticchie_rosse": {
+    "name": "Vollkornpasta mit Rote-Linsen-Creme"
+  },
+  "pasta_integrale_verdure_saltate": {
+    "name": "Vollkornpasta mit gebratenem Gemüse"
+  },
+  "pasta_fredda_verdure_grigliate": {
+    "name": "Nudelsalat mit Grillgemüse"
+  },
+  "pasta_fredda_tonno_olive_pomodorini": {
+    "name": "Nudelsalat mit Thunfisch, Oliven und Cherrytomaten"
+  },
+  "pasta_fredda_zucchine_feta_menta": {
+    "name": "Nudelsalat mit Zucchini, Feta und Minze"
+  },
+  "pasta_fredda_ceci_peperoni": {
+    "name": "Nudelsalat mit Kichererbsen, Paprika und Petersilie"
+  },
+  "risotto_alla_milanese": {
+    "name": "Risotto alla milanese"
+  },
+  "risotto_funghi_porcini_secchi": {
+    "name": "Risotto mit getrockneten Steinpilzen"
+  },
+  "riso_burro_parmigiano": {
+    "name": "Reis mit Butter und Parmesan"
+  },
+  "risotto_frutti_di_mare": {
+    "name": "Meeresfrüchte-Risotto"
+  },
+  "risotto_al_limone": {
+    "name": "Zitronenrisotto"
+  },
+  "risotto_zucchine_zafferano": {
+    "name": "Zucchini-Safran-Risotto"
+  },
+  "risotto_pomodoro_basilico": {
+    "name": "Tomaten-Basilikum-Risotto"
+  },
+  "riso_venere_gamberetti_zucchine": {
+    "name": "Schwarzer Reis mit Garnelen und Zucchini"
+  },
+  "riso_venere_verdure_zenzero": {
+    "name": "Schwarzer Reis mit gebratenem Gemüse und Ingwer"
+  },
+  "riso_integrale_verdure_forno": {
+    "name": "Naturreis mit Ofengemüse"
+  },
+  "insalata_riso_pollo_mais_peperoni": {
+    "name": "Basmati-Reissalat mit Hähnchen, Mais und Paprika"
+  },
+  "paella_pollo_verdure": {
+    "name": "Paella mit Hähnchen und Gemüse"
+  },
+  "riso_basmati_curry_verdure": {
+    "name": "Curry-Basmatireis mit Gemüse"
+  },
+  "farro_funghi_prezzemolo": {
+    "name": "Dinkel mit Pilzen und Petersilie"
+  },
+  "insalata_farro_tonno_fagiolini": {
+    "name": "Dinkelsalat mit Thunfisch und grünen Bohnen"
+  },
+  "couscous_gamberetti_zucchine_limone": {
+    "name": "Couscous mit Garnelen, Zucchini und Zitrone"
+  },
+  "couscous_pollo_verdure_speziate": {
+    "name": "Couscous mit Hähnchen und gewürztem Gemüse"
+  },
+  "tabbouleh_bulgur_prezzemolo": {
+    "name": "Taboulé mit Bulgur und Petersilie"
+  },
+  "miglio_zucchine_carote_curcuma": {
+    "name": "Hirse mit Zucchini und Karotten und Kurkuma"
+  },
+  "grano_saraceno_funghi_cipolla": {
+    "name": "Buchweizen mit Pilzen und Zwiebeln"
+  },
+  "quinoa_saltata_verdure": {
+    "name": "Gebratene Quinoa mit Gemüse"
+  },
+  "polenta_concia": {
+    "name": "Polenta concia mit geschmolzenem Käse"
+  },
+  "polenta_salsiccia_pomodoro": {
+    "name": "Polenta mit Salsiccia in Tomatensoße"
+  },
+  "polenta_forno_pomodoro_mozzarella": {
+    "name": "Überbackene Polenta mit Tomate und Mozzarella"
+  },
+  "gnocchi_alla_romana": {
+    "name": "Grießnocken nach römischer Art"
+  },
+  "riso_e_lenticchie": {
+    "name": "Reis mit Linsen"
+  },
+  "minestra_orzo_fagioli": {
+    "name": "Graupensuppe mit Bohnen"
+  },
+  "minestrone_alla_genovese": {
+    "name": "Minestrone nach Genueser Art"
+  },
+  "ribollita_toscana": {
+    "name": "Toskanische Ribollita"
+  },
+  "pappa_al_pomodoro": {
+    "name": "Toskanische Tomaten-Brot-Suppe"
+  },
+  "zuppa_farro_verdure": {
+    "name": "Dinkel-Gemüse-Suppe"
+  },
+  "zuppa_di_lenticchie": {
+    "name": "Linsensuppe"
+  },
+  "zuppa_ceci_rosmarino": {
+    "name": "Kichererbsensuppe mit Rosmarin"
+  },
+  "zuppa_scarola_fagioli": {
+    "name": "Endiviensuppe mit Bohnen"
+  },
+  "stracciatella_in_brodo": {
+    "name": "Stracciatella-Suppe mit Ei"
+  },
+  "acquacotta_toscana": {
+    "name": "Toskanische Acquacotta"
+  },
+  "zuppa_di_pesce_semplice": {
+    "name": "Einfache Fischsuppe"
+  },
+  "zuppa_cipolle_gratinata": {
+    "name": "Überbackene Zwiebelsuppe"
+  },
+  "gazpacho": {
+    "name": "Gazpacho"
+  },
+  "passato_di_verdure": {
+    "name": "Passierte Gemüsesuppe"
+  },
+  "vellutata_zucchine_menta": {
+    "name": "Zucchini-Minz-Cremesuppe"
+  },
+  "vellutata_cavolfiore": {
+    "name": "Blumenkohlcremesuppe"
+  },
+  "crema_porri_patate": {
+    "name": "Lauch-Kartoffel-Cremesuppe"
+  },
+  "vellutata_piselli": {
+    "name": "Erbsencremesuppe"
+  },
+  "vellutata_broccoli_parmigiano": {
+    "name": "Brokkoli-Parmesan-Cremesuppe"
+  },
+  "crema_zucca_lenticchie_rosse": {
+    "name": "Kürbis-Rote-Linsen-Cremesuppe"
+  },
+  "pollo_alla_diavola_padella": {
+    "name": "Scharfes Teufelshähnchen aus der Pfanne"
+  },
+  "pollo_alla_paprika_con_riso": {
+    "name": "Paprikahähnchen mit Reis"
+  },
+  "sovracosce_pollo_erbe_friggitrice": {
+    "name": "Hähnchenoberkeulen mit Kräutern aus der Heißluftfritteuse"
+  },
+  "spiedini_pollo_verdure_piastra": {
+    "name": "Hähnchen-Gemüse-Spieße vom Grill"
+  },
+  "cotolette_pollo_insalata_pomodori": {
+    "name": "Hähnchenschnitzel mit Tomatensalat"
+  },
+  "polpette_pollo_zucchine_friggitrice": {
+    "name": "Hähnchen-Zucchini-Bällchen aus der Heißluftfritteuse"
+  },
+  "pollo_sesamo_broccoli_riso": {
+    "name": "Sesamhähnchen mit Brokkoli und Reis"
+  },
+  "fajitas_pollo_peperoni": {
+    "name": "Hähnchen-Fajitas mit Paprika"
+  },
+  "pollo_al_forno_zucca_rosmarino": {
+    "name": "Ofenhähnchen mit Kürbis und Rosmarin"
+  },
+  "fegatini_pollo_cipolle_polenta": {
+    "name": "Hähnchenleber mit Zwiebeln und Polenta"
+  },
+  "involtini_tacchino_spinaci": {
+    "name": "Putenröllchen mit Spinat und Parmesan"
+  },
+  "bocconcini_tacchino_funghi": {
+    "name": "Putengeschnetzeltes mit Pilzen"
+  },
+  "bocconcini_tacchino_zucchine_zafferano": {
+    "name": "Putengeschnetzeltes mit Zucchini und Safran"
+  },
+  "straccetti_manzo_rucola_grana": {
+    "name": "Rindfleischstreifen mit Rucola und Grana"
+  },
+  "carne_alla_pizzaiola": {
+    "name": "Rindfleisch nach Pizzaiola-Art"
+  },
+  "polpette_in_bianco_piselli": {
+    "name": "Geschmorte Fleischbällchen mit Erbsen"
+  },
+  "polpettone_forno_patate": {
+    "name": "Hackbraten mit Ofenkartoffeln"
+  },
+  "gulasch_manzo_polenta": {
+    "name": "Rindergulasch mit Polenta"
+  },
+  "braciole_al_sugo_barese": {
+    "name": "Rinderrouladen in Tomatensoße nach Bari-Art"
+  },
+  "chili_con_carne": {
+    "name": "Chili con Carne"
+  },
+  "costine_maiale_forno_patate": {
+    "name": "Schweinerippchen aus dem Ofen mit Kartoffeln"
+  },
+  "fettine_lonza_al_latte": {
+    "name": "Schweinelachs in Milch geschmort"
+  },
+  "salsiccia_e_friarielli": {
+    "name": "Salsiccia mit Stängelkohl"
+  },
+  "salsiccia_patate_forno": {
+    "name": "Salsiccia mit Ofenkartoffeln"
+  },
+  "salsicce_fagioli_pomodoro": {
+    "name": "Salsiccia mit Bohnen in Tomatensoße"
+  },
+  "maiale_agrodolce_ananas": {
+    "name": "Süßsaures Schweinefleisch mit Paprika und Ananas"
+  },
+  "agnello_forno_patate": {
+    "name": "Lamm aus dem Ofen mit Kartoffeln"
+  },
+  "agnello_cacio_e_uova": {
+    "name": "Lamm mit Pecorino und Ei"
+  },
+  "coniglio_alla_cacciatora": {
+    "name": "Kaninchen nach Jägerart"
+  },
+  "coniglio_alla_ligure_olive": {
+    "name": "Kaninchen nach ligurischer Art mit Oliven"
+  },
+  "saltimbocca_alla_romana": {
+    "name": "Saltimbocca alla romana"
+  },
+  "vitello_tonnato_fettine": {
+    "name": "Vitello tonnato"
+  },
+  "alici_in_tortiera_gratinate": {
+    "name": "Überbackene Sardellen aus der Form"
+  },
+  "sarde_beccafico_semplificate": {
+    "name": "Gefüllte Sardinen nach sizilianischer Art, vereinfacht"
+  },
+  "sgombro_forno_patate_pomodorini": {
+    "name": "Makrele aus dem Ofen mit Kartoffeln und Cherrytomaten"
+  },
+  "orata_acqua_pazza": {
+    "name": "Dorade in Acqua pazza"
+  },
+  "branzino_cartoccio_zucchine_limone": {
+    "name": "Wolfsbarsch im Päckchen mit Zucchini und Zitrone"
+  },
+  "merluzzo_alla_livornese": {
+    "name": "Kabeljau nach Livorneser Art"
+  },
+  "baccala_umido_patate": {
+    "name": "Klippfisch-Eintopf mit Kartoffeln"
+  },
+  "insalata_polpo_patate": {
+    "name": "Oktopus-Kartoffel-Salat"
+  },
+  "seppie_con_piselli": {
+    "name": "Sepia mit Erbsen"
+  },
+  "impepata_di_cozze": {
+    "name": "Gepfefferte Miesmuscheln"
+  },
+  "gamberoni_aglio_olio_prezzemolo": {
+    "name": "Riesengarnelen aus der Pfanne mit Knoblauch, Öl und Petersilie"
+  },
+  "trota_forno_mandorle_limone": {
+    "name": "Forelle aus dem Ofen mit Mandeln und Zitrone"
+  },
+  "salmone_crosta_pistacchi": {
+    "name": "Lachs in Pistazienkruste"
+  },
+  "salmone_glassato_soia_miele": {
+    "name": "Lachs mit Soja-Honig-Glasur"
+  },
+  "tonno_alla_cipollata": {
+    "name": "Thunfisch mit süßsauren Zwiebeln"
+  },
+  "platessa_limone_padella": {
+    "name": "Scholle mit Zitrone aus der Pfanne"
+  },
+  "nasello_vapore_carote_zucchine": {
+    "name": "Gedämpfter Seehecht mit Karotten und Zucchini"
+  },
+  "polpette_tonno_patate_forno": {
+    "name": "Thunfisch-Kartoffel-Bällchen aus dem Ofen"
+  },
+  "sardine_friggitrice_limone_origano": {
+    "name": "Sardinen aus der Heißluftfritteuse mit Zitrone und Oregano"
+  },
+  "crocchette_salmone_patate_friggitrice": {
+    "name": "Lachs-Kartoffel-Kroketten aus der Heißluftfritteuse"
+  },
+  "frittata_di_cipolle": {
+    "name": "Zwiebel-Frittata"
+  },
+  "uova_ripiene_tonno_insalata": {
+    "name": "Gefüllte Eier mit Thunfisch und Salat"
+  },
+  "uova_alla_fiorentina": {
+    "name": "Eier nach Florentiner Art"
+  },
+  "curry_uova_sode_riso": {
+    "name": "Eier-Curry mit Basmatireis"
+  },
+  "omelette_funghi_champignon": {
+    "name": "Champignon-Omelett"
+  },
+  "uova_strapazzate_asparagi": {
+    "name": "Rührei mit Spargel"
+  },
+  "tofu_piastra_peperoni_zucchine": {
+    "name": "Gegrillter Tofu mit Paprika und Zucchini"
+  },
+  "tofu_patate_dolci_paprika_friggitrice": {
+    "name": "Paprika-Tofu und Süßkartoffeln aus der Heißluftfritteuse"
+  },
+  "tempeh_piastra_cavolo_nero": {
+    "name": "Gegrilltes Tempeh mit gebratenem Schwarzkohl"
+  },
+  "seitan_alla_pizzaiola": {
+    "name": "Seitan nach Pizzaiola-Art"
+  },
+  "scaloppine_seitan_funghi": {
+    "name": "Seitan-Schnitzel mit Pilzen"
+  },
+  "tofu_limone_capperi_fagiolini": {
+    "name": "Zitronen-Kapern-Tofu mit grünen Bohnen"
+  },
+  "baccala_ceci_pomodoro": {
+    "name": "Klippfisch mit Kichererbsen in Tomatensoße"
+  },
+  "lenticchie_salsiccia_umido": {
+    "name": "Linsen-Eintopf mit Salsiccia"
+  },
+  "piselli_cacio_uova": {
+    "name": "Erbsen mit Käse und Ei"
+  },
+  "vignarola_romana": {
+    "name": "Römische Vignarola mit Frühlingsgemüse"
+  },
+  "ceci_zimino_bietole": {
+    "name": "Kichererbsen mit Mangold nach toskanischer Art"
+  },
+  "ceci_cime_rapa_padella": {
+    "name": "Kichererbsen und Stängelkohl aus der Pfanne"
+  },
+  "polenta_borlotti_umido": {
+    "name": "Polenta mit geschmorten Borlotti-Bohnen"
+  },
+  "panelle_palermitane_insalata": {
+    "name": "Palermitanische Kichererbsen-Panelle mit Salat"
+  },
+  "burger_ceci_zucchine": {
+    "name": "Kichererbsen-Zucchini-Burger aus der Pfanne"
+  },
+  "burger_lenticchie_carote_forno": {
+    "name": "Linsen-Karotten-Burger aus dem Ofen mit Kartoffeln"
+  },
+  "panino_burger_fagioli_neri": {
+    "name": "Burger-Brötchen mit Schwarze-Bohnen-Patty und Mais"
+  },
+  "polpette_lenticchie_forno_sugo": {
+    "name": "Linsenbällchen aus dem Ofen mit Tomatensoße"
+  },
+  "falafel_forno_salsa_yogurt": {
+    "name": "Falafel aus dem Ofen mit Joghurtsoße"
+  },
+  "hummus_barbabietola_pita": {
+    "name": "Rote-Bete-Hummus mit Pitabrot und Gemüse"
+  },
+  "crema_cannellini_verdure_forno": {
+    "name": "Cannellini-Creme mit Rosmarin und Ofengemüse"
+  },
+  "insalata_lenticchie_verdure_croccanti": {
+    "name": "Linsensalat mit knackigem Gemüse"
+  },
+  "insalata_ceci_peperoni_arrostiti": {
+    "name": "Kichererbsensalat mit gerösteter Paprika"
+  },
+  "insalata_tiepida_cannellini_gamberetti": {
+    "name": "Lauwarmer Salat mit Cannellini-Bohnen und Garnelen"
+  },
+  "insalata_fagioli_neri_mais_peperone": {
+    "name": "Salat mit schwarzen Bohnen, Mais und Paprika"
+  },
+  "insalata_lupini_patate_pomodorini": {
+    "name": "Salat mit Lupinen, Kartoffeln und Cherrytomaten"
+  },
+  "buddha_bowl_quinoa_ceci_patata_dolce": {
+    "name": "Buddha Bowl mit Quinoa, Kichererbsen und Süßkartoffel"
+  },
+  "bowl_farro_lenticchie_zucca": {
+    "name": "Bowl mit Dinkel, Linsen und Ofenkürbis"
+  },
+  "bowl_riso_integrale_fagioli_neri_avocado": {
+    "name": "Bowl mit Naturreis, schwarzen Bohnen und Avocado"
+  },
+  "poke_vegetale_edamame_mango": {
+    "name": "Gemüse-Poke mit Edamame und Mango"
+  },
+  "bowl_tofu_forno_riso_cavolo_rosso": {
+    "name": "Bowl mit Ofentofu, Reis und Rotkohl"
+  },
+  "lenticchie_riso_cipolle_caramellate": {
+    "name": "Linsen und Reis mit karamellisierten Zwiebeln"
+  },
+  "quesadilla_borlotti_mais_mozzarella": {
+    "name": "Quesadilla mit Borlotti-Bohnen, Mais und Mozzarella"
+  },
+  "salmone_lenticchie_spinaci": {
+    "name": "Lachs auf Linsen und Spinat"
+  },
+  "couscous_lenticchie_carote_uvetta": {
+    "name": "Couscous mit Linsen, Karotten und Rosinen"
+  },
+  "farro_cannellini_pomodori_secchi": {
+    "name": "Dinkel mit Cannellini-Bohnen, getrockneten Tomaten und Rucola"
+  },
+  "orzo_ceci_melanzane_grigliate": {
+    "name": "Graupen mit Kichererbsen und gegrillter Aubergine"
+  },
+  "pasticcio_lenticchie_pure_patate": {
+    "name": "Linsenauflauf mit Kartoffelpüree"
+  },
+  "bowl_grano_saraceno_ceci_vapore": {
+    "name": "Bowl mit Buchweizen, Kichererbsen und gedämpftem Gemüse"
+  },
+  "pilaf_riso_ceci_curcuma": {
+    "name": "Reis-Kichererbsen-Pilaw mit Kurkuma"
+  },
+  "insalata_ceci_finocchio_arancia": {
+    "name": "Kichererbsensalat mit Fenchel und Orange"
+  },
+  "insalata_edamame_mais_cavolo_rosso": {
+    "name": "Knackiger Salat mit Edamame, Mais und Rotkohl"
+  },
+  "tempeh_glassato_acero_riso_broccoli": {
+    "name": "Ahornglasiertes Tempeh mit Reis und Brokkoli"
+  },
+  "insalata_quinoa_lenticchie_barbabietola": {
+    "name": "Quinoasalat mit Linsen und Roter Bete"
+  },
+  "fave_guanciale_romana": {
+    "name": "Dicke Bohnen mit Guanciale nach römischer Art"
+  },
+  "zucchine_ripiene_carne_forno": {
+    "name": "Gefüllte Zucchini mit Hackfleisch aus dem Ofen"
+  },
+  "pomodori_ripieni_riso_patate": {
+    "name": "Mit Reis gefüllte Tomaten und Kartoffeln"
+  },
+  "peperoni_ripieni_mollica_capperi": {
+    "name": "Paprika gefüllt mit Brotkrumen, Kapern und Pecorino"
+  },
+  "melanzane_ripiene_caciocavallo": {
+    "name": "Gefüllte Auberginen aus dem Ofen mit Caciocavallo"
+  },
+  "funghi_ripieni_friggitrice": {
+    "name": "Gefüllte Champignons aus der Heißluftfritteuse"
+  },
+  "cavolfiore_gratinato_besciamella": {
+    "name": "Überbackener Blumenkohl"
+  },
+  "finocchi_gratinati_friggitrice": {
+    "name": "Überbackener Fenchel aus der Heißluftfritteuse"
+  },
+  "gratin_patate_porri": {
+    "name": "Kartoffel-Lauch-Gratin"
+  },
+  "parmigiana_zucchine_forno": {
+    "name": "Zucchini-Parmigiana"
+  },
+  "melanzane_a_funghetto": {
+    "name": "Geschmorte Auberginenwürfel mit Tomate"
+  },
+  "caponata_siciliana": {
+    "name": "Auberginen-Caponata"
+  },
+  "peperonata_con_patate": {
+    "name": "Geschmorte Paprika mit Kartoffeln"
+  },
+  "ciambotta_lucana": {
+    "name": "Sommerlicher Gemüseeintopf"
+  },
+  "scarola_olive_capperi_pinoli": {
+    "name": "Endivie aus der Pfanne mit Oliven, Kapern und Pinienkernen"
+  },
+  "bietole_patate_aglio": {
+    "name": "Mangold und Kartoffeln mit Knoblauch"
+  },
+  "cime_rapa_patate": {
+    "name": "Stängelkohl mit Kartoffeln"
+  },
+  "fave_e_cicoria": {
+    "name": "Dicke-Bohnen-Püree mit Zichorie"
+  },
+  "carciofi_alla_romana": {
+    "name": "Artischocken nach römischer Art"
+  },
+  "fagiolini_patate_umido": {
+    "name": "Geschmorte grüne Bohnen mit Kartoffeln"
+  },
+  "patate_alla_pizzaiola": {
+    "name": "Kartoffeln nach Pizzaiola-Art aus der Pfanne"
+  },
+  "ratatouille_in_pentola": {
+    "name": "Ratatouille"
+  },
+  "zucca_ceci_forno_rosmarino": {
+    "name": "Ofenkürbis und Kichererbsen mit Rosmarin"
+  },
+  "verdure_miste_friggitrice": {
+    "name": "Knuspriges Mischgemüse aus der Heißluftfritteuse"
+  },
+  "melanzane_cotoletta_friggitrice": {
+    "name": "Panierte Auberginen aus der Heißluftfritteuse"
+  },
+  "tortino_patate_zucchine_strati": {
+    "name": "Geschichteter Kartoffel-Zucchini-Auflauf"
+  },
+  "gatto_di_patate_napoletano": {
+    "name": "Neapolitanischer Kartoffel-Gattò"
+  },
+  "sformato_broccoli_forno": {
+    "name": "Brokkoli-Auflauf"
+  },
+  "torta_salata_spinaci_ricotta": {
+    "name": "Herzhafte Tarte mit Spinat und Ricotta"
+  },
+  "quiche_lorraine": {
+    "name": "Quiche Lorraine"
+  },
+  "torta_salata_porri_stracchino": {
+    "name": "Herzhafte Tarte mit Lauch und Stracchino"
+  },
+  "erbazzone_semplificato": {
+    "name": "Einfacher Erbazzone-Mangoldkuchen"
+  },
+  "pizza_teglia_margherita": {
+    "name": "Pizza Margherita vom Blech"
+  },
+  "pizza_teglia_verdure_rossa": {
+    "name": "Rote Gemüsepizza"
+  },
+  "focaccia_farcita_melanzane_mozzarella": {
+    "name": "Gefüllte Focaccia mit gegrillter Aubergine und Mozzarella"
+  },
+  "piadina_funghi_fontina": {
+    "name": "Piadina mit gebratenen Pilzen und Fontina"
+  },
+  "piadina_zucchine_scamorza": {
+    "name": "Piadina mit gegrillter Zucchini und Scamorza"
+  },
+  "wrap_verdure_grigliate_hummus": {
+    "name": "Wrap mit Grillgemüse und Hummus"
+  },
+  "insalata_nizzarda": {
+    "name": "Salade Niçoise"
+  },
+  "fichi_ricotta_miele": {
+    "name": "Feigen mit Ricotta und Honig"
+  },
+  "pesche_yogurt_semi_zucca": {
+    "name": "Pfirsiche mit Joghurt, Honig und Kürbiskernen"
+  },
+  "anguria_menta_lime": {
+    "name": "Wassermelone mit Minze und Limette"
+  },
+  "mandarini_mandorle_tostate": {
+    "name": "Mandarinen und geröstete Mandeln"
+  },
+  "cachi_cucchiaio_lime": {
+    "name": "Kaki zum Löffeln mit Limette"
+  },
+  "macedonia_inverno_agrumi_kiwi": {
+    "name": "Winterlicher Obstsalat mit Zitrusfrüchten, Kiwi und Granatapfel"
+  },
+  "macedonia_estiva_anguria_melone": {
+    "name": "Sommerlicher Obstsalat mit Wassermelone, Melone und Pfirsich"
+  },
+  "prugne_cotte_cannella": {
+    "name": "Geschmorte Pflaumen mit Zimt"
+  },
+  "castagne_calde_miele_cannella": {
+    "name": "Warme Maronen mit Honig und Zimt"
+  },
+  "melone_prosciutto_crudo": {
+    "name": "Melone mit Rohschinken"
+  },
+  "uva_primo_sale_pepe": {
+    "name": "Trauben und Primo sale mit schwarzem Pfeffer"
+  },
+  "mix_frutta_secca_rosmarino": {
+    "name": "Geröstete Nüsse und Kerne mit Rosmarin"
+  },
+  "frullato_ciliegie_banana": {
+    "name": "Kirsch-Bananen-Smoothie"
+  },
+  "frullato_melone_pesca_menta": {
+    "name": "Melonen-Pfirsich-Smoothie mit Minze"
+  },
+  "succo_arancia_carota_zenzero": {
+    "name": "Orangen-Karotten-Ingwer-Saft"
+  },
+  "ghiaccioli_anguria_fragole": {
+    "name": "Wassermelonen-Erdbeer-Eis am Stiel"
+  },
+  "ghiaccioli_yogurt_mirtilli": {
+    "name": "Joghurt-Heidelbeer-Eis am Stiel"
+  },
+  "gelato_banana_frutti_bosco": {
+    "name": "Schnelles Bananen-Beeren-Eis"
+  },
+  "mousse_avocado_cacao": {
+    "name": "Avocado-Kakao-Mousse"
+  },
+  "yogurt_greco_pere_caramellate": {
+    "name": "Griechischer Joghurt mit karamellisierten Birnen"
+  },
+  "barrette_avena_datteri": {
+    "name": "Hafer-Dattel-Riegel"
+  },
+  "palline_fichi_secchi_nocciole": {
+    "name": "Feigen-Haselnuss-Kugeln"
+  },
+  "palline_avena_burro_arachidi": {
+    "name": "Hafer-Erdnussbutter-Kugeln"
+  },
+  "biscotti_avena_cocco": {
+    "name": "Hafer-Kokos-Kekse"
+  },
+  "muffin_yogurt_frutti_bosco": {
+    "name": "Joghurt-Beeren-Muffins"
+  },
+  "pane_cioccolato_fondente": {
+    "name": "Brot mit Schokolade"
+  },
+  "fettunta_aglio_olio": {
+    "name": "Toskanisches Knoblauchbrot mit Olivenöl"
+  },
+  "crostini_crema_fave_menta": {
+    "name": "Crostini mit Dicke-Bohnen-Minz-Creme"
+  },
+  "crostini_crema_lenticchie": {
+    "name": "Crostini mit Linsencreme und roten Zwiebeln"
+  },
+  "crostini_cannellini_salvia": {
+    "name": "Crostini mit Cannellini-Bohnen und Salbei"
+  },
+  "bruschetta_zucchine_menta": {
+    "name": "Bruschetta mit gegrillter Zucchini und Minze"
+  },
+  "crostini_mozzarella_alici": {
+    "name": "Crostini mit Mozzarella und Sardellen"
+  },
+  "focaccine_yogurt_padella": {
+    "name": "Joghurt-Fladenbrötchen aus der Pfanne"
+  },
+  "girelle_piadina_cotto_formaggio": {
+    "name": "Piadina-Schnecken mit Kochschinken und Frischkäse"
+  },
+  "tramezzini_tonno_pomodoro": {
+    "name": "Sandwiches mit Thunfisch und Tomate"
+  },
+  "crackers_semi_forno": {
+    "name": "Saatencracker aus dem Ofen"
+  },
+  "hummus_lupini_verdure": {
+    "name": "Lupinen-Hummus mit Rohkost"
+  },
+  "verdure_crude_salsa_yogurt_erba_cipollina": {
+    "name": "Rohkost mit Joghurt-Schnittlauch-Dip"
+  },
+  "verdure_crude_salsa_tahina": {
+    "name": "Fenchel, Radieschen und Blumenkohl mit Tahin-Dip"
+  },
+  "pinzimonio_verdure": {
+    "name": "Rohkost mit Olivenöl-Dip"
+  },
+  "chips_cavolo_nero_friggitrice": {
+    "name": "Schwarzkohl-Chips aus der Heißluftfritteuse"
+  },
+  "chips_patate_rosmarino_friggitrice": {
+    "name": "Rosmarin-Kartoffelchips aus der Heißluftfritteuse"
+  },
+  "frittelle_zucchine_parmigiano": {
+    "name": "Zucchini-Parmesan-Puffer"
+  },
+  "edamame_sale_lime": {
+    "name": "Edamame mit Salz und Limette"
+  },
+  "lupini_conditi_limone_peperoncino": {
+    "name": "Marinierte Lupinen mit Zitrone, Knoblauch und Chili"
+  },
+  "bastoncini_polenta_friggitrice": {
+    "name": "Knusprige Polenta-Sticks aus der Heißluftfritteuse"
+  },
+  "olive_arancia_caciocavallo": {
+    "name": "Marinierte Orangen-Oliven mit Caciocavallo"
+  }
+}

@@ -15,7 +15,7 @@ import { EMPTY } from '../../src/i18n/assistant';
 import { useT } from '../../src/i18n';
 import { recipeName } from '../../src/i18n/content';
 import { formatLocale } from '../../src/core/domain/locale';
-import { MEAL_LABELS } from '../../src/i18n/labels';
+import { MEAL_LABELS, mealInSentence } from '../../src/i18n/labels';
 import { colors, radius, shadow, space } from '../../src/theme/tokens';
 import { Button } from '../../src/ui/Button';
 import { LOADER_TEXT, withLoader } from '../../src/ui/loader/loaderBus';
@@ -137,9 +137,9 @@ export default function Today() {
       {later.length > 0 ? (
         <LinkRow label={t('home:later.a11y', { names: later.map((m) => recipeTitle(m.recipeId)).join(', ') })} onPress={() => router.push('/settimana')}>
           <View style={styles.laterDot} />
-          <Text variant="small" color={colors.inkSoft} style={styles.flex} numberOfLines={1}>
+          <Text variant="small" color={colors.inkSoft} style={styles.flex} numberOfLines={2}>
             <Text variant="small" style={styles.bold}>
-              {t('home:later.label', { meal: MEAL_LABELS[later[0].mealType].toLowerCase() })}
+              {t('home:later.label', { meal: mealInSentence(later[0].mealType) })}
             </Text>
             {later.map((m) => recipeTitle(m.recipeId)).join(' · ')}
           </Text>
@@ -154,7 +154,7 @@ export default function Today() {
           key={meal.id}
           tone="green"
           icon={<Ionicons name="moon-outline" size={22} color={colors.green} />}
-          text={t('home:prepTonight', { meal: MEAL_LABELS[meal.mealType].toLowerCase(), what: prepAheadShort(prepAheadOf(recipe!)!) })}
+          text={t('home:prepTonight', { meal: mealInSentence(meal.mealType), what: prepAheadShort(prepAheadOf(recipe!)!) })}
           onPress={() => router.push(`/ricetta/${recipe!.id}?mealId=${encodeURIComponent(meal.id)}`)}
         />
       ))}
@@ -280,7 +280,7 @@ function TodayHero({ meal, snap, compact, onMore }: { meal: PlannedMeal; snap: A
       {/* foto protagonista: alta quanto la card (che segue il contenuto), mai sotto il minimo e senza tagli inutili */}
       <View style={[styles.photoCol, compact && styles.photoColCompact]}>
         <Pressable accessibilityRole="button" accessibilityLabel={t('home:hero.open', { name })} onPress={open} style={styles.photoPress}>
-          <RecipeImage recipe={recipe} rounded={0} style={styles.photo} />
+          <RecipeImage recipe={recipe} rounded={0} aspectRatio={null} style={styles.photo} />
         </Pressable>
         <View style={styles.heartSpot}>
           <FavoriteButton on={favorite} name={name} onToggle={() => void run((s) => s.toggleFavorite(recipe.id, !favorite))} />

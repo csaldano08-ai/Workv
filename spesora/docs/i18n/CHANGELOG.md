@@ -117,3 +117,58 @@ e stile dei pulsanti invariati.
 - **`scripts/screenshots/capture-lingue.cjs`:** screenshot nelle 6 lingue dall'app reale, con controllo di chiavi
   visibili, testi troncati ed errori di pagina.
 - **`scripts/i18n/coverage.ts`:** genera [COPERTURA.md](COPERTURA.md).
+
+## 7. Test eseguiti
+
+- **Automatici:**
+  - `npx tsc --noEmit` ✅;
+  - `npm run lint` (0 avvisi) ✅;
+  - `npx vitest run`: 18 file, **175 test** ✅;
+  - `npm run verify`: «Tutti i controlli superati» ✅.
+- **App reale** (demo web, Playwright/Chromium, data fissa 23 novembre 2026):
+  - **6 lingue × 13 schermate, a 390×844 e 375×667** (`capture-lingue.cjs`): 0 chiavi di traduzione visibili, 0 errori di
+    pagina, 0 testi tagliati con «…» rilevati. Esito in `screenshot/*/controlli.json`.
+  - **Rilevazione:** con il browser in it-IT, en-GB, es-ES, de-DE, fr-FR e pt-BR la scelta della lingua parte già sulla
+    lingua giusta (`confronti/6lingue_02_lingua.jpg`).
+  - **Cambio lingua nell'onboarding:** scegliendo un'altra lingua titolo e pulsanti cambiano subito; la scelta resta dopo
+    il ricaricamento.
+  - **Cambio lingua nelle impostazioni e dati:** stesso piano, stessa spesa e stessa dispensa in tutte le 6 lingue
+    (stessi dati in tutte le schermate catturate); nel video si passa al tedesco da Profilo → Lingua.
+  - **Pannello di conferma della spesa:** importo «abc» → errore accanto al campo; «12,30» → spesa registrata e
+    «pagato 12,30 €» nella lista.
+  - Percorso completo in italiano (`capture-mina.cjs`, 23 schermate): nessun errore.
+- **Video:** [video/navigazione_lingue.mp4](video/navigazione_lingue.mp4), 79 s. Mostra intro, scelta della lingua
+  (prova in inglese e ritorno all'italiano), questionario, Oggi, Settimana, Spesa, Dispensa, Ricette, Modalità Cucina,
+  Profilo e cambio in tedesco.
+
+## 8. Limiti (dichiarati)
+
+- **Procedimenti delle ricette:** 0/500 tradotti. Nomi delle ricette e degli ingredienti sono tradotti per intero.
+  I passaggi restano in italiano e l'app lo dice («Il procedimento di questa ricetta per ora è disponibile solo in
+  italiano»). Il sistema accetta già i passaggi tradotti (`content/<lingua>/recipes.json`, campo `steps`).
+- **Contenuti testuali delle ricette ancora in italiano:** descrizioni, note sulle sostituzioni e le preparazioni da
+  fare la sera prima (ricavate dai passaggi).
+- **Motivazioni dei pasti già pianificati** («Scelta da te», «Pronta in 20 min»): sono salvate nella lingua attiva al
+  momento della pianificazione e cambiano solo con una nuova pianificazione.
+- **Unità di misura:** solo sistema metrico. Il formato numerico segue la regione; nessuna conversione imperiale per
+  en-US.
+- **Prezzi:** sempre in euro, formattati secondo la lingua.
+- **Traduzioni da rivedere:**
+  - tutte, da un madrelingua per mercato: sono scritte con cura, non con traduzione automatica, ma non sono ancora
+    state riviste;
+  - pagine legali e condizioni commerciali: revisione legale per mercato;
+  - nomi e avvisi sugli allergeni: revisione di una persona qualificata;
+  - nomi degli ingredienti da controllare (dal report dell'agente dei contenuti):
+    - pt-BR: orata, alici, merluzzo, finocchio;
+    - en: zucca = «Squash»;
+    - de: farro = «Perldinkel».
+- **Lingue future:** solo predisposte (`PLANNED`). Per l'arabo servono layout RTL e verifica su telefono prima di
+  attivarlo.
+- **Non provato:**
+  - build native iOS e Android: lingua di sistema per app, Hermes/Intl su dispositivo, notifiche riprogrammate al
+    cambio lingua;
+  - screen reader nelle varie lingue;
+  - acquisti reali.
+- **Nessuna funzione inventata:**
+  - nessun «Aggiungi ingrediente» nella spesa;
+  - nessun assistente conversazionale («Consigli» mostra solo dati della ricetta).

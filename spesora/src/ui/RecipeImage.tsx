@@ -20,7 +20,8 @@ export const RecipeImage = memo(function RecipeImage({
   variant = 'card',
 }: {
   recipe: Pick<Recipe, 'id' | 'dishCategory'>;
-  aspectRatio?: number;
+  /** null = nessun rapporto fisso: l'immagine riempie lo spazio che le dà il contenitore (es. la card di Oggi). */
+  aspectRatio?: number | null;
   rounded?: number;
   style?: ViewStyle;
   variant?: 'thumb' | 'card';
@@ -28,10 +29,10 @@ export const RecipeImage = memo(function RecipeImage({
   const source = (variant === 'thumb' ? RECIPE_IMAGE_THUMBS[recipe.id] : undefined) ?? RECIPE_IMAGE_CARDS[recipe.id];
   const [failed, setFailed] = useState(false);
   if (!source || failed) {
-    return <DishArt category={recipe.dishCategory} recipeId={recipe.id} rounded={rounded} style={{ aspectRatio, ...style }} />;
+    return <DishArt category={recipe.dishCategory} recipeId={recipe.id} rounded={rounded} style={{ aspectRatio: aspectRatio ?? undefined, ...style }} />;
   }
   return (
-    <View style={[styles.frame, { aspectRatio, borderRadius: rounded }, style]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
+    <View style={[styles.frame, { aspectRatio: aspectRatio ?? undefined, borderRadius: rounded }, style]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
       <Image source={source} style={styles.image} resizeMode="cover" onError={() => setFailed(true)} fadeDuration={0} />
     </View>
   );

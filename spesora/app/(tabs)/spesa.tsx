@@ -447,8 +447,8 @@ function ConfirmPanel({ trip, checked, onClose }: { trip: ShoppingTripPlan; chec
               {paidError ? <InlineError text={t('shopping:paid.error', { example: exampleAmount() })} /> : <Text variant="small" color={colors.inkSoft}>{t('shopping:paid.note')}</Text>}
             </View>
             <View style={styles.sheetButtons}>
-              <Button kind="secondary" label={t('action.cancel')} onPress={onClose} style={styles.flex} />
-              <Button label={t('shopping:confirm.ok')} icon="checkmark-done" onPress={confirm} style={styles.flex} />
+              <Button kind="secondary" label={t('action.cancel')} onPress={onClose} outerStyle={styles.flex} />
+              <Button label={t('shopping:confirm.ok')} icon="checkmark-done" onPress={confirm} outerStyle={styles.flex} />
             </View>
           </SafeAreaView>
         </Reveal>

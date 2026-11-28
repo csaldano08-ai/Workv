@@ -111,5 +111,6 @@
   "nav.history": "Storico dei pasti",
   "nav.prices": "Prezzi",
   "nav.cheaper": "Settimana più economica",
-  "nav.cooking": "Modalità Cucina"
+  "nav.cooking": "Modalità Cucina",
+  "tabs.todayTab": "Oggi"
 }

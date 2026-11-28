@@ -37,7 +37,7 @@
   "hero.tomorrow": "morgen",
   "hero.meta_one": "{minutes} Minuten, {count} Person, Start um {time}",
   "hero.meta_other": "{minutes} Minuten, {count} Personen, Start um {time}",
-  "hero.cook": "Jetzt kochen",
+  "hero.cook": "Kochen",
   "fav.add": "{name} zu Favoriten hinzufügen",
   "fav.remove": "{name} aus den Favoriten entfernen",
   "mina.worried_one": "Mina schaut auf das heutige Essen: {count} Zutat fehlt",

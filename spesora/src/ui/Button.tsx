@@ -19,6 +19,8 @@ export interface ButtonProps {
   loading?: boolean;
   compact?: boolean;
   style?: StyleProp<ViewStyle>;
+  /** Solo impaginazione del contenitore esterno (es. `flex: 1` in una riga): non cambia l'aspetto del pulsante. */
+  outerStyle?: StyleProp<ViewStyle>;
   accessibilityHint?: string;
 }
 
@@ -36,7 +38,7 @@ const palette: Record<Kind, { bg: string; fg: string; border: string; base: stri
  * È lo stile dei pulsanti dell'app e resta tale anche nel restyling MINA (niente pulsanti lucidi o sfumati):
  * del riferimento si adattano solo dimensioni, posizione, spaziature, colori e la freccia finale.
  */
-export function Button({ label, onPress, kind = 'primary', icon, iconRight, size = 'regular', disabled, loading, compact, style, accessibilityHint }: ButtonProps) {
+export function Button({ label, onPress, kind = 'primary', icon, iconRight, size = 'regular', disabled, loading, compact, style, outerStyle, accessibilityHint }: ButtonProps) {
   const p = palette[kind];
   const inactive = disabled || loading;
   return (
@@ -47,6 +49,7 @@ export function Button({ label, onPress, kind = 'primary', icon, iconRight, size
       accessibilityState={{ disabled: !!inactive, busy: !!loading }}
       disabled={inactive}
       onPress={onPress}
+      outerStyle={outerStyle}
       style={[
         styles.base,
         compact && styles.compact,

@@ -41,7 +41,7 @@
   "hero.meta_one": "{minutes} minutos, {count} pessoa, comece às {time}",
   "hero.meta_other": "{minutes} minutos, {count} pessoas, comece às {time}",
   "hero.meta_many": "{minutes} minutos, {count} pessoas, comece às {time}",
-  "hero.cook": "Cozinhar agora",
+  "hero.cook": "Cozinhar",
   "fav.add": "Adicionar {name} aos favoritos",
   "fav.remove": "Remover {name} dos favoritos",
   "mina.worried_one": "A Mina olha a refeição de hoje: falta {count} ingrediente",

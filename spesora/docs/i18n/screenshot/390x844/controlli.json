@@ -1,0 +1,351 @@
+{
+  "it": {
+    "screens": {
+      "01_benvenuto": {
+        "keys": [],
+        "cut": []
+      },
+      "02_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "03_persone": {
+        "keys": [],
+        "cut": []
+      },
+      "04_oggi": {
+        "keys": [],
+        "cut": []
+      },
+      "05_settimana": {
+        "keys": [],
+        "cut": []
+      },
+      "06_spesa": {
+        "keys": [],
+        "cut": []
+      },
+      "07_dispensa": {
+        "keys": [],
+        "cut": []
+      },
+      "08_ricette": {
+        "keys": [],
+        "cut": []
+      },
+      "09_ricetta": {
+        "keys": [],
+        "cut": []
+      },
+      "10_cucina": {
+        "keys": [],
+        "cut": []
+      },
+      "11_profilo": {
+        "keys": [],
+        "cut": []
+      },
+      "12_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "13_abbonamento": {
+        "keys": [],
+        "cut": []
+      }
+    },
+    "errors": [],
+    "detected": null
+  },
+  "en": {
+    "screens": {
+      "01_benvenuto": {
+        "keys": [],
+        "cut": []
+      },
+      "02_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "03_persone": {
+        "keys": [],
+        "cut": []
+      },
+      "04_oggi": {
+        "keys": [],
+        "cut": []
+      },
+      "05_settimana": {
+        "keys": [],
+        "cut": []
+      },
+      "06_spesa": {
+        "keys": [],
+        "cut": []
+      },
+      "07_dispensa": {
+        "keys": [],
+        "cut": []
+      },
+      "08_ricette": {
+        "keys": [],
+        "cut": []
+      },
+      "09_ricetta": {
+        "keys": [],
+        "cut": []
+      },
+      "10_cucina": {
+        "keys": [],
+        "cut": []
+      },
+      "11_profilo": {
+        "keys": [],
+        "cut": []
+      },
+      "12_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "13_abbonamento": {
+        "keys": [],
+        "cut": []
+      }
+    },
+    "errors": [],
+    "detected": null
+  },
+  "es": {
+    "screens": {
+      "01_benvenuto": {
+        "keys": [],
+        "cut": []
+      },
+      "02_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "03_persone": {
+        "keys": [],
+        "cut": []
+      },
+      "04_oggi": {
+        "keys": [],
+        "cut": []
+      },
+      "05_settimana": {
+        "keys": [],
+        "cut": []
+      },
+      "06_spesa": {
+        "keys": [],
+        "cut": []
+      },
+      "07_dispensa": {
+        "keys": [],
+        "cut": []
+      },
+      "08_ricette": {
+        "keys": [],
+        "cut": []
+      },
+      "09_ricetta": {
+        "keys": [],
+        "cut": []
+      },
+      "10_cucina": {
+        "keys": [],
+        "cut": []
+      },
+      "11_profilo": {
+        "keys": [],
+        "cut": []
+      },
+      "12_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "13_abbonamento": {
+        "keys": [],
+        "cut": []
+      }
+    },
+    "errors": [],
+    "detected": null
+  },
+  "de": {
+    "screens": {
+      "01_benvenuto": {
+        "keys": [],
+        "cut": []
+      },
+      "02_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "03_persone": {
+        "keys": [],
+        "cut": []
+      },
+      "04_oggi": {
+        "keys": [],
+        "cut": []
+      },
+      "05_settimana": {
+        "keys": [],
+        "cut": []
+      },
+      "06_spesa": {
+        "keys": [],
+        "cut": []
+      },
+      "07_dispensa": {
+        "keys": [],
+        "cut": []
+      },
+      "08_ricette": {
+        "keys": [],
+        "cut": []
+      },
+      "09_ricetta": {
+        "keys": [],
+        "cut": []
+      },
+      "10_cucina": {
+        "keys": [],
+        "cut": []
+      },
+      "11_profilo": {
+        "keys": [],
+        "cut": []
+      },
+      "12_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "13_abbonamento": {
+        "keys": [],
+        "cut": []
+      }
+    },
+    "errors": [],
+    "detected": null
+  },
+  "fr": {
+    "screens": {
+      "01_benvenuto": {
+        "keys": [],
+        "cut": []
+      },
+      "02_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "03_persone": {
+        "keys": [],
+        "cut": []
+      },
+      "04_oggi": {
+        "keys": [],
+        "cut": []
+      },
+      "05_settimana": {
+        "keys": [],
+        "cut": []
+      },
+      "06_spesa": {
+        "keys": [],
+        "cut": []
+      },
+      "07_dispensa": {
+        "keys": [],
+        "cut": []
+      },
+      "08_ricette": {
+        "keys": [],
+        "cut": []
+      },
+      "09_ricetta": {
+        "keys": [],
+        "cut": []
+      },
+      "10_cucina": {
+        "keys": [],
+        "cut": []
+      },
+      "11_profilo": {
+        "keys": [],
+        "cut": []
+      },
+      "12_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "13_abbonamento": {
+        "keys": [],
+        "cut": []
+      }
+    },
+    "errors": [],
+    "detected": null
+  },
+  "pt-BR": {
+    "screens": {
+      "01_benvenuto": {
+        "keys": [],
+        "cut": []
+      },
+      "02_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "03_persone": {
+        "keys": [],
+        "cut": []
+      },
+      "04_oggi": {
+        "keys": [],
+        "cut": []
+      },
+      "05_settimana": {
+        "keys": [],
+        "cut": []
+      },
+      "06_spesa": {
+        "keys": [],
+        "cut": []
+      },
+      "07_dispensa": {
+        "keys": [],
+        "cut": []
+      },
+      "08_ricette": {
+        "keys": [],
+        "cut": []
+      },
+      "09_ricetta": {
+        "keys": [],
+        "cut": []
+      },
+      "10_cucina": {
+        "keys": [],
+        "cut": []
+      },
+      "11_profilo": {
+        "keys": [],
+        "cut": []
+      },
+      "12_lingua": {
+        "keys": [],
+        "cut": []
+      },
+      "13_abbonamento": {
+        "keys": [],
+        "cut": []
+      }
+    },
+    "errors": [],
+    "detected": null
+  },
+  "persistenza": "pt-BR"
+}

@@ -1,1 +1,1502 @@
-{}
+{
+  "pasta_al_tonno": {
+    "name": "Tuna pasta"
+  },
+  "pasta_al_pesto": {
+    "name": "Pesto pasta"
+  },
+  "pasta_pomodoro_basilico": {
+    "name": "Tomato and basil pasta"
+  },
+  "spaghetti_aglio_olio": {
+    "name": "Spaghetti with garlic, oil and chilli"
+  },
+  "pasta_e_ceci": {
+    "name": "Pasta with chickpeas"
+  },
+  "pasta_zucchine": {
+    "name": "Courgette pasta"
+  },
+  "pasta_broccoli": {
+    "name": "Pasta with broccoli"
+  },
+  "pasta_gamberetti_pomodorini": {
+    "name": "Pasta with prawns and cherry tomatoes"
+  },
+  "pasta_ricotta_spinaci": {
+    "name": "Pasta with ricotta and spinach"
+  },
+  "pasta_carbonara": {
+    "name": "Pasta carbonara"
+  },
+  "pasta_ragu_veloce": {
+    "name": "Pasta with quick ragù"
+  },
+  "pasta_funghi": {
+    "name": "Pasta with sautéed mushrooms"
+  },
+  "gnocchi_pomodoro_mozzarella": {
+    "name": "Gnocchi with tomato and mozzarella"
+  },
+  "pasta_al_forno": {
+    "name": "Simple pasta bake"
+  },
+  "pasta_e_fagioli": {
+    "name": "Pasta with beans"
+  },
+  "tagliatelle_burro_salvia": {
+    "name": "Tagliatelle with butter and sage"
+  },
+  "risotto_zucca": {
+    "name": "Squash risotto"
+  },
+  "riso_piselli_carote": {
+    "name": "Rice with peas and carrots"
+  },
+  "insalata_riso_tonno": {
+    "name": "Rice salad with tuna"
+  },
+  "couscous_verdure_ceci": {
+    "name": "Couscous with vegetables and chickpeas"
+  },
+  "farro_pomodorini_feta": {
+    "name": "Spelt with cherry tomatoes, cucumber and feta"
+  },
+  "riso_saltato_uova_verdure": {
+    "name": "Egg fried rice with vegetables"
+  },
+  "polenta_funghi": {
+    "name": "Polenta with sautéed mushrooms"
+  },
+  "ceci_spinaci_padella": {
+    "name": "Pan-fried chickpeas and spinach"
+  },
+  "fagioli_uccelletto": {
+    "name": "Tuscan beans with tomato and sage"
+  },
+  "lenticchie_umido": {
+    "name": "Quick stewed lentils"
+  },
+  "dal_lenticchie_rosse": {
+    "name": "Spiced red lentil dal"
+  },
+  "polpette_ceci_friggitrice": {
+    "name": "Air fryer chickpea balls"
+  },
+  "borlotti_mais_piccanti": {
+    "name": "Spicy borlotti beans with sweetcorn"
+  },
+  "tofu_saltato_verdure": {
+    "name": "Stir-fried tofu with vegetables"
+  },
+  "minestrone_pastina": {
+    "name": "Minestrone with soup pasta"
+  },
+  "vellutata_zucca": {
+    "name": "Squash and potato soup"
+  },
+  "pollo_al_limone": {
+    "name": "Lemon chicken breast"
+  },
+  "pollo_peperoni": {
+    "name": "Chicken bites with peppers"
+  },
+  "straccetti_pollo_friggitrice": {
+    "name": "Crispy air fryer chicken strips"
+  },
+  "tacchino_rosmarino_insalata": {
+    "name": "Rosemary turkey steaks with salad"
+  },
+  "polpette_al_sugo": {
+    "name": "Meatballs in tomato sauce"
+  },
+  "cosce_pollo_patate_forno": {
+    "name": "Roast chicken legs with potatoes"
+  },
+  "hamburger_insalata": {
+    "name": "Pan-fried burger with salad and tomatoes"
+  },
+  "piadina_crudo_rucola": {
+    "name": "Piadina with prosciutto, rocket and tomato"
+  },
+  "salmone_padella_zucchine": {
+    "name": "Pan-fried salmon with courgettes"
+  },
+  "merluzzo_pomodorini_capperi": {
+    "name": "Cod with cherry tomatoes and capers"
+  },
+  "salmone_forno_broccoli": {
+    "name": "Baked salmon with broccoli"
+  },
+  "merluzzo_impanato_friggitrice": {
+    "name": "Air fryer breaded cod fillets"
+  },
+  "insalata_ceci_tonno": {
+    "name": "Chickpea, tuna and cherry tomato salad"
+  },
+  "insalata_sgombro_fagioli": {
+    "name": "Mackerel, bean and red onion salad"
+  },
+  "piadina_salmone_affumicato": {
+    "name": "Piadina with smoked salmon and cream cheese"
+  },
+  "frittata_zucchine": {
+    "name": "Courgette frittata"
+  },
+  "uova_al_pomodoro": {
+    "name": "Eggs in tomato sauce"
+  },
+  "caprese_pane": {
+    "name": "Caprese salad with bread"
+  },
+  "insalata_greca": {
+    "name": "Greek salad"
+  },
+  "cavolfiore_ceci_forno": {
+    "name": "Curried roast cauliflower and chickpeas"
+  },
+  "patate_fagiolini_uova": {
+    "name": "Potatoes, green beans and boiled eggs"
+  },
+  "porridge_banana_cannella": {
+    "name": "Banana and cinnamon porridge"
+  },
+  "porridge_cacao_pera": {
+    "name": "Cocoa porridge with pear"
+  },
+  "porridge_latte_frutti_bosco": {
+    "name": "Porridge with milk and berries"
+  },
+  "macedonia_mattino": {
+    "name": "Morning fruit salad"
+  },
+  "yogurt_greco_noci_miele": {
+    "name": "Greek yoghurt with walnuts, honey and fruit"
+  },
+  "yogurt_soia_avena_fragole": {
+    "name": "Soya yoghurt with oats and strawberries"
+  },
+  "pancake_banana": {
+    "name": "Banana pancakes"
+  },
+  "toast_avocado_pomodorini": {
+    "name": "Avocado and cherry tomato toast"
+  },
+  "fette_biscottate_ricotta_marmellata": {
+    "name": "Rusks with ricotta and jam"
+  },
+  "uova_strapazzate_toast": {
+    "name": "Scrambled eggs on toast"
+  },
+  "latte_cereali_banana": {
+    "name": "Cereal with milk and banana"
+  },
+  "pane_burro_arachidi_banana": {
+    "name": "Wholemeal bread with peanut butter and banana"
+  },
+  "frullato_fragole_banana": {
+    "name": "Strawberry and banana smoothie"
+  },
+  "toast_prosciutto_mozzarella": {
+    "name": "Ham and mozzarella toastie"
+  },
+  "mela_cotta_cannella": {
+    "name": "Warm cinnamon apple"
+  },
+  "crema_ceci_bastoncini": {
+    "name": "Lemony chickpea dip with crudités"
+  },
+  "ceci_croccanti_friggitrice": {
+    "name": "Crispy air fryer chickpeas"
+  },
+  "bruschetta_pomodoro": {
+    "name": "Tomato bruschetta"
+  },
+  "mela_mandorle": {
+    "name": "Apple slices with almonds"
+  },
+  "gallette_ricotta_miele": {
+    "name": "Rice cakes with ricotta and honey"
+  },
+  "yogurt_banana_cacao": {
+    "name": "Yoghurt with banana and cocoa"
+  },
+  "spaghetti_vongole": {
+    "name": "Spaghetti with clams"
+  },
+  "pasta_pesce_spada_menta": {
+    "name": "Pasta with swordfish, cherry tomatoes and mint"
+  },
+  "pasta_crema_cavolo_nero": {
+    "name": "Creamy cavolo nero pasta"
+  },
+  "pasta_carciofi_limone": {
+    "name": "Pasta with artichokes and lemon"
+  },
+  "pasta_radicchio_gorgonzola": {
+    "name": "Radicchio and gorgonzola pasta"
+  },
+  "pasta_acciughe_pangrattato": {
+    "name": "Pasta with anchovies and toasted breadcrumbs"
+  },
+  "pasta_pomodori_secchi_rucola": {
+    "name": "Pasta salad with sun-dried tomatoes and rocket"
+  },
+  "pasta_pancetta_pomodoro_pecorino": {
+    "name": "Pasta with pancetta, tomato and pecorino"
+  },
+  "pasta_alla_norma": {
+    "name": "Pasta alla norma"
+  },
+  "pasta_e_lenticchie": {
+    "name": "Pasta with lentils"
+  },
+  "risotto_asparagi": {
+    "name": "Asparagus risotto"
+  },
+  "riso_fagioli_neri_peperoni": {
+    "name": "Rice with black beans and peppers"
+  },
+  "riso_zucchine_pomodorini": {
+    "name": "Fried rice with courgettes and cherry tomatoes"
+  },
+  "noodles_riso_verdure_edamame": {
+    "name": "Rice noodles with vegetables and edamame"
+  },
+  "orzo_zucchine_pomodorini": {
+    "name": "Warm barley with courgettes, cherry tomatoes and basil"
+  },
+  "bulgur_peperoni_olive": {
+    "name": "Bulgur wheat with peppers, olives and capers"
+  },
+  "quinoa_ceci_cetriolo_menta": {
+    "name": "Quinoa, chickpea, cucumber and mint salad"
+  },
+  "zuppa_cavolo_nero_cannellini": {
+    "name": "Cavolo nero and cannellini bean soup"
+  },
+  "crema_piselli_spezzati": {
+    "name": "Creamy split pea soup"
+  },
+  "vellutata_carote_zenzero": {
+    "name": "Carrot and ginger soup"
+  },
+  "scaloppine_limone": {
+    "name": "Veal escalopes with lemon"
+  },
+  "lonza_mele": {
+    "name": "Pork loin with apples"
+  },
+  "spezzatino_piselli": {
+    "name": "Beef stew with peas"
+  },
+  "tacchino_curry_cocco": {
+    "name": "Turkey curry with coconut milk and rice"
+  },
+  "saltimbocca_tacchino_speck": {
+    "name": "Turkey saltimbocca with speck"
+  },
+  "involtini_pollo_cotto_scamorza": {
+    "name": "Chicken rolls with ham and scamorza"
+  },
+  "pollo_friggitrice_verdure": {
+    "name": "Air fryer chicken breast with peppers and courgettes"
+  },
+  "pollo_cacciatora": {
+    "name": "Pan-cooked chicken cacciatore"
+  },
+  "polpette_tacchino_carote": {
+    "name": "Baked turkey meatballs with carrots"
+  },
+  "peperoni_ripieni_carne": {
+    "name": "Baked meat-stuffed peppers"
+  },
+  "bresaola_rucola_parmigiano": {
+    "name": "Bresaola with rocket and Parmesan shavings"
+  },
+  "pesce_spada_siciliana": {
+    "name": "Sicilian-style swordfish"
+  },
+  "orata_forno_patate": {
+    "name": "Baked sea bream fillets with potatoes"
+  },
+  "tonno_sesamo_zucchine": {
+    "name": "Seared sesame tuna with ginger courgettes"
+  },
+  "calamari_friggitrice": {
+    "name": "Crispy air fryer squid rings"
+  },
+  "cozze_marinara": {
+    "name": "Mussels marinara"
+  },
+  "gamberi_zucchine_curcuma": {
+    "name": "Turmeric prawns and courgettes"
+  },
+  "frittata_forno_patate_cipolle": {
+    "name": "Baked potato and onion frittata"
+  },
+  "uova_purgatorio_peperoni": {
+    "name": "Eggs in purgatory with peppers and paprika"
+  },
+  "omelette_spinaci_scamorza": {
+    "name": "Spinach and scamorza omelette"
+  },
+  "chili_fagioli_neri": {
+    "name": "Black bean chilli with rice"
+  },
+  "hummus_bowl_tahina": {
+    "name": "Homemade houmous bowl with quinoa"
+  },
+  "tofu_croccante_broccoli": {
+    "name": "Crispy air fryer tofu with broccoli"
+  },
+  "bowl_edamame_riso": {
+    "name": "Rice bowl with edamame and avocado"
+  },
+  "noodles_tempeh_peperoni": {
+    "name": "Rice noodles with tempeh and peppers"
+  },
+  "zuppa_piselli_spezzati": {
+    "name": "Split pea soup"
+  },
+  "curry_ceci_cocco": {
+    "name": "Chickpea and coconut milk curry"
+  },
+  "parmigiana_leggera": {
+    "name": "Light aubergine parmigiana"
+  },
+  "carciofi_patate_padella": {
+    "name": "Pan-fried artichokes and potatoes"
+  },
+  "cavoletti_ceci_friggitrice": {
+    "name": "Air fryer Brussels sprouts and chickpeas"
+  },
+  "patate_dolci_ripiene": {
+    "name": "Sweet potatoes stuffed with spinach and feta"
+  },
+  "verza_stufata_fagioli": {
+    "name": "Braised Savoy cabbage with cannellini beans"
+  },
+  "frittelle_verdure_ceci": {
+    "name": "Egg-free vegetable fritters"
+  },
+  "insalatone_cannellini_mais": {
+    "name": "Big salad with cannellini beans and sweetcorn"
+  },
+  "zucchine_ripiene_couscous": {
+    "name": "Courgettes stuffed with couscous and olives"
+  },
+  "torta_salata_zucchine": {
+    "name": "Courgette and scamorza puff pastry tart"
+  },
+  "farinata_ceci_forno": {
+    "name": "Baked chickpea farinata with salad"
+  },
+  "tacos_lenticchie": {
+    "name": "Spiced lentil tacos"
+  },
+  "orzotto_radicchio": {
+    "name": "Radicchio barley risotto"
+  },
+  "crostoni_cavolo_nero_cannellini": {
+    "name": "Toasts with cavolo nero and cannellini beans"
+  },
+  "pudding_chia_mango": {
+    "name": "Mango chia pudding"
+  },
+  "riso_dolce_frutti_bosco": {
+    "name": "Sweet rice with berries"
+  },
+  "pancake_ceci_banana": {
+    "name": "Chickpea flour and banana pancakes"
+  },
+  "smoothie_bowl_tropicale": {
+    "name": "Tropical smoothie bowl"
+  },
+  "quinoa_cacao_banana": {
+    "name": "Cocoa quinoa with banana"
+  },
+  "crema_polenta_mele": {
+    "name": "Sweet creamy polenta with apples"
+  },
+  "overnight_oats_mirtilli": {
+    "name": "Blueberry overnight oats"
+  },
+  "crepes_marmellata": {
+    "name": "Crêpes with jam"
+  },
+  "yogurt_kiwi_granola": {
+    "name": "Yoghurt, kiwi and granola bowl"
+  },
+  "ciambellone_friggitrice": {
+    "name": "Air fryer lemon ring cake"
+  },
+  "french_toast_fragole": {
+    "name": "French toast with strawberries"
+  },
+  "frullato_kefir_pesca": {
+    "name": "Kefir and peach smoothie"
+  },
+  "patata_dolce_avocado": {
+    "name": "Sweet potato slices with avocado"
+  },
+  "tofu_strapazzato_spinaci": {
+    "name": "Tofu scramble with spinach"
+  },
+  "uova_camicia_pomodoro": {
+    "name": "Poached eggs on bread and tomato"
+  },
+  "palline_datteri_cacao": {
+    "name": "Date and cocoa energy balls"
+  },
+  "chips_mela_cannella": {
+    "name": "Cinnamon apple chips"
+  },
+  "ananas_menta_lime": {
+    "name": "Fresh pineapple with mint and lime"
+  },
+  "spiedini_frutta_cioccolato": {
+    "name": "Chocolate fruit skewers"
+  },
+  "pera_gorgonzola_noci": {
+    "name": "Pear with gorgonzola and walnuts"
+  },
+  "carasau_rosmarino": {
+    "name": "Crispy rosemary carasau flatbread"
+  },
+  "chips_tortilla_pomodorini": {
+    "name": "Tortilla chips with cherry tomato salsa"
+  },
+  "ciambella_yogurt_forno": {
+    "name": "Yoghurt ring cake"
+  },
+  "torta_mele_casalinga": {
+    "name": "Grandma's apple cake"
+  },
+  "plumcake_banana_noci": {
+    "name": "Wholemeal banana and walnut loaf"
+  },
+  "torta_cacao_acqua": {
+    "name": "Eggless cocoa cake made with water"
+  },
+  "torta_carote_mandorle": {
+    "name": "Carrot and almond cake"
+  },
+  "crostata_marmellata": {
+    "name": "Jam tart"
+  },
+  "migliaccio_napoletano": {
+    "name": "Neapolitan migliaccio semolina cake"
+  },
+  "biscotti_inzuppo_limone": {
+    "name": "Lemon dunking biscuits"
+  },
+  "biscotti_avena_banana": {
+    "name": "Oat and banana biscuits"
+  },
+  "mele_forno_noci_uvetta": {
+    "name": "Baked apples stuffed with walnuts and sultanas"
+  },
+  "pere_forno_cannella": {
+    "name": "Baked pears with cane sugar and cloves"
+  },
+  "frittelle_mele": {
+    "name": "Apple fritters"
+  },
+  "riso_latte_cannella": {
+    "name": "Rice pudding with cinnamon and lemon"
+  },
+  "semolino_dolce_arancia": {
+    "name": "Sweet orange semolina"
+  },
+  "porridge_miglio_mela": {
+    "name": "Millet porridge with apple and cinnamon"
+  },
+  "crema_grano_saraceno_cacao": {
+    "name": "Cocoa buckwheat porridge with banana"
+  },
+  "quinoa_dolce_albicocche": {
+    "name": "Sweet quinoa with apricots and honey"
+  },
+  "porridge_soia_cachi": {
+    "name": "Soya milk porridge with persimmon"
+  },
+  "overnight_oats_mela_cannella": {
+    "name": "Apple and cinnamon overnight oats with oat drink"
+  },
+  "pudding_chia_mandorla_lamponi": {
+    "name": "Almond milk chia pudding with raspberries"
+  },
+  "crema_banana_lino_cacao": {
+    "name": "Banana, linseed and cocoa cream"
+  },
+  "crema_castagne_cacao_pera": {
+    "name": "Chestnut and cocoa cream with pear"
+  },
+  "yogurt_fichi_miele_mandorle": {
+    "name": "Yoghurt with fresh figs, honey and almonds"
+  },
+  "yogurt_greco_albicocche_avena": {
+    "name": "Greek yoghurt with apricots and caramelised oats"
+  },
+  "ricotta_montata_miele_arancia": {
+    "name": "Whipped ricotta with honey and orange"
+  },
+  "macedonia_autunnale_melagrana": {
+    "name": "Autumn fruit salad with grapes and pomegranate"
+  },
+  "arance_datteri_cannella": {
+    "name": "Orange slices with dates and cinnamon"
+  },
+  "fragole_limone_zucchero": {
+    "name": "Strawberries with lemon and sugar"
+  },
+  "smoothie_bowl_frutti_rossi": {
+    "name": "Red berry smoothie bowl"
+  },
+  "smoothie_bowl_verde_kiwi": {
+    "name": "Green smoothie bowl with kiwi and spinach"
+  },
+  "toast_integrale_ricotta_pomodorini": {
+    "name": "Wholemeal toast with ricotta and cherry tomatoes"
+  },
+  "pane_tostato_hummus_carota_cetriolo": {
+    "name": "Toast with houmous, carrot and cucumber"
+  },
+  "pane_integrale_salmone_affumicato_yogurt": {
+    "name": "Wholemeal bread with smoked salmon and lemon yoghurt"
+  },
+  "pane_uovo_occhio_bue_spinaci": {
+    "name": "Toast with a fried egg and spinach"
+  },
+  "avocado_toast_uovo_sodo_sesamo": {
+    "name": "Avocado toast with boiled egg and sesame seeds"
+  },
+  "pane_cunzato_primo_sale_acciughe": {
+    "name": "Sicilian pane cunzato with primo sale and anchovies"
+  },
+  "pane_integrale_crema_cannellini_pomodori_secchi": {
+    "name": "Wholemeal bread with cannellini cream and sun-dried tomatoes"
+  },
+  "gallette_riso_tonno_pomodorini_capperi": {
+    "name": "Rice cakes with tuna, cherry tomatoes and capers"
+  },
+  "uovo_coque_soldatini_pane": {
+    "name": "Soft-boiled egg with toast soldiers"
+  },
+  "omelette_erbe_aromatiche": {
+    "name": "Herb omelette"
+  },
+  "frittatina_piselli_cipollotto": {
+    "name": "Pea and spring onion frittata"
+  },
+  "uovo_camicia_asparagi_parmigiano": {
+    "name": "Poached egg with asparagus and Parmesan"
+  },
+  "uova_tegamino_patate_rosmarino": {
+    "name": "Fried eggs with rosemary potatoes"
+  },
+  "uova_cocotte_friggitrice_spinaci": {
+    "name": "Air fryer baked eggs with spinach"
+  },
+  "piadina_uova_strapazzate_zucchine": {
+    "name": "Piadina wrap with scrambled eggs and courgettes"
+  },
+  "polenta_morbida_uovo_tegamino": {
+    "name": "Soft polenta with a fried egg"
+  },
+  "yogurt_salato_cetriolo_menta_pane": {
+    "name": "Savoury yoghurt bowl with cucumber, mint and toast"
+  },
+  "bowl_yogurt_ceci_croccanti_paprika": {
+    "name": "Yoghurt bowl with crispy paprika chickpeas"
+  },
+  "porridge_salato_avena_funghi": {
+    "name": "Savoury oat porridge with mushrooms and Parmesan"
+  },
+  "bowl_ceci_avocado_pomodorini": {
+    "name": "Breakfast bowl with chickpeas, avocado and cherry tomatoes"
+  },
+  "quinoa_salata_avocado_semi_zucca": {
+    "name": "Savoury quinoa with avocado, cherry tomatoes and pumpkin seeds"
+  },
+  "strapazzata_farina_ceci_zucchine": {
+    "name": "Chickpea flour scramble with courgettes"
+  },
+  "tofu_strapazzato_peperoni_paprika": {
+    "name": "Tofu scramble with peppers and paprika"
+  },
+  "pancake_salati_ceci_spinaci": {
+    "name": "Savoury chickpea and spinach pancakes"
+  },
+  "polenta_morbida_pomodorini_saltati": {
+    "name": "Soft polenta with sautéed cherry tomatoes and basil"
+  },
+  "patate_saltate_peperoni_paprika": {
+    "name": "Sautéed potatoes with peppers and paprika"
+  },
+  "rosti_patate_friggitrice_aria": {
+    "name": "Air fryer potato rösti"
+  },
+  "patata_dolce_friggitrice_fagioli_neri": {
+    "name": "Air fryer sweet potato with black beans and lime"
+  },
+  "cannellini_funghi_pomodorini_padella": {
+    "name": "Pan-fried cannellini beans, mushrooms and cherry tomatoes"
+  },
+  "wrap_tortilla_fagioli_neri_avocado": {
+    "name": "Black bean, avocado and tomato wrap"
+  },
+  "bucatini_amatriciana": {
+    "name": "Bucatini all'amatriciana"
+  },
+  "rigatoni_alla_gricia": {
+    "name": "Rigatoni alla gricia"
+  },
+  "spaghetti_cacio_e_pepe": {
+    "name": "Spaghetti cacio e pepe"
+  },
+  "penne_all_arrabbiata": {
+    "name": "Penne all'arrabbiata"
+  },
+  "spaghetti_alla_puttanesca": {
+    "name": "Spaghetti alla puttanesca"
+  },
+  "pasta_con_le_sarde": {
+    "name": "Sicilian pasta with sardines"
+  },
+  "orecchiette_cime_di_rapa": {
+    "name": "Orecchiette with turnip tops"
+  },
+  "pasta_e_patate_con_provola": {
+    "name": "Pasta and potatoes with provola"
+  },
+  "pasta_e_fave": {
+    "name": "Pasta with broad beans"
+  },
+  "pasta_e_piselli": {
+    "name": "Pasta with peas"
+  },
+  "pasta_e_cavolfiore": {
+    "name": "Pasta with cauliflower"
+  },
+  "pasta_alla_genovese": {
+    "name": "Neapolitan pasta genovese"
+  },
+  "tagliatelle_ragu_bolognese": {
+    "name": "Tagliatelle with Bolognese ragù"
+  },
+  "lasagne_alla_bolognese": {
+    "name": "Lasagne alla bolognese"
+  },
+  "lasagne_alle_verdure": {
+    "name": "Vegetable lasagne"
+  },
+  "pasta_al_forno_melanzane_scamorza": {
+    "name": "Pasta bake with aubergine and scamorza"
+  },
+  "tortellini_in_brodo": {
+    "name": "Tortellini in broth"
+  },
+  "tortellini_panna_prosciutto": {
+    "name": "Tortellini with cream and ham"
+  },
+  "ravioli_burro_salvia": {
+    "name": "Ricotta and spinach ravioli with butter and sage"
+  },
+  "gnocchi_alla_sorrentina": {
+    "name": "Gnocchi alla sorrentina"
+  },
+  "gnocchi_pesto_pomodorini": {
+    "name": "Pesto gnocchi with cherry tomatoes"
+  },
+  "trofie_pesto_patate_fagiolini": {
+    "name": "Trofie with pesto, potatoes and green beans"
+  },
+  "spaghetti_ai_frutti_di_mare": {
+    "name": "Seafood spaghetti"
+  },
+  "pasta_seppie_pomodorini": {
+    "name": "Pasta with cuttlefish and cherry tomatoes"
+  },
+  "paccheri_ragu_di_polpo": {
+    "name": "Paccheri with octopus ragù"
+  },
+  "pasta_al_salmone_affumicato": {
+    "name": "Smoked salmon pasta"
+  },
+  "pasta_tonno_limone_capperi": {
+    "name": "Pasta with tuna, lemon and capers"
+  },
+  "pasta_zucchine_gamberetti": {
+    "name": "Courgette and prawn pasta"
+  },
+  "pasta_funghi_salsiccia": {
+    "name": "Mushroom and sausage pasta"
+  },
+  "pasta_salsiccia_broccoli": {
+    "name": "Sausage and broccoli pasta"
+  },
+  "pasta_zucca_salsiccia": {
+    "name": "Pasta with squash and sausage"
+  },
+  "pasta_ragu_bianco": {
+    "name": "Pasta with white ragù"
+  },
+  "pasta_panna_prosciutto_piselli": {
+    "name": "Pasta with cream, ham and peas"
+  },
+  "spaghetti_alla_carrettiera": {
+    "name": "Spaghetti alla carrettiera"
+  },
+  "pasta_alla_crudaiola": {
+    "name": "Pasta with raw tomato sauce"
+  },
+  "pasta_pomodorini_burrata": {
+    "name": "Pasta with cherry tomatoes and burrata"
+  },
+  "busiate_pesto_trapanese": {
+    "name": "Busiate with Trapani-style pesto"
+  },
+  "pasta_pesto_rosso_pomodori_secchi": {
+    "name": "Pasta with sun-dried tomato red pesto"
+  },
+  "spaghetti_alla_nerano": {
+    "name": "Spaghetti alla Nerano"
+  },
+  "spaghetti_al_limone": {
+    "name": "Lemon spaghetti"
+  },
+  "pasta_salsa_di_noci": {
+    "name": "Pasta with walnut sauce"
+  },
+  "carbonara_di_zucchine": {
+    "name": "Courgette carbonara"
+  },
+  "pasta_quattro_formaggi": {
+    "name": "Four-cheese pasta"
+  },
+  "pasta_fiori_di_zucca_zafferano": {
+    "name": "Pasta with courgette flowers, courgettes and saffron"
+  },
+  "pasta_integrale_crema_lenticchie_rosse": {
+    "name": "Wholewheat pasta with red lentil sauce"
+  },
+  "pasta_integrale_verdure_saltate": {
+    "name": "Wholewheat pasta with sautéed vegetables"
+  },
+  "pasta_fredda_verdure_grigliate": {
+    "name": "Pasta salad with grilled vegetables"
+  },
+  "pasta_fredda_tonno_olive_pomodorini": {
+    "name": "Pasta salad with tuna, olives and cherry tomatoes"
+  },
+  "pasta_fredda_zucchine_feta_menta": {
+    "name": "Pasta salad with courgettes, feta and mint"
+  },
+  "pasta_fredda_ceci_peperoni": {
+    "name": "Pasta salad with chickpeas, peppers and parsley"
+  },
+  "risotto_alla_milanese": {
+    "name": "Risotto alla milanese"
+  },
+  "risotto_funghi_porcini_secchi": {
+    "name": "Dried porcini mushroom risotto"
+  },
+  "riso_burro_parmigiano": {
+    "name": "Rice with butter and Parmesan"
+  },
+  "risotto_frutti_di_mare": {
+    "name": "Seafood risotto"
+  },
+  "risotto_al_limone": {
+    "name": "Lemon risotto"
+  },
+  "risotto_zucchine_zafferano": {
+    "name": "Courgette and saffron risotto"
+  },
+  "risotto_pomodoro_basilico": {
+    "name": "Tomato and basil risotto"
+  },
+  "riso_venere_gamberetti_zucchine": {
+    "name": "Black rice with prawns and courgettes"
+  },
+  "riso_venere_verdure_zenzero": {
+    "name": "Black rice with stir-fried vegetables and ginger"
+  },
+  "riso_integrale_verdure_forno": {
+    "name": "Brown rice with roasted vegetables"
+  },
+  "insalata_riso_pollo_mais_peperoni": {
+    "name": "Basmati rice salad with chicken, sweetcorn and peppers"
+  },
+  "paella_pollo_verdure": {
+    "name": "Chicken and vegetable paella"
+  },
+  "riso_basmati_curry_verdure": {
+    "name": "Curried basmati rice with vegetables"
+  },
+  "farro_funghi_prezzemolo": {
+    "name": "Spelt with mushrooms and parsley"
+  },
+  "insalata_farro_tonno_fagiolini": {
+    "name": "Spelt salad with tuna and green beans"
+  },
+  "couscous_gamberetti_zucchine_limone": {
+    "name": "Couscous with prawns, courgettes and lemon"
+  },
+  "couscous_pollo_verdure_speziate": {
+    "name": "Couscous with chicken and spiced vegetables"
+  },
+  "tabbouleh_bulgur_prezzemolo": {
+    "name": "Bulgur and parsley tabbouleh"
+  },
+  "miglio_zucchine_carote_curcuma": {
+    "name": "Millet with courgettes and carrots in turmeric"
+  },
+  "grano_saraceno_funghi_cipolla": {
+    "name": "Buckwheat with mushrooms and onion"
+  },
+  "quinoa_saltata_verdure": {
+    "name": "Stir-fried quinoa with vegetables"
+  },
+  "polenta_concia": {
+    "name": "Polenta concia with melted cheese"
+  },
+  "polenta_salsiccia_pomodoro": {
+    "name": "Polenta with sausage in tomato sauce"
+  },
+  "polenta_forno_pomodoro_mozzarella": {
+    "name": "Baked polenta with tomato and mozzarella"
+  },
+  "gnocchi_alla_romana": {
+    "name": "Roman-style semolina gnocchi"
+  },
+  "riso_e_lenticchie": {
+    "name": "Rice and lentils"
+  },
+  "minestra_orzo_fagioli": {
+    "name": "Barley and bean soup"
+  },
+  "minestrone_alla_genovese": {
+    "name": "Genoese minestrone with pesto"
+  },
+  "ribollita_toscana": {
+    "name": "Tuscan ribollita"
+  },
+  "pappa_al_pomodoro": {
+    "name": "Tuscan tomato and bread soup"
+  },
+  "zuppa_farro_verdure": {
+    "name": "Spelt and vegetable soup"
+  },
+  "zuppa_di_lenticchie": {
+    "name": "Lentil soup"
+  },
+  "zuppa_ceci_rosmarino": {
+    "name": "Chickpea and rosemary soup"
+  },
+  "zuppa_scarola_fagioli": {
+    "name": "Escarole and bean soup"
+  },
+  "stracciatella_in_brodo": {
+    "name": "Stracciatella egg drop soup"
+  },
+  "acquacotta_toscana": {
+    "name": "Tuscan acquacotta soup"
+  },
+  "zuppa_di_pesce_semplice": {
+    "name": "Simple fish soup"
+  },
+  "zuppa_cipolle_gratinata": {
+    "name": "French onion soup gratin"
+  },
+  "gazpacho": {
+    "name": "Gazpacho"
+  },
+  "passato_di_verdure": {
+    "name": "Puréed vegetable soup"
+  },
+  "vellutata_zucchine_menta": {
+    "name": "Courgette and mint soup"
+  },
+  "vellutata_cavolfiore": {
+    "name": "Cream of cauliflower soup"
+  },
+  "crema_porri_patate": {
+    "name": "Leek and potato soup"
+  },
+  "vellutata_piselli": {
+    "name": "Cream of pea soup"
+  },
+  "vellutata_broccoli_parmigiano": {
+    "name": "Broccoli and Parmesan soup"
+  },
+  "crema_zucca_lenticchie_rosse": {
+    "name": "Squash and red lentil soup"
+  },
+  "pollo_alla_diavola_padella": {
+    "name": "Pan-fried devilled chicken"
+  },
+  "pollo_alla_paprika_con_riso": {
+    "name": "Paprika chicken with rice"
+  },
+  "sovracosce_pollo_erbe_friggitrice": {
+    "name": "Air fryer herb chicken thighs"
+  },
+  "spiedini_pollo_verdure_piastra": {
+    "name": "Griddled chicken and vegetable skewers"
+  },
+  "cotolette_pollo_insalata_pomodori": {
+    "name": "Breaded chicken cutlets with tomato salad"
+  },
+  "polpette_pollo_zucchine_friggitrice": {
+    "name": "Air fryer chicken and courgette meatballs"
+  },
+  "pollo_sesamo_broccoli_riso": {
+    "name": "Sesame chicken with broccoli and rice"
+  },
+  "fajitas_pollo_peperoni": {
+    "name": "Chicken fajitas with peppers"
+  },
+  "pollo_al_forno_zucca_rosmarino": {
+    "name": "Roast chicken with squash and rosemary"
+  },
+  "fegatini_pollo_cipolle_polenta": {
+    "name": "Chicken livers with onions and polenta"
+  },
+  "involtini_tacchino_spinaci": {
+    "name": "Turkey rolls with spinach and Parmesan"
+  },
+  "bocconcini_tacchino_funghi": {
+    "name": "Turkey bites with mushrooms"
+  },
+  "bocconcini_tacchino_zucchine_zafferano": {
+    "name": "Turkey bites with courgettes and saffron"
+  },
+  "straccetti_manzo_rucola_grana": {
+    "name": "Beef strips with rocket and Grana Padano"
+  },
+  "carne_alla_pizzaiola": {
+    "name": "Beef pizzaiola"
+  },
+  "polpette_in_bianco_piselli": {
+    "name": "Braised meatballs with peas"
+  },
+  "polpettone_forno_patate": {
+    "name": "Meatloaf with roast potatoes"
+  },
+  "gulasch_manzo_polenta": {
+    "name": "Beef goulash with polenta"
+  },
+  "braciole_al_sugo_barese": {
+    "name": "Bari-style beef rolls in tomato sauce"
+  },
+  "chili_con_carne": {
+    "name": "Chilli con carne"
+  },
+  "costine_maiale_forno_patate": {
+    "name": "Roast pork ribs with potatoes"
+  },
+  "fettine_lonza_al_latte": {
+    "name": "Pork loin slices cooked in milk"
+  },
+  "salsiccia_e_friarielli": {
+    "name": "Sausage with friarielli greens"
+  },
+  "salsiccia_patate_forno": {
+    "name": "Roast sausage and potatoes"
+  },
+  "salsicce_fagioli_pomodoro": {
+    "name": "Sausages and beans in tomato sauce"
+  },
+  "maiale_agrodolce_ananas": {
+    "name": "Sweet and sour pork with peppers and pineapple"
+  },
+  "agnello_forno_patate": {
+    "name": "Roast lamb with potatoes"
+  },
+  "agnello_cacio_e_uova": {
+    "name": "Lamb with pecorino and egg"
+  },
+  "coniglio_alla_cacciatora": {
+    "name": "Rabbit cacciatore"
+  },
+  "coniglio_alla_ligure_olive": {
+    "name": "Ligurian rabbit with olives"
+  },
+  "saltimbocca_alla_romana": {
+    "name": "Saltimbocca alla romana"
+  },
+  "vitello_tonnato_fettine": {
+    "name": "Vitello tonnato"
+  },
+  "alici_in_tortiera_gratinate": {
+    "name": "Baked anchovy gratin"
+  },
+  "sarde_beccafico_semplificate": {
+    "name": "Easy Sicilian stuffed sardines"
+  },
+  "sgombro_forno_patate_pomodorini": {
+    "name": "Baked mackerel with potatoes and cherry tomatoes"
+  },
+  "orata_acqua_pazza": {
+    "name": "Sea bream in acqua pazza"
+  },
+  "branzino_cartoccio_zucchine_limone": {
+    "name": "Sea bass en papillote with courgettes and lemon"
+  },
+  "merluzzo_alla_livornese": {
+    "name": "Livorno-style cod"
+  },
+  "baccala_umido_patate": {
+    "name": "Salt cod stew with potatoes"
+  },
+  "insalata_polpo_patate": {
+    "name": "Octopus and potato salad"
+  },
+  "seppie_con_piselli": {
+    "name": "Cuttlefish with peas"
+  },
+  "impepata_di_cozze": {
+    "name": "Peppered mussels"
+  },
+  "gamberoni_aglio_olio_prezzemolo": {
+    "name": "Pan-fried king prawns with garlic, oil and parsley"
+  },
+  "trota_forno_mandorle_limone": {
+    "name": "Baked trout with almonds and lemon"
+  },
+  "salmone_crosta_pistacchi": {
+    "name": "Pistachio-crusted salmon"
+  },
+  "salmone_glassato_soia_miele": {
+    "name": "Soy and honey glazed salmon"
+  },
+  "tonno_alla_cipollata": {
+    "name": "Tuna with sweet and sour onions"
+  },
+  "platessa_limone_padella": {
+    "name": "Pan-fried lemon plaice"
+  },
+  "nasello_vapore_carote_zucchine": {
+    "name": "Steamed hake with carrots and courgettes"
+  },
+  "polpette_tonno_patate_forno": {
+    "name": "Baked tuna and potato balls"
+  },
+  "sardine_friggitrice_limone_origano": {
+    "name": "Air fryer sardines with lemon and oregano"
+  },
+  "crocchette_salmone_patate_friggitrice": {
+    "name": "Air fryer salmon and potato croquettes"
+  },
+  "frittata_di_cipolle": {
+    "name": "Onion frittata"
+  },
+  "uova_ripiene_tonno_insalata": {
+    "name": "Tuna-stuffed eggs with salad"
+  },
+  "uova_alla_fiorentina": {
+    "name": "Eggs Florentine"
+  },
+  "curry_uova_sode_riso": {
+    "name": "Boiled egg curry with basmati rice"
+  },
+  "omelette_funghi_champignon": {
+    "name": "Mushroom omelette"
+  },
+  "uova_strapazzate_asparagi": {
+    "name": "Scrambled eggs with asparagus"
+  },
+  "tofu_piastra_peperoni_zucchine": {
+    "name": "Griddled tofu with peppers and courgettes"
+  },
+  "tofu_patate_dolci_paprika_friggitrice": {
+    "name": "Air fryer paprika tofu and sweet potatoes"
+  },
+  "tempeh_piastra_cavolo_nero": {
+    "name": "Griddled tempeh with sautéed cavolo nero"
+  },
+  "seitan_alla_pizzaiola": {
+    "name": "Seitan pizzaiola"
+  },
+  "scaloppine_seitan_funghi": {
+    "name": "Seitan escalopes with mushrooms"
+  },
+  "tofu_limone_capperi_fagiolini": {
+    "name": "Lemon and caper tofu with green beans"
+  },
+  "baccala_ceci_pomodoro": {
+    "name": "Salt cod and chickpeas in tomato sauce"
+  },
+  "lenticchie_salsiccia_umido": {
+    "name": "Lentil and sausage stew"
+  },
+  "piselli_cacio_uova": {
+    "name": "Peas with cheese and egg"
+  },
+  "vignarola_romana": {
+    "name": "Roman vignarola spring vegetable stew"
+  },
+  "ceci_zimino_bietole": {
+    "name": "Tuscan chickpea and chard stew"
+  },
+  "ceci_cime_rapa_padella": {
+    "name": "Pan-fried chickpeas and turnip tops"
+  },
+  "polenta_borlotti_umido": {
+    "name": "Polenta with stewed borlotti beans"
+  },
+  "panelle_palermitane_insalata": {
+    "name": "Palermo chickpea fritters with salad"
+  },
+  "burger_ceci_zucchine": {
+    "name": "Pan-fried chickpea and courgette burgers"
+  },
+  "burger_lenticchie_carote_forno": {
+    "name": "Baked lentil and carrot burgers with potatoes"
+  },
+  "panino_burger_fagioli_neri": {
+    "name": "Black bean and sweetcorn burger bun"
+  },
+  "polpette_lenticchie_forno_sugo": {
+    "name": "Baked lentil balls in tomato sauce"
+  },
+  "falafel_forno_salsa_yogurt": {
+    "name": "Baked falafel with yoghurt sauce"
+  },
+  "hummus_barbabietola_pita": {
+    "name": "Beetroot houmous with pitta and vegetables"
+  },
+  "crema_cannellini_verdure_forno": {
+    "name": "Rosemary cannellini cream with roasted vegetables"
+  },
+  "insalata_lenticchie_verdure_croccanti": {
+    "name": "Lentil and crunchy vegetable salad"
+  },
+  "insalata_ceci_peperoni_arrostiti": {
+    "name": "Chickpea and roasted pepper salad"
+  },
+  "insalata_tiepida_cannellini_gamberetti": {
+    "name": "Warm cannellini bean and prawn salad"
+  },
+  "insalata_fagioli_neri_mais_peperone": {
+    "name": "Black bean, sweetcorn and pepper salad"
+  },
+  "insalata_lupini_patate_pomodorini": {
+    "name": "Lupini bean, potato and cherry tomato salad"
+  },
+  "buddha_bowl_quinoa_ceci_patata_dolce": {
+    "name": "Buddha bowl with quinoa, chickpeas and sweet potato"
+  },
+  "bowl_farro_lenticchie_zucca": {
+    "name": "Spelt, lentil and roasted squash bowl"
+  },
+  "bowl_riso_integrale_fagioli_neri_avocado": {
+    "name": "Brown rice, black bean and avocado bowl"
+  },
+  "poke_vegetale_edamame_mango": {
+    "name": "Veggie poke with edamame and mango"
+  },
+  "bowl_tofu_forno_riso_cavolo_rosso": {
+    "name": "Baked tofu bowl with rice and red cabbage"
+  },
+  "lenticchie_riso_cipolle_caramellate": {
+    "name": "Lentils and rice with caramelised onions"
+  },
+  "quesadilla_borlotti_mais_mozzarella": {
+    "name": "Borlotti bean, sweetcorn and mozzarella quesadilla"
+  },
+  "salmone_lenticchie_spinaci": {
+    "name": "Salmon on lentils and spinach"
+  },
+  "couscous_lenticchie_carote_uvetta": {
+    "name": "Couscous with lentils, carrots and sultanas"
+  },
+  "farro_cannellini_pomodori_secchi": {
+    "name": "Spelt with cannellini beans, sun-dried tomatoes and rocket"
+  },
+  "orzo_ceci_melanzane_grigliate": {
+    "name": "Barley with chickpeas and grilled aubergine"
+  },
+  "pasticcio_lenticchie_pure_patate": {
+    "name": "Baked lentil and mashed potato pie"
+  },
+  "bowl_grano_saraceno_ceci_vapore": {
+    "name": "Buckwheat, chickpea and steamed vegetable bowl"
+  },
+  "pilaf_riso_ceci_curcuma": {
+    "name": "Turmeric rice and chickpea pilaf"
+  },
+  "insalata_ceci_finocchio_arancia": {
+    "name": "Chickpea, fennel and orange salad"
+  },
+  "insalata_edamame_mais_cavolo_rosso": {
+    "name": "Crunchy edamame, sweetcorn and red cabbage salad"
+  },
+  "tempeh_glassato_acero_riso_broccoli": {
+    "name": "Maple-glazed tempeh with rice and broccoli"
+  },
+  "insalata_quinoa_lenticchie_barbabietola": {
+    "name": "Quinoa, lentil and beetroot salad"
+  },
+  "fave_guanciale_romana": {
+    "name": "Roman-style broad beans with guanciale"
+  },
+  "zucchine_ripiene_carne_forno": {
+    "name": "Baked meat-stuffed courgettes"
+  },
+  "pomodori_ripieni_riso_patate": {
+    "name": "Rice-stuffed tomatoes with potatoes"
+  },
+  "peperoni_ripieni_mollica_capperi": {
+    "name": "Peppers stuffed with breadcrumbs, capers and pecorino"
+  },
+  "melanzane_ripiene_caciocavallo": {
+    "name": "Baked stuffed aubergines with caciocavallo"
+  },
+  "funghi_ripieni_friggitrice": {
+    "name": "Air fryer stuffed mushrooms"
+  },
+  "cavolfiore_gratinato_besciamella": {
+    "name": "Cauliflower cheese bake"
+  },
+  "finocchi_gratinati_friggitrice": {
+    "name": "Air fryer fennel gratin"
+  },
+  "gratin_patate_porri": {
+    "name": "Potato and leek gratin"
+  },
+  "parmigiana_zucchine_forno": {
+    "name": "Courgette parmigiana"
+  },
+  "melanzane_a_funghetto": {
+    "name": "Sautéed diced aubergine with tomato"
+  },
+  "caponata_siciliana": {
+    "name": "Aubergine caponata"
+  },
+  "peperonata_con_patate": {
+    "name": "Stewed peppers with potatoes"
+  },
+  "ciambotta_lucana": {
+    "name": "Summer vegetable stew"
+  },
+  "scarola_olive_capperi_pinoli": {
+    "name": "Sautéed escarole with olives, capers and pine nuts"
+  },
+  "bietole_patate_aglio": {
+    "name": "Garlicky chard and potatoes"
+  },
+  "cime_rapa_patate": {
+    "name": "Turnip tops and potatoes"
+  },
+  "fave_e_cicoria": {
+    "name": "Broad bean purée with chicory"
+  },
+  "carciofi_alla_romana": {
+    "name": "Roman-style artichokes"
+  },
+  "fagiolini_patate_umido": {
+    "name": "Stewed green beans and potatoes"
+  },
+  "patate_alla_pizzaiola": {
+    "name": "Pan-cooked pizzaiola potatoes"
+  },
+  "ratatouille_in_pentola": {
+    "name": "Ratatouille"
+  },
+  "zucca_ceci_forno_rosmarino": {
+    "name": "Roast squash and chickpeas with rosemary"
+  },
+  "verdure_miste_friggitrice": {
+    "name": "Crispy air fryer mixed vegetables"
+  },
+  "melanzane_cotoletta_friggitrice": {
+    "name": "Air fryer breaded aubergine slices"
+  },
+  "tortino_patate_zucchine_strati": {
+    "name": "Layered potato and courgette bake"
+  },
+  "gatto_di_patate_napoletano": {
+    "name": "Neapolitan potato gattò"
+  },
+  "sformato_broccoli_forno": {
+    "name": "Baked broccoli flan"
+  },
+  "torta_salata_spinaci_ricotta": {
+    "name": "Spinach and ricotta tart"
+  },
+  "quiche_lorraine": {
+    "name": "Quiche lorraine"
+  },
+  "torta_salata_porri_stracchino": {
+    "name": "Leek and stracchino tart"
+  },
+  "erbazzone_semplificato": {
+    "name": "Easy erbazzone chard pie"
+  },
+  "pizza_teglia_margherita": {
+    "name": "Tray-baked margherita pizza"
+  },
+  "pizza_teglia_verdure_rossa": {
+    "name": "Tomato pizza with vegetables"
+  },
+  "focaccia_farcita_melanzane_mozzarella": {
+    "name": "Focaccia filled with grilled aubergine and mozzarella"
+  },
+  "piadina_funghi_fontina": {
+    "name": "Piadina with sautéed mushrooms and fontina"
+  },
+  "piadina_zucchine_scamorza": {
+    "name": "Piadina with grilled courgettes and scamorza"
+  },
+  "wrap_verdure_grigliate_hummus": {
+    "name": "Grilled vegetable and houmous wrap"
+  },
+  "insalata_nizzarda": {
+    "name": "Niçoise salad"
+  },
+  "fichi_ricotta_miele": {
+    "name": "Figs with ricotta and honey"
+  },
+  "pesche_yogurt_semi_zucca": {
+    "name": "Peaches with yoghurt, honey and pumpkin seeds"
+  },
+  "anguria_menta_lime": {
+    "name": "Watermelon with mint and lime"
+  },
+  "mandarini_mandorle_tostate": {
+    "name": "Mandarins and toasted almonds"
+  },
+  "cachi_cucchiaio_lime": {
+    "name": "Spoonable persimmon with lime"
+  },
+  "macedonia_inverno_agrumi_kiwi": {
+    "name": "Winter fruit salad with citrus, kiwi and pomegranate"
+  },
+  "macedonia_estiva_anguria_melone": {
+    "name": "Summer fruit salad with watermelon, melon and peach"
+  },
+  "prugne_cotte_cannella": {
+    "name": "Stewed plums with cinnamon"
+  },
+  "castagne_calde_miele_cannella": {
+    "name": "Warm chestnuts with honey and cinnamon"
+  },
+  "melone_prosciutto_crudo": {
+    "name": "Melon and prosciutto"
+  },
+  "uva_primo_sale_pepe": {
+    "name": "Grapes and primo sale cheese with black pepper"
+  },
+  "mix_frutta_secca_rosmarino": {
+    "name": "Rosemary toasted nuts and seeds"
+  },
+  "frullato_ciliegie_banana": {
+    "name": "Cherry and banana smoothie"
+  },
+  "frullato_melone_pesca_menta": {
+    "name": "Melon, peach and mint smoothie"
+  },
+  "succo_arancia_carota_zenzero": {
+    "name": "Orange, carrot and ginger juice"
+  },
+  "ghiaccioli_anguria_fragole": {
+    "name": "Watermelon and strawberry ice lollies"
+  },
+  "ghiaccioli_yogurt_mirtilli": {
+    "name": "Yoghurt and blueberry ice lollies"
+  },
+  "gelato_banana_frutti_bosco": {
+    "name": "Instant banana and berry ice cream"
+  },
+  "mousse_avocado_cacao": {
+    "name": "Avocado and cocoa mousse"
+  },
+  "yogurt_greco_pere_caramellate": {
+    "name": "Greek yoghurt with caramelised pears"
+  },
+  "barrette_avena_datteri": {
+    "name": "Oat and date bars"
+  },
+  "palline_fichi_secchi_nocciole": {
+    "name": "Dried fig and hazelnut balls"
+  },
+  "palline_avena_burro_arachidi": {
+    "name": "Oat and peanut butter balls"
+  },
+  "biscotti_avena_cocco": {
+    "name": "Oat and coconut biscuits"
+  },
+  "muffin_yogurt_frutti_bosco": {
+    "name": "Yoghurt and berry muffins"
+  },
+  "pane_cioccolato_fondente": {
+    "name": "Bread and dark chocolate"
+  },
+  "fettunta_aglio_olio": {
+    "name": "Tuscan garlic bread with olive oil"
+  },
+  "crostini_crema_fave_menta": {
+    "name": "Crostini with broad bean and mint cream"
+  },
+  "crostini_crema_lenticchie": {
+    "name": "Crostini with lentil cream and red onion"
+  },
+  "crostini_cannellini_salvia": {
+    "name": "Crostini with sage cannellini beans"
+  },
+  "bruschetta_zucchine_menta": {
+    "name": "Bruschetta with grilled courgettes and mint"
+  },
+  "crostini_mozzarella_alici": {
+    "name": "Crostini with mozzarella and anchovies"
+  },
+  "focaccine_yogurt_padella": {
+    "name": "Pan-cooked yoghurt flatbreads"
+  },
+  "girelle_piadina_cotto_formaggio": {
+    "name": "Piadina pinwheels with ham and cream cheese"
+  },
+  "tramezzini_tonno_pomodoro": {
+    "name": "Tuna and tomato sandwiches"
+  },
+  "crackers_semi_forno": {
+    "name": "Baked seed crackers"
+  },
+  "hummus_lupini_verdure": {
+    "name": "Lupini bean houmous with crudités"
+  },
+  "verdure_crude_salsa_yogurt_erba_cipollina": {
+    "name": "Crudités with yoghurt and chive dip"
+  },
+  "verdure_crude_salsa_tahina": {
+    "name": "Fennel, radishes and cauliflower with tahini dip"
+  },
+  "pinzimonio_verdure": {
+    "name": "Crudités with olive oil dip"
+  },
+  "chips_cavolo_nero_friggitrice": {
+    "name": "Air fryer cavolo nero crisps"
+  },
+  "chips_patate_rosmarino_friggitrice": {
+    "name": "Air fryer rosemary potato crisps"
+  },
+  "frittelle_zucchine_parmigiano": {
+    "name": "Courgette and Parmesan fritters"
+  },
+  "edamame_sale_lime": {
+    "name": "Edamame with salt and lime"
+  },
+  "lupini_conditi_limone_peperoncino": {
+    "name": "Lupini beans with lemon, garlic and chilli"
+  },
+  "bastoncini_polenta_friggitrice": {
+    "name": "Crispy air fryer polenta chips"
+  },
+  "olive_arancia_caciocavallo": {
+    "name": "Orange-marinated olives with caciocavallo"
+  }
+}

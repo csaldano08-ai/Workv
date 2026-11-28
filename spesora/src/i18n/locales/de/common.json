@@ -111,5 +111,6 @@
   "nav.history": "Mahlzeitenverlauf",
   "nav.prices": "Preise",
   "nav.cheaper": "Günstigere Woche",
-  "nav.cooking": "Kochmodus"
+  "nav.cooking": "Kochmodus",
+  "tabs.todayTab": "Heute"
 }

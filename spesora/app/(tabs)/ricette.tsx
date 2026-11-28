@@ -166,7 +166,7 @@ export default function Recipes() {
           return (
             <Squish key={tl.id} accessibilityRole="tab" accessibilityState={{ selected: on }} accessibilityLabel={label} onPress={() => setTile(tl.id)} style={[styles.tile, on ? styles.tileOn : styles.tileOff]}>
               {tl.art ? <ChoiceArt name={tl.art} size={44} /> : <Ionicons name={on ? (tl.icon.replace('-outline', '') as keyof typeof Ionicons.glyphMap) : tl.icon} size={32} color={on ? colors.white : colors.green} />}
-              <Text variant="small" color={on ? colors.white : colors.ink} style={styles.tileText} numberOfLines={1}>
+              <Text variant="small" color={on ? colors.white : colors.ink} style={styles.tileText} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.8}>
                 {label}
               </Text>
             </Squish>
@@ -240,7 +240,7 @@ function RecipeCard({ recipe, favorite, servings, onFavorite }: { recipe: Recipe
         </Pressable>
       </View>
       <View style={styles.cardBody}>
-        <Text variant="heading" numberOfLines={2} style={styles.cardTitle}>
+        <Text variant="heading" numberOfLines={3} style={styles.cardTitle}>
           {name}
         </Text>
         <View style={styles.cardMeta}>
@@ -274,14 +274,15 @@ const styles = StyleSheet.create({
   tile: { width: 82, height: 94, borderRadius: radius.lg, alignItems: 'center', justifyContent: 'center', gap: 4 },
   tileOn: { backgroundColor: colors.green, ...shadow.float },
   tileOff: { backgroundColor: colors.card, ...shadow.card },
-  tileText: { fontWeight: '800', fontSize: 15 },
+  tileText: { fontWeight: '800', fontSize: 15, lineHeight: 18, textAlign: 'center' },
   resultBar: { flexDirection: 'row', alignItems: 'center', marginTop: -space.xs },
   gridRow: { gap: space.md, marginBottom: space.md },
   cardOuter: { flex: 1, maxWidth: '50%' },
   card: { borderRadius: radius.xl, backgroundColor: colors.card, overflow: 'hidden', ...shadow.card },
   heart: { position: 'absolute', top: 8, right: 8, width: 34, height: 34, borderRadius: 17, backgroundColor: colors.card, alignItems: 'center', justifyContent: 'center' },
   cardBody: { padding: space.md, gap: 6 },
-  cardTitle: { fontWeight: '800', fontSize: 18, lineHeight: 23 },
+  // 3 righe: i nomi tradotti (tedesco, francese) sono più lunghi e non devono finire con «…»
+  cardTitle: { fontWeight: '800', fontSize: 17, lineHeight: 22 },
   cardMeta: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   metaGap: { marginLeft: space.sm },
   empty: { alignItems: 'center', gap: space.md, paddingVertical: space.xl },
